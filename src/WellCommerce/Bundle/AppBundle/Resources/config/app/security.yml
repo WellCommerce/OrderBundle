@@ -23,6 +23,11 @@ security:
             logout:
                 path:   admin.user.logout
                 target: admin.user.login
+        api:
+            pattern:   ^/api
+            guard:
+                authenticators:
+                    - api.security.token_authenticator
         client:
             pattern:   ^/
             anonymous: ~
@@ -35,6 +40,9 @@ security:
             logout:
                 path:   front.client.logout
                 target: front.client.login
+            guard:
+                authenticators:
+                    - oauth.authentificator.facebook
 
     access_control:
         - { path: ^/admin/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

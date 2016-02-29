@@ -54,7 +54,7 @@ class ShopFormBuilder extends AbstractFormBuilder
         $requiredData->addChild($this->getElement('select', [
             'name'        => 'theme',
             'label'       => $this->trans('shop.label.theme'),
-            'options'     => $this->get('theme.dataset')->getResult('select'),
+            'options'     => $this->get('theme.dataset.admin')->getResult('select'),
             'transformer' => $this->getRepositoryTransformer('entity', $this->get('theme.repository'))
         ]));
 
@@ -120,6 +120,14 @@ class ShopFormBuilder extends AbstractFormBuilder
         $mailerConfiguration->addChild($this->getElement('text_field', [
             'name'  => 'mailerConfiguration.user',
             'label' => $this->trans('shop.label.mailer_configuration.user'),
+            'rules' => [
+                $this->getRule('required')
+            ],
+        ]));
+
+        $mailerConfiguration->addChild($this->getElement('password', [
+            'name'  => 'mailerConfiguration.pass',
+            'label' => $this->trans('shop.label.mailer_configuration.pass'),
             'rules' => [
                 $this->getRule('required')
             ],

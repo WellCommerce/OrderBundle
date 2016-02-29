@@ -12,6 +12,7 @@
 
 namespace WellCommerce\Bundle\CoreBundle\EventDispatcher;
 
+use WellCommerce\Component\DataSet\DataSetInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
 
@@ -87,6 +88,14 @@ interface EventDispatcherInterface
      *
      * @param FormBuilderInterface $builder
      * @param FormInterface        $form
+     * @param object               $defaultData
      */
-    public function dispatchOnFormInitEvent(FormBuilderInterface $builder, FormInterface $form);
+    public function dispatchOnFormInitEvent(FormBuilderInterface $builder, FormInterface $form, $defaultData);
+
+    /**
+     * Dispatches the events after dataset initialization
+     *
+     * @param DataSetInterface $dataset
+     */
+    public function dispatchOnDataSetInitEvent(DataSetInterface $dataset);
 }

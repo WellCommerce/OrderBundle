@@ -12,6 +12,7 @@
 
 namespace WellCommerce\Bundle\CoreBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
@@ -113,7 +114,7 @@ abstract class AbstractContainerAware
     }
 
     /**
-     * @return \WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface
+     * @return \WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface
      */
     public function getDoctrineHelper()
     {
@@ -179,7 +180,7 @@ abstract class AbstractContainerAware
     /**
      * @return \WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelperInterface
      */
-    public function getTemplatingelper()
+    public function getTemplatingHelper()
     {
         return $this->get('templating.helper');
     }

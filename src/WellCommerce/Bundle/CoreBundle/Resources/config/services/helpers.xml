@@ -14,10 +14,6 @@
             <argument type="service" id="liip_imagine.cache.manager"/>
         </service>
 
-        <service id="doctrine.helper" class="WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelper">
-            <argument type="service" id="doctrine"/>
-        </service>
-
         <service id="router.helper" class="WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelper">
             <argument type="service" id="router"/>
             <argument type="service" id="request.helper"/>
@@ -44,6 +40,8 @@
             <argument type="service" id="kernel"/>
         </service>
 
-        <service id="mailer.helper" class="WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelper" />
+        <service id="mailer.helper" class="WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelper">
+            <argument type="service" id="templating.helper"/>
+        </service>
     </services>
 </container>

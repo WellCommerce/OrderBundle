@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\CurrencyBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class LoadCurrencyData
@@ -37,6 +37,7 @@ class LoadCurrencyData extends AbstractDataFixture
         foreach (self::$samples as $name) {
             $currency = new Currency();
             $currency->setCode($name);
+            $currency->setEnabled(true);
             $manager->persist($currency);
 
             $this->setReference('currency_' . $name, $currency);

@@ -33,7 +33,7 @@ class TaxFormBuilder extends AbstractFormBuilder
 
         $taxTranslationData = $taxRequiredData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('form.fieldset.translations'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('tax.repository'))
         ]));
 
@@ -49,7 +49,7 @@ class TaxFormBuilder extends AbstractFormBuilder
             'name'   => 'value',
             'label'  => $this->trans('tax.label.value'),
             'suffix' => '%',
-            'rules' => [
+            'rules'  => [
                 $this->getRule('required')
             ],
         ]));

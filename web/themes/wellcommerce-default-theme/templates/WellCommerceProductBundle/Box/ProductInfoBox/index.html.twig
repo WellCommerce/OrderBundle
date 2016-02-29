@@ -34,7 +34,7 @@
                         {% if product.reviews.count > 0 %}
 	                        <span>{{ score }} / <a href="#add-opinion-alert">see {{ product.reviews.count }} reviews</a></span>
                         {% else %}
-                            <span>{{ score }} / <a href="#add-opinion-alert">{% trans %}product_review.link.first_review{% endtrans %}</a></span>
+                            <span>{{ score }} / <a href="#add-opinion-alert">{% trans %}review.link.first_review{% endtrans %}</a></span>
                         {% endif %}
 	                </div>
 
@@ -77,7 +77,9 @@
                 {% endif %}
 
                 <div class="available text-center">
+                    {% if product.availability is not null %}
                     {% trans %}product.label.availability{% endtrans %}: <span class="grn">{{ product.availability.translate().name }}</span><br />
+                    {% endif %}
                     {% if shippingCosts.count > 0 %}
                         {% trans %}product.label.shipping_cost{% endtrans %}: {{ format_price(shippingCosts.first.cost.grossAmount, shippingCosts.first.cost.currency) }}
                     {% endif %}

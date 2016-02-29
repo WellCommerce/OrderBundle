@@ -26,11 +26,11 @@ class ClientForgotPasswordManager extends AbstractFrontManager
     public function resetPassword($username)
     {
         if (false === filter_var($username, FILTER_VALIDATE_EMAIL)) {
-            throw new ResetPasswordException('Given e-mail address is not valid');
+            throw new ResetPasswordException('client.flash.reset_password.wrong_email');
         }
 
         if (null === $client = $this->findClient($username)) {
-            throw new ResetPasswordException(sprintf('Account for email %s was not found', $username));
+            throw new ResetPasswordException(sprintf('client.flash.reset_password.email_not_found', $username));
         }
 
         $this->setClientResetPasswordHash($client);
@@ -58,12 +58,13 @@ class ClientForgotPasswordManager extends AbstractFrontManager
      */
     protected function sendResetInstructions(ClientInterface $client)
     {
-        $email = $client->getContactDetails()->getEmail();
-        $title = $this->getTranslatorHelper()->trans('client.email.title.reset_password');
-        $body  = $this->getTemplatingelper()->render('WellCommerceClientBundle:Email:reset_password.html.twig', ['client' => $client]);
-        $shop  = $client->getShop();
+        $email      = $client->getContactDetails()->getEmail();
+        $title      = $this->getTranslatorHelper()->trans('client.email.heading.reset_password');
+        $template   = 'WellCommerceClientBundle:Email:reset_password.html.twig';
+        $parameters = ['client' => $client];
+        $shop       = $client->getShop();
 
-        return $this->getMailerHelper()->sendEmail($email, $title, $body, $shop->getMailerConfiguration());
+        return $this->getMailerHelper()->sendEmail($email, $title, $template, $parameters, $shop->getMailerConfiguration());
     }
 
     /**

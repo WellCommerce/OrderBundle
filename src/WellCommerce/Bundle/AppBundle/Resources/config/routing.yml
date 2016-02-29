@@ -1,3 +1,6 @@
+wellcommerce_api:
+    resource: "@WellCommerceApiBundle/Resources/config/routing.xml"
+
 wellcommerce_app:
     resource: "@WellCommerceAppBundle/Resources/config/routing.xml"
 
@@ -24,6 +27,9 @@ wellcommerce_deliverer:
 
 wellcommerce_dictionary:
     resource: "@WellCommerceDictionaryBundle/Resources/config/routing.xml"
+
+wellcommerce_distribution:
+    resource: "@WellCommerceDistributionBundle/Resources/config/routing.xml"
 
 wellcommerce_layered_navigation:
     resource: "@WellCommerceLayeredNavigationBundle/Resources/config/routing.xml"
@@ -54,6 +60,9 @@ wellcommerce_news:
 
 wellcommerce_admin:
     resource: "@WellCommerceAdminBundle/Resources/config/routing.xml"
+
+wellcommerce_oauth:
+    resource: "@WellCommerceOAuthBundle/Resources/config/routing.xml"
 
 wellcommerce_order:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.xml"
@@ -88,9 +97,6 @@ wellcommerce_search:
 wellcommerce_shipping:
     resource: "@WellCommerceShippingBundle/Resources/config/routing.xml"
 
-wellcommerce_smuggler:
-    resource: "@WellCommerceSmugglerBundle/Resources/config/routing.xml"
-
 wellcommerce_tax:
     resource: "@WellCommerceTaxBundle/Resources/config/routing.xml"
 
@@ -121,7 +127,7 @@ root:
 
 remove_trailing_slash:
     path: /{url}
-    defaults: { _controller: WellCommerceCoreBundle:Redirecting:removeTrailingSlash }
+    defaults: { _controller: WellCommerceAppBundle:Redirecting:removeTrailingSlash }
     requirements:
         url: .*/$
     methods: [GET]

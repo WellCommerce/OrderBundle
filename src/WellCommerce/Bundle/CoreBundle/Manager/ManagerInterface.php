@@ -41,7 +41,7 @@ interface ManagerInterface
     /**
      * Returns the DoctrineHelper
      *
-     * @return \WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface
+     * @return \WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface
      */
     public function getDoctrineHelper();
 
@@ -60,7 +60,7 @@ interface ManagerInterface
     public function getTranslatorHelper();
 
     /**
-     * @return \WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface
+     * @return \WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface
      */
     public function getRepository();
 
@@ -120,7 +120,7 @@ interface ManagerInterface
     public function removeResource($resource);
 
     /**
-     * @return \WellCommerce\Bundle\AppBundle\Context\ShopContextInterface
+     * @return \WellCommerce\Bundle\ShopBundle\Context\ShopContextInterface
      */
     public function getShopContext();
 

@@ -41,7 +41,7 @@ class PaymentMethodFormBuilder extends AbstractFormBuilder
 
         $languageData = $requiredData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('form.fieldset.translations'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('payment_method.repository'))
         ]));
 
@@ -60,13 +60,13 @@ class PaymentMethodFormBuilder extends AbstractFormBuilder
         ]));
 
         $requiredData->addChild($this->getElement('checkbox', [
-            'name'    => 'enabled',
-            'label'   => $this->trans('common.label.enabled'),
+            'name'  => 'enabled',
+            'label' => $this->trans('common.label.enabled'),
         ]));
 
         $requiredData->addChild($this->getElement('text_field', [
-            'name'    => 'hierarchy',
-            'label'   => $this->trans('common.label.hierarchy'),
+            'name'  => 'hierarchy',
+            'label' => $this->trans('common.label.hierarchy'),
             'rules' => [
                 $this->getRule('required')
             ],

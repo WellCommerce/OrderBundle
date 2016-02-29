@@ -33,7 +33,7 @@ class ProductStatusFormBuilder extends AbstractFormBuilder
 
         $languageData = $mainData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('fieldset.translations.label'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('product_status.repository'))
         ]));
 
@@ -51,7 +51,7 @@ class ProductStatusFormBuilder extends AbstractFormBuilder
             'name_field'      => $name,
             'generate_route'  => 'admin.routing.generate',
             'translatable_id' => $this->getRequestHelper()->getAttributesBagParam('id'),
-            'rules' => [
+            'rules'           => [
                 $this->getRule('required')
             ]
         ]));
@@ -69,7 +69,7 @@ class ProductStatusFormBuilder extends AbstractFormBuilder
 
         $languageData = $metaData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('fieldset.translations.label'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('product_status.repository'))
         ]));
 

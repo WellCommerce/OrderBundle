@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CoreBundle\Form;
 
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\EventDispatcher\EventDispatcherInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
 use WellCommerce\Component\Form\Handler\FormHandlerInterface;
@@ -66,8 +66,8 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     {
         $form = $this->getFormService($options);
         $this->buildForm($form);
+        $this->eventDispatcher->dispatchOnFormInitEvent($this, $form, $defaultData);
         $this->formHandler->initForm($form, $defaultData);
-        $this->eventDispatcher->dispatchOnFormInitEvent($this, $form);
 
         return $form;
     }
@@ -146,7 +146,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
      */
     protected function initService($type, $alias, $options)
     {
-        $id = $this->resolverFactory->resolve($type, $alias);
+        $id      = $this->resolverFactory->resolve($type, $alias);
         $service = $this->get($id);
 
         $service->setOptions($options);

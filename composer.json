@@ -20,7 +20,10 @@
         "source": "https://github.com/WellCommerce/WellCommerce/"
     },
     "autoload": {
-        "psr-4": { "": "src/" },
+        "psr-4": {
+            "WellCommerce\\Bundle\\": "src/WellCommerce/Bundle",
+            "WellCommerce\\Component\\": "src/WellCommerce/Component"
+        },
         "files": [ "app/AppKernel.php" ]
     },
     "require": {
@@ -47,12 +50,13 @@
         "react/child-process": "0.5.*@dev",
         "knplabs/packagist-api": "1.*@dev",
         "mcuelenaere/composer-revision-plugin": "0.1.*",
-        "hoa/websocket": "2.*@dev",
         "devristo/phpws": "dev-master",
         "nesbot/carbon": "dev-master",
-        "egeloen/lucene-search-bundle": "^2.0@dev",
+        "zendframework/zendsearch": "dev-master",
         "zendframework/zend-json": "^2.6@dev",
-        "mmoreram/simple-doctrine-mapping": "^1.1"
+        "mmoreram/simple-doctrine-mapping": "^1.1",
+        "league/oauth2-facebook": "~1.0",
+        "wingu/code-generator": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0@dev",

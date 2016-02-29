@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\LocaleBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
@@ -32,12 +32,13 @@ class LoadLocaleData extends AbstractDataFixture
             return;
         }
 
-        $en = new Locale();
-        $en->setCode('en');
-        $en->setCurrency($this->getReference('currency_USD'));
-        $manager->persist($en);
+        $locale = new Locale();
+        $locale->setCode('en');
+        $locale->setEnabled(true);
+        $locale->setCurrency($this->getReference('currency_USD'));
+        $manager->persist($locale);
         $manager->flush();
 
-        $this->setReference('locale_en', $en);
+        $this->setReference('locale_en', $locale);
     }
 }

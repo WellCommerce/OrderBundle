@@ -14,10 +14,12 @@ namespace WellCommerce\Bundle\CoreBundle\EventDispatcher;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as BaseEventDispatcherInterface;
-use WellCommerce\Bundle\CoreBundle\Event\FormEvent;
-use WellCommerce\Bundle\CoreBundle\Event\ResourceEvent;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
+use WellCommerce\Bundle\DoctrineBundle\Event\ResourceEvent;
+use WellCommerce\Component\DataSet\DataSetInterface;
+use WellCommerce\Component\DataSet\Event\DataSetEvent;
 use WellCommerce\Component\Form\Elements\FormInterface;
+use WellCommerce\Component\Form\Event\FormEvent;
 use WellCommerce\Component\Form\FormBuilderInterface;
 
 /**
@@ -101,9 +103,17 @@ class EventDispatcher implements EventDispatcherInterface
     /**
      * {@inheritdoc}
      */
-    public function dispatchOnFormInitEvent(FormBuilderInterface $builder, FormInterface $form)
+    public function dispatchOnFormInitEvent(FormBuilderInterface $builder, FormInterface $form, $defaultData)
     {
-        $this->dispatchFormEvent($builder, $form, EventDispatcherInterface::FORM_INIT_EVENT);
+        $this->dispatchFormEvent($builder, $form, $defaultData, EventDispatcherInterface::FORM_INIT_EVENT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function dispatchOnDataSetInitEvent(DataSetInterface $dataset)
+    {
+        $this->dispatchDataSetEvent($dataset, EventDispatcherInterface::DATASET_INIT_EVENT);
     }
     
     /**
@@ -115,7 +125,7 @@ class EventDispatcher implements EventDispatcherInterface
     protected function dispatchResourceEvent($resource, $name)
     {
         $reflection = new \ReflectionClass($resource);
-        $eventName  = $this->getResourceEventName($reflection->getShortName(), $name);
+        $eventName  = $this->getEventName($reflection->getShortName(), $name);
         $event      = new ResourceEvent($resource);
         $this->dispatch($eventName, $event);
     }
@@ -128,7 +138,7 @@ class EventDispatcher implements EventDispatcherInterface
      *
      * @return string
      */
-    protected function getResourceEventName($class, $name)
+    protected function getEventName($class, $name)
     {
         return sprintf('%s.%s', Helper::snake($class), $name);
     }
@@ -143,15 +153,32 @@ class EventDispatcher implements EventDispatcherInterface
     }
     
     /**
-     * Dispatches resource event
+     * Dispatches form init event
      *
-     * @param object $resource
-     * @param string $name
+     * @param FormBuilderInterface $builder
+     * @param FormInterface        $form
+     * @param object               $defaultData
+     * @param string               $name
      */
-    protected function dispatchFormEvent(FormBuilderInterface $builder, FormInterface $form, $name)
+    protected function dispatchFormEvent(FormBuilderInterface $builder, FormInterface $form, $defaultData, $name)
     {
         $eventName = sprintf('%s.%s', $form->getName(), $name);
-        $event     = new FormEvent($builder, $form);
+        $event     = new FormEvent($builder, $form, $defaultData);
+        $this->dispatch($eventName, $event);
+    }
+
+    /**
+     * Dispatches dataset event
+     *
+     * @param object $dataset
+     * @param string $name
+     */
+    protected function dispatchDataSetEvent(DataSetInterface $dataset, $name)
+    {
+        $reflection  = new \ReflectionClass($dataset);
+        $dataSetName = str_replace('DataSet', '', $reflection->getShortName());
+        $eventName   = $this->getEventName($dataSetName, $name);
+        $event       = new DataSetEvent($dataset);
         $this->dispatch($eventName, $event);
     }
 }

@@ -46,6 +46,7 @@ abstract class AbstractConfiguration implements ConfigurationInterface
 
     }
 
+    //@formatter:off
     protected function addDynamicRoutingConfiguration(ArrayNodeDefinition $node)
     {
         $node
@@ -92,9 +93,17 @@ abstract class AbstractConfiguration implements ConfigurationInterface
                                     ->scalarNode('mapping')->end()
                                 ->end()
                             ->end()
+                            ->arrayNode('api_configuration')->addDefaultsIfNotSet()
+                                ->children()
+                                    ->booleanNode('exposed')->defaultFalse()->end()
+                                    ->scalarNode('dataset')->defaultNull()->end()
+                                    ->scalarNode('manager')->defaultNull()->end()
+                                ->end()
+                            ->end()
                         ->end()
                     ->end()
                 ->end()
             ->end();
     }
+    //@formatter:on
 }

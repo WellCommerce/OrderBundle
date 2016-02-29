@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\ShopBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 
@@ -22,16 +22,13 @@ use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
  */
 class ShopSubscriber extends AbstractEventSubscriber
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::CONTROLLER => ['onKernelController', 0],
-            'shop.post_update'       => 'onShopListModified',
-            'shop.post_create'       => 'onShopListModified',
-            'shop.post_remove'       => 'onShopListModified',
+            KernelEvents::REQUEST => ['onKernelRequest', 100],
+            'shop.post_update'    => 'onShopListModified',
+            'shop.post_create'    => 'onShopListModified',
+            'shop.post_remove'    => 'onShopListModified',
         ];
     }
 
@@ -44,11 +41,9 @@ class ShopSubscriber extends AbstractEventSubscriber
     }
 
     /**
-     * Sets shop context related session variables
-     *
-     * @param FilterControllerEvent $event
+     * @param GetResponseEvent $event
      */
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
         if (!$this->container->get('session')->has('admin/shops')) {
             $shops = $this->container->get('shop.dataset.admin')->getResult('select');

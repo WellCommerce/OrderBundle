@@ -50,7 +50,7 @@ class PageFormBuilder extends AbstractFormBuilder
 
         $languageData = $mainData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('fieldset.translations.label'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('page.repository'))
         ]));
 
@@ -68,7 +68,7 @@ class PageFormBuilder extends AbstractFormBuilder
             'name_field'      => $name,
             'generate_route'  => 'admin.routing.generate',
             'translatable_id' => $this->getRequestHelper()->getAttributesBagParam('id'),
-            'rules' => [
+            'rules'           => [
                 $this->getRule('required')
             ],
         ]));
@@ -76,21 +76,21 @@ class PageFormBuilder extends AbstractFormBuilder
         $mainData->addChild($this->getElement('checkbox', [
             'name'    => 'publish',
             'label'   => $this->trans('common.label.publish'),
-            'comment' => $this->trans('common.comment.publish'),
+            'comment' => $this->trans('page.comment.publish'),
             'default' => 1
         ]));
 
         $mainData->addChild($this->getElement('text_field', [
-            'name'    => 'hierarchy',
-            'label'   => $this->trans('common.label.hierarchy'),
+            'name'  => 'hierarchy',
+            'label' => $this->trans('common.label.hierarchy'),
             'rules' => [
                 $this->getRule('required')
             ],
         ]));
 
         $mainData->addChild($this->getElement('text_field', [
-            'name'    => 'section',
-            'label'   => $this->trans('page.label.section'),
+            'name'  => 'section',
+            'label' => $this->trans('page.label.section'),
         ]));
 
         $mainData->addChild($this->getElement('tree', [
@@ -106,7 +106,7 @@ class PageFormBuilder extends AbstractFormBuilder
         ]));
 
         $mainData->addChild($this->getElement('tip', [
-            'tip' => '<p>' . $this->trans('page.tip.client_groups') . '</p>'
+            'tip' => $this->trans('page.tip.client_groups')
         ]));
 
         $mainData->addChild($this->getElement('multi_select', [
@@ -131,7 +131,7 @@ class PageFormBuilder extends AbstractFormBuilder
 
         $languageData = $contentData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('fieldset.translations.label'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('page.repository'))
         ]));
 
@@ -147,7 +147,7 @@ class PageFormBuilder extends AbstractFormBuilder
 
         $languageData = $metaData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('fieldset.translations.label'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('page.repository'))
         ]));
 
@@ -186,7 +186,7 @@ class PageFormBuilder extends AbstractFormBuilder
 
         $redirectSettings->addChild($this->getElement('text_field', [
             'name'         => 'redirectUrl',
-            'label'        => $this->trans('label.redirect_url'),
+            'label'        => $this->trans('page.label.redirect.url'),
             'dependencies' => [
                 $this->getDependency('show', [
                     'form'      => $form,
@@ -198,7 +198,7 @@ class PageFormBuilder extends AbstractFormBuilder
 
         $redirectSettings->addChild($this->getElement('select', [
             'name'         => 'redirectRoute',
-            'label'        => $this->trans('label.redirect_route'),
+            'label'        => $this->trans('page.label.redirect.route'),
             'options'      => $this->getRedirectRoutes(),
             'dependencies' => [
                 $this->getDependency('show', [

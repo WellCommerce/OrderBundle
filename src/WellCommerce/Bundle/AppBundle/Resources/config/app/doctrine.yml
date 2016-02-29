@@ -32,18 +32,12 @@ doctrine:
         charset:  UTF8
         server_version: %doctrine.server_version%
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_generate_proxy_classes: false
         entity_managers:
             default:
-                #query_cache_driver:
-                #    type: service
-                #    id: doctrine.cache
-                #metadata_cache_driver:
-                #    type: service
-                #    id: doctrine.cache
-                #result_cache_driver:
-                #    type: service
-                #    id: doctrine.cache
+                query_cache_driver: ~
+                metadata_cache_driver: ~
+                result_cache_driver: ~
                 auto_mapping: false
                 dql:
                     string_functions:
@@ -60,3 +54,4 @@ doctrine:
                     locale:
                         class:   WellCommerce\Bundle\LocaleBundle\Doctrine\ORM\Filter\LocaleFilter
                         enabled: false
+

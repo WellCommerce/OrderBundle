@@ -33,7 +33,7 @@ class LayoutBoxFormBuilder extends AbstractFormBuilder
 
         $languageData = $requiredData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
-            'label'       => $this->trans('form.fieldset.translations'),
+            'label'       => $this->trans('common.fieldset.translations'),
             'transformer' => $this->getRepositoryTransformer('translation', $this->get('layout_box.repository'))
         ]));
 
@@ -49,7 +49,7 @@ class LayoutBoxFormBuilder extends AbstractFormBuilder
             'name'    => 'identifier',
             'label'   => $this->trans('layout_box.label.identifier'),
             'comment' => $this->trans('layout_box.comment.identifier'),
-            'rules' => [
+            'rules'   => [
                 $this->getRule('required')
             ],
         ]));
