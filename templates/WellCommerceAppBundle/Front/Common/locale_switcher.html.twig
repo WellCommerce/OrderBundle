@@ -2,12 +2,12 @@
 {% if locales|length > 1 %}
     <div class="dropdown pull-left">
         <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="CurrencyMenu" data-toggle="dropdown" aria-expanded="true">
-            {% trans %}locale.label.language{% endtrans %}: {{ app.request.locale|upper }}
+            {% trans %}front.locale.label{% endtrans %}: {{ app.request.locale|upper }}
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="CurrencyMenu">
             {% for locale in locales %}
-                <li><a href="{{ path('front.locale.switch',{"_locale": locale}) }}">{{ locale }}</a></li>
+                <li><a href="{{ path('front.locale.switch',{"_locale": locale.code}) }}">{{ locale.code }}</a></li>
             {% endfor %}
         </ul>
     </div>
