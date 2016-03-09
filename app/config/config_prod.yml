@@ -1,6 +1,9 @@
 imports:
     - { resource: config.yml }
 
+framework:
+    profiler: false
+
 monolog:
     handlers:
         main:
@@ -9,7 +12,7 @@ monolog:
             handler:      nested
         nested:
             type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            path:  %prod_log_path%
             level: debug
         console:
             type:  console
