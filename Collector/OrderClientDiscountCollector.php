@@ -79,7 +79,7 @@ class OrderClientDiscountCollector extends AbstractDataCollector
     /**
      * {@inheritdoc}
      */
-    public function getDescription()
+    public function getDescription() : string
     {
         return 'order.label.client_discount_description';
     }
@@ -87,7 +87,7 @@ class OrderClientDiscountCollector extends AbstractDataCollector
     /**
      * {@inheritdoc}
      */
-    public function getPriority()
+    public function getPriority() : int
     {
         return 300;
     }
