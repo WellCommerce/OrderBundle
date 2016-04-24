@@ -15,11 +15,11 @@ use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class OrderConfirmationFormBuilder
+ * Class OrderFormBuilder
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderConfirmationFormBuilder extends AbstractFormBuilder
+class OrderFormBuilder extends AbstractFormBuilder
 {
     /**
      * {@inheritdoc}

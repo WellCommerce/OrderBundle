@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Controller\Front\Order;
+namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
@@ -19,11 +19,11 @@ use WellCommerce\Bundle\OrderBundle\Manager\Front\OrderManager;
 use WellCommerce\Bundle\PaymentBundle\Manager\Front\PaymentManagerInterface;
 
 /**
- * Class ConfirmationController
+ * Class OrderConfirmationController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ConfirmationController extends AbstractFrontController
+class OrderConfirmationController extends AbstractFrontController
 {
     public function indexAction() : Response
     {
@@ -61,12 +61,12 @@ class ConfirmationController extends AbstractFrontController
         ]);
     }
     
-    protected function getOrderManager() : OrderManager
+    private function getOrderManager() : OrderManager
     {
         return $this->get('order.manager.front');
     }
 
-    protected function getPaymentManager() : PaymentManagerInterface
+    private function getPaymentManager() : PaymentManagerInterface
     {
         return $this->get('payment.manager.front');
     }

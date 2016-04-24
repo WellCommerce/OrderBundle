@@ -12,67 +12,49 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Manager\Front;
 
-use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CartBundle\Entity\CartInterface;
 use WellCommerce\Bundle\CartBundle\Entity\CartProductInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\Front\AbstractFrontManager;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
 
 /**
- * Class OrderManager
+ * Class OrderProductManager
  *
- * @author  Adam Piotrowski <adam@wellcommerce.org>
+ * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderManager extends AbstractFrontManager implements OrderManagerInterface
+class OrderProductManager extends AbstractFrontManager
 {
-    public function initializeOrderFromCart(CartInterface $cart) : OrderInterface
+    public function transformCartProduct(CartProductInterface $cartProduct) : OrderProductInterface
     {
-        /** @var OrderInterface $order */
-        $order = $this->initResource();
-        $order->setCurrency($cart->getCurrency());
-        $order->setPaymentMethod($cart->getPaymentMethod());
-        $order->setShippingMethod($cart->getShippingMethod());
-        $order->setBillingAddress($cart->getBillingAddress());
-        $order->setShippingAddress($cart->getShippingAddress());
-        $order->setContactDetails($cart->getContactDetails());
-        $order->setShop($cart->getShop());
-        $order->setSessionId($cart->getSessionId());
-        $order->setClient($cart->getClient());
-        $order->setCurrentStatus($this->getDefaultOrderStatus($cart));
-        $order->setCoupon($cart->getCoupon());
+        /** @var OrderProductInterface $orderProduct */
+        $orderProduct   = $this->initResource();
+        $product        = $cartProduct->getProduct();
+        $variant        = $cartProduct->getVariant();
+        $sellPrice      = $cartProduct->getSellPrice();
+        $baseCurrency   = $sellPrice->getCurrency();
+        $targetCurrency = $order->getCurrency();
         
-        $this->prepareOrderStatusHistory($order, $cart);
-        $this->prepareOrderProducts($cart, $order);
-        $this->prepareOrderShippingDetails($cart, $order);
+        $grossAmount = $this->getCurrencyHelper()->convert($sellPrice->getFinalGrossAmount(), $baseCurrency, $targetCurrency);
+        $netAmount   = $this->getCurrencyHelper()->convert($sellPrice->getFinalNetAmount(), $baseCurrency, $targetCurrency);
+        $taxAmount   = $this->getCurrencyHelper()->convert($sellPrice->getFinalTaxAmount(), $baseCurrency, $targetCurrency);
         
-        return $order;
+        $sellPrice = new Price();
+        $sellPrice->setGrossAmount($grossAmount);
+        $sellPrice->setNetAmount($netAmount);
+        $sellPrice->setTaxAmount($taxAmount);
+        $sellPrice->setTaxRate($sellPrice->getTaxRate());
+        $sellPrice->setCurrency($targetCurrency);
+        
+        $orderProduct->setSellPrice($sellPrice);
+        $orderProduct->setBuyPrice($product->getBuyPrice());
+        $orderProduct->setQuantity($cartProduct->getQuantity());
+        $orderProduct->setWeight($cartProduct->getWeight());
+        $orderProduct->setVariant($variant);
+        $orderProduct->setProduct($product);
+        
+        return $orderProduct;
     }
     
-    private function getDefaultOrderStatus(CartInterface $cart) : OrderStatusInterface
-    {
-        return $cart->getPaymentMethod()->getPaymentPendingOrderStatus();
-    }
-    
-    protected function prepareOrderStatusHistory(OrderInterface $order, OrderStatusInterface $orderStatus)
-    {
-        /** @var $orderStatusHistory OrderStatusHistoryInterface */
-        $orderStatusHistory = $this->get('order_status_history.factory')->create();
-        $orderStatusHistory->setNotify(true);
-        $orderStatusHistory->setComment('');
-        $orderStatusHistory->setOrder($order);
-        $orderStatusHistory->setOrderStatus($orderStatus);
-        
-        $order->addOrderStatusHistory($orderStatusHistory);
-    }
-    
-    /**
-     * Adds all products to order
-     *
-     * @param CartInterface  $cart
-     * @param OrderInterface $order
-     */
     protected function prepareOrderProducts(CartInterface $cart, OrderInterface $order)
     {
         $cart->getProducts()->map(function (CartProductInterface $cartProduct) use ($order) {
@@ -126,10 +108,5 @@ class OrderManager extends AbstractFrontManager implements OrderManagerInterface
         $orderProduct->setProduct($product);
         
         return $orderProduct;
-    }
-
-    private function getOrderProductManager() : OrderProductManager
-    {
-        return $this->get('order_product.manager.front');
     }
 }
