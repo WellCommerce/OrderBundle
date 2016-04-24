@@ -10,16 +10,17 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Visitor;
+namespace WellCommerce\Bundle\OrderBundle\Provider;
 
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
 
 /**
- * Interface OrderVisitorTraverserInterface
+ * Interface OrderModifierProviderInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderVisitorTraverserInterface
+interface OrderModifierProviderInterface
 {
-    public function traverse(OrderInterface $order);
+    public function getOrderModifier(OrderInterface $order, string $name) : OrderModifierInterface;
 }

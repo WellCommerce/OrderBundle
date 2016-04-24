@@ -10,18 +10,16 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Entity;
+namespace WellCommerce\Bundle\OrderBundle\Generator;
+
+use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 
 /**
- * Interface OrderAwareInterface
+ * Interface OrderNumberGeneratorInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderAwareInterface
+interface OrderNumberGeneratorInterface
 {
-    public function setOrder(OrderInterface $order);
-
-    public function getOrder() : OrderInterface;
-    
-    public function hasOrder() : bool;
+    public function generateOrderNumber(OrderInterface $order) : string;
 }

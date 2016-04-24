@@ -10,18 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Entity;
+namespace WellCommerce\Bundle\CartBundle\Request\ParamConverter;
+
+use WellCommerce\Bundle\CoreBundle\Request\ParamConverter\AbstractEntityParamConverter;
 
 /**
- * Interface OrderAwareInterface
+ * Class CartProductParamConverter
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderAwareInterface
+final class OrderProductParamConverter extends AbstractEntityParamConverter
 {
-    public function setOrder(OrderInterface $order);
-
-    public function getOrder() : OrderInterface;
-    
-    public function hasOrder() : bool;
 }

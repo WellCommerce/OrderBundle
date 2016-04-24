@@ -15,14 +15,14 @@ namespace WellCommerce\Bundle\OrderBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
 
 /**
- * Class RegisterOrderVisitorPass
+ * Class RegisterOrderModifierPass
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class RegisterOrderVisitorPass implements CompilerPassInterface
+class RegisterOrderModifierPass implements CompilerPassInterface
 {
     /**
      * Processes the container
@@ -31,32 +31,23 @@ class RegisterOrderVisitorPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $tag         = 'order.visitor';
-        $interface   = OrderVisitorInterface::class;
-        $definition  = $container->getDefinition('order.visitor.collection');
-        $visitors    = [];
-        $hierarchies = $container->getParameter('order_visitor_hierarchy');
+        $tag        = 'order.modifier';
+        $interface  = OrderModifierInterface::class;
+        $definition = $container->getDefinition('order.modifier.collection');
 
         foreach ($container->findTaggedServiceIds($tag) as $id => $attributes) {
-            $hierarchy      = $hierarchies[$attributes[0]['alias']] ?? 0;
             $itemDefinition = $container->getDefinition($id);
             $refClass       = new \ReflectionClass($itemDefinition->getClass());
             
             if (!$refClass->implementsInterface($interface)) {
                 throw new \InvalidArgumentException(
-                    sprintf('Order visitor "%s" must implement interface "%s".', $id, $interface)
+                    sprintf('Order modifier "%s" must implement interface "%s".', $id, $interface)
                 );
             }
 
-            $visitors[$hierarchy][] = new Reference($id);
-        }
-
-        ksort($visitors);
-        $visitors = call_user_func_array('array_merge', $visitors);
-
-        foreach ($visitors as $visitor) {
-            $definition->addMethodCall('add', [
-                $visitor
+            $definition->addMethodCall('set', [
+                $attributes[0]['alias'],
+                new Reference($id)
             ]);
         }
     }
