@@ -10,15 +10,17 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ReviewBundle\Manager\Admin;
+namespace WellCommerce\Bundle\ReviewBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\Manager\Admin\AbstractAdminManager;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
+use WellCommerce\Bundle\CoreBundle\Manager\Front\AbstractFrontManager;
 
 /**
  * Class ReviewManager
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ReviewManager extends AbstractAdminManager
+class ReviewManager extends AbstractManager
 {
+
 }
