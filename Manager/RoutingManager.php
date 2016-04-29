@@ -10,9 +10,10 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\RoutingBundle\Manager\Admin;
+namespace WellCommerce\Bundle\RoutingBundle\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\CoreBundle\Manager\Admin\AbstractAdminManager;
 use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
@@ -21,7 +22,7 @@ use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class RoutingManager extends AbstractAdminManager
+class RoutingManager extends AbstractManager
 {
     /**
      * Generates and validates uniqueness of slug
