@@ -10,15 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\DependencyInjection;
+namespace WellCommerce\Bundle\OrderBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
- * Class WellCommerceOrderExtension
+ * Class OrderStatusGroupManager
  *
- * @author  Adam Piotrowski <adam@wellcommerce.org>
+ * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceOrderExtension extends AbstractExtension
+class OrderStatusGroupManager extends AbstractManager
 {
 }

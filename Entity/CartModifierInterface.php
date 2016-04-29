@@ -10,17 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Transformer;
+namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\CartBundle\Entity\CartInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
 
 /**
- * Interface CartTransformerInterface
+ * Interface CartModifierInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface CartTransformerInterface
+interface CartModifierInterface extends OrderModifierInterface
 {
-    public function transformCart(CartInterface $cart, OrderInterface $order);
 }

@@ -10,15 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Manager\Admin;
+namespace WellCommerce\Bundle\OrderBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\Manager\Admin\AbstractAdminManager;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
- * Class OrderStatusHistoryManager
+ * Class OrderStatusManager
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatusHistoryManager extends AbstractAdminManager
+class OrderStatusManager extends AbstractManager
 {
 }

@@ -10,15 +10,20 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Request\ParamConverter;
+namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Request\ParamConverter\AbstractEntityParamConverter;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 
 /**
- * Class CartProductParamConverter
+ * Interface CartInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class OrderProductParamConverter extends AbstractEntityParamConverter
+interface CartInterface extends OrderInterface
 {
+    public function getCopyAddress() : bool;
+
+    public function setCopyAddress(bool $copyAddress);
+
+    public function isEmpty() : bool;
 }

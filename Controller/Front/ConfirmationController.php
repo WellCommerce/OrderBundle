@@ -23,7 +23,7 @@ use WellCommerce\Bundle\PaymentBundle\Manager\Front\PaymentManagerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderConfirmationController extends AbstractFrontController
+class ConfirmationController extends AbstractFrontController
 {
     public function indexAction() : Response
     {

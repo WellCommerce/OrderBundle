@@ -10,12 +10,12 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Manager\Front;
+namespace WellCommerce\Bundle\OrderBundle\Manager;
 
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CartBundle\Entity\CartInterface;
-use WellCommerce\Bundle\CartBundle\Entity\CartProductInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\Front\AbstractFrontManager;
+use WellCommerce\Bundle\OrderBundle\Entity\CartInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\CartProductInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
@@ -27,6 +27,25 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
  */
 class OrderManager extends AbstractFrontManager implements OrderManagerInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function initializeOrder()
+    {
+        return;
+        
+        $requestHelper = $this->getRequestHelper();
+        $sessionId     = $requestHelper->getSessionId();
+        $currency      = $requestHelper->getCurrentCurrency();
+        $client        = $this->getClient();
+        $shop          = $this->getShopContext()->getCurrentShop();
+        $cart          = $this->getCart($shop, $client, $sessionId, $currency);
+
+        $this->getCartContext()->setCurrentCart($cart);
+
+        return $cart;
+    }
+
     public function initializeOrderFromCart(CartInterface $cart) : OrderInterface
     {
         /** @var OrderInterface $order */
