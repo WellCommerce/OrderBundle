@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\DoctrineBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
@@ -21,7 +21,7 @@ use WellCommerce\Bundle\CoreBundle\Helper\Helper;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractEntityRepository extends EntityRepository implements RepositoryInterface
+class EntityRepository extends BaseEntityRepository implements RepositoryInterface
 {
     const TRANSLATIONS_ASSOCIATION_NAME  = 'translations';
     const TRANSLATIONS_ASSOCIATION_FIELD = 'translatable';

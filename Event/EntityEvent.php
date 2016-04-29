@@ -13,33 +13,29 @@
 namespace WellCommerce\Bundle\DoctrineBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
- * Class ResourceEvent
+ * Class EntityEvent
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ResourceEvent extends Event
+final class EntityEvent extends Event
 {
-    protected $resource;
+    private $entity;
 
     /**
-     * Constructor
+     * EntityEvent constructor.
      *
-     * @param object $resource
+     * @param EntityInterface $entity
      */
-    public function __construct($resource)
+    public function __construct(EntityInterface $entity)
     {
-        $this->resource = $resource;
+        $this->entity = $entity;
     }
 
-    /**
-     * Returns current resource
-     *
-     * @return mixed
-     */
-    public function getResource()
+    public function getEntity() : EntityInterface
     {
-        return $this->resource;
+        return $this->entity;
     }
 }
