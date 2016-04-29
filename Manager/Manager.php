@@ -12,39 +12,47 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class AbstractManager
+ * Class Manager
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractManager extends AbstractContainerAware implements ManagerInterface
+final class Manager implements ManagerInterface
 {
     /**
      * @var RepositoryInterface
      */
-    protected $repository;
+    private $repository;
 
     /**
      * @var EntityFactoryInterface
      */
-    protected $factory;
+    private $factory;
 
     /**
-     * AbstractManager constructor.
-     *
-     * @param RepositoryInterface    $repository
-     * @param EntityFactoryInterface $factory
+     * @var DoctrineHelperInterface
      */
-    public function __construct(RepositoryInterface $repository, EntityFactoryInterface $factory)
+    private $doctrineHelper;
+
+    /**
+     * Manager constructor.
+     *
+     * @param RepositoryInterface     $repository
+     * @param EntityFactoryInterface  $factory
+     * @param DoctrineHelperInterface $doctrineHelper
+     */
+    public function __construct(RepositoryInterface $repository, EntityFactoryInterface $factory, DoctrineHelperInterface $doctrineHelper)
     {
-        $this->repository = $repository;
-        $this->factory    = $factory;
+        $this->repository     = $repository;
+        $this->factory        = $factory;
+        $this->doctrineHelper = $doctrineHelper;
     }
 
     public function getRepository() : RepositoryInterface
@@ -91,5 +99,15 @@ abstract class AbstractManager extends AbstractContainerAware implements Manager
         $em = $this->getEntityManager();
         $em->remove($resource);
         $em->flush();
+    }
+
+    public function getDoctrineHelper() : DoctrineHelperInterface
+    {
+        return $this->doctrineHelper;
+    }
+
+    private function getEntityManager() : ObjectManager
+    {
+        return $this->doctrineHelper->getEntityManager();
     }
 }
