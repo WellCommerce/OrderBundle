@@ -10,8 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\SearchBundle\Manager\Front;
+namespace WellCommerce\Bundle\SearchBundle\Manager;
 
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\CoreBundle\Manager\Front\AbstractFrontManager;
 use WellCommerce\Bundle\SearchBundle\Provider\SearchProviderInterface;
 use WellCommerce\Bundle\SearchBundle\Query\SimpleQuery;
@@ -23,7 +24,7 @@ use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class SearchManager extends AbstractFrontManager
+class SearchManager extends AbstractManager
 {
     /**
      * @var SearchProviderInterface
