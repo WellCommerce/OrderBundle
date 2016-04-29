@@ -10,9 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CouponBundle\Manager\Front;
+namespace WellCommerce\Bundle\CouponBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\Manager\Front\AbstractFrontManager;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\CouponBundle\Checker\CouponCheckerInterface;
 use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
 use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
@@ -22,12 +22,12 @@ use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CouponManager extends AbstractFrontManager
+final class CouponManager extends AbstractManager
 {
     /**
      * @var CouponCheckerInterface
      */
-    protected $couponChecker;
+    private $couponChecker;
 
     /**
      * @param CouponCheckerInterface $couponChecker
@@ -43,7 +43,7 @@ class CouponManager extends AbstractFrontManager
      * @return bool
      * @throws CouponException
      */
-    public function useCoupon(CouponInterface $coupon = null)
+    public function useCoupon(CouponInterface $coupon = null) : bool
     {
         if (!$this->couponChecker->isValid($coupon)) {
             throw new CouponException($this->couponChecker->getError());
