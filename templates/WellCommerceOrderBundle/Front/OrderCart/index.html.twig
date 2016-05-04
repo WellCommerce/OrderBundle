@@ -5,7 +5,7 @@
     {% include 'WellCommerceAppBundle:Front:breadcrumbs.html.twig' %}
     <div class="row">
         <div class="col-md-9 col-xs-12">
-            {% if currentCart().isEmpty %}
+            {% if currentOrder().isEmpty %}
             <div class="cart">
                 <div class="alert alert-info mtp30">
                     <strong>{% trans %}cart.flash.empty{% endtrans %}</strong>
