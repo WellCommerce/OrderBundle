@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
 use WellCommerce\Bundle\OrderBundle\Manager\Front\OrderManager;
 use WellCommerce\Bundle\PaymentBundle\Manager\Front\PaymentManagerInterface;
@@ -24,7 +24,7 @@ use WellCommerce\Bundle\PaymentBundle\Manager\Front\PaymentManagerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ConfirmationController extends AbstractFrontController
+class OrderConfirmationController extends AbstractFrontController
 {
     public function indexAction() : Response
     {

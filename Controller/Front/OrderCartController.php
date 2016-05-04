@@ -13,25 +13,25 @@
 namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
 use WellCommerce\Bundle\OrderBundle\Entity\CartInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\CartProductInterface;
 use WellCommerce\Bundle\OrderBundle\Exception\AddCartItemException;
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteCartItemException;
-use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class CartController
+ * Class OrderCartController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class CartController extends AbstractFrontController
+final class OrderCartController extends AbstractFrontController
 {
     /**
-     * @var \WellCommerce\Bundle\OrderBundle\Manager\Front\CartManagerInterface
+     * @var \WellCommerce\Bundle\OrderBundle\Manager\OrderProductManager
      */
     protected $manager;
     
@@ -40,10 +40,10 @@ final class CartController extends AbstractFrontController
         $this->addBreadCrumbItem(new BreadcrumbItem([
             'name' => $this->trans('cart.heading.index')
         ]));
-        
-        $cart = $this->manager->getCartContext()->getCurrentCart();
+
+        $order    = $this->getOrderStorage()->getCurrentOrder();
         $form = $this->manager->getForm($cart, [
-            'validation_groups' => ['cart']
+            'validation_groups' => ['order_cart']
         ]);
         
         if ($form->handleRequest()->isSubmitted()) {
@@ -67,29 +67,29 @@ final class CartController extends AbstractFrontController
     public function addAction(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1) : Response
     {
         $variants = $product->getVariants();
+        $order    = $this->getOrderStorage()->getCurrentOrder();
         
         if ($variants->count() && false === $variants->contains($variant)) {
             return $this->redirectToRoute('front.product.view', ['id' => $product->getId()]);
         }
         
         try {
-            $this->manager->addProductToCart($product, $variant, $quantity);
+            $this->manager->addProductToOrder($product, $variant, $quantity, $order);
         } catch (AddCartItemException $exception) {
             return $this->jsonResponse([
-                'error'         => $exception->getMessage(),
-                'previousError' => $exception->getPrevious()->getMessage(),
+                'error' => $exception->getMessage(),
             ]);
         }
-        
+
         $category        = $product->getCategories()->first();
         $recommendations = $this->get('product.helper')->getProductRecommendationsForCategory($category);
         
-        $basketModalContent = $this->renderView('WellCommerceOrderBundle:Front/Cart:add.html.twig', [
+        $basketModalContent = $this->renderView('WellCommerceOrderBundle:Front/OrderCart:add.html.twig', [
             'product'         => $product,
             'recommendations' => $recommendations
         ]);
         
-        $cartPreviewContent = $this->renderView('WellCommerceOrderBundle:Front/Common:preview.html.twig');
+        $cartPreviewContent = $this->renderView('WellCommerceOrderBundle:Front/OrderCart:preview.html.twig');
         
         return $this->jsonResponse([
             'basketModalContent' => $basketModalContent,

@@ -22,7 +22,7 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class AddressController extends AbstractFrontController
+final class OrderAddressController extends AbstractFrontController
 {
     /**
      * @var \WellCommerce\Bundle\OrderBundle\Manager\Front\CartManagerInterface
