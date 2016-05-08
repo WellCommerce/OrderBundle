@@ -10,22 +10,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Service\Breadcrumb;
-
-use WellCommerce\Component\Collections\ArrayCollection;
+namespace WellCommerce\Bundle\CoreBundle\Service\Mailer;
 
 /**
- * Class BreadcrumbCollection
+ * Interface MailerServiceInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class BreadcrumbItemCollection extends ArrayCollection implements BreadcrumbItemCollectionInterface
+interface MailerServiceInterface
 {
     /**
-     * {@inheritdoc}
+     * Sends an email
+     *
+     * @param array $options
+     *
+     * @return int
      */
-    public function add(BreadcrumbItemInterface $item)
-    {
-        $this->items[] = $item;
-    }
+    public function sendEmail(array $options) : int;
 }

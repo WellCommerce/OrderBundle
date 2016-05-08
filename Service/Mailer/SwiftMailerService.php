@@ -20,6 +20,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
 
 /**
  * Class MailerHelper
@@ -32,20 +33,27 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
      * @var array
      */
     private $options = [];
-
+    
     /**
      * @var bool
      */
     private $debug;
-
+    
+    /**
+     * @var ShopStorageInterface
+     */
+    private $shopStorage;
+    
     /**
      * MailerHelper constructor.
      *
-     * @param bool $debug
+     * @param bool                 $debug
+     * @param ShopStorageInterface $shopStorage
      */
-    public function __construct(bool $debug = false)
+    public function __construct(bool $debug = false, ShopStorageInterface $shopStorage)
     {
-        $this->debug = $debug;
+        $this->debug       = $debug;
+        $this->shopStorage = $shopStorage;
     }
     
     public function sendEmail(array $options) : int
@@ -56,7 +64,7 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
         
         $mailer  = $this->createMailer();
         $message = $this->createMessage();
-
+        
         return $mailer->send($message);
     }
     
@@ -68,9 +76,9 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
         $message->setTo($this->options['recipient']);
         $message->setReplyTo($this->options['reply_to']);
         $message->setBcc($this->options['bcc']);
-
+        
         $this->setBody($message, $this->options['template'], $this->options['parameters']);
-
+        
         return $message;
     }
     
@@ -78,7 +86,7 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
     {
         $parameters['message'] = $message;
         $body                  = $this->getTemplatingHelper()->render($template, $parameters);
-
+        
         $message->setBody($body, 'text/html');
     }
     
@@ -93,19 +101,19 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
             'parameters',
             'configuration',
         ]);
-
+        
         $resolver->setDefault('bcc', function (Options $options) {
             return $options['configuration']->getFrom();
         });
-
+        
         $resolver->setDefault('reply_to', function (Options $options) {
             return $options['configuration']->getFrom();
         });
-
+        
         $resolver->setNormalizer('subject', function (Options $options) {
             return $this->getTranslatorHelper()->trans($options['subject']);
         });
-
+        
         $resolver->setAllowedTypes('recipient', ['string', 'array']);
         $resolver->setAllowedTypes('bcc', ['string', 'array']);
         $resolver->setAllowedTypes('reply_to', ['string', 'array']);
@@ -126,9 +134,9 @@ final class MailerHelper extends AbstractContainerAware implements MailerHelperI
                 'verify_peer' => false
             ]
         ]);
-
+        
         $mailer = Mailer::newInstance($transport);
-
+        
         if ($this->debug) {
             $logger = new Swift_Plugins_Loggers_EchoLogger();
             $mailer->registerPlugin(new Swift_Plugins_LoggerPlugin($logger));

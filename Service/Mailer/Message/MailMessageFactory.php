@@ -10,23 +10,17 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Helper\Mailer;
-
-use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
+namespace WellCommerce\Bundle\CoreBundle\Service\Mailer;
 
 /**
- * Interface MailerHelperInterface
+ * Class MailMessageFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface MailerHelperInterface
+final class MailMessageFactory
 {
-    /**
-     * Sends an email
-     *
-     * @param array $options
-     *
-     * @return int
-     */
-    public function sendEmail(array $options) : int;
+    public function create(array $options) : MailMessageInterface
+    {
+        
+    }
 }
