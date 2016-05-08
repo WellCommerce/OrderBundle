@@ -11,10 +11,9 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 
-use WellCommerce\Bundle\OrderBundle\Context\Front\CartContextInterface;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
-use WellCommerce\Bundle\ShippingBundle\Context\CartContext;
+use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
@@ -27,7 +26,7 @@ use WellCommerce\Component\Form\Elements\Optioned\RadioGroup;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class CartFormBuilder extends AbstractFormBuilder
+final class OrderCartFormBuilder extends AbstractFormBuilder
 {
     /**
      * {@inheritdoc}
@@ -62,8 +61,8 @@ final class CartFormBuilder extends AbstractFormBuilder
      */
     private function addShippingOptions(ElementInterface $radioGroup)
     {
-        $cart       = $this->getCartContext()->getCurrentCart();
-        $collection = $this->getShippingMethodProvider()->getCosts(new CartContext($cart));
+        $order      = $this->getOrderStorage()->getCurrentOrder();
+        $collection = $this->getShippingMethodProvider()->getCosts(new OrderContext($order));
 
         $collection->map(function (ShippingMethodCostInterface $shippingMethodCost) use ($radioGroup) {
             $shippingMethod = $shippingMethodCost->getShippingMethod();
@@ -86,8 +85,8 @@ final class CartFormBuilder extends AbstractFormBuilder
      */
     private function addPaymentOptions(ElementInterface $radioGroup)
     {
-        $cart           = $this->getCartContext()->getCurrentCart();
-        $shippingMethod = $cart->getShippingMethod();
+        $order          = $this->getOrderStorage()->getCurrentOrder();
+        $shippingMethod = $order->getShippingMethod();
         if ($shippingMethod instanceof ShippingMethodInterface) {
             $collection = $shippingMethod->getPaymentMethods();
 
@@ -100,10 +99,5 @@ final class CartFormBuilder extends AbstractFormBuilder
     private function getShippingMethodProvider() : ShippingMethodProviderInterface
     {
         return $this->get('shipping_method.provider');
-    }
-
-    private function getCartContext() : CartContextInterface
-    {
-        return $this->get('cart.context.front');
     }
 }
