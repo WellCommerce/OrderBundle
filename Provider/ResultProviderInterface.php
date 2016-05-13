@@ -12,24 +12,14 @@
 
 namespace WellCommerce\Bundle\SearchBundle\Provider;
 
-use WellCommerce\Bundle\SearchBundle\Query\SimpleQuery;
+use WellCommerce\Bundle\SearchBundle\Query\SearchQuery;
 
 /**
  * Interface SearchProviderInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface SearchProviderInterface
+interface ResultProviderInterface
 {
-    /**
-     * @param SimpleQuery $query
-     *
-     * @return SearchProviderInterface
-     */
-    public function searchProducts(SimpleQuery $query);
-
-    /**
-     * @return array
-     */
-    public function getResultIdentifiers();
+    public function search(SearchQuery $query) : array;
 }
