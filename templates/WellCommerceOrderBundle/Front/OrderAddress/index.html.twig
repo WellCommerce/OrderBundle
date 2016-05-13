@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                {{ macros.element(form.getChildren().get('copyAddress')) }}
+                {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.copyBillingAddress')) }}
 
                 <div class="collapse" id="shipping-wrap">
                     <h4>{% trans %}address.heading.shipping_address{% endtrans %}</h4>
