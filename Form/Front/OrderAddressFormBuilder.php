@@ -15,11 +15,11 @@ use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class CartAddressFormBuilder
+ * Class OrderAddressFormBuilder
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CartAddressFormBuilder extends AbstractFormBuilder
+final class OrderAddressFormBuilder extends AbstractFormBuilder
 {
     /**
      * {@inheritdoc}
@@ -27,7 +27,7 @@ class CartAddressFormBuilder extends AbstractFormBuilder
     public function buildForm(FormInterface $form)
     {
         $countries      = $this->get('country.repository')->all();
-        $defaultCountry = $this->get('shop.context.front')->getCurrentShop()->getDefaultCountry();
+        $defaultCountry = $this->getShopStorage()->getCurrentShop()->getDefaultCountry();
 
         $billingAddress = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'billingAddress',
@@ -78,14 +78,14 @@ class CartAddressFormBuilder extends AbstractFormBuilder
             'default' => $defaultCountry
         ]));
 
-        $form->addChild($this->getElement('checkbox', [
-            'name'  => 'copyAddress',
-            'label' => $this->trans('address.label.copy_address'),
-        ]));
-
         $shippingAddress = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'shippingAddress',
             'label' => $this->trans('address.heading.shipping_address'),
+        ]));
+    
+        $shippingAddress->addChild($this->getElement('checkbox', [
+            'name'  => 'shippingAddress.copyBillingAddress',
+            'label' => $this->trans('address.label.copy_address'),
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [

@@ -10,22 +10,20 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\OrderBundle\Storage;
+namespace WellCommerce\Bundle\OrderBundle\Provider\Front;
 
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 
 /**
- * Interface OrderStorageInterface
+ * Interface OrderProviderInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderStorageInterface
+interface OrderProviderInterface
 {
-    public function setCurrentOrder(OrderInterface $order);
-
     public function getCurrentOrder() : OrderInterface;
 
-    public function getCurrentOrderIdentifier() : int;
-
     public function hasCurrentOrder() : bool;
+
+    public function getCurrentOrderIdentifier() : int;
 }
