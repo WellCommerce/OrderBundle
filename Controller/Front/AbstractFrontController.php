@@ -11,11 +11,14 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\Controller\Front;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use WellCommerce\Bundle\CategoryBundle\Storage\CategoryStorageInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
-use WellCommerce\Bundle\CoreBundle\Manager\Front\FrontManagerInterface;
-use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
+use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
+use WellCommerce\Bundle\PageBundle\Storage\PageStorageInterface;
+use WellCommerce\Bundle\ProducerBundle\Storage\ProducerStorageInterface;
+use WellCommerce\Bundle\ProductBundle\Storage\ProductStorageInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Storage\ProductStatusStorageInterface;
 
 /**
  * Class AbstractFrontController
@@ -24,52 +27,38 @@ use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
  */
 abstract class AbstractFrontController extends AbstractController implements FrontControllerInterface
 {
-    /**
-     * @var FrontManagerInterface
-     */
-    protected $manager;
-
-    /**
-     * Constructor
-     *
-     * @param FrontManagerInterface $manager
-     */
-    public function __construct(FrontManagerInterface $manager)
+    protected function getCategoryStorage() : CategoryStorageInterface
     {
-        $this->manager = $manager;
+        return $this->get('category.storage');
     }
 
-    /**
-     * Returns resource by ID parameter
-     *
-     * @param Request $request
-     * @param array   $criteria
-     *
-     * @return mixed
-     */
-    protected function findOr404(Request $request, array $criteria = [])
+    protected function getProductStorage() : ProductStorageInterface
     {
-        // check whether request contains ID attribute
-        if (!$request->attributes->has('id')) {
-            throw new \LogicException('Request does not have "id" attribute set.');
-        }
-
-        $criteria['id'] = $request->attributes->get('id');
-
-        if (null === $resource = $this->manager->getRepository()->findOneBy($criteria)) {
-            throw new NotFoundHttpException(sprintf('Resource not found'));
-        }
-
-        return $resource;
+        return $this->get('product.storage');
     }
 
-    /**
-     * Shorthand to add new breadcrumb items to collection
-     *
-     * @param BreadcrumbItem $item
-     */
-    protected function addBreadCrumbItem(BreadcrumbItem $item)
+    protected function getProductStatusStorage() : ProductStatusStorageInterface
     {
-        $this->get('breadcrumb.collection')->add($item);
+        return $this->get('product_status.storage');
+    }
+
+    protected function getProducerStorage() : ProducerStorageInterface
+    {
+        return $this->get('producer.storage');
+    }
+    
+    protected function getPageStorage() : PageStorageInterface
+    {
+        return $this->get('page.storage');
+    }
+
+    protected function getOrderProvider() : OrderProviderInterface
+    {
+        return $this->get('order.provider.front');
+    }
+
+    protected function getAuthenticatedClient() : ClientInterface
+    {
+        return $this->getSecurityHelper()->getAuthenticatedClient();
     }
 }
