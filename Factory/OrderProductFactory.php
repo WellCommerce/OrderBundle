@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
 
 /**
@@ -20,23 +20,22 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderProductFactory extends AbstractFactory
+class OrderProductFactory extends AbstractEntityFactory
 {
-    /**
-     * @var string
-     */
     protected $supportsInterface = OrderProductInterface::class;
-
-    /**
-     * @return OrderProductInterface
-     */
-    public function create()
+    
+    public function create() : OrderProductInterface
     {
         /** @var  $orderProduct OrderProductInterface */
         $orderProduct = $this->init();
-        $orderProduct->setQuantity(0);
+        $orderProduct->setQuantity(1);
         $orderProduct->setWeight(0);
-
+        $orderProduct->setBuyPrice($this->createPrice());
+        $orderProduct->setSellPrice($this->createPrice());
+        $orderProduct->setCreatedAt(new \DateTime());
+        $orderProduct->setUpdatedAt(new \DateTime());
+        $orderProduct->setOptions([]);
+        
         return $orderProduct;
     }
 }

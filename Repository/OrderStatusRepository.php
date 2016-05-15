@@ -12,26 +12,27 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class OrderStatusRepository
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatusRepository extends AbstractEntityRepository implements OrderStatusRepositoryInterface
+class OrderStatusRepository extends EntityRepository implements OrderStatusRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('order_status.id');
         $queryBuilder->leftJoin('order_status.translations', 'order_status_translation');
         $queryBuilder->leftJoin('order_status.orderStatusGroup', 'order_status_group');
         $queryBuilder->leftJoin('order_status_group.translations', 'order_status_group_translation');
-
+        
         return $queryBuilder;
     }
 }

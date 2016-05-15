@@ -2,75 +2,63 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
+use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+
 /**
  * Class OrderTotalDetailInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderTotalDetailInterface extends OrderAwareInterface
+interface OrderTotalDetailInterface extends OrderAwareInterface, HierarchyAwareInterface, EntityInterface
 {
-    /**
-     * @return int
-     */
-    public function getId();
-
-    /**
-     * @return int
-     */
-    public function getHierarchy();
-
-    /**
-     * @param int $hierarchy
-     */
-    public function setHierarchy($hierarchy);
-
     /**
      * @return string
      */
-    public function getCollector();
-
+    public function getCollector() : string;
+    
     /**
      * @param string $collector
      */
-    public function setCollector($collector);
-
+    public function setCollector(string $collector);
+    
     /**
      * @return OrderTotal
      */
-    public function getOrderTotal();
-
+    public function getOrderTotal() : OrderTotal;
+    
     /**
      * @param OrderTotal $orderTotal
      */
     public function setOrderTotal(OrderTotal $orderTotal);
-
+    
     /**
      * @return string
      */
     public function getModifierType();
-
+    
     /**
      * @param string $modifierType
      */
-    public function setModifierType($modifierType);
-
+    public function setModifierType(string $modifierType);
+    
     /**
-     * @return float|int
+     * @return float
      */
     public function getModifierValue();
-
+    
     /**
-     * @param float|int $modifierValue
+     * @param float $modifierValue
      */
-    public function setModifierValue($modifierValue);
-
+    public function setModifierValue(float $modifierValue);
+    
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isSubtraction();
-
+    public function isSubtraction() : bool;
+    
     /**
      * @param boolean $subtraction
      */
-    public function setSubtraction($subtraction);
+    public function setSubtraction(bool $subtraction);
 }

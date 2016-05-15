@@ -11,8 +11,11 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Form\Admin;
 
+use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\OrderBundle\Context\Admin\OrderContextInterface;
+use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
@@ -22,7 +25,7 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderFormBuilder extends AbstractFormBuilder
+final class OrderFormBuilder extends AbstractFormBuilder
 {
     /**
      * @var ShippingMethodProviderInterface
@@ -30,24 +33,18 @@ class OrderFormBuilder extends AbstractFormBuilder
     protected $shippingMethodProvider;
 
     /**
-     * @var OrderContextInterface
+     * @var OrderProviderInterface
      */
-    protected $orderContext;
+    protected $orderProvider;
 
-    /**
-     * @param ShippingMethodProviderInterface $shippingMethodProvider
-     */
     public function setShippingMethodProvider(ShippingMethodProviderInterface $shippingMethodProvider)
     {
         $this->shippingMethodProvider = $shippingMethodProvider;
     }
 
-    /**
-     * @param OrderContextInterface $orderContext
-     */
-    public function setOrderContext(OrderContextInterface $orderContext)
+    public function setOrderProvider(OrderProviderInterface $orderProvider)
     {
-        $this->orderContext = $orderContext;
+        $this->orderProvider = $orderProvider;
     }
 
     /**
@@ -55,7 +52,7 @@ class OrderFormBuilder extends AbstractFormBuilder
      */
     public function buildForm(FormInterface $form)
     {
-        $currentOrder    = $this->orderContext->getCurrentOrder();
+        $currentOrder    = $this->orderProvider->getCurrentOrder();
         $shippingMethods = $this->shippingMethodProvider->getShippingMethodOptions($currentOrder);
         $paymentMethods  = $this->shippingMethodProvider->getShippingMethodsPaymentOptions($currentOrder);
         $countries       = $this->get('country.repository')->all();
@@ -107,7 +104,7 @@ class OrderFormBuilder extends AbstractFormBuilder
 
         $orderTotalData->addChild($this->getElement('text_field', [
             'name'  => 'shippingTotal.grossAmount',
-            'label' => $this->trans('order.label.order_total.shipping'),
+            'label' => $this->trans('order.label.shipping_total'),
         ]));
 
         $contactDetails = $form->addChild($this->getElement('nested_fieldset', [
@@ -142,7 +139,7 @@ class OrderFormBuilder extends AbstractFormBuilder
 
         $addresses = $form->addChild($this->getElement('columns', [
             'name'  => 'addresses',
-            'label' => $this->trans('order.heading.addresses'),
+            'label' => $this->trans('order.heading.address'),
         ]));
 
         $billingAddress = $addresses->addChild($this->getElement('nested_fieldset', [
@@ -161,28 +158,23 @@ class OrderFormBuilder extends AbstractFormBuilder
         ]));
 
         $billingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'billingAddress.street',
-            'label' => $this->trans('client.label.address.street'),
+            'name'  => 'billingAddress.line1',
+            'label' => $this->trans('client.label.address.line1'),
         ]));
 
         $billingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'billingAddress.streetNo',
-            'label' => $this->trans('client.label.address.street_no'),
+            'name'  => 'billingAddress.line2',
+            'label' => $this->trans('client.label.address.line2'),
         ]));
 
         $billingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'billingAddress.flatNo',
-            'label' => $this->trans('client.label.address.flat_no'),
+            'name'  => 'billingAddress.postalCode',
+            'label' => $this->trans('client.label.address.postal_code'),
         ]));
 
         $billingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'billingAddress.postCode',
-            'label' => $this->trans('client.label.address.post_code'),
-        ]));
-
-        $billingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'billingAddress.province',
-            'label' => $this->trans('client.label.address.province'),
+            'name'  => 'billingAddress.state',
+            'label' => $this->trans('client.label.address.state'),
         ]));
 
         $billingAddress->addChild($this->getElement('text_field', [
@@ -196,6 +188,16 @@ class OrderFormBuilder extends AbstractFormBuilder
             'options' => $countries,
         ]));
 
+        $billingAddress->addChild($this->getElement('text_field', [
+            'name'  => 'billingAddress.vatId',
+            'label' => $this->trans('client.label.address.vat_id'),
+        ]));
+
+        $billingAddress->addChild($this->getElement('text_field', [
+            'name'  => 'billingAddress.companyName',
+            'label' => $this->trans('client.label.address.company_name'),
+        ]));
+        
         $shippingAddress = $addresses->addChild($this->getElement('nested_fieldset', [
             'name'  => 'shippingAddress',
             'label' => $this->trans('client.heading.shipping_address'),
@@ -212,28 +214,23 @@ class OrderFormBuilder extends AbstractFormBuilder
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'shippingAddress.street',
-            'label' => $this->trans('client.label.address.street'),
+            'name'  => 'shippingAddress.line1',
+            'label' => $this->trans('client.label.address.line1'),
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'shippingAddress.streetNo',
-            'label' => $this->trans('client.label.address.street_no'),
+            'name'  => 'shippingAddress.line2',
+            'label' => $this->trans('client.label.address.line2'),
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'shippingAddress.flatNo',
-            'label' => $this->trans('client.label.address.flat_no'),
+            'name'  => 'shippingAddress.postalCode',
+            'label' => $this->trans('client.label.address.postal_code'),
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'shippingAddress.postCode',
-            'label' => $this->trans('client.label.address.post_code'),
-        ]));
-
-        $shippingAddress->addChild($this->getElement('text_field', [
-            'name'  => 'shippingAddress.province',
-            'label' => $this->trans('client.label.address.province'),
+            'name'  => 'shippingAddress.state',
+            'label' => $this->trans('client.label.address.state'),
         ]));
 
         $shippingAddress->addChild($this->getElement('text_field', [
@@ -250,5 +247,27 @@ class OrderFormBuilder extends AbstractFormBuilder
         $form->addFilter($this->getFilter('no_code'));
         $form->addFilter($this->getFilter('trim'));
         $form->addFilter($this->getFilter('secure'));
+    }
+    
+    private function getShippingMethodOptions(Collection $collection) : array
+    {
+        $options = [];
+
+        $collection->map(function (ShippingMethodInterface $shippingMethod) use (&$options) {
+            $options[$shippingMethod->getId()] = $shippingMethod->translate()->getName();
+        });
+
+        return $options;
+    }
+    
+    private function getPaymentMethodOptions(Collection $collection) : array
+    {
+        $options = [];
+        
+        $collection->map(function (ShippingMethodInterface $shippingMethod) use (&$options) {
+            $options[$shippingMethod->getId()] = $shippingMethod->translate()->getName();
+        });
+        
+        return $options;
     }
 }

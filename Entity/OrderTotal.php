@@ -19,119 +19,113 @@ use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderTotal
+class OrderTotal implements OrderTotalInterface
 {
     /**
-     * @var int|float
+     * @var float
      */
-    protected $netAmount;
-
+    protected $netAmount = 0;
+    
     /**
-     * @var int|float
+     * @var float
      */
-    protected $grossAmount;
-
+    protected $grossAmount = 0;
+    
     /**
-     * @var int|float
+     * @var float
      */
-    protected $taxAmount;
-
+    protected $taxAmount = 0;
+    
     /**
-     * @var int|float
+     * @var float
      */
     protected $taxRate;
-
+    
     /**
      * @var string
      */
     protected $currency;
-
+    
     /**
-     * @return float|int
+     * @return float
      */
-    public function getNetAmount()
+    public function getNetAmount() : float
     {
         return $this->netAmount;
     }
-
+    
     /**
-     * @param float|int $netAmount
+     * @param float $netAmount
      */
-    public function setNetAmount($netAmount)
+    public function setNetAmount(float $netAmount)
     {
         $this->netAmount = $netAmount;
     }
-
+    
+    /**
+     * @return float
+     */
+    public function getGrossAmount() : float
+    {
+        return $this->grossAmount;
+    }
+    
+    /**
+     * @param float $grossAmount
+     */
+    public function setGrossAmount(float $grossAmount)
+    {
+        $this->grossAmount = $grossAmount;
+    }
+    
     /**
      * @return float|int
      */
-    public function getGrossAmount()
+    public function getTaxAmount() : float
     {
-        return (float)$this->grossAmount;
+        return $this->taxAmount;
     }
-
+    
     /**
-     * @param float|int $grossAmount
+     * @param float $taxAmount
      */
-    public function setGrossAmount($grossAmount)
-    {
-        $this->grossAmount = (float)$grossAmount;
-    }
-
-    /**
-     * @return float|int
-     */
-    public function getTaxAmount()
-    {
-        return (float)$this->taxAmount;
-    }
-
-    /**
-     * @param float|int $taxAmount
-     */
-    public function setTaxAmount($taxAmount)
+    public function setTaxAmount(float $taxAmount)
     {
         $this->taxAmount = $taxAmount;
     }
-
+    
     /**
-     * @return float|int
+     * @return float
      */
-    public function getTaxRate()
+    public function getTaxRate() : float
     {
         return (float)$this->taxRate;
     }
-
+    
     /**
-     * @param float|int $taxRate
+     * @param float $taxRate
      */
-    public function setTaxRate($taxRate)
+    public function setTaxRate(float $taxRate)
     {
-        $this->taxRate = (float)$taxRate;
+        $this->taxRate = $taxRate;
     }
-
+    
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getCurrency() : string
     {
         return $this->currency;
     }
-
+    
     /**
      * @param string $currency
      */
-    public function setCurrency($currency)
+    public function setCurrency(string $currency)
     {
         $this->currency = $currency;
     }
-
-    /**
-     * Recalculates the net and tax amount
-     *
-     * @param int|float $grossAmount
-     * @param int|float $taxRate
-     */
+    
     public function recalculate()
     {
         $this->netAmount = TaxHelper::calculateNetPrice($this->grossAmount, $this->taxRate);
