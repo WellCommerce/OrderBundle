@@ -17,108 +17,96 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class User
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class User implements UserInterface
+class User extends AbstractEntity implements UserInterface
 {
     use Timestampable;
     use Blameable;
     use EnableableTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    
     /**
      * @var string
      */
     protected $firstName;
-
+    
     /**
      * @var string
      */
     protected $lastName;
-
+    
     /**
      * @var string
      */
     protected $username;
-
+    
     /**
      * @var string
      */
     protected $apiKey;
-
+    
     /**
      * @var string
      */
     protected $password;
-
+    
     /**
      * @var string
      */
     protected $email;
-
+    
     /**
      * @var string
      */
     protected $salt;
-
+    
     /**
      * @var Collection
      */
     protected $roles;
-
+    
     /**
      * @var Collection
      */
     protected $groups;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFirstName()
+    public function getFirstName() : string
     {
         return $this->firstName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getLastName()
+    public function getLastName() : string
     {
         return $this->lastName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -126,7 +114,7 @@ class User implements UserInterface
     {
         return $this->username;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -134,23 +122,23 @@ class User implements UserInterface
     {
         $this->username = $username;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getEmail()
+    public function getEmail() : string
     {
         return $this->email;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -158,7 +146,7 @@ class User implements UserInterface
     {
         $this->salt = $salt;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -166,7 +154,7 @@ class User implements UserInterface
     {
         return;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -174,7 +162,7 @@ class User implements UserInterface
     {
         return $this->password;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -184,7 +172,7 @@ class User implements UserInterface
             $this->password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
         }
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -192,7 +180,7 @@ class User implements UserInterface
     {
         return $this->roles->toArray();
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -200,7 +188,7 @@ class User implements UserInterface
     {
         $this->roles[] = $role;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -208,14 +196,14 @@ class User implements UserInterface
     {
         $this->roles = $roles;
     }
-
+    
     /**
      * @inheritDoc
      */
     public function eraseCredentials()
     {
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -223,7 +211,7 @@ class User implements UserInterface
     {
         return serialize([$this->id, $this->username, $this->password]);
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -231,7 +219,7 @@ class User implements UserInterface
     {
         list($this->id, $this->username, $this->password) = unserialize($serialized);
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -240,26 +228,26 @@ class User implements UserInterface
         if ($this->password !== $user->getPassword()) {
             return false;
         }
-
+        
         if ($this->salt !== $user->getSalt()) {
             return false;
         }
-
+        
         if ($this->username !== $user->getUsername()) {
             return false;
         }
-
+        
         return true;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getGroups()
+    public function getGroups() : Collection
     {
         return $this->groups;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -267,20 +255,25 @@ class User implements UserInterface
     {
         $this->groups = $groups;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getApiKey()
+    public function getApiKey() : string
     {
         return $this->apiKey;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * {@inheritdoc}122
      */
-    public function setApiKey($apiKey)
+    public function setApiKey(string $apiKey)
     {
         $this->apiKey = $apiKey;
+    }
+    
+    public function __toString() : string
+    {
+        return sprintf('%s %s', $this->getFirstName(), $this->getLastName());
     }
 }

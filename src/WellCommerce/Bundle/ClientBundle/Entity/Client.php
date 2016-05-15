@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
 
 /**
@@ -22,78 +23,45 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Client implements ClientInterface
+class Client extends AbstractEntity implements ClientInterface
 {
     const ROLE_CLIENT = 'ROLE_CLIENT';
-
+    
     use Timestampable;
     use Blameable;
     use ShopAwareTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var ClientGroupInterface
-     */
-    protected $clientGroup;
-
+    use ClientGroupAwareTrait;
+    
     /**
      * @var Collection
      */
     protected $orders;
-
+    
     /**
      * @var Collection
      */
     protected $wishlist;
-
+    
     /**
      * @var ClientDetails
      */
     protected $clientDetails;
-
+    
     /**
      * @var ClientContactDetailsInterface
      */
     protected $contactDetails;
-
+    
     /**
      * @var ClientBillingAddressInterface
      */
     protected $billingAddress;
-
+    
     /**
      * @var ClientShippingAddressInterface
      */
     protected $shippingAddress;
-
-    /**
-     * @inheritDoc
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return ClientGroupInterface
-     */
-    public function getClientGroup()
-    {
-        return $this->clientGroup;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setClientGroup(ClientGroupInterface $clientGroup)
-    {
-        $this->clientGroup = $clientGroup;
-    }
-
+    
     /**
      * @inheritDoc
      */
@@ -101,7 +69,7 @@ class Client implements ClientInterface
     {
         return $this->clientDetails->getPassword();
     }
-
+    
     /**
      * @return null
      */
@@ -109,7 +77,7 @@ class Client implements ClientInterface
     {
         return $this->clientDetails->getSalt();
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -117,14 +85,14 @@ class Client implements ClientInterface
     {
         return $this->clientDetails->getUsername();
     }
-
+    
     /**
      * @inheritDoc
      */
     public function eraseCredentials()
     {
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -134,7 +102,7 @@ class Client implements ClientInterface
             self::ROLE_CLIENT
         ];
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -142,7 +110,7 @@ class Client implements ClientInterface
     {
         return serialize([$this->id, $this->getUsername(), $this->getPassword()]);
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -155,7 +123,7 @@ class Client implements ClientInterface
         $this->clientDetails->setUsername($username);
         $this->clientDetails->setPassword($password);
     }
-
+    
     /**
      * @inheritDoc
      */
@@ -164,42 +132,42 @@ class Client implements ClientInterface
         if ($this->getPassword() !== $user->getPassword()) {
             return false;
         }
-
+        
         if ($this->getSalt() !== $user->getSalt()) {
             return false;
         }
-
+        
         if ($this->getUsername() !== $user->getUsername()) {
             return false;
         }
-
+        
         return true;
     }
-
+    
     /**
      * @inheritDoc
      */
-    public function getOrders()
+    public function getOrders() : Collection
     {
         return $this->orders;
     }
-
+    
     /**
      * @inheritDoc
      */
-    public function getWishlist()
+    public function getWishlist() : Collection
     {
         return $this->wishlist;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getClientDetails()
+    public function getClientDetails() : ClientDetailsInterface
     {
         return $this->clientDetails;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -207,15 +175,15 @@ class Client implements ClientInterface
     {
         $this->clientDetails = $clientDetails;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getContactDetails()
+    public function getContactDetails() : ClientContactDetailsInterface
     {
         return $this->contactDetails;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -223,15 +191,15 @@ class Client implements ClientInterface
     {
         $this->contactDetails = $contactDetails;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getBillingAddress()
+    public function getBillingAddress() : ClientBillingAddressInterface
     {
         return $this->billingAddress;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -239,15 +207,15 @@ class Client implements ClientInterface
     {
         $this->billingAddress = $billingAddress;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getShippingAddress()
+    public function getShippingAddress() : ClientShippingAddressInterface
     {
         return $this->shippingAddress;
     }
-
+    
     /**
      * {@inheritdoc}
      */

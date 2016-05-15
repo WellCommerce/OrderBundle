@@ -12,15 +12,15 @@
 
 namespace WellCommerce\Bundle\CurrencyBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class CurrencyFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CurrencyFactory extends AbstractFactory
+class CurrencyFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,10 +30,12 @@ class CurrencyFactory extends AbstractFactory
     /**
      * @return CurrencyInterface
      */
-    public function create()
+    public function create() : CurrencyInterface
     {
         /** @var $currency CurrencyInterface */
         $currency = $this->init();
+        $currency->setEnabled(true);
+        $currency->setCode('');
 
         return $currency;
     }

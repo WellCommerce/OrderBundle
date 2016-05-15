@@ -16,122 +16,118 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface UserInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface UserInterface extends \Serializable, EquatableInterface, BaseUserInterface, TimestampableInterface
+interface UserInterface extends \Serializable, EquatableInterface, BaseUserInterface, TimestampableInterface, EntityInterface
 {
-    /**
-     * @return int
-     */
-    public function getId();
-
     /**
      * @return string
      */
-    public function getFirstName();
-
+    public function getFirstName() : string;
+    
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName);
-
+    public function setFirstName(string $firstName);
+    
     /**
      * @return string
      */
-    public function getLastName();
-
+    public function getLastName() : string;
+    
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName);
-
+    public function setLastName(string $lastName);
+    
     /**
      * @return string
      */
     public function getUsername();
-
+    
     /**
      * @param string $username
      */
     public function setUsername($username);
-
+    
     /**
      * @return string
      */
-    public function getEmail();
-
+    public function getEmail() : string;
+    
     /**
      * @param string $email
      */
-    public function setEmail($email);
-
+    public function setEmail(string $email);
+    
     /**
      * @param string $salt
      */
     public function setSalt($salt);
-
+    
     /**
      * @inheritDoc
      */
     public function getSalt();
-
+    
     /**
      * @return string
      */
     public function getPassword();
-
+    
     /**
      * @param string $password
      */
     public function setPassword($password);
-
+    
     /**
      * @return array
      */
     public function getRoles();
-
+    
     /**
      * @param RoleInterface $role
      */
     public function addRole(RoleInterface $role);
-
+    
     /**
      * @param Collection $roles
      */
     public function setRoles(Collection $roles);
-
-
+    
+    
     /**
      * @return Collection
      */
-    public function getGroups();
-
+    public function getGroups() : Collection;
+    
     /**
      * @param Collection $groups
      */
     public function setGroups(Collection $groups);
-
+    
     /**
      * @return bool
      */
-    public function getEnabled();
-
+    public function getEnabled() : bool;
+    
     /**
      * @param bool $enabled
      */
-    public function setEnabled($enabled);
-
+    public function setEnabled(bool $enabled);
+    
     /**
      * @return string
      */
-    public function getApiKey();
-
+    public function getApiKey() : string;
+    
     /**
      * @param string $apiKey
      */
-    public function setApiKey($apiKey);
+    public function setApiKey(string $apiKey);
 }

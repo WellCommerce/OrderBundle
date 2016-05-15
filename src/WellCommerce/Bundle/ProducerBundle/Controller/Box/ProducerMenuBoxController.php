@@ -12,7 +12,9 @@
 
 namespace WellCommerce\Bundle\ProducerBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class ProducerMenuBoxController
@@ -24,13 +26,13 @@ class ProducerMenuBoxController extends AbstractBoxController
     /**
      * {@inheritdoc}
      */
-    public function indexAction()
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
     {
-        $producers = $this->get('producer.dataset.front')->getResult('array');
+        $producers = $this->get('producer.dataset.front')->getResult('array', [], ['pagination' => false]);
 
         return $this->displayTemplate('index', [
             'producers'      => $producers,
-            'activeProducer' => $this->manager->getProducerContext()->getCurrentProducerIdentifier()
+            'activeProducer' => $this->getProducerStorage()->getCurrentProducerIdentifier()
         ]);
     }
 }

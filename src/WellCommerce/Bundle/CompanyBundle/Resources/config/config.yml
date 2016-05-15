@@ -1,0 +1,17 @@
+well_commerce_company:
+    configuration:
+        company:
+            orm:
+                factory: WellCommerce\Bundle\CompanyBundle\Factory\CompanyFactory
+                repository: WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository
+                mapping: "@WellCommerceCompanyBundle/Resources/config/doctrine/Company.orm.yml"
+                entity: WellCommerce\Bundle\CompanyBundle\Entity\Company
+            api:
+                exposed: true
+                dataset: company.dataset.admin
+                manager: company.manager
+        company_address:
+            orm:
+                factory: WellCommerce\Bundle\CompanyBundle\Factory\CompanyAddressFactory
+                mapping: "@WellCommerceCompanyBundle/Resources/config/doctrine/CompanyAddress.orm.yml"
+                entity: WellCommerce\Bundle\CompanyBundle\Entity\CompanyAddress

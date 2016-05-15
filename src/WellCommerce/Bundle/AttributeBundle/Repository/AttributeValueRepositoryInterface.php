@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
@@ -22,12 +21,4 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 interface AttributeValueRepositoryInterface extends RepositoryInterface
 {
-    /**
-     * Returns all attributes values
-     *
-     * @param AttributeInterface $attribute
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCollectionByAttribute(AttributeInterface $attribute);
 }

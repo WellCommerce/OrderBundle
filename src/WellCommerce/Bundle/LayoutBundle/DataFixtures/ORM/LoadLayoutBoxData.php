@@ -99,9 +99,9 @@ class LoadLayoutBoxData extends AbstractDataFixture
                 'identifier' => 'client_menu',
                 'name'       => 'Client menu'
             ],
-            'Wishlist'             => [
-                'identifier' => 'wishlist',
-                'name'       => 'Wishlist'
+            'ClientWishlist'             => [
+                'identifier' => 'client_wishlist',
+                'name'       => 'Client Wishlist'
             ],
             'ClientForgotPassword' => [
                 'identifier' => 'client_forgot_password',
@@ -236,7 +236,7 @@ class LoadLayoutBoxData extends AbstractDataFixture
         $layoutBox->setBoxType($type);
         $layoutBox->setIdentifier($identifier);
         $layoutBox->setSettings($settings);
-        $layoutBox->translate('en')->setName($name);
+        $layoutBox->translate($this->getDefaultLocale())->setName($name);
         $layoutBox->mergeNewTranslations();
 
         $this->manager->persist($layoutBox);

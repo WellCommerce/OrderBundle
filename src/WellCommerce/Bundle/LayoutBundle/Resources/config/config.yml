@@ -1,0 +1,12 @@
+well_commerce_layout:
+    configuration:
+        layout_box:
+            orm:
+                factory: WellCommerce\Bundle\LayoutBundle\Factory\LayoutBoxFactory
+                repository: WellCommerce\Bundle\LayoutBundle\Repository\LayoutBoxRepository
+                mapping: "@WellCommerceLayoutBundle/Resources/config/doctrine/LayoutBox.orm.yml"
+                entity: WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox
+        layout_box_translation:
+            orm:
+                mapping: "@WellCommerceLayoutBundle/Resources/config/doctrine/LayoutBoxTranslation.orm.yml"
+                entity: WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation

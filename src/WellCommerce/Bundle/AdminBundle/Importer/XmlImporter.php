@@ -29,17 +29,17 @@ class XmlImporter implements AdminMenuImporterInterface
      * @var DoctrineHelperInterface
      */
     protected $doctrineHelper;
-
+    
     /**
      * @var AdminMenuFactory
      */
     protected $adminMenuFactory;
-
+    
     /**
      * @var AdminMenuRepositoryInterface
      */
     protected $adminMenuRepository;
-
+    
     /**
      * Constructor
      *
@@ -56,7 +56,7 @@ class XmlImporter implements AdminMenuImporterInterface
         $this->adminMenuFactory    = $adminMenuFactory;
         $this->adminMenuRepository = $adminMenuRepository;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -65,10 +65,10 @@ class XmlImporter implements AdminMenuImporterInterface
         $path = $locator->locate($file, null, true);
         $path = is_array($path) ? current($path) : $path;
         $xml  = $this->parseFile($path);
-
+        
         $this->importItems($xml);
     }
-
+    
     /**
      * Parses DOM element and adds it as an admin menu item
      *
@@ -81,7 +81,7 @@ class XmlImporter implements AdminMenuImporterInterface
             $this->addMenuItem($dom);
         }
     }
-
+    
     /**
      * Creates new admin menu item
      *
@@ -90,23 +90,23 @@ class XmlImporter implements AdminMenuImporterInterface
     protected function addMenuItem(\SimpleXMLElement $item)
     {
         $em            = $this->doctrineHelper->getEntityManager();
-        $adminMenuItem = $this->adminMenuRepository->findOneBy(['identifier' => $item->identifier]);
-        $parent        = $this->adminMenuRepository->findOneBy(['identifier' => $item->parent]);
-
+        $adminMenuItem = $this->adminMenuRepository->findOneBy(['identifier' => (string)$item->identifier]);
+        $parent        = $this->adminMenuRepository->findOneBy(['identifier' => (string)$item->parent]);
+        
         if (null === $adminMenuItem) {
             $adminMenuItem = $this->adminMenuFactory->create();
-            $adminMenuItem->setCssClass($item->css_class);
-            $adminMenuItem->setIdentifier($item->identifier);
-            $adminMenuItem->setName($item->name);
-            $adminMenuItem->setRouteName($item->route_name);
-            $adminMenuItem->setHierarchy($item->hierarchy);
+            $adminMenuItem->setCssClass((string)$item->css_class);
+            $adminMenuItem->setIdentifier((string)$item->identifier);
+            $adminMenuItem->setName((string)$item->name);
+            $adminMenuItem->setRouteName((string)$item->route_name);
+            $adminMenuItem->setHierarchy((int)$item->hierarchy);
             $adminMenuItem->setParent($parent);
-
+            
             $em->persist($adminMenuItem);
             $em->flush();
         }
     }
-
+    
     /**
      * Parses a XML file
      *

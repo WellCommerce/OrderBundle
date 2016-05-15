@@ -19,68 +19,31 @@ namespace WellCommerce\Bundle\ClientBundle\Entity;
  */
 interface ClientDetailsInterface
 {
-    /**
-     * @return float
-     */
-    public function getDiscount();
+    public function getDiscount() : float;
+    
+    public function setDiscount(float $discount);
+    
+    public function setPassword(string $password);
 
-    /**
-     * @param float $discount
-     */
-    public function setDiscount($discount);
+    public function setHashedPassword(string $password);
 
-    /**
-     * @param string $password
-     */
-    public function setPassword($password);
-
-    /**
-     * @return void
-     */
     public function resetPassword();
-
-    /**
-     * @return string
-     */
-    public function getUsername();
-
-    /**
-     * @param string $username
-     */
-    public function setUsername($username);
-
-    /**
-     * @param string $salt
-     */
-    public function setSalt($salt);
-
-    /**
-     * @return bool
-     */
-    public function isConditionsAccepted();
-
-    /**
-     * @param bool $conditionsAccepted
-     */
-    public function setConditionsAccepted($conditionsAccepted);
-
-    /**
-     * @return bool
-     */
-    public function isNewsletterAccepted();
-
-    /**
-     * @param bool $newsletterAccepted
-     */
-    public function setNewsletterAccepted($newsletterAccepted);
-
-    /**
-     * @return string
-     */
+    
+    public function getUsername() : string;
+    
+    public function setUsername(string $username);
+    
+    public function setSalt(string $salt);
+    
+    public function isConditionsAccepted() : bool;
+    
+    public function setConditionsAccepted(bool $conditionsAccepted);
+    
+    public function isNewsletterAccepted() : bool;
+    
+    public function setNewsletterAccepted(bool $newsletterAccepted);
+    
     public function getResetPasswordHash();
-
-    /**
-     * @param string $resetPasswordHash
-     */
-    public function setResetPasswordHash($resetPasswordHash);
+    
+    public function setResetPasswordHash(string $resetPasswordHash);
 }

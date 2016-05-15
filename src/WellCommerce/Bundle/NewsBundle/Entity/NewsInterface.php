@@ -16,54 +16,50 @@ use DateTime;
 use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TranslatableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface NewsInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface NewsInterface extends TimestampableInterface, TranslatableInterface, BlameableInterface
+interface NewsInterface extends EntityInterface, TimestampableInterface, TranslatableInterface, BlameableInterface
 {
-    /**
-     * @return int
-     */
-    public function getId();
-
     /**
      * @return bool
      */
-    public function getPublish();
-
+    public function getPublish() : bool;
+    
     /**
      * @param bool $publish
      */
-    public function setPublish($publish);
-
+    public function setPublish(bool $publish);
+    
     /**
      * @return DateTime
      */
-    public function getStartDate();
-
+    public function getStartDate() : DateTime;
+    
     /**
      * @param DateTime $startDate
      */
     public function setStartDate(DateTime $startDate);
-
+    
     /**
      * @return DateTime
      */
-    public function getEndDate();
-
+    public function getEndDate() : DateTime;
+    
     /**
      * @param DateTime $endDate
      */
     public function setEndDate(DateTime $endDate);
-
+    
     /**
      * @return bool
      */
-    public function getFeatured();
-
+    public function getFeatured() : bool;
+    
     /**
      * @param bool $featured
      */

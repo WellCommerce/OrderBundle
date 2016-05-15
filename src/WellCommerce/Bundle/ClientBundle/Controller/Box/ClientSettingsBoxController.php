@@ -12,7 +12,9 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class ClientSettingsBoxController
@@ -21,24 +23,24 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
  */
 class ClientSettingsBoxController extends AbstractBoxController
 {
-    public function indexAction()
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
     {
-        $client             = $this->manager->getClient();
-        $contactDetailsForm = $this->manager->getForm($client, [
+        $client             = $this->getAuthenticatedClient();
+        $contactDetailsForm = $this->getForm($client, [
             'name'              => 'contact_details',
             'validation_groups' => ['client_settings']
         ]);
 
         if ($contactDetailsForm->handleRequest()->isSubmitted()) {
             if ($contactDetailsForm->isValid()) {
-                $this->manager->updateResource($client);
+                $this->getManager()->updateResource($client);
 
-                $this->manager->getFlashHelper()->addSuccess('client.flash.contact_details.success');
+                $this->getFlashHelper()->addSuccess('client.flash.contact_details.success');
 
                 return $this->redirectToRoute('front.client_settings.index');
             }
 
-            $this->manager->getFlashHelper()->addError('client.flash.contact_details.error');
+            $this->getFlashHelper()->addError('client.flash.contact_details.error');
         }
 
         return $this->displayTemplate('index', [

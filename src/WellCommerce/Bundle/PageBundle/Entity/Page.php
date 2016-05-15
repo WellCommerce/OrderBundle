@@ -17,6 +17,7 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -24,39 +25,34 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Page implements PageInterface
+class Page extends AbstractEntity implements PageInterface
 {
     use Translatable;
     use Timestampable;
     use Blameable;
     use HierarchyAwareTrait;
     use ShopCollectionAwareTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    
     /**
      * @var bool
      */
     protected $publish;
-
+    
     /**
      * @var int
      */
     protected $redirectType;
-
+    
     /**
      * @var string
      */
     protected $section;
-
+    
     /**
      * @var string
      */
     protected $redirectUrl;
-
+    
     /**
      * @var string
      */
@@ -76,31 +72,23 @@ class Page implements PageInterface
      * @var Collection
      */
     protected $children;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPublish()
+    public function getPublish() : bool
     {
         return $this->publish;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setPublish($publish)
+    public function setPublish(bool $publish)
     {
         $this->publish = $publish;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -108,7 +96,7 @@ class Page implements PageInterface
     {
         return $this->parent;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -116,15 +104,15 @@ class Page implements PageInterface
     {
         $this->parent = $parent;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getChildren()
+    public function getChildren() : Collection
     {
         return $this->children;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -133,7 +121,7 @@ class Page implements PageInterface
         $this->children[] = $child;
         $child->setParent($this);
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -141,7 +129,7 @@ class Page implements PageInterface
     {
         return $this->redirectRoute;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -149,7 +137,7 @@ class Page implements PageInterface
     {
         $this->redirectRoute = $redirectRoute;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -157,7 +145,7 @@ class Page implements PageInterface
     {
         return $this->redirectUrl;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -165,15 +153,15 @@ class Page implements PageInterface
     {
         $this->redirectUrl = $redirectUrl;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getClientGroups()
+    public function getClientGroups() : Collection
     {
         return $this->clientGroups;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -181,7 +169,7 @@ class Page implements PageInterface
     {
         $this->clientGroups = $clientGroups;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -201,7 +189,7 @@ class Page implements PageInterface
                 break;
         }
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -209,7 +197,7 @@ class Page implements PageInterface
     {
         return $this->redirectType;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -217,19 +205,19 @@ class Page implements PageInterface
     {
         $this->redirectType = $redirectType;
     }
-
+    
     /**
      * @return string
      */
-    public function getSection()
+    public function getSection() : string
     {
         return $this->section;
     }
-
+    
     /**
      * @param string $section
      */
-    public function setSection($section)
+    public function setSection(string $section)
     {
         $this->section = $section;
     }

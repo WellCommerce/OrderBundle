@@ -9,13 +9,10 @@ order:
         confirmation: Potwierdzenie
         order_total: Suma
         products: Produkty
-        order_method_details:
+        contact_details: Dane kontaktowe
     button:
         confirm: Przejdź do potwierdzenia
         add_product: Dodaj produkt
-    heading:
-        address: Adres dostawy i płatnika
-        contact_details: Dane kontaktowe
     label:
         id: ID
         order_no: Numer zamówienia
@@ -38,11 +35,51 @@ order:
         gross_amount: Cena
         gross_total: Suma
         currency: Waluta
-        order_total:
-            shipping: Koszty wysyłki
     description:
         product_total: Wartość produktów
         shipping_cost: Koszty wysyłki
+    notice:
+        empty_order_list: Nie złożyłeś jeszcze żadnych zamówień
+    cart:
+        flash:
+            added: został dodany do koszyka
+            empty: Koszyk jest pusty.
+        button:
+            add: Dodaj do koszyka
+        link:
+            checkout: Przejdź do zamówienia
+            go_to_cart: Przejdź do koszyka
+            back_to_shopping: Wróć do sklepu
+        heading:
+            index: Koszyk
+            recommendations: Polecamy Ci również
+        table:
+            heading:
+                product: Produkt
+                price: Cena
+                quantity: Ilość
+                total: Wartość
+        error:
+            no_available_methods: Nie ma dostępnych form wysyłki i/lub płatności dla produktów w koszyku
+        shipping_method:
+            label: Metoda wysyłki
+        payment_method:
+            label: Metoda płatności
+
+    address:
+        heading:
+            billing_address: Adres płatnika
+            shipping_address: Adres dostawy
+        label:
+            copy_address: Adres dostawy jest taki sam jak adres płatnika
+            addresses: Adresy
+            street: Ulica
+            street_no: Numer ulicy
+            flat_no: Numer domu/lokalu
+            province: Prowincja
+            post_code: Kod pocztowy
+            country: Państwo
+            city: Miejscowość
 
 order_status:
     heading:
@@ -62,3 +99,18 @@ order_status_group:
         edit: Edytuj grupę
     label:
         name: Nazwa grupy statusów zamówień
+
+order_status_history:
+    heading:
+        add: Zmiana statusu zamówienia
+        view: Historia zmiany statusów
+    label:
+        order_status: Status zamówienia
+        comment: Komentarz
+        nofity: Wyślij powiadomienie
+        client_notified: Klient został poinformowany
+        client_not_notified: Klient nie został poinformowany
+        created_by: Utworzone przez
+        no_history: Brak informacji o zmianach statusów zamówienia
+    button:
+        change: Zapisz

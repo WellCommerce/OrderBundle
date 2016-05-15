@@ -16,6 +16,7 @@ use DateTime;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 
 /**
@@ -23,70 +24,57 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class News implements NewsInterface
+class News extends AbstractEntity implements NewsInterface
 {
     use Translatable;
     use Timestampable;
     use Blameable;
     use MediaAwareTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    
     /**
      * @var bool
      */
     protected $publish;
-
+    
     /**
      * @var DateTime $startDate
      */
     protected $startDate;
-
+    
     /**
      * @var DateTime $endDate
      */
     protected $endDate;
-
+    
     /**
      * @var bool
      */
     protected $featured;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPublish()
+    public function getPublish() : bool
     {
         return $this->publish;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setPublish($publish)
+    public function setPublish(bool $publish)
     {
-        $this->publish = (bool)$publish;
+        $this->publish = $publish;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getStartDate()
+    public function getStartDate() : DateTime
     {
         return $this->startDate;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -94,15 +82,15 @@ class News implements NewsInterface
     {
         $this->startDate = $startDate;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getEndDate()
+    public function getEndDate() : DateTime
     {
         return $this->endDate;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -110,20 +98,20 @@ class News implements NewsInterface
     {
         $this->endDate = $endDate;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getFeatured()
+    public function getFeatured() : bool
     {
         return $this->featured;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function setFeatured($featured)
     {
-        $this->featured = (bool)$featured;
+        $this->featured = $featured;
     }
 }

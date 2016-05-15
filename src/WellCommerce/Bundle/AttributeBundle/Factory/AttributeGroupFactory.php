@@ -14,14 +14,14 @@ namespace WellCommerce\Bundle\AttributeBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class AttributeGroupFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AttributeGroupFactory extends AbstractFactory
+class AttributeGroupFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -31,7 +31,7 @@ class AttributeGroupFactory extends AbstractFactory
     /**
      * @return AttributeGroupInterface
      */
-    public function create()
+    public function create() : AttributeGroupInterface
     {
         /** @var $group AttributeGroupInterface */
         $group = $this->init();

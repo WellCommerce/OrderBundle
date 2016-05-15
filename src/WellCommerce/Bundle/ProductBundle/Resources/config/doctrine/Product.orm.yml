@@ -1,7 +1,12 @@
 WellCommerce\Bundle\ProductBundle\Entity\Product:
     type: entity
+    cache:
+        usage: NONSTRICT_READ_WRITE
     table: product
     repositoryClass: WellCommerce\Bundle\ProductBundle\Repository\ProductRepository
+    indexes:
+        IDX_product_enabled:
+            columns: [enabled]
     id:
         id:
             type: integer
@@ -164,10 +169,10 @@ WellCommerce\Bundle\ProductBundle\Entity\Product:
             fetch: LAZY
             mappedBy: product
             orphanRemoval: true
-        attributes:
-            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\ProductAttribute
+        variants:
+            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Variant
             cascade:
-                - all
+                - persist
             fetch: LAZY
             mappedBy: product
             orphanRemoval: true

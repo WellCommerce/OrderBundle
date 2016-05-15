@@ -11,9 +11,13 @@
  */
 namespace WellCommerce\Bundle\ShopBundle\EventListener;
 
+use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
+use WellCommerce\Bundle\ShopBundle\Repository\ShopRepositoryInterface;
+use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
+use WellCommerce\Component\DataSet\Event\DataSetRequestEvent;
 
 /**
  * Class ShopSubscriber
@@ -25,32 +29,38 @@ class ShopSubscriber extends AbstractEventSubscriber
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST => ['onKernelRequest', 100],
-            'shop.post_update'    => 'onShopListModified',
-            'shop.post_create'    => 'onShopListModified',
-            'shop.post_remove'    => 'onShopListModified',
+            KernelEvents::REQUEST            => ['onKernelRequest', 100],
+            'page.dataset.front.request'     => ['onShopAwareDataSetRequest', 0],
+            'page.dataset.admin.request'     => ['onShopAwareDataSetRequest', 0],
+            'category.dataset.front.request' => ['onShopAwareDataSetRequest', 0],
+            'category.dataset.admin.request' => ['onShopAwareDataSetRequest', 0],
+            'product.dataset.front.request'  => ['onShopAwareDataSetRequest', 0],
+            'product.dataset.admin.request'  => ['onShopAwareDataSetRequest', 0],
+            'producer.dataset.front.request' => ['onShopAwareDataSetRequest', 0],
+            'producer.dataset.admin.request' => ['onShopAwareDataSetRequest', 0],
         ];
     }
 
-    /**
-     * Clears session data after shop list was changed
-     */
-    public function onShopListModified()
-    {
-        $this->container->get('session')->remove('admin/shops');
-    }
-
-    /**
-     * @param GetResponseEvent $event
-     */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (!$this->container->get('session')->has('admin/shops')) {
-            $shops = $this->container->get('shop.dataset.admin')->getResult('select');
-            $this->container->get('session')->set('admin/shops', $shops);
-        }
+        $firewallName         = $this->getSecurityHelper()->getFirewallNameForRequest($event->getRequest());
+        $sessionAttributeName = $firewallName . '/shop/id';
+        $currentShopId        = $this->getRequestHelper()->getSessionAttribute($sessionAttributeName);
+        $host                 = $this->getRequestHelper()->getCurrentHost();
+        $shop                 = $this->getShopRepository()->resolve((int)$currentShopId, $host);
 
-        $this->get('shop.resolver.front')->resolve();
-        $this->get('shop.resolver.admin')->resolve();
+        $this->getShopStorage()->setCurrentShop($shop);
+        $this->getRequestHelper()->setSessionAttribute($sessionAttributeName, $shop->getId());
+    }
+    
+    private function getShopRepository() : ShopRepositoryInterface
+    {
+        return $this->get('shop.repository');
+    }
+
+    public function onShopAwareDataSetRequest(DataSetRequestEvent $event)
+    {
+        $request = $event->getRequest();
+        $request->addCondition(new Eq('shop', $this->getShopStorage()->getCurrentShopIdentifier()));
     }
 }

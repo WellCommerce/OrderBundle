@@ -12,78 +12,52 @@
 
 namespace WellCommerce\Bundle\PaymentBundle\Processor;
 
-use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodConfigurationInterface;
-use WellCommerce\Component\Form\Dependencies\DependencyInterface;
-use WellCommerce\Component\Form\Elements\ElementInterface;
-use WellCommerce\Component\Form\FormBuilderInterface;
+use WellCommerce\Bundle\PaymentBundle\Configurator\PaymentMethodConfiguratorInterface;
+use WellCommerce\Bundle\PaymentBundle\Gateway\PaymentGatewayInterface;
 
 /**
  * Class AbstractPaymentProcessor
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractPaymentProcessor extends AbstractContainerAware implements PaymentMethodProcessorInterface
+abstract class AbstractPaymentProcessor extends AbstractContainerAware implements PaymentProcessorInterface
 {
     /**
-     * @var string
+     * @var PaymentGatewayInterface
      */
-    protected $name;
-
+    protected $gateway;
+    
     /**
-     * @var string
+     * @var PaymentMethodConfiguratorInterface
      */
-    protected $alias;
-
+    protected $configurator;
+    
     /**
-     * {@inheritdoc}
-     */
-    public function getAlias()
-    {
-        return $this->alias;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Returns the field name used in forms
+     * AbstractPaymentProcessor constructor.
      *
-     * @param string $name
-     *
-     * @return string
+     * @param PaymentGatewayInterface            $gateway
+     * @param PaymentMethodConfiguratorInterface $configurator
      */
-    protected function getFieldName($name)
+    public function __construct(PaymentGatewayInterface $gateway, PaymentMethodConfiguratorInterface $configurator)
     {
-        return sprintf('%s_%s', $this->alias, $name);
+        $this->gateway      = $gateway;
+        $this->configurator = $configurator;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    abstract public function addConfigurationFields(
-        FormBuilderInterface $builder,
-        ElementInterface $fieldset,
-        DependencyInterface $dependency
-    );
-
-    /**
-     * {@inheritdoc}
-     */
-    public function processConfiguration(Collection $collection)
+    public function getGateway() : PaymentGatewayInterface
     {
-        $config = [];
-
-        $collection->map(function (PaymentMethodConfigurationInterface $configuration) use (&$config) {
-            $config[$configuration->getName()] = $configuration->getValue();
-        });
-
-        return $config;
+        return $this->gateway;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfigurator() : PaymentMethodConfiguratorInterface
+    {
+        return $this->configurator;
     }
 }

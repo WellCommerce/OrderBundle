@@ -11,28 +11,34 @@
  */
 namespace WellCommerce\Bundle\ShippingBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 
 /**
  * Class ShippingMethodRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ShippingMethodRepository extends AbstractEntityRepository implements ShippingMethodRepositoryInterface
+class ShippingMethodRepository extends EntityRepository implements ShippingMethodRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDefaultShippingMethod()
+    public function getShippingMethods() : Collection
     {
-        return $this->findOneBy([], ['hierarchy' => 'asc']);
-    }
+        $criteria = new Criteria();
+        $criteria->where($criteria->expr()->eq('enabled', true));
+        $criteria->orderBy(['hierarchy' => 'asc']);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findAllEnabledShippingMethods()
-    {
-        return $this->findBy(['enabled' => true], ['hierarchy' => 'asc']);
+        $methods = $this->matching($criteria)->filter(function (ShippingMethodInterface $shippingMethod) {
+            $paymentMethodsCount     = $shippingMethod->getPaymentMethods()->count();
+            $shippingMethodCostCount = $shippingMethod->getCosts()->count();
+
+            return $paymentMethodsCount > 0 && $shippingMethodCostCount > 0;
+        });
+
+        return $methods;
     }
 }

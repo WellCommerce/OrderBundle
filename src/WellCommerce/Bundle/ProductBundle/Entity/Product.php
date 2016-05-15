@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
@@ -24,8 +23,11 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareTrait;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ProducerBundle\Entity\ProducerAwareTrait;
+use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
 use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareTrait;
@@ -35,7 +37,7 @@ use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Product implements ProductInterface
+class Product extends AbstractEntity implements ProductInterface
 {
     use Translatable;
     use Timestampable;
@@ -47,16 +49,12 @@ class Product implements ProductInterface
     use ProducerAwareTrait;
     use UnitAwareTrait;
     use AvailabilityAwareTrait;
-
-    /**
-     * @var integer
-     */
-    protected $id;
+    use ProductExtraTrait;
 
     /**
      * @var string
      */
-    protected $sku;
+    protected $sku = '';
 
     /**
      * @var Collection
@@ -76,17 +74,12 @@ class Product implements ProductInterface
     /**
      * @var Collection
      */
-    protected $attributes;
-
-    /**
-     * @var Collection
-     */
     protected $reviews;
 
     /**
      * @var int
      */
-    protected $stock;
+    protected $stock = 0;
 
     /**
      * @var Price
@@ -109,6 +102,11 @@ class Product implements ProductInterface
     protected $sellPriceTax;
 
     /**
+     * @var Collection
+     */
+    protected $variants;
+
+    /**
      * @var AttributeGroupInterface
      */
     protected $attributeGroup;
@@ -116,12 +114,12 @@ class Product implements ProductInterface
     /**
      * @var bool
      */
-    protected $trackStock;
+    protected $trackStock = true;
 
     /**
      * @var float
      */
-    protected $weight;
+    protected $weight = 0;
 
     /**
      * @var Dimension
@@ -131,20 +129,12 @@ class Product implements ProductInterface
     /**
      * @var float
      */
-    protected $packageSize;
+    protected $packageSize = 1;
 
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSku()
+    public function getSku() : string
     {
         return $this->sku;
     }
@@ -152,7 +142,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setSku($sku)
+    public function setSku(string $sku)
     {
         $this->sku = $sku;
     }
@@ -160,7 +150,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getStock()
+    public function getStock() : int
     {
         return $this->stock;
     }
@@ -168,23 +158,23 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setStock($stock)
+    public function setStock(int $stock)
     {
-        $this->stock = (int)$stock;
+        $this->stock = $stock;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getTrackStock()
+    public function getTrackStock() : bool
     {
-        return (bool)$this->trackStock;
+        return $this->trackStock;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setTrackStock($trackStock)
+    public function setTrackStock(bool $trackStock)
     {
         $this->trackStock = $trackStock;
     }
@@ -192,7 +182,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getStatuses()
+    public function getStatuses() : Collection
     {
         return $this->statuses;
     }
@@ -208,7 +198,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getProductPhotos()
+    public function getProductPhotos() : Collection
     {
         return $this->productPhotos;
     }
@@ -232,7 +222,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getCategories()
+    public function getCategories() : Collection
     {
         return $this->categories;
     }
@@ -256,7 +246,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getSellPrice()
+    public function getSellPrice() : DiscountablePrice
     {
         return $this->sellPrice;
     }
@@ -272,7 +262,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getBuyPrice()
+    public function getBuyPrice() : Price
     {
         return $this->buyPrice;
     }
@@ -288,7 +278,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getWeight()
+    public function getWeight() : float
     {
         return $this->weight;
     }
@@ -296,15 +286,15 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setWeight($weight)
+    public function setWeight(float $weight)
     {
-        $this->weight = (float)$weight;
+        $this->weight = $weight;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDimension()
+    public function getDimension() : Dimension
     {
         return $this->dimension;
     }
@@ -320,7 +310,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getPackageSize()
+    public function getPackageSize() : float
     {
         return $this->packageSize;
     }
@@ -328,9 +318,9 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function setPackageSize($packageSize)
+    public function setPackageSize(float $packageSize)
     {
-        $this->packageSize = (float)$packageSize;
+        $this->packageSize = $packageSize;
     }
 
     /**
@@ -352,39 +342,44 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getAttributes()
+    public function getVariants() : Collection
     {
-        return $this->attributes;
+        return $this->variants;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setAttributes(Collection $attributes)
+    public function setVariants(Collection $variants)
     {
-        if (null !== $this->attributes) {
-            $this->attributes->map(function (ProductAttributeInterface $productAttribute) use ($attributes) {
-                if (false === $attributes->contains($productAttribute)) {
-                    $this->removeAttribute($productAttribute);
-                }
-            });
+        if ($this->variants instanceof Collection) {
+            $this->synchronizeVariants($variants);
         }
 
-        $this->attributes = $attributes;
+        $this->variants = $variants;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function removeAttribute(ProductAttributeInterface $productAttribute)
+    protected function synchronizeVariants(Collection $variants)
     {
-        $this->attributes->removeElement($productAttribute);
+        $this->variants->map(function (VariantInterface $variant) use ($variants) {
+            if (false === $variants->contains($variant)) {
+                $this->removeVariant($variant);
+            }
+        });
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBuyPriceTax()
+    public function removeVariant(VariantInterface $variant)
+    {
+        $this->variants->removeElement($variant);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBuyPriceTax() : TaxInterface
     {
         return $this->buyPriceTax;
     }
@@ -400,7 +395,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getSellPriceTax()
+    public function getSellPriceTax() : TaxInterface
     {
         return $this->sellPriceTax;
     }
@@ -416,7 +411,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingCostQuantity()
+    public function getShippingCostQuantity() : int
     {
         return 1;
     }
@@ -424,7 +419,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingCostWeight()
+    public function getShippingCostWeight() : float
     {
         return $this->weight;
     }
@@ -432,7 +427,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingCostGrossPrice()
+    public function getShippingCostGrossPrice() : float
     {
         return $this->sellPrice->getFinalGrossAmount();
     }
@@ -440,7 +435,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingCostCurrency()
+    public function getShippingCostCurrency() : string
     {
         return $this->sellPrice->getCurrency();
     }
@@ -448,7 +443,7 @@ class Product implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getReviews()
+    public function getReviews() : Collection
     {
         return $this->reviews;
     }

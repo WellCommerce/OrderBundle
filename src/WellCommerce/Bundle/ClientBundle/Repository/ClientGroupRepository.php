@@ -12,19 +12,20 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class ClientGroupRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientGroupRepository extends AbstractEntityRepository implements ClientGroupRepositoryInterface
+class ClientGroupRepository extends EntityRepository implements ClientGroupRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('client_group.id');

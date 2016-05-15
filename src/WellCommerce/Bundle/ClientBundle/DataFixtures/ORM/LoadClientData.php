@@ -47,7 +47,7 @@ class LoadClientData extends AbstractDataFixture
 
         $client->getClientDetails()->setDiscount(25);
         $client->getClientDetails()->setUsername($email);
-        $client->getClientDetails()->setPassword('demo');
+        $client->getClientDetails()->setHashedPassword('demo');
         $client->getClientDetails()->setConditionsAccepted(true);
         $client->getClientDetails()->setNewsletterAccepted(true);
 
@@ -56,24 +56,26 @@ class LoadClientData extends AbstractDataFixture
         $billingAddress = new ClientBillingAddress();
         $billingAddress->setFirstName($firstName);
         $billingAddress->setLastName($lastName);
-        $billingAddress->setStreet($fakerGenerator->streetName);
-        $billingAddress->setStreetNo($fakerGenerator->streetSuffix);
-        $billingAddress->setFlatNo($fakerGenerator->buildingNumber);
-        $billingAddress->setPostCode($fakerGenerator->postcode);
+        $billingAddress->setLine1($fakerGenerator->address);
+        $billingAddress->setLine2('');
+        $billingAddress->setPostalCode($fakerGenerator->postcode);
         $billingAddress->setCity($fakerGenerator->city);
         $billingAddress->setCountry($fakerGenerator->countryCode);
         $billingAddress->setVatId(666777888999);
         $billingAddress->setCompanyName($fakerGenerator->company);
+        $billingAddress->setState('');
+        $billingAddress->setCompanyAddress(false);
 
         $shippingAddress = new ClientShippingAddress();
         $shippingAddress->setFirstName($firstName);
         $shippingAddress->setLastName($lastName);
-        $shippingAddress->setStreet($fakerGenerator->streetName);
-        $shippingAddress->setStreetNo($fakerGenerator->streetSuffix);
-        $shippingAddress->setFlatNo($fakerGenerator->buildingNumber);
-        $shippingAddress->setPostCode($fakerGenerator->postcode);
+        $shippingAddress->setLine1($fakerGenerator->address);
+        $shippingAddress->setLine2('');
+        $shippingAddress->setPostalCode($fakerGenerator->postcode);
         $shippingAddress->setCity($fakerGenerator->city);
         $shippingAddress->setCountry($fakerGenerator->countryCode);
+        $shippingAddress->setState('');
+        $shippingAddress->setCopyBillingAddress(true);
 
         $client->setBillingAddress($billingAddress);
         $client->setShippingAddress($shippingAddress);

@@ -1,0 +1,16 @@
+well_commerce_contact:
+    configuration:
+        contact:
+            orm:
+                factory: WellCommerce\Bundle\ContactBundle\Factory\ContactFactory
+                repository: WellCommerce\Bundle\ContactBundle\Repository\ContactRepository
+                mapping: "@WellCommerceContactBundle/Resources/config/doctrine/Contact.orm.yml"
+                entity: WellCommerce\Bundle\ContactBundle\Entity\Contact
+            api:
+                exposed: true
+                dataset: contact.dataset.admin
+                manager: contact.manager
+        contact_translation:
+            orm:
+                mapping: "@WellCommerceContactBundle/Resources/config/doctrine/ContactTranslation.orm.yml"
+                entity: WellCommerce\Bundle\ContactBundle\Entity\ContactTranslation

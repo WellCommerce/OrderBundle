@@ -13,6 +13,10 @@
 namespace WellCommerce\Bundle\ProducerBundle\DataSet\Front;
 
 use WellCommerce\Bundle\ProducerBundle\DataSet\Admin\ProducerDataSet as BaseDataSet;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
+use WellCommerce\Bundle\ProducerBundle\Entity\ProducerTranslation;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 
 /**
@@ -31,11 +35,18 @@ class ProducerDataSet extends BaseDataSet
             'id'       => 'producer.id',
             'name'     => 'producer_translation.name',
             'route'    => 'IDENTITY(producer_translation.route)',
+            'shop'     => 'producer_shops.id',
             'products' => 'COUNT(producer_products.id)',
         ]);
 
         $configurator->setColumnTransformers([
             'route' => $this->getDataSetTransformer('route')
         ]);
+
+        $configurator->setCacheOptions(new CacheOptions(true, 3600, [
+            Product::class,
+            Producer::class,
+            ProducerTranslation::class
+        ]));
     }
 }

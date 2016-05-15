@@ -12,6 +12,7 @@
 namespace WellCommerce\Bundle\NewsBundle\Form\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\NewsBundle\Repository\NewsRepositoryInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
@@ -26,6 +27,8 @@ class NewsFormBuilder extends AbstractFormBuilder
      */
     public function buildForm(FormInterface $form)
     {
+        $repository = $this->getNewsRepository();
+
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'required_data',
             'label' => $this->trans('common.fieldset.general')
@@ -34,7 +37,7 @@ class NewsFormBuilder extends AbstractFormBuilder
         $languageData = $requiredData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
             'label'       => $this->trans('common.fieldset.translations'),
-            'transformer' => $this->getRepositoryTransformer('translation', $this->get('news.repository'))
+            'transformer' => $this->getRepositoryTransformer('translation', $repository)
         ]));
 
         $languageData->addChild($this->getElement('text_field', [
@@ -55,33 +58,14 @@ class NewsFormBuilder extends AbstractFormBuilder
             'label' => $this->trans('news.label.content'),
         ]));
 
-        $metaData = $form->addChild($this->getElement('nested_fieldset', [
-            'name'  => 'meta_data',
-            'label' => $this->trans('common.fieldset.meta')
-        ]));
-
-        $languageData = $metaData->addChild($this->getElement('language_fieldset', [
-            'name'        => 'translations',
-            'label'       => $this->trans('common.fieldset.translations'),
-            'transformer' => $this->getRepositoryTransformer('translation', $this->get('news.repository'))
-        ]));
-
-        $languageData->addChild($this->getElement('text_field', [
-            'name'  => 'meta.title',
-            'label' => $this->trans('common.label.meta.title')
-        ]));
-
-        $languageData->addChild($this->getElement('text_field', [
-            'name'  => 'meta.keywords',
-            'label' => $this->trans('common.label.meta.keywords'),
-        ]));
-
-        $languageData->addChild($this->getElement('text_area', [
-            'name'  => 'meta.description',
-            'label' => $this->trans('common.label.meta.description'),
-        ]));
+        $this->addMetadataFieldset($form, $repository);
 
         $form->addFilter($this->getFilter('trim'));
         $form->addFilter($this->getFilter('secure'));
+    }
+
+    private function getNewsRepository() : NewsRepositoryInterface
+    {
+        return $this->get('news.repository');
     }
 }

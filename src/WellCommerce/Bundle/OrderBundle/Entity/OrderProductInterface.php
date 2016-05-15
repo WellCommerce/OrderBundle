@@ -12,60 +12,45 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\AppBundle\Entity\Price;
+use WellCommerce\Bundle\AppBundle\Entity\PriceInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductAttributeAwareInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareInterface;
 
 /**
  * Interface OrderProductInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderProductInterface extends ProductAwareInterface, ProductAttributeAwareInterface, TimestampableInterface, OrderAwareInterface
+interface OrderProductInterface extends
+    EntityInterface,
+    ProductAwareInterface,
+    VariantAwareInterface,
+    TimestampableInterface,
+    OrderAwareInterface
 {
-    /**
-     * @return int
-     */
-    public function getId();
-
-    /**
-     * @return int
-     */
-    public function getQuantity();
-
-    /**
-     * @param float $quantity
-     */
-    public function setQuantity($quantity);
-
-    /**
-     * @return Price
-     */
-    public function getSellPrice();
-
-    /**
-     * @param Price $sellPrice
-     */
-    public function setSellPrice(Price $sellPrice);
-
-    /**
-     * @return Price
-     */
-    public function getBuyPrice();
-
-    /**
-     * @param Price $buyPrice
-     */
-    public function setBuyPrice(Price $buyPrice);
-
-    /**
-     * @return float
-     */
-    public function getWeight();
-
-    /**
-     * @param float $weight
-     */
-    public function setWeight($weight);
+    public function getQuantity() : int;
+    
+    public function setQuantity(int $quantity);
+    
+    public function increaseQuantity(int $increase);
+    
+    public function decreaseQuantity(int $decrease);
+    
+    public function getSellPrice() : PriceInterface;
+    
+    public function setSellPrice(PriceInterface $sellPrice);
+    
+    public function getBuyPrice() : PriceInterface;
+    
+    public function setBuyPrice(PriceInterface $buyPrice);
+    
+    public function getWeight() : float;
+    
+    public function setWeight(float $weight);
+    
+    public function getOptions() : array;
+    
+    public function setOptions(array $options);
 }

@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\PageBundle\Factory;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
 
 /**
@@ -21,28 +21,34 @@ use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PageFactory extends AbstractFactory
+class PageFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = PageInterface::class;
-
+    
     /**
      * @return PageInterface
      */
-    public function create()
+    public function create() : PageInterface
     {
         /** @var  $page PageInterface */
         $page = $this->init();
         $page->setHierarchy(0);
         $page->setCreatedAt(new \DateTime());
-        $page->setClientGroups(new ArrayCollection());
-        $page->setShops(new ArrayCollection());
+        $page->setClientGroups($this->getDefaultClientGroups());
+        $page->setShops($this->getDefaultShops());
         $page->setParent(null);
         $page->setPublish(true);
         $page->setRedirectType(1);
-
+        $page->setSection('');
+        
         return $page;
+    }
+    
+    private function getDefaultClientGroups()
+    {
+        return $this->get('client_group.repository')->matching(new Criteria());
     }
 }

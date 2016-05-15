@@ -11,26 +11,27 @@
  */
 namespace WellCommerce\Bundle\PageBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class PageRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PageRepository extends AbstractEntityRepository implements PageRepositoryInterface
+class PageRepository extends EntityRepository implements PageRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->leftJoin('page.translations', 'page_translation');
         $queryBuilder->leftJoin('page.children', 'page_children');
         $queryBuilder->leftJoin('page.shops', 'page_shops');
         $queryBuilder->groupBy('page.id');
-
+        
         return $queryBuilder;
     }
 }

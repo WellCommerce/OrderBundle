@@ -13,14 +13,15 @@
 namespace WellCommerce\Bundle\ContactBundle\Factory;
 
 use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\ContactBundle\Entity\ContactTranslation;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class ContactFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ContactFactory extends AbstractFactory
+class ContactFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,11 +31,25 @@ class ContactFactory extends AbstractFactory
     /**
      * @return ContactInterface
      */
-    public function create()
+    public function create() : ContactInterface
     {
         /** @var $contact ContactInterface */
         $contact = $this->init();
+        $contact->setEnabled(true);
         $contact->setCreatedAt(new \DateTime());
+
+        /** @var ContactTranslation $translation */
+        $translation = $contact->translate();
+        $translation->setName('');
+        $translation->setEmail('');
+        $translation->setBusinessHours('');
+        $translation->setCity('');
+        $translation->setCountry('');
+        $translation->setLine1('');
+        $translation->setLine2('');
+        $translation->setPostalCode('');
+        $translation->setState('');
+        $translation->setPhone('');
 
         return $contact;
     }

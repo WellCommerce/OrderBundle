@@ -12,7 +12,9 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class ProductInfoBoxController
@@ -21,9 +23,9 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
  */
 class ProductInfoBoxController extends AbstractBoxController
 {
-    public function indexAction()
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
     {
-        $product      = $this->manager->getProductContext()->getCurrentProduct();
+        $product      = $this->getProductStorage()->getCurrentProduct();
         $templateData = $this->get('product.helper')->getProductDefaultTemplateData($product);
 
         return $this->displayTemplate('index', $templateData);

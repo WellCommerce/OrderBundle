@@ -13,9 +13,11 @@
 namespace WellCommerce\Bundle\AdminBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use WellCommerce\Bundle\AdminBundle\Exception\ResetPasswordException;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
+use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
  * Class UserController
@@ -24,17 +26,7 @@ use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
  */
 class UserController extends AbstractAdminController
 {
-    /**
-     * @var \WellCommerce\Bundle\AdminBundle\Manager\Admin\UserManager
-     */
-    protected $manager;
-
-    /**
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function loginAction(Request $request)
+    public function loginAction(Request $request) : Response
     {
         $form = $this->get('user_login.form_builder')->createForm([
             'name'         => 'login',
@@ -49,17 +41,9 @@ class UserController extends AbstractAdminController
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function resetPasswordAction()
+    public function resetPasswordAction() : Response
     {
-        /** @var $form \WellCommerce\Component\Form\Elements\FormInterface */
-        $form = $this->get('user_reset_password.form_builder')->createForm([
-            'name'         => 'reset_password',
-            'ajax_enabled' => false,
-            'class'        => 'login-form',
-        ], null);
+        $form = $this->createLoginForm();
 
         if ($form->handleRequest()->isSubmitted()) {
             $formValues = $form->getValue();
@@ -84,13 +68,15 @@ class UserController extends AbstractAdminController
         ]);
     }
 
-    /**
-     * Returns security errors
-     *
-     * @param Request $request
-     *
-     * @return mixed|string
-     */
+    private function createLoginForm() : FormInterface
+    {
+        return $this->get('user_reset_password.form_builder')->createForm([
+            'name'         => 'reset_password',
+            'ajax_enabled' => false,
+            'class'        => 'login-form',
+        ], null);
+    }
+
     private function getSecurityErrors(Request $request)
     {
         $session = $request->getSession();
@@ -106,25 +92,18 @@ class UserController extends AbstractAdminController
         return $error;
     }
 
-    public function loginCheckAction(Request $request)
+    public function loginCheckAction()
     {
     }
 
-    /**
-     * Deletes the user
-     *
-     * @param int $id
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function deleteAction($id)
+    public function deleteAction(int $id) : Response
     {
-        $user = $this->getUser();
+        $user = $this->getSecurityHelper()->getUser();
         if (null !== $user && $user->getId() === $id) {
             return $this->jsonResponse(['error' => 'You cannot delete your own admin account.']);
         }
 
-        $em = $this->manager->getDoctrineHelper()->getEntityManager();
+        $em = $this->getDoctrineHelper()->getEntityManager();
 
         try {
             $resource = $this->manager->getRepository()->find($id);
@@ -138,7 +117,7 @@ class UserController extends AbstractAdminController
         return $this->jsonResponse(['success' => true]);
     }
 
-    public function accessDeniedAction()
+    public function accessDeniedAction() : Response
     {
         return $this->displayTemplate('access_denied');
     }

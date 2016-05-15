@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\LocaleBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
 
 /**
@@ -20,7 +20,7 @@ use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class LocaleFactory extends AbstractFactory
+class LocaleFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,10 +30,13 @@ class LocaleFactory extends AbstractFactory
     /**
      * @return LocaleInterface
      */
-    public function create()
+    public function create() : LocaleInterface
     {
         /** @var $locale LocaleInterface */
         $locale = $this->init();
+        $locale->setCode('');
+        $locale->setEnabled(true);
+        $locale->setCurrency($this->getDefaultCurrency());
 
         return $locale;
     }

@@ -13,6 +13,9 @@
 namespace WellCommerce\Bundle\LocaleBundle\DataSet\Admin;
 
 use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
+use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 
 /**
@@ -20,11 +23,8 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class LocaleDataSet extends AbstractDataSet
+final class LocaleDataSet extends AbstractDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([
@@ -34,5 +34,10 @@ class LocaleDataSet extends AbstractDataSet
         ]);
 
         $this->setDefaultRequestOption('order_by', 'code');
+
+        $configurator->setCacheOptions(new CacheOptions(true, 3600, [
+           Locale::class,
+           Currency::class
+        ]));
     }
 }

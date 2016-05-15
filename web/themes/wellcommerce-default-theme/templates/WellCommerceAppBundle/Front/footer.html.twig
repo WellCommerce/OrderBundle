@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-9 col-xs-12">
                 <div class="row">
-                    {% for page in cmsPages if page.children|length %}
+                    {% for page in cmsPages() if page.children|length %}
                         <div class="col-sm-4 menu">
                             <h3>{{ page.name }}</h3>
                             <ul>
@@ -22,7 +22,7 @@
                                 <li><a href="{{ path('front.client.logout') }}">{% trans %}client.link.logout{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_order.index') }}">{% trans %}client.link.orders{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_address_book.index') }}">{% trans %}client.link.address_book{% endtrans %}</a></li>
-                                <li><a href="{{ path('front.wishlist.index') }}">{% trans %}client.link.wishlist{% endtrans %}</a></li>
+                                <li><a href="{{ path('front.client_wishlist.index') }}">{% trans %}client.link.wishlist{% endtrans %}</a></li>
                             {%  else %}
                                 <li><a href="{{ path('front.client.login') }}">{% trans %}client.link.login{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_password.reset') }}">{% trans %}client.link.password_forgotten{% endtrans %}</a></li>
@@ -31,9 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-xs-12">
-                <div class="fb-page" data-href="https://www.facebook.com/WellCommerce" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"></div>
-            </div>
+            <div class="col-sm-3 col-xs-12"></div>
         </div>
     </div>
 

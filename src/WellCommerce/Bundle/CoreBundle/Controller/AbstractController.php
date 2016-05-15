@@ -15,6 +15,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\CoreBundle\Exception\MissingFormBuilderException;
+use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
+use WellCommerce\Component\Form\Elements\FormInterface;
+use WellCommerce\Component\Form\FormBuilderInterface;
 
 /**
  * Class AbstractController
@@ -24,95 +29,100 @@ use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 abstract class AbstractController extends AbstractContainerAware implements ControllerInterface
 {
     /**
-     * Returns content as json response
-     *
-     * @param array $content
-     *
-     * @return JsonResponse
+     * @var ManagerInterface
      */
-    protected function jsonResponse(array $content)
+    private $manager;
+    
+    /**
+     * @var null|FormBuilderInterface
+     */
+    private $formBuilder;
+    
+    /**
+     * AbstractController constructor.
+     *
+     * @param ManagerInterface          $manager
+     * @param FormBuilderInterface|null $formBuilder
+     */
+    public function __construct(ManagerInterface $manager, FormBuilderInterface $formBuilder = null)
+    {
+        $this->manager     = $manager;
+        $this->formBuilder = $formBuilder;
+    }
+    
+    protected function getManager()
+    {
+        return $this->manager;
+    }
+    
+    protected function getFormBuilder()
+    {
+        if (!$this->formBuilder instanceof FormBuilderInterface) {
+            throw new MissingFormBuilderException(get_class($this));
+        }
+
+        return $this->formBuilder;
+    }
+
+    protected function createFormDefaultJsonResponse(FormInterface $form) : JsonResponse
+    {
+        return $this->jsonResponse([
+            'valid'      => $form->isValid(),
+            'continue'   => $form->isAction('continue'),
+            'next'       => $form->isAction('next'),
+            'redirectTo' => $this->getRedirectToActionUrl('index'),
+            'error'      => $form->getError(),
+        ]);
+    }
+
+    protected function getForm($resource, array $config = []) : FormInterface
+    {
+        $builder       = $this->getFormBuilder();
+        $defaultConfig = [
+            'name'              => $this->getManager()->getRepository()->getAlias(),
+            'validation_groups' => ValidatorHelperInterface::DEFAULT_VALIDATOR_GROUPS
+        ];
+
+        $config = array_merge($defaultConfig, $config);
+
+        return $builder->createForm($config, $resource);
+    }
+
+    protected function jsonResponse(array $content) : JsonResponse
     {
         return new JsonResponse($content);
     }
-
-    /**
-     * Redirect to another url
-     *
-     * @param string $url
-     * @param int    $status
-     *
-     * @return RedirectResponse
-     */
-    protected function redirectResponse($url, $status = RedirectResponse::HTTP_FOUND)
+    
+    protected function redirectResponse(string $url, int $status = RedirectResponse::HTTP_FOUND) : RedirectResponse
     {
         return new RedirectResponse($url, $status);
     }
-
-    /**
-     * Redirects user to another action of current controller
-     *
-     * @param string $actionName
-     * @param array  $params
-     *
-     * @return RedirectResponse
-     */
-    protected function redirectToAction($actionName = 'index', array $params = [])
+    
+    protected function redirectToAction(string $actionName = 'index', array $params = []) : RedirectResponse
     {
         $url = $this->getRedirectToActionUrl($actionName, $params);
-
+        
         return $this->redirectResponse($url);
     }
-
-    /**
-     * Redirects to URL generated for route
-     *
-     * @param string $routeName
-     * @param array  $routeParams
-     *
-     * @return RedirectResponse
-     */
-    protected function redirectToRoute($routeName, array $routeParams = [])
+    
+    protected function redirectToRoute(string $routeName, array $routeParams = []) : RedirectResponse
     {
         $url = $this->getRouterHelper()->generateUrl($routeName, $routeParams);
-
+        
         return $this->redirectResponse($url);
     }
-
-    /**
-     * Creates absolute url pointing to particular controller action
-     *
-     * @param string $actionName
-     * @param array  $params
-     *
-     * @return string
-     */
-    protected function getRedirectToActionUrl($actionName = 'index', array $params = [])
+    
+    protected function getRedirectToActionUrl(string $actionName = 'index', array $params = []) : string
     {
         return $this->getRouterHelper()->getRedirectToActionUrl($actionName, $params);
     }
-
-    /**
-     * Returns a rendered view.
-     *
-     * @param string $view       The view name
-     * @param array  $parameters An array of parameters to pass to the view
-     *
-     * @return string The rendered view
-     */
-    protected function renderView($view, array $parameters = [])
+    
+    protected function renderView(string $view, array $parameters = []) : string
     {
         return $this->getTemplatingHelper()->render($view, $parameters);
     }
-
-    /**
-     * Renders and displays the template
-     *
-     * @param string $templateName
-     * @param array  $templateVars
-     *
-     * @return Response
-     */
-    protected function displayTemplate($templateName, array $templateVars = [])
+    
+    protected function displayTemplate(string $templateName, array $templateVars = []) : Response
     {
         return $this->getTemplatingHelper()->renderControllerResponse($this, $templateName, $templateVars);
     }

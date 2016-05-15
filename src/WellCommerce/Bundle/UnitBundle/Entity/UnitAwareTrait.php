@@ -23,15 +23,15 @@ trait UnitAwareTrait
      * @var UnitInterface
      */
     protected $unit;
-
+    
     /**
      * @return UnitInterface
      */
-    public function getUnit()
+    public function getUnit() : UnitInterface
     {
         return $this->unit;
     }
-
+    
     /**
      * @param UnitInterface $unit
      */

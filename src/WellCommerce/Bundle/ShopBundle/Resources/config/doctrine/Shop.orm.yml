@@ -1,5 +1,7 @@
 WellCommerce\Bundle\ShopBundle\Entity\Shop:
     type: entity
+    cache:
+        usage: NONSTRICT_READ_WRITE
     table: shop
     repositoryClass: WellCommerce\Bundle\ShopBundle\Repository\ShopRepository
     id:
@@ -43,5 +45,12 @@ WellCommerce\Bundle\ShopBundle\Entity\Shop:
             fetch: LAZY
             joinColumns:
                 theme_id:
+                    referencedColumnName: id
+                    onDelete: 'SET NULL'
+        clientGroup:
+            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\ClientGroup
+            fetch: LAZY
+            joinColumns:
+                client_group_id:
                     referencedColumnName: id
                     onDelete: 'SET NULL'

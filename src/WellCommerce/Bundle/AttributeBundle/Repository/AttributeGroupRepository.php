@@ -11,13 +11,30 @@
  */
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class AttributeGroupRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AttributeGroupRepository extends AbstractEntityRepository implements AttributeGroupRepositoryInterface
+class AttributeGroupRepository extends EntityRepository implements AttributeGroupRepositoryInterface
 {
+    public function getAttributeGroupSet() : array
+    {
+        $groups = $this->matching(new Criteria());
+        $sets   = [];
+
+        $groups->map(function (AttributeGroupInterface $attributeGroup) use (&$sets) {
+            $sets[] = [
+                'id'               => $attributeGroup->getId(),
+                'name'             => $attributeGroup->translate()->getName(),
+                'current_category' => false,
+            ];
+        });
+
+        return $sets;
+    }
 }

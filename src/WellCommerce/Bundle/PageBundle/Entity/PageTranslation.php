@@ -13,10 +13,10 @@
 namespace WellCommerce\Bundle\PageBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\RoutingBundle\Entity\RoutableTrait;
 use WellCommerce\Bundle\AppBundle\Entity\Meta;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RoutableSubjectInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\RoutableTrait;
 
 /**
  * Class PageTranslation
@@ -27,27 +27,27 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
 {
     use Translation;
     use RoutableTrait;
-
+    
     /**
      * @var string
      */
     protected $name;
-
+    
     /**
      * @var string
      */
     protected $content;
-
+    
     /**
      * @var PageRoute
      */
     protected $route;
-
+    
     /**
      * @var Meta
      */
     protected $meta;
-
+    
     /**
      * Constructor
      */
@@ -55,7 +55,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         $this->meta = new Meta();
     }
-
+    
     /**
      * @return string
      */
@@ -63,7 +63,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         return $this->content;
     }
-
+    
     /**
      * @param string $content
      */
@@ -71,7 +71,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         $this->content = $content;
     }
-
+    
     /**
      * @return string
      */
@@ -79,7 +79,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         return $this->name;
     }
-
+    
     /**
      * @param string $name
      */
@@ -87,7 +87,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         $this->name = $name;
     }
-
+    
     /**
      * @return Meta
      */
@@ -95,7 +95,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         return $this->meta;
     }
-
+    
     /**
      * @param Meta $meta
      */
@@ -103,7 +103,7 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         $this->meta = $meta;
     }
-
+    
     /**
      * @return PageRoute|\WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface
      */
@@ -111,11 +111,11 @@ class PageTranslation implements RoutableSubjectInterface, LocaleAwareInterface
     {
         return new PageRoute();
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getCopyingSensitiveProperties()
+    public function getCopyingSensitiveProperties() : array
     {
         return [
             'name',

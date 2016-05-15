@@ -17,6 +17,8 @@ use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TranslatableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
 
 /**
@@ -24,31 +26,32 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface PaymentMethodInterface extends TimestampableInterface, TranslatableInterface, BlameableInterface, HierarchyAwareInterface
+interface PaymentMethodInterface extends
+    EntityInterface,
+    EnableableInterface,
+    TimestampableInterface,
+    TranslatableInterface,
+    BlameableInterface,
+    HierarchyAwareInterface
 {
-    /**
-     * @return integer
-     */
-    public function getId();
-
     /**
      * Returns payment method processor
      *
      * @return string
      */
-    public function getProcessor();
+    public function getProcessor() : string;
 
     /**
      * Sets payment method processor
      *
      * @param string $processor
      */
-    public function setProcessor($processor);
+    public function setProcessor(string $processor);
 
     /**
      * @return Collection
      */
-    public function getShippingMethods();
+    public function getShippingMethods() : Collection;
 
     /**
      * @param Collection $shippingMethods
@@ -58,20 +61,40 @@ interface PaymentMethodInterface extends TimestampableInterface, TranslatableInt
     /**
      * @return OrderStatusInterface
      */
-    public function getDefaultOrderStatus();
+    public function getPaymentPendingOrderStatus() : OrderStatusInterface;
 
     /**
-     * @param OrderStatusInterface $defaultOrderStatus
+     * @param OrderStatusInterface $paymentPendingOrderStatus
      */
-    public function setDefaultOrderStatus(OrderStatusInterface $defaultOrderStatus);
+    public function setPaymentPendingOrderStatus(OrderStatusInterface $paymentPendingOrderStatus);
 
     /**
-     * @return Collection
+     * @return OrderStatusInterface
      */
-    public function getConfiguration();
+    public function getPaymentSuccessOrderStatus() : OrderStatusInterface;
 
     /**
-     * @param Collection $configuration
+     * @param OrderStatusInterface $paymentSuccessOrderStatus
      */
-    public function setConfiguration(Collection $configuration);
+    public function setPaymentSuccessOrderStatus(OrderStatusInterface $paymentSuccessOrderStatus);
+
+    /**
+     * @return OrderStatusInterface
+     */
+    public function getPaymentFailureOrderStatus() : OrderStatusInterface;
+
+    /**
+     * @param OrderStatusInterface $paymentFailureOrderStatus
+     */
+    public function setPaymentFailureOrderStatus(OrderStatusInterface $paymentFailureOrderStatus);
+
+    /**
+     * @return array
+     */
+    public function getConfiguration() : array;
+
+    /**
+     * @param array $configuration
+     */
+    public function setConfiguration(array $configuration);
 }

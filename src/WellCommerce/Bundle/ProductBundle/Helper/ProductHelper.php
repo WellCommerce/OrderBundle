@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\Helper;
 
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ShippingBundle\Context\ProductContext;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
@@ -32,9 +33,9 @@ class ProductHelper implements ProductHelperInterface
     protected $shippingMethodProvider;
 
     /**
-     * @var ProductAttributeHelperInterface
+     * @var VariantHelperInterface
      */
-    protected $productAttributeHelper;
+    protected $variantHelper;
 
     /**
      * @var DataSetInterface
@@ -42,37 +43,36 @@ class ProductHelper implements ProductHelperInterface
     protected $dataset;
 
     /**
-     * Constructor
+     * ProductHelper constructor.
      *
      * @param DataSetInterface                $dataset
-     * @param ShippingMethodProviderInterface $shippingMethodProviderInterface
-     * @param ProductAttributeHelperInterface $productAttributeHelper
+     * @param ShippingMethodProviderInterface $shippingMethodProvider
+     * @param VariantHelperInterface          $variantHelper
      */
     public function __construct(
         DataSetInterface $dataset,
         ShippingMethodProviderInterface $shippingMethodProvider,
-        ProductAttributeHelperInterface $productAttributeHelper
+        VariantHelperInterface $variantHelper
     ) {
         $this->shippingMethodProvider = $shippingMethodProvider;
-        $this->productAttributeHelper = $productAttributeHelper;
+        $this->variantHelper          = $variantHelper;
         $this->dataset                = $dataset;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getProductDefaultTemplateData(ProductInterface $product)
+    public function getProductDefaultTemplateData(ProductInterface $product) : array
     {
-        $shippingMethodCosts = $this->shippingMethodProvider->getShippingMethodCostsCollection($product);
-        $productAttributes   = $product->getAttributes();
-        $groups              = $this->productAttributeHelper->getAttributeGroups($productAttributes);
-        $attributes          = $this->productAttributeHelper->getAttributes($productAttributes);
+        $shippingMethodCosts = $this->shippingMethodProvider->getCosts(new ProductContext($product));
+        $variants            = $this->variantHelper->getVariants($product);
+        $attributes          = $this->variantHelper->getAttributes($product);
 
         return [
-            'product'         => $product,
-            'shippingCosts'   => $shippingMethodCosts,
-            'attributeGroups' => $groups,
-            'attributes'      => json_encode($attributes)
+            'product'       => $product,
+            'shippingCosts' => $shippingMethodCosts,
+            'variants'      => json_encode($variants),
+            'attributes'    => $attributes
         ];
     }
 
@@ -83,7 +83,7 @@ class ProductHelper implements ProductHelperInterface
      *
      * @return array
      */
-    public function getProductRecommendationsForCategory(CategoryInterface $category)
+    public function getProductRecommendationsForCategory(CategoryInterface $category) : array
     {
         $conditions = new ConditionsCollection();
         $conditions->add(new Eq('category', $category->getId()));

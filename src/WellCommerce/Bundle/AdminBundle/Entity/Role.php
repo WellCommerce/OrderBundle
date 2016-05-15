@@ -13,74 +13,62 @@
 namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class Role
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Role implements RoleInterface
+class Role extends AbstractEntity implements RoleInterface
 {
-    /**
-     * @var int
-     */
-    protected $id;
-
     /**
      * @var string
      */
     protected $name;
-
+    
     /**
      * @var string|null
      */
     protected $role;
-
+    
     /**
      * @var Collection
      */
     protected $users;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getRole()
+    public function getRole() : string
     {
         return $this->role;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setRole($role)
+    public function setRole(string $role)
     {
         $this->role = $role;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -88,11 +76,11 @@ class Role implements RoleInterface
     {
         $this->users = $users;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getUsers()
+    public function getUsers() : Collection
     {
         return $this->users;
     }

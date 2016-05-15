@@ -12,19 +12,20 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class CategoryRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CategoryRepository extends AbstractEntityRepository implements CategoryRepositoryInterface
+class CategoryRepository extends EntityRepository implements CategoryRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('category.id');

@@ -13,7 +13,8 @@
 namespace WellCommerce\Bundle\ShippingBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
+use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingCalculatorInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 
 /**
@@ -21,7 +22,7 @@ use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ShippingMethodFactory extends AbstractFactory
+class ShippingMethodFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -31,14 +32,22 @@ class ShippingMethodFactory extends AbstractFactory
     /**
      * @return ShippingMethodInterface
      */
-    public function create()
+    public function create() : ShippingMethodInterface
     {
         /** @var  $shippingMethod ShippingMethodInterface */
         $shippingMethod = $this->init();
         $shippingMethod->setCosts(new ArrayCollection());
         $shippingMethod->setEnabled(true);
         $shippingMethod->setHierarchy(0);
+        $shippingMethod->setCurrency($this->getDefaultCurrency());
+        $shippingMethod->setTax($this->getDefaultTax());
+        $shippingMethod->setCalculator($this->getDefaultCalculator()->getAlias());
 
         return $shippingMethod;
+    }
+
+    private function getDefaultCalculator() : ShippingCalculatorInterface
+    {
+        return $this->get('shipping_method.calculator.collection')->first();
     }
 }

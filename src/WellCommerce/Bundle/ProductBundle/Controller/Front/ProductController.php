@@ -12,9 +12,11 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Controller\Front;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
  * Class ProductController
@@ -23,29 +25,29 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
  */
 class ProductController extends AbstractFrontController
 {
-    public function indexAction(ProductInterface $product)
+    public function indexAction(ProductInterface $product) : Response
     {
-        $this->addBreadCrumbItem(new BreadcrumbItem([
-            'name' => $product->translate()->getName(),
+        $this->getBreadcrumbProvider()->add(new Breadcrumb([
+            'label' => $product->translate()->getName(),
         ]));
 
-        $this->manager->getProductContext()->setCurrentProduct($product);
+        $this->getProductStorage()->setCurrentProduct($product);
 
         return $this->displayTemplate('index', [
             'product' => $product
         ]);
     }
-
-    public function viewAction(ProductInterface $product)
+    
+    public function viewAction(ProductInterface $product) : JsonResponse
     {
-        $this->manager->getProductContext()->setCurrentProduct($product);
+        $this->getProductStorage()->setCurrentProduct($product);
 
         $templateData       = $this->get('product.helper')->getProductDefaultTemplateData($product);
-        $basketModalContent = $this->renderView('WellCommerceAppBundle:Front/Product:view.html.twig', $templateData);
+        $basketModalContent = $this->renderView('WellCommerceProductBundle:Front/Product:view.html.twig', $templateData);
 
         return $this->jsonResponse([
             'basketModalContent' => $basketModalContent,
-            'attributes'         => $templateData['attributes']
+            'templateData'       => $templateData
         ]);
     }
 }

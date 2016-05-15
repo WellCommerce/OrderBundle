@@ -27,8 +27,7 @@ class AttributeGroupFormBuilder extends AbstractFormBuilder
     public function buildForm(FormInterface $form)
     {
         $groupData = $form->addChild($this->getElement('nested_fieldset', [
-            'name'  => 'group_data',
-            'class' => 'group-data',
+            'name'  => 'main_data',
             'label' => $this->trans('attribute_group.label.group')
         ]));
 
@@ -46,21 +45,16 @@ class AttributeGroupFormBuilder extends AbstractFormBuilder
             ],
         ]));
 
-        $attributeData = $form->addChild($this->getElement('nested_fieldset', [
-            'name'  => 'attribute_data',
-            'class' => 'attribute-data',
-            'label' => $this->trans('attribute_group.label.attributes')
+        $attributesData = $form->addChild($this->getElement('nested_fieldset', [
+            'name'  => 'attributes_data',
+            'label' => $this->trans('attribute_group.fieldset.attributes')
         ]));
 
-        $attributeData->addChild($this->getElement('attribute_editor', [
-            'name'                         => 'attributes',
-            'label'                        => $this->trans('attribute_group.label.attributes'),
-            'set'                          => $this->getRequestHelper()->getAttributesBagParam('id'),
-            'delete_attribute_route'       => 'admin.attribute.delete',
-            'rename_attribute_route'       => 'admin.attribute.edit',
-            'rename_attribute_value_route' => 'admin.attribute_value.edit',
-            'attributes'                   => $this->get('attribute.repository')->getAttributesWithValues(),
-            'transformer'                  => $this->getRepositoryTransformer('attribute_collection', $this->get('attribute.repository'))
+        $attributesData->addChild($this->getElement('multi_select', [
+            'name'        => 'attributes',
+            'label'       => $this->trans('attribute_group.label.attributes'),
+            'options'     => $this->get('attribute.dataset.admin')->getResult('select'),
+            'transformer' => $this->getRepositoryTransformer('collection', $this->get('attribute.repository'))
         ]));
 
         $form->addFilter($this->getFilter('no_code'));

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductStatusBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 
 /**
@@ -21,7 +21,7 @@ use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductStatusFactory extends AbstractFactory
+class ProductStatusFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -29,9 +29,9 @@ class ProductStatusFactory extends AbstractFactory
     protected $supportsInterface = ProductStatusInterface::class;
 
     /**
-     * @return \WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface
+     * @return ProductStatusInterface
      */
-    public function create()
+    public function create() : ProductStatusInterface
     {
         /** @var  $productStatus ProductStatusInterface */
         $productStatus = $this->init();

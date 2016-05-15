@@ -12,15 +12,15 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
 use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class CouponFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CouponFactory extends AbstractFactory
+class CouponFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,7 +30,7 @@ class CouponFactory extends AbstractFactory
     /**
      * @return CouponInterface
      */
-    public function create()
+    public function create() : CouponInterface
     {
         /** @var $coupon CouponInterface */
         $coupon = $this->init();
@@ -38,7 +38,9 @@ class CouponFactory extends AbstractFactory
         $coupon->setGlobalUsageLimit(1);
         $coupon->setModifierType('%');
         $coupon->setModifierValue(100);
-
+        $coupon->setCode(strtoupper(uniqid()));
+        $coupon->setCurrency($this->getDefaultCurrency()->getCode());
+        
         return $coupon;
     }
 }

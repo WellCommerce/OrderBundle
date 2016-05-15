@@ -23,9 +23,9 @@ interface ShopAwareInterface
      * @param ShopInterface $shop
      */
     public function setShop(ShopInterface $shop);
-
+    
     /**
      * @return Shop
      */
-    public function getShop();
+    public function getShop() : ShopInterface;
 }

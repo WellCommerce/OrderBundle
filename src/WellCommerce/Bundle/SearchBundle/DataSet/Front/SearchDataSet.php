@@ -12,19 +12,30 @@
 
 namespace WellCommerce\Bundle\SearchBundle\DataSet\Front;
 
-use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\ProductBundle\DataSet\Front\ProductDataSet;
+use WellCommerce\Bundle\SearchBundle\Manager\SearchManagerInterface;
+use WellCommerce\Bundle\SearchBundle\Storage\SearchResultStorage;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
+use WellCommerce\Component\DataSet\Request\DataSetRequestInterface;
 
 /**
  * Class SearchDataSet
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class SearchDataSet extends AbstractDataSet
+final class SearchDataSet extends ProductDataSet
 {
     /**
-     * {@inheritdoc}
+     * @var SearchResultStorage
      */
+    private $storage;
+
+    public function setResultStorage(SearchResultStorage $storage)
+    {
+        $this->storage = $storage;
+    }
+
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([
@@ -47,11 +58,22 @@ class SearchDataSet extends AbstractDataSet
             'shop'             => 'product_shops.id',
             'photo'            => 'photos.path',
             'status'           => 'statuses.id',
-            'score'            => 'FIELD(product.id, :scores)',
+            'score'            => 'FIELD(product.id, :identifiers)',
         ]);
-
+        
         $configurator->setColumnTransformers([
             'route' => $this->getDataSetTransformer('route')
         ]);
+    }
+    
+    protected function getQueryBuilder(DataSetRequestInterface $request) : QueryBuilder
+    {
+        $identifiers  = $this->storage->getResult();
+        $queryBuilder = parent::getQueryBuilder($request);
+        $expression   = $queryBuilder->expr()->in('product.id', ':identifiers');
+        $queryBuilder->andWhere($expression);
+        $queryBuilder->setParameter('identifiers', $identifiers);
+
+        return $queryBuilder;
     }
 }

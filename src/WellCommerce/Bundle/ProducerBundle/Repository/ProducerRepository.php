@@ -11,19 +11,20 @@
  */
 namespace WellCommerce\Bundle\ProducerBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class ProducerRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProducerRepository extends AbstractEntityRepository implements ProducerRepositoryInterface
+class ProducerRepository extends EntityRepository implements ProducerRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('producer.id');

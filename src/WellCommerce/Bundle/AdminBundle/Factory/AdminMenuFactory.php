@@ -14,30 +14,30 @@ namespace WellCommerce\Bundle\AdminBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\AdminBundle\Entity\AdminMenuInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class AdminMenuFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AdminMenuFactory extends AbstractFactory
+class AdminMenuFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = AdminMenuInterface::class;
-
+    
     /**
      * @return AdminMenuInterface
      */
-    public function create()
+    public function create() : AdminMenuInterface
     {
         $adminMenu = $this->init();
         $adminMenu->setParent(null);
         $adminMenu->setCssClass('');
         $adminMenu->setChildren(new ArrayCollection());
-
+        
         return $adminMenu;
     }
 }

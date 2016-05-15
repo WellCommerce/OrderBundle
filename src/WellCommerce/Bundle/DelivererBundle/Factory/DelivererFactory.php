@@ -13,15 +13,15 @@
 namespace WellCommerce\Bundle\DelivererBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
 use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class DelivererFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class DelivererFactory extends AbstractFactory
+class DelivererFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -31,7 +31,7 @@ class DelivererFactory extends AbstractFactory
     /**
      * @return DelivererInterface
      */
-    public function create()
+    public function create() : DelivererInterface
     {
         /** @var $deliverer DelivererInterface */
         $deliverer = $this->init();

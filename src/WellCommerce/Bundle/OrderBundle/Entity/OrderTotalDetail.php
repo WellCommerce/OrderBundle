@@ -3,79 +3,67 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class OrderTotalDetail
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderTotalDetail implements OrderTotalDetailInterface
+class OrderTotalDetail extends AbstractEntity implements OrderTotalDetailInterface
 {
     use HierarchyAwareTrait;
     use OrderAwareTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    
     /**
      * @var string
      */
     protected $collector;
-
+    
     /**
      * @var OrderTotal
      */
     protected $orderTotal;
-
+    
     /**
      * @var bool
      */
     protected $subtraction;
-
+    
     /**
      * @var string
      */
     protected $modifierType;
-
+    
     /**
-     * @var int|float
+     * @var float
      */
     protected $modifierValue;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCollector()
+    public function getCollector() : string
     {
         return $this->collector;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setCollector($collector)
+    public function setCollector(string $collector)
     {
         $this->collector = $collector;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getOrderTotal()
+    public function getOrderTotal() : OrderTotal
     {
         return $this->orderTotal;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -83,7 +71,7 @@ class OrderTotalDetail implements OrderTotalDetailInterface
     {
         $this->orderTotal = $orderTotal;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -91,15 +79,15 @@ class OrderTotalDetail implements OrderTotalDetailInterface
     {
         return $this->modifierType;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setModifierType($modifierType)
+    public function setModifierType(string $modifierType)
     {
         $this->modifierType = $modifierType;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -107,27 +95,27 @@ class OrderTotalDetail implements OrderTotalDetailInterface
     {
         return $this->modifierValue;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setModifierValue($modifierValue)
+    public function setModifierValue(float $modifierValue)
     {
         $this->modifierValue = $modifierValue;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function isSubtraction()
+    public function isSubtraction() : bool
     {
         return $this->subtraction;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setSubtraction($subtraction)
+    public function setSubtraction(bool $subtraction)
     {
         $this->subtraction = $subtraction;
     }

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\LayoutBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
 
 /**
@@ -20,21 +20,31 @@ use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class LayoutBoxFactory extends AbstractFactory
+class LayoutBoxFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = LayoutBoxInterface::class;
-
+    
     /**
      * @return LayoutBoxInterface
      */
-    public function create()
+    public function create() : LayoutBoxInterface
     {
         /** @var $box LayoutBoxInterface */
         $box = $this->init();
-
+        $box->setBoxType($this->getDefaultLayoutBoxType());
+        $box->setIdentifier('');
+        $box->setSettings([]);
+        
         return $box;
+    }
+    
+    private function getDefaultLayoutBoxType() : string
+    {
+        $type = $this->container->get('layout_box.configurator.collection')->first();
+
+        return $type->getType();
     }
 }

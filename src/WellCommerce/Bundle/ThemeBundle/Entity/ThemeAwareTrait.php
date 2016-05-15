@@ -23,15 +23,15 @@ trait ThemeAwareTrait
      * @var ThemeInterface
      */
     protected $theme;
-
+    
     /**
      * @return ThemeInterface
      */
-    public function getTheme()
+    public function getTheme() : ThemeInterface
     {
         return $this->theme;
     }
-
+    
     /**
      * @param ThemeInterface $theme
      */

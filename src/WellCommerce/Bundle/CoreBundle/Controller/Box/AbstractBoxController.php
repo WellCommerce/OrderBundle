@@ -11,7 +11,9 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class AbstractFrontController
@@ -20,5 +22,8 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
  */
 abstract class AbstractBoxController extends AbstractFrontController implements BoxControllerInterface
 {
-
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
+    {
+        return $this->displayTemplate('index');
+    }
 }

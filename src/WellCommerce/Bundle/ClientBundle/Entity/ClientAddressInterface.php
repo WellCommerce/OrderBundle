@@ -19,93 +19,35 @@ namespace WellCommerce\Bundle\ClientBundle\Entity;
  */
 interface ClientAddressInterface
 {
-    /**
-     * @return string
-     */
-    public function getFirstName();
-
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName($firstName);
-
-    /**
-     * @return string
-     */
-    public function getLastName();
-
-    /**
-     * @param string $lastName
-     */
-    public function setLastName($lastName);
-
-    /**
-     * @return string
-     */
-    public function getStreet();
-
-    /**
-     * @param string $street
-     */
-    public function setStreet($street);
-
-    /**
-     * @return string
-     */
-    public function getStreetNo();
-
-    /**
-     * @param string $streetNo
-     */
-    public function setStreetNo($streetNo);
-
-    /**
-     * @return string
-     */
-    public function getFlatNo();
-
-    /**
-     * @param string $flatNo
-     */
-    public function setFlatNo($flatNo);
-
-    /**
-     * @return string
-     */
-    public function getPostCode();
-
-    /**
-     * @param string $postCode
-     */
-    public function setPostCode($postCode);
-
-    /**
-     * @return string
-     */
-    public function getProvince();
-
-    /**
-     * @param string $province
-     */
-    public function setProvince($province);
-
-    /**
-     * @return string
-     */
-    public function getCity();
-
-    /**
-     * @param string $city
-     */
-    public function setCity($city);
-
-    /**
-     * @return string
-     */
-    public function getCountry();
-
-    /**
-     * @param string $country
-     */
-    public function setCountry($country);
+    public function getFirstName() : string;
+    
+    public function setFirstName(string $firstName);
+    
+    public function getLastName() : string;
+    
+    public function setLastName(string $lastName);
+    
+    public function getLine1() : string;
+    
+    public function setLine1(string $line1);
+    
+    public function getLine2() : string;
+    
+    public function setLine2(string $line2);
+    
+    public function getPostalCode() : string;
+    
+    public function setPostalCode(string $postalCode);
+    
+    public function getState() : string;
+    
+    public function setState(string $state);
+    
+    public function getCity() : string;
+    
+    public function setCity(string $city);
+    
+    public function getCountry() : string;
+    
+    public function setCountry(string $country);
 }

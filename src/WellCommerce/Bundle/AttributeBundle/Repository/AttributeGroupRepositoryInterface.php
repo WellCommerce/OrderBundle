@@ -21,4 +21,5 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 interface AttributeGroupRepositoryInterface extends RepositoryInterface
 {
+    public function getAttributeGroupSet() : array;
 }

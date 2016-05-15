@@ -11,11 +11,15 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
-use WellCommerce\Bundle\CoreBundle\Manager\Admin\AdminManagerInterface;
-use WellCommerce\Component\Form\Elements\FormInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
+use WellCommerce\Component\DataGrid\DataGridInterface;
+use WellCommerce\Component\Form\FormBuilderInterface;
 
 /**
  * Class AbstractAdminController
@@ -25,147 +29,112 @@ use WellCommerce\Component\Form\Elements\FormInterface;
 abstract class AbstractAdminController extends AbstractController implements AdminControllerInterface
 {
     /**
-     * @var AdminManagerInterface
+     * @var null|DataGridInterface
      */
-    protected $manager;
-
+    private $dataGrid;
+    
     /**
-     * Constructor
+     * AbstractAdminController constructor.
      *
-     * @param AdminManagerInterface $manager
+     * @param ManagerInterface          $manager
+     * @param FormBuilderInterface|null $formBuilder
+     * @param DataGridInterface|null    $dataGrid
      */
-    public function __construct(AdminManagerInterface $manager)
+    public function __construct(ManagerInterface $manager, FormBuilderInterface $formBuilder = null, DataGridInterface $dataGrid = null)
     {
-        $this->manager = $manager;
+        parent::__construct($manager, $formBuilder);
+        $this->dataGrid = $dataGrid;
     }
-
-    /**
-     * Controller index action
-     *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function indexAction()
+    
+    public function indexAction() : Response
     {
         return $this->displayTemplate('index', [
-            'datagrid' => $this->manager->getDataGrid()->getInstance()
+            'datagrid' => $this->dataGrid->getInstance()
         ]);
     }
-
-    /**
-     * Default DataGrid view action
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
-    public function gridAction(Request $request)
+    
+    public function gridAction(Request $request) : Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->getRouterHelper()->redirectToAction('index');
         }
-
-        $datagrid = $this->manager->getDataGrid();
-
+        
         try {
-            $results = $datagrid->loadResults($request);
+            $results = $this->getDataGrid()->loadResults($request);
         } catch (\Exception $e) {
             $results = nl2br($e->getMessage());
         }
-
+        
         return $this->jsonResponse($results);
     }
-
-    /**
-     * Default add action
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function addAction(Request $request)
+    
+    public function addAction(Request $request) : Response
     {
-        $resource = $this->manager->initResource();
-        $form     = $this->manager->getForm($resource);
-
+        $resource = $this->getManager()->initResource();
+        $form     = $this->getForm($resource);
+        
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
-                $this->manager->createResource($resource);
+                $this->getManager()->createResource($resource);
             }
-
+            
             return $this->createFormDefaultJsonResponse($form);
         }
-
+        
         return $this->displayTemplate('add', [
             'form' => $form
         ]);
     }
-
-    /**
-     * Default edit action
-     *
-     * @param Request $request
-     *
-     * @return array|JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function editAction(Request $request)
+    
+    public function editAction(int $id) : Response
     {
-        $resource = $this->manager->findResource($request);
-        if (null === $resource) {
+        $resource = $this->getManager()->getRepository()->find($id);
+        
+        if (!$resource instanceof EntityInterface) {
             return $this->redirectToAction('index');
         }
-
-        $form = $this->manager->getForm($resource);
-
+        
+        $form = $this->getForm($resource);
+        
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
-                $this->manager->updateResource($resource);
+                $this->getManager()->updateResource($resource);
             }
-
+            
             return $this->createFormDefaultJsonResponse($form);
         }
-
+        
         return $this->displayTemplate('edit', [
             'form'     => $form,
             'resource' => $resource
         ]);
     }
-
-    /**
-     * Default delete action
-     *
-     * @param int $id
-     *
-     * @return JsonResponse
-     */
-    public function deleteAction($id)
+    
+    public function deleteAction(int $id) : Response
     {
         $this->getDoctrineHelper()->disableFilter('locale');
-
         try {
-            $resource = $this->manager->getRepository()->find($id);
-            $this->manager->removeResource($resource);
+            $resource = $this->getManager()->getRepository()->findOneBy(['id' => $id]);
+            $this->getManager()->removeResource($resource);
         } catch (\Exception $e) {
-            return $this->jsonResponse(['error' => $e->getMessage()]);
+            return $this->jsonResponse(['error' => $e->getTraceAsString()]);
         }
-
+        
         return $this->jsonResponse(['success' => true]);
     }
-
-    /**
-     * Creates default response for form instance
-     *
-     * @param FormInterface $form
-     *
-     * @return JsonResponse
-     */
-    protected function createFormDefaultJsonResponse(FormInterface $form)
+    
+    protected function getDataGrid() : DataGridInterface
     {
-        return $this->jsonResponse([
-            'valid'      => $form->isValid(),
-            'continue'   => $form->isAction('continue'),
-            'next'       => $form->isAction('next'),
-            'redirectTo' => $this->getRedirectToActionUrl('index'),
-            'error'      => $form->getError(),
-        ]);
+        return $this->dataGrid;
+    }
+    
+    protected function getOrderProvider() : OrderProviderInterface
+    {
+        return $this->get('order.provider.admin');
+    }
+    
+    protected function getAuthenticatedAdmin() : UserInterface
+    {
+        return $this->getSecurityHelper()->getAuthenticatedAdmin();
     }
 }

@@ -12,13 +12,14 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Timestampable\TimestampableTrait;
-use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareTrait;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareTrait;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsAwareTrait;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
 use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Timestampable\TimestampableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
+use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareTrait;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareTrait;
@@ -29,372 +30,265 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Order implements OrderInterface
+class Order extends AbstractEntity implements OrderInterface
 {
     use TimestampableTrait;
     use ShopAwareTrait;
     use ShippingMethodAwareTrait;
     use PaymentMethodAwareTrait;
     use ClientAwareTrait;
+    use ClientContactDetailsAwareTrait;
+    use ClientBillingAddressAwareTrait;
+    use ClientShippingAddressAwareTrait;
     use CouponAwareTrait;
-
+    
     /**
-     * @var int
+     * @var bool
      */
-    protected $id;
-
+    protected $confirmed;
+    
+    /**
+     * @var string
+     */
+    protected $number;
+    
+    /**
+     * @var Collection|OrderProductInterface[]
+     */
+    protected $products;
+    
     /**
      * @var string
      */
     protected $currency;
-
+    
     /**
-     * @var Collection
+     * @var float
      */
-    protected $products;
-
+    protected $currencyRate;
+    
     /**
-     * @var Price
-     */
-    protected $orderTotal;
-
-    /**
-     * @var Price
-     */
-    protected $productTotal;
-
-    /**
-     * @var Price
-     */
-    protected $shippingTotal;
-
-    /**
-     * @var Collection
-     */
-    protected $totals;
-
-    /**
-     * @var Collection
+     * @var Collection|PaymentInterface[]
      */
     protected $payments;
-
+    
     /**
      * @var string
      */
     protected $sessionId;
-
+    
     /**
      * @var OrderStatusInterface
      */
     protected $currentStatus;
-
+    
     /**
-     * @var ClientContactDetailsInterface
+     * @var Collection|OrderStatusHistoryInterface[]
      */
-    protected $contactDetails;
-
+    protected $orderStatusHistory;
+    
     /**
-     * @var ClientBillingAddressInterface
+     * @var OrderProductTotalInterface
      */
-    protected $billingAddress;
-
+    protected $productTotal;
+    
     /**
-     * @var ClientShippingAddressInterface
+     * @var Collection|OrderModifierInterface[]
      */
-    protected $shippingAddress;
+    protected $modifiers;
+    
+    /**
+     * @var OrderSummaryInterface
+     */
+    protected $summary;
     
     /**
      * @var string
      */
     protected $comment;
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
+    public function isConfirmed() : bool
     {
-        return $this->id;
+        return $this->confirmed;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrency()
+    
+    public function setConfirmed(bool $confirmed)
+    {
+        $this->confirmed = $confirmed;
+    }
+    
+    public function getNumber()
+    {
+        return $this->number;
+    }
+    
+    public function setNumber(string $number)
+    {
+        $this->number = $number;
+    }
+    
+    public function getCurrency() : string
     {
         return $this->currency;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCurrency($currency)
+    
+    public function setCurrency(string $currency)
     {
         $this->currency = $currency;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSessionId()
+    
+    public function getCurrencyRate() : float
+    {
+        return $this->currencyRate;
+    }
+    
+    public function setCurrencyRate(float $currencyRate)
+    {
+        $this->currencyRate = $currencyRate;
+    }
+    
+    public function getSessionId() : string
     {
         return $this->sessionId;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSessionId($sessionId)
+    
+    public function setSessionId(string $sessionId)
     {
         $this->sessionId = $sessionId;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function addProduct(OrderProductInterface $orderProduct)
     {
         $this->products->add($orderProduct);
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function removeProduct(OrderProductInterface $orderProduct)
     {
         $this->products->removeElement($orderProduct);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getProducts()
+    
+    public function getProducts() : Collection
     {
         return $this->products;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function setProducts(Collection $products)
     {
         $this->products = $products;
     }
-
-    /**
-     * @return OrderTotal
-     */
-    public function getOrderTotal()
-    {
-        return $this->orderTotal;
-    }
-
-    /**
-     * @param OrderTotal $orderTotal
-     */
-    public function setOrderTotal(OrderTotal $orderTotal)
-    {
-        $this->orderTotal = $orderTotal;
-    }
-
-    /**
-     * @return OrderTotal
-     */
-    public function getProductTotal()
+    
+    public function getProductTotal() : OrderProductTotalInterface
     {
         return $this->productTotal;
     }
-
-    /**
-     * @param OrderTotal $productTotal
-     */
-    public function setProductTotal(OrderTotal $productTotal)
+    
+    public function setProductTotal(OrderProductTotalInterface $productTotal)
     {
         $this->productTotal = $productTotal;
     }
-
-    /**
-     * @return OrderTotal
-     */
-    public function getShippingTotal()
+    
+    public function addModifier(OrderModifierInterface $modifier)
     {
-        return $this->shippingTotal;
+        $this->modifiers->set($modifier->getName(), $modifier);
+    }
+    
+    public function hasModifier(string $name) : bool
+    {
+        return $this->modifiers->containsKey($name);
+    }
+    
+    public function removeModifier(string $name)
+    {
+        $this->modifiers->remove($name);
+    }
+    
+    public function getModifier(string $name) : OrderModifierInterface
+    {
+        return $this->modifiers->get($name);
+    }
+    
+    public function getModifiers() : Collection
+    {
+        return $this->modifiers;
+    }
+    
+    public function setModifiers(Collection $modifiers)
+    {
+        $this->modifiers = $modifiers;
+    }
+    
+    public function getSummary() : OrderSummaryInterface
+    {
+        return $this->summary;
+    }
+    
+    public function setSummary(OrderSummaryInterface $summary)
+    {
+        $this->summary = $summary;
     }
 
-    /**
-     * @param OrderTotal $shippingTotal
-     */
-    public function setShippingTotal(OrderTotal $shippingTotal)
+    public function hasCurrentStatus() : bool
     {
-        $this->shippingTotal = $shippingTotal;
+        return $this->currentStatus instanceof OrderStatusInterface;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getContactDetails()
-    {
-        return $this->contactDetails;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setContactDetails(ClientContactDetailsInterface $contactDetails)
-    {
-        $this->contactDetails = $contactDetails;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBillingAddress()
-    {
-        return $this->billingAddress;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setBillingAddress(ClientBillingAddressInterface $billingAddress)
-    {
-        $this->billingAddress = $billingAddress;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getShippingAddress()
-    {
-        return $this->shippingAddress;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setShippingAddress(ClientShippingAddressInterface $shippingAddress)
-    {
-        $this->shippingAddress = $shippingAddress;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getTotals()
-    {
-        return $this->totals;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setTotals(Collection $totals)
-    {
-        $this->totals = $totals;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addTotal(OrderTotalDetailInterface $orderTotal)
-    {
-        $this->totals->add($orderTotal);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentStatus()
+    public function getCurrentStatus() : OrderStatusInterface
     {
         return $this->currentStatus;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function setCurrentStatus(OrderStatusInterface $currentStatus)
     {
         $this->currentStatus = $currentStatus;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getComment()
+    
+    public function setOrderStatusHistory(Collection $orderStatusHistory)
+    {
+        $this->orderStatusHistory = $orderStatusHistory;
+    }
+    
+    public function getOrderStatusHistory() : Collection
+    {
+        return $this->orderStatusHistory;
+    }
+    
+    public function addOrderStatusHistory(OrderStatusHistoryInterface $orderStatusHistory)
+    {
+        $this->orderStatusHistory->add($orderStatusHistory);
+    }
+    
+    public function getComment() : string
     {
         return $this->comment;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setComment($comment)
+    
+    public function setComment(string $comment)
     {
         $this->comment = $comment;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPayments()
+    
+    public function getPayments() : Collection
     {
         return $this->payments;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function setPayments(Collection $payments)
     {
         $this->payments = $payments;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function addPayment(PaymentInterface $payment)
     {
         $this->payments[] = $payment;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getShippingCostQuantity()
+    
+    public function acceptVisitor(OrderVisitorInterface $visitor)
     {
-        $quantity = 0;
-        $this->products->map(function (OrderProduct $orderProduct) use (&$quantity) {
-            $quantity += $orderProduct->getQuantity();
-        });
-
-        return $quantity;
+        $visitor->visitOrder($this);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getShippingCostWeight()
+    
+    public function isEmpty() : bool
     {
-        $weight = 0;
-        $this->products->map(function (OrderProduct $orderProduct) use (&$weight) {
-            $weight += $orderProduct->getQuantity() * $orderProduct->getWeight();
-        });
-
-        return $weight;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getShippingCostGrossPrice()
-    {
-        return $this->productTotal->getGrossAmount();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getShippingCostCurrency()
-    {
-        return $this->productTotal->getCurrency();
+        return 0 === $this->productTotal->getQuantity();
     }
 }

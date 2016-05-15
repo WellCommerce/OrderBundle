@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\RoutingBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
@@ -20,7 +20,7 @@ use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class RouteFactory extends AbstractFactory
+class RouteFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,7 +30,7 @@ class RouteFactory extends AbstractFactory
     /**
      * @return RouteInterface
      */
-    public function create()
+    public function create() : RouteInterface
     {
         /** @var  $route RouteInterface */
         $route = $this->init();

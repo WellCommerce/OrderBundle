@@ -23,9 +23,9 @@ interface ThemeAwareInterface
      * @param ThemeInterface $theme
      */
     public function setTheme(ThemeInterface $theme);
-
+    
     /**
      * @return ThemeInterface
      */
-    public function getTheme();
+    public function getTheme() : ThemeInterface;
 }

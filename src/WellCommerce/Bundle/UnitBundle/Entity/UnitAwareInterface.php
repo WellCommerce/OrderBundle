@@ -23,9 +23,9 @@ interface UnitAwareInterface
      * @param UnitInterface $unit
      */
     public function setUnit(UnitInterface $unit);
-
+    
     /**
      * @return UnitInterface
      */
-    public function getUnit();
+    public function getUnit() : UnitInterface;
 }

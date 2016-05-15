@@ -19,7 +19,7 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderConfirmationFormBuilder extends AbstractFormBuilder
+final class OrderConfirmationFormBuilder extends AbstractFormBuilder
 {
     /**
      * {@inheritdoc}

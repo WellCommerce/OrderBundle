@@ -11,19 +11,17 @@
  */
 namespace WellCommerce\Bundle\PaymentBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 
 /**
  * Class PaymentMethodRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PaymentMethodRepository extends AbstractEntityRepository implements PaymentMethodRepositoryInterface
+class PaymentMethodRepository extends EntityRepository implements PaymentMethodRepositoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getDefaultPaymentMethod()
+    public function getDefaultPaymentMethod() : PaymentMethodInterface
     {
         return $this->findOneBy([], ['hierarchy' => 'asc']);
     }

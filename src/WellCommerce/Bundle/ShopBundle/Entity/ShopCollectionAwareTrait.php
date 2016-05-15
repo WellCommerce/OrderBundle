@@ -25,15 +25,15 @@ trait ShopCollectionAwareTrait
      * @var Collection
      */
     protected $shops;
-
+    
     /**
      * @return Collection
      */
-    public function getShops()
+    public function getShops() : Collection
     {
         return $this->shops;
     }
-
+    
     /**
      * @param Collection $shops
      */
@@ -41,7 +41,7 @@ trait ShopCollectionAwareTrait
     {
         $this->shops = $shops;
     }
-
+    
     /**
      * @param ShopInterface $shop
      */

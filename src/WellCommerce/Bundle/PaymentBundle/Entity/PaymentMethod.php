@@ -16,8 +16,9 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
 
 /**
@@ -25,23 +26,13 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PaymentMethod implements PaymentMethodInterface
+class PaymentMethod extends AbstractEntity implements PaymentMethodInterface
 {
     use Translatable;
     use Timestampable;
     use Blameable;
     use HierarchyAwareTrait;
     use EnableableTrait;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $processor;
 
     /**
      * @var Collection
@@ -51,25 +42,32 @@ class PaymentMethod implements PaymentMethodInterface
     /**
      * @var OrderStatusInterface
      */
-    protected $defaultOrderStatus;
+    protected $paymentPendingOrderStatus;
 
     /**
-     * @var Collection
+     * @var OrderStatusInterface
+     */
+    protected $paymentSuccessOrderStatus;
+
+    /**
+     * @var OrderStatusInterface
+     */
+    protected $paymentFailureOrderStatus;
+
+    /**
+     * @var string
+     */
+    protected $processor;
+    
+    /**
+     * @var array
      */
     protected $configuration;
 
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getProcessor()
+    public function getProcessor() : string
     {
         return $this->processor;
     }
@@ -77,7 +75,7 @@ class PaymentMethod implements PaymentMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function setProcessor($processor)
+    public function setProcessor(string $processor)
     {
         $this->processor = $processor;
     }
@@ -85,7 +83,7 @@ class PaymentMethod implements PaymentMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function getShippingMethods()
+    public function getShippingMethods() : Collection
     {
         return $this->shippingMethods;
     }
@@ -101,23 +99,7 @@ class PaymentMethod implements PaymentMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function getDefaultOrderStatus()
-    {
-        return $this->defaultOrderStatus;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOrderStatus(OrderStatusInterface $defaultOrderStatus)
-    {
-        $this->defaultOrderStatus = $defaultOrderStatus;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfiguration()
+    public function getConfiguration() : array
     {
         return $this->configuration;
     }
@@ -125,8 +107,56 @@ class PaymentMethod implements PaymentMethodInterface
     /**
      * {@inheritdoc}
      */
-    public function setConfiguration(Collection $configuration)
+    public function setConfiguration(array $configuration)
     {
         $this->configuration = $configuration;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPaymentPendingOrderStatus() : OrderStatusInterface
+    {
+        return $this->paymentPendingOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPaymentPendingOrderStatus(OrderStatusInterface $paymentPendingOrderStatus)
+    {
+        $this->paymentPendingOrderStatus = $paymentPendingOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPaymentSuccessOrderStatus() : OrderStatusInterface
+    {
+        return $this->paymentSuccessOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPaymentSuccessOrderStatus(OrderStatusInterface $paymentSuccessOrderStatus)
+    {
+        $this->paymentSuccessOrderStatus = $paymentSuccessOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPaymentFailureOrderStatus() : OrderStatusInterface
+    {
+        return $this->paymentFailureOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPaymentFailureOrderStatus(OrderStatusInterface $paymentFailureOrderStatus)
+    {
+        $this->paymentFailureOrderStatus = $paymentFailureOrderStatus;
     }
 }

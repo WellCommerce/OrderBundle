@@ -14,91 +14,79 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class Category
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AdminMenu implements AdminMenuInterface
+class AdminMenu extends AbstractEntity implements AdminMenuInterface
 {
     use HierarchyAwareTrait;
-
-    /**
-     * @var integer
-     */
-    protected $id;
-
+    
     /**
      * @var string
      */
     protected $identifier;
-
+    
     /**
      * @var string
      */
     protected $name;
-
+    
     /**
      * @var string
      */
     protected $routeName;
-
+    
     /**
      * @var string
      */
     protected $cssClass;
-
+    
     /**
      * @var null|AdminMenuInterface
      */
     protected $parent;
-
+    
     /**
      * @var Collection
      */
     protected $children;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentifier()
+    public function getIdentifier() : string
     {
         return $this->identifier;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setIdentifier($identifier)
+    public function setIdentifier(string $identifier)
     {
-        $this->identifier = (string)$identifier;
+        $this->identifier = $identifier;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setName(string $name)
     {
-        $this->name = (string)$name;
+        $this->name = $name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -106,7 +94,7 @@ class AdminMenu implements AdminMenuInterface
     {
         return $this->parent;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -114,7 +102,7 @@ class AdminMenu implements AdminMenuInterface
     {
         $this->parent = $parent;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -122,15 +110,15 @@ class AdminMenu implements AdminMenuInterface
     {
         $this->children = $children;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getChildren()
+    public function getChildren() : Collection
     {
         return $this->children;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -139,35 +127,35 @@ class AdminMenu implements AdminMenuInterface
         $this->children[] = $child;
         $child->setParent($this);
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getRouteName()
+    public function getRouteName() : string
     {
         return $this->routeName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setRouteName($routeName)
+    public function setRouteName(string $routeName)
     {
         $this->routeName = $routeName;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getCssClass()
+    public function getCssClass() : string
     {
         return $this->cssClass;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setCssClass($cssClass)
+    public function setCssClass(string $cssClass)
     {
         $this->cssClass = $cssClass;
     }

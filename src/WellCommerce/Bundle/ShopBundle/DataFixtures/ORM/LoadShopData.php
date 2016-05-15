@@ -49,6 +49,7 @@ class LoadShopData extends AbstractDataFixture
         $shop->setUrl($this->container->getParameter('fallback_hostname'));
         $shop->setDefaultCountry('US');
         $shop->setDefaultCurrency($currency->getCode());
+        $shop->setClientGroup($this->getReference('client_group'));
 
         $mailerConfiguration = new MailerConfiguration();
         $mailerConfiguration->setFrom($this->container->getParameter('mailer_from'));
@@ -62,6 +63,7 @@ class LoadShopData extends AbstractDataFixture
         $manager->persist($shop);
         $manager->flush();
 
+        $this->get('shop.storage')->setCurrentShop($shop);
         $this->setReference('shop', $shop);
     }
 }

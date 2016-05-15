@@ -11,91 +11,46 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
-use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
-use WellCommerce\Bundle\DoctrineBundle\Event\ResourceEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderTotalDetailInterface;
-use WellCommerce\Bundle\OrderBundle\Factory\OrderTotalFactory;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorTraverserInterface;
+use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorTraverser;
 
 /**
  * Class OrderSubscriber
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderSubscriber extends AbstractEventSubscriber
+final class OrderSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var OrderVisitorTraverserInterface
+     * @var OrderVisitorTraverser
      */
-    protected $orderVisitorTraverser;
-
-    /**
-     * @var OrderTotalFactory
-     */
-    protected $orderTotalFactory;
-
+    private $orderVisitorTraverser;
+    
     /**
      * OrderSubscriber constructor.
      *
-     * @param OrderVisitorTraverserInterface $orderVisitorTraverser
-     * @param OrderTotalFactory              $orderTotalFactory
+     * @param OrderVisitorTraverser $orderVisitorTraverser
      */
-    public function __construct(OrderVisitorTraverserInterface $orderVisitorTraverser, OrderTotalFactory $orderTotalFactory)
+    public function __construct(OrderVisitorTraverser $orderVisitorTraverser)
     {
         $this->orderVisitorTraverser = $orderVisitorTraverser;
-        $this->orderTotalFactory     = $orderTotalFactory;
     }
-
+    
     public static function getSubscribedEvents()
     {
         return [
-            'order.post_prepared' => ['onOrderPostPreparedEvent', 0],
-            'order.pre_update'    => ['onOrderPreUpdateEvent', 0],
+            'order.pre_create' => ['onOrderChangedEvent', 0],
+            'order.pre_update' => ['onOrderChangedEvent', 0],
         ];
     }
-
-    public function onOrderPostPreparedEvent(ResourceEvent $event)
+    
+    public function onOrderChangedEvent(EntityEvent $event)
     {
-        $order = $event->getResource();
+        $order = $event->getEntity();
         if ($order instanceof OrderInterface) {
-            $this->traverseOrder($order);
+            $this->orderVisitorTraverser->traverse($order);
         }
-    }
-
-    public function onOrderPreUpdateEvent(ResourceEvent $event)
-    {
-        $order = $event->getResource();
-        if ($order instanceof OrderInterface) {
-            $this->removeTotals($order);
-            $this->recalculateShippingTotal($order);
-            $this->traverseOrder($order);
-        }
-    }
-
-    protected function recalculateShippingTotal(OrderInterface $order)
-    {
-        $grossAmount = $order->getShippingTotal()->getGrossAmount();
-        $taxRate     = $order->getShippingMethod()->getTax()->getValue();
-        $currency    = $order->getCurrency();
-        $orderTotal  = $this->orderTotalFactory->createFromSpecifiedValues($grossAmount, $taxRate, $currency);
-
-        $order->setShippingTotal($orderTotal);
-    }
-
-    protected function removeTotals(OrderInterface $order)
-    {
-        $em     = $this->getDoctrineHelper()->getEntityManager();
-        $totals = $order->getTotals();
-        $totals->map(function (OrderTotalDetailInterface $total) use ($em) {
-            $em->remove($total);
-        });
-
-        $em->flush();
-    }
-
-    protected function traverseOrder(OrderInterface $order)
-    {
-        $this->orderVisitorTraverser->traverse($order);
     }
 }

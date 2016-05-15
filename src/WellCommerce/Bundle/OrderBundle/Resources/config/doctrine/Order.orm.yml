@@ -1,5 +1,7 @@
 WellCommerce\Bundle\OrderBundle\Entity\Order:
     type: entity
+    cache:
+        usage: NONSTRICT_READ_WRITE
     table: orders
     repositoryClass: WellCommerce\Bundle\OrderBundle\Repository\OrderRepository
     id:
@@ -8,6 +10,12 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             generator:
                 strategy: AUTO
     embedded:
+        productTotal:
+            class: WellCommerce\Bundle\OrderBundle\Entity\OrderProductTotal
+            columnPrefix: product_total_
+        summary:
+            class: WellCommerce\Bundle\OrderBundle\Entity\OrderSummary
+            columnPrefix: summary_
         billingAddress:
             class: WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress
             columnPrefix: billing_address_
@@ -17,16 +25,14 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
         contactDetails:
             class: WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails
             columnPrefix: contact_details_
-        orderTotal:
-            class: WellCommerce\Bundle\OrderBundle\Entity\OrderTotal
-            columnPrefix: order_total_
-        productTotal:
-            class: WellCommerce\Bundle\OrderBundle\Entity\OrderTotal
-            columnPrefix: product_total_
-        shippingTotal:
-            class: WellCommerce\Bundle\OrderBundle\Entity\OrderTotal
-            columnPrefix: shipping_total_
     fields:
+        confirmed:
+            type: boolean
+            nullable: false
+        number:
+            type: string
+            length: 32
+            nullable: true
         sessionId:
             type: string
             nullable: false
@@ -36,6 +42,10 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             length: 16
             nullable: false
             column: currency
+        currencyRate:
+            type: float
+            nullable: false
+            column: currency_rate
         comment:
             type: string
             length: 1000
@@ -47,12 +57,21 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                 - persist
             fetch: LAZY
             mappedBy: order
-        totals:
-            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderTotalDetail
+        orderStatusHistory:
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory
             cascade:
                 - persist
             fetch: LAZY
             mappedBy: order
+        modifiers:
+            indexBy: name
+            orderBy: { 'hierarchy': 'ASC' }
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderModifier
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: order
+            orphanRemoval: true
         payments:
             targetEntity:  WellCommerce\Bundle\PaymentBundle\Entity\Payment
             mappedBy: order

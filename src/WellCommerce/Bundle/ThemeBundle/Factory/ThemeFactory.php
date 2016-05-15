@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ThemeBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
 
 /**
@@ -21,23 +21,31 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ThemeFactory extends AbstractFactory
+class ThemeFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = ThemeInterface::class;
-
+    
     /**
      * @return ThemeInterface
      */
-    public function create()
+    public function create() : ThemeInterface
     {
         /** @var  $theme ThemeInterface */
         $theme = $this->init();
         $theme->setCss(new ArrayCollection());
         $theme->setName('');
-
+        $theme->setFolder($this->getDefaultFolder());
+        
         return $theme;
+    }
+    
+    private function getDefaultFolder() : string
+    {
+        $themeFolders = $this->get('theme.locator')->getThemeFolders();
+        
+        return reset($themeFolders);
     }
 }

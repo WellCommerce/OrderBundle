@@ -13,23 +13,25 @@
 namespace WellCommerce\Bundle\ClientBundle\Repository;
 
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
-use WellCommerce\Bundle\AdminBundle\Repository\UserRepositoryInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class ClientGroupRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientRepository extends AbstractEntityRepository implements ClientRepositoryInterface, UserRepositoryInterface
+class ClientRepository extends EntityRepository implements ClientRepositoryInterface, UserProviderInterface, UserLoaderInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getDataSetQueryBuilder()
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('client.id');

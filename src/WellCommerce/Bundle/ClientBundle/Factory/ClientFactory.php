@@ -12,39 +12,51 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Factory;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressInterface;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class ClientFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientFactory extends AbstractFactory
+final class ClientFactory extends AbstractEntityFactory
 {
-    /**
-     * @var string
-     */
-    protected $supportsInterface = ClientInterface::class;
-
-    /**
-     * @return ClientInterface
-     */
-    public function create()
+    public function create() : ClientInterface
     {
-        $clientDetails = new ClientDetails();
-        $clientDetails->setConditionsAccepted(false);
-        $clientDetails->setDiscount(0);
-        $clientDetails->setNewsletterAccepted(false);
-        $clientDetails->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-
         /** @var $client ClientInterface */
         $client = $this->init();
-        $client->setContactDetails(new ClientContactDetails());
-        $client->setClientDetails($clientDetails);
-
+        $client->setContactDetails($this->createClientContactDetails());
+        $client->setClientDetails($this->createClientDetails());
+        $client->setBillingAddress($this->createBillingAddress());
+        $client->setShippingAddress($this->createShippingAddress());
+        $client->setShop($this->getDefaultShop());
+        $client->setClientGroup($this->getDefaultShop()->getClientGroup());
+        
         return $client;
+    }
+    
+    private function createClientContactDetails() : ClientContactDetailsInterface
+    {
+        return $this->get('client_contact_details.factory')->create();
+    }
+    
+    private function createClientDetails() : ClientDetailsInterface
+    {
+        return $this->get('client_details.factory')->create();
+    }
+    
+    private function createBillingAddress() : ClientBillingAddressInterface
+    {
+        return $this->get('client_billing_address.factory')->create();
+    }
+    
+    private function createShippingAddress() : ClientShippingAddressInterface
+    {
+        return $this->get('client_shipping_address.factory')->create();
     }
 }

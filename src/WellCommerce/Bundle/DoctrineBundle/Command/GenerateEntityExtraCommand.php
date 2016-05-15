@@ -94,7 +94,25 @@ class GenerateEntityExtraCommand extends Command
             $this->filesystem->dumpFile($reflectionClass->getFileName(), $code);
         }
 
+        $this->executeMetadataCacheClear($output);
         $this->executeSchemaUpdate($output);
+    }
+
+    /**
+     * Executes the cache clear through separate process
+     *
+     * @param OutputInterface $output
+     */
+    protected function executeMetadataCacheClear(OutputInterface $output)
+    {
+        $arguments = [
+            'app/console',
+            'doctrine:cache:clear-metadata'
+        ];
+
+        $process = $this->environmentHelper->getProcess($arguments, 360);
+        $process->run();
+        $output->write($process->getOutput());
     }
 
     /**
@@ -118,11 +136,11 @@ class GenerateEntityExtraCommand extends Command
     /**
      * Generates a trait class
      *
-     * @param string $entityName
+     * @param ReflectionClass $reflectionClass
      *
      * @return string
      */
-    protected function generateTrait(ReflectionClass $reflectionClass)
+    protected function generateTrait(ReflectionClass $reflectionClass) : string
     {
         $generator = new TraitGenerator($reflectionClass->getShortName(), $reflectionClass->getNamespaceName());
         $this->traverser->traverse($generator);

@@ -11,25 +11,13 @@
  */
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class AttributeValueRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AttributeValueRepository extends AbstractEntityRepository implements AttributeValueRepositoryInterface
+class AttributeValueRepository extends EntityRepository implements AttributeValueRepositoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getCollectionByAttribute(AttributeInterface $attribute)
-    {
-        $criteria = new Criteria();
-        $criteria->where($criteria->expr()->eq('attribute', $attribute));
-
-        return $this->matching($criteria);
-    }
 }

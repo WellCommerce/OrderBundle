@@ -12,16 +12,20 @@
 namespace WellCommerce\Bundle\ProductBundle\Repository;
 
 use Doctrine\ORM\Query\Expr;
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class ProductRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductRepository extends AbstractEntityRepository implements ProductRepositoryInterface
+class ProductRepository extends EntityRepository implements ProductRepositoryInterface
 {
-    public function getDataSetQueryBuilder()
+    /**
+     * {@inheritdoc}
+     */
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('product.id');
@@ -35,7 +39,6 @@ class ProductRepository extends AbstractEntityRepository implements ProductRepos
         $queryBuilder->leftJoin('gallery.photo', 'photos');
         $queryBuilder->leftJoin('product.statuses', 'statuses');
         $queryBuilder->leftJoin('product.shops', 'product_shops');
-        $queryBuilder->leftJoin('statuses.translations', 'statuses_translation');
         $queryBuilder->setParameter('mainPhoto', 1);
 
         return $queryBuilder;

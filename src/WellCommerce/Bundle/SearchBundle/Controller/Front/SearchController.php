@@ -12,8 +12,13 @@
 
 namespace WellCommerce\Bundle\SearchBundle\Controller\Front;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\CoreBundle\Service\Breadcrumb\BreadcrumbItem;
+use WellCommerce\Bundle\SearchBundle\Manager\IndexManager;
+use WellCommerce\Bundle\SearchBundle\Manager\SearchManagerInterface;
+use WellCommerce\Bundle\SearchBundle\Query\SearchQuery;
+use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
 
 /**
@@ -23,44 +28,34 @@ use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
  */
 class SearchController extends AbstractFrontController
 {
-    /**
-     * @var \WellCommerce\Bundle\SearchBundle\Manager\Front\SearchManager
-     */
-    protected $manager;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function indexAction()
+    public function indexAction(string $phrase) : Response
     {
-        $requestHelper = $this->manager->getRequestHelper();
-        $phrase        = $requestHelper->getAttributesBagParam('phrase');
+        $this->search($phrase);
 
-        $this->addBreadCrumbItem(new BreadcrumbItem([
-            'name' => $this->trans('search.heading.index')
+        $this->getBreadcrumbProvider()->add(new Breadcrumb([
+            'label' => $this->trans('search.heading.index')
         ]));
 
-        $this->addBreadCrumbItem(new BreadcrumbItem([
-            'name' => $phrase
+        $this->getBreadcrumbProvider()->add(new Breadcrumb([
+            'label' => $phrase
         ]));
 
         return $this->displayTemplate('index', [
             'phrase' => $phrase,
         ]);
     }
-
-    public function viewAction()
+    
+    public function viewAction(string $phrase) : JsonResponse
     {
-        $requestHelper = $this->getRequestHelper();
-        $phrase        = $requestHelper->getAttributesBagParam('phrase');
         if (strlen($phrase) < $this->container->getParameter('search_term_min_length')) {
             $liveSearchContent = '';
         } else {
+            $this->search($phrase);
+
             $dataset    = $this->get('search.dataset.front');
             $conditions = new ConditionsCollection();
-            $conditions = $this->manager->addSearchConditions($conditions);
             $conditions = $this->get('layered_navigation.helper')->addLayeredNavigationConditions($conditions);
-
+            
             $products = $dataset->getResult('array', [
                 'limit'      => 20,
                 'page'       => 1,
@@ -73,9 +68,19 @@ class SearchController extends AbstractFrontController
                 'dataset' => $products,
             ]);
         }
-
+        
         return $this->jsonResponse([
             'liveSearchContent' => $liveSearchContent
         ]);
+    }
+
+    protected function search(string $phrase) : array
+    {
+        return $this->getIndexManager()->search(new SearchQuery($phrase));
+    }
+
+    protected function getIndexManager() : IndexManager
+    {
+        return $this->get('product.index.manager');
     }
 }

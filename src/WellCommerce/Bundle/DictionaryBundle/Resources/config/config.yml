@@ -1,0 +1,12 @@
+well_commerce_dictionary:
+    configuration:
+        dictionary:
+            orm:
+                factory: WellCommerce\Bundle\DictionaryBundle\Factory\DictionaryFactory
+                repository: WellCommerce\Bundle\DictionaryBundle\Repository\DictionaryRepository
+                mapping: "@WellCommerceDictionaryBundle/Resources/config/doctrine/Dictionary.orm.yml"
+                entity: WellCommerce\Bundle\DictionaryBundle\Entity\Dictionary
+        dictionary_translation:
+            orm:
+                mapping: "@WellCommerceDictionaryBundle/Resources/config/doctrine/DictionaryTranslation.orm.yml"
+                entity: WellCommerce\Bundle\DictionaryBundle\Entity\DictionaryTranslation

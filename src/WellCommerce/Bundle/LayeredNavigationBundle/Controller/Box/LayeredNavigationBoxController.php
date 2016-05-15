@@ -12,7 +12,9 @@
 
 namespace WellCommerce\Bundle\LayeredNavigationBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class LayeredNavigationBoxController
@@ -24,11 +26,13 @@ class LayeredNavigationBoxController extends AbstractBoxController
     /**
      * {@inheritdoc}
      */
-    public function indexAction()
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
     {
         $producers = $this->get('producer.dataset.front')->getResult('array', [
             'order_by'  => 'name',
             'order_dir' => 'asc',
+        ],[
+            'pagination' => false
         ]);
 
         return $this->displayTemplate('index', [

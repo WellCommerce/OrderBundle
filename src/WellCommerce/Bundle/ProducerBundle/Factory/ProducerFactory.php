@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProducerBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
 
 /**
@@ -21,24 +21,15 @@ use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProducerFactory extends AbstractFactory
+class ProducerFactory extends AbstractEntityFactory
 {
-    /**
-     * @var string
-     */
-    protected $supportsInterface = ProducerInterface::class;
-
-    /**
-     * @return ProducerInterface
-     */
-    public function create()
+    public function create() : ProducerInterface
     {
         /** @var  $producer ProducerInterface */
         $producer = $this->init();
-        $producer->setDeliverers(new ArrayCollection());
-        $producer->setPhoto(null);
-        $producer->setShops(new ArrayCollection());
-
+        $producer->setDeliverers($this->createEmptyCollection());
+        $producer->setShops($this->getDefaultShops());
+        
         return $producer;
     }
 }

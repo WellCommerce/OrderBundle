@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ReviewBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
 
 /**
@@ -20,7 +20,7 @@ use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ReviewFactory extends AbstractFactory
+class ReviewFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,10 +30,14 @@ class ReviewFactory extends AbstractFactory
     /**
      * @return ReviewInterface
      */
-    public function create()
+    public function create() : ReviewInterface
     {
         /** @var  $review ReviewInterface */
         $review = $this->init();
+        $review->setNick('');
+        $review->setRating(0);
+        $review->setReview('');
+        $review->setEnabled(false);
 
         return $review;
     }

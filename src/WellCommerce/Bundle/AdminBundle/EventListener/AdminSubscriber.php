@@ -14,7 +14,9 @@ namespace WellCommerce\Bundle\AdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
+use WellCommerce\Bundle\AdminBundle\Repository\UserRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
+use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\DoctrineBundle\Event\ResourceEvent;
 
 /**
@@ -31,39 +33,46 @@ class AdminSubscriber extends AbstractEventSubscriber
             'user.pre_create'        => ['onUserPreCreate', 0],
         ];
     }
-
+    
     public function onKernelController(FilterControllerEvent $event)
     {
-        $user     = $this->getUser();
-        $hasRoute = $this->getRequestHelper()->getAttributesBagParam('_route');
-        if ($user instanceof UserInterface && $hasRoute) {
+        if ($this->getSecurityHelper()->isActiveFirewall('admin')) {
             $route = $this->getRouterHelper()->getCurrentRoute();
             if ($route->hasOption('require_admin_permission')) {
                 $name       = $route->getOption('require_admin_permission');
-                $permission = $this->getSecurityHelper()->getPermission($name, $user);
+                $user       = $this->getSecurityHelper()->getCurrentUser();
+                $permission = $this->getUserRepository()->getUserPermission($name, $user);
                 if (empty($permission)) {
                     $event->setController([$this->get('user.controller.admin'), 'accessDeniedAction']);
                 }
             }
         }
     }
-
-    public function onUserPreCreate(ResourceEvent $resourceEvent)
+    
+    public function onUserPreCreate(EntityEvent $entityEvent)
     {
         $password = $this->getSecurityHelper()->generateRandomPassword();
         $role     = $this->get('role.repository')->findOneByName('admin');
-        $user     = $resourceEvent->getResource();
+        $user     = $entityEvent->getEntity();
         if ($user instanceof UserInterface) {
             $user->addRole($role);
             $user->setPassword($password);
-
-            $email      = $user->getEmail();
-            $title      = $this->getTranslatorHelper()->trans('user.email.title.register');
-            $template   = 'WellCommerceAdminBundle:Admin/Email:register.html.twig';
-            $parameters = ['user' => $user, 'password' => $password];
-            $shop       = $this->get('shop.context.admin')->getCurrentShop();
-
-            $this->getMailerHelper()->sendEmail($email, $title, $template, $parameters, $shop->getMailerConfiguration());
+            
+            $this->getMailerHelper()->sendEmail([
+                'recipient'     => $user->getEmail(),
+                'subject'       => $this->getTranslatorHelper()->trans('user.email.title.register'),
+                'template'      => 'WellCommerceAdminBundle:Admin/Email:register.html.twig',
+                'parameters'    => [
+                    'user'     => $user,
+                    'password' => $password
+                ],
+                'configuration' => $this->getShopStorage()->getCurrentShop()->getMailerConfiguration(),
+            ]);
         }
+    }
+    
+    private function getUserRepository() : UserRepositoryInterface
+    {
+        return $this->get('user.repository');
     }
 }

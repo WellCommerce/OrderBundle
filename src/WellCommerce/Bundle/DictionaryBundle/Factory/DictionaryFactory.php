@@ -12,15 +12,15 @@
 
 namespace WellCommerce\Bundle\DictionaryBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
 use WellCommerce\Bundle\DictionaryBundle\Entity\DictionaryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class DictionaryFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class DictionaryFactory extends AbstractFactory
+class DictionaryFactory extends AbstractEntityFactory
 {
     /**
      * @var string
@@ -30,7 +30,7 @@ class DictionaryFactory extends AbstractFactory
     /**
      * @return DictionaryInterface
      */
-    public function create()
+    public function create() : DictionaryInterface
     {
         /** @var $dictionary DictionaryInterface */
         $dictionary = $this->init();

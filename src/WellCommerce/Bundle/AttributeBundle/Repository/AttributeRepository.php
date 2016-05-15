@@ -11,53 +11,64 @@
  */
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class AttributeRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AttributeRepository extends AbstractEntityRepository implements AttributeRepositoryInterface
+class AttributeRepository extends EntityRepository implements AttributeRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getCollectionByAttributeGroup(AttributeGroupInterface $attributeGroup)
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
-        $criteria = new Criteria();
-        $criteria->where($criteria->expr()->eq('attributeGroup', $attributeGroup));
+        $queryBuilder = $this->getQueryBuilder();
+        $queryBuilder->groupBy('attribute.id');
+        $queryBuilder->leftJoin('attribute.translations', 'attribute_translation');
+        $queryBuilder->leftJoin('attribute.groups', 'attribute_groups');
+        $queryBuilder->leftJoin('attribute_groups.translations', 'attribute_groups_translation');
 
-        return $this->matching($criteria);
+        return $queryBuilder;
     }
 
-    public function getAttributesWithValues()
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttributeSet(AttributeGroupInterface $attributeGroup) : array
     {
-        $attributes = [];
-        $collection = $this->matching(new Criteria());
-        $collection->map(function (AttributeInterface $attribute) use (&$attributes) {
-            $attributes[] = [
+        $sets                 = [];
+        $attributesCollection = $attributeGroup->getAttributes();
+        
+        $attributesCollection->map(function (AttributeInterface $attribute) use (&$sets) {
+            $sets[] = [
                 'id'     => $attribute->getId(),
                 'name'   => $attribute->translate()->getName(),
-                'values' => $this->getAttributeValues($attribute->getValues())
+                'values' => $this->getAttributeValuesSet($attribute)
             ];
         });
-
-        return $attributes;
+        
+        return $sets;
     }
 
-    protected function getAttributeValues(Collection $collection)
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttributeValuesSet(AttributeInterface $attribute) : array
     {
-        $values = [];
-        $collection->map(function (AttributeValueInterface $value) use (&$values) {
+        $values                    = [];
+        $attributeValuesCollection = $attribute->getValues();
+
+        $attributeValuesCollection->map(function (AttributeValueInterface $attributeValue) use (&$values) {
             $values[] = [
-                'id'   => $value->getId(),
-                'name' => $value->translate()->getName()
+                'id'   => $attributeValue->getId(),
+                'name' => $attributeValue->translate()->getName()
             ];
         });
 

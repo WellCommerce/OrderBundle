@@ -15,46 +15,36 @@ namespace WellCommerce\Bundle\TaxBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class Tax
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Tax implements TaxInterface
+class Tax extends AbstractEntity implements TaxInterface
 {
-    use Translatable, Timestampable, Blameable;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    use Translatable;
+    use Timestampable;
+    use Blameable;
+    
     /**
      * @var float
      */
     protected $value;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getValue()
+    public function getValue() : float
     {
         return $this->value;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setValue($value)
+    public function setValue(float $value)
     {
         $this->value = $value;
     }

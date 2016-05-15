@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\ApiBundle\Request\RequestHandlerCollection;
+use WellCommerce\Bundle\ApiBundle\Request\RequestHandlerInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 
 /**
@@ -29,7 +30,7 @@ class ApiController extends AbstractController
      * @var RequestHandlerCollection
      */
     protected $requestHandlerCollection;
-
+    
     /**
      * ApiController constructor.
      *
@@ -39,133 +40,76 @@ class ApiController extends AbstractController
     {
         $this->requestHandlerCollection = $requestHandlerCollection;
     }
-
-    public function indexAction(Request $request)
+    
+    public function indexAction() : Response
     {
         return new Response('documentation');
     }
-
-    /**
-     * Handles create action
-     *
-     * @param Request $request
-     * @param string  $resourceType
-     *
-     * @return JsonResponse
-     */
-    public function createResourceAction(Request $request, $resourceType)
+    
+    public function createResourceAction(Request $request, string $resourceType) : Response
     {
         try {
             $response = $this->getRequestHandler($resourceType)->handleCreateRequest($request);
         } catch (\Exception $e) {
             $response = $this->jsonErrorResponse($e);
         }
-
+        
         return $response;
     }
-
-    /**
-     * Handles the "update" action
-     *
-     * @param Request $request
-     * @param string  $resourceType
-     * @param int     $identifier
-     *
-     * @return JsonResponse
-     */
-    public function updateResourceAction(Request $request, $resourceType, $identifier)
+    
+    public function updateResourceAction(Request $request, string $resourceType, int $identifier) : Response
     {
         try {
             $response = $this->getRequestHandler($resourceType)->handleUpdateRequest($request, $identifier);
         } catch (\Exception $e) {
             $response = $this->jsonErrorResponse($e);
         }
-
+        
         return $response;
     }
-
-    /**
-     * Handles the "update" action
-     *
-     * @param Request $request
-     * @param string  $resourceType
-     * @param int     $identifier
-     *
-     * @return JsonResponse
-     */
-    public function deleteResourceAction(Request $request, $resourceType, $identifier)
+    
+    public function deleteResourceAction(Request $request, string $resourceType, int $identifier) : Response
     {
         try {
             $response = $this->getRequestHandler($resourceType)->handleDeleteRequest($request, $identifier);
         } catch (\Exception $e) {
             $response = $this->jsonErrorResponse($e);
         }
-
+        
         return $response;
     }
-
-    /**
-     * Handles the "get" action
-     *
-     * @param Request $request
-     * @param string  $resourceType
-     * @param int     $identifier
-     *
-     * @return JsonResponse
-     */
-    public function getResourceAction(Request $request, $resourceType, $identifier)
+    
+    public function getResourceAction(Request $request, string $resourceType, int $identifier) : Response
     {
         try {
             $response = $this->getRequestHandler($resourceType)->handleGetRequest($request, $identifier);
         } catch (\Exception $e) {
             $response = $this->jsonErrorResponse($e);
         }
-
+        
         return $response;
     }
-
-    /**
-     * Handles the "list" action
-     *
-     * @param Request $request
-     * @param string  $resourceType
-     *
-     * @return JsonResponse
-     */
-    public function listResourceAction(Request $request, $resourceType)
+    
+    public function listResourceAction(Request $request, string $resourceType) : Response
     {
         try {
             $response = $this->getRequestHandler($resourceType)->handleListRequest($request);
         } catch (\Exception $e) {
             $response = $this->jsonErrorResponse($e);
         }
-
+        
         return $response;
     }
-
-    /**
-     * Handles the exception
-     *
-     * @param \Exception $e
-     *
-     * @return JsonResponse
-     */
-    protected function jsonErrorResponse(\Exception $e)
+    
+    protected function jsonErrorResponse(\Exception $e) : JsonResponse
     {
         return new JsonResponse(
             ['message' => $e->getMessage()],
             404
         );
     }
-
-    /**
-     * Returns the request handler for given resource type
-     *
-     * @param string $resourceType
-     *
-     * @return \WellCommerce\Bundle\ApiBundle\Request\RequestHandlerInterface
-     */
-    protected function getRequestHandler($resourceType)
+    
+    protected function getRequestHandler(string $resourceType) : RequestHandlerInterface
     {
         return $this->requestHandlerCollection->get($resourceType);
     }

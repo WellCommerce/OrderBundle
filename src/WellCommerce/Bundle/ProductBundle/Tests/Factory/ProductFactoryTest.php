@@ -12,14 +12,14 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Tests\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Test\Factory\AbstractFactoryTestCase;
+use WellCommerce\Bundle\CoreBundle\Test\Factory\AbstractEntityFactoryTestCase;
 
 /**
  * Class ProductFactoryTest
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductFactoryTest extends AbstractFactoryTestCase
+class ProductFactoryTest extends AbstractEntityFactoryTestCase
 {
     protected function getFactoryService()
     {

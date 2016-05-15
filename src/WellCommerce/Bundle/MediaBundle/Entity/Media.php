@@ -14,22 +14,18 @@ namespace WellCommerce\Bundle\MediaBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
 
 /**
  * Class Media
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Media implements MediaInterface
+class Media extends AbstractEntity implements MediaInterface
 {
     use Timestampable;
     use Blameable;
-
-    /**
-     * @var int
-     */
-    protected $id;
-
+    
     /**
      * @var string
      */
@@ -54,103 +50,95 @@ class Media implements MediaInterface
      * @var string
      */
     protected $size;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getPath()
+    public function getPath() : string
     {
         return $this->path;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setPath($path)
+    public function setPath(string $path)
     {
         $this->path = $path;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getMime()
+    public function getMime() : string
     {
         return $this->mime;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setMime($mime)
+    public function setMime(string $mime)
     {
         $this->mime = $mime;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getSize()
+    public function getSize() : int
     {
         return $this->size;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setSize($size)
+    public function setSize(int $size)
     {
         $this->size = $size;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getFullName()
+    public function getFullName() : string
     {
         return sprintf('%s.%s', $this->id, $this->extension);
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getExtension()
+    public function getExtension() : string
     {
         return $this->extension;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setExtension($extension)
+    public function setExtension(string $extension)
     {
         $this->extension = $extension;
     }
-
+    
     public function preUpload()
     {
         if (null !== $this->getExtension()) {

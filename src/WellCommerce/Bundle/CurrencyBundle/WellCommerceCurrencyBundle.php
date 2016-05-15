@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\CurrencyBundle;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use WellCommerce\Bundle\CurrencyBundle\DependencyInjection\Compiler;
 
@@ -23,10 +22,4 @@ use WellCommerce\Bundle\CurrencyBundle\DependencyInjection\Compiler;
  */
 class WellCommerceCurrencyBundle extends Bundle
 {
-    public function build(ContainerBuilder $container)
-    {
-        parent::build($container);
-        $container->addCompilerPass(new Compiler\AutoRegisterServicesPass());
-        $container->addCompilerPass(new Compiler\MappingCompilerPass());
-    }
 }

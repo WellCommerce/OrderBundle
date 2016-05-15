@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\MediaBundle\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
 
 /**
@@ -20,22 +20,26 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class MediaFactory extends AbstractFactory
+class MediaFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = MediaInterface::class;
-
+    
     /**
      * @return MediaInterface
      */
-    public function create()
+    public function create() : MediaInterface
     {
         /** @var $media MediaInterface */
         $media = $this->init();
         $media->setSize(0);
-
+        $media->setName('');
+        $media->setMime('');
+        $media->setExtension('');
+        $media->setPath('');
+        
         return $media;
     }
 }

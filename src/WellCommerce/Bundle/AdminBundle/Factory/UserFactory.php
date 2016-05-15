@@ -12,35 +12,38 @@
 
 namespace WellCommerce\Bundle\AdminBundle\Factory;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\AbstractFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\AbstractEntityFactory;
 
 /**
  * Class UserFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class UserFactory extends AbstractFactory
+class UserFactory extends AbstractEntityFactory
 {
     /**
      * @var string
      */
     protected $supportsInterface = UserInterface::class;
-
+    
     /**
      * @return UserInterface
      */
-    public function create()
+    public function create() : UserInterface
     {
         /** @var $user UserInterface */
         $user = $this->init();
+        $user->setFirstName('');
+        $user->setLastName('');
+        $user->setEmail('');
         $user->setEnabled(true);
-        $user->setRoles(new ArrayCollection());
-        $user->setGroups(new ArrayCollection());
+        $user->setRoles($this->createEmptyCollection());
+        $user->setGroups($this->createEmptyCollection());
         $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        $user->setApiKey('');
         $user->setCreatedAt(new \DateTime());
-
+        
         return $user;
     }
 }

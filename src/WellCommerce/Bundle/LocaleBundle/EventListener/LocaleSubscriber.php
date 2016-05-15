@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\LocaleBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -27,9 +27,16 @@ class LocaleSubscriber extends AbstractEventSubscriber
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::REQUEST    => ['onKernelRequest', 15],
-            KernelEvents::CONTROLLER => ['onKernelController', -256],
+            KernelEvents::REQUEST  => ['onKernelRequest', 15],
+            ConsoleEvents::COMMAND => ['onConsoleCommand', 0],
         ];
+    }
+
+    public function onConsoleCommand()
+    {
+        $filter = $this->getDoctrineHelper()->enableFilter('locale');
+        $locale = $this->container->getParameter('locale');
+        $filter->setParameter('locale', $locale);
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -50,19 +57,6 @@ class LocaleSubscriber extends AbstractEventSubscriber
                 $request->setLocale($currentLocale);
                 $filter->setParameter('locale', $currentLocale);
             }
-        }
-    }
-
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        // skip fetching locales when handling sub-request
-        if ($event->getRequestType() == HttpKernelInterface::SUB_REQUEST) {
-            return;
-        }
-
-        if (!$this->container->get('session')->has('admin/locales')) {
-            $locales = $this->container->get('locale.repository')->getAvailableLocales();
-            $this->container->get('session')->set('admin/locales', $locales);
         }
     }
 }

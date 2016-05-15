@@ -13,8 +13,12 @@
 namespace WellCommerce\Bundle\CategoryBundle\Controller\Admin;
 
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\CategoryBundle\Manager\CategoryManager;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
+use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
  * Class CategoryController
@@ -23,20 +27,10 @@ use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
  */
 class CategoryController extends AbstractAdminController
 {
-    /**
-     * @var \WellCommerce\Bundle\CategoryBundle\Manager\Admin\CategoryManager
-     */
-    protected $manager;
-
-    /**
-     * List categories action
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function indexAction()
+    public function indexAction() : Response
     {
-        $categories = $this->manager->getRepository()->matching(new Criteria());
-        $tree       = $this->buildTreeForm();
+        $categories = $this->getManager()->getRepository()->matching(new Criteria());
+        $tree       = $this->createCategoryTreeForm();
 
         if ($categories->count()) {
             $category = $categories->first();
@@ -51,14 +45,7 @@ class CategoryController extends AbstractAdminController
         ]);
     }
 
-    /**
-     * Add category action
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function addAction(Request $request)
+    public function addAction(Request $request) : Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToAction('index');
@@ -66,50 +53,43 @@ class CategoryController extends AbstractAdminController
 
         $categoriesName = (string)$request->request->get('name');
         $parentCategory = (int)$request->request->get('parent');
-        $category       = $this->manager->quickAddCategory($categoriesName, $parentCategory);
+        $category       = $this->getManager()->quickAddCategory($categoriesName, $parentCategory);
 
         return $this->jsonResponse([
             'id' => $category->getId(),
         ]);
     }
 
-    /**
-     * Edit category action
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function editAction(Request $request)
+    public function editAction(int $id) : Response
     {
-        $resource = $this->manager->findResource($request);
-        $form     = $this->manager->getForm($resource);
+        $category = $this->getManager()->getRepository()->find($id);
+        $form     = $this->getForm($category);
 
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
-                $this->manager->updateResource($resource);
+                $this->getManager()->updateResource($category);
             }
 
             return $this->createFormDefaultJsonResponse($form);
         }
 
         return $this->displayTemplate('edit', [
-            'tree'     => $this->buildTreeForm(),
+            'tree'     => $this->createCategoryTreeForm(),
             'form'     => $form,
-            'resource' => $resource
+            'resource' => $category
         ]);
     }
 
-    /**
-     * Builds nested tree form
-     *
-     * @return \WellCommerce\Component\Form\Elements\FormInterface
-     */
-    protected function buildTreeForm()
+    protected function createCategoryTreeForm() : FormInterface
     {
         return $this->get('category_tree.form_builder.admin')->createForm([
             'name'  => 'category_tree',
             'class' => 'category-select',
         ]);
+    }
+
+    protected function getManager() : CategoryManager
+    {
+        return parent::getManager();
     }
 }

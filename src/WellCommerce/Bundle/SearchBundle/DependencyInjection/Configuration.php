@@ -12,27 +12,48 @@
 namespace WellCommerce\Bundle\SearchBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\Configuration as BaseConfiguration;
 
 /**
  * Class Configuration
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Configuration implements ConfigurationInterface
+class Configuration extends BaseConfiguration
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfigTreeBuilder()
+    //@formatter:off
+    protected function addCustomConfigurationNode()
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder
-            ->root('well_commerce_search')
-            ->useAttributeAsKey('name')
-            ->prototype('scalar')->defaultValue('lucene')->isRequired()
-            ->end();
+        $builder = new TreeBuilder();
+        $node    =
+            $builder->root('engine')
+                ->children()
+                    ->arrayNode('indexes')->isRequired()
+                        ->useAttributeAsKey('name')
+                        ->prototype('array')
+                            ->children()
+                                ->arrayNode('adapter')->isRequired()
+                                    ->children()
+                                        ->scalarNode('class')->isRequired()->end()
+                                        ->arrayNode('options')
+                                            ->useAttributeAsKey('name')
+                                            ->prototype('scalar')->end()
+                                        ->end()
+                                    ->end()
+                                ->end()
+                                ->scalarNode('repository')->isRequired()->end()
+                                ->arrayNode('document')->isRequired()
+                                    ->children()
+                                        ->scalarNode('factory')->isRequired()->end()
+                                        ->scalarNode('context')->isRequired()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end();
 
-        return $treeBuilder;
+        return $node;
     }
+    //@formatter:on
 }
