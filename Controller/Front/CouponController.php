@@ -12,8 +12,10 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Controller\Front;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\CouponBundle\Checker\CouponCheckerInterface;
 use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
 use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
 
@@ -24,22 +26,16 @@ use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
  */
 class CouponController extends AbstractFrontController
 {
-    /**
-     * @var \WellCommerce\Bundle\CouponBundle\Manager\Front\CouponManager
-     */
-    protected $manager;
-
-    /**
-     * Adds a coupon to cart
-     *
-     * @param CouponInterface|null $coupon
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function addAction(CouponInterface $coupon = null)
+    public function addAction(CouponInterface $coupon = null) : JsonResponse
     {
         try {
-            $this->manager->useCoupon($coupon);
+            if (!$this->getCouponChecker()->isValid($coupon)) {
+                throw new CouponException($this->getCouponChecker()->getError());
+            }
+
+            $order = $this->getOrderProvider()->getCurrentOrder();
+            $order->setCoupon($coupon);
+            $this->getManager()->updateResource($order);
 
             $result = [
                 'success' => true
@@ -54,17 +50,16 @@ class CouponController extends AbstractFrontController
         return $this->jsonResponse($result);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
-    public function deleteAction(Request $request)
+    public function deleteAction(Request $request) : JsonResponse
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('cart.front.index');
         }
 
         try {
-            $this->manager->removeCartCoupon();
+            $order = $this->getOrderProvider()->getCurrentOrder();
+            $order->removeCoupon();
+            $this->getManager()->updateResource($order);
 
             $result = [
                 'success' => true
@@ -77,5 +72,10 @@ class CouponController extends AbstractFrontController
         }
 
         return $this->jsonResponse($result);
+    }
+
+    protected function getCouponChecker() : CouponCheckerInterface
+    {
+        return $this->get('coupon.checker');
     }
 }
