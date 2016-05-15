@@ -251,8 +251,8 @@ GAjaxRequest = function (sUrl, oRequest, fCallBack) {
 };
 
 var oCartDefaults = {
-    sChangeQuantityRoute: 'front.cart.edit',
-    sDeleteRoute: 'front.cart.delete',
+    sChangeQuantityRoute: 'front.order_cart.edit',
+    sDeleteRoute: 'front.order_cart.delete'
 };
 
 var GCart = function(oOptions) {
@@ -306,7 +306,7 @@ new GPlugin('GCart', oCartDefaults, GCart);
  * GProductAddCartForm
  */
 var oProductCartAddFormDefaults = {
-    sAddProductRoute: 'front.cart.add'
+    sAddProductRoute: 'front.order_cart.add'
 };
 
 var GProductAddCartForm = function(oOptions) {
@@ -316,24 +316,32 @@ var GProductAddCartForm = function(oOptions) {
     gThis._Constructor = function() {
         gThis.m_gForm = $("form", gThis);
         gThis.m_gForm.submit(gThis.OnFormSubmit);
-        $(gThis).find(gThis.m_oOptions.sAttributesSelectClass).change(function(){
+        var variantsTotal = Object.keys(gThis.m_oOptions.aoVariants).length;
+        if(variantsTotal > 0){
+            $(gThis).find(gThis.m_oOptions.sAttributesSelectClass).change(function(){
+                gThis.UpdateAttributes();
+            });
             gThis.UpdateAttributes();
-        });
-        gThis.UpdateAttributes();
+        }
     };
 
     gThis.UpdateAttributes = function(){
         var attributes = [];
         $(gThis).find(gThis.m_oOptions.sAttributesSelectClass).find('option:selected').each(function() {
-            attributes.push(this.value);
+            attributes.push($(this).data('attribute') + ':' + this.value);
         });
         attributes.sort(function(a,b){return a - b});
         var checkedVariant = attributes.join(',');
 
-        if(gThis.m_oOptions.aoAttributes[checkedVariant] != undefined){
-            var variant = gThis.m_oOptions.aoAttributes[checkedVariant];
-            gThis.m_oOptions.oAttribute.val(variant.id);
+        if(gThis.m_oOptions.aoVariants[checkedVariant] != undefined){
+            var variant = gThis.m_oOptions.aoVariants[checkedVariant];
+            console.log(variant);
+            gThis.m_oOptions.oVariant.val(variant.id);
             gThis.m_oOptions.oPrice.text(variant.finalPriceGross);
+            gThis.m_gForm.find('button[type="submit"]').show();
+        }else{
+            gThis.m_oOptions.oVariant.val(0);
+            gThis.m_gForm.find('button[type="submit"]').hide();
         }
     };
 
@@ -341,7 +349,7 @@ var GProductAddCartForm = function(oOptions) {
         e.stopImmediatePropagation();
         var routeParams = {
             id: gThis.m_oOptions.oProduct.val(),
-            attribute: gThis.m_oOptions.oAttribute.val(),
+            variant: gThis.m_oOptions.oVariant.val(),
             quantity: gThis.m_oOptions.oQuantity.val()
         };
 
@@ -386,9 +394,9 @@ var GProductAddCartButton = function(oOptions) {
     };
 
     gThis.ProcessResponse = function(oResponse){
-        var attributes = {};
-        if(oResponse.attributes != undefined) {
-            attributes = $.parseJSON(oResponse.attributes)
+        var variants = {};
+        if(oResponse.templateData.variants != undefined) {
+            variants = $.parseJSON(oResponse.templateData.variants)
         }
         gThis.m_oOptions.oBasketModal.html(oResponse.basketModalContent).modal('show');
         gThis.m_oOptions.oBasketModal.on('shown.bs.modal', function (e) {
@@ -397,13 +405,13 @@ var GProductAddCartButton = function(oOptions) {
                 oForm.GProductAddCartForm({
                     sAddProductRoute: gThis.m_oOptions.sAddProductRoute,
                     oProduct: $(gThis.m_oOptions.sProductSelector, gThis.m_oOptions.oBasketModal),
+                    oVariant: $(gThis.m_oOptions.sVariantSelector, gThis.m_oOptions.oBasketModal),
                     oQuantity: $(gThis.m_oOptions.sQuantitySelector, gThis.m_oOptions.oBasketModal),
-                    oAttribute: $(gThis.m_oOptions.sAttributeSelector, gThis.m_oOptions.oBasketModal),
                     oPrice: $(gThis.m_oOptions.sPriceSelector, gThis.m_oOptions.oBasketModal),
                     oBasketModal: gThis.m_oOptions.oBasketModal,
                     oCartPreview: gThis.m_oOptions.oCartPreview,
                     sAttributesSelectClass: gThis.m_oOptions.sAttributesSelectClass,
-                    aoAttributes: attributes
+                    aoVariants: variants
                 });
             }
         });

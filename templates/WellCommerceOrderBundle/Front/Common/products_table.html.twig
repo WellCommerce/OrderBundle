@@ -12,10 +12,15 @@
         </thead>
 
         <tbody>
-        {% for item in cartProducts.rows %}
+        {% for item in currentOrderProducts().rows %}
             <tr>
                 <td><img src="{{ image(item.photo, 'small') }}" alt="{{ item.name }}"/></td>
-                <td><a href="{{ item.route }}">{{ item.name }} {{ item.attribute }}</a></td>
+                <td>
+                    <a href="{{ item.route }}">{{ item.name }}</a>
+                    {% for attribute, value in item.options %}
+                    <br /><small><strong>{{ attribute }}:</strong> {{ value }}</small>
+                    {% endfor %}
+                </td>
                 <td class="text-center">
                     {% if item.isDiscountValid == 1 %}
                         <span class="price promo">
@@ -49,7 +54,7 @@
                 </td>
                 <td class="text-center">
                     {% if confirmation == false %}
-                    <a href="{{ path('front.cart.delete',{"id": item.id}) }}" class="btn btn-link light btn-remove"><img src="{{ asset('themes/wellcommerce-default-theme/assets/img/ico-remove.png') }}"/></a>
+                    <a href="{{ path('front.order_cart.delete',{"id": item.id}) }}" class="btn btn-link light btn-remove"><img src="{{ asset('themes/wellcommerce-default-theme/assets/img/ico-remove.png') }}"/></a>
                     {% endif %}
                 </td>
             </tr>

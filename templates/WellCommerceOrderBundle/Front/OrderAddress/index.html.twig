@@ -45,24 +45,25 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.street')) }}
-                    </div>
-                    <div class="col-sm-3 col-xs-6">
-                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.streetNo')) }}
-                    </div>
-
-                    <div class="col-sm-3 col-xs-6">
-                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.flatNo')) }}
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.line1')) }}
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.line2')) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 col-xs-6">
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.postalCode')) }}
+                    </div>
+                    <div class="col-sm-5 col-xs-12">
                         {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.city')) }}
                     </div>
-                    <div class="col-sm-3 col-xs-6">
-                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.postCode')) }}
+                    <div class="col-sm-5 col-xs-12">
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.state')) }}
                     </div>
                 </div>
 
@@ -72,7 +73,7 @@
                     </div>
                 </div>
 
-                {{ macros.element(form.getChildren().get('copyAddress')) }}
+                {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.copyBillingAddress')) }}
 
                 <div class="collapse" id="shipping-wrap">
                     <h4>{% trans %}address.heading.shipping_address{% endtrans %}</h4>
@@ -88,24 +89,25 @@
 
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
-                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.street')) }}
-                        </div>
-                        <div class="col-sm-3 col-xs-6">
-                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.streetNo')) }}
-                        </div>
-
-                        <div class="col-sm-3 col-xs-6">
-                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.flatNo')) }}
+                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.line1')) }}
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
+                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.line2')) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-6">
+                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.postalCode')) }}
+                        </div>
+                        <div class="col-sm-5 col-xs-12">
                             {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.city')) }}
                         </div>
-                        <div class="col-sm-3 col-xs-6">
-                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.postCode')) }}
+                        <div class="col-sm-5 col-xs-12">
+                            {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.state')) }}
                         </div>
                     </div>
 
