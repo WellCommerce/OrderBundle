@@ -17,114 +17,61 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Price
+class Price implements PriceInterface
 {
-    /**
-     * @var int|float
-     */
-    protected $netAmount;
-
-    /**
-     * @var int|float
-     */
-    protected $grossAmount;
-
-    /**
-     * @var int|float
-     */
-    protected $taxAmount;
-
-    /**
-     * @var int|float
-     */
-    protected $taxRate;
-
-    /**
-     * @var string
-     */
-    protected $currency;
-
-    /**
-     * @var float
-     */
-    protected $exchangeRate;
-
-    /**
-     * @return float|int
-     */
-    public function getNetAmount()
+    protected $netAmount    = 0;
+    protected $grossAmount  = 0;
+    protected $taxAmount    = 0;
+    protected $taxRate      = 0;
+    protected $currency     = '';
+    protected $exchangeRate = 0;
+    
+    public function getNetAmount() : float
     {
         return $this->netAmount;
     }
-
-    /**
-     * @param float|int $netAmount
-     */
-    public function setNetAmount($netAmount)
+    
+    public function setNetAmount(float $netAmount)
     {
-        $this->netAmount = (float)$netAmount;
+        $this->netAmount = $netAmount;
     }
-
-    /**
-     * @return float|int
-     */
-    public function getGrossAmount()
+    
+    public function getGrossAmount() : float
     {
-        return (float)$this->grossAmount;
+        return $this->grossAmount;
     }
-
-    /**
-     * @param float|int $grossAmount
-     */
-    public function setGrossAmount($grossAmount)
+    
+    public function setGrossAmount(float $grossAmount)
     {
-        $this->grossAmount = (float)$grossAmount;
+        $this->grossAmount = $grossAmount;
     }
-
-    /**
-     * @return float|int
-     */
-    public function getTaxAmount()
+    
+    public function getTaxAmount() : float
     {
-        return (float)$this->taxAmount;
+        return $this->taxAmount;
     }
-
-    /**
-     * @param float|int $taxAmount
-     */
-    public function setTaxAmount($taxAmount)
+    
+    public function setTaxAmount(float $taxAmount)
     {
-        $this->taxAmount = (float)$taxAmount;
+        $this->taxAmount = $taxAmount;
     }
-
-    /**
-     * @return float|int
-     */
-    public function getTaxRate()
+    
+    public function getTaxRate() : float
     {
-        return (float)$this->taxRate;
+        return $this->taxRate;
     }
-
-    /**
-     * @param float|int $taxRate
-     */
-    public function setTaxRate($taxRate)
+    
+    public function setTaxRate(float $taxRate)
     {
-        $this->taxRate = (float)$taxRate;
+        $this->taxRate = $taxRate;
     }
-
-    /**
-     * @return string
-     */
-    public function getCurrency()
+    
+    public function getCurrency() : string
     {
         return $this->currency;
     }
-
-    /**
-     * @param string $currency
-     */
-    public function setCurrency($currency)
+    
+    public function setCurrency(string $currency)
     {
         $this->currency = $currency;
     }
