@@ -11,16 +11,20 @@
  */
 namespace WellCommerce\Bundle\ReviewBundle\Repository;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\AbstractEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class ReviewRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ReviewRepository extends AbstractEntityRepository implements ReviewRepositoryInterface
+class ReviewRepository extends EntityRepository implements ReviewRepositoryInterface
 {
-    public function getDataSetQueryBuilder()
+    /**
+     * {@inheritdoc}
+     */
+    public function getDataSetQueryBuilder() : QueryBuilder
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->groupBy('review.id');

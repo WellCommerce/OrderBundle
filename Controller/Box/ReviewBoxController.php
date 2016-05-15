@@ -12,7 +12,10 @@
 
 namespace WellCommerce\Bundle\ReviewBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
+use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
 
 /**
  * Class ReviewBoxController
@@ -21,33 +24,27 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
  */
 class ReviewBoxController extends AbstractBoxController
 {
-    /**
-     * @var \WellCommerce\Bundle\ReviewBundle\Manager\Front\ReviewManager
-     */
-    protected $manager;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function indexAction()
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
     {
-        $product  = $this->manager->getProductContext()->getCurrentProduct();
-        $resource = $this->manager->initResource();
+        $product = $this->getProductStorage()->getCurrentProduct();
+
+        /** @var ReviewInterface $resource */
+        $resource = $this->getManager()->initResource();
         $resource->setProduct($product);
 
         $currentRoute = $product->translate()->getRoute()->getId();
-        $form         = $this->manager->getForm($resource);
+        $form         = $this->getForm($resource);
 
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
-                $this->manager->createResource($resource);
+                $this->getManager()->createResource($resource);
 
-                $this->manager->getFlashHelper()->addSuccess('review.flash.success');
+                $this->getFlashHelper()->addSuccess('review.flash.success');
 
                 return $this->getRouterHelper()->redirectTo('dynamic_' . $currentRoute);
             }
 
-            $this->manager->getFlashHelper()->addError('review.flash.error');
+            $this->getFlashHelper()->addError('review.flash.error');
         }
 
         return $this->displayTemplate('index', [
