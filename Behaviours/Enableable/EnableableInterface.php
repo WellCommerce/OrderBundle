@@ -19,13 +19,7 @@ namespace WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
  */
 interface EnableableInterface
 {
-    /**
-     * @return bool
-     */
-    public function getEnabled() : bool;
+    public function isEnabled() : bool;
 
-    /**
-     * @param bool $enabled
-     */
     public function setEnabled(bool $enabled);
 }
