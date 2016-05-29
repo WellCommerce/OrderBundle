@@ -1,4 +1,0 @@
-
-services:
-    country.repository:
-        class: WellCommerce\Bundle\CountryBundle\Repository\CountryRepository
