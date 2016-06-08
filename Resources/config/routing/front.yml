@@ -6,10 +6,7 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-_admin:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing/admin.yml"
-    prefix: /admin/review
-
-_front:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing/front.yml"
-    prefix: /review
+product.review.report:
+    path: /report/{id}
+    defaults:
+        _controller: 'review.layout_box.controller:reportAction'
