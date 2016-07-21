@@ -10,19 +10,17 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\DoctrineBundle\Factory;
+namespace WellCommerce\Bundle\DoctrineBundle\Manager;
 
-use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
- * Interface EntityFactoryInterface
+ * Class AbstractResourceManager
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface EntityFactoryInterface
+abstract class AbstractResourceManager extends AbstractContainerAware
 {
-    /**
-     * @return EntityInterface
-     */
-    public function create();
+
 }
