@@ -1,8 +1,0 @@
-
-services:
-    sales_report.provider:
-        class: WellCommerce\Bundle\ReportBundle\Provider\SalesReportProvider
-        arguments: ['@order.repository']
-        calls:
-            - [setContainer, ['@service_container']]
-
