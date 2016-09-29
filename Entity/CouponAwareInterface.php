@@ -17,7 +17,7 @@ interface CouponAwareInterface
 {
     public function setCoupon(CouponInterface $coupon);
 
-    public function getCoupon() : CouponInterface;
+    public function getCoupon();
 
     public function hasCoupon() : bool;
 
