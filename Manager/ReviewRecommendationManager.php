@@ -10,15 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ReviewBundle\DependencyInjection;
+namespace WellCommerce\Bundle\ReviewBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
- * Class WellCommerceReviewExtension
+ * Class ReviewRecommendationManager
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class WellCommerceReviewExtension extends AbstractExtension
+final class ReviewRecommendationManager extends AbstractManager
 {
 }

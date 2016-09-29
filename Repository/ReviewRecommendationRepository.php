@@ -9,16 +9,15 @@
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
+namespace WellCommerce\Bundle\ReviewBundle\Repository;
 
-namespace WellCommerce\Bundle\ReviewBundle\DependencyInjection;
-
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
+use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 
 /**
- * Class WellCommerceReviewExtension
+ * Class ReviewRecommendationRepository
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class WellCommerceReviewExtension extends AbstractExtension
+final class ReviewRecommendationRepository extends EntityRepository implements ReviewRecommendationRepositoryInterface
 {
 }
