@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Tests\Entity;
 
-use Carbon\Carbon;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 
@@ -41,10 +40,10 @@ class CouponTest extends AbstractEntityTestCase
             ['clientUsageLimit', rand(0, 100)],
             ['globalUsageLimit', rand(0, 100)],
             ['minimumOrderValue', rand(0, 100)],
-            ['validFrom', Carbon::now()],
-            ['validFrom', null],
-            ['validTo', Carbon::now()],
-            ['validTo', null],
+            ['validFrom', $faker->dateTime],
+            ['validTo', $faker->dateTime],
+            ['createdAt', $faker->dateTime],
+            ['updatedAt', $faker->dateTime],
         ];
     }
 }
