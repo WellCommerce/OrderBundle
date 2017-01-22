@@ -23,19 +23,21 @@ use WellCommerce\Component\Search\Request\SearchRequestInterface;
  */
 interface SearchManagerInterface
 {
-    public function search(SearchRequestInterface $request) : array;
-
+    public function search(SearchRequestInterface $request): array;
+    
     public function addDocument(DocumentInterface $document);
-
+    
     public function updateDocument(DocumentInterface $document);
-
+    
     public function removeDocument(DocumentInterface $document);
-
+    
+    public function createIndex(string $locale);
+    
     public function flushIndex(string $locale);
-
+    
     public function optimizeIndex(string $locale);
-
+    
     public function removeIndex(string $locale);
-
-    public function getType(string $type) : TypeInterface;
+    
+    public function getType(string $type): TypeInterface;
 }
