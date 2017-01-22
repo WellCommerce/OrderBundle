@@ -6,3 +6,6 @@ layout_box:
     label:
         type: Type
         identifier: Identifier
+        name: Name
+        content: Content
+        settings: Settings

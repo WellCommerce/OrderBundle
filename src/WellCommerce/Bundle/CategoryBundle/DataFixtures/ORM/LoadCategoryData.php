@@ -17,8 +17,11 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
+use WellCommerce\Bundle\CategoryBundle\Entity\CategoryTranslation;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 
 /**
  * Class LoadCategoryData
@@ -47,29 +50,47 @@ class LoadCategoryData extends AbstractDataFixture implements FixtureInterface, 
             return;
         }
         
-        $shop = $this->getReference('shop');
+        $this->addCategories($manager);
         
-        foreach (self::$samples as $hierarchy => $name) {
+        $this->createLayoutBoxes($manager, [
+            'category_menu'     => [
+                'type' => 'CategoryMenu',
+                'name' => 'Categories',
+            ],
+            'category_info'     => [
+                'type' => 'CategoryInfo',
+                'name' => 'Category',
+            ],
+            'category_products' => [
+                'type'     => 'CategoryProducts',
+                'name'     => 'Category products',
+                'settings' => [
+                    'per_page' => 10,
+                ],
+            ],
+        ]);
+        
+        $manager->flush();
+    }
+    
+    private function addCategories(ObjectManager $manager)
+    {
+        $shop      = $this->getReference('shop');
+        $hierarchy = 0;
+        
+        foreach (self::$samples as $name) {
             $category = new Category();
-            $category->setEnabled(true);
-            $category->setHierarchy($hierarchy);
-            $category->setParent(null);
-            $category->setProducts(new ArrayCollection());
-            $category->setChildren(new ArrayCollection());
-            $category->setChildrenCount(0);
-            $category->setProductsCount(0);
+            $category->setHierarchy($hierarchy++);
             $category->addShop($shop);
             foreach ($this->getLocales() as $locale) {
-                $category->translate($locale->getCode())->setName($name);
-                $category->translate($locale->getCode())->setSlug($locale->getCode() . '/' . Sluggable::makeSlug($name));
-                $category->translate($locale->getCode())->setShortDescription('');
-                $category->translate($locale->getCode())->setDescription('');
+                /** @var CategoryTranslation $translation */
+                $translation = $category->translate($locale->getCode());
+                $translation->setName($name);
+                $translation->setSlug($locale->getCode() . '/' . Sluggable::makeSlug($name));
             }
             $category->mergeNewTranslations();
             $manager->persist($category);
             $this->setReference('category_' . $name, $category);
         }
-        
-        $manager->flush();
     }
 }

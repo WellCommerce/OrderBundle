@@ -111,6 +111,8 @@ class NewsFormBuilder extends AbstractFormBuilder
         
         $this->addMetadataFieldset($form, $repository);
         
+        $this->addShopsFieldset($form);
+        
         $form->addFilter($this->getFilter('trim'));
         $form->addFilter($this->getFilter('secure'));
     }

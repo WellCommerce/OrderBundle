@@ -530,6 +530,9 @@
     Translator.add("layout_box.heading.edit", "Edytuj boks", "wellcommerce", "pl");
     Translator.add("layout_box.label.type", "Typ", "wellcommerce", "pl");
     Translator.add("layout_box.label.identifier", "Identyfikator", "wellcommerce", "pl");
+    Translator.add("layout_box.label.name", "Nazwa", "wellcommerce", "pl");
+    Translator.add("layout_box.label.content", "Tre\u015b\u0107", "wellcommerce", "pl");
+    Translator.add("layout_box.label.settings", "Ustawienia", "wellcommerce", "pl");
     Translator.add("shop.heading.index", "Sklepy", "wellcommerce", "pl");
     Translator.add("shop.heading.add", "Dodaj sklep", "wellcommerce", "pl");
     Translator.add("shop.heading.edit", "Edytuj sklep", "wellcommerce", "pl");

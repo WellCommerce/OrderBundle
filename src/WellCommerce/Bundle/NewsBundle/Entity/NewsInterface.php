@@ -17,13 +17,14 @@ use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\TranslatableInterface;
+use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
 
 /**
  * Interface NewsInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface NewsInterface extends EntityInterface, TimestampableInterface, TranslatableInterface, BlameableInterface
+interface NewsInterface extends EntityInterface, TimestampableInterface, TranslatableInterface, BlameableInterface, ShopCollectionAwareInterface
 {
     public function getPublish(): bool;
     

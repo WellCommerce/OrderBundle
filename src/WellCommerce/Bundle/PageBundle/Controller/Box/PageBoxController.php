@@ -12,7 +12,9 @@
 
 namespace WellCommerce\Bundle\PageBundle\Controller\Box;
 
+use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class PageBoxController
@@ -21,4 +23,12 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
  */
 class PageBoxController extends AbstractBoxController
 {
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
+    {
+        $page = $this->getPageStorage()->getCurrentPage();
+        
+        return $this->displayTemplate('index', [
+            'page' => $page,
+        ]);
+    }
 }

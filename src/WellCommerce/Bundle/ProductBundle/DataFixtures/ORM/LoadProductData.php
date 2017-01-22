@@ -74,6 +74,13 @@ class LoadProductData extends AbstractDataFixture
             });
         });
         
+        $this->createLayoutBoxes($manager, [
+            'product_info' => [
+                'type' => 'ProductInfo',
+                'name' => 'Product',
+            ],
+        ]);
+        
         $manager->flush();
     }
     

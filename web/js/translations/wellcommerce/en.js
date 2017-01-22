@@ -477,6 +477,9 @@
     Translator.add("layout_box.heading.edit", "Edit layout box", "wellcommerce", "en");
     Translator.add("layout_box.label.type", "Type", "wellcommerce", "en");
     Translator.add("layout_box.label.identifier", "Identifier", "wellcommerce", "en");
+    Translator.add("layout_box.label.name", "Name", "wellcommerce", "en");
+    Translator.add("layout_box.label.content", "Content", "wellcommerce", "en");
+    Translator.add("layout_box.label.settings", "Settings", "wellcommerce", "en");
     Translator.add("shop.heading.index", "Shops", "wellcommerce", "en");
     Translator.add("shop.heading.add", "Add a shop", "wellcommerce", "en");
     Translator.add("shop.heading.edit", "Edit a shop", "wellcommerce", "en");

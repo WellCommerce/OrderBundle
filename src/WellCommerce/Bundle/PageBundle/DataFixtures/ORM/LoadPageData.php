@@ -65,6 +65,13 @@ class LoadPageData extends AbstractDataFixture
         $this->createPage('Payment', 50, $help);
         $this->createPage('Site map', 60, $help);
         
+        $this->createLayoutBoxes($manager, [
+            'page' => [
+                'type' => 'Page',
+                'name' => 'Page',
+            ],
+        ]);
+        
         $manager->flush();
     }
     

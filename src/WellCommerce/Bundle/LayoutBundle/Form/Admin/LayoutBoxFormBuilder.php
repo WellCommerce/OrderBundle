@@ -61,7 +61,7 @@ class LayoutBoxFormBuilder extends AbstractFormBuilder
         
         $requiredData->addChild($this->getElement('select', [
             'name'    => 'boxType',
-            'label'   => $this->trans('layout_box.label.box_type'),
+            'label'   => $this->trans('layout_box.label.type'),
             'default' => $this->getDefaultLayoutBoxType()
         ]));
         

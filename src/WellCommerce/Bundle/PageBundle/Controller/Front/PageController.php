@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -28,47 +29,22 @@ class PageController extends AbstractFrontController
     /**
      * {@inheritdoc}
      */
-    public function indexAction(Request $request) : Response
+    public function indexAction(PageInterface $page): Response
     {
-        $page = $this->findOr404($request);
-
         if (null !== $page->getParent()) {
             $this->getBreadcrumbProvider()->add(new Breadcrumb([
                 'label' => $page->getParent()->translate()->getName(),
             ]));
         }
-
+        
         $this->getBreadcrumbProvider()->add(new Breadcrumb([
             'label' => $page->translate()->getName(),
         ]));
-
+        
+        $this->getPageStorage()->setCurrentPage($page);
+        
         return $this->displayTemplate('index', [
-            'page' => $page,
-            'metadata' => $page->translate()->getMeta()
+            'metadata' => $page->translate()->getMeta(),
         ]);
-    }
-
-    /**
-     * Returns resource by ID parameter
-     *
-     * @param Request $request
-     * @param array   $criteria
-     *
-     * @return mixed
-     */
-    protected function findOr404(Request $request, array $criteria = [])
-    {
-        // check whether request contains ID attribute
-        if (!$request->attributes->has('id')) {
-            throw new \LogicException('Request does not have "id" attribute set.');
-        }
-
-        $criteria['id'] = $request->attributes->get('id');
-
-        if (null === $resource = $this->getManager()->getRepository()->findOneBy($criteria)) {
-            throw new NotFoundHttpException(sprintf('Resource not found'));
-        }
-
-        return $resource;
     }
 }

@@ -18,6 +18,8 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 
 /**
  * Class LoadClientData
@@ -35,6 +37,44 @@ class LoadClientData extends AbstractDataFixture
             return;
         }
         
+        $this->createDemoClient($manager);
+        
+        $this->createLayoutBoxes($manager, [
+            'client_registration'    => [
+                'type' => 'ClientRegistration',
+                'name' => 'Sign-in',
+            ],
+            'client_login'           => [
+                'type' => 'ClientLogin',
+                'name' => 'Sign-up',
+            ],
+            'client_order'           => [
+                'type' => 'ClientOrder',
+                'name' => 'Orders',
+            ],
+            'client_settings'        => [
+                'type' => 'ClientSettings',
+                'name' => 'Account settings',
+            ],
+            'client_menu'            => [
+                'type' => 'ClientMenu',
+                'name' => 'Client menu',
+            ],
+            'client_forgot_password' => [
+                'type' => 'ClientForgotPassword',
+                'name' => 'Password reset',
+            ],
+            'client_address_book'    => [
+                'type' => 'ClientAddressBook',
+                'name' => 'Address book',
+            ],
+        ]);
+        
+        $manager->flush();
+    }
+    
+    private function createDemoClient(ObjectManager $manager)
+    {
         $email          = 'demo@wellcommerce.org';
         $fakerGenerator = $this->getFakerGenerator();
         $firstName      = $fakerGenerator->firstName;
@@ -85,7 +125,5 @@ class LoadClientData extends AbstractDataFixture
         $client->setShop($this->getReference('shop'));
         
         $manager->persist($client);
-        
-        $manager->flush();
     }
 }

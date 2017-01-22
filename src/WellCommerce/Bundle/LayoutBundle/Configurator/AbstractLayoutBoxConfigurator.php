@@ -33,77 +33,70 @@ abstract class AbstractLayoutBoxConfigurator extends AbstractContainerAware impl
      * @var string
      */
     protected $type;
-
+    
     /**
      * @var string
      */
     protected $controllerService;
-
-    /**
-     * @var TranslatorHelperInterface
-     */
-    protected $translatorHelper;
-
+    
     /**
      * Constructor
      *
-     * @param string                    $type
-     * @param string                    $controllerService
-     * @param TranslatorHelperInterface $translatorHelper
+     * @param string $type
+     * @param string $controllerService
      */
-    public function __construct(string $type, string $controllerService, TranslatorHelperInterface $translatorHelper)
+    public function __construct(string $type, string $controllerService)
     {
         $this->type              = $type;
         $this->controllerService = $controllerService;
-        $this->translatorHelper  = $translatorHelper;
     }
-
+    
     /**
      * @return PropertyAccessor
      */
-    protected function getPropertyAccessor() : PropertyAccessor
+    protected function getPropertyAccessor(): PropertyAccessor
     {
         return PropertyAccess::createPropertyAccessor();
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getControllerService() : string
+    public function getControllerService(): string
     {
         return $this->controllerService;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function addFormFields(FormBuilderInterface $builder, FormInterface $form, $defaults)
     {
         $fieldset = $this->getFieldset($builder, $form);
-
+        
         $fieldset->addChild($builder->getElement('tip', [
-            'tip' => $this->trans('layout_box.configuration')
+            'tip' => $this->trans('layout_box.configuration'),
         ]));
-
+        
         return $fieldset;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    protected function getFieldset(FormBuilderInterface $builder, FormInterface $form) : FieldsetInterface
+    protected function getFieldset(FormBuilderInterface $builder, FormInterface $form): FieldsetInterface
     {
         $boxTypeSelect = $this->getBoxTypeSelect($form);
         $boxTypeSelect->addOptionToSelect($this->type, $this->type);
-
+        
         $fieldset = $form->addChild($builder->getElement('nested_fieldset', [
             'name'         => $this->getType(),
             'label'        => $this->trans('layout_box.label.settings'),
@@ -111,20 +104,20 @@ abstract class AbstractLayoutBoxConfigurator extends AbstractContainerAware impl
                 $builder->getDependency('show', [
                     'field'     => $boxTypeSelect,
                     'condition' => new Equals($this->type),
-                    'form'      => $form
+                    'form'      => $form,
                 ]),
-            ]
+            ],
         ]));
-
+        
         return $fieldset;
     }
-
+    
     /**
      * @param FormInterface $form
      *
      * @return Select
      */
-    protected function getBoxTypeSelect(FormInterface $form) : Select
+    protected function getBoxTypeSelect(FormInterface $form): Select
     {
         return $form->getChildren()->get('required_data')->getChildren()->get('boxType');
     }

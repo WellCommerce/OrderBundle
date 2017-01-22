@@ -10,20 +10,23 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ShowcaseBundle\DataFixtures\ORM;
+namespace WellCommerce\Bundle\WishlistBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
-use WellCommerce\Bundle\ShowcaseBundle\Entity\ProductStatus;
 
 /**
- * Class LoadShowcaseData
+ * Class LoadWishlistData
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class LoadShowcaseData extends AbstractDataFixture
+class LoadWishlistData extends AbstractDataFixture
 {
     /**
      * {@inheritDoc}
@@ -35,12 +38,9 @@ final class LoadShowcaseData extends AbstractDataFixture
         }
         
         $this->createLayoutBoxes($manager, [
-            'showcase' => [
-                'type'     => 'Showcase',
-                'name'     => 'Showcase',
-                'settings' => [
-                    'status' => $this->getReference('product_status_featured')->getId(),
-                ],
+            'wishlist' => [
+                'type' => 'Wishlist',
+                'name' => 'Wishlist',
             ],
         ]);
         

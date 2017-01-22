@@ -33,8 +33,21 @@ class LoadContactData extends AbstractDataFixture
             return;
         }
         
+        $this->createDefaultContact($manager);
+        
+        $this->createLayoutBoxes($manager, [
+            'contact' => [
+                'type' => 'Contact',
+                'name' => 'Contact us',
+            ],
+        ]);
+        
+        $manager->flush();
+    }
+    
+    private function createDefaultContact(ObjectManager $manager)
+    {
         $contact = new Contact();
-        $contact->setEnabled(1);
         
         foreach ($this->getLocales() as $locale) {
             /** @var ContactTranslation $translation */
@@ -42,25 +55,16 @@ class LoadContactData extends AbstractDataFixture
             $translation->setName('Sales department');
             $translation->setEmail('sales@domain.org');
             $translation->setBusinessHours($this->getBusinessHours());
-            $translation->setCity('');
-            $translation->setCountry('');
-            $translation->setLine1('');
-            $translation->setLine2('');
-            $translation->setPostalCode('');
-            $translation->setState('');
             $translation->setPhone('555 123-345-678');
         }
         
         $contact->mergeNewTranslations();
         $manager->persist($contact);
-        $manager->flush();
-        
-        $this->setReference('contact', $contact);
     }
     
-    protected function getBusinessHours()
+    private function getBusinessHours(): string
     {
-        $hours = [
+        return implode('<br />', [
             'mon: 9am-5:30pm',
             'tue: 9am-5:30pm',
             'wed: 9am-5:30pm',
@@ -68,8 +72,6 @@ class LoadContactData extends AbstractDataFixture
             'fri: 9am-5:30pm',
             'sat: 10am-2pm',
             'sun: not available',
-        ];
-        
-        return implode('<br />', $hours);
+        ]);
     }
 }

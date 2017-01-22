@@ -14,11 +14,13 @@ namespace WellCommerce\Bundle\NewsBundle\Entity;
 
 use Carbon\Carbon;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
+use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
  * Class News
@@ -32,9 +34,10 @@ class News implements NewsInterface
     use Timestampable;
     use Blameable;
     use MediaAwareTrait;
+    use ShopCollectionAwareTrait;
     
-    protected $publish  = true;
-    protected $featured = false;
+    protected $publish   = true;
+    protected $featured  = false;
     protected $startDate;
     protected $endDate;
     
@@ -42,6 +45,7 @@ class News implements NewsInterface
     {
         $this->startDate = Carbon::now();
         $this->endDate   = Carbon::now()->addMonth(1);
+        $this->shops     = new ArrayCollection();
     }
     
     public function getPublish(): bool

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
  *
  * This file is part of the WellCommerce package.
@@ -10,16 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ContactBundle\Controller\Front;
+namespace WellCommerce\Bundle\NewsBundle\Controller\Box;
 
-use WellCommerce\Bundle\ContactBundle\Entity\ContactTicketInterface;
-use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 
 /**
- * Class ContactController
+ * Class NewsBoxController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ContactController extends AbstractFrontController
+class NewsBoxController extends AbstractBoxController
 {
 }
