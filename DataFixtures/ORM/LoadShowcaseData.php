@@ -19,11 +19,11 @@ use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 use WellCommerce\Bundle\ShowcaseBundle\Entity\ProductStatus;
 
 /**
- * Class LoadProductStatusData
+ * Class LoadShowcaseData
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class LoadProductStatusData extends AbstractDataFixture
+final class LoadShowcaseData extends AbstractDataFixture
 {
     /**
      * {@inheritDoc}
