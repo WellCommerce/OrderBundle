@@ -40,6 +40,7 @@ imports:
     - { resource: "@WellCommerceShippingBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShipmentBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShopBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceShowcaseBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceTaxBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceThemeBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceUnitBundle/Resources/config/config.yml" }

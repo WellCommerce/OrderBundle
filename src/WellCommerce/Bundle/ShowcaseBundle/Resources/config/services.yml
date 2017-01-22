@@ -6,16 +6,17 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-showcase.layout_box.configurator:
-    class: WellCommerce\Bundle\ShowcaseBundle\Configurator\ShowcaseBoxConfigurator
-    tags:
-        - { name: layout_box.configurator }
-    arguments: [Showcase, showcase.box.controller]
-    calls:
-        - [setContainer, ['@service_container']]
+services:
+    showcase.layout_box.configurator:
+        class: WellCommerce\Bundle\ShowcaseBundle\Configurator\ShowcaseBoxConfigurator
+        tags:
+            - { name: layout_box.configurator }
+        arguments: [Showcase, showcase.box.controller]
+        calls:
+            - [setContainer, ['@service_container']]
 
-showcase.box.controller:
-    class: WellCommerce\Bundle\ShowcaseBundle\Controller\Box\ShowcaseBoxController
-    arguments: ['@product_status.manager']
-    calls:
-        - [setContainer, ['@service_container']]
+    showcase.box.controller:
+        class: WellCommerce\Bundle\ShowcaseBundle\Controller\Box\ShowcaseBoxController
+        arguments: ['@product_status.manager']
+        calls:
+            - [setContainer, ['@service_container']]
