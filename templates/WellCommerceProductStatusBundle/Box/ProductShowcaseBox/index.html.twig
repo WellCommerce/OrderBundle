@@ -1,7 +1,7 @@
 {% trans_default_domain "wellcommerce" %}
 <div class="showcase box">
 	<div class="tab-content">
-		{% for category in showcase.rows %}
+		{% for category in showcase %}
 		<div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="category-{{ category.id }}">
 			<div id="showcase-{{ category.id }}" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner" role="listbox">
@@ -36,7 +36,7 @@
 	</div>
 	<div class="table-responsive">
 		<ul class="clearfix" role="tablist">
-			{% for category in showcase.rows %}
+			{% for category in showcase %}
 			<li role="presentation" {% if loop.first %}class="active"{% endif %}><a href="#category-{{ category.id }}" aria-controls="category-{{ category.id }}" role="tab" data-toggle="tab">{{ category.name }}</a></li>
 			{% endfor %}
 		</ul>
