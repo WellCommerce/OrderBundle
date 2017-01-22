@@ -13,14 +13,6 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
-    product_showcase.layout_box.configurator:
-        class: WellCommerce\Bundle\ProductStatusBundle\Configurator\ProductShowcaseBoxConfigurator
-        tags:
-            - { name: layout_box.configurator }
-        arguments: [ProductShowcase, product_showcase.layout_box.controller, '@translator.helper']
-        calls:
-            - [setContainer, ['@service_container']]
-
     product_status.layout_box.configurator:
         class: WellCommerce\Bundle\ProductStatusBundle\Configurator\ProductStatusBoxConfigurator
         tags:

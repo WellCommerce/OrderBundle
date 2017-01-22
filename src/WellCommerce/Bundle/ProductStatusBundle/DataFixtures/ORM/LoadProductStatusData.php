@@ -14,6 +14,8 @@ namespace WellCommerce\Bundle\ProductStatusBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
@@ -78,6 +80,43 @@ class LoadProductStatusData extends AbstractDataFixture
         $promotion->mergeNewTranslations();
         $manager->persist($promotion);
         $this->addReference('product_status_promotion', $promotion);
+    
+        $manager->flush();
+        
+        $this->createLayoutBoxes($manager, [
+            'bestsellers'     => [
+                'type'     => 'ProductStatus',
+                'name'     => 'Bestsellers',
+                'settings' => [
+                    'status' => $this->getReference('product_status_bestseller')->getId(),
+                ],
+            ],
+            'new_products'        => [
+                'type'     => 'ProductStatus',
+                'name'     => 'New arrivals',
+                'settings' => [
+                    'status' => $this->getReference('product_status_novelty')->getId(),
+                ],
+            ],
+            'featured_products'       => [
+                'type'     => 'ProductStatus',
+                'name'     => 'Featured products',
+                'settings' => [
+                    'status' => $this->getReference('product_status_featured')->getId(),
+                ],
+            ],
+            'promotions'      => [
+                'type'     => 'ProductStatus',
+                'name'     => 'Promotions',
+                'settings' => [
+                    'status' => $this->getReference('product_status_promotion')->getId(),
+                ],
+            ],
+            'dynamic_status' => [
+                'type' => 'ProductStatus',
+                'name' => 'Dynamic product status box',
+            ]
+        ]);
         
         $manager->flush();
     }

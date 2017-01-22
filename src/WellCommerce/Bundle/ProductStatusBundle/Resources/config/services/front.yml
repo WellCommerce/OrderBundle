@@ -13,12 +13,6 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
-    product_showcase.layout_box.controller:
-        class: WellCommerce\Bundle\ProductStatusBundle\Controller\Box\ProductShowcaseBoxController
-        arguments: ['@product_status.manager']
-        calls:
-            - [setContainer, ['@service_container']]
-
     product_status.layout_box.controller:
         class: WellCommerce\Bundle\ProductStatusBundle\Controller\Box\ProductStatusBoxController
         arguments: ['@product_status.manager']
