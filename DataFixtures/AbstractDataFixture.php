@@ -20,6 +20,9 @@ use Faker\Factory as FakerFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
 
 /**
@@ -144,5 +147,30 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
         $importer   = $this->container->get('admin_menu.importer.xml');
         
         $importer->import($file, $locator);
+    }
+    
+    protected function createLayoutBoxes(ObjectManager $manager, array $boxes)
+    {
+        foreach ($boxes as $identifier => $params) {
+            $layoutBox = $this->createLayoutBox($identifier, $params);
+            $manager->persist($layoutBox);
+        }
+    }
+    
+    private function createLayoutBox(string $identifier, array $params = []): LayoutBoxInterface
+    {
+        $layoutBox = new LayoutBox();
+        $layoutBox->setIdentifier($identifier);
+        $layoutBox->setBoxType($params['type']);
+        $layoutBox->setSettings($params['settings'] ?? []);
+        foreach ($this->getLocales() as $locale) {
+            /** @var LayoutBoxTranslation $translation */
+            $translation = $layoutBox->translate($locale->getCode());
+            $translation->setName($params['name']);
+        }
+        
+        $layoutBox->mergeNewTranslations();
+        
+        return $layoutBox;
     }
 }
