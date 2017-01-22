@@ -228,7 +228,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_id = new GF_Datagrid_Column({
             id: 'id',
-            caption: GMessage('common.label.id'),
+            caption: GTranslation('common.label.id'),
             appearance: {
                 width: 40,
                 visible: false
@@ -240,7 +240,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_name = new GF_Datagrid_Column({
             id: 'name',
-            caption: GMessage('common.label.name'),
+            caption: GTranslation('common.label.name'),
             appearance: {
                 align: GF_Datagrid.ALIGN_LEFT,
                 width: GF_Datagrid.WIDTH_AUTO,
@@ -252,7 +252,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_price = new GF_Datagrid_Column({
             id: 'grossAmount',
-            caption: GMessage('common.label.gross_price'),
+            caption: GTranslation('common.label.gross_price'),
             appearance: {
                 width: 90
             },
@@ -263,7 +263,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_tax_rate = new GF_Datagrid_Column({
             id: 'tax',
-            caption: GMessage('common.label.tax_rate'),
+            caption: GTranslation('common.label.tax_rate'),
             appearance: {
                 width: 90,
                 visible: false
@@ -275,7 +275,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_weight = new GF_Datagrid_Column({
             id: 'weight',
-            caption: GMessage('common.label.dimension.weight'),
+            caption: GTranslation('common.label.dimension.weight'),
             appearance: {
                 width: 70
             },
@@ -286,7 +286,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_producer = new GF_Datagrid_Column({
             id: 'producer',
-            caption: GMessage('common.label.producer'),
+            caption: GTranslation('common.label.producer'),
             appearance: {
                 width: 150
             },
@@ -297,7 +297,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_category = new GF_Datagrid_Column({
             id: 'category',
-            caption: GMessage('common.label.categories'),
+            caption: GTranslation('common.label.categories'),
             appearance: {
                 width: 200,
                 align: GF_Datagrid.ALIGN_LEFT
@@ -323,7 +323,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_id = new GF_Datagrid_Column({
             id: 'id',
-            caption: GMessage('order.label.id'),
+            caption: GTranslation('order.label.id'),
             appearance: {
                 width: 40,
                 visible: false
@@ -332,7 +332,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_product_id = new GF_Datagrid_Column({
             id: 'product_id',
-            caption: GMessage('order.label.product_id'),
+            caption: GTranslation('order.label.product_id'),
             appearance: {
                 width: 40,
                 visible: false
@@ -341,7 +341,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_product_name = new GF_Datagrid_Column({
             id: 'product_name',
-            caption: GMessage('order.label.product_name'),
+            caption: GTranslation('order.label.product_name'),
             appearance: {
                 align: GF_Datagrid.ALIGN_LEFT
             }
@@ -349,7 +349,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_variant = new GF_Datagrid_Column({
             id: 'variant',
-            caption: GMessage('order.label.variant'),
+            caption: GTranslation('order.label.variant'),
             appearance: {
                 width: 140,
                 visible: false
@@ -358,7 +358,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_gross_amount = new GF_Datagrid_Column({
             id: 'gross_amount',
-            caption: GMessage('order.label.gross_amount'),
+            caption: GTranslation('order.label.gross_amount'),
             editable: true,
             appearance: {
                 width: 70,
@@ -368,7 +368,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_weight = new GF_Datagrid_Column({
             id: 'weight',
-            caption: GMessage('order.label.weight'),
+            caption: GTranslation('order.label.weight'),
             editable: true,
             appearance: {
                 width: 70,
@@ -378,7 +378,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_quantity = new GF_Datagrid_Column({
             id: 'quantity',
-            caption: GMessage('order.label.quantity'),
+            caption: GTranslation('order.label.quantity'),
             editable: true,
             appearance: {
                 width: 50
@@ -387,7 +387,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_stock = new GF_Datagrid_Column({
             id: 'stock',
-            caption: GMessage('order.label.stock'),
+            caption: GTranslation('order.label.stock'),
             appearance: {
                 width: 80
             }
@@ -395,7 +395,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_tax_value = new GF_Datagrid_Column({
             id: 'tax_value',
-            caption: GMessage('order.label.tax_value'),
+            caption: GTranslation('order.label.tax_value'),
             appearance: {
                 width: 50,
                 align: GF_Datagrid.ALIGN_CENTER
@@ -404,7 +404,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_tax_rate = new GF_Datagrid_Column({
             id: 'tax_rate',
-            caption: GMessage('order.label.tax_rate'),
+            caption: GTranslation('order.label.tax_rate'),
             appearance: {
                 width: 70,
                 align: GF_Datagrid.ALIGN_CENTER
@@ -413,7 +413,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_gross_total = new GF_Datagrid_Column({
             id: 'gross_total',
-            caption: GMessage('order.label.gross_total'),
+            caption: GTranslation('order.label.gross_total'),
             appearance: {
                 width: 70,
                 align: GF_Datagrid.ALIGN_CENTER
@@ -422,7 +422,7 @@ var GFormOrderEditor = GCore.ExtendClass(GFormField, function () {
 
         var column_variant_options = new GF_Datagrid_Column({
             id: 'variant_options',
-            caption: GMessage('order.label.variant_options'),
+            caption: GTranslation('order.label.variant_options'),
             appearance: {
                 width: 70
             }

@@ -28,6 +28,7 @@ class ClientBillingAddress implements ClientBillingAddressInterface
     protected $vatId          = '';
     protected $companyName    = '';
     protected $companyAddress = false;
+    protected $viesValid      = false;
     
     public function getFirstName(): string
     {
@@ -77,5 +78,15 @@ class ClientBillingAddress implements ClientBillingAddressInterface
     public function setCompanyAddress(bool $companyAddress)
     {
         $this->companyAddress = $companyAddress;
+    }
+    
+    public function isViesValid(): bool
+    {
+        return $this->viesValid;
+    }
+    
+    public function setViesValid(bool $viesValid)
+    {
+        $this->viesValid = $viesValid;
     }
 }

@@ -35,6 +35,10 @@ interface CategoryInterface extends
     ShopCollectionAwareInterface,
     HierarchyAwareInterface
 {
+    public function getSymbol(): string;
+    
+    public function setSymbol(string $symbol);
+    
     public function getParent();
 
     public function setParent(CategoryInterface $parent = null);

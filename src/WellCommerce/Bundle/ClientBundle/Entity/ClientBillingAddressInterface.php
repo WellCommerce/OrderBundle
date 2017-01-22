@@ -21,13 +21,17 @@ interface ClientBillingAddressInterface extends ClientAddressInterface
 {
     public function setVatId(string $vatId);
     
-    public function getVatId() : string;
+    public function getVatId(): string;
     
     public function setCompanyName(string $companyName);
     
-    public function getCompanyName() : string;
+    public function getCompanyName(): string;
     
-    public function isCompanyAddress() : bool;
+    public function isCompanyAddress(): bool;
     
     public function setCompanyAddress(bool $companyAddress);
+    
+    public function isViesValid(): bool;
+    
+    public function setViesValid(bool $viesValid);
 }

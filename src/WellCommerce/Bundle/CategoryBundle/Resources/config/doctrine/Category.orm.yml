@@ -38,6 +38,11 @@ WellCommerce\Bundle\CategoryBundle\Entity\Category:
         enabled:
             type: boolean
             nullable: false
+        symbol:
+            type: string
+            nullable: false
+            options:
+                default: ''
     manyToOne:
         parent:
             targetEntity: WellCommerce\Bundle\CategoryBundle\Entity\Category

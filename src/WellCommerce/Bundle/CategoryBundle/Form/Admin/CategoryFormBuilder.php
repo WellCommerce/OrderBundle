@@ -69,7 +69,12 @@ class CategoryFormBuilder extends AbstractFormBuilder
                 $this->getRule('required')
             ],
         ]));
-
+    
+        $requiredData->addChild($this->getElement('text_field', [
+            'name'  => 'symbol',
+            'label' => $this->trans('common.label.symbol'),
+        ]));
+        
         $requiredData->addChild($this->getElement('tree', [
             'name'        => 'parent',
             'label'       => $this->trans('category.label.parent'),

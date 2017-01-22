@@ -624,6 +624,7 @@
     Translator.add("common.label.discounted_price", "Cena promocyjna", "wellcommerce", "pl");
     Translator.add("common.label.gross_price", "Cena brutto", "wellcommerce", "pl");
     Translator.add("common.label.net_price", "Cena netto", "wellcommerce", "pl");
+    Translator.add("common.label.tax_rate", "Stawka VAT", "wellcommerce", "pl");
     Translator.add("common.label.first_name", "Imi\u0119", "wellcommerce", "pl");
     Translator.add("common.label.last_name", "Nazwisko", "wellcommerce", "pl");
     Translator.add("common.label.client_group", "Grupa klient\u00f3w", "wellcommerce", "pl");
@@ -636,6 +637,8 @@
     Translator.add("common.label.meta_title", "Tytu\u0142 meta", "wellcommerce", "pl");
     Translator.add("common.label.meta_description", "Opis meta", "wellcommerce", "pl");
     Translator.add("common.label.meta_keywords", "S\u0142owa kluczowe meta", "wellcommerce", "pl");
+    Translator.add("common.label.yes", "Tak", "wellcommerce", "pl");
+    Translator.add("common.label.no", "Nie", "wellcommerce", "pl");
     Translator.add("common.flashes.success", "Sukces!", "wellcommerce", "pl");
     Translator.add("price.sell_price.net", "Cena sprzeda\u017cy netto", "wellcommerce", "pl");
     Translator.add("price.sell_price.gross", "Cena sprzeda\u017cy brutto", "wellcommerce", "pl");

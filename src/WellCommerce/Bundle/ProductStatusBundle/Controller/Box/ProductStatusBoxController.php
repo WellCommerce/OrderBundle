@@ -30,7 +30,7 @@ class ProductStatusBoxController extends AbstractBoxController
     {
         $dataset       = $this->get('product.dataset.front');
         $requestHelper = $this->getRequestHelper();
-        $limit         = $requestHelper->getQueryBagParam('limit', $boxSettings->getParam('per_page', 12));
+        $limit         = $requestHelper->getAttributesBagParam('limit', $boxSettings->getParam('per_page', 12));
         $status        = $this->getProductStatus($boxSettings->getParam('status'));
         $conditions    = $this->createConditionsCollection($status);
         $conditions    = $this->get('layered_navigation.helper')->addLayeredNavigationConditions($conditions);

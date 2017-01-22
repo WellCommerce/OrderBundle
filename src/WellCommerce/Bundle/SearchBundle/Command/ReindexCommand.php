@@ -35,22 +35,22 @@ final class ReindexCommand extends ContainerAwareCommand
      * @var TypeInterface
      */
     private $type;
-
+    
     /**
      * @var int
      */
     private $batchSize;
-
+    
     /**
      * @var RepositoryInterface
      */
     private $repository;
-
+    
     /**
      * @var SearchManagerInterface
      */
     private $manager;
-
+    
     protected function configure()
     {
         $this->setDescription('Reindexes search types');
@@ -80,7 +80,7 @@ final class ReindexCommand extends ContainerAwareCommand
             'product.repository'
         );
     }
-
+    
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->manager    = $this->getSearchManager();
@@ -88,73 +88,79 @@ final class ReindexCommand extends ContainerAwareCommand
         $this->batchSize  = $input->getOption('batch');
         $this->repository = $this->getRepository($input->getOption('repository'));
     }
-
+    
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->getContainer()->get('doctrine.helper')->disableFilter('locale');
+        
         $this->getLocales()->map(function (LocaleInterface $locale) use ($output) {
             $output->writeln(sprintf('<info>Reindexing locale:</info> %s', $locale->getCode()));
             $this->reindex($locale->getCode(), $output);
         });
     }
-
+    
     private function reindex(string $locale, OutputInterface $output)
     {
         $totalEntities = $this->repository->getTotalCount();
         $iterations    = $this->getIterations($totalEntities, $this->batchSize);
-
+        
         $output->writeln(sprintf('<comment>Total entities:</comment> %s', $totalEntities));
         $output->writeln(sprintf('<comment>Batch size:</comment> %s', $this->batchSize));
         $output->writeln(sprintf('<comment>Iterations:</comment> %s', count($iterations)));
         $output->writeln(sprintf('<comment>Locale:</comment> %s', $locale));
-
+        
         $output->writeln('<info>Flushing index</info>');
-        $this->manager->flushIndex($locale);
-
-        $progress = new ProgressBar($output, $totalEntities);
-        $progress->setFormat('verbose');
-        $progress->setRedrawFrequency($this->batchSize);
-        $progress->start();
-
-        foreach ($iterations as $iteration) {
-            $entities = $this->getEntities($iteration);
-            foreach ($entities as $entity) {
-                $document = $this->type->createDocument($entity, $locale);
-                $this->manager->addDocument($document);
-                $progress->advance();
-            }
-        }
-
-        $progress->finish();
-        $output->writeln('');
-        $output->writeln('<info>Optimizing index</info>');
-        $this->manager->optimizeIndex($locale);
+        $this->manager->removeIndex($locale);
+        $this->manager->createIndex($locale);
+        
+//        $progress = new ProgressBar($output, $totalEntities);
+//        $progress->setFormat('verbose');
+//        $progress->setRedrawFrequency($this->batchSize);
+//        $progress->start();
+//
+//        foreach ($iterations as $iteration) {
+//            $entities = $this->getEntities($iteration);
+//            foreach ($entities as $entity) {
+//                $document = $this->type->createDocument($entity, $locale);
+//                $this->manager->addDocument($document);
+//                $progress->advance();
+//            }
+//        }
+//
+//        $progress->finish();
+//        $output->writeln('');
+//        $output->writeln('<info>Optimizing index</info>');
+//        $this->manager->optimizeIndex($locale);
     }
-
-    private function getEntities(int $iteration) : array
+    
+    private function getEntities(int $iteration): array
     {
         return $this->repository->findBy([], null, $this->batchSize, $iteration * $this->batchSize);
     }
-
-    private function getLocales() : Collection
+    
+    private function getLocales(): Collection
     {
-        return $this->getContainer()->get('locale.repository')->matching(new Criteria());
+        $criteria = new Criteria();
+        $criteria->andWhere($criteria->expr()->eq('enabled', true));
+        
+        return $this->getContainer()->get('locale.repository')->matching($criteria);
     }
     
-    private function getRepository(string $serviceId) : RepositoryInterface
+    private function getRepository(string $serviceId): RepositoryInterface
     {
         if (false === $this->getContainer()->has($serviceId)) {
             return $this->getContainer()->get($this->type->getName() . '.repository');
         }
-
+        
         return $this->getContainer()->get($serviceId);
     }
     
-    private function getIterations(int $total, int $batchSize) : array
+    private function getIterations(int $total, int $batchSize): array
     {
         return range(0, ceil($total / $batchSize));
     }
     
-    private function getSearchManager() : SearchManagerInterface
+    private function getSearchManager(): SearchManagerInterface
     {
         return $this->getContainer()->get('search.manager');
     }

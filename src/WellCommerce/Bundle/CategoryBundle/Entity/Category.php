@@ -41,6 +41,7 @@ class Category implements CategoryInterface
     
     protected $productsCount = 0;
     protected $childrenCount = 0;
+    protected $symbol        = '';
     
     /**
      * @var null|CategoryInterface
@@ -62,6 +63,16 @@ class Category implements CategoryInterface
         $this->shops    = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->products = new ArrayCollection();
+    }
+    
+    public function getSymbol(): string
+    {
+        return $this->symbol;
+    }
+    
+    public function setSymbol(string $symbol)
+    {
+        $this->symbol = $symbol;
     }
     
     public function getParent()

@@ -66,19 +66,19 @@ final class OrderExtension extends \Twig_Extension
         ];
     }
     
-    public function hasCurrentOrder() : bool
+    public function hasCurrentOrder(): bool
     {
         return $this->orderProvider->hasCurrentOrder();
     }
     
-    public function getCurrentOrder() : OrderInterface
+    public function getCurrentOrder(): OrderInterface
     {
         return $this->orderProvider->getCurrentOrder();
     }
     
-    public function getCurrentOrderProducts() : array
+    public function getCurrentOrderProducts(): array
     {
-        return $this->orderProductDataSet->getResult('array', [], ['pagination' => false]);
+        return $this->orderProductDataSet->getResult('array', ['order_by' => 'id', 'order_dir' => 'desc'], ['pagination' => false]);
     }
     
     public function getShippingCostForCurrentOrder()

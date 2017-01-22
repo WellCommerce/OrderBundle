@@ -88,7 +88,7 @@ class LoadPageData extends AbstractDataFixture
         $page->addShop($this->shop);
         foreach ($this->getLocales() as $locale) {
             $page->translate($locale->getCode())->setName($name);
-            $page->translate($locale->getCode())->setSlug(Sluggable::makeSlug($name));
+            $page->translate($locale->getCode())->setSlug($locale->getCode() . '/' . Sluggable::makeSlug($name));
             $page->translate($locale->getCode())->setContent($this->defaultText);
         }
         

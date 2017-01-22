@@ -58,3 +58,9 @@ WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress:
             type: boolean
             nullable: true
             column: company_address
+        viesValid:
+            type: boolean
+            nullable: false
+            column: vies_valid
+            options:
+                default: false
