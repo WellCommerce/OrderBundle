@@ -58,7 +58,7 @@ class ShowcaseBoxController extends AbstractBoxController
         ]);
     }
     
-    protected function createConditionsCollection(int $status, int $categoryId): ConditionsCollection
+    private function createConditionsCollection(int $status, int $categoryId): ConditionsCollection
     {
         $conditions = new ConditionsCollection();
         $conditions->add(new Eq('status', $status));

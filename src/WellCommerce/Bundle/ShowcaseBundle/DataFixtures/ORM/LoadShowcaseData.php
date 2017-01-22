@@ -41,7 +41,7 @@ final class LoadShowcaseData extends AbstractDataFixture
                 'settings' => [
                     'status' => $this->getReference('product_status_featured')->getId(),
                 ],
-            ],
+            ]
         ]);
         
         $manager->flush();
