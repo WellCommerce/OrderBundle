@@ -1,7 +1,6 @@
 WellCommerce\Bundle\PaymentBundle\Entity\Payment:
     type: entity
     table: payment
-    repositoryClass: WellCommerce\Bundle\PaymentBundle\Repository\PaymentRepository
     id:
         id:
             type: integer

@@ -3,7 +3,6 @@ WellCommerce\Bundle\MediaBundle\Entity\Media:
     table: media
     cache:
         usage: NONSTRICT_READ_WRITE
-    repositoryClass: WellCommerce\Bundle\MediaBundle\Repository\MediaRepository
     id:
         id:
             type: integer

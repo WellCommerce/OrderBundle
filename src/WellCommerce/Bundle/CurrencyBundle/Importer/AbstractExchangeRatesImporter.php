@@ -13,6 +13,7 @@
 namespace WellCommerce\Bundle\CurrencyBundle\Importer;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\CurrencyBundle\Repository\CurrencyRateRepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Repository\CurrencyRepositoryInterface;
@@ -28,41 +29,41 @@ abstract class AbstractExchangeRatesImporter
      * @var CurrencyRepositoryInterface
      */
     protected $currencyRepository;
-
+    
     /**
-     * @var CurrencyRateRepositoryInterface
+     * @var RepositoryInterface
      */
-    protected $ratesRepository;
-
+    protected $currencyRateRepository;
+    
     /**
      * @var DoctrineHelperInterface
      */
     protected $helper;
-
+    
     /**
      * @var array
      */
     protected $managedCurrencies = [];
-
+    
     /**
-     * Constructor
+     * AbstractExchangeRatesImporter constructor.
      *
-     * @param CurrencyRepositoryInterface     $currencyRepository
-     * @param CurrencyRateRepositoryInterface $ratesRepository
-     * @param DoctrineHelperInterface         $helper
+     * @param CurrencyRepositoryInterface $currencyRepository
+     * @param RepositoryInterface         $currencyRateRepository
+     * @param DoctrineHelperInterface     $helper
      */
     public function __construct(
         CurrencyRepositoryInterface $currencyRepository,
-        CurrencyRateRepositoryInterface $ratesRepository,
+        RepositoryInterface $currencyRateRepository,
         DoctrineHelperInterface $helper
     ) {
-        $this->currencyRepository = $currencyRepository;
-        $this->ratesRepository    = $ratesRepository;
-        $this->helper             = $helper;
-
+        $this->currencyRepository     = $currencyRepository;
+        $this->currencyRateRepository = $currencyRateRepository;
+        $this->helper                 = $helper;
+        
         $this->setManagedCurrencies();
     }
-
+    
     /**
      * Adds new rate or updates existing one
      *
@@ -75,12 +76,12 @@ abstract class AbstractExchangeRatesImporter
         if (!in_array($currencyTo, $this->managedCurrencies)) {
             return false;
         }
-
-        $exchangeRate = $this->ratesRepository->findOneBy([
+        
+        $exchangeRate = $this->currencyRateRepository->findOneBy([
             'currencyFrom' => $currencyFrom,
-            'currencyTo'   => $currencyTo
+            'currencyTo'   => $currencyTo,
         ]);
-
+        
         if (null === $exchangeRate) {
             $exchangeRate = new CurrencyRate();
             $exchangeRate->setCurrencyFrom($currencyFrom);
@@ -90,10 +91,10 @@ abstract class AbstractExchangeRatesImporter
         } else {
             $exchangeRate->setExchangeRate($rate);
         }
-
+        
         return true;
     }
-
+    
     /**
      * Sets all managed currencies
      */
@@ -103,7 +104,7 @@ abstract class AbstractExchangeRatesImporter
             $this->managedCurrencies[] = $currency->getCode();
         }
     }
-
+    
     /**
      * Returns all currencies from repository
      *
@@ -113,7 +114,7 @@ abstract class AbstractExchangeRatesImporter
     {
         return $this->currencyRepository->findAll();
     }
-
+    
     /**
      * Formats the exchange rate
      *

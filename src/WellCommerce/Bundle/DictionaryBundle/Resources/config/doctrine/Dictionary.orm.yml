@@ -1,7 +1,6 @@
 WellCommerce\Bundle\DictionaryBundle\Entity\Dictionary:
     type: entity
     table: dictionary
-    repositoryClass: WellCommerce\Bundle\DictionaryBundle\Repository\DictionaryRepository
     uniqueConstraints:
         dictionary_unique_idx:
             columns:

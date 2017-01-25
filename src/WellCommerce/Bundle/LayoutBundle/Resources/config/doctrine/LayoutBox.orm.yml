@@ -3,7 +3,6 @@ WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: layout_box
-    repositoryClass: WellCommerce\Bundle\LayoutBundle\Repository\LayoutBoxRepository
     id:
         id:
             type: integer

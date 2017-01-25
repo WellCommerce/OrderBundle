@@ -18,6 +18,7 @@ use Symfony\Cmf\Component\Routing\RouteProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 use WellCommerce\Bundle\RoutingBundle\Repository\RouteRepositoryInterface;
 
@@ -37,17 +38,17 @@ final class RouteProvider implements RouteProviderInterface
     private $routingGeneratorMap;
     
     /**
-     * @var RouteRepositoryInterface
+     * @var RepositoryInterface
      */
     private $repository;
     
     /**
      * RouteProvider constructor.
      *
-     * @param array                    $routingGeneratorMap
-     * @param RouteRepositoryInterface $repository
+     * @param array               $routingGeneratorMap
+     * @param RepositoryInterface $repository
      */
-    public function __construct(array $routingGeneratorMap = [], RouteRepositoryInterface $repository)
+    public function __construct(array $routingGeneratorMap = [], RepositoryInterface $repository)
     {
         $this->routingGeneratorMap = $routingGeneratorMap;
         $this->repository          = $repository;
@@ -130,7 +131,7 @@ final class RouteProvider implements RouteProviderInterface
      *
      * @return SymfonyRoute
      */
-    private function createRoute(RouteInterface $resource) : SymfonyRoute
+    private function createRoute(RouteInterface $resource): SymfonyRoute
     {
         $settings                        = $this->getRouteGenerationSettings($resource);
         $settings['defaults']['id']      = $resource->getIdentifier()->getId();
@@ -144,7 +145,7 @@ final class RouteProvider implements RouteProviderInterface
         );
     }
     
-    private function getRouteGenerationSettings(RouteInterface $resource) : array
+    private function getRouteGenerationSettings(RouteInterface $resource): array
     {
         $class = ClassUtils::getRealClass(get_class($resource));
         
@@ -165,7 +166,7 @@ final class RouteProvider implements RouteProviderInterface
      *
      * @return string
      */
-    private function getPath(RouteInterface $resource, string $pattern) : string
+    private function getPath(RouteInterface $resource, string $pattern): string
     {
         if (strlen($pattern)) {
             return $resource->getPath() . self::PATH_PARAMS_SEPARATOR . $pattern;

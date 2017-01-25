@@ -27,7 +27,7 @@ class LayeredNavigationBoxController extends AbstractBoxController
     /**
      * {@inheritdoc}
      */
-    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
         $producers = $this->get('producer.dataset.front')->getResult('array', [
             'order_by'  => 'name',
@@ -51,16 +51,16 @@ class LayeredNavigationBoxController extends AbstractBoxController
         ]);
     }
     
-    private function getAttributesForCategory(CategoryInterface $category) : array
+    private function getAttributesForCategory(CategoryInterface $category): array
     {
-        $helper  = $this->get('variant.helper');
+        $helper     = $this->get('variant.helper');
         $attributes = $this->get('variant_option.repository')->getVariantOptionsForCategory($category);
-        $filter  = [];
+        $filter     = [];
         
         foreach ($attributes as $option) {
             $filter[$option['attributeName']][$option['value']] = $option['valueName'];
         }
-    
+        
         foreach ($filter as $id => &$data) {
             $helper->sortOptions($data);
         }

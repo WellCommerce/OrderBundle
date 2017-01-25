@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinctionInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Repository\ProductRepositoryInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
 /**
@@ -25,16 +25,16 @@ use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 final class DistinctionsTransformer extends AbstractDataSetTransformer
 {
     /**
-     * @var ProductRepositoryInterface
+     * @var RepositoryInterface
      */
     private $repository;
     
     /**
      * DistinctionsTransformer constructor.
      *
-     * @param ProductRepositoryInterface $repository
+     * @param RepositoryInterface $repository
      */
-    public function __construct(ProductRepositoryInterface $repository)
+    public function __construct(RepositoryInterface $repository)
     {
         $this->repository = $repository;
     }

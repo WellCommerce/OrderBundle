@@ -9,7 +9,6 @@
 WellCommerce\Bundle\AvailabilityBundle\Entity\Availability:
     type: entity
     table: availability
-    repositoryClass: WellCommerce\Bundle\AvailabilityBundle\Repository\AvailabilityRepository
     id:
         id:
             type: integer

@@ -10,7 +10,6 @@ WellCommerce\Bundle\RoutingBundle\Entity\Route:
         fieldName: type
     discriminatorMap:
         route: WellCommerce\Bundle\RoutingBundle\Entity\Route
-    repositoryClass: WellCommerce\Bundle\RoutingBundle\Repository\RouteRepository
     id:
         id:
             type: integer

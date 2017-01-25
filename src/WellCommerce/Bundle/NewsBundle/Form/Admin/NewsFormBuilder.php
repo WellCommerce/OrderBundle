@@ -12,7 +12,6 @@
 namespace WellCommerce\Bundle\NewsBundle\Form\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
-use WellCommerce\Bundle\NewsBundle\Repository\NewsRepositoryInterface;
 use WellCommerce\Component\Form\DataTransformer\DateTransformer;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
@@ -28,8 +27,6 @@ class NewsFormBuilder extends AbstractFormBuilder
      */
     public function buildForm(FormInterface $form)
     {
-        $repository = $this->getNewsRepository();
-        
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'required_data',
             'label' => $this->trans('common.fieldset.general'),
@@ -60,7 +57,7 @@ class NewsFormBuilder extends AbstractFormBuilder
         $languageData = $requiredData->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
             'label'       => $this->trans('common.fieldset.translations'),
-            'transformer' => $this->getRepositoryTransformer('translation', $repository),
+            'transformer' => $this->getRepositoryTransformer('translation', $this->get('news.repository')),
         ]));
         
         $name = $languageData->addChild($this->getElement('text_field', [
@@ -109,16 +106,11 @@ class NewsFormBuilder extends AbstractFormBuilder
             'session_name' => $this->getRequestHelper()->getSessionName(),
         ]));
         
-        $this->addMetadataFieldset($form, $repository);
+        $this->addMetadataFieldset($form, $this->get('news.repository'));
         
         $this->addShopsFieldset($form);
         
         $form->addFilter($this->getFilter('trim'));
         $form->addFilter($this->getFilter('secure'));
-    }
-    
-    private function getNewsRepository() : NewsRepositoryInterface
-    {
-        return $this->get('news.repository');
     }
 }

@@ -9,7 +9,6 @@
 WellCommerce\Bundle\ClientBundle\Entity\ClientGroup:
     type: entity
     table: client_group
-    repositoryClass: WellCommerce\Bundle\ClientBundle\Repository\ClientGroupRepository
     id:
         id:
             type: integer

@@ -1,7 +1,6 @@
 WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost:
     type: entity
     table: shipping_method_cost
-    repositoryClass: WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodCostRepository
     id:
         id:
             type: integer

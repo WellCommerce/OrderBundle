@@ -1,7 +1,6 @@
 WellCommerce\Bundle\ProductBundle\Entity\Variant:
     type: entity
     table: variant
-    repositoryClass: WellCommerce\Bundle\ProductBundle\Repository\VariantRepository
     id:
         id:
             type: integer

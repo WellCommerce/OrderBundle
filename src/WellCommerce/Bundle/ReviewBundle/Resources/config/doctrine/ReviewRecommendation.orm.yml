@@ -1,7 +1,6 @@
 WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendation:
     type: entity
     table: review_recommendation
-    repositoryClass: WellCommerce\Bundle\ReviewBundle\Repository\ReviewRecommendationRepository
     id:
         id:
             type: integer

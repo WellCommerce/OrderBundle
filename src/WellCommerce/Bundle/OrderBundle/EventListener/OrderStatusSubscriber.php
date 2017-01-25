@@ -13,8 +13,9 @@ namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use WellCommerce\Bundle\CoreBundle\Event\EntityEvent;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroupInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
-use WellCommerce\Bundle\OrderBundle\Repository\OrderStatusGroupRepositoryInterface;
 
 /**
  * Class OrderStatusSubscriber
@@ -24,18 +25,18 @@ use WellCommerce\Bundle\OrderBundle\Repository\OrderStatusGroupRepositoryInterfa
 final class OrderStatusSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var OrderStatusGroupRepositoryInterface
+     * @var RepositoryInterface
      */
-    private $orderStatusGroupRepository;
+    private $repository;
     
     /**
      * OrderStatusSubscriber constructor.
      *
-     * @param OrderStatusGroupRepositoryInterface $orderStatusGroupRepository
+     * @param RepositoryInterface $repository
      */
-    public function __construct(OrderStatusGroupRepositoryInterface $orderStatusGroupRepository)
+    public function __construct(RepositoryInterface $repository)
     {
-        $this->orderStatusGroupRepository = $orderStatusGroupRepository;
+        $this->repository = $repository;
     }
     
     public static function getSubscribedEvents()
@@ -49,7 +50,12 @@ final class OrderStatusSubscriber implements EventSubscriberInterface
     {
         $orderStatus = $event->getEntity();
         if ($orderStatus instanceof OrderStatusInterface) {
-            $orderStatus->setOrderStatusGroup($this->orderStatusGroupRepository->findOneBy([]));
+            $orderStatus->setOrderStatusGroup($this->getDefaultOrderStatusGroup());
         }
+    }
+    
+    private function getDefaultOrderStatusGroup(): OrderStatusGroupInterface
+    {
+        return $this->repository->findOneBy([]);
     }
 }

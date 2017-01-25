@@ -3,7 +3,6 @@ WellCommerce\Bundle\PageBundle\Entity\Page:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: page
-    repositoryClass: WellCommerce\Bundle\PageBundle\Repository\PageRepository
     id:
         id:
             type: integer

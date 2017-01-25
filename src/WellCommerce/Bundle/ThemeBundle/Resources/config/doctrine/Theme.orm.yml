@@ -3,7 +3,6 @@ WellCommerce\Bundle\ThemeBundle\Entity\Theme:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: theme
-    repositoryClass: WellCommerce\Bundle\ThemeBundle\Repository\ThemeRepository
     id:
         id:
             type: integer

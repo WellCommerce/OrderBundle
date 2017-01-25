@@ -1,7 +1,6 @@
 WellCommerce\Bundle\ShipmentBundle\Entity\Shipment:
     type: entity
     table: shipment
-    repositoryClass: WellCommerce\Bundle\ShipmentBundle\Repository\ShipmentRepository
     id:
         id:
             type: integer

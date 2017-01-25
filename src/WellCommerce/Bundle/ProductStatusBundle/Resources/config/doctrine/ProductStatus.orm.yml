@@ -3,7 +3,6 @@ WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: product_status
-    repositoryClass: WellCommerce\Bundle\ProductStatusBundle\Repository\ProductStatusRepository
     id:
         id:
             type: integer

@@ -3,7 +3,6 @@ WellCommerce\Bundle\TaxBundle\Entity\Tax:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: tax
-    repositoryClass: WellCommerce\Bundle\TaxBundle\Repository\TaxRepository
     id:
         id:
             type: integer

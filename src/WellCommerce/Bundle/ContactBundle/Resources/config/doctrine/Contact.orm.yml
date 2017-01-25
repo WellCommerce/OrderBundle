@@ -11,7 +11,6 @@ WellCommerce\Bundle\ContactBundle\Entity\Contact:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: contact
-    repositoryClass: WellCommerce\Bundle\ContactBundle\Repository\ContactRepository
     id:
         id:
             type: integer

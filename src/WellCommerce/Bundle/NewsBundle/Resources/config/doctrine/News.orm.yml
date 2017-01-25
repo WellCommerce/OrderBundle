@@ -3,7 +3,6 @@ WellCommerce\Bundle\NewsBundle\Entity\News:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: news
-    repositoryClass: WellCommerce\Bundle\NewsBundle\Repository\NewsRepository
     id:
         id:
             type: integer

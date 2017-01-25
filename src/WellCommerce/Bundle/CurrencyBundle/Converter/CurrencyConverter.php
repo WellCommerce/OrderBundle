@@ -13,6 +13,7 @@
 namespace WellCommerce\Bundle\CurrencyBundle\Converter;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\CurrencyBundle\Exception\MissingCurrencyRateException;
 use WellCommerce\Bundle\CurrencyBundle\Exception\MissingCurrencyRatesException;
@@ -26,32 +27,32 @@ use WellCommerce\Bundle\CurrencyBundle\Repository\CurrencyRateRepositoryInterfac
 class CurrencyConverter implements CurrencyConverterInterface
 {
     /**
-     * @var CurrencyRateRepositoryInterface
+     * @var RepositoryInterface
      */
-    protected $currencyRateRepository;
-
+    protected $repository;
+    
     /**
      * @var array
      */
     protected $exchangeRates = [];
-
+    
     /**
      * @var RequestHelperInterface
      */
     protected $requestHelper;
-
+    
     /**
-     * Constructor
+     * CurrencyConverter constructor.
      *
-     * @param CurrencyRateRepositoryInterface $currencyRateRepository
-     * @param RequestHelperInterface          $requestHelper
+     * @param RepositoryInterface    $repository
+     * @param RequestHelperInterface $requestHelper
      */
-    public function __construct(CurrencyRateRepositoryInterface $currencyRateRepository, RequestHelperInterface $requestHelper)
+    public function __construct(RepositoryInterface $repository, RequestHelperInterface $requestHelper)
     {
-        $this->currencyRateRepository = $currencyRateRepository;
-        $this->requestHelper          = $requestHelper;
+        $this->repository    = $repository;
+        $this->requestHelper = $requestHelper;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -59,10 +60,10 @@ class CurrencyConverter implements CurrencyConverterInterface
     {
         $exchangeRate    = $this->getExchangeRate($baseCurrency, $targetCurrency);
         $exchangedAmount = round($amount * $exchangeRate, 2);
-
+        
         return round($exchangedAmount * $quantity, 2);
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -70,16 +71,16 @@ class CurrencyConverter implements CurrencyConverterInterface
     {
         $baseCurrency   = (null === $baseCurrency) ? $this->requestHelper->getCurrentCurrency() : $baseCurrency;
         $targetCurrency = (null === $targetCurrency) ? $this->requestHelper->getCurrentCurrency() : $targetCurrency;
-
+        
         $this->loadExchangeRates($targetCurrency);
-
+        
         if (!isset($this->exchangeRates[$targetCurrency][$baseCurrency])) {
             throw new MissingCurrencyRateException($baseCurrency, $targetCurrency);
         }
-
+        
         return $this->exchangeRates[$targetCurrency][$baseCurrency];
     }
-
+    
     /**
      * Sets exchange rates for target currency
      *
@@ -88,7 +89,7 @@ class CurrencyConverter implements CurrencyConverterInterface
     protected function loadExchangeRates($targetCurrency)
     {
         if (!isset($this->exchangeRates[$targetCurrency])) {
-            $currencyRates = $this->currencyRateRepository->findBy(['currencyTo' => $targetCurrency]);
+            $currencyRates = $this->repository->findBy(['currencyTo' => $targetCurrency]);
             if (count($currencyRates) === 0) {
                 throw new MissingCurrencyRatesException($targetCurrency);
             }
@@ -97,7 +98,7 @@ class CurrencyConverter implements CurrencyConverterInterface
             }
         }
     }
-
+    
     /**
      * Sets exchange rate for target and base currency pair
      *

@@ -12,8 +12,10 @@
 
 namespace WellCommerce\Bundle\AttributeBundle\Controller\Admin;
 
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AttributeBundle\Repository\AttributeGroupRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 
@@ -24,19 +26,25 @@ use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
  */
 class AttributeGroupController extends AbstractAdminController
 {
-    public function ajaxIndexAction(Request $request) : JsonResponse
+    public function ajaxIndexAction(Request $request): JsonResponse
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToAction('index');
         }
         
+        $groups = $this->manager->getRepository()->matching(new Criteria());
+        $sets   = [];
+        
+        $groups->map(function (AttributeGroupInterface $attributeGroup) use (&$sets) {
+            $sets[] = [
+                'id'               => $attributeGroup->getId(),
+                'name'             => $attributeGroup->translate()->getName(),
+                'current_category' => false,
+            ];
+        });
+        
         return $this->jsonResponse([
-            'sets' => $this->getRepository()->getAttributeGroupSet()
+            'sets' => $sets,
         ]);
-    }
-    
-    protected function getRepository() : AttributeGroupRepositoryInterface
-    {
-        return $this->getManager()->getRepository();
     }
 }

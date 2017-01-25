@@ -1,7 +1,6 @@
 WellCommerce\Bundle\DistributionBundle\Entity\Package:
     type: entity
     table: distribution_package
-    repositoryClass: WellCommerce\Bundle\DistributionBundle\Repository\PackageRepository
     id:
         id:
             type: integer
