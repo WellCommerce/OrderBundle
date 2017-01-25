@@ -24,7 +24,7 @@ use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
  */
 class WishlistRepository extends EntityRepository implements WishlistRepositoryInterface
 {
-    public function getClientWishlistCollection(ClientInterface $client) : Collection
+    public function getClientWishlistCollection(ClientInterface $client): Collection
     {
         $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('client', $client));
