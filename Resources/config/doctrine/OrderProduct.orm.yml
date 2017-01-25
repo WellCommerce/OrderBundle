@@ -1,7 +1,6 @@
 WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
     type: entity
     table: orders_product
-    repositoryClass: WellCommerce\Bundle\OrderBundle\Repository\OrderProductRepository
     id:
         id:
             type: integer
