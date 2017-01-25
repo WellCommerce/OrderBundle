@@ -17,6 +17,7 @@ use Symfony\Component\Config\Util\XmlUtils;
 use WellCommerce\Bundle\AdminBundle\Entity\AdminMenu;
 use WellCommerce\Bundle\AdminBundle\Repository\AdminMenuRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**
  * Class XmlImporter
@@ -31,20 +32,20 @@ final class XmlImporter implements AdminMenuImporterInterface
     private $doctrineHelper;
     
     /**
-     * @var AdminMenuRepositoryInterface
+     * @var RepositoryInterface
      */
-    private $adminMenuRepository;
+    private $repository;
     
     /**
-     * Constructor
+     * XmlImporter constructor.
      *
-     * @param DoctrineHelperInterface      $doctrineHelper
-     * @param AdminMenuRepositoryInterface $adminMenuRepository
+     * @param DoctrineHelperInterface $doctrineHelper
+     * @param RepositoryInterface     $repository
      */
-    public function __construct(DoctrineHelperInterface $doctrineHelper, AdminMenuRepositoryInterface $adminMenuRepository)
+    public function __construct(DoctrineHelperInterface $doctrineHelper, RepositoryInterface $repository)
     {
-        $this->doctrineHelper      = $doctrineHelper;
-        $this->adminMenuRepository = $adminMenuRepository;
+        $this->doctrineHelper = $doctrineHelper;
+        $this->repository     = $repository;
     }
     
     /**
@@ -80,8 +81,8 @@ final class XmlImporter implements AdminMenuImporterInterface
     protected function addMenuItem(\SimpleXMLElement $item)
     {
         $em            = $this->doctrineHelper->getEntityManager();
-        $adminMenuItem = $this->adminMenuRepository->findOneBy(['identifier' => (string)$item->identifier]);
-        $parent        = $this->adminMenuRepository->findOneBy(['identifier' => (string)$item->parent]);
+        $adminMenuItem = $this->repository->findOneBy(['identifier' => (string)$item->identifier]);
+        $parent        = $this->repository->findOneBy(['identifier' => (string)$item->parent]);
         
         if (null === $adminMenuItem) {
             $adminMenuItem = new AdminMenu();

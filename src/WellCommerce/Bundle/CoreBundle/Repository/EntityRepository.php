@@ -24,28 +24,25 @@ use WellCommerce\Bundle\CoreBundle\Helper\Helper;
  */
 class EntityRepository extends BaseEntityRepository implements RepositoryInterface
 {
-    const TRANSLATIONS_ASSOCIATION_NAME  = 'translations';
-    const TRANSLATIONS_ASSOCIATION_FIELD = 'translatable';
-
-    public function getMetadata() : ClassMetadata
+    public function getMetadata(): ClassMetadata
     {
         return $this->_class;
     }
-
-    public function getAlias() : string
+    
+    public function getAlias(): string
     {
         $parts      = explode('\\', $this->getEntityName());
         $entityName = end($parts);
-
+        
         return Helper::snake($entityName);
     }
-
-    public function getQueryBuilder() : QueryBuilder
+    
+    public function getQueryBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder($this->getAlias());
     }
-
-    public function getTotalCount() : int
+    
+    public function getTotalCount(): int
     {
         $queryBuilder = $this->getQueryBuilder();
         $query        = $queryBuilder->getQuery();
@@ -53,7 +50,7 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
         $query->useResultCache(true);
         $paginator = new Paginator($query, true);
         $paginator->setUseOutputWalkers(false);
-
+        
         return $paginator->count();
     }
 }

@@ -45,6 +45,7 @@ doctrine:
         auto_generate_proxy_classes: false
         entity_managers:
             default:
+                default_repository_class: WellCommerce\Bundle\CoreBundle\Repository\EntityRepository
                 query_cache_driver:
                     type: service
                     id: doctrine_cache.providers.file_system

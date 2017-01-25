@@ -18,6 +18,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use WellCommerce\Bundle\AdminBundle\Entity\AdminMenuInterface;
 use WellCommerce\Bundle\AdminBundle\Repository\AdminMenuRepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**
  * Class AdminMenuProvider
@@ -34,33 +35,33 @@ class AdminMenuProvider
     protected $kernel;
     
     /**
-     * @var AdminMenuRepositoryInterface
+     * @var RepositoryInterface
      */
-    protected $adminMenuRepository;
+    protected $repository;
     
     /**
      * AdminMenuProvider constructor.
      *
-     * @param KernelInterface              $kernel
-     * @param AdminMenuRepositoryInterface $repository
+     * @param KernelInterface     $kernel
+     * @param RepositoryInterface $repository
      */
-    public function __construct(KernelInterface $kernel, AdminMenuRepositoryInterface $repository)
+    public function __construct(KernelInterface $kernel, RepositoryInterface $repository)
     {
-        $this->kernel              = $kernel;
-        $this->adminMenuRepository = $repository;
+        $this->kernel     = $kernel;
+        $this->repository = $repository;
     }
     
     public function getMenu()
     {
         if (is_file($cache = $this->kernel->getCacheDir() . '/' . self::CACHE_FILENAME)) {
             $menu = require $cache;
-
+            
             return $menu;
         }
-
+        
         $menu = $this->generateMenu();
         $this->writeCache($menu);
-
+        
         return $menu;
     }
     
@@ -69,7 +70,7 @@ class AdminMenuProvider
         $criteria = new Criteria();
         $criteria->orderBy(['hierarchy' => 'asc']);
         
-        $collection = $this->adminMenuRepository->matching($criteria);
+        $collection = $this->repository->matching($criteria);
         $elements   = $this->filterElements($collection, null);
         $tree       = $this->generateTree($collection, $elements);
         
@@ -91,7 +92,7 @@ class AdminMenuProvider
                 'routeName' => $menuItem->getRouteName(),
                 'cssClass'  => $menuItem->getCssClass(),
                 'name'      => $menuItem->getName(),
-                'children'  => $this->generateTree($collection, $this->filterElements($collection, $menuItem))
+                'children'  => $this->generateTree($collection, $this->filterElements($collection, $menuItem)),
             ];
         });
         
