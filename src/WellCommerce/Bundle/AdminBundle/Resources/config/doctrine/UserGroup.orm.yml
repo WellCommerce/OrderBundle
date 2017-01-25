@@ -9,7 +9,6 @@
 WellCommerce\Bundle\AdminBundle\Entity\UserGroup:
     type: entity
     table: user_group
-    repositoryClass: WellCommerce\Bundle\AdminBundle\Repository\UserGroupRepository
     id:
         id:
             type: integer

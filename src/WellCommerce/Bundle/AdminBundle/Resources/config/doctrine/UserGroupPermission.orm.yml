@@ -9,7 +9,6 @@
 WellCommerce\Bundle\AdminBundle\Entity\UserGroupPermission:
     type: entity
     table: user_group_permission
-    repositoryClass: WellCommerce\Bundle\AdminBundle\Repository\UserGroupPermissionRepository
     id:
         id:
             type: integer
