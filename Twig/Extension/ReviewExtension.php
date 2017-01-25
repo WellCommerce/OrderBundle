@@ -12,8 +12,8 @@
 namespace WellCommerce\Bundle\ReviewBundle\Twig\Extension;
 
 use Doctrine\Common\Collections\Collection;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
-use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRecommendationRepositoryInterface;
 
 /**
  * Class ReviewExtension
@@ -23,16 +23,16 @@ use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRecommendationRepositoryIn
 final class ReviewExtension extends \Twig_Extension
 {
     /**
-     * @var ReviewRecommendationRepositoryInterface
+     * @var RepositoryInterface
      */
     protected $repository;
     
     /**
      * ReviewExtension constructor.
      *
-     * @param ReviewRecommendationRepositoryInterface $repository
+     * @param RepositoryInterface $repository
      */
-    public function __construct(ReviewRecommendationRepositoryInterface $repository)
+    public function __construct(RepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -54,7 +54,7 @@ final class ReviewExtension extends \Twig_Extension
         return 'review';
     }
     
-    public function getReviewAverage(Collection $collection) : float
+    public function getReviewAverage(Collection $collection): float
     {
         $totalRating  = 0;
         $reviewsTotal = $collection->count();
@@ -70,7 +70,7 @@ final class ReviewExtension extends \Twig_Extension
     {
         $reviewRecommendations = $this->repository->findBy([
             'review' => $id,
-            'liked'  => true
+            'liked'  => true,
         ]);
         
         return count($reviewRecommendations);
@@ -80,7 +80,7 @@ final class ReviewExtension extends \Twig_Extension
     {
         $reviewRecommendations = $this->repository->findBy([
             'review'  => $id,
-            'unliked' => true
+            'unliked' => true,
         ]);
         
         return count($reviewRecommendations);
