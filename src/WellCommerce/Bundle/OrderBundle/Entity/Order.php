@@ -13,6 +13,7 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareTrait;
@@ -22,7 +23,6 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Timestampable\TimestampableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareTrait;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
@@ -40,7 +40,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
 class Order implements OrderInterface
 {
     use IdentifiableTrait;
-    use TimestampableTrait;
+    use Timestampable;
     use ShopAwareTrait;
     use ShippingMethodAwareTrait;
     use PaymentMethodAwareTrait;

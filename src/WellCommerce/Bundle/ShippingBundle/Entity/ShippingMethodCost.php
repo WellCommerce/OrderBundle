@@ -2,8 +2,8 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\Entity;
 
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Timestampable\TimestampableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
 
 /**
@@ -14,7 +14,7 @@ use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
 class ShippingMethodCost implements ShippingMethodCostInterface
 {
     use IdentifiableTrait;
-    use TimestampableTrait;
+    use Timestampable;
     use ShippingMethodAwareTrait;
     
     protected $rangeFrom = 0.00;
@@ -34,12 +34,12 @@ class ShippingMethodCost implements ShippingMethodCostInterface
     {
         return $this->rangeFrom;
     }
-
+    
     public function setRangeFrom(float $rangeFrom)
     {
         $this->rangeFrom = (float)$rangeFrom;
     }
-
+    
     public function getRangeTo(): float
     {
         return $this->rangeTo;
