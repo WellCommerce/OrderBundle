@@ -14,8 +14,10 @@ namespace WellCommerce\Bundle\WishlistBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
 use WellCommerce\Bundle\WishlistBundle\Manager\WishlistManager;
 
 /**
@@ -25,33 +27,42 @@ use WellCommerce\Bundle\WishlistBundle\Manager\WishlistManager;
  */
 class WishlistController extends AbstractFrontController
 {
-    public function indexAction() : Response
+    public function indexAction(): Response
     {
         return $this->displayTemplate('index');
     }
     
-    public function addAction(ProductInterface $product) : RedirectResponse
+    public function addAction(ProductInterface $product): RedirectResponse
     {
-        $this->getManager()->addProductToWishlist(
-            $product,
-            $this->getAuthenticatedClient()
-        );
+        $wishlist = $this->findWishlist($product);
+        
+        if (!$wishlist instanceof WishlistInterface) {
+            /** @var WishlistInterface $wishlist */
+            $wishlist = $this->manager->initResource();
+            $wishlist->setClient($this->getAuthenticatedClient());
+            $wishlist->setProduct($product);
+            $this->manager->createResource($wishlist);
+        }
         
         return $this->redirectToAction('index');
     }
     
-    public function deleteAction(ProductInterface $product) : RedirectResponse
+    public function deleteAction(ProductInterface $product): RedirectResponse
     {
-        $this->getManager()->deleteProductFromWishlist(
-            $product,
-            $this->getAuthenticatedClient()
-        );
+        $wishlist = $this->findWishlist($product);
+        
+        if ($wishlist instanceof WishlistInterface) {
+            $this->manager->removeResource($wishlist);
+        }
         
         return $this->redirectToAction('index');
     }
     
-    protected function getManager() : WishlistManager
+    private function findWishlist(ProductInterface $product)
     {
-        return parent::getManager();
+        return $this->manager->getRepository()->findOneBy([
+            'client'  => $this->getAuthenticatedClient(),
+            'product' => $product,
+        ]);
     }
 }

@@ -88,6 +88,36 @@ final class AutoRegisterServicesPass implements CompilerPassInterface
         }
     }
     
+    private function registerEntityFactory(ContainerBuilder $container)
+    {
+        $definitionFactory = new EntityFactoryDefinitionFactory();
+        $classes           = $this->classFinder->findEntityClasses($this->bundle);
+        foreach ($classes as $baseName => $className) {
+            $entityFactoryServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'factory');
+            if (false === $container->has($entityFactoryServiceId)) {
+                $definition = $definitionFactory->create($className);
+                $container->setDefinition($entityFactoryServiceId, $definition);
+            }
+        }
+    }
+    
+    private function registerManager(ContainerBuilder $container)
+    {
+        $definitionFactory = new ManagerDefinitionFactory();
+        $classes           = $this->classFinder->findManagerClasses($this->bundle);
+        foreach ($classes as $baseName => $className) {
+            $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'manager');
+            if (false === $container->has($managerServiceId)) {
+                $factoryServiceId    = $this->serviceIdGenerator->getServiceId($baseName, 'factory');
+                $repositoryServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'repository');
+                $factory             = $container->has($factoryServiceId) ? new Reference($factoryServiceId) : null;
+                $repository          = $container->has($repositoryServiceId) ? new Reference($repositoryServiceId) : null;
+                $definition          = $definitionFactory->create($className, $factory, $repository);
+                $container->setDefinition($managerServiceId, $definition);
+            }
+        }
+    }
+    
     private function registerAdminDataSets(ContainerBuilder $container)
     {
         $definitionFactory = new DataSetDefinitionFactory();
@@ -163,36 +193,6 @@ final class AutoRegisterServicesPass implements CompilerPassInterface
                     $definition = $definitionFactory->create($dataSetServiceId, $identifier, $className);
                     $container->setDefinition($dataGridServiceId, $definition);
                 }
-            }
-        }
-    }
-    
-    private function registerEntityFactory(ContainerBuilder $container)
-    {
-        $definitionFactory = new EntityFactoryDefinitionFactory();
-        $classes           = $this->classFinder->findEntityClasses($this->bundle);
-        foreach ($classes as $baseName => $className) {
-            $entityFactoryServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'factory');
-            if (false === $container->has($entityFactoryServiceId)) {
-                $definition = $definitionFactory->create($className);
-                $container->setDefinition($entityFactoryServiceId, $definition);
-            }
-        }
-    }
-    
-    private function registerManager(ContainerBuilder $container)
-    {
-        $definitionFactory = new ManagerDefinitionFactory();
-        $classes           = $this->classFinder->findManagerClasses($this->bundle);
-        foreach ($classes as $baseName => $className) {
-            $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'manager');
-            if (false === $container->has($managerServiceId)) {
-                $factoryServiceId    = $this->serviceIdGenerator->getServiceId($baseName, 'factory');
-                $repositoryServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'repository');
-                $factory             = $container->has($factoryServiceId) ? new Reference($factoryServiceId) : null;
-                $repository          = $container->has($repositoryServiceId) ? new Reference($repositoryServiceId) : null;
-                $definition          = $definitionFactory->create($className, $factory, $repository);
-                $container->setDefinition($managerServiceId, $definition);
             }
         }
     }

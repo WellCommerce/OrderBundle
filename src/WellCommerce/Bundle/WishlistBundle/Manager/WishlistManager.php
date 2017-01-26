@@ -24,33 +24,4 @@ use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
  */
 final class WishlistManager extends AbstractManager
 {
-    public function addProductToWishlist(ProductInterface $product, ClientInterface $client)
-    {
-        $wishlist = $this->findWishlist($product, $client);
-        
-        if (!$wishlist instanceof WishlistInterface) {
-            /** @var WishlistInterface $wishlist */
-            $wishlist = $this->initResource();
-            $wishlist->setClient($client);
-            $wishlist->setProduct($product);
-            $this->createResource($wishlist);
-        }
-    }
-    
-    public function deleteProductFromWishlist(ProductInterface $product, ClientInterface $client)
-    {
-        $wishlist = $this->findWishlist($product, $client);
-        
-        if ($wishlist instanceof WishlistInterface) {
-            $this->removeResource($wishlist);
-        }
-    }
-    
-    private function findWishlist(ProductInterface $product, ClientInterface $client)
-    {
-        return $this->getRepository()->findOneBy([
-            'client'  => $client,
-            'product' => $product
-        ]);
-    }
 }

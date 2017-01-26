@@ -42,23 +42,15 @@ class NewsExtension extends \Twig_Extension
         ];
     }
     
-    /**
-     * @param int $limit
-     *
-     * @return array
-     */
-    public function getNews(int $limit = 4) : array
+    public function getNews(int $limit = 4): array
     {
         return $this->dataset->getResult('array', [
             'order_by'  => 'startDate',
             'order_dir' => 'desc',
-            'limit' => $limit
+            'limit'     => $limit,
         ]);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'news';
