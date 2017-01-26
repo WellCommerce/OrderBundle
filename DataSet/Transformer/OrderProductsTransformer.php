@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\OrderBundle\DataSet\Transformer;
 
 use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
-use WellCommerce\Bundle\OrderBundle\Repository\OrderProductRepository;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
 /**
@@ -22,19 +22,19 @@ use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderProductsTransformer extends AbstractDataSetTransformer
+final class OrderProductsTransformer extends AbstractDataSetTransformer
 {
     /**
-     * @var OrderProductRepository
+     * @var RepositoryInterface
      */
     private $repository;
     
     /**
      * OrderProductsTransformer constructor.
      *
-     * @param OrderProductRepository $repository
+     * @param RepositoryInterface $repository
      */
-    public function __construct(OrderProductRepository $repository)
+    public function __construct(RepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -56,7 +56,7 @@ class OrderProductsTransformer extends AbstractDataSetTransformer
             
             if ($orderProduct->hasVariant()) {
                 foreach ($orderProduct->getOptions() as $name => $value) {
-                    $fullName .= ' - '.$value;
+                    $fullName .= ' - ' . $value;
                 }
             }
             
