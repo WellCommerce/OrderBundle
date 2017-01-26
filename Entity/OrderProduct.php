@@ -2,9 +2,9 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Timestampable\TimestampableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
@@ -17,7 +17,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
 class OrderProduct implements OrderProductInterface
 {
     use IdentifiableTrait;
-    use TimestampableTrait;
+    use Timestampable;
     use ProductAwareTrait;
     use VariantAwareTrait;
     use OrderAwareTrait;
