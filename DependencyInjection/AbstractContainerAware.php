@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Flash\FlashHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Image\ImageHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelperInterface;

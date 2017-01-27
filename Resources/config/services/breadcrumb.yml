@@ -1,6 +1,6 @@
 services:
     breadcrumb.subscriber:
-        class: WellCommerce\Bundle\CoreBundle\EventListener\BreadcrumbSubscriber
+        class: WellCommerce\Bundle\DoctrineBundle\EventListener\BreadcrumbSubscriber
         tags:
             - { name: kernel.event_subscriber }
         calls:

@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\DataSet;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Column\ColumnCollection;
 use WellCommerce\Component\DataSet\Column\ColumnInterface;
