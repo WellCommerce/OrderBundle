@@ -15,14 +15,29 @@ namespace WellCommerce\Bundle\DoctrineBundle\Factory;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
- * Interface EntityFactoryInterface
+ * Class EntityFactory
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface EntityFactoryInterface
+final class EntityFactory implements EntityFactoryInterface
 {
     /**
-     * @return EntityInterface
+     * @var string
      */
-    public function create();
+    private $class;
+    
+    /**
+     * EntityFactory constructor.
+     *
+     * @param string $class
+     */
+    public function __construct(string $class)
+    {
+        $this->class = $class;
+    }
+    
+    public function create(): EntityInterface
+    {
+        return new $this->class;
+    }
 }

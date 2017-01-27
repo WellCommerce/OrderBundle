@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
  *
  * This file is part of the WellCommerce package.
@@ -25,7 +25,7 @@ class RegisterClassMetadataEnhancerPass extends AbstractCollectionPass
      * @var string
      */
     protected $collectionServiceId = 'doctrine.class_metadata.enhancer_collection';
-
+    
     /**
      * @var string
      */

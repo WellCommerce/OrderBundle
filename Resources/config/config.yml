@@ -45,6 +45,7 @@ doctrine:
         auto_generate_proxy_classes: false
         entity_managers:
             default:
+                default_repository_class: WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository
                 query_cache_driver:
                     type: service
                     id: doctrine_cache.providers.file_system
@@ -60,6 +61,7 @@ doctrine:
                         CONCAT_WS: DoctrineExtensions\Query\Mysql\ConcatWs
                         GROUP_CONCAT: DoctrineExtensions\Query\Mysql\GroupConcat
                         IF_ELSE: DoctrineExtensions\Query\Mysql\IfElse
+                        IF_NULL: DoctrineExtensions\Query\Mysql\IfNull
                         DAY: DoctrineExtensions\Query\Mysql\Day
                         MONTH: DoctrineExtensions\Query\Mysql\Month
                         QUARTER: DoctrineExtensions\Query\Mysql\Quarter
