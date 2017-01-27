@@ -18,3 +18,9 @@ services:
             - { name: kernel.event_subscriber }
         calls:
             - [setContainer, ['@service_container']]
+
+    app.install.command:
+        class: WellCommerce\Bundle\AppBundle\Command\InstallCommand
+        tags:
+            - { name: console.command }
+        arguments: ['@distribution.console.action_executor']

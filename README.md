@@ -65,7 +65,7 @@ Composer will install WellCommerce and all its dependencies under the `path/to/w
 After the download is complete, run following command to create a database, install assets and import sample data:
 
     cd path/to/wellcommerce
-    php app/console wellcommerce:install
+    php app/console wellcommerce:app:install
 
 Contributors
 ------------

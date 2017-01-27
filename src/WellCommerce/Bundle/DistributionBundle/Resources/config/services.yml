@@ -16,12 +16,6 @@ services:
         class: WellCommerce\Bundle\DistributionBundle\Console\ConsoleActionExecutor
         arguments: ['@kernel']
 
-    distribution.install.command:
-        class: WellCommerce\Bundle\DistributionBundle\Command\InstallCommand
-        tags:
-            - { name: console.command }
-        arguments: ['@distribution.console.action_executor']
-
     distribution.bundle.locator:
         class: WellCommerce\Bundle\DistributionBundle\Locator\BundleLocator
         public: false

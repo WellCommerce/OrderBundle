@@ -1,16 +1,16 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
- * 
+ *
  * This file is part of the WellCommerce package.
  *
  * (c) Adam Piotrowski <adam@wellcommerce.org>
- * 
+ *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\DistributionBundle\Command;
+namespace WellCommerce\Bundle\AppBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,22 +44,13 @@ class InstallCommand extends Command
         parent::__construct();
         $this->executor = $executor;
     }
-    
-    /**
-     * {@inheritdoc}
-     */
+
     protected function configure()
     {
-        $this->setDescription('Installs WellCommerce');
-        $this->setName('wellcommerce:install');
+        $this->setDescription('Installs WellCommerce Application');
+        $this->setName('wellcommerce:app:install');
     }
     
-    /**
-     * Executes the actions
-     *
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $actions = [
@@ -67,7 +58,7 @@ class InstallCommand extends Command
             new InstallDatabaseAction(),
             new InstallFixturesAction(),
             new ReindexAction(),
-            new InstallAssetsAction()
+            new InstallAssetsAction(),
         ];
         
         $this->executor->execute($actions, $output);
