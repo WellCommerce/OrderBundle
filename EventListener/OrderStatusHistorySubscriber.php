@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use WellCommerce\Bundle\CoreBundle\Event\EntityEvent;
+use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelper;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
 
