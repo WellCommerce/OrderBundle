@@ -1,11 +1,11 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
- * 
+ *
  * This file is part of the WellCommerce package.
  *
  * (c) Adam Piotrowski <adam@wellcommerce.org>
- * 
+ *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
@@ -16,9 +16,9 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use WellCommerce\Bundle\CoreBundle\Enhancer\TraitGenerator\TraitGeneratorEnhancerCollection;
+use WellCommerce\Bundle\CoreBundle\Enhancer\TraitGenerator\TraitGeneratorEnhancerTraverserInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Environment\EnvironmentHelperInterface;
-use WellCommerce\Bundle\DoctrineBundle\Enhancer\TraitGenerator\TraitGeneratorEnhancerCollection;
-use WellCommerce\Bundle\DoctrineBundle\Enhancer\TraitGenerator\TraitGeneratorEnhancerTraverserInterface;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\TraitGenerator;
 use Wingu\OctopusCore\Reflection\ReflectionClass;
 
@@ -64,7 +64,7 @@ final class GenerateEntityExtraCommand extends ContainerAwareCommand
     {
         $arguments = [
             'app/console',
-            'doctrine:cache:clear-metadata'
+            'doctrine:cache:clear-metadata',
         ];
         
         $process = $this->getEnvironmentHelper()->getProcess($arguments, 360);
@@ -82,7 +82,7 @@ final class GenerateEntityExtraCommand extends ContainerAwareCommand
         $arguments = [
             'app/console',
             'doctrine:schema:update',
-            '--force'
+            '--force',
         ];
         
         $process = $this->getEnvironmentHelper()->getProcess($arguments, 360);
@@ -97,7 +97,7 @@ final class GenerateEntityExtraCommand extends ContainerAwareCommand
      *
      * @return string
      */
-    protected function generateTrait(ReflectionClass $reflectionClass) : string
+    protected function generateTrait(ReflectionClass $reflectionClass): string
     {
         $generator = new TraitGenerator($reflectionClass->getShortName(), $reflectionClass->getNamespaceName());
         $this->getTraitGeneratorEnhancerTraverser()->traverse($generator);
@@ -105,17 +105,17 @@ final class GenerateEntityExtraCommand extends ContainerAwareCommand
         return '<?php' . str_repeat(PHP_EOL, 2) . $generator->generate();
     }
     
-    private function getTraitGeneratorEnhancerCollection() : TraitGeneratorEnhancerCollection
+    private function getTraitGeneratorEnhancerCollection(): TraitGeneratorEnhancerCollection
     {
         return $this->getContainer()->get('doctrine.trait_generator.enhancer_collection');
     }
     
-    private function getTraitGeneratorEnhancerTraverser() : TraitGeneratorEnhancerTraverserInterface
+    private function getTraitGeneratorEnhancerTraverser(): TraitGeneratorEnhancerTraverserInterface
     {
         return $this->getContainer()->get('doctrine.trait_generator.enhancer_traverser');
     }
     
-    private function getEnvironmentHelper() : EnvironmentHelperInterface
+    private function getEnvironmentHelper(): EnvironmentHelperInterface
     {
         return $this->getContainer()->get('environment_helper');
     }
