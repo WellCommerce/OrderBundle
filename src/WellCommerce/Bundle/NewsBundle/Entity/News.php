@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 

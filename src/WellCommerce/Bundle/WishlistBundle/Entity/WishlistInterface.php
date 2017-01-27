@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\WishlistBundle\Entity;
 
 use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareInterface;
 
 /**

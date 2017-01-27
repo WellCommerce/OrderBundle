@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
  *
  * This file is part of the WellCommerce package.

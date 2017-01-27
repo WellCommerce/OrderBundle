@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\WishlistBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareTrait;
-use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 
 /**

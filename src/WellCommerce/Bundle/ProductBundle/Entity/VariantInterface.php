@@ -16,9 +16,9 @@ use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareInterface;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable\EnableableInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
 
 /**

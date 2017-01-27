@@ -18,7 +18,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use WellCommerce\Bundle\AdminBundle\Entity\AdminMenuInterface;
 use WellCommerce\Bundle\AdminBundle\Repository\AdminMenuRepositoryInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
  * Class AdminMenuProvider

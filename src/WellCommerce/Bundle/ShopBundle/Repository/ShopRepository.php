@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShopBundle\Repository;
 
-use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
 
 /**

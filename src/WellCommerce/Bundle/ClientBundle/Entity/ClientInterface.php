@@ -16,9 +16,9 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareInterface;
 
 /**

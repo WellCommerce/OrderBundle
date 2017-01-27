@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface VariantOptionInterface

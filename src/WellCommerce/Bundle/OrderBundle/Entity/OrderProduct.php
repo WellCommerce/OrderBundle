@@ -5,7 +5,7 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
 

@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\LocaleBundle\Repository;
 
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Intl\Intl;
-use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class LocaleRepository

@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
  * Class CategoryRepository

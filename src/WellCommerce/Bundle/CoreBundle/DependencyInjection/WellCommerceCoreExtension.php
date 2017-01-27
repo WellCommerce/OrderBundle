@@ -12,12 +12,11 @@
 
 namespace WellCommerce\Bundle\CoreBundle\DependencyInjection;
 
-
 /**
  * Class WellCommerceCoreExtension
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCoreExtension extends AbstractExtension
+final class WellCommerceCoreExtension extends AbstractExtension
 {
 }

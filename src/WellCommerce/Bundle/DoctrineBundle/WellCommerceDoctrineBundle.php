@@ -21,7 +21,7 @@ use WellCommerce\Bundle\DoctrineBundle\DependencyInjection\Compiler;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceDoctrineBundle extends Bundle
+final class WellCommerceDoctrineBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

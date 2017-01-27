@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface UserGroupInterface

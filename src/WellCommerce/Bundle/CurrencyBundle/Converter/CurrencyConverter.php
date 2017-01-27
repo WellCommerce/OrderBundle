@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CurrencyBundle\Converter;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\CurrencyBundle\Exception\MissingCurrencyRateException;
 use WellCommerce\Bundle\CurrencyBundle\Exception\MissingCurrencyRatesException;

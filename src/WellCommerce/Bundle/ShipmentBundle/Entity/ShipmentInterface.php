@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShipmentBundle\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderAwareInterface;
 
 /**

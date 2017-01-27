@@ -4,7 +4,7 @@ namespace WellCommerce\Bundle\ShippingBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 
 /**
  * Class ShippingMethodCost

@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\ReviewBundle\Twig\Extension;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
 
 /**

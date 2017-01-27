@@ -12,10 +12,10 @@
 namespace WellCommerce\Bundle\CoreBundle\Twig\Extension;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use WellCommerce\Bundle\CoreBundle\Event\Code\TwigTemplateCodeInterface;
-use WellCommerce\Bundle\CoreBundle\Event\Code\TwigTemplateInclude;
-use WellCommerce\Bundle\CoreBundle\Event\Code\TwigTemplateString;
-use WellCommerce\Bundle\CoreBundle\Event\TemplateEvent;
+use WellCommerce\Bundle\DoctrineBundle\Event\Code\TwigTemplateCodeInterface;
+use WellCommerce\Bundle\DoctrineBundle\Event\Code\TwigTemplateInclude;
+use WellCommerce\Bundle\DoctrineBundle\Event\Code\TwigTemplateString;
+use WellCommerce\Bundle\DoctrineBundle\Event\TemplateEvent;
 
 /**
  * Class EventExtension

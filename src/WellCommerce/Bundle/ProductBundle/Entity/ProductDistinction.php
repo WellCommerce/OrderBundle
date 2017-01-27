@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 use Carbon\Carbon;
 use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\CoreBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 
 /**

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinctionInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;

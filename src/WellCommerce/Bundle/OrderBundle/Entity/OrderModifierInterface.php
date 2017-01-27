@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface OrderModifierInterface

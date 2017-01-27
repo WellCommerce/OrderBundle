@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CurrencyBundle\Importer;
 
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\CurrencyBundle\Repository\CurrencyRateRepositoryInterface;
 use WellCommerce\Bundle\CurrencyBundle\Repository\CurrencyRepositoryInterface;

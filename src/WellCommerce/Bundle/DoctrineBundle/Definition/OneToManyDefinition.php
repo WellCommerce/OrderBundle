@@ -10,61 +10,58 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Definition;
+namespace WellCommerce\Bundle\DoctrineBundle\Definition;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FieldDefinition
+ * Class OneToManyDefinition
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ManyToManyDefinition extends AbstractMappingDefinition
+class OneToManyDefinition extends AbstractMappingDefinition
 {
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions (OptionsResolver $resolver)
     {
         $resolver->setRequired([
             'fieldName',
             'targetEntity',
+            'mappedBy',
+            'orphanRemoval',
             'fetch',
             'cascade',
-            'mappedBy',
-            'joinTable',
-            'orderBy',
         ]);
-
+        
         $resolver->setDefaults([
-            'fetch'     => ClassMetadataInfo::FETCH_EXTRA_LAZY,
-            'cascade'   => [
+            'mappedBy'      => null,
+            'orphanRemoval' => true,
+            'fetch'         => ClassMetadataInfo::FETCH_EXTRA_LAZY,
+            'cascade'       => [
                 'remove',
                 'persist',
                 'refresh',
                 'merge',
                 'detach',
             ],
-            'mappedBy'  => null,
-            'joinTable' => [],
-            'orderBy'   => null,
         ]);
-
+        
         $resolver->setAllowedTypes('fieldName', 'string');
         $resolver->setAllowedTypes('targetEntity', 'string');
+        $resolver->setAllowedTypes('mappedBy', ['string', 'null']);
+        $resolver->setAllowedTypes('orphanRemoval', 'bool');
         $resolver->setAllowedTypes('fetch', 'integer');
         $resolver->setAllowedTypes('cascade', 'array');
-        $resolver->setAllowedTypes('mappedBy', ['string', 'null']);
-        $resolver->setAllowedTypes('joinTable', 'array');
-        $resolver->setAllowedTypes('orderBy', ['string', 'null']);
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getClassMetadataMethod()
+    public function getClassMetadataMethod ()
     {
-        return MappingDefinitionInterface::CLASS_METADATA_METHOD_MANY_TO_MANY;
+        return MappingDefinitionInterface::CLASS_METADATA_METHOD_ONE_TO_MANY;
     }
 }

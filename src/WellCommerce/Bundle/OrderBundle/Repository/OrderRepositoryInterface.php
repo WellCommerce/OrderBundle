@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
  * Interface OrderRepositoryInterface
