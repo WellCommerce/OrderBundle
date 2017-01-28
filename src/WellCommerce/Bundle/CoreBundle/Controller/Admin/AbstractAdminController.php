@@ -135,9 +135,4 @@ abstract class AbstractAdminController extends AbstractController implements Adm
     {
         return $this->get('order.provider.admin');
     }
-    
-    protected function getAuthenticatedAdmin() : UserInterface
-    {
-        return $this->getSecurityHelper()->getAuthenticatedAdmin();
-    }
 }

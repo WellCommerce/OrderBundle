@@ -26,7 +26,6 @@ use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
  */
 class AttributeController extends AbstractAdminController
 {
-
     /**
      * Ajax action for listing attributes in variants editor
      *
@@ -34,7 +33,7 @@ class AttributeController extends AbstractAdminController
      *
      * @return Response
      */
-    public function ajaxIndexAction(Request $request) : Response
+    public function ajaxIndexAction(Request $request): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToAction('index');
@@ -42,7 +41,7 @@ class AttributeController extends AbstractAdminController
         
         $attributeGroupId = (int)$request->request->get('id');
         $attributeGroup   = $this->getManager()->findAttributeGroup($attributeGroupId);
-
+        
         return $this->jsonResponse([
             'attributes' => $this->getManager()->getRepository()->getAttributeSet($attributeGroup),
         ]);
@@ -55,7 +54,7 @@ class AttributeController extends AbstractAdminController
      *
      * @return Response
      */
-    public function ajaxAddAction(Request $request) : Response
+    public function ajaxAddAction(Request $request): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToAction('index');
@@ -68,7 +67,7 @@ class AttributeController extends AbstractAdminController
             $attribute = $this->getManager()->createAttribute($attributeName, $attributeGroupId);
             
             return $this->jsonResponse([
-                'id' => $attribute->getId()
+                'id' => $attribute->getId(),
             ]);
             
         } catch (\Exception $e) {
@@ -79,7 +78,7 @@ class AttributeController extends AbstractAdminController
         }
     }
     
-    public function ajaxGenerateCartesianAction(Request $request) : JsonResponse
+    public function ajaxGenerateCartesianAction(Request $request): JsonResponse
     {
         $attributes    = $request->request->get('attributes');
         $attributesMap = [];
@@ -91,11 +90,11 @@ class AttributeController extends AbstractAdminController
         $variantsCombinations = CartesianProductGenerator::generateCartesianProduct($attributesMap);
         
         return $this->jsonResponse([
-            'variants' => $variantsCombinations
+            'variants' => $variantsCombinations,
         ]);
     }
-
-    protected function getManager() : AttributeManager
+    
+    protected function getManager(): AttributeManager
     {
         return parent::getManager();
     }
