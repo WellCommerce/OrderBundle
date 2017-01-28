@@ -18,7 +18,7 @@ use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;

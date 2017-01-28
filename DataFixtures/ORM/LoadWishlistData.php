@@ -17,7 +17,7 @@ use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 

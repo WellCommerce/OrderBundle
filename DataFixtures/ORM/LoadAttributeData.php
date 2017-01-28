@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class Attribute
