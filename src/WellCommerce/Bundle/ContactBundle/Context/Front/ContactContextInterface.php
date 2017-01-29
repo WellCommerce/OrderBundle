@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ContactBundle\Context\Front;
 
-use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
+use WellCommerce\Bundle\ContactBundle\Entity\Contact;
 
 /**
  * Interface ContactContextInterface
@@ -22,17 +22,17 @@ use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
 interface ContactContextInterface
 {
     /**
-     * @param ContactInterface $contact
+     * @param Contact $contact
      */
-    public function setCurrentContact(ContactInterface $contact);
-
+    public function setCurrentContact(Contact $contact);
+    
     /**
-     * @return ContactInterface
+     * @return Contact
      */
-    public function getCurrentContact() : ContactInterface;
-
+    public function getCurrentContact(): Contact;
+    
     /**
      * @return bool
      */
-    public function hasCurrentContact() : bool;
+    public function hasCurrentContact(): bool;
 }

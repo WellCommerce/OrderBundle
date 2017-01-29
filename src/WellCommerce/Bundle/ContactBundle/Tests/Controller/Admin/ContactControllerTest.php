@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ContactBundle\Tests\Controller\Admin;
 
 use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
+use WellCommerce\Bundle\ContactBundle\Entity\Contact;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
@@ -50,7 +50,7 @@ class ContactControllerTest extends AbstractAdminControllerTestCase
     {
         $collection = $this->container->get('contact.repository')->getCollection();
 
-        $collection->map(function (ContactInterface $contact) {
+        $collection->map(function (Contact $contact) {
             $url     = $this->generateUrl('admin.contact.edit', ['id' => $contact->getId()]);
             $crawler = $this->client->request('GET', $url);
 

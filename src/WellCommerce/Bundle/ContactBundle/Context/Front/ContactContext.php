@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ContactBundle\Context\Front;
 
-use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
+use WellCommerce\Bundle\ContactBundle\Entity\Contact;
 
 /**
  * Class ContactContext
@@ -22,31 +22,31 @@ use WellCommerce\Bundle\ContactBundle\Entity\ContactInterface;
 class ContactContext implements ContactContextInterface
 {
     /**
-     * @var ContactInterface
+     * @var Contact
      */
     protected $currentContact;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setCurrentContact(ContactInterface $contact)
+    public function setCurrentContact(Contact $contact)
     {
         $this->currentContact = $contact;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getCurrentContact() : ContactInterface
+    public function getCurrentContact(): Contact
     {
         return $this->currentContact;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function hasCurrentContact() : bool
+    public function hasCurrentContact(): bool
     {
-        return $this->currentContact instanceof ContactInterface;
+        return $this->currentContact instanceof Contact;
     }
 }
