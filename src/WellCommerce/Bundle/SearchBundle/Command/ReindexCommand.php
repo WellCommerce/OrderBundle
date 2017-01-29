@@ -15,12 +15,11 @@ namespace WellCommerce\Bundle\SearchBundle\Command;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 use WellCommerce\Bundle\SearchBundle\Manager\SearchManagerInterface;
 use WellCommerce\Component\Search\Model\TypeInterface;
 
@@ -93,7 +92,7 @@ final class ReindexCommand extends ContainerAwareCommand
     {
         $this->getContainer()->get('doctrine.helper')->disableFilter('locale');
         
-        $this->getLocales()->map(function (LocaleInterface $locale) use ($output) {
+        $this->getLocales()->map(function (Locale $locale) use ($output) {
             $output->writeln(sprintf('<info>Reindexing locale:</info> %s', $locale->getCode()));
             $this->reindex($locale->getCode(), $output);
         });
@@ -112,7 +111,7 @@ final class ReindexCommand extends ContainerAwareCommand
         $output->writeln('<info>Flushing index</info>');
         $this->manager->removeIndex($locale);
         $this->manager->createIndex($locale);
-        
+
 //        $progress = new ProgressBar($output, $totalEntities);
 //        $progress->setFormat('verbose');
 //        $progress->setRedrawFrequency($this->batchSize);

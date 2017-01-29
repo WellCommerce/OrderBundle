@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CurrencyBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 
 /**
  * Class CurrencyManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
  */
 class CurrencyManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('currency.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return CurrencyInterface::class;
+        return Currency::class;
     }
 }

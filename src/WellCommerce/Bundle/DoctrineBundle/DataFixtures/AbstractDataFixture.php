@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
  * Class AbstractDataFixture
@@ -132,7 +132,7 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
     }
     
     /**
-     * @return array|LocaleInterface[]
+     * @return array|Locale[]
      */
     protected function getLocales(): array
     {

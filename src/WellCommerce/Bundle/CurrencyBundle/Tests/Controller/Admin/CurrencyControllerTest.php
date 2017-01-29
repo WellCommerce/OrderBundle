@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\CurrencyBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 
 /**
  * Class CurrencyControllerTest
@@ -27,32 +26,32 @@ class CurrencyControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.currency.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('currency.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.currency.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('currency.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('currency.repository')->getCollection();
-
-        $collection->map(function (CurrencyInterface $currency) {
+        
+        $collection->map(function (Currency $currency) {
             $url     = $this->generateUrl('admin.currency.edit', ['id' => $currency->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('currency.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -60,13 +59,13 @@ class CurrencyControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $currency->getCode() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.currency.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

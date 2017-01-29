@@ -17,7 +17,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyAwareInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxAwareInterface;
 
@@ -32,8 +31,7 @@ interface ShippingMethodInterface extends
     TranslatableInterface,
     BlameableInterface,
     TaxAwareInterface,
-    ShopCollectionAwareInterface,
-    CurrencyAwareInterface
+    ShopCollectionAwareInterface
 {
     public function getCalculator(): string;
     

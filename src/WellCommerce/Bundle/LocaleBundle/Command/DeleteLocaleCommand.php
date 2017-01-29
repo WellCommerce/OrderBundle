@@ -20,8 +20,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
 use WellCommerce\Bundle\LocaleBundle\Repository\LocaleRepositoryInterface;
 
 /**
@@ -76,7 +76,7 @@ class DeleteLocaleCommand extends ContainerAwareCommand
         $entityManager = $this->getDoctrineHelper()->getEntityManager();
         $metadata      = $this->getDoctrineHelper()->getAllMetadata();
         $locale        = $this->getLocaleRepository()->findOneBy(['code' => $localeCode]);
-        if (!$locale instanceof LocaleInterface) {
+        if (!$locale instanceof Locale) {
             throw new InvalidArgumentException(sprintf('Wrong locale code "%s" was given', $localeCode));
         }
         foreach ($metadata as $classMetadata) {
@@ -94,10 +94,10 @@ class DeleteLocaleCommand extends ContainerAwareCommand
      * Deletes the translatable entities for locale
      *
      * @param EntityRepository $repository
-     * @param LocaleInterface  $locale
+     * @param Locale           $locale
      * @param OutputInterface  $output
      */
-    protected function deleteTranslatableEntities(EntityRepository $repository, LocaleInterface $locale, OutputInterface $output)
+    protected function deleteTranslatableEntities(EntityRepository $repository, Locale $locale, OutputInterface $output)
     {
         $entityManager = $this->getDoctrineHelper()->getEntityManager();
         $criteria      = new Criteria();
@@ -124,19 +124,19 @@ class DeleteLocaleCommand extends ContainerAwareCommand
         $locales    = [];
         $collection = $this->getLocaleRepository()->getCollection();
         
-        $collection->map(function (LocaleInterface $locale) use (&$locales) {
+        $collection->map(function (Locale $locale) use (&$locales) {
             $locales[$locale->getCode()] = $locale->getCode();
         });
         
         return $locales;
     }
     
-    private function getDoctrineHelper() : DoctrineHelperInterface
+    private function getDoctrineHelper(): DoctrineHelperInterface
     {
         return $this->getContainer()->get('doctrine.helper');
     }
     
-    private function getLocaleRepository() : LocaleRepositoryInterface
+    private function getLocaleRepository(): LocaleRepositoryInterface
     {
         return $this->getContainer()->get('locale.repository');
     }

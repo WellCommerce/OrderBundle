@@ -16,8 +16,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
 
 /**
  * Class LocaleCopier
@@ -54,7 +54,7 @@ final class LocaleCopier implements LocaleCopierInterface
         $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
     }
     
-    public function copyLocaleData(LocaleInterface $sourceLocale, LocaleInterface $targetLocale)
+    public function copyLocaleData(Locale $sourceLocale, Locale $targetLocale)
     {
         $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('locale', $sourceLocale->getCode()));
@@ -64,18 +64,18 @@ final class LocaleCopier implements LocaleCopierInterface
             $entities   = $repository->matching($criteria);
             $this->duplicateTranslatableEntities($entities, $options['properties'], $targetLocale);
         }
-
+        
         $this->doctrineHelper->getEntityManager()->flush();
     }
     
-    private function duplicateTranslatableEntities(Collection $entities, array $properties, LocaleInterface $targetLocale)
+    private function duplicateTranslatableEntities(Collection $entities, array $properties, Locale $targetLocale)
     {
         $entities->map(function (LocaleAwareInterface $entity) use ($properties, $targetLocale) {
             $this->duplicateTranslatableEntity($entity, $properties, $targetLocale);
         });
     }
     
-    private function duplicateTranslatableEntity(LocaleAwareInterface $entity, array $properties, LocaleInterface $targetLocale)
+    private function duplicateTranslatableEntity(LocaleAwareInterface $entity, array $properties, Locale $targetLocale)
     {
         $duplicate = clone $entity;
         foreach ($properties as $propertyName) {

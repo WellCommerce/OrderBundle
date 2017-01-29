@@ -17,8 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyAwareTrait;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
@@ -39,7 +38,6 @@ class ShippingMethod implements ShippingMethodInterface
     use Timestampable;
     use Blameable;
     use TaxAwareTrait;
-    use CurrencyAwareTrait;
     use ShopCollectionAwareTrait;
     
     protected $calculator      = '';
@@ -47,7 +45,7 @@ class ShippingMethod implements ShippingMethodInterface
     protected $countries       = [];
     
     /**
-     * @var CurrencyInterface
+     * @var Currency
      */
     protected $currency;
     
@@ -111,5 +109,20 @@ class ShippingMethod implements ShippingMethodInterface
     public function setCountries(array $countries)
     {
         $this->countries = $countries;
+    }
+    
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+    
+    public function setCurrency(Currency $currency = null)
+    {
+        $this->currency = $currency;
+    }
+    
+    public function hasCurrency(): bool
+    {
+        return $this->currency instanceof Currency;
     }
 }

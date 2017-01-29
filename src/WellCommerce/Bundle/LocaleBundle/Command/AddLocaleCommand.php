@@ -19,10 +19,10 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Intl\Intl;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CurrencyBundle\DataSet\Admin\CurrencyDataSet;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 use WellCommerce\Bundle\LocaleBundle\Copier\LocaleCopierInterface;
 use WellCommerce\Bundle\LocaleBundle\DataSet\Admin\LocaleDataSet;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
  * Class AddLocaleCommand
@@ -91,10 +91,10 @@ final class AddLocaleCommand extends ContainerAwareCommand
         $output->writeln(sprintf('<info>Finished copying "%s" data</info>', $locale->getCode()));
     }
     
-    private function createLocale(string $localeCode, string $targetLocaleCurrency) : LocaleInterface
+    private function createLocale(string $localeCode, string $targetLocaleCurrency): Locale
     {
         $currency = $this->getTargetCurrency($targetLocaleCurrency);
-        /** @var LocaleInterface $locale */
+        /** @var Locale $locale */
         $locale = $this->localeManager->initResource();
         $locale->setCode($localeCode);
         $locale->setEnabled(true);
@@ -103,12 +103,12 @@ final class AddLocaleCommand extends ContainerAwareCommand
         
         return $locale;
     }
-
-    private function findLocale(string $code) : LocaleInterface
+    
+    private function findLocale(string $code): Locale
     {
         return $this->localeManager->getRepository()->findOneBy(['code' => $code]);
     }
-
+    
     private function copyLocaleData(string $sourceLocaleCode, string $targetLocaleCode)
     {
         $sourceLocale = $this->findLocale($sourceLocaleCode);
@@ -117,12 +117,12 @@ final class AddLocaleCommand extends ContainerAwareCommand
         $this->getLocaleCopier()->copyLocaleData($sourceLocale, $targetLocale);
     }
     
-    private function getTargetCurrency($targetCurrency) : CurrencyInterface
+    private function getTargetCurrency($targetCurrency): Currency
     {
         return $this->getContainer()->get('currency.repository')->findOneBy(['code' => $targetCurrency]);
     }
     
-    private function chooseSourceLocale(InputInterface $input, OutputInterface $output) : string
+    private function chooseSourceLocale(InputInterface $input, OutputInterface $output): string
     {
         $defaultLocale = current($this->installedLocales);
         $question      = new ChoiceQuestion(
@@ -139,7 +139,7 @@ final class AddLocaleCommand extends ContainerAwareCommand
         return $sourceLocale;
     }
     
-    private function chooseTargetLocale(InputInterface $input, OutputInterface $output) : string
+    private function chooseTargetLocale(InputInterface $input, OutputInterface $output): string
     {
         $question     = new ChoiceQuestion('Please select target locale to which new entities will be copied:', $this->availableLocales);
         $targetLocale = $this->getHelper('question')->ask($input, $output, $question);
@@ -147,7 +147,7 @@ final class AddLocaleCommand extends ContainerAwareCommand
         return $targetLocale;
     }
     
-    private function chooseTargetCurrency(InputInterface $input, OutputInterface $output) : string
+    private function chooseTargetCurrency(InputInterface $input, OutputInterface $output): string
     {
         $question             = new ChoiceQuestion('Please select a default currency for new locale:', $this->installedCurrencies);
         $targetLocaleCurrency = $this->getHelper('question')->ask($input, $output, $question);
@@ -155,23 +155,23 @@ final class AddLocaleCommand extends ContainerAwareCommand
         return $targetLocaleCurrency;
     }
     
-    private function getInstalledCurrencies() : array
+    private function getInstalledCurrencies(): array
     {
         return $this->currencyDataSet->getResult('select', ['order_by' => 'code'], [
             'label_column' => 'code',
-            'value_column' => 'code'
+            'value_column' => 'code',
         ]);
     }
     
-    private function getInstalledLocales() : array
+    private function getInstalledLocales(): array
     {
         return $this->localeDataSet->getResult('select', ['order_by' => 'code'], [
             'label_column' => 'code',
-            'value_column' => 'code'
+            'value_column' => 'code',
         ]);
     }
     
-    private function getAvailableLocales() : array
+    private function getAvailableLocales(): array
     {
         $locales    = [];
         $collection = Intl::getLocaleBundle()->getLocaleNames();
@@ -185,22 +185,22 @@ final class AddLocaleCommand extends ContainerAwareCommand
         return $locales;
     }
     
-    private function getLocaleDataSet() : LocaleDataSet
+    private function getLocaleDataSet(): LocaleDataSet
     {
         return $this->getContainer()->get('locale.dataset.admin');
     }
     
-    private function getCurrencyDataSet() : CurrencyDataSet
+    private function getCurrencyDataSet(): CurrencyDataSet
     {
         return $this->getContainer()->get('currency.dataset.admin');
     }
     
-    private function getLocaleManager() : ManagerInterface
+    private function getLocaleManager(): ManagerInterface
     {
         return $this->getContainer()->get('locale.manager');
     }
-
-    private function getLocaleCopier() : LocaleCopierInterface
+    
+    private function getLocaleCopier(): LocaleCopierInterface
     {
         return $this->getContainer()->get('locale.copier');
     }

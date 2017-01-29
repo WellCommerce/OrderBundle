@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\LocaleBundle\Copier;
 
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
  * Interface LocaleCopierInterface
@@ -21,5 +21,5 @@ use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
  */
 interface LocaleCopierInterface
 {
-    public function copyLocaleData(LocaleInterface $sourceLocale, LocaleInterface $targetLocale);
+    public function copyLocaleData(Locale $sourceLocale, Locale $targetLocale);
 }

@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\DictionaryBundle\Manager;
 
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -20,7 +19,7 @@ use Symfony\Component\Yaml\Yaml;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\DictionaryBundle\Entity\Dictionary;
 use WellCommerce\Bundle\DictionaryBundle\Entity\DictionaryInterface;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleInterface;
+use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
  * Class DictionaryManager
@@ -71,7 +70,7 @@ final class DictionaryManager extends AbstractManager
         $this->synchronizeDatabaseTranslations();
     }
     
-    protected function updateFilesystemTranslationsForLocale(LocaleInterface $locale)
+    protected function updateFilesystemTranslationsForLocale(Locale $locale)
     {
         $fsTranslations     = $this->getTranslatorHelper()->getMessages($locale->getCode());
         $dbTranslations     = $this->getDatabaseTranslations($locale);
@@ -108,11 +107,11 @@ final class DictionaryManager extends AbstractManager
     /**
      * Returns an array containing all previously imported translations
      *
-     * @param LocaleInterface $locale
+     * @param Locale $locale
      *
      * @return array
      */
-    protected function getDatabaseTranslations(LocaleInterface $locale)
+    protected function getDatabaseTranslations(Locale $locale)
     {
         $messages   = [];
         $collection = $this->repository->getCollection();

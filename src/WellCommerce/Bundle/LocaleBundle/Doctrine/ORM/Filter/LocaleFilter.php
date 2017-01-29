@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\LocaleBundle\Doctrine\ORM\Filter;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
+use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
 
 /**
  * Class LocaleFilter
@@ -32,10 +33,10 @@ class LocaleFilter extends SQLFilter
      */
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
-        if (!$targetEntity->reflClass->implementsInterface(\WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface::class)) {
+        if (!$targetEntity->reflClass->implementsInterface(LocaleAwareInterface::class)) {
             return "";
         }
-
+        
         return $targetTableAlias . '.locale = ' . $this->getParameter('locale');
     }
 }

@@ -14,24 +14,29 @@ namespace WellCommerce\Bundle\LocaleBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyAwareTrait;
+use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Locale
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Locale implements LocaleInterface
+class Locale implements EntityInterface
 {
     use Identifiable;
     use Enableable;
     use Timestampable;
     use Blameable;
-    use CurrencyAwareTrait;
     
     protected $code = '';
+    
+    /**
+     * @var Currency
+     */
+    protected $currency;
     
     public function getCode(): string
     {
@@ -41,5 +46,20 @@ class Locale implements LocaleInterface
     public function setCode(string $code)
     {
         $this->code = $code;
+    }
+    
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+    
+    public function setCurrency(Currency $currency = null)
+    {
+        $this->currency = $currency;
+    }
+    
+    public function hasCurrency(): bool
+    {
+        return $this->currency instanceof Currency;
     }
 }
