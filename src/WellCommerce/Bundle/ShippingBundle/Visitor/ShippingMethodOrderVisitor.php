@@ -17,6 +17,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodOptionsProviderInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
@@ -102,7 +103,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
     
     private function getCostCollection(Order $order): Collection
     {
-        if ($order->hasShippingMethod()) {
+        if ($order->getShippingMethod() instanceof ShippingMethod) {
             $costs = $this->getCurrentShippingMethodCostsCollection($order);
             if ($costs->count() > 0) {
                 return $costs;

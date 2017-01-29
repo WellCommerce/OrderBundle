@@ -21,7 +21,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ShippingMethodCostInterface extends EntityInterface, TimestampableInterface, ShippingMethodAwareInterface
+interface ShippingMethodCostInterface extends EntityInterface, TimestampableInterface
 {
     public function getRangeFrom() : float;
     

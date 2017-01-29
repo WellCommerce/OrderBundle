@@ -16,6 +16,7 @@ use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGeneratorInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\PaymentBundle\Manager\PaymentManagerInterface;
 
 /**
@@ -67,7 +68,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
     
     private function setInitialOrderStatus(Order $order)
     {
-        if (!$order->hasCurrentStatus() && $order->hasPaymentMethod()) {
+        if (null === $order->getCurrentStatus() && $order->getPaymentMethod() instanceof PaymentMethod) {
             $paymentMethod = $order->getPaymentMethod();
             $order->setCurrentStatus($paymentMethod->getPaymentPendingOrderStatus());
         }
@@ -76,7 +77,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
     private function setInitialPayment(Order $order)
     {
         $payments = $order->getPayments();
-        if (0 === $payments->count() && $order->hasPaymentMethod()) {
+        if (0 === $payments->count() && $order->getPaymentMethod() instanceof PaymentMethod) {
             $payment = $this->paymentManager->createPaymentForOrder($order);
             $payments->add($payment);
         }

@@ -15,7 +15,6 @@ class ShippingMethodCost implements ShippingMethodCostInterface
 {
     use Identifiable;
     use Timestampable;
-    use ShippingMethodAwareTrait;
     
     protected $rangeFrom = 0.00;
     protected $rangeTo   = 0.00;
@@ -24,6 +23,11 @@ class ShippingMethodCost implements ShippingMethodCostInterface
      * @var Price
      */
     protected $cost;
+    
+    /**
+     * @var ShippingMethod
+     */
+    protected $shippingMethod;
     
     public function __construct()
     {
@@ -58,5 +62,15 @@ class ShippingMethodCost implements ShippingMethodCostInterface
     public function setCost(Price $cost)
     {
         $this->cost = $cost;
+    }
+    
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+    
+    public function setShippingMethod(ShippingMethod $shippingMethod = null)
+    {
+        $this->shippingMethod = $shippingMethod;
     }
 }

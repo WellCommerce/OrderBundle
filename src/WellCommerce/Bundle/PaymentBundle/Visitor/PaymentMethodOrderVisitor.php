@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Visitor;
 
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**
  * Class PaymentMethodOrderVisitor
@@ -24,7 +25,7 @@ final class PaymentMethodOrderVisitor implements OrderVisitorInterface
 {
     public function visitOrder(Order $order)
     {
-        if (false === $order->hasShippingMethod()) {
+        if (!$order->getShippingMethod() instanceof ShippingMethod) {
             $order->setPaymentMethod(null);
             
             return;
@@ -33,7 +34,7 @@ final class PaymentMethodOrderVisitor implements OrderVisitorInterface
         $shippingMethod = $order->getShippingMethod();
         $paymentMethods = $shippingMethod->getPaymentMethods();
         
-        if (false === $order->hasPaymentMethod() || false === $paymentMethods->contains($order->getPaymentMethod())) {
+        if (null === $order->getPaymentMethod() || false === $paymentMethods->contains($order->getPaymentMethod())) {
             $order->setPaymentMethod($paymentMethods->first());
         }
     }
