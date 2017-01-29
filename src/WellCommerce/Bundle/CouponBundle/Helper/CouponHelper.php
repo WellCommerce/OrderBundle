@@ -2,7 +2,7 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Helper;
 
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 
 /**
  * Class CouponHelper
@@ -11,7 +11,7 @@ use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
  */
 class CouponHelper
 {
-    public static function formatModifier(CouponInterface $coupon): string
+    public static function formatModifier(Coupon $coupon): string
     {
         if ($coupon->getModifierType() === '%') {
             return sprintf('-%s%s', $coupon->getModifierValue(), $coupon->getModifierType());

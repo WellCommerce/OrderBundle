@@ -9,11 +9,6 @@
 parameters:
     number_formatter_locale: ~
 
-doctrine:
-    orm:
-        resolve_target_entities:
-            WellCommerce\Bundle\CouponBundle\Entity\CouponInterface: WellCommerce\Bundle\CouponBundle\Entity\Coupon
-
 well_commerce_api:
     request_handler:
         currency:

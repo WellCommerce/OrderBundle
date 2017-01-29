@@ -10,7 +10,7 @@ services:
         class: WellCommerce\Bundle\CouponBundle\Request\ParamConverter\CouponParamConverter
         tags:
             - { name: request.param_converter, converter: category, priority: 0 }
-        arguments: ['@coupon.repository', code, [WellCommerce\Bundle\CouponBundle\Entity\Coupon, WellCommerce\Bundle\CouponBundle\Entity\CouponInterface]]
+        arguments: ['@coupon.repository', code, [WellCommerce\Bundle\CouponBundle\Entity\Coupon]]
 
     coupon.checker:
         class: WellCommerce\Bundle\CouponBundle\Checker\CouponChecker

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Checker;
 
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
@@ -62,7 +62,7 @@ final class CouponChecker implements CouponCheckerInterface
         $this->currencyHelper  = $currencyHelper;
     }
     
-    public function isValid(CouponInterface $coupon = null): bool
+    public function isValid(Coupon $coupon = null): bool
     {
         if (null === $coupon) {
             $this->error = 'coupon.error.not_found';
@@ -102,7 +102,7 @@ final class CouponChecker implements CouponCheckerInterface
         return $this->error;
     }
     
-    public function isStartDateValid(CouponInterface $coupon): bool
+    public function isStartDateValid(Coupon $coupon): bool
     {
         $now             = new \DateTime();
         $couponStartDate = $coupon->getValidFrom();
@@ -114,7 +114,7 @@ final class CouponChecker implements CouponCheckerInterface
         return true;
     }
     
-    public function isNotExpired(CouponInterface $coupon): bool
+    public function isNotExpired(Coupon $coupon): bool
     {
         $now           = new \DateTime();
         $couponEndDate = $coupon->getValidTo();
@@ -126,14 +126,7 @@ final class CouponChecker implements CouponCheckerInterface
         return true;
     }
     
-    /**
-     * Checks whether minimum order's value requirement is met
-     *
-     * @param CouponInterface $coupon
-     *
-     * @return bool
-     */
-    private function hasMinimumOrderValue(CouponInterface $coupon): bool
+    private function hasMinimumOrderValue(Coupon $coupon): bool
     {
         $order         = $this->orderProvider->getCurrentOrder();
         $productsValue = $order->getProductTotal()->getGrossPrice();
@@ -142,11 +135,6 @@ final class CouponChecker implements CouponCheckerInterface
         return $value >= $coupon->getMinimumOrderValue();
     }
     
-    /**
-     * Checks whether there are only promotion products in the cart/order
-     *
-     * @return bool
-     */
     private function hasOnlyPromotionProducts(): bool
     {
         $hasOnlyPromotionProducts = true;

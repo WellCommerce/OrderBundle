@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Visitor;
 
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
@@ -48,9 +48,6 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         $this->currencyHelper        = $currencyHelper;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function visitOrder(OrderInterface $order)
     {
         if ($order->hasCoupon()) {
@@ -71,7 +68,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         }
     }
     
-    private function calculateCouponModifier(CouponInterface $coupon, OrderInterface $order, float $totalGrossPrice) : float
+    private function calculateCouponModifier(Coupon $coupon, OrderInterface $order, float $totalGrossPrice): float
     {
         $modifierType   = $coupon->getModifierType();
         $modifierValue  = $coupon->getModifierValue();
@@ -91,7 +88,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return 1;
     }
     
-    private function getOrderGrossPrice(CouponInterface $coupon, OrderInterface $order) : float
+    private function getOrderGrossPrice(Coupon $coupon, OrderInterface $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
@@ -112,7 +109,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return $order->getProductTotal()->getGrossPrice();
     }
     
-    private function getOrderNetPrice(CouponInterface $coupon, OrderInterface $order) : float
+    private function getOrderNetPrice(Coupon $coupon, OrderInterface $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
@@ -133,7 +130,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return $order->getProductTotal()->getNetPrice();
     }
     
-    private function getOrderTaxAmount(CouponInterface $coupon, OrderInterface $order) : float
+    private function getOrderTaxAmount(Coupon $coupon, OrderInterface $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
