@@ -17,7 +17,7 @@ use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class ProductDistinction
@@ -41,7 +41,7 @@ class ProductDistinction implements EntityInterface
     protected $validTo = null;
     
     /**
-     * @var ProductStatusInterface
+     * @var ProductStatus
      */
     protected $status;
     
@@ -73,12 +73,12 @@ class ProductDistinction implements EntityInterface
         $this->validTo = $validTo;
     }
     
-    public function setStatus(ProductStatusInterface $status)
+    public function setStatus(ProductStatus $status)
     {
         $this->status = $status;
     }
     
-    public function getStatus(): ProductStatusInterface
+    public function getStatus(): ProductStatus
     {
         return $this->status;
     }

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductStatusBundle\Storage;
 
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class ProductStatusStorage
@@ -22,27 +22,27 @@ use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 final class ProductStatusStorage implements ProductStatusStorageInterface
 {
     /**
-     * @var ProductStatusInterface
+     * @var ProductStatus
      */
     private $currentProductStatus;
-
-    public function setCurrentProductStatus(ProductStatusInterface $productStatus)
+    
+    public function setCurrentProductStatus(ProductStatus $productStatus)
     {
         $this->currentProductStatus = $productStatus;
     }
-
-    public function getCurrentProductStatus() : ProductStatusInterface
+    
+    public function getCurrentProductStatus(): ProductStatus
     {
         return $this->currentProductStatus;
     }
     
-    public function getCurrentProductStatusIdentifier() : int
+    public function getCurrentProductStatusIdentifier(): int
     {
         return $this->getCurrentProductStatus()->getId();
     }
-
-    public function hasCurrentProductStatus() : bool
+    
+    public function hasCurrentProductStatus(): bool
     {
-        return $this->currentProductStatus instanceof ProductStatusInterface;
+        return $this->currentProductStatus instanceof ProductStatus;
     }
 }

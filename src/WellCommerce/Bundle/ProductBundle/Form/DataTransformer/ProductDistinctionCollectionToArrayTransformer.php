@@ -20,7 +20,7 @@ use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransfo
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class ProductDistinctionCollectionToArrayTransformer
@@ -77,7 +77,7 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
         }
     }
     
-    private function getProductDistinction(ProductInterface $product, ProductStatusInterface $status): ProductDistinction
+    private function getProductDistinction(ProductInterface $product, ProductStatus $status): ProductDistinction
     {
         $distinction = $this->manager->getRepository()->findOneBy([
             'product' => $product,

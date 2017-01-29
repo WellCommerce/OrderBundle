@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\ProductStatusBundle\Tests\Controller\Front;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class ProductStatusControllerTest
@@ -26,11 +25,11 @@ class ProductStatusControllerTest extends AbstractAdminControllerTestCase
     public function testIndexAction()
     {
         $collection = $this->container->get('product_status.repository')->getCollection();
-
-        $collection->map(function (ProductStatusInterface $productStatus) {
+        
+        $collection->map(function (ProductStatus $productStatus) {
             $url     = $this->generateUrl('dynamic_' . $productStatus->translate()->getRoute()->getId());
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $productStatus->translate()->getName() . '")')->count());
         });

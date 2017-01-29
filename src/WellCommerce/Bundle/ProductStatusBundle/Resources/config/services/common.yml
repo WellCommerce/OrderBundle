@@ -10,12 +10,6 @@ services:
     product_status.storage:
         class: WellCommerce\Bundle\ProductStatusBundle\Storage\ProductStatusStorage
 
-    product_status.request_param_converter:
-        class: WellCommerce\Bundle\ProductStatusBundle\Request\ParamConverter\ProductStatusParamConverter
-        tags:
-            - { name: request.param_converter, converter: product, priority: 0 }
-        arguments: ['@product_status.repository', id, [WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus, WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface]]
-
     product_status.transformer:
         class: WellCommerce\Bundle\ProductStatusBundle\DataSet\Transformer\ProductStatusTransformer
         tags:

@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\ProductStatusBundle\Twig\Extension;
 
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 use WellCommerce\Component\DataSet\DataSetInterface;
 
 /**
@@ -26,12 +26,12 @@ class ProductStatusExtension extends \Twig_Extension
      * @var DataSetInterface
      */
     protected $dataset;
-
+    
     /**
      * @var RepositoryInterface
      */
     protected $repository;
-
+    
     /**
      * ProductStatusExtension constructor.
      *
@@ -43,7 +43,7 @@ class ProductStatusExtension extends \Twig_Extension
         $this->dataset    = $dataset;
         $this->repository = $repository;
     }
-
+    
     public function getFunctions()
     {
         return [
@@ -51,23 +51,23 @@ class ProductStatusExtension extends \Twig_Extension
             new \Twig_SimpleFunction('productStatus', [$this, 'getProductStatusBySymbol'], ['is_safe' => ['html']]),
         ];
     }
-
-    public function getProductStatuses(int $limit = 5, string $orderBy = 'name', string $orderDir = 'asc') : array
+    
+    public function getProductStatuses(int $limit = 5, string $orderBy = 'name', string $orderDir = 'asc'): array
     {
         return $this->dataset->getResult('array', [
             'limit'     => $limit,
             'order_by'  => $orderBy,
             'order_dir' => $orderDir,
         ], [
-            'pagination' => false
+            'pagination' => false,
         ]);
     }
-
-    public function getProductStatusBySymbol(string $symbol) : ProductStatusInterface
+    
+    public function getProductStatusBySymbol(string $symbol): ProductStatus
     {
         return $this->repository->findOneBy(['symbol' => $symbol]);
     }
-
+    
     public function getName()
     {
         return 'product_status';

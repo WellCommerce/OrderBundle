@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductStatusBundle\Controller\Box;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
 
@@ -26,7 +26,7 @@ use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
  */
 class ProductStatusBoxController extends AbstractBoxController
 {
-    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
         $dataset       = $this->get('product.dataset.front');
         $requestHelper = $this->getRequestHelper();
@@ -34,7 +34,7 @@ class ProductStatusBoxController extends AbstractBoxController
         $status        = $this->getProductStatus($boxSettings->getParam('status'));
         $conditions    = $this->createConditionsCollection($status);
         $conditions    = $this->get('layered_navigation.helper')->addLayeredNavigationConditions($conditions);
-
+        
         $products = $dataset->getResult('array', [
             'limit'      => $limit,
             'page'       => $requestHelper->getAttributesBagParam('page', 1),
@@ -45,27 +45,27 @@ class ProductStatusBoxController extends AbstractBoxController
         
         return $this->displayTemplate('index', [
             'dataset' => $products,
-            'status'  => $status
+            'status'  => $status,
         ]);
     }
-
-    protected function getProductStatus(int $id = null) : ProductStatusInterface
+    
+    protected function getProductStatus(int $id = null): ProductStatus
     {
         if (null === $id) {
             $status = $this->getProductStatusStorage()->getCurrentProductStatus();
         } else {
             $status = $this->get('product_status.repository')->find($id);
         }
-
+        
         return $status;
     }
-
-    protected function createConditionsCollection(ProductStatusInterface $status) : ConditionsCollection
+    
+    protected function createConditionsCollection(ProductStatus $status): ConditionsCollection
     {
         $conditions = new ConditionsCollection();
         $conditions->add(new Eq('status', $status->getId()));
         $conditions->add(new Eq('isStatusValid', true));
-
+        
         return $conditions;
     }
 }

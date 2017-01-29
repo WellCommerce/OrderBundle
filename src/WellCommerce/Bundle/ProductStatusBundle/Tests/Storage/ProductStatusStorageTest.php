@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductStatusBundle\Tests\Context\Front;
 
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
+use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class ProductStatusStorageTest
@@ -27,9 +27,9 @@ class ProductStatusStorageTest extends AbstractTestCase
         $factory = $this->container->get('product_status.factory');
         $storage = $this->container->get('product_status.storage');
         $status  = $factory->create();
-
+        
         $storage->setCurrentProductStatus($status);
-        $this->assertInstanceOf(ProductStatusInterface::class, $storage->getCurrentProductStatus());
+        $this->assertInstanceOf(ProductStatus::class, $storage->getCurrentProductStatus());
         $this->assertEquals($status, $storage->getCurrentProductStatus());
     }
 }
