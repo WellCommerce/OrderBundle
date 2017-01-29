@@ -12,6 +12,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Form\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CouponBundle\Helper\CouponHelper;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
@@ -160,7 +161,7 @@ final class OrderFormBuilder extends AbstractFormBuilder
             'name'  => 'shippingAddress.lastName',
             'label' => $this->trans('client.label.address.last_name'),
         ]));
-    
+        
         $shippingAddress->addChild($this->getElement('text_field', [
             'name'  => 'shippingAddress.companyName',
             'label' => $this->trans('client.label.address.company_name'),
@@ -230,12 +231,12 @@ final class OrderFormBuilder extends AbstractFormBuilder
             ]))->setValue($modifier->getGrossAmount());
         });
         
-        if ($order->hasCoupon()) {
+        if ($order->getCoupon() instanceof Coupon) {
             $paymentShippingData->addChild($this->getElement('constant', [
                 'name'  => 'coupon.code',
                 'label' => $this->trans('order.label.coupon.code'),
             ]))->setValue($order->getCoupon()->getCode());
-    
+            
             $paymentShippingData->addChild($this->getElement('constant', [
                 'name'  => 'coupon.modifier',
                 'label' => $this->trans('order.label.coupon.modifier'),
@@ -282,12 +283,12 @@ final class OrderFormBuilder extends AbstractFormBuilder
         $form->addFilter($this->getFilter('secure'));
     }
     
-    private function getOrderProvider() : OrderProviderInterface
+    private function getOrderProvider(): OrderProviderInterface
     {
         return $this->get('order.provider.admin');
     }
     
-    private function getShippingMethodProvider() : ShippingMethodProviderInterface
+    private function getShippingMethodProvider(): ShippingMethodProviderInterface
     {
         return $this->get('shipping_method.provider');
     }

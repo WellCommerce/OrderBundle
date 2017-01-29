@@ -253,11 +253,6 @@ class Order implements EntityInterface
         $this->coupon = $coupon;
     }
     
-    public function hasCoupon(): bool
-    {
-        return $this->coupon instanceof Coupon;
-    }
-    
     public function getProducts(): Collection
     {
         return $this->products;
