@@ -34,7 +34,7 @@ class AdminMenu implements EntityInterface
     protected $cssClass   = '';
     
     /**
-     * @var null|AdminMenuInterface
+     * @var null|AdminMenu
      */
     protected $parent;
     
@@ -73,7 +73,7 @@ class AdminMenu implements EntityInterface
         return $this->parent;
     }
     
-    public function setParent(AdminMenuInterface $parent = null)
+    public function setParent(self $parent = null)
     {
         $this->parent = $parent;
     }
@@ -88,7 +88,7 @@ class AdminMenu implements EntityInterface
         return $this->children;
     }
     
-    public function addChild(AdminMenuInterface $child)
+    public function addChild(self $child)
     {
         $this->children[] = $child;
         $child->setParent($this);

@@ -16,8 +16,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\AdminBundle\Entity\AdminMenuInterface;
-use WellCommerce\Bundle\AdminBundle\Repository\AdminMenuRepositoryInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\AdminMenu;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
@@ -87,7 +86,7 @@ class AdminMenuProvider
      */
     protected function generateTree(Collection $collection, Collection $children)
     {
-        $children->map(function (AdminMenuInterface $menuItem) use ($collection, &$tree) {
+        $children->map(function (AdminMenu $menuItem) use ($collection, &$tree) {
             $tree[] = [
                 'routeName' => $menuItem->getRouteName(),
                 'cssClass'  => $menuItem->getCssClass(),
@@ -110,14 +109,14 @@ class AdminMenuProvider
     /**
      * Filters the collection and returns only children elements for given parent element
      *
-     * @param Collection              $collection
-     * @param AdminMenuInterface|null $parent
+     * @param Collection     $collection
+     * @param AdminMenu|null $parent
      *
      * @return Collection
      */
-    protected function filterElements(Collection $collection, AdminMenuInterface $parent = null)
+    protected function filterElements(Collection $collection, AdminMenu $parent = null)
     {
-        $children = $collection->filter(function (AdminMenuInterface $menuItem) use ($parent) {
+        $children = $collection->filter(function (AdminMenu $menuItem) use ($parent) {
             return $menuItem->getParent() === $parent;
         });
         
