@@ -10,12 +10,6 @@
  */
 
 $(document).ready(function () {
-    $('#company-wrap').find('input').attr('tabindex', -1);
-
-    $('#billingAddress\\.companyAddress').unbind('change').bind('change', function () {
-        $('#company-wrap').collapse($(this).is(':checked') ? 'show' : 'hide');
-    });
-
     $('#shippingAddress\\.copyBillingAddress').unbind('change').bind('change', function () {
         $('#shipping-wrap').collapse($(this).is(':checked') ? 'hide' : 'show');
     });
@@ -24,7 +18,6 @@ $(document).ready(function () {
         $('#create-account').collapse($(this).is(':checked') ? 'show' : 'hide');
     });
 
-    $('#billingAddress\\.companyAddress').change();
     $('#shippingAddress\\.copyBillingAddress').change();
     $('#clientDetails\\.createAccount').change();
 
