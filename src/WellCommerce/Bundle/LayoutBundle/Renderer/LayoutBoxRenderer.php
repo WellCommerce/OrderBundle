@@ -17,7 +17,7 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\LayoutBundle\Exception\LayoutBoxNotFoundException;
 use WellCommerce\Bundle\LayoutBundle\Resolver\ServiceResolverInterface;
 
@@ -57,25 +57,25 @@ final class LayoutBoxRenderer implements LayoutBoxRendererInterface
         $this->routerHelper    = $routerHelper;
     }
     
-    public function render(string $identifier, array $params) : string
+    public function render(string $identifier, array $params): string
     {
         $content = $this->getLayoutBoxContent($identifier, $params);
         
         return $content->getContent();
     }
     
-    private function findLayoutBox($identifier) : LayoutBoxInterface
+    private function findLayoutBox($identifier): LayoutBox
     {
         $layoutBox = $this->manager->getRepository()->findOneBy(['identifier' => $identifier]);
         
-        if (!$layoutBox instanceof LayoutBoxInterface) {
+        if (!$layoutBox instanceof LayoutBox) {
             throw new LayoutBoxNotFoundException($identifier);
         }
         
         return $layoutBox;
     }
     
-    private function getLayoutBoxContent(string $identifier, array $params = []) : Response
+    private function getLayoutBoxContent(string $identifier, array $params = []): Response
     {
         $layoutBox  = $this->findLayoutBox($identifier);
         $controller = $this->serviceResolver->resolveControllerService($layoutBox);
@@ -85,7 +85,7 @@ final class LayoutBoxRenderer implements LayoutBoxRendererInterface
         return call_user_func_array([$controller, $action], [$settings]);
     }
     
-    private function makeSettingsCollection(LayoutBoxInterface $box, array $params = []) : LayoutBoxSettingsCollection
+    private function makeSettingsCollection(LayoutBox $box, array $params = []): LayoutBoxSettingsCollection
     {
         $defaultSettings = $box->getSettings();
         $settings        = array_merge($defaultSettings, $params);

@@ -14,8 +14,9 @@ namespace WellCommerce\Bundle\LayoutBundle\Resolver;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\LayoutBundle\Configurator\LayoutBoxConfiguratorCollection;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 
 /**
  * Class ServiceResolver
@@ -25,12 +26,12 @@ use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
 class ServiceResolver implements ServiceResolverInterface
 {
     use ContainerAwareTrait;
-
+    
     /**
      * @var LayoutBoxConfiguratorCollection
      */
     protected $layoutBoxConfiguratorCollection;
-
+    
     /**
      * Constructor
      *
@@ -40,20 +41,17 @@ class ServiceResolver implements ServiceResolverInterface
     {
         $this->layoutBoxConfiguratorCollection = $layoutBoxConfiguratorCollection;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function resolveControllerService(LayoutBoxInterface $layoutBox)
+    
+    public function resolveControllerService(LayoutBox $layoutBox): BoxControllerInterface
     {
         $boxType      = $layoutBox->getBoxType();
         $configurator = $this->layoutBoxConfiguratorCollection->get($boxType);
         $service      = $configurator->getControllerService();
-
+        
         if (!$this->container->has($service)) {
             throw new ServiceNotFoundException($service);
         }
-
+        
         return $this->container->get($service);
     }
 }

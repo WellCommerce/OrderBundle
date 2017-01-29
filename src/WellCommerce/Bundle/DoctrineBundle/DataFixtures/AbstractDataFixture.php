@@ -21,7 +21,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
@@ -157,7 +156,7 @@ abstract class AbstractDataFixture extends AbstractFixture implements OrderedFix
         }
     }
     
-    private function createLayoutBox(string $identifier, array $params = []): LayoutBoxInterface
+    private function createLayoutBox(string $identifier, array $params = []): LayoutBox
     {
         $layoutBox = new LayoutBox();
         $layoutBox->setIdentifier($identifier);

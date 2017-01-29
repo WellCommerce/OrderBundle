@@ -16,7 +16,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 use WellCommerce\Bundle\LayoutBundle\Configurator\LayoutBoxConfiguratorInterface;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Component\Form\Event\FormEvent;
 
 /**
@@ -68,7 +68,7 @@ class LayoutBoxSubscriber extends AbstractEventSubscriber
     public function onLayoutBoxPreUpdate (EntityEvent $event)
     {
         $resource = $event->getEntity();
-        if ($resource instanceof LayoutBoxInterface) {
+        if ($resource instanceof LayoutBox) {
             $request  = $this->getRequestHelper()->getCurrentRequest();
             $settings = $this->getBoxSettingsFromRequest($request);
             $settings = $this->mergeUnmodifiedSettings($resource->getSettings(), $settings);

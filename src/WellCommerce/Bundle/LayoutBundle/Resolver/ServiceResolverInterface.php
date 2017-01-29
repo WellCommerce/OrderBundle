@@ -12,7 +12,8 @@
 
 namespace WellCommerce\Bundle\LayoutBundle\Resolver;
 
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 
 /**
  * Interface ServiceResolverInterface
@@ -21,12 +22,5 @@ use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
  */
 interface ServiceResolverInterface
 {
-    /**
-     * Resolves controller service
-     *
-     * @param LayoutBoxInterface $layoutBox
-     *
-     * @return \WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface
-     */
-    public function resolveControllerService(LayoutBoxInterface $layoutBox);
+    public function resolveControllerService(LayoutBox $layoutBox): BoxControllerInterface;
 }

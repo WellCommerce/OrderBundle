@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
+use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 
 /**
  * Class LayoutBoxController
@@ -25,28 +25,28 @@ use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxInterface;
  */
 class LayoutBoxController extends AbstractAdminController
 {
-    public function addAction(Request $request) : Response
+    public function addAction(Request $request): Response
     {
-        /** @var LayoutBoxInterface $resource */
+        /** @var LayoutBox $resource */
         $resource = $this->getManager()->initResource();
         $form     = $this->getForm($resource);
-
+        
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
                 $settings = $this->getBoxSettingsFromRequest($request);
                 $resource->setSettings($settings);
                 $this->getManager()->createResource($resource);
             }
-
+            
             return $this->createFormDefaultJsonResponse($form);
         }
-
+        
         return $this->displayTemplate('add', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
-
-    protected function getBoxSettingsFromRequest(Request $request) : array
+    
+    protected function getBoxSettingsFromRequest(Request $request): array
     {
         $settings   = [];
         $accessor   = PropertyAccess::createPropertyAccessor();
@@ -55,7 +55,7 @@ class LayoutBoxController extends AbstractAdminController
         if ($accessor->isReadable($parameters, '[' . $boxType . ']')) {
             $settings = $accessor->getValue($parameters, '[' . $boxType . ']');
         }
-
+        
         return !is_array($settings) ? [] : $settings;
     }
 }
