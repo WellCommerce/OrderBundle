@@ -18,7 +18,6 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareInterface;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
@@ -42,7 +41,6 @@ interface OrderInterface extends
     ClientContactDetailsAwareInterface,
     ClientBillingAddressAwareInterface,
     ClientShippingAddressAwareInterface,
-    CouponAwareInterface,
     ShippingMethodAwareInterface
 {
     public function isConfirmed(): bool;

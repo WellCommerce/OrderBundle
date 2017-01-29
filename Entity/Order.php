@@ -23,7 +23,7 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareTrait;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
@@ -49,7 +49,6 @@ class Order implements OrderInterface
     use ClientContactDetailsAwareTrait;
     use ClientBillingAddressAwareTrait;
     use ClientShippingAddressAwareTrait;
-    use CouponAwareTrait;
     use OrderExtraTrait;
     
     protected $confirmed            = false;
@@ -61,6 +60,11 @@ class Order implements OrderInterface
     protected $comment              = '';
     protected $issueInvoice         = false;
     protected $conditionsAccepted   = false;
+    
+    /**
+     * @var Coupon
+     */
+    protected $coupon;
     
     /**
      * @var OrderStatusInterface
@@ -159,6 +163,26 @@ class Order implements OrderInterface
     public function setSessionId(string $sessionId)
     {
         $this->sessionId = $sessionId;
+    }
+    
+    public function getCoupon()
+    {
+        return $this->coupon;
+    }
+    
+    public function setCoupon(Coupon $coupon)
+    {
+        $this->coupon = $coupon;
+    }
+    
+    public function hasCoupon(): bool
+    {
+        return $this->coupon instanceof Coupon;
+    }
+    
+    public function removeCoupon()
+    {
+        $this->coupon = null;
     }
     
     public function addProduct(OrderProductInterface $orderProduct)
