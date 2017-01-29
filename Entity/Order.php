@@ -24,9 +24,9 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareTrait;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareTrait;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
+use WellCommerce\Bundle\ShopBundle\Entity\Shop;
 
 /**
  * Class Order
@@ -37,9 +37,6 @@ class Order implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
-    use ShopAwareTrait;
-    use ShippingMethodAwareTrait;
-    use PaymentMethodAwareTrait;
     use OrderExtraTrait;
     
     protected $confirmed            = false;
@@ -116,6 +113,21 @@ class Order implements EntityInterface
      * @var Collection
      */
     protected $modifiers;
+    
+    /**
+     * @var Shop
+     */
+    protected $shop;
+    
+    /**
+     * @var ShippingMethod
+     */
+    protected $shippingMethod;
+    
+    /**
+     * @var PaymentMethod
+     */
+    protected $paymentMethod;
     
     public function __construct()
     {
@@ -413,5 +425,45 @@ class Order implements EntityInterface
     public function setIssueInvoice(bool $issueInvoice)
     {
         $this->issueInvoice = $issueInvoice;
+    }
+    
+    public function getShop(): Shop
+    {
+        return $this->shop;
+    }
+    
+    public function setShop(Shop $shop)
+    {
+        $this->shop = $shop;
+    }
+    
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+    
+    public function setShippingMethod(ShippingMethod $shippingMethod = null)
+    {
+        $this->shippingMethod = $shippingMethod;
+    }
+    
+    public function hasShippingMethod(): bool
+    {
+        return $this->shippingMethod instanceof ShippingMethod;
+    }
+    
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+    
+    public function setPaymentMethod(PaymentMethod $paymentMethod = null)
+    {
+        $this->paymentMethod = $paymentMethod;
+    }
+    
+    public function hasPaymentMethod(): bool
+    {
+        return $this->paymentMethod instanceof PaymentMethod;
     }
 }
