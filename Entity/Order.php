@@ -27,7 +27,7 @@ use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareTrait;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareTrait;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
@@ -290,7 +290,7 @@ class Order implements OrderInterface
         $this->payments = $payments;
     }
     
-    public function addPayment(PaymentInterface $payment)
+    public function addPayment(Payment $payment)
     {
         $this->payments[] = $payment;
     }
