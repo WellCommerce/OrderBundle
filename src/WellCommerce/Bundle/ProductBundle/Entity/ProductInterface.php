@@ -69,7 +69,7 @@ interface ProductInterface extends
     
     public function setProductPhotos(Collection $photos);
     
-    public function addProductPhoto(ProductPhotoInterface $photo);
+    public function addProductPhoto(ProductPhoto $photo);
     
     public function getCategories(): Collection;
     

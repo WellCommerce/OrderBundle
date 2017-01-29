@@ -189,7 +189,7 @@ class Product implements ProductInterface
         $this->productPhotos = $photos;
     }
     
-    public function addProductPhoto(ProductPhotoInterface $photo)
+    public function addProductPhoto(ProductPhoto $photo)
     {
         $this->productPhotos[] = $photo;
     }
