@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 
 /**
@@ -24,7 +25,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Review implements ReviewInterface
+class Review implements EntityInterface
 {
     use Identifiable;
     use Enableable;
@@ -129,7 +130,7 @@ class Review implements ReviewInterface
         $this->reviewRecommendations = $reviewRecommendations;
     }
     
-    public function addRecommendation(ReviewRecommendationInterface $reviewRecommendation)
+    public function addRecommendation(ReviewRecommendation $reviewRecommendation)
     {
         $this->reviewRecommendations[] = $reviewRecommendation;
     }

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use WellCommerce\Bundle\ReviewBundle\Checker\BadWordsChecker;
-use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
+use WellCommerce\Bundle\ReviewBundle\Entity\Review;
 
 /**
  * Class BadWordsValidator
@@ -32,16 +32,16 @@ class BadWordsValidator extends ConstraintValidator
      */
     public function validate($entity, Constraint $constraint)
     {
-        if (!$entity instanceof ReviewInterface) {
-            throw new \InvalidArgumentException('Expected instance of ReviewInterface');
+        if (!$entity instanceof Review) {
+            throw new \InvalidArgumentException('Expected instance of ' . Review::class);
         }
-
+        
         $checker = new BadWordsChecker();
-
+        
         if (false === $checker->isBadWord($entity->getReview())) {
             return;
         }
-
+        
         if ($this->context instanceof ExecutionContextInterface) {
             $this->context->buildViolation($constraint->message)
                 ->atPath('review')

@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\ReviewBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendation;
-use WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendationInterface;
 
 /**
  * Class ReviewEventSubscriber
@@ -41,17 +40,17 @@ final class ReviewEventSubscriber implements EventSubscriber
     {
         $reviewRecommendation = $args->getObject();
         
-        if ($reviewRecommendation instanceof ReviewRecommendationInterface) {
+        if ($reviewRecommendation instanceof ReviewRecommendation) {
             $review                         = $reviewRecommendation->getReview();
             $reviewRecommendationRepository = $args->getObjectManager()->getRepository(ReviewRecommendation::class);
             $reviewLikes                    = $reviewRecommendationRepository->findBy([
                 'review' => $review,
-                'liked'  => true
+                'liked'  => true,
             ]);
             
             $reviewUnlikes = $reviewRecommendationRepository->findBy([
                 'review'  => $review,
-                'unliked' => true
+                'unliked' => true,
             ]);
             
             if (count($reviewUnlikes) > 0) {

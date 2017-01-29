@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\ReviewBundle\Twig\Extension;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
+use WellCommerce\Bundle\ReviewBundle\Entity\Review;
 
 /**
  * Class ReviewExtension
@@ -59,7 +59,7 @@ final class ReviewExtension extends \Twig_Extension
         $totalRating  = 0;
         $reviewsTotal = $collection->count();
         
-        $collection->map(function (ReviewInterface $review) use (&$totalRating) {
+        $collection->map(function (Review $review) use (&$totalRating) {
             $totalRating += $review->getRating();
         });
         

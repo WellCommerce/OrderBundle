@@ -15,13 +15,14 @@ namespace WellCommerce\Bundle\ReviewBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Review
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ReviewRecommendation implements ReviewRecommendationInterface
+class ReviewRecommendation implements EntityInterface
 {
     use Identifiable;
     use Enableable;
@@ -31,7 +32,7 @@ class ReviewRecommendation implements ReviewRecommendationInterface
     protected $unliked = false;
     
     /**
-     * @var ReviewInterface
+     * @var Review
      */
     protected $review;
     
@@ -55,12 +56,12 @@ class ReviewRecommendation implements ReviewRecommendationInterface
         return $this->unliked;
     }
     
-    public function getReview(): ReviewInterface
+    public function getReview(): Review
     {
         return $this->review;
     }
     
-    public function setReview(ReviewInterface $review)
+    public function setReview(Review $review)
     {
         $this->review = $review;
     }

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ReviewBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
-use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
+use WellCommerce\Bundle\ReviewBundle\Entity\Review;
 
 /**
  * Class ReviewController
@@ -23,26 +23,19 @@ use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
  */
 class ReviewController extends AbstractAdminController
 {
-    public function enableAction(int $id): JsonResponse
+    public function enableAction(Review $review): JsonResponse
     {
-        $this->changeStatus($id, true);
+        $review->setEnabled(true);
+        $this->getManager()->updateResource($review);
         
         return $this->jsonResponse(['success' => true]);
     }
     
-    public function disableAction(int $id): JsonResponse
+    public function disableAction(Review $review): JsonResponse
     {
-        $this->changeStatus($id, false);
+        $review->setEnabled(false);
+        $this->getManager()->updateResource($review);
         
         return $this->jsonResponse(['success' => true]);
-    }
-    
-    private function changeStatus(int $id, bool $enabled)
-    {
-        $review = $this->getManager()->getRepository()->find($id);
-        if ($review instanceof ReviewInterface) {
-            $review->setEnabled($enabled);
-            $this->getManager()->updateResource($review);
-        }
     }
 }
