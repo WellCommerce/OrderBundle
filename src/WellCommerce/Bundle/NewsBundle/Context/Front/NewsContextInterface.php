@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\NewsBundle\Context\Front;
 
-use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
+use WellCommerce\Bundle\NewsBundle\Entity\News;
 
 /**
  * Interface NewsContextInterface
@@ -21,18 +21,9 @@ use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
  */
 interface NewsContextInterface
 {
-    /**
-     * @param NewsInterface $news
-     */
-    public function setCurrentNews(NewsInterface $news);
-
-    /**
-     * @return NewsInterface
-     */
-    public function getCurrentNews() : NewsInterface;
-
-    /**
-     * @return bool
-     */
-    public function hasCurrentNews() : bool;
+    public function setCurrentNews(News $news);
+    
+    public function getCurrentNews(): News;
+    
+    public function hasCurrentNews(): bool;
 }

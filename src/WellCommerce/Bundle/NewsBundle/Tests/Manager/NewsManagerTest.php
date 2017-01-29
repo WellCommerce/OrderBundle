@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\NewsBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
+use WellCommerce\Bundle\NewsBundle\Entity\News;
 
 /**
  * Class NewsManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
  */
 class NewsManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('news.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return NewsInterface::class;
+        return News::class;
     }
 }

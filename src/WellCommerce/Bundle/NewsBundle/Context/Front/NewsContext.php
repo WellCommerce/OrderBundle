@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\NewsBundle\Context\Front;
 
-use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
+use WellCommerce\Bundle\NewsBundle\Entity\News;
 
 /**
  * Class NewsContext
@@ -21,32 +21,20 @@ use WellCommerce\Bundle\NewsBundle\Entity\NewsInterface;
  */
 class NewsContext implements NewsContextInterface
 {
-    /**
-     * @var NewsInterface
-     */
     protected $currentNews;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCurrentNews(NewsInterface $news)
+    
+    public function setCurrentNews(News $news)
     {
         $this->currentNews = $news;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentNews() : NewsInterface
+    
+    public function getCurrentNews(): News
     {
         return $this->currentNews;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasCurrentNews() : bool
+    
+    public function hasCurrentNews(): bool
     {
-        return $this->currentNews instanceof NewsInterface;
+        return $this->currentNews instanceof News;
     }
 }
