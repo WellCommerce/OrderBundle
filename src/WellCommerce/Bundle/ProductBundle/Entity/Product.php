@@ -21,7 +21,7 @@ use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
-use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareTrait;
+use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
@@ -50,7 +50,6 @@ class Product implements ProductInterface
     use ShopCollectionAwareTrait;
     use ProducerAwareTrait;
     use UnitAwareTrait;
-    use AvailabilityAwareTrait;
     use ProductExtraTrait;
     
     protected $sku         = '';
@@ -108,6 +107,11 @@ class Product implements ProductInterface
      * @var Collection
      */
     protected $productPhotos;
+    
+    /**
+     * @var null|Availability
+     */
+    protected $availability;
     
     public function __construct()
     {
@@ -315,5 +319,15 @@ class Product implements ProductInterface
     public function setSellPriceTax(TaxInterface $sellPriceTax = null)
     {
         $this->sellPriceTax = $sellPriceTax;
+    }
+    
+    public function getAvailability()
+    {
+        return $this->availability;
+    }
+    
+    public function setAvailability(Availability $availability = null)
+    {
+        $this->availability = $availability;
     }
 }

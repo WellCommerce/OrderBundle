@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AvailabilityBundle\Tests\Manager;
 
-use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityInterface;
+use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
 
@@ -30,6 +30,6 @@ class AvailabilityManagerTest extends AbstractManagerTestCase
     
     protected function getExpectedEntityInterface(): string
     {
-        return AvailabilityInterface::class;
+        return Availability::class;
     }
 }

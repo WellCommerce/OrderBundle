@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
-use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareTrait;
+use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
@@ -35,7 +35,6 @@ class Variant implements VariantInterface
     use Sortable;
     use Timestampable;
     use MediaAwareTrait;
-    use AvailabilityAwareTrait;
     use ProductAwareTrait;
     use VariantExtraTrait;
     
@@ -49,6 +48,11 @@ class Variant implements VariantInterface
      * @var DiscountablePrice
      */
     protected $sellPrice;
+    
+    /**
+     * @var null|Availability
+     */
+    protected $availability;
     
     /**
      * @var Collection
@@ -142,5 +146,15 @@ class Variant implements VariantInterface
     public function setModifierType(string $modifierType)
     {
         $this->modifierType = $modifierType;
+    }
+    
+    public function getAvailability()
+    {
+        return $this->availability;
+    }
+    
+    public function setAvailability(Availability $availability = null)
+    {
+        $this->availability = $availability;
     }
 }

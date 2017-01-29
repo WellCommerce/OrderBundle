@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
-use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
@@ -27,7 +26,6 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
 interface VariantInterface extends
     EntityInterface,
     TimestampableInterface,
-    AvailabilityAwareInterface,
     ProductAwareInterface,
     MediaAwareInterface
 {

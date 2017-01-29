@@ -14,11 +14,11 @@ namespace WellCommerce\Bundle\ProductBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityInterface;
+use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantOptionInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;
 use WellCommerce\Bundle\ProductBundle\Manager\VariantManager;
 
 /**
@@ -36,7 +36,7 @@ class VariantCollectionToArrayTransformer extends CollectionToArrayTransformer
     /**
      * @param VariantManager $variantManager
      */
-    public function setVariantManager (VariantManager $variantManager)
+    public function setVariantManager(VariantManager $variantManager)
     {
         $this->variantManager = $variantManager;
     }
@@ -44,12 +44,12 @@ class VariantCollectionToArrayTransformer extends CollectionToArrayTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform ($modelData)
+    public function transform($modelData)
     {
         $values = [];
         
         if ($modelData instanceof Collection) {
-            $modelData->map(function (VariantInterface $variant) use (&$values) {
+            $modelData->map(function (Variant $variant) use (&$values) {
                 $values[] = [
                     'id'           => $variant->getId(),
                     'suffix'       => $variant->getModifierType(),
@@ -68,7 +68,7 @@ class VariantCollectionToArrayTransformer extends CollectionToArrayTransformer
         return $values;
     }
     
-    private function transformAvailability (AvailabilityInterface $availability = null)
+    private function transformAvailability(Availability $availability = null)
     {
         if (null !== $availability) {
             return $availability->getId();
@@ -77,14 +77,14 @@ class VariantCollectionToArrayTransformer extends CollectionToArrayTransformer
         return null;
     }
     
-    public function transformOptions (Collection $collection = null) : array
+    public function transformOptions(Collection $collection = null): array
     {
         if (null === $collection) {
             return [];
         }
         
         $values = [];
-        $collection->map(function (VariantOptionInterface $variantOption) use (&$values) {
+        $collection->map(function (VariantOption $variantOption) use (&$values) {
             $values[$variantOption->getAttribute()->getId()] = $variantOption->getAttributeValue()->getId();
         });
         
@@ -94,9 +94,9 @@ class VariantCollectionToArrayTransformer extends CollectionToArrayTransformer
     /**
      * {@inheritdoc}
      */
-    public function reverseTransform ($modelData, PropertyPathInterface $propertyPath, $values)
+    public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $values)
     {
-        if ($modelData instanceof ProductInterface && null !== $values) {
+        if ($modelData instanceof Product && null !== $values) {
             $collection = $this->variantManager->getAttributesCollectionForProduct($modelData, $values);
             $modelData->setVariants($collection);
         }
