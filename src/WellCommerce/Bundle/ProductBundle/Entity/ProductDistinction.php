@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 
 /**
@@ -23,7 +24,7 @@ use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductDistinction implements ProductDistinctionInterface
+class ProductDistinction implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

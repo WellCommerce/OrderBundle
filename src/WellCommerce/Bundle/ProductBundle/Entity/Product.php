@@ -167,14 +167,14 @@ class Product implements ProductInterface
     
     protected function synchronizeDistinctions(Collection $distinctions)
     {
-        $this->distinctions->map(function (ProductDistinctionInterface $distinction) use ($distinctions) {
+        $this->distinctions->map(function (ProductDistinction $distinction) use ($distinctions) {
             if (false === $distinctions->contains($distinction)) {
                 $this->removeDistinction($distinction);
             }
         });
     }
     
-    public function removeDistinction(ProductDistinctionInterface $distinction)
+    public function removeDistinction(ProductDistinction $distinction)
     {
         $this->distinctions->removeElement($distinction);
     }

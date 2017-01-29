@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinctionInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
@@ -44,7 +44,7 @@ final class DistinctionsTransformer extends AbstractDataSetTransformer
         $distinctions = [];
         $product      = $this->repository->find($productId);
         if ($product instanceof ProductInterface) {
-            $product->getDistinctions()->map(function (ProductDistinctionInterface $distinction) use (&$distinctions) {
+            $product->getDistinctions()->map(function (ProductDistinction $distinction) use (&$distinctions) {
                 if ($distinction->isValid()) {
                     $distinctions[] = [
                         'name'     => $distinction->getStatus()->translate()->getName(),

@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinctionInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 
@@ -33,12 +33,12 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
      * @var ManagerInterface
      */
     private $manager;
-
+    
     /**
      * @var string
      */
     private $dateFormat = 'm/d/Y';
-
+    
     public function setProductDistinctionManager(ManagerInterface $manager)
     {
         $this->manager = $manager;
@@ -48,14 +48,14 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
     {
         $values = [];
         if ($modelData instanceof Collection) {
-            $modelData->map(function (ProductDistinctionInterface $distinction) use (&$values) {
+            $modelData->map(function (ProductDistinction $distinction) use (&$values) {
                 $values[$distinction->getStatus()->getId()] = [
                     'valid_from' => $this->transformDate($distinction->getValidFrom()),
                     'valid_to'   => $this->transformDate($distinction->getValidTo()),
                 ];
             });
         }
-
+        
         return $values;
     }
     
@@ -72,43 +72,43 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
                     $collection->add($distinction);
                 }
             }
-
+            
             $modelData->setDistinctions($collection);
         }
     }
-
-    private function getProductDistinction(ProductInterface $product, ProductStatusInterface $status) : ProductDistinctionInterface
+    
+    private function getProductDistinction(ProductInterface $product, ProductStatusInterface $status): ProductDistinction
     {
         $distinction = $this->manager->getRepository()->findOneBy([
             'product' => $product,
-            'status'  => $status
+            'status'  => $status,
         ]);
-
-        if (!$distinction instanceof ProductDistinctionInterface) {
-            /** @var ProductDistinctionInterface $distinction */
+        
+        if (!$distinction instanceof ProductDistinction) {
+            /** @var ProductDistinction $distinction */
             $distinction = $this->manager->initResource();
             $distinction->setProduct($product);
             $distinction->setStatus($status);
         }
-
+        
         return $distinction;
     }
-
-    private function transformDate($date) : string
+    
+    private function transformDate($date): string
     {
         if ($date instanceof DateTime) {
             return $date->format($this->dateFormat);
         }
-
+        
         return '';
     }
-
+    
     private function createDateFromString($value)
     {
         if (false === $date = DateTime::createFromFormat($this->dateFormat, $value)) {
             $date = null;
         }
-
+        
         return $date;
     }
 }
