@@ -13,10 +13,9 @@
 namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\PageBundle\Entity\Page;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
 
 /**
  * Class LoadPageData
@@ -78,13 +77,13 @@ class LoadPageData extends AbstractDataFixture
     /**
      * Creates a cms page
      *
-     * @param string        $name
-     * @param int           $hierarchy
-     * @param PageInterface $parent
+     * @param string $name
+     * @param int    $hierarchy
+     * @param Page   $parent
      *
-     * @return PageInterface
+     * @return Page
      */
-    protected function createPage($name, $hierarchy, PageInterface $parent = null)
+    protected function createPage($name, $hierarchy, Page $parent = null): Page
     {
         $page = new Page();
         $page->setParent($parent);

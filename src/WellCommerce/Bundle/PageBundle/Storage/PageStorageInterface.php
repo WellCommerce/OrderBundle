@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\PageBundle\Storage;
 
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Interface PageStorageInterface
@@ -24,12 +24,12 @@ interface PageStorageInterface
     /**
      * @param PageInterface $page
      */
-    public function setCurrentPage(PageInterface $page);
+    public function setCurrentPage(Page $page);
 
     /**
      * @return PageInterface
      */
-    public function getCurrentPage() : PageInterface;
+    public function getCurrentPage() : Page;
 
     /**
      * @return bool

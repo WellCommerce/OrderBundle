@@ -78,6 +78,9 @@ parameters:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadSearchData: 260
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadReviewData: 270
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadShowcaseData: 280
+        WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadLayeredNavigationData: 290
+        WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadShowcaseData: 280
+        WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadWishlistData: 280
     fixtures_product_limit: 100
     enabled_fixtures:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadAdminMenuData: true
@@ -109,3 +112,5 @@ parameters:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadSearchData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadReviewData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadShowcaseData: true
+        WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadLayeredNavigationData: true
+        WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadWishlistData: true

@@ -19,6 +19,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -26,7 +27,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Page implements PageInterface
+class Page implements EntityInterface
 {
     use Identifiable;
     use Sortable;
@@ -42,7 +43,7 @@ class Page implements PageInterface
     protected $redirectRoute = '';
     
     /**
-     * @var PageInterface|null
+     * @var Page|null
      */
     protected $parent;
     
@@ -70,42 +71,27 @@ class Page implements PageInterface
         return $this->publish;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setPublish(bool $publish)
     {
         $this->publish = $publish;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return $this->parent;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setParent(PageInterface $parent = null)
+    public function setParent(self $parent = null)
     {
         $this->parent = $parent;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getChildren(): Collection
     {
         return $this->children;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function addChild(PageInterface $child)
+    public function addChild(self $child)
     {
         $this->children[] = $child;
         $child->setParent($this);

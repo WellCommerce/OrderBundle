@@ -33,11 +33,5 @@ services:
             - { name: twig.extension }
         arguments: ['@page.dataset.front']
 
-    page.request_param_converter:
-        class: WellCommerce\Bundle\PageBundle\Request\ParamConverter\PageParamConverter
-        tags:
-            - { name: request.param_converter, converter: page, priority: 10 }
-        arguments: ['@page.repository', page, [WellCommerce\Bundle\PageBundle\Entity\Page, WellCommerce\Bundle\PageBundle\Entity\PageInterface]]
-
     page.storage:
         class: WellCommerce\Bundle\PageBundle\Storage\PageStorage

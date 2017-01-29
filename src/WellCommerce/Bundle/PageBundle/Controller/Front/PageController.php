@@ -12,11 +12,9 @@
 
 namespace WellCommerce\Bundle\PageBundle\Controller\Front;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -26,11 +24,12 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 class PageController extends AbstractFrontController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function indexAction(PageInterface $page): Response
+    public function indexAction(Page $page): Response
     {
+        if (false === $page->getPublish()) {
+            return $this->redirectToRoute('front.home_page.index');
+        }
+        
         if (null !== $page->getParent()) {
             $this->getBreadcrumbProvider()->add(new Breadcrumb([
                 'label' => $page->getParent()->translate()->getName(),
@@ -44,6 +43,7 @@ class PageController extends AbstractFrontController
         $this->getPageStorage()->setCurrentPage($page);
         
         return $this->displayTemplate('index', [
+            'page'     => $page,
             'metadata' => $page->translate()->getMeta(),
         ]);
     }

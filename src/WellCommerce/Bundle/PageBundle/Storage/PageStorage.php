@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\PageBundle\Storage;
 
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class PageStorage
@@ -22,31 +22,31 @@ use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
 class PageStorage implements PageStorageInterface
 {
     /**
-     * @var PageInterface
+     * @var Page
      */
     protected $currentPage;
-
+    
     /**
      * {@inheritdoc}
      */
-    public function setCurrentPage(PageInterface $page)
+    public function setCurrentPage(Page $page)
     {
         $this->currentPage = $page;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getCurrentPage() : PageInterface
+    public function getCurrentPage(): Page
     {
         return $this->currentPage;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function hasCurrentPage() : bool
+    public function hasCurrentPage(): bool
     {
-        return $this->currentPage instanceof PageInterface;
+        return $this->currentPage instanceof Page;
     }
 }

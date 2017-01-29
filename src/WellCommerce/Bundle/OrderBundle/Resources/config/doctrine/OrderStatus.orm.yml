@@ -1,6 +1,7 @@
 WellCommerce\Bundle\OrderBundle\Entity\OrderStatus:
     type: entity
     table: order_status
+    repositoryClass: WellCommerce\Bundle\OrderBundle\Repository\OrderStatusRepository
     id:
         id:
             type: integer

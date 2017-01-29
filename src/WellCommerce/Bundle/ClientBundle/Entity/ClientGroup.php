@@ -17,7 +17,7 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class ClientGroup
@@ -84,7 +84,7 @@ class ClientGroup implements ClientGroupInterface
         $this->pages = $pages;
     }
     
-    public function addPage(PageInterface $page)
+    public function addPage(Page $page)
     {
         $this->pages->add($page);
     }

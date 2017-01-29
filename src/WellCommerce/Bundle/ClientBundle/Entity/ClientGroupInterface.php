@@ -17,7 +17,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Interface ClientGroupInterface
@@ -26,19 +26,19 @@ use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
  */
 interface ClientGroupInterface extends EntityInterface, TranslatableInterface, TimestampableInterface, BlameableInterface
 {
-    public function getDiscount() : float;
+    public function getDiscount(): float;
     
     public function setDiscount(float $discount);
     
     public function setClients(Collection $clients);
     
-    public function getClients() : Collection;
+    public function getClients(): Collection;
     
     public function addClient(ClientInterface $client);
     
-    public function getPages() : Collection;
+    public function getPages(): Collection;
     
     public function setPages(Collection $pages);
     
-    public function addPage(PageInterface $page);
+    public function addPage(Page $page);
 }

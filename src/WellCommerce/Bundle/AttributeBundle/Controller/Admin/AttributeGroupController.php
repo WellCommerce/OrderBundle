@@ -12,11 +12,9 @@
 
 namespace WellCommerce\Bundle\AttributeBundle\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
-use WellCommerce\Bundle\AttributeBundle\Repository\AttributeGroupRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 
 /**
