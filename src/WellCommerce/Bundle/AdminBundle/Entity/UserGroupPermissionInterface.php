@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\AdminBundle\Entity;
 
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
@@ -22,23 +21,11 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
  */
 interface UserGroupPermissionInterface extends EntityInterface
 {
-    /**
-     * @return UserGroupInterface
-     */
-    public function getGroup() : UserGroupInterface;
+    public function getGroup(): UserGroup;
     
-    /**
-     * @param UserGroupInterface $group
-     */
-    public function setGroup(UserGroupInterface $group);
+    public function setGroup(UserGroup $group);
     
-    /**
-     * @return int
-     */
-    public function getName() : string;
+    public function getName(): string;
     
-    /**
-     * @param string $name
-     */
     public function setName(string $name);
 }

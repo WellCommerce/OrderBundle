@@ -12,8 +12,7 @@
 
 namespace WellCommerce\Bundle\AdminBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\AdminBundle\Entity\UserGroupInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\UserGroup;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
@@ -50,7 +49,7 @@ class UserGroupControllerTest extends AbstractAdminControllerTestCase
     {
         $collection = $this->container->get('user_group.repository')->getCollection();
         
-        $collection->map(function (UserGroupInterface $user) {
+        $collection->map(function (UserGroup $user) {
             $url     = $this->generateUrl('admin.user_group.edit', ['id' => $user->getId()]);
             $crawler = $this->client->request('GET', $url);
             

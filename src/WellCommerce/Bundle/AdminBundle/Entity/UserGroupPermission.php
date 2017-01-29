@@ -27,43 +27,28 @@ class UserGroupPermission implements UserGroupPermissionInterface
     use Enableable;
     use Timestampable;
     
+    protected $name = '';
+    
     /**
-     * @var UserGroupInterface
+     * @var UserGroup
      */
     protected $group;
     
-    /**
-     * @var string
-     */
-    protected $name;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getGroup() : UserGroupInterface
+    public function getGroup(): UserGroup
     {
         return $this->group;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setGroup(UserGroupInterface $group)
+    public function setGroup(UserGroup $group)
     {
         $this->group = $group;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setName(string $name)
     {
         $this->name = $name;

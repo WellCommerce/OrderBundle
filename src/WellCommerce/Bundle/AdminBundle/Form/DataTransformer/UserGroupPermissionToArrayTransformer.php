@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\AdminBundle\Form\DataTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\AdminBundle\Entity\UserGroupInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\UserGroup;
 use WellCommerce\Bundle\AdminBundle\Entity\UserGroupPermission;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 
@@ -32,31 +32,28 @@ class UserGroupPermissionToArrayTransformer extends CollectionToArrayTransformer
     public function transform($modelData)
     {
         $values = [];
-
+        
         if ($modelData instanceof Collection) {
             $modelData->map(function (UserGroupPermission $userGroupPermission) use (&$values) {
                 list($permissionType, $action) = explode('.', $userGroupPermission->getName());
                 $values[$permissionType][$action] = $userGroupPermission->isEnabled();
             });
         }
-
+        
         return $values;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $values)
     {
-        if ($modelData instanceof UserGroupInterface) {
+        if ($modelData instanceof UserGroup) {
             $previousCollection = $modelData->getPermissions();
             $this->clearPreviousCollection($previousCollection);
             $newCollection = $this->createCollection($values, $modelData);
             $modelData->setPermissions($newCollection);
         }
     }
-
-    protected function createCollection(array $values = [], UserGroupInterface $userGroup)
+    
+    protected function createCollection(array $values = [], UserGroup $userGroup)
     {
         $collection = new ArrayCollection();
         foreach ($values as $permissionType => $actions) {
@@ -69,10 +66,10 @@ class UserGroupPermissionToArrayTransformer extends CollectionToArrayTransformer
                 $collection->add($permission);
             }
         }
-
+        
         return $collection;
     }
-
+    
     /**
      * Resets previous photo collection
      *

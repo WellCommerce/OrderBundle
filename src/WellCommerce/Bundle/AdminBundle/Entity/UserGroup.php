@@ -17,13 +17,14 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class UserGroup
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class UserGroup implements UserGroupInterface
+class UserGroup implements EntityInterface
 {
     use Identifiable;
     use Enableable;
