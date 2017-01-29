@@ -28,7 +28,6 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareTrait;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
@@ -171,7 +170,7 @@ class Order implements EntityInterface
         return $this->coupon;
     }
     
-    public function setCoupon(Coupon $coupon)
+    public function setCoupon(Coupon $coupon = null)
     {
         $this->coupon = $coupon;
     }
@@ -179,11 +178,6 @@ class Order implements EntityInterface
     public function hasCoupon(): bool
     {
         return $this->coupon instanceof Coupon;
-    }
-    
-    public function removeCoupon()
-    {
-        $this->coupon = null;
     }
     
     public function addProduct(OrderProduct $orderProduct)
@@ -313,11 +307,6 @@ class Order implements EntityInterface
     public function setPayments(Collection $payments)
     {
         $this->payments = $payments;
-    }
-    
-    public function addPayment(Payment $payment)
-    {
-        $this->payments[] = $payment;
     }
     
     public function acceptVisitor(OrderVisitorInterface $visitor)

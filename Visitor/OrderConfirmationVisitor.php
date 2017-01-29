@@ -78,7 +78,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         $payments = $order->getPayments();
         if (0 === $payments->count() && $order->hasPaymentMethod()) {
             $payment = $this->paymentManager->createPaymentForOrder($order);
-            $order->addPayment($payment);
+            $payments->add($payment);
         }
     }
     
