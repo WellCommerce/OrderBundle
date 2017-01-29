@@ -77,6 +77,7 @@
     Translator.add("An empty file is not allowed.", "En tom fil \u00e4r inte till\u00e5ten.", "validators", "sv");
     Translator.add("The host could not be resolved.", "V\u00e4rddatorn kunde inte hittas.", "validators", "sv");
     Translator.add("This value does not match the expected {{ charset }} charset.", "Detta v\u00e4rde har inte den f\u00f6rv\u00e4ntade teckenkodningen {{ charset }}.", "validators", "sv");
+    Translator.add("This is not a valid Business Identifier Code (BIC).", "Detta \u00e4r inte en giltig BIC-kod.", "validators", "sv");
     Translator.add("This form should not contain extra fields.", "Formul\u00e4ret kan inte inneh\u00e5lla extra f\u00e4lt.", "validators", "sv");
     Translator.add("The uploaded file was too large. Please try to upload a smaller file.", "Den uppladdade filen var f\u00f6r stor. F\u00f6rs\u00f6k ladda upp en mindre fil.", "validators", "sv");
     Translator.add("The CSRF token is invalid.", "CSRF-symbolen \u00e4r inte giltig.", "validators", "sv");

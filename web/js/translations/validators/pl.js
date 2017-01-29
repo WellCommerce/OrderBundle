@@ -8,8 +8,8 @@
     Translator.add("You must select at least {{ limit }} choice.|You must select at least {{ limit }} choices.", "Powiniene\u015b wybra\u0107 co najmniej {{ limit }} opcj\u0119.|Powiniene\u015b wybra\u0107 co najmniej {{ limit }} opcje.|Powiniene\u015b wybra\u0107 co najmniej {{ limit }} opcji.", "validators", "pl");
     Translator.add("You must select at most {{ limit }} choice.|You must select at most {{ limit }} choices.", "Powiniene\u015b wybra\u0107 maksymalnie {{ limit }} opcj\u0119.|Powiniene\u015b wybra\u0107 maksymalnie {{ limit }} opcje.|Powiniene\u015b wybra\u0107 maksymalnie {{ limit }} opcji.", "validators", "pl");
     Translator.add("One or more of the given values is invalid.", "Jedna lub wi\u0119cej z podanych warto\u015bci jest nieprawid\u0142owa.", "validators", "pl");
-    Translator.add("This field was not expected.", "To pole nie spodziewano.", "validators", "pl");
-    Translator.add("This field is missing.", "To pole jest chybianie.", "validators", "pl");
+    Translator.add("This field was not expected.", "Tego pola si\u0119 nie spodziewano.", "validators", "pl");
+    Translator.add("This field is missing.", "Tego pola brakuje.", "validators", "pl");
     Translator.add("This value is not a valid date.", "Ta warto\u015b\u0107 nie jest prawid\u0142ow\u0105 dat\u0105.", "validators", "pl");
     Translator.add("This value is not a valid datetime.", "Ta warto\u015b\u0107 nie jest prawid\u0142ow\u0105 dat\u0105 i czasem.", "validators", "pl");
     Translator.add("This value is not a valid email address.", "Ta warto\u015b\u0107 nie jest prawid\u0142owym adresem email.", "validators", "pl");
@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znak.|Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znaki.|Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znak\u00f3w.", "validators", "pl");
     Translator.add("The file was only partially uploaded.", "Plik zosta\u0142 wgrany tylko cz\u0119\u015bciowo.", "validators", "pl");
     Translator.add("No file was uploaded.", "\u017baden plik nie zosta\u0142 wgrany.", "validators", "pl");
-    Translator.add("No temporary folder was configured in php.ini.", "Nie skonfigurowano folderu tymczasowego w php.ini.", "validators", "pl");
+    Translator.add("No temporary folder was configured in php.ini.", "Nie skonfigurowano folderu tymczasowego w php.ini, lub skonfigurowany folder nie istnieje.", "validators", "pl");
     Translator.add("Cannot write temporary file to disk.", "Nie mo\u017cna zapisa\u0107 pliku tymczasowego na dysku.", "validators", "pl");
     Translator.add("A PHP extension caused the upload to fail.", "Rozszerzenie PHP spowodowa\u0142o b\u0142\u0105d podczas wgrywania.", "validators", "pl");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "Ten zbi\u00f3r powinien zawiera\u0107 {{ limit }} lub wi\u0119cej element\u00f3w.", "validators", "pl");
@@ -81,9 +81,6 @@
     Translator.add("This form should not contain extra fields.", "Ten formularz nie powinien zawiera\u0107 dodatkowych p\u00f3l.", "validators", "pl");
     Translator.add("The uploaded file was too large. Please try to upload a smaller file.", "Wgrany plik by\u0142 za du\u017cy. Prosz\u0119 spr\u00f3bowa\u0107 wgra\u0107 mniejszy plik.", "validators", "pl");
     Translator.add("The CSRF token is invalid. Please try to resubmit the form.", "Token CSRF jest nieprawid\u0142owy. Prosz\u0119 spr\u00f3bowa\u0107 wys\u0142a\u0107 formularz ponownie.", "validators", "pl");
-    Translator.add("review.error.nick.not_blank", "Pole \"Imi\u0119\" musi by\u0107 uzupe\u0142nione", "validators", "pl");
-    Translator.add("review.error.content.not_blank", "Pole \"Tre\u015b\u0107\" musi by\u0107 uzupe\u0142nione", "validators", "pl");
-    Translator.add("review.error.content.bad_words", "Pole \"Tre\u015b\u0107\" nie mo\u017ce zawiera\u0107 przekle\u0144stw", "validators", "pl");
     Translator.add("client.conditions_not_accepted", "Musisz zaakceptowa\u0107 regulamin sklepu", "validators", "pl");
     Translator.add("client.email_not_unique", "Posiadasz ju\u017c konto w naszym sklepie. Zaloguj si\u0119 lub przypomnij has\u0142o.", "validators", "pl");
     Translator.add("client.password_not_valid", "Wprowadzone has\u0142o nie jest poprawne", "validators", "pl");
@@ -119,4 +116,7 @@
     Translator.add("contact_ticket.error.content.not_blank", "Pole \"Tre\u015b\u0107 wiadomo\u015bci\" nie mo\u017ce by\u0107 puste", "validators", "pl");
     Translator.add("contact_ticket.error.name.not_blank", "Pole \"Imi\u0119\" nie mo\u017ce by\u0107 puste", "validators", "pl");
     Translator.add("contact_ticket.error.surname.not_blank", "Pole \"Nazwisko\" nie mo\u017ce by\u0107 puste", "validators", "pl");
+    Translator.add("review.error.nick.not_blank", "Pole \"Imi\u0119\" musi by\u0107 uzupe\u0142nione", "validators", "pl");
+    Translator.add("review.error.content.not_blank", "Pole \"Tre\u015b\u0107\" musi by\u0107 uzupe\u0142nione", "validators", "pl");
+    Translator.add("review.error.content.bad_words", "Pole \"Tre\u015b\u0107\" nie mo\u017ce zawiera\u0107 przekle\u0144stw", "validators", "pl");
 })(Translator);

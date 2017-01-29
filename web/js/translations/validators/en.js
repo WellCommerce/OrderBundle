@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "validators", "en");
     Translator.add("The file was only partially uploaded.", "The file was only partially uploaded.", "validators", "en");
     Translator.add("No file was uploaded.", "No file was uploaded.", "validators", "en");
-    Translator.add("No temporary folder was configured in php.ini.", "No temporary folder was configured in php.ini.", "validators", "en");
+    Translator.add("No temporary folder was configured in php.ini.", "No temporary folder was configured in php.ini, or the configured folder does not exist.", "validators", "en");
     Translator.add("Cannot write temporary file to disk.", "Cannot write temporary file to disk.", "validators", "en");
     Translator.add("A PHP extension caused the upload to fail.", "A PHP extension caused the upload to fail.", "validators", "en");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "validators", "en");
@@ -81,9 +81,6 @@
     Translator.add("This form should not contain extra fields.", "This form should not contain extra fields.", "validators", "en");
     Translator.add("The uploaded file was too large. Please try to upload a smaller file.", "The uploaded file was too large. Please try to upload a smaller file.", "validators", "en");
     Translator.add("The CSRF token is invalid. Please try to resubmit the form.", "The CSRF token is invalid. Please try to resubmit the form.", "validators", "en");
-    Translator.add("review.error.nick.not_blank", "Nick is required", "validators", "en");
-    Translator.add("review.error.content.not_blank", "The review's content is required", "validators", "en");
-    Translator.add("review.error.content.bad_words", "The review's content cannot contain swear words", "validators", "en");
     Translator.add("client.conditions_not_accepted", "You must accept store conditions", "validators", "en");
     Translator.add("client.email_not_unique", "You have an account already. Please login first.", "validators", "en");
     Translator.add("client.password_not_valid", "Password is not valid.", "validators", "en");
@@ -118,4 +115,7 @@
     Translator.add("contact_ticket.error.email.not_blank", "Pole \"Adres e-mail\" nie mo\u017ce by\u0107 puste", "validators", "en");
     Translator.add("contact_ticket.error.subject.not_blank", "Pole \"Temat wiadomo\u015bci\" nie mo\u017ce by\u0107 puste", "validators", "en");
     Translator.add("contact_ticket.error.content.not_blank", "Pole \"Tre\u015b\u0107 wiadomo\u015bci\" nie mo\u017ce by\u0107 puste", "validators", "en");
+    Translator.add("review.error.nick.not_blank", "Nick is required", "validators", "en");
+    Translator.add("review.error.content.not_blank", "The review's content is required", "validators", "en");
+    Translator.add("review.error.content.bad_words", "The review's content cannot contain swear words", "validators", "en");
 })(Translator);
