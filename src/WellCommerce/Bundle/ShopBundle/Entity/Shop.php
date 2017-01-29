@@ -17,7 +17,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupAwareTrait;
 use WellCommerce\Bundle\CompanyBundle\Entity\CompanyInterface;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareTrait;
 
 /**
@@ -27,7 +27,7 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareTrait;
  */
 class Shop implements ShopInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Blameable;
     use ThemeAwareTrait;
@@ -82,7 +82,7 @@ class Shop implements ShopInterface
     {
         $this->url = $url;
     }
-
+    
     public function getDefaultCountry(): string
     {
         return $this->defaultCountry;

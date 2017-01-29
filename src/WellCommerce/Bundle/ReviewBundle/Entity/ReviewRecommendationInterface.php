@@ -21,7 +21,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ReviewRecommendationInterface extends EntityInterface, EnableableInterface, TimestampableInterface
+interface ReviewRecommendationInterface extends EntityInterface, TimestampableInterface
 {
     public function getLiked(): bool;
     

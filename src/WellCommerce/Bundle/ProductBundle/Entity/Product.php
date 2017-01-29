@@ -19,13 +19,13 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareTrait;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ProducerBundle\Entity\ProducerAwareTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
@@ -40,13 +40,13 @@ use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareTrait;
  */
 class Product implements ProductInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
+    use Sortable;
     use Translatable;
     use Timestampable;
     use Blameable;
     use MediaAwareTrait;
-    use EnableableTrait;
-    use HierarchyAwareTrait;
     use ShopCollectionAwareTrait;
     use ProducerAwareTrait;
     use UnitAwareTrait;

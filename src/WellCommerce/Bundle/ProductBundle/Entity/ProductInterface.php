@@ -15,12 +15,10 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareInterface;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
@@ -38,8 +36,6 @@ use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareInterface;
  */
 interface ProductInterface extends
     EntityInterface,
-    HierarchyAwareInterface,
-    EnableableInterface,
     TranslatableInterface,
     TimestampableInterface,
     BlameableInterface,

@@ -17,11 +17,11 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyAwareTrait;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxAwareTrait;
 
@@ -32,12 +32,12 @@ use WellCommerce\Bundle\TaxBundle\Entity\TaxAwareTrait;
  */
 class ShippingMethod implements ShippingMethodInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
+    use Sortable;
     use Translatable;
     use Timestampable;
     use Blameable;
-    use EnableableTrait;
-    use HierarchyAwareTrait;
     use TaxAwareTrait;
     use CurrencyAwareTrait;
     use ShopCollectionAwareTrait;

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ThemeBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class Theme
@@ -23,47 +23,28 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class Theme implements ThemeInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Blameable;
     
-    /**
-     * @var string
-     */
-    protected $name = '';
-    
-    /**
-     * @var string
-     */
+    protected $name   = '';
     protected $folder = '';
     
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
     
-    /**
-     * @return string
-     */
     public function getFolder(): string
     {
         return $this->folder;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setFolder(string $folder)
     {
         $this->folder = $folder;

@@ -25,15 +25,6 @@ WellCommerce\Bundle\ProductBundle\Entity\ProductPhoto:
             options:
                 default: 0
             column: main_photo
-        hierarchy:
-            type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: true
-            precision: 0
-            options:
-                default: 0
     manyToOne:
         photo:
             targetEntity: WellCommerce\Bundle\MediaBundle\Entity\Media

@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
@@ -29,15 +29,15 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  */
 class News implements NewsInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Translatable;
     use Timestampable;
     use Blameable;
     use MediaAwareTrait;
     use ShopCollectionAwareTrait;
     
-    protected $publish   = true;
-    protected $featured  = false;
+    protected $publish  = true;
+    protected $featured = false;
     protected $startDate;
     protected $endDate;
     

@@ -13,8 +13,6 @@
 namespace WellCommerce\Bundle\CategoryBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
@@ -28,12 +26,10 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
  */
 interface CategoryInterface extends
     EntityInterface,
-    EnableableInterface,
     TranslatableInterface,
     TimestampableInterface,
     BlameableInterface,
-    ShopCollectionAwareInterface,
-    HierarchyAwareInterface
+    ShopCollectionAwareInterface
 {
     public function getSymbol(): string;
     

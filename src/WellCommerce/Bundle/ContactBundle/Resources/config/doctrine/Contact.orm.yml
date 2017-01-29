@@ -16,7 +16,3 @@ WellCommerce\Bundle\ContactBundle\Entity\Contact:
             type: integer
             generator:
                 strategy: AUTO
-    fields:
-        enabled:
-            type: boolean
-            nullable: false

@@ -24,7 +24,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface UserInterface extends \Serializable, EquatableInterface, BaseUserInterface, TimestampableInterface, EntityInterface, EnableableInterface
+interface UserInterface extends \Serializable, EquatableInterface, BaseUserInterface, TimestampableInterface, EntityInterface
 {
     /**
      * @return string

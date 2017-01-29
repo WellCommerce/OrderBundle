@@ -55,15 +55,6 @@ WellCommerce\Bundle\PageBundle\Entity\Page:
             nullable: true
             precision: 0
             column: redirect_route
-        hierarchy:
-            type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: true
-            precision: 0
-            options:
-                default: 0
     manyToOne:
         parent:
             targetEntity: WellCommerce\Bundle\PageBundle\Entity\Page

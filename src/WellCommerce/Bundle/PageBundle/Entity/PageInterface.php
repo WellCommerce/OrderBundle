@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\PageBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
@@ -30,7 +29,6 @@ interface PageInterface extends
     TranslatableInterface,
     TimestampableInterface,
     BlameableInterface,
-    HierarchyAwareInterface,
     ShopCollectionAwareInterface
 {
     /**

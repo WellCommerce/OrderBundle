@@ -17,10 +17,10 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
 use WellCommerce\Bundle\CategoryBundle\Entity\Extra\CategoryExtraTrait;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -30,13 +30,13 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  */
 class Category implements CategoryInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Sortable;
+    use Enableable;
     use Translatable;
     use Timestampable;
     use Blameable;
-    use EnableableTrait;
     use ShopCollectionAwareTrait;
-    use HierarchyAwareTrait;
     use CategoryExtraTrait;
     
     protected $productsCount = 0;

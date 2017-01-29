@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 
 /**
  * Class OrderModifier
@@ -22,8 +22,8 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class OrderModifier implements OrderModifierInterface
 {
-    use IdentifiableTrait;
-    use HierarchyAwareTrait;
+    use Identifiable;
+    use Sortable;
     
     protected $name        = '';
     protected $description = '';

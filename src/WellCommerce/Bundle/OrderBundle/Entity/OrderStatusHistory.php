@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class OrderStatus
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class OrderStatusHistory implements OrderStatusHistoryInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Blameable;
     use OrderAwareTrait;
@@ -45,22 +45,22 @@ class OrderStatusHistory implements OrderStatusHistoryInterface
         $this->orderStatus = $orderStatus;
         $this->getOrder()->setCurrentStatus($orderStatus);
     }
-
+    
     public function getComment(): string
     {
         return $this->comment;
     }
-
+    
     public function setComment(string $comment)
     {
         $this->comment = $comment;
     }
-
+    
     public function isNotify(): bool
     {
         return $this->notify;
     }
-
+    
     public function setNotify(bool $notify)
     {
         $this->notify = $notify;

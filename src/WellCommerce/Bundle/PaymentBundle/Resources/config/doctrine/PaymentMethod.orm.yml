@@ -8,16 +8,6 @@ WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod:
             generator:
                 strategy: AUTO
     fields:
-        enabled:
-            type: boolean
-            nullable: false
-            options:
-                default: true
-        hierarchy:
-            type: integer
-            nullable: false
-            options:
-                default: 0
         processor:
             type: string
             length: 64

@@ -15,14 +15,14 @@ namespace WellCommerce\Bundle\DictionaryBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Dictionary
  */
 class Dictionary implements DictionaryInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Translatable;
     use Blameable;
@@ -33,7 +33,7 @@ class Dictionary implements DictionaryInterface
     {
         return $this->identifier;
     }
-
+    
     public function setIdentifier(string $identifier)
     {
         $this->identifier = $identifier;

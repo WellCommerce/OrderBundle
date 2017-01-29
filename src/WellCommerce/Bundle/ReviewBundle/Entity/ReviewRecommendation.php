@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\ReviewBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class Review
@@ -23,9 +23,9 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class ReviewRecommendation implements ReviewRecommendationInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
     use Timestampable;
-    use EnableableTrait;
     
     protected $liked   = false;
     protected $unliked = false;

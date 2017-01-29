@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class Attribute
@@ -26,7 +26,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class Attribute implements AttributeInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Translatable;
     use Timestampable;
     use Blameable;
@@ -47,7 +47,7 @@ class Attribute implements AttributeInterface
         $this->values = new ArrayCollection();
     }
     
-    public function getGroups() : Collection
+    public function getGroups(): Collection
     {
         return $this->groups;
     }
@@ -73,7 +73,7 @@ class Attribute implements AttributeInterface
         $group->addAttribute($this);
     }
     
-    public function getValues() : Collection
+    public function getValues(): Collection
     {
         return $this->values;
     }

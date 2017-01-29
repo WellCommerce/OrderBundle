@@ -20,7 +20,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface UserGroupPermissionInterface extends EntityInterface, EnableableInterface
+interface UserGroupPermissionInterface extends EntityInterface
 {
     /**
      * @return UserGroupInterface

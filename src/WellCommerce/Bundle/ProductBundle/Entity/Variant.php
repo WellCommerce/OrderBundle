@@ -16,10 +16,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\AvailabilityAwareTrait;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\VariantExtraTrait;
 
@@ -30,13 +30,13 @@ use WellCommerce\Bundle\ProductBundle\Entity\Extra\VariantExtraTrait;
  */
 class Variant implements VariantInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
+    use Sortable;
     use Timestampable;
-    use HierarchyAwareTrait;
     use MediaAwareTrait;
     use AvailabilityAwareTrait;
     use ProductAwareTrait;
-    use EnableableTrait;
     use VariantExtraTrait;
     
     protected $weight        = 0.00;

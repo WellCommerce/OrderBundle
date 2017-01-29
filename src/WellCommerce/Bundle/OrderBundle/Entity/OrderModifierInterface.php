@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
@@ -20,7 +19,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface OrderModifierInterface extends EntityInterface, HierarchyAwareInterface
+interface OrderModifierInterface extends EntityInterface
 {
     public function setOrder(OrderInterface $order);
     

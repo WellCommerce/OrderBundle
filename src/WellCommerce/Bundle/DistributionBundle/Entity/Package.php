@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\DistributionBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class Package
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class Package implements PackageInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     
     protected $fullName      = '';
@@ -60,7 +60,7 @@ class Package implements PackageInterface
     {
         $this->vendor = $vendor;
     }
-
+    
     public function getLocalVersion(): string
     {
         return $this->localVersion;

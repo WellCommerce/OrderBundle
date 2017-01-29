@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
@@ -21,7 +20,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface AdminMenuInterface extends EntityInterface, HierarchyAwareInterface
+interface AdminMenuInterface extends EntityInterface
 {
     /**
      * @return string

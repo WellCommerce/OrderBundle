@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\ReviewBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 
 /**
@@ -26,10 +26,10 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
  */
 class Review implements ReviewInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
     use Timestampable;
     use ProductAwareTrait;
-    use EnableableTrait;
     
     protected $nick                 = '';
     protected $review               = '';

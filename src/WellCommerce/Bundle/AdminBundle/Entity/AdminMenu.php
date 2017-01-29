@@ -14,18 +14,19 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
- * Class Category
+ * Class AdminMenu
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AdminMenu implements AdminMenuInterface
+class AdminMenu implements EntityInterface
 {
-    use IdentifiableTrait;
-    use HierarchyAwareTrait;
+    use Identifiable;
+    use Sortable;
     
     protected $identifier = '';
     protected $name       = '';
@@ -51,32 +52,32 @@ class AdminMenu implements AdminMenuInterface
     {
         return $this->identifier;
     }
-
+    
     public function setIdentifier(string $identifier)
     {
         $this->identifier = $identifier;
     }
-
+    
     public function getName(): string
     {
         return $this->name;
     }
-
+    
     public function setName(string $name)
     {
         $this->name = $name;
     }
-
+    
     public function getParent()
     {
         return $this->parent;
     }
-
+    
     public function setParent(AdminMenuInterface $parent = null)
     {
         $this->parent = $parent;
     }
-
+    
     public function setChildren(Collection $children)
     {
         $this->children = $children;
@@ -86,28 +87,28 @@ class AdminMenu implements AdminMenuInterface
     {
         return $this->children;
     }
-
+    
     public function addChild(AdminMenuInterface $child)
     {
         $this->children[] = $child;
         $child->setParent($this);
     }
-
+    
     public function getRouteName(): string
     {
         return $this->routeName;
     }
-
+    
     public function setRouteName(string $routeName)
     {
         $this->routeName = $routeName;
     }
-
+    
     public function getCssClass(): string
     {
         return $this->cssClass;
     }
-
+    
     public function setCssClass(string $cssClass)
     {
         $this->cssClass = $cssClass;

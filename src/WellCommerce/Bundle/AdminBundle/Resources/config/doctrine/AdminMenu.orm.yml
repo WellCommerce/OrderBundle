@@ -23,11 +23,6 @@ WellCommerce\Bundle\AdminBundle\Entity\AdminMenu:
         name:
             type: string
             nullable: false
-        hierarchy:
-            type: integer
-            nullable: false
-            options:
-                default: 0
         routeName:
             type: string
             nullable: true

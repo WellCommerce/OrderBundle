@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\ProductBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
 
 /**
@@ -25,9 +25,9 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
  */
 class ProductPhoto implements EntityInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Sortable;
     use Timestampable;
-    use HierarchyAwareTrait;
     use ProductAwareTrait;
     
     /**

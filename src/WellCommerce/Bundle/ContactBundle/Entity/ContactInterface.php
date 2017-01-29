@@ -23,6 +23,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ContactInterface extends EntityInterface, EnableableInterface, TimestampableInterface, TranslatableInterface, BlameableInterface
+interface ContactInterface extends EntityInterface, TimestampableInterface, TranslatableInterface, BlameableInterface
 {
 }

@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface CurrencyInterface extends EntityInterface, EnableableInterface, TimestampableInterface, BlameableInterface
+interface CurrencyInterface extends EntityInterface, TimestampableInterface, BlameableInterface
 {
     public function setCode(string $code);
     

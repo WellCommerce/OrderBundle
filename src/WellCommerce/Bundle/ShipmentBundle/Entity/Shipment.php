@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShipmentBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderAwareTrait;
 
 /**
@@ -24,7 +24,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderAwareTrait;
  */
 class Shipment implements ShipmentInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Blameable;
     use OrderAwareTrait;
@@ -59,7 +59,7 @@ class Shipment implements ShipmentInterface
     {
         $this->packageNumber = $packageNumber;
     }
-
+    
     public function getCourier(): string
     {
         return $this->courier;

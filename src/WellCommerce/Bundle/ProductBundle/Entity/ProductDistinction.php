@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 use Carbon\Carbon;
 use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
 
 /**
@@ -25,64 +25,64 @@ use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatusInterface;
  */
 class ProductDistinction implements ProductDistinctionInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use ProductAwareTrait;
-
+    
     /**
      * @var null|DateTime
      */
     protected $validFrom = null;
-
+    
     /**
      * @var null|DateTime
      */
     protected $validTo = null;
-
+    
     /**
      * @var ProductStatusInterface
      */
     protected $status;
-
+    
     public function getValidFrom()
     {
         return $this->validFrom;
     }
-
+    
     public function setValidFrom(DateTime $validFrom = null)
     {
         if (null !== $validFrom) {
             $validFrom = $validFrom->setTime(0, 0, 0);
         }
-
+        
         $this->validFrom = $validFrom;
     }
-
+    
     public function getValidTo()
     {
         return $this->validTo;
     }
-
+    
     public function setValidTo(DateTime $validTo = null)
     {
         if (null !== $validTo) {
             $validTo = $validTo->setTime(23, 59, 59);
         }
-
+        
         $this->validTo = $validTo;
     }
-
+    
     public function setStatus(ProductStatusInterface $status)
     {
         $this->status = $status;
     }
-
-    public function getStatus() : ProductStatusInterface
+    
+    public function getStatus(): ProductStatusInterface
     {
         return $this->status;
     }
     
-    public function isValid() : bool
+    public function isValid(): bool
     {
         $validFrom = ($this->validFrom === null) ? Carbon::now()->startOfDay() : Carbon::instance($this->validFrom)->startOfDay();
         $validTo   = ($this->validTo === null) ? Carbon::now()->endOfDay() : Carbon::instance($this->validTo)->endOfDay();

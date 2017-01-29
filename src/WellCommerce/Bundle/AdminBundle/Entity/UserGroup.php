@@ -15,7 +15,8 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class UserGroup
@@ -24,7 +25,8 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class UserGroup implements UserGroupInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
+    use Enableable;
     use Blameable;
     
     protected $name = '';

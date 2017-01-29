@@ -4,8 +4,6 @@ WellCommerce\Bundle\ProductBundle\Entity\Product:
         usage: NONSTRICT_READ_WRITE
     table: product
     indexes:
-        IDX_product_enabled:
-            columns: [enabled]
         IDX_product_sku:
             columns: [sku]
     id:
@@ -48,14 +46,6 @@ WellCommerce\Bundle\ProductBundle\Entity\Product:
             nullable: false
             precision: 15
             column: package_size
-        enabled:
-            type: boolean
-            nullable: false
-        hierarchy:
-            type: integer
-            nullable: true
-            options:
-                default: 0
     manyToOne:
         producer:
             targetEntity: WellCommerce\Bundle\ProducerBundle\Entity\Producer

@@ -1,25 +1,28 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
- * 
+ *
  * This file is part of the WellCommerce package.
  *
  * (c) Adam Piotrowski <adam@wellcommerce.org>
- * 
+ *
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Entity;
+namespace WellCommerce\Bundle\DoctrineBundle\Behaviours;
 
 /**
- * Interface HierarchyAwareInterface
+ * Class Identifiable
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface HierarchyAwareInterface
+trait Identifiable
 {
-    public function setHierarchy(int $hierarchy);
+    protected $id;
     
-    public function getHierarchy() : int;
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }

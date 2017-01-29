@@ -17,8 +17,8 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
 use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
@@ -29,7 +29,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  */
 class Producer implements ProducerInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Translatable;
     use Timestampable;
     use Blameable;

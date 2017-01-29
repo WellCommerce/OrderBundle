@@ -18,11 +18,6 @@ WellCommerce\Bundle\CategoryBundle\Entity\Category:
             generator:
                 strategy: AUTO
     fields:
-        hierarchy:
-            type: integer
-            nullable: false
-            options:
-                default: 0
         productsCount:
             type: integer
             nullable: false
@@ -35,9 +30,6 @@ WellCommerce\Bundle\CategoryBundle\Entity\Category:
             options:
                 default: 0
             column: children_count
-        enabled:
-            type: boolean
-            nullable: false
         symbol:
             type: string
             nullable: false

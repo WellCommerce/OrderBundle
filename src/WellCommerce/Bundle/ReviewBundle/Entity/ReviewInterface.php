@@ -23,7 +23,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ReviewInterface extends EntityInterface, EnableableInterface, ProductAwareInterface, TimestampableInterface
+interface ReviewInterface extends EntityInterface, ProductAwareInterface, TimestampableInterface
 {
     public function getNick(): string;
     

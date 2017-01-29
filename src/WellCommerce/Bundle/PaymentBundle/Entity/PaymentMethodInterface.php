@@ -13,8 +13,6 @@
 namespace WellCommerce\Bundle\PaymentBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Entity\HierarchyAwareInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
@@ -28,11 +26,9 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
  */
 interface PaymentMethodInterface extends
     EntityInterface,
-    EnableableInterface,
     TimestampableInterface,
     TranslatableInterface,
-    BlameableInterface,
-    HierarchyAwareInterface
+    BlameableInterface
 {
     /**
      * Returns payment method processor
