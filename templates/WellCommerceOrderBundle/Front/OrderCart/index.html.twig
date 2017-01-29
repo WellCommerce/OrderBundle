@@ -21,7 +21,7 @@
                 {% include 'WellCommerceOrderBundle:Front/Common:products_table.html.twig' with {'confirmation': false} %}
                 {% include 'WellCommerceOrderBundle:Front/Common:methods.html.twig' %}
 
-                {% if order.hasShippingMethod() and order.hasPaymentMethod() %}
+                {% if order.shippingMethod != null and order.paymentMethod != null %}
                     {% include 'WellCommerceOrderBundle:Front/Common:summary.html.twig' %}
 
                     <div class="clearfix">
