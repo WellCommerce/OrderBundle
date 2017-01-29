@@ -47,9 +47,6 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
         $this->currencyHelper        = $currencyHelper;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function visitOrder(Order $order)
     {
         $client = $order->getClient();
@@ -76,7 +73,7 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
      *
      * @return float
      */
-    protected function getDiscountForClient(ClientInterface $client) : float
+    protected function getDiscountForClient(ClientInterface $client): float
     {
         return round((float)$client->getClientDetails()->getDiscount() / 100, 2);
     }

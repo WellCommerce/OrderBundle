@@ -27,10 +27,6 @@ interface ClientBillingAddressInterface extends ClientAddressInterface
     
     public function getCompanyName(): string;
     
-    public function isCompanyAddress(): bool;
-    
-    public function setCompanyAddress(bool $companyAddress);
-    
     public function isViesValid(): bool;
     
     public function setViesValid(bool $viesValid);

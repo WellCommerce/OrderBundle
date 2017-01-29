@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ClientBundle\Validator;
+namespace WellCommerce\Bundle\OrderBundle\Validator;
 
 use Symfony\Component\Validator\Constraint;
 
@@ -21,23 +21,17 @@ use Symfony\Component\Validator\Constraint;
  */
 class CompanyAddress extends Constraint
 {
-    public $service    = 'client.validator.company_address';
+    public $service    = 'order.validator.company_address';
     public $fields     = [];
     public $errorPath  = null;
     public $ignoreNull = true;
     
-    /**
-     * {@inheritdoc}
-     */
-    public function validatedBy ()
+    public function validatedBy()
     {
         return $this->service;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getTargets ()
+    public function getTargets()
     {
         return self::CLASS_CONSTRAINT;
     }

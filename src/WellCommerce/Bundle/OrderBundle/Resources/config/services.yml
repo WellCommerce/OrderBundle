@@ -129,3 +129,7 @@ services:
 
         shared: false
 
+    order.validator.company_address:
+        class: WellCommerce\Bundle\OrderBundle\Validator\CompanyAddressValidator
+        tags:
+            - { name: validator.constraint_validator, alias: order.validator.company_address }

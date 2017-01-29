@@ -38,19 +38,6 @@
 
                 <h4>{% trans %}address.heading.billing_address{% endtrans %}</h4>
 
-                {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.companyAddress')) }}
-
-                <div class="collapse" id="company-wrap">
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.companyName')) }}
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.vatId')) }}
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
                         {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.firstName')) }}
@@ -59,6 +46,17 @@
                         {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.lastName')) }}
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.companyName')) }}
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        {{ macros.element(form.getChildren().get('billingAddress').getChildren().get('billingAddress.vatId')) }}
+                    </div>
+                </div>
+
+                {{ macros.element(form.getChildren().get('issueInvoice')) }}
 
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
@@ -102,6 +100,12 @@
                             </div>
                             <div class="col-sm-6 col-xs-12">
                                 {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.lastName')) }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                {{ macros.element(form.getChildren().get('shippingAddress').getChildren().get('shippingAddress.companyName')) }}
                             </div>
                         </div>
 

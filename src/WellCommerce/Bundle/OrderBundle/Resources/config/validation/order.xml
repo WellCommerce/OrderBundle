@@ -51,5 +51,10 @@
                 </option>
             </constraint>
         </property>
+        <constraint name="WellCommerce\Bundle\OrderBundle\Validator\CompanyAddress">
+            <option name="groups">
+                <value>order_issue_invoice</value>
+            </option>
+        </constraint>
     </class>
 </constraint-mapping>

@@ -48,9 +48,3 @@ WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress:
             groups:
                 - default
                 - client_billing_address
-        companyAddress:
-            groups:
-                - default
-                - client_billing_address
-    associations: {  }
-    callbacks: {  }

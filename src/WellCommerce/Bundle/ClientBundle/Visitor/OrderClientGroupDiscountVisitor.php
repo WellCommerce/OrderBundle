@@ -49,9 +49,6 @@ class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements 
         $this->currencyHelper        = $currencyHelper;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function visitOrder(Order $order)
     {
         $client = $order->getClient();
@@ -79,7 +76,7 @@ class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements 
      *
      * @return float
      */
-    protected function getDiscountForClientGroup(ClientGroupInterface $clientGroup = null) : float
+    protected function getDiscountForClientGroup(ClientGroupInterface $clientGroup = null): float
     {
         if (null !== $clientGroup) {
             return round((float)$clientGroup->getDiscount() / 100, 2);
