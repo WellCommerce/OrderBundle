@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\DelivererBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
+use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 
 /**
  * Class DelivererManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
  */
 class DelivererManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('deliverer.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return DelivererInterface::class;
+        return Deliverer::class;
     }
 }

@@ -13,11 +13,11 @@
 namespace WellCommerce\Bundle\ProducerBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
-use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
 
 /**
@@ -38,5 +38,5 @@ interface ProducerInterface extends
     
     public function setDeliverers(Collection $collection);
     
-    public function addDeliverer(DelivererInterface $deliverer);
+    public function addDeliverer(Deliverer $deliverer);
 }

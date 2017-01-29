@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
+use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
@@ -68,7 +68,7 @@ class Producer implements ProducerInterface
         $this->deliverers = $collection;
     }
     
-    public function addDeliverer(DelivererInterface $deliverer)
+    public function addDeliverer(Deliverer $deliverer)
     {
         $this->deliverers = $deliverer;
     }

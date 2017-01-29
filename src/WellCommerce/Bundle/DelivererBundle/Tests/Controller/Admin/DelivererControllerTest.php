@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\DelivererBundle\Tests\Controller\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\DelivererBundle\Entity\DelivererInterface;
+use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 
 /**
  * Class DelivererControllerTest
@@ -26,57 +26,57 @@ class DelivererControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.deliverer.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('deliverer.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.deliverer.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('deliverer.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     /**
      * @dataProvider getEntitiesCollection
      */
-    public function testEditAction(DelivererInterface $deliverer)
+    public function testEditAction(Deliverer $deliverer)
     {
         $url     = $this->generateUrl('admin.deliverer.edit', ['id' => $deliverer->getId()]);
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('deliverer.heading.edit') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $deliverer->translate()->getName() . '")')->count());
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.deliverer.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
-
+    
     /**
      * @return array
      */
     public function getEntitiesCollection()
     {
         $this->setUp();
-
+        
         return [
-            $this->container->get('deliverer.repository')->findAll()
+            $this->container->get('deliverer.repository')->findAll(),
         ];
     }
 }
