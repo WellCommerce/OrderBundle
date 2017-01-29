@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PageBundle\Tests\Storage;
 
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class PageStorageTest
@@ -27,9 +27,9 @@ class PageStorageTest extends AbstractTestCase
         $factory = $this->container->get('page.factory');
         $storage = $this->container->get('page.storage');
         $page    = $factory->create();
-
+        
         $storage->setCurrentPage($factory->create());
-        $this->assertInstanceOf(PageInterface::class, $storage->getCurrentPage());
+        $this->assertInstanceOf(Page::class, $storage->getCurrentPage());
         $this->assertEquals($page, $storage->getCurrentPage());
     }
 }

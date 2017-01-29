@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\PageBundle\Tests\Controller\Front;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class PageControllerTest
@@ -26,11 +25,11 @@ class PageControllerTest extends AbstractAdminControllerTestCase
     public function testIndexAction()
     {
         $collection = $this->container->get('page.repository')->getCollection();
-
-        $collection->map(function (PageInterface $page) {
+        
+        $collection->map(function (Page $page) {
             $url     = $this->generateUrl('dynamic_' . $page->translate()->getRoute()->getId());
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $page->translate()->getName() . '")')->count());
         });

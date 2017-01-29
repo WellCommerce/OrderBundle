@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\PageBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class PageManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
  */
 class PageManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('page.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return PageInterface::class;
+        return Page::class;
     }
 }

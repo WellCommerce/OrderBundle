@@ -23,11 +23,11 @@ use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 class PageRoute extends Route implements RouteInterface
 {
     /**
-     * @var PageInterface
+     * @var Page
      */
     protected $identifier;
     
-    public function getType() : string
+    public function getType(): string
     {
         return 'page';
     }

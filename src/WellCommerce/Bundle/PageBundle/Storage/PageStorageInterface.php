@@ -21,18 +21,9 @@ use WellCommerce\Bundle\PageBundle\Entity\Page;
  */
 interface PageStorageInterface
 {
-    /**
-     * @param PageInterface $page
-     */
     public function setCurrentPage(Page $page);
-
-    /**
-     * @return PageInterface
-     */
-    public function getCurrentPage() : Page;
-
-    /**
-     * @return bool
-     */
-    public function hasCurrentPage() : bool;
+    
+    public function getCurrentPage(): Page;
+    
+    public function hasCurrentPage(): bool;
 }

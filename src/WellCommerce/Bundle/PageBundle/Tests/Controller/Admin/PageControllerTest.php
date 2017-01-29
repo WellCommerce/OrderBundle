@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\PageBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\PageBundle\Entity\PageInterface;
+use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
  * Class PageControllerTest
@@ -27,19 +26,19 @@ class PageControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.page.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful(), 'Wrong response code');
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('page.heading.index') . '")')->count(),
             $this->trans('page.heading.index'));
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count(), 'No datagrid');
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count(), 'Form exists');
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.page.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful(),
             'Wrong response code: ' . $this->client->getResponse()->getStatusCode());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('page.heading.add') . '")')->count(),
@@ -48,15 +47,15 @@ class PageControllerTest extends AbstractAdminControllerTestCase
             'Datagrid instance exists on page');
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count(), 'There is no form on page');
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('page.repository')->getCollection();
-
-        $collection->map(function (PageInterface $page) {
+        
+        $collection->map(function (Page $page) {
             $url     = $this->generateUrl('admin.page.edit', ['id' => $page->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('page.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -64,13 +63,13 @@ class PageControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $page->translate()->getName() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.page.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }
