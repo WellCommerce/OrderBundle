@@ -14,13 +14,14 @@ namespace WellCommerce\Bundle\DistributionBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Package
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Package implements PackageInterface
+class Package implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

@@ -18,7 +18,6 @@ use Packagist\Api\Result\Package as RemotePackage;
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\DistributionBundle\Entity\Package;
-use WellCommerce\Bundle\DistributionBundle\Entity\PackageInterface;
 use WellCommerce\Bundle\DistributionBundle\Helper\Package\PackageHelperInterface;
 
 /**
@@ -36,7 +35,7 @@ final class PackageManager extends AbstractManager
         $criteria      = ['type' => $type];
         $em            = $this->getDoctrineHelper()->getEntityManager();
         $searchResults = $this->getHelper()->getPackages($criteria);
-
+        
         foreach ($searchResults as $result) {
             $package = $this->getHelper()->getPackage($result);
             $this->syncPackage($package);
@@ -54,7 +53,7 @@ final class PackageManager extends AbstractManager
     {
         $repository   = $this->getRepository();
         $localPackage = $repository->findOneBy(['fullName' => $remotePackage->getName()]);
-        if (!$localPackage instanceof PackageInterface) {
+        if (!$localPackage instanceof Package) {
             $this->addPackage($remotePackage);
         } else {
             $this->setPackageVersions($localPackage);
@@ -95,7 +94,7 @@ final class PackageManager extends AbstractManager
             'app/console',
             'wellcommerce:package:' . $operation,
             '--port=' . $port,
-            '--package=' . $package
+            '--package=' . $package,
         ];
     }
     
@@ -126,10 +125,7 @@ final class PackageManager extends AbstractManager
         $em->flush();
     }
     
-    /**
-     * @param PackageInterface $package
-     */
-    protected function setPackageVersions(PackageInterface $package)
+    protected function setPackageVersions(Package $package)
     {
         $branch        = PackageHelperInterface::DEFAULT_BRANCH_VERSION;
         $remotePackage = $this->getHelper()->getPackage($package->getFullName());
@@ -157,7 +153,7 @@ final class PackageManager extends AbstractManager
         return $version->getSource()->getReference();
     }
     
-    private function getHelper() : PackageHelperInterface
+    private function getHelper(): PackageHelperInterface
     {
         return $this->get('package.helper');
     }
