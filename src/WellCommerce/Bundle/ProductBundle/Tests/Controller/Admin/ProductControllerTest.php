@@ -47,7 +47,7 @@ class ProductControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('product.repository')->matching(new Criteria());
+        $collection = $this->container->get('product.repository')->getCollection();
 
         $collection->map(function (ProductInterface $product) {
             $url     = $this->generateUrl('admin.product.edit', ['id' => $product->getId()]);

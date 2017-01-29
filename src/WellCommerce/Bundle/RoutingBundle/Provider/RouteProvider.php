@@ -99,7 +99,7 @@ final class RouteProvider implements RouteProviderInterface
     
     public function getRoutesByNames($names, $parameters = [])
     {
-        $collection = $this->repository->matching(new Criteria());
+        $collection = $this->repository->getCollection();
         $routes     = [];
         
         $collection->map(function (RouteInterface $route) use (&$routes) {

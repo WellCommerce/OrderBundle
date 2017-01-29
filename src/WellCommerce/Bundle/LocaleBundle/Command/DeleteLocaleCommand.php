@@ -122,7 +122,7 @@ class DeleteLocaleCommand extends ContainerAwareCommand
     protected function getSourceLocales()
     {
         $locales    = [];
-        $collection = $this->getLocaleRepository()->matching(new Criteria());
+        $collection = $this->getLocaleRepository()->getCollection();
         
         $collection->map(function (LocaleInterface $locale) use (&$locales) {
             $locales[$locale->getCode()] = $locale->getCode();

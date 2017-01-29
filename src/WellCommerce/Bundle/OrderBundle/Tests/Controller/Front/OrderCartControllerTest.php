@@ -27,7 +27,7 @@ class OrderCartControllerTest extends AbstractFrontControllerTestCase
     public function testAddAction()
     {
         /** @var Collection $collection */
-        $collection = $this->container->get('product.repository')->matching(new Criteria());
+        $collection = $this->container->get('product.repository')->getCollection();
         
         $collection->map(function (ProductInterface $product) {
             $url     = $this->generateUrl('front.order_cart.add', ['id' => $product->getId(), 'variant' => null, 'quantity' => 1]);

@@ -48,7 +48,7 @@ class UserControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('user.repository')->matching(new Criteria());
+        $collection = $this->container->get('user.repository')->getCollection();
 
         $collection->map(function (UserInterface $user) {
             $url     = $this->generateUrl('admin.user.edit', ['id' => $user->getId()]);

@@ -47,7 +47,7 @@ class ClientControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('client.repository')->matching(new Criteria());
+        $collection = $this->container->get('client.repository')->getCollection();
 
         $collection->map(function (ClientInterface $client) {
             $url     = $this->generateUrl('admin.client.edit', ['id' => $client->getId()]);

@@ -47,7 +47,7 @@ class AvailabilityControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('availability.repository')->matching(new Criteria());
+        $collection = $this->container->get('availability.repository')->getCollection();
 
         $collection->map(function (AvailabilityInterface $availability) {
             $url     = $this->generateUrl('admin.availability.edit', ['id' => $availability->getId()]);

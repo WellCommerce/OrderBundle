@@ -47,7 +47,7 @@ class ShippingMethodControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('shipping_method.repository')->matching(new Criteria());
+        $collection = $this->container->get('shipping_method.repository')->getCollection();
 
         $collection->map(function (ShippingMethodInterface $method) {
             $url     = $this->generateUrl('admin.shipping_method.edit', ['id' => $method->getId()]);

@@ -25,7 +25,7 @@ class PageControllerTest extends AbstractAdminControllerTestCase
 {
     public function testIndexAction()
     {
-        $collection = $this->container->get('page.repository')->matching(new Criteria());
+        $collection = $this->container->get('page.repository')->getCollection();
 
         $collection->map(function (PageInterface $page) {
             $url     = $this->generateUrl('dynamic_' . $page->translate()->getRoute()->getId());

@@ -46,7 +46,7 @@ class LocaleControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('locale.repository')->matching(new Criteria());
+        $collection = $this->container->get('locale.repository')->getCollection();
 
         $collection->map(function (LocaleInterface $locale) {
             $url     = $this->generateUrl('admin.locale.edit', ['id' => $locale->getId()]);

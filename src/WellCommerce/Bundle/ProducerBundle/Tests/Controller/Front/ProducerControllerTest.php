@@ -25,7 +25,7 @@ class ProducerControllerTest extends AbstractAdminControllerTestCase
 {
     public function testIndexAction()
     {
-        $collection = $this->container->get('producer.repository')->matching(new Criteria());
+        $collection = $this->container->get('producer.repository')->getCollection();
 
         $collection->map(function (ProducerInterface $producer) {
             $url     = $this->generateUrl('dynamic_' . $producer->translate()->getRoute()->getId());

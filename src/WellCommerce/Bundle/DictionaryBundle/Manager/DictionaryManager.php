@@ -115,7 +115,7 @@ final class DictionaryManager extends AbstractManager
     protected function getDatabaseTranslations(LocaleInterface $locale)
     {
         $messages   = [];
-        $collection = $this->repository->matching(new Criteria());
+        $collection = $this->repository->getCollection();
         
         $collection->map(function (DictionaryInterface $dictionary) use ($locale, &$messages) {
             $messages[$dictionary->getIdentifier()] = $dictionary->translate($locale->getCode())->getValue();

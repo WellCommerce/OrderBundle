@@ -47,7 +47,7 @@ class ProductStatusControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('product_status.repository')->matching(new Criteria());
+        $collection = $this->container->get('product_status.repository')->getCollection();
 
         $collection->map(function (ProductStatusInterface $productStatus) {
             $url     = $this->generateUrl('admin.product_status.edit', ['id' => $productStatus->getId()]);

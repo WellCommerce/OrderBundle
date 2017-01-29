@@ -47,7 +47,7 @@ class CompanyControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('company.repository')->matching(new Criteria());
+        $collection = $this->container->get('company.repository')->getCollection();
 
         $collection->map(function (CompanyInterface $company) {
             $url     = $this->generateUrl('admin.company.edit', ['id' => $company->getId()]);

@@ -47,7 +47,7 @@ class OrderStatusGroupControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('order_status_group.repository')->matching(new Criteria());
+        $collection = $this->container->get('order_status_group.repository')->getCollection();
 
         $collection->map(function (OrderStatusGroupInterface $orderStatusGroup) {
             $url     = $this->generateUrl('admin.order_status_group.edit', ['id' => $orderStatusGroup->getId()]);

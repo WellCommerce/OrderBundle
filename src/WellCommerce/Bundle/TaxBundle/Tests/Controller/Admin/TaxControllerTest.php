@@ -47,7 +47,7 @@ class TaxControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('tax.repository')->matching(new Criteria());
+        $collection = $this->container->get('tax.repository')->getCollection();
 
         $collection->map(function (TaxInterface $tax) {
             $url     = $this->generateUrl('admin.tax.edit', ['id' => $tax->getId()]);

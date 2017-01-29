@@ -51,7 +51,7 @@ class PageControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('page.repository')->matching(new Criteria());
+        $collection = $this->container->get('page.repository')->getCollection();
 
         $collection->map(function (PageInterface $page) {
             $url     = $this->generateUrl('admin.page.edit', ['id' => $page->getId()]);

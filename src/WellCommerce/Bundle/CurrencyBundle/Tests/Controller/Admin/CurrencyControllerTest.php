@@ -47,7 +47,7 @@ class CurrencyControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('currency.repository')->matching(new Criteria());
+        $collection = $this->container->get('currency.repository')->getCollection();
 
         $collection->map(function (CurrencyInterface $currency) {
             $url     = $this->generateUrl('admin.currency.edit', ['id' => $currency->getId()]);

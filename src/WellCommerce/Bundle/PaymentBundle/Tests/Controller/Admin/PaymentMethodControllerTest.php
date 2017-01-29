@@ -47,7 +47,7 @@ class PaymentMethodControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('payment_method.repository')->matching(new Criteria());
+        $collection = $this->container->get('payment_method.repository')->getCollection();
 
         $collection->map(function (PaymentMethodInterface $method) {
             $url     = $this->generateUrl('admin.payment_method.edit', ['id' => $method->getId()]);

@@ -47,7 +47,7 @@ class LayoutBoxControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('layout_box.repository')->matching(new Criteria());
+        $collection = $this->container->get('layout_box.repository')->getCollection();
 
         $collection->map(function (LayoutBoxInterface $layoutBox) {
             $url     = $this->generateUrl('admin.layout_box.edit', ['id' => $layoutBox->getId()]);

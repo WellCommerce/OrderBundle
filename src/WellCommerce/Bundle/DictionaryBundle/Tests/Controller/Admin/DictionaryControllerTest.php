@@ -47,7 +47,7 @@ class DictionaryControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('dictionary.repository')->matching(new Criteria());
+        $collection = $this->container->get('dictionary.repository')->getCollection();
 
         $collection->map(function (DictionaryInterface $dictionary) {
             $url     = $this->generateUrl('admin.dictionary.edit', ['id' => $dictionary->getId()]);

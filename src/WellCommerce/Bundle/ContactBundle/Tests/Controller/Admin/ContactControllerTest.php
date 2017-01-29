@@ -48,7 +48,7 @@ class ContactControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('contact.repository')->matching(new Criteria());
+        $collection = $this->container->get('contact.repository')->getCollection();
 
         $collection->map(function (ContactInterface $contact) {
             $url     = $this->generateUrl('admin.contact.edit', ['id' => $contact->getId()]);

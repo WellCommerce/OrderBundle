@@ -25,7 +25,7 @@ class CategoryControllerTest extends AbstractAdminControllerTestCase
 {
     public function testIndexAction()
     {
-        $collection = $this->container->get('category.repository')->matching(new Criteria());
+        $collection = $this->container->get('category.repository')->getCollection();
 
         $collection->map(function (CategoryInterface $category) {
             $url     = $this->generateUrl('dynamic_' . $category->translate()->getRoute()->getId());

@@ -11,6 +11,8 @@
  */
 namespace WellCommerce\Bundle\DoctrineBundle\Repository;
 
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\QueryBuilder;
@@ -52,5 +54,14 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
         $paginator->setUseOutputWalkers(false);
         
         return $paginator->count();
+    }
+    
+    public function getCollection(Criteria $criteria = null): Collection
+    {
+        if (null === $criteria) {
+            $criteria = new Criteria();
+        }
+        
+        return $this->matching($criteria);
     }
 }

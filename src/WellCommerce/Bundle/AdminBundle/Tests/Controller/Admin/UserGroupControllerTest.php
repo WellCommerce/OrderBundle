@@ -48,7 +48,7 @@ class UserGroupControllerTest extends AbstractAdminControllerTestCase
     
     public function testEditAction()
     {
-        $collection = $this->container->get('user_group.repository')->matching(new Criteria());
+        $collection = $this->container->get('user_group.repository')->getCollection();
         
         $collection->map(function (UserGroupInterface $user) {
             $url     = $this->generateUrl('admin.user_group.edit', ['id' => $user->getId()]);

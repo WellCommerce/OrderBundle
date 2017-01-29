@@ -47,7 +47,7 @@ class ThemeControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('theme.repository')->matching(new Criteria());
+        $collection = $this->container->get('theme.repository')->getCollection();
 
         $collection->map(function (ThemeInterface $theme) {
             $url     = $this->generateUrl('admin.theme.edit', ['id' => $theme->getId()]);

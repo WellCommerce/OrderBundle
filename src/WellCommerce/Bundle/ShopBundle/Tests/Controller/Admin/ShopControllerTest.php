@@ -47,7 +47,7 @@ class ShopControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('shop.repository')->matching(new Criteria());
+        $collection = $this->container->get('shop.repository')->getCollection();
 
         $collection->map(function (ShopInterface $shop) {
             $url     = $this->generateUrl('admin.shop.edit', ['id' => $shop->getId()]);

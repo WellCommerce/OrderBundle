@@ -368,6 +368,6 @@ class ProductFormBuilder extends AbstractFormBuilder
     
     protected function getAttributeGroups() : Collection
     {
-        return $this->get('attribute_group.repository')->matching(new Criteria());
+        return $this->get('attribute_group.repository')->getCollection();
     }
 }

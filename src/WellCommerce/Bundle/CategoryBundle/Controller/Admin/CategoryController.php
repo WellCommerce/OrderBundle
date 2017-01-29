@@ -30,7 +30,7 @@ class CategoryController extends AbstractAdminController
 {
     public function indexAction(): Response
     {
-        $categories = $this->getManager()->getRepository()->matching(new Criteria());
+        $categories = $this->getManager()->getRepository()->getCollection();
         $tree       = $this->createCategoryTreeForm();
         
         if ($categories->count()) {

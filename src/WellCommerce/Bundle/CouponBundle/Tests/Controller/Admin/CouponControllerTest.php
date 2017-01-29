@@ -47,7 +47,7 @@ class CouponControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('coupon.repository')->matching(new Criteria());
+        $collection = $this->container->get('coupon.repository')->getCollection();
 
         $collection->map(function (CouponInterface $coupon) {
             $url     = $this->generateUrl('admin.coupon.edit', ['id' => $coupon->getId()]);

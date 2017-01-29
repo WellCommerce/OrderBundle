@@ -42,7 +42,7 @@ class ShippingMethodRepository extends EntityRepository implements ShippingMetho
     public function getDataGridFilterOptions(): array
     {
         $options = [];
-        $methods = $this->matching(new Criteria());
+        $methods = $this->getCollection();
         $methods->map(function (ShippingMethodInterface $method) use (&$options) {
             $options[] = [
                 'id'          => $method->getId(),

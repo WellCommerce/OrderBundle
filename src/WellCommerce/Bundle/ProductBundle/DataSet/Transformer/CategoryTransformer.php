@@ -73,7 +73,7 @@ final class CategoryTransformer extends AbstractDataSetTransformer
 
     private function loadCategories()
     {
-        $collection = $this->repository->matching(new Criteria());
+        $collection = $this->repository->getCollection();
         $collection->map(function (CategoryInterface $category) {
             $this->categories[$category->getId()] = [
                 'name'  => $category->translate()->getName(),

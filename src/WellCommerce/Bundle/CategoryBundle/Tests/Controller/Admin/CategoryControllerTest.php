@@ -25,7 +25,7 @@ class CategoryControllerTest extends AbstractAdminControllerTestCase
 {
     public function testEditAction()
     {
-        $collection = $this->container->get('category.repository')->matching(new Criteria());
+        $collection = $this->container->get('category.repository')->getCollection();
 
         $collection->map(function (CategoryInterface $category) {
             $url     = $this->generateUrl('admin.category.edit', ['id' => $category->getId()]);

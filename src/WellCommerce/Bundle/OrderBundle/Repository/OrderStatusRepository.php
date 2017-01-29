@@ -27,7 +27,7 @@ class OrderStatusRepository extends EntityRepository implements OrderStatusRepos
     public function getDataGridFilterOptions(): array
     {
         $options  = [];
-        $statuses = $this->matching(new Criteria());
+        $statuses = $this->getCollection();
         $statuses->map(function (OrderStatusInterface $status) use (&$options) {
             $options[] = [
                 'id'          => $status->getId(),

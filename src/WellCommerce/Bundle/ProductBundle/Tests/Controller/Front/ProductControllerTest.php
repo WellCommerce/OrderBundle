@@ -25,7 +25,7 @@ class ProductControllerTest extends AbstractAdminControllerTestCase
 {
     public function testIndexAction()
     {
-        $collection = $this->container->get('product.repository')->matching(new Criteria());
+        $collection = $this->container->get('product.repository')->getCollection();
 
         $collection->map(function (ProductInterface $product) {
             $url     = $this->generateUrl('dynamic_' . $product->translate()->getRoute()->getId());

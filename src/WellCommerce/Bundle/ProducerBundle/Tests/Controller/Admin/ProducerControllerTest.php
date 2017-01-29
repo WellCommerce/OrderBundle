@@ -47,7 +47,7 @@ class ProducerControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('producer.repository')->matching(new Criteria());
+        $collection = $this->container->get('producer.repository')->getCollection();
 
         $collection->map(function (ProducerInterface $producer) {
             $url     = $this->generateUrl('admin.producer.edit', ['id' => $producer->getId()]);

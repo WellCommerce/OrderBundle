@@ -25,7 +25,7 @@ class ProductStatusControllerTest extends AbstractAdminControllerTestCase
 {
     public function testIndexAction()
     {
-        $collection = $this->container->get('product_status.repository')->matching(new Criteria());
+        $collection = $this->container->get('product_status.repository')->getCollection();
 
         $collection->map(function (ProductStatusInterface $productStatus) {
             $url     = $this->generateUrl('dynamic_' . $productStatus->translate()->getRoute()->getId());

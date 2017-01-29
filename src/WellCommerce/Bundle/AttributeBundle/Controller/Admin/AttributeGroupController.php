@@ -32,7 +32,7 @@ class AttributeGroupController extends AbstractAdminController
             return $this->redirectToAction('index');
         }
         
-        $groups = $this->manager->getRepository()->matching(new Criteria());
+        $groups = $this->manager->getRepository()->getCollection();
         $sets   = [];
         
         $groups->map(function (AttributeGroupInterface $attributeGroup) use (&$sets) {
