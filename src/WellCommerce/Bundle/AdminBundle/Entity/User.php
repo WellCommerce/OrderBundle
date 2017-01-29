@@ -124,7 +124,7 @@ class User implements UserInterface
         return $this->roles->toArray();
     }
     
-    public function addRole(RoleInterface $role)
+    public function addRole(Role $role)
     {
         $this->roles[] = $role;
     }

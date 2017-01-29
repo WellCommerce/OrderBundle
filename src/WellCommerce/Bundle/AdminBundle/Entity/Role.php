@@ -14,14 +14,16 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Role
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Role implements RoleInterface
+class Role implements EntityInterface, RoleInterface
 {
     use Identifiable;
     

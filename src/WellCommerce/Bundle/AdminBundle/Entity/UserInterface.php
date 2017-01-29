@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 
@@ -29,7 +28,7 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     /**
      * @return string
      */
-    public function getFirstName() : string;
+    public function getFirstName(): string;
     
     /**
      * @param string $firstName
@@ -39,7 +38,7 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     /**
      * @return string
      */
-    public function getLastName() : string;
+    public function getLastName(): string;
     
     /**
      * @param string $lastName
@@ -59,7 +58,7 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     /**
      * @return string
      */
-    public function getEmail() : string;
+    public function getEmail(): string;
     
     /**
      * @param string $email
@@ -92,9 +91,9 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     public function getRoles();
     
     /**
-     * @param RoleInterface $role
+     * @param Role $role
      */
-    public function addRole(RoleInterface $role);
+    public function addRole(Role $role);
     
     /**
      * @param Collection $roles
@@ -105,7 +104,7 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     /**
      * @return Collection
      */
-    public function getGroups() : Collection;
+    public function getGroups(): Collection;
     
     /**
      * @param Collection $groups
@@ -115,7 +114,7 @@ interface UserInterface extends \Serializable, EquatableInterface, BaseUserInter
     /**
      * @return string
      */
-    public function getApiKey() : string;
+    public function getApiKey(): string;
     
     /**
      * @param string $apiKey
