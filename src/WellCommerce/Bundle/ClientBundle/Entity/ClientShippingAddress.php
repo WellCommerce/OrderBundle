@@ -19,7 +19,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\AddressTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientShippingAddress implements ClientShippingAddressInterface
+class ClientShippingAddress
 {
     use AddressTrait;
     

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ClientBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
 use WellCommerce\Bundle\ClientBundle\Repository\ClientRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 
@@ -29,12 +29,12 @@ class UniqueUsernameValidator extends ConstraintValidator
      * @var ClientRepositoryInterface
      */
     protected $clientRepository;
-
+    
     /**
      * @var RouterHelperInterface
      */
     protected $routerHelper;
-
+    
     /**
      * UniqueUsernameValidator constructor.
      *
@@ -46,7 +46,7 @@ class UniqueUsernameValidator extends ConstraintValidator
         $this->clientRepository = $clientRepository;
         $this->routerHelper     = $routerHelper;
     }
-
+    
     /**
      * Validate the route entity
      *
@@ -55,17 +55,17 @@ class UniqueUsernameValidator extends ConstraintValidator
      */
     public function validate($entity, Constraint $constraint)
     {
-        if (!$entity instanceof ClientDetailsInterface) {
-            throw new \InvalidArgumentException('Expected instance of ClientDetailsInterface');
+        if (!$entity instanceof ClientDetails) {
+            throw new \InvalidArgumentException('Expected instance of ClientDetails');
         }
-
+        
         $username = $entity->getUsername();
         $result   = $this->clientRepository->findOneBy(['clientDetails.username' => $username]);
-
+        
         if (null === $result) {
             return;
         }
-
+        
         if ($this->context instanceof ExecutionContextInterface) {
             $this->context
                 ->buildViolation($constraint->message)

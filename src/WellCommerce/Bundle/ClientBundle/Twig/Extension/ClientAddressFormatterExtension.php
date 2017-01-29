@@ -11,9 +11,9 @@
  */
 namespace WellCommerce\Bundle\ClientBundle\Twig\Extension;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 
 /**
  * Class ClientAddressFormatterExtension
@@ -44,12 +44,12 @@ class ClientAddressFormatterExtension extends \Twig_Extension
     /**
      * Formats the billing address
      *
-     * @param ClientBillingAddressInterface $address
-     * @param string                        $lineSeparator
+     * @param ClientBillingAddress $address
+     * @param string               $lineSeparator
      *
      * @return string
      */
-    public function formatBillingAddress(ClientBillingAddressInterface $address, $lineSeparator = self::LINES_SEPARATOR)
+    public function formatBillingAddress(ClientBillingAddress $address, $lineSeparator = self::LINES_SEPARATOR)
     {
         $lines   = [];
         $lines[] = sprintf('%s %s', $address->getFirstName(), $address->getLastName());
@@ -66,12 +66,12 @@ class ClientAddressFormatterExtension extends \Twig_Extension
     /**
      * Formats the shipping address
      *
-     * @param ClientShippingAddressInterface $address
-     * @param string                         $lineSeparator
+     * @param ClientShippingAddress $address
+     * @param string                $lineSeparator
      *
      * @return string
      */
-    public function formatShippingAddress(ClientShippingAddressInterface $address, $lineSeparator = self::LINES_SEPARATOR)
+    public function formatShippingAddress(ClientShippingAddress $address, $lineSeparator = self::LINES_SEPARATOR)
     {
         $lines   = [];
         $lines[] = sprintf('%s %s', $address->getFirstName(), $address->getLastName());
@@ -85,15 +85,7 @@ class ClientAddressFormatterExtension extends \Twig_Extension
         return implode($lineSeparator, $lines);
     }
     
-    /**
-     * Formats the contact details
-     *
-     * @param ClientContactDetailsInterface $details
-     * @param string                        $lineSeparator
-     *
-     * @return string
-     */
-    public function formatContactDetails(ClientContactDetailsInterface $details, $lineSeparator = self::LINES_SEPARATOR)
+    public function formatContactDetails(ClientContactDetails $details, string $lineSeparator = self::LINES_SEPARATOR): string
     {
         $lines   = [];
         $lines[] = sprintf('%s %s', $details->getFirstName(), $details->getLastName());

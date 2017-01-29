@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ClientBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
 
 /**
  * Class ClientPasswordValidator
@@ -26,13 +26,13 @@ class ClientPasswordValidator extends ConstraintValidator
     /**
      * Validate the route entity
      *
-     * @param ClientDetailsInterface $entity
+     * @param ClientDetails $entity
      * @param Constraint             $constraint
      */
     public function validate($entity, Constraint $constraint)
     {
-        if (!$entity instanceof ClientDetailsInterface) {
-            throw new \InvalidArgumentException('Expected instance of ClientDetailsInterface');
+        if (!$entity instanceof ClientDetails) {
+            throw new \InvalidArgumentException('Expected instance of ClientDetails');
         }
         
         $result = $entity->isPasswordConfirmed();

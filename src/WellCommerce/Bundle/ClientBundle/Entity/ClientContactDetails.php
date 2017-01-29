@@ -17,7 +17,7 @@ namespace WellCommerce\Bundle\ClientBundle\Entity;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientContactDetails implements ClientContactDetailsInterface
+class ClientContactDetails
 {
     protected $firstName      = '';
     protected $lastName       = '';

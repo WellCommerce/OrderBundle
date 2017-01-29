@@ -37,48 +37,21 @@ interface ClientInterface extends
     ShopAwareInterface,
     EncoderAwareInterface
 {
-    /**
-     * @return Collection
-     */
-    public function getOrders() : Collection;
+    public function getOrders(): Collection;
     
-    /**
-     * @return ClientDetailsInterface
-     */
-    public function getClientDetails() : ClientDetailsInterface;
+    public function getClientDetails(): ClientDetails;
     
-    /**
-     * @param ClientDetailsInterface $clientDetails
-     */
-    public function setClientDetails(ClientDetailsInterface $clientDetails);
+    public function setClientDetails(ClientDetails $clientDetails);
     
-    /**
-     * @return ClientContactDetailsInterface
-     */
-    public function getContactDetails() : ClientContactDetailsInterface;
+    public function getContactDetails(): ClientContactDetails;
     
-    /**
-     * @param ClientContactDetailsInterface $contactDetails
-     */
-    public function setContactDetails(ClientContactDetailsInterface $contactDetails);
+    public function setContactDetails(ClientContactDetails $contactDetails);
     
-    /**
-     * @return ClientBillingAddressInterface
-     */
-    public function getBillingAddress() : ClientBillingAddressInterface;
+    public function getBillingAddress(): ClientBillingAddress;
     
-    /**
-     * @param ClientBillingAddressInterface $billingAddress
-     */
-    public function setBillingAddress(ClientBillingAddressInterface $billingAddress);
+    public function setBillingAddress(ClientBillingAddress $billingAddress);
     
-    /**
-     * @return ClientShippingAddressInterface
-     */
-    public function getShippingAddress() : ClientShippingAddressInterface;
+    public function getShippingAddress(): ClientShippingAddress;
     
-    /**
-     * @param ClientShippingAddressInterface $shippingAddress
-     */
-    public function setShippingAddress(ClientShippingAddressInterface $shippingAddress);
+    public function setShippingAddress(ClientShippingAddress $shippingAddress);
 }

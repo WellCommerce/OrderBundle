@@ -17,7 +17,7 @@ namespace WellCommerce\Bundle\ClientBundle\Entity;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientDetails implements ClientDetailsInterface
+class ClientDetails
 {
     protected $password              = '';
     protected $passwordConfirm       = null;

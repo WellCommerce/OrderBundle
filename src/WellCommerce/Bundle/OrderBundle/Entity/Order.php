@@ -14,15 +14,11 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsAwareTrait;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsAwareTrait;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
@@ -44,11 +40,6 @@ class Order implements EntityInterface
     use ShopAwareTrait;
     use ShippingMethodAwareTrait;
     use PaymentMethodAwareTrait;
-    use ClientAwareTrait;
-    use ClientDetailsAwareTrait;
-    use ClientContactDetailsAwareTrait;
-    use ClientBillingAddressAwareTrait;
-    use ClientShippingAddressAwareTrait;
     use OrderExtraTrait;
     
     protected $confirmed            = false;
@@ -60,6 +51,31 @@ class Order implements EntityInterface
     protected $comment              = '';
     protected $issueInvoice         = false;
     protected $conditionsAccepted   = false;
+    
+    /**
+     * @var null|ClientInterface
+     */
+    protected $client;
+    
+    /**
+     * @var ClientDetails
+     */
+    protected $clientDetails;
+    
+    /**
+     * @var ClientContactDetails
+     */
+    protected $contactDetails;
+    
+    /**
+     * @var ClientBillingAddress
+     */
+    protected $billingAddress;
+    
+    /**
+     * @var ClientShippingAddress
+     */
+    protected $shippingAddress;
     
     /**
      * @var Coupon
@@ -113,6 +129,56 @@ class Order implements EntityInterface
         $this->contactDetails     = new ClientContactDetails();
         $this->billingAddress     = new ClientBillingAddress();
         $this->shippingAddress    = new ClientShippingAddress();
+    }
+    
+    public function getClient()
+    {
+        return $this->client;
+    }
+    
+    public function setClient(ClientInterface $client = null)
+    {
+        $this->client = $client;
+    }
+    
+    public function getClientDetails(): ClientDetails
+    {
+        return $this->clientDetails;
+    }
+    
+    public function setClientDetails(ClientDetails $clientDetails)
+    {
+        $this->clientDetails = $clientDetails;
+    }
+    
+    public function getContactDetails(): ClientContactDetails
+    {
+        return $this->contactDetails;
+    }
+    
+    public function setContactDetails(ClientContactDetails $contactDetails)
+    {
+        $this->contactDetails = $contactDetails;
+    }
+    
+    public function getBillingAddress(): ClientBillingAddress
+    {
+        return $this->billingAddress;
+    }
+    
+    public function setBillingAddress(ClientBillingAddress $billingAddress)
+    {
+        $this->billingAddress = $billingAddress;
+    }
+    
+    public function getShippingAddress(): ClientShippingAddress
+    {
+        return $this->shippingAddress;
+    }
+    
+    public function setShippingAddress(ClientShippingAddress $shippingAddress)
+    {
+        $this->shippingAddress = $shippingAddress;
     }
     
     public function isConfirmed(): bool

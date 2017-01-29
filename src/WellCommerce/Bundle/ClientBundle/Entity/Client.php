@@ -46,17 +46,17 @@ class Client implements ClientInterface
     protected $clientDetails;
     
     /**
-     * @var ClientContactDetailsInterface
+     * @var ClientContactDetails
      */
     protected $contactDetails;
     
     /**
-     * @var ClientBillingAddressInterface
+     * @var ClientBillingAddress
      */
     protected $billingAddress;
     
     /**
-     * @var ClientShippingAddressInterface
+     * @var ClientShippingAddress
      */
     protected $shippingAddress;
     
@@ -103,7 +103,7 @@ class Client implements ClientInterface
     public function unserialize($serialized)
     {
         list($this->id, $username, $password) = unserialize($serialized);
-        if (!$this->clientDetails instanceof ClientDetailsInterface) {
+        if (!$this->clientDetails instanceof ClientDetails) {
             $this->clientDetails = new ClientDetails();
         }
         $this->clientDetails->setUsername($username);
@@ -134,42 +134,42 @@ class Client implements ClientInterface
         });
     }
     
-    public function getClientDetails(): ClientDetailsInterface
+    public function getClientDetails(): ClientDetails
     {
         return $this->clientDetails;
     }
     
-    public function setClientDetails(ClientDetailsInterface $clientDetails)
+    public function setClientDetails(ClientDetails $clientDetails)
     {
         $this->clientDetails = $clientDetails;
     }
     
-    public function getContactDetails(): ClientContactDetailsInterface
+    public function getContactDetails(): ClientContactDetails
     {
         return $this->contactDetails;
     }
     
-    public function setContactDetails(ClientContactDetailsInterface $contactDetails)
+    public function setContactDetails(ClientContactDetails $contactDetails)
     {
         $this->contactDetails = $contactDetails;
     }
     
-    public function getBillingAddress(): ClientBillingAddressInterface
+    public function getBillingAddress(): ClientBillingAddress
     {
         return $this->billingAddress;
     }
     
-    public function setBillingAddress(ClientBillingAddressInterface $billingAddress)
+    public function setBillingAddress(ClientBillingAddress $billingAddress)
     {
         $this->billingAddress = $billingAddress;
     }
     
-    public function getShippingAddress(): ClientShippingAddressInterface
+    public function getShippingAddress(): ClientShippingAddress
     {
         return $this->shippingAddress;
     }
     
-    public function setShippingAddress(ClientShippingAddressInterface $shippingAddress)
+    public function setShippingAddress(ClientShippingAddress $shippingAddress)
     {
         $this->shippingAddress = $shippingAddress;
     }

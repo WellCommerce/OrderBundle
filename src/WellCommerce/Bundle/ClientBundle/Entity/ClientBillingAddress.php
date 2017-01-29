@@ -19,15 +19,15 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\AddressTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientBillingAddress implements ClientBillingAddressInterface
+class ClientBillingAddress
 {
     use AddressTrait;
     
-    protected $firstName      = '';
-    protected $lastName       = '';
-    protected $vatId          = '';
-    protected $companyName    = '';
-    protected $viesValid      = false;
+    protected $firstName   = '';
+    protected $lastName    = '';
+    protected $vatId       = '';
+    protected $companyName = '';
+    protected $viesValid   = false;
     
     public function getFirstName(): string
     {
