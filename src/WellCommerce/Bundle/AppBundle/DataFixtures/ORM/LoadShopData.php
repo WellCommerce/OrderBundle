@@ -35,7 +35,7 @@ class LoadShopData extends AbstractDataFixture
         
         /**
          * @var $theme       \WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface
-         * @var $company     \WellCommerce\Bundle\CompanyBundle\Entity\CompanyInterface
+         * @var $company     \WellCommerce\Bundle\CompanyBundle\Entity\Company
          * @var $orderStatus \WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface
          */
         $theme    = $this->getReference('theme');

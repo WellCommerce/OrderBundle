@@ -16,7 +16,7 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupAwareTrait;
-use WellCommerce\Bundle\CompanyBundle\Entity\CompanyInterface;
+use WellCommerce\Bundle\CompanyBundle\Entity\Company;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareTrait;
 
@@ -39,7 +39,7 @@ class Shop implements ShopInterface
     protected $defaultCurrency = '';
     
     /**
-     * @var CompanyInterface
+     * @var Company
      */
     protected $company;
     
@@ -68,7 +68,7 @@ class Shop implements ShopInterface
         return $this->company;
     }
     
-    public function setCompany(CompanyInterface $company = null)
+    public function setCompany(Company $company = null)
     {
         $this->company = $company;
     }

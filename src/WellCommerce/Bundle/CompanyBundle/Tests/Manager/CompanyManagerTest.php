@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CompanyBundle\Tests\Manager;
 
-use WellCommerce\Bundle\CompanyBundle\Entity\CompanyInterface;
+use WellCommerce\Bundle\CompanyBundle\Entity\Company;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
 
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
  */
 class CompanyManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('company.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return CompanyInterface::class;
+        return Company::class;
     }
 }
