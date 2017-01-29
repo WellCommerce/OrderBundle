@@ -17,10 +17,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\AdminBundle\Entity\Role;
 use WellCommerce\Bundle\AdminBundle\Entity\User;
 use WellCommerce\Bundle\AdminBundle\Entity\UserGroup;
-use WellCommerce\Bundle\AdminBundle\Entity\UserGroupInterface;
 use WellCommerce\Bundle\AdminBundle\Entity\UserGroupPermission;
-use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class LoadUserData
@@ -67,7 +66,7 @@ class LoadUserData extends AbstractDataFixture
         $manager->flush();
     }
     
-    private function getPermissions(UserGroupInterface $group)
+    private function getPermissions(UserGroup $group)
     {
         $collection = new ArrayCollection();
         foreach ($this->container->get('router')->getRouteCollection()->all() as $name => $route) {
