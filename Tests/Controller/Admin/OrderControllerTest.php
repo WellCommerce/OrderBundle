@@ -36,7 +36,7 @@ class OrderControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('order.repository')->matching(new Criteria());
+        $collection = $this->container->get('order.repository')->getCollection();
 
         $collection->map(function (OrderInterface $order) {
             $url     = $this->generateUrl('admin.order.edit', ['id' => $order->getId()]);
