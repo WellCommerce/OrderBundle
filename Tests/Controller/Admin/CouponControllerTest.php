@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 
 /**
  * Class CouponControllerTest
@@ -27,32 +26,32 @@ class CouponControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.coupon.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('coupon.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.coupon.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('coupon.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('coupon.repository')->getCollection();
-
-        $collection->map(function (CouponInterface $coupon) {
+        
+        $collection->map(function (Coupon $coupon) {
             $url     = $this->generateUrl('admin.coupon.edit', ['id' => $coupon->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('coupon.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -60,13 +59,13 @@ class CouponControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $coupon->translate()->getName() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.coupon.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

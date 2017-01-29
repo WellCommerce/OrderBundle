@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Checker;
 
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 
 /**
  * Interface CouponCheckerInterface
@@ -21,11 +21,11 @@ use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
  */
 interface CouponCheckerInterface
 {
-    public function isValid(CouponInterface $coupon): bool;
+    public function isValid(Coupon $coupon): bool;
     
     public function getError(): string;
     
-    public function isStartDateValid(CouponInterface $coupon): bool;
+    public function isStartDateValid(Coupon $coupon): bool;
     
-    public function isNotExpired(CouponInterface $coupon): bool;
+    public function isNotExpired(Coupon $coupon): bool;
 }

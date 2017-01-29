@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\CouponBundle\Checker\CouponCheckerInterface;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
 
 /**
@@ -26,7 +26,7 @@ use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
  */
 class CouponController extends AbstractFrontController
 {
-    public function addAction(CouponInterface $coupon = null) : JsonResponse
+    public function addAction(Coupon $coupon = null) : JsonResponse
     {
         try {
             if (!$this->getCouponChecker()->isValid($coupon)) {
