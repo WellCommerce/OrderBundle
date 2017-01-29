@@ -258,17 +258,6 @@ class Order implements EntityInterface
         return $this->coupon instanceof Coupon;
     }
     
-    public function addProduct(OrderProduct $orderProduct)
-    {
-        $this->products->add($orderProduct);
-    }
-    
-    public function removeProduct(OrderProduct $orderProduct)
-    {
-        $this->products->removeElement($orderProduct);
-        $orderProduct->removeFromOrder();
-    }
-    
     public function getProducts(): Collection
     {
         return $this->products;
@@ -276,14 +265,6 @@ class Order implements EntityInterface
     
     public function setProducts(Collection $products)
     {
-        if ($this->products instanceof Collection) {
-            $this->products->map(function (OrderProduct $orderProduct) use ($products) {
-                if (false === $products->contains($orderProduct)) {
-                    $this->products->removeElement($orderProduct);
-                }
-            });
-        }
-        
         $this->products = $products;
     }
     
