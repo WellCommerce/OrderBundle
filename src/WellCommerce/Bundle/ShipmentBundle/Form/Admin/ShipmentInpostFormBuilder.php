@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShipmentBundle\Form\Admin;
 use ElektronicznyNadawca;
 use getUrzedyNadania;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
@@ -29,7 +29,7 @@ class ShipmentInpostFormBuilder extends AbstractFormBuilder
      */
     public function buildForm(FormInterface $form)
     {
-        /** @var OrderInterface $order */
+        /** @var Order $order */
         $order         = $this->get('order.provider.admin')->getCurrentOrder();
         $orderStatuses = $this->get('order_status.dataset.admin')->getResult('select');
         
@@ -39,8 +39,8 @@ class ShipmentInpostFormBuilder extends AbstractFormBuilder
         ]));
         
         $requiredData->addChild($this->getElement('text_field', [
-            'name'    => 'paczkomat',
-            'label'   => 'Paczkomat',
+            'name'  => 'paczkomat',
+            'label' => 'Paczkomat',
         ]))->setValue($order->getShippingMethodOption());
         
         $requiredData->addChild($this->getElement('checkbox', [
@@ -81,9 +81,9 @@ class ShipmentInpostFormBuilder extends AbstractFormBuilder
         $form->addFilter($this->getFilter('secure'));
     }
     
-    protected function createApiClient() : ElektronicznyNadawca
+    protected function createApiClient(): ElektronicznyNadawca
     {
-        $wsdlPath = $this->get('kernel')->getRootDir().'/../src/ElektronicznyNadawca/en.wsdl';
+        $wsdlPath = $this->get('kernel')->getRootDir() . '/../src/ElektronicznyNadawca/en.wsdl';
         $user     = $this->container->getParameter('elektroniczny_nadawca_user');
         $pass     = $this->container->getParameter('elektroniczny_nadawca_pass');
         
@@ -94,7 +94,7 @@ class ShipmentInpostFormBuilder extends AbstractFormBuilder
         ]);
     }
     
-    protected function getUrzadNadania() : array
+    protected function getUrzadNadania(): array
     {
         $urzedy   = [];
         $response = $this->createApiClient()->getUrzedyNadania(new getUrzedyNadania());

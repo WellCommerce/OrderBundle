@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Manager;
 
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
 
 /**
@@ -24,7 +24,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
  */
 interface OrderManagerInterface extends ManagerInterface
 {
-    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency) : OrderInterface;
-
+    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency): Order;
+    
     public function findOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop);
 }

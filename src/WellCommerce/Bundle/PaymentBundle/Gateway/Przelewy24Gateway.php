@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\PaymentBundle\Client\Przelewy24;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
@@ -153,7 +153,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         );
     }
     
-    private function calculateOrderPaymentAmount(OrderInterface $order): int
+    private function calculateOrderPaymentAmount(Order $order): int
     {
         $finalPrice = $order->getSummary()->getGrossAmount();
         $amount     = round($finalPrice * 100, 0);
@@ -161,7 +161,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         return (int)$amount;
     }
     
-    private function generateOrderTransactionId(OrderInterface $order): string
+    private function generateOrderTransactionId(Order $order): string
     {
         return sha1($order->getId() . '-' . time());
     }

@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\OrderBundle\DependencyInjection\Compiler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
 
 /**
  * Class RegisterOrderModifierPass
@@ -32,22 +31,12 @@ class RegisterOrderModifierPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $tag        = 'order.modifier';
-        $interface  = OrderModifierInterface::class;
         $definition = $container->getDefinition('order.modifier.collection');
-
+        
         foreach ($container->findTaggedServiceIds($tag) as $id => $attributes) {
-            $itemDefinition = $container->getDefinition($id);
-            $refClass       = new \ReflectionClass($itemDefinition->getClass());
-            
-            if (!$refClass->implementsInterface($interface)) {
-                throw new \InvalidArgumentException(
-                    sprintf('Order modifier "%s" must implement interface "%s".', $id, $interface)
-                );
-            }
-
             $definition->addMethodCall('set', [
                 $attributes[0]['alias'],
-                new Reference($id)
+                new Reference($id),
             ]);
         }
     }

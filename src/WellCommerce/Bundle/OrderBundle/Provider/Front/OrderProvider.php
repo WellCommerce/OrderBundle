@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Provider\Front;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Security\SecurityHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderManagerInterface;
 use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
 
@@ -26,7 +26,7 @@ use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
 final class OrderProvider implements OrderProviderInterface
 {
     /**
-     * @var OrderInterface
+     * @var Order
      */
     private $currentOrder;
     
@@ -70,7 +70,7 @@ final class OrderProvider implements OrderProviderInterface
         $this->shopStorage    = $shopStorage;
     }
     
-    public function getCurrentOrder() : OrderInterface
+    public function getCurrentOrder(): Order
     {
         if (null === $this->currentOrder) {
             $currency           = $this->requestHelper->getCurrentCurrency();
@@ -79,32 +79,32 @@ final class OrderProvider implements OrderProviderInterface
             $shop               = $this->shopStorage->getCurrentShop();
             $this->currentOrder = $this->orderManager->getOrder($sessionId, $client, $shop, $currency);
         }
-
+        
         return $this->currentOrder;
     }
-
-    public function getCurrentOrderIdentifier() : int
+    
+    public function getCurrentOrderIdentifier(): int
     {
         if ($this->hasCurrentOrder()) {
             return $this->getCurrentOrder()->getId();
         }
-
+        
         return 0;
     }
-
-    public function hasCurrentOrder() : bool
+    
+    public function hasCurrentOrder(): bool
     {
         $order = $this->findCurrentOrder();
-
-        return $order instanceof OrderInterface;
+        
+        return $order instanceof Order;
     }
-
+    
     private function findCurrentOrder()
     {
         $sessionId = $this->requestHelper->getSessionId();
         $client    = $this->securityHelper->getCurrentClient();
         $shop      = $this->shopStorage->getCurrentShop();
-
+        
         return $this->orderManager->findOrder($sessionId, $client, $shop);
     }
 }

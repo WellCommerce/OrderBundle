@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
 
@@ -26,7 +26,7 @@ interface PaymentManagerInterface extends ManagerInterface
 {
     public function updatePaymentState(Payment $payment);
     
-    public function createPaymentForOrder(OrderInterface $order): Payment;
+    public function createPaymentForOrder(Order $order): Payment;
     
-    public function getPaymentProcessor(OrderInterface $order): PaymentProcessorInterface;
+    public function getPaymentProcessor(Order $order): PaymentProcessorInterface;
 }

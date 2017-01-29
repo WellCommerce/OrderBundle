@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroupInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroup;
 
 /**
  * Class OrderStatusControllerTest
@@ -27,32 +26,32 @@ class OrderStatusGroupControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.order_status_group.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('order_status_group.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.order_status_group.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('order_status_group.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('order_status_group.repository')->getCollection();
-
-        $collection->map(function (OrderStatusGroupInterface $orderStatusGroup) {
+        
+        $collection->map(function (OrderStatusGroup $orderStatusGroup) {
             $url     = $this->generateUrl('admin.order_status_group.edit', ['id' => $orderStatusGroup->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('order_status_group.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -60,13 +59,13 @@ class OrderStatusGroupControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $orderStatusGroup->translate()->getName() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.order_status_group.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ReportBundle\Provider;
 
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class AbstractReportProvider
@@ -38,14 +38,7 @@ abstract class AbstractReportProvider extends AbstractContainerAware
         $this->repository = $repository;
     }
     
-    /**
-     * Converts the order's gross total to target currency
-     *
-     * @param OrderInterface $order
-     *
-     * @return float
-     */
-    protected function convertAmount(OrderInterface $order)
+    protected function convertAmount(Order $order): float
     {
         $amount       = $order->getSummary()->getGrossAmount();
         $baseCurrency = $order->getCurrency();

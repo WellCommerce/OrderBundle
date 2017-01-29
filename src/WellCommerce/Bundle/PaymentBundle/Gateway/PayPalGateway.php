@@ -28,8 +28,8 @@ use PayPal\Rest\ApiContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
@@ -138,7 +138,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $payer;
     }
     
-    private function createTransaction(OrderInterface $order): Transaction
+    private function createTransaction(Order $order): Transaction
     {
         $transaction = new Transaction();
         $transaction->setAmount($this->createAmount($order));
@@ -148,7 +148,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $transaction;
     }
     
-    private function createAmount(OrderInterface $order): Amount
+    private function createAmount(Order $order): Amount
     {
         $details = $this->createDetails($order);
         $amount  = new Amount();
@@ -159,7 +159,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $amount;
     }
     
-    private function createDetails(OrderInterface $order): Details
+    private function createDetails(Order $order): Details
     {
         $shippingCosts = $order->getModifier('shipping_cost');
         $details       = new Details();
@@ -170,18 +170,18 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $details;
     }
     
-    private function createItemList(OrderInterface $order): ItemList
+    private function createItemList(Order $order): ItemList
     {
         $itemList = new ItemList();
         
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use ($itemList) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use ($itemList) {
             $itemList->addItem($this->createItem($orderProduct));
         });
         
         return $itemList;
     }
     
-    private function createItem(OrderProductInterface $orderProduct): Item
+    private function createItem(OrderProduct $orderProduct): Item
     {
         $item = new Item();
         $item->setName($orderProduct->getProduct()->translate()->getName());

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Exception;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 
 /**
  * Class DeleteOrderProductException
@@ -23,7 +23,7 @@ class DeleteOrderProductException extends \RuntimeException
 {
     const ERROR_MESSAGE = 'Cannot delete item "%s". It does not belongs to order.';
 
-    public function __construct(OrderProductInterface $orderProduct)
+    public function __construct(OrderProduct $orderProduct)
     {
         $message = sprintf(self::ERROR_MESSAGE, $orderProduct->getId());
         parent::__construct($message);

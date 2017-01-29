@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ClientBundle\Controller\Box;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
 
 /**
@@ -25,32 +25,32 @@ use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
  */
 class ClientOrderBoxController extends AbstractBoxController
 {
-    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
         $orders = $this->getOrderRepository()->getClientOrdersCollection($this->getAuthenticatedClient());
         
         return $this->displayTemplate('index', [
-            'orders' => $orders
+            'orders' => $orders,
         ]);
     }
     
-    public function viewAction() : Response
+    public function viewAction(): Response
     {
         $order = $this->getOrderRepository()->findOneBy([
             'id'     => (int)$this->getRequestHelper()->getAttributesBagParam('id'),
-            'client' => $this->getAuthenticatedClient()
+            'client' => $this->getAuthenticatedClient(),
         ]);
         
-        if (!$order instanceof OrderInterface) {
+        if (!$order instanceof Order) {
             return $this->redirectToAction('index');
         }
         
         return $this->displayTemplate('view', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
     
-    private function getOrderRepository() : OrderRepositoryInterface
+    private function getOrderRepository(): OrderRepositoryInterface
     {
         return $this->get('order.repository');
     }

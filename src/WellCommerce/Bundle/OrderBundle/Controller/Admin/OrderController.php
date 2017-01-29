@@ -15,9 +15,9 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
@@ -38,7 +38,7 @@ class OrderController extends AbstractAdminController
     public function editAction(int $id): Response
     {
         $resource = $this->getManager()->getRepository()->find($id);
-        if (!$resource instanceof OrderInterface) {
+        if (!$resource instanceof Order) {
             return $this->redirectToAction('index');
         }
         
@@ -86,7 +86,7 @@ class OrderController extends AbstractAdminController
         $statusId = $request->get('status');
         $status   = $this->get('order_status.repository')->find($statusId);
         
-        if (!$status instanceof OrderStatusInterface) {
+        if (!$status instanceof OrderStatus) {
             return $this->jsonResponse([
                 'success' => false,
                 'error'   => 'Wrong order status was given',
@@ -94,7 +94,7 @@ class OrderController extends AbstractAdminController
         }
         
         $order = $this->getManager()->getRepository()->find($id);
-        if ($order instanceof OrderInterface) {
+        if ($order instanceof Order) {
             $order->setCurrentStatus($status);
             $history = $this->createOrderStatusHistoryResource($order);
             $history->setNotify(true);
@@ -114,7 +114,7 @@ class OrderController extends AbstractAdminController
         $statusId = $request->get('status');
         $status   = $this->get('order_status.repository')->find($statusId);
         
-        if (!$status instanceof OrderStatusInterface) {
+        if (!$status instanceof OrderStatus) {
             return $this->jsonResponse([
                 'success' => false,
                 'error'   => 'Wrong order status was given',
@@ -123,7 +123,7 @@ class OrderController extends AbstractAdminController
         
         foreach ($ids as $id) {
             $order = $this->getManager()->getRepository()->find($id);
-            if ($order instanceof OrderInterface) {
+            if ($order instanceof Order) {
                 $order->setCurrentStatus($status);
                 $history = $this->createOrderStatusHistoryResource($order);
                 $history->setNotify(true);
@@ -138,7 +138,7 @@ class OrderController extends AbstractAdminController
         ]);
     }
     
-    protected function createOrderStatusHistoryForm(OrderStatusHistoryInterface $orderStatusHistory): FormInterface
+    protected function createOrderStatusHistoryForm(OrderStatusHistory $orderStatusHistory): FormInterface
     {
         return $this->get('order_status_history.form_builder.admin')->createForm([
             'name'  => 'orderStatusHistory',
@@ -146,9 +146,9 @@ class OrderController extends AbstractAdminController
         ], $orderStatusHistory);
     }
     
-    protected function createOrderStatusHistoryResource(OrderInterface $order): OrderStatusHistoryInterface
+    protected function createOrderStatusHistoryResource(Order $order): OrderStatusHistory
     {
-        /** @var $orderStatusHistory OrderStatusHistoryInterface */
+        /** @var $orderStatusHistory OrderStatusHistory */
         $orderStatusHistory = $this->get('order_status_history.factory')->create();
         $orderStatusHistory->setNotify(false);
         $orderStatusHistory->setComment('');

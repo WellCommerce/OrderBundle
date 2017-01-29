@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ReportBundle\Provider;
 use DateInterval;
 use DateTime;
 use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ReportBundle\Calculator\SalesSummaryCalculator;
 use WellCommerce\Bundle\ReportBundle\Configuration\ReportConfiguration;
 use WellCommerce\Bundle\ReportBundle\Context\LineChartContext;
@@ -58,7 +58,7 @@ class SalesReportProvider extends AbstractReportProvider implements ReportProvid
         $collection = $this->repository->matching($criteria);
         $report     = new ReportRowCollection();
         
-        $collection->map(function (OrderInterface $order) use ($configuration, $report) {
+        $collection->map(function (Order $order) use ($configuration, $report) {
             $date   = $order->getCreatedAt()->format($configuration->getGroupByDateFormat());
             $amount = $this->convertAmount($order);
             $report->add(new ReportRow($date, $amount));

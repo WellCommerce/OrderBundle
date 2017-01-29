@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ShippingBundle\Visitor;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
@@ -59,10 +59,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         $this->optionsProviderCollection = $optionsProviderCollection;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $costs = $this->getCostCollection($order);
         
@@ -86,7 +83,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         $this->setShippingMethodOption($order, $cost->getShippingMethod());
     }
     
-    private function setShippingMethodOption(OrderInterface $order, ShippingMethodInterface $shippingMethod)
+    private function setShippingMethodOption(Order $order, ShippingMethodInterface $shippingMethod)
     {
         $optionsProvider = $this->getOptionsProvider($shippingMethod);
         $selectedOption  = $order->getShippingMethodOption();
@@ -103,14 +100,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         }
     }
     
-    /**
-     * Returns the costs collection for existing shipping method or all shipping methods if current method is not longer available
-     *
-     * @param OrderInterface $order
-     *
-     * @return Collection
-     */
-    private function getCostCollection(OrderInterface $order) : Collection
+    private function getCostCollection(Order $order): Collection
     {
         if ($order->hasShippingMethod()) {
             $costs = $this->getCurrentShippingMethodCostsCollection($order);
@@ -122,26 +112,12 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         return $this->getShippingCostCollection($order);
     }
     
-    /**
-     * Returns the collection of costs for all available shipping methods
-     *
-     * @param OrderInterface $order
-     *
-     * @return Collection
-     */
-    private function getShippingCostCollection(OrderInterface $order) : Collection
+    private function getShippingCostCollection(Order $order): Collection
     {
         return $this->methodProvider->getCosts(new OrderContext($order));
     }
     
-    /**
-     * Returns the collection of costs for current shipping method
-     *
-     * @param OrderInterface $order
-     *
-     * @return Collection
-     */
-    private function getCurrentShippingMethodCostsCollection(OrderInterface $order) : Collection
+    private function getCurrentShippingMethodCostsCollection(Order $order): Collection
     {
         return $this->methodProvider->getShippingMethodCosts($order->getShippingMethod(), new OrderContext($order));
     }

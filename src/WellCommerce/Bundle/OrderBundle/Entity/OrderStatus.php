@@ -16,13 +16,14 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class OrderStatus
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatus implements OrderStatusInterface
+class OrderStatus implements EntityInterface
 {
     use Identifiable;
     use Enableable;
@@ -33,16 +34,16 @@ class OrderStatus implements OrderStatusInterface
     protected $colour = '#fff';
     
     /**
-     * @var OrderStatusGroupInterface
+     * @var OrderStatusGroup
      */
     protected $orderStatusGroup;
     
-    public function getOrderStatusGroup(): OrderStatusGroupInterface
+    public function getOrderStatusGroup(): OrderStatusGroup
     {
         return $this->orderStatusGroup;
     }
     
-    public function setOrderStatusGroup(OrderStatusGroupInterface $orderStatusGroup)
+    public function setOrderStatusGroup(OrderStatusGroup $orderStatusGroup)
     {
         $this->orderStatusGroup = $orderStatusGroup;
     }

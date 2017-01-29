@@ -17,7 +17,7 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
 
 /**
@@ -129,7 +129,7 @@ class Client implements ClientInterface
     
     public function getOrders(): Collection
     {
-        return $this->orders->filter(function (OrderInterface $order) {
+        return $this->orders->filter(function (Order $order) {
             return $order->isConfirmed();
         });
     }

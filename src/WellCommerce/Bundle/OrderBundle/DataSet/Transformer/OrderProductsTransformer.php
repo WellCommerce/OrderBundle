@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\DataSet\Transformer;
 
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
 /**
@@ -50,7 +50,7 @@ final class OrderProductsTransformer extends AbstractDataSetTransformer
         $orderProducts = $this->repository->matching($criteria);
         $lines         = [];
         
-        $orderProducts->map(function (OrderProductInterface $orderProduct) use (&$lines) {
+        $orderProducts->map(function (OrderProduct $orderProduct) use (&$lines) {
             $product  = $orderProduct->getProduct();
             $fullName = $product->translate()->getName();
             

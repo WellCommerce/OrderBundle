@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderSummary;
 
 /**
@@ -39,7 +39,7 @@ final class OrderSummaryVisitor implements OrderVisitorInterface
         $this->helper = $helper;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $productTotal   = $order->getProductTotal();
         $modifiers      = $order->getModifiers();
@@ -50,7 +50,7 @@ final class OrderSummaryVisitor implements OrderVisitorInterface
         $summary->setNetAmount($productTotal->getNetPrice());
         $summary->setTaxAmount($productTotal->getTaxAmount());
         
-        $modifiers->map(function (OrderModifierInterface $modifier) use ($summary, $targetCurrency) {
+        $modifiers->map(function (OrderModifier $modifier) use ($summary, $targetCurrency) {
             $baseCurrency = $modifier->getCurrency();
             $grossAmount  = $this->helper->convert($modifier->getGrossAmount(), $baseCurrency, $targetCurrency);
             $netAmount    = $this->helper->convert($modifier->getNetAmount(), $baseCurrency, $targetCurrency);

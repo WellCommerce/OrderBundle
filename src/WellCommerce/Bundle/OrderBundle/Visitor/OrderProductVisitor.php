@@ -13,10 +13,9 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\AppBundle\Factory\PriceFactory;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\ProductBundle\Helper\VariantHelperInterface;
 
 /**
@@ -48,9 +47,9 @@ final class OrderProductVisitor implements OrderVisitorInterface
         $this->variantHelper  = $variantHelper;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use ($order) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use ($order) {
             if (false === $orderProduct->isLocked()) {
                 if ($this->checkOrderStock($order, $orderProduct)) {
                     $this->refreshOrderProductSellPrice($orderProduct);
@@ -61,7 +60,7 @@ final class OrderProductVisitor implements OrderVisitorInterface
         });
     }
     
-    private function checkOrderStock(OrderInterface $order, OrderProductInterface $orderProduct): bool
+    private function checkOrderStock(Order $order, OrderProduct $orderProduct): bool
     {
         $trackStock      = $orderProduct->getProduct()->getTrackStock();
         $orderedQuantity = $orderProduct->getQuantity();
@@ -80,7 +79,7 @@ final class OrderProductVisitor implements OrderVisitorInterface
         return true;
     }
     
-    private function refreshOrderProductSellPrice(OrderProductInterface $orderProduct)
+    private function refreshOrderProductSellPrice(OrderProduct $orderProduct)
     {
         $baseSellPrice  = $orderProduct->getCurrentSellPrice();
         $baseCurrency   = $baseSellPrice->getCurrency();
@@ -99,7 +98,7 @@ final class OrderProductVisitor implements OrderVisitorInterface
         $orderProduct->setSellPrice($sellPrice);
     }
     
-    private function refreshOrderProductBuyPrice(OrderProductInterface $orderProduct)
+    private function refreshOrderProductBuyPrice(OrderProduct $orderProduct)
     {
         $baseBuyPrice   = $orderProduct->getProduct()->getBuyPrice();
         $baseCurrency   = $baseBuyPrice->getCurrency();
@@ -118,7 +117,7 @@ final class OrderProductVisitor implements OrderVisitorInterface
         $orderProduct->setBuyPrice($buyPrice);
     }
     
-    private function refreshOrderProductVariantOptions(OrderProductInterface $orderProduct)
+    private function refreshOrderProductVariantOptions(OrderProduct $orderProduct)
     {
         if ($orderProduct->hasVariant()) {
             $options = $this->variantHelper->getVariantOptions($orderProduct->getVariant());

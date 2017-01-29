@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ClientBundle\DataSet\Transformer;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
@@ -50,7 +50,7 @@ final class ClientCartTransformer extends AbstractDataSetTransformer
     {
         $lines = [];
         $order = $this->repository->find($orderId);
-        if ($order instanceof OrderInterface) {
+        if ($order instanceof Order) {
             $lines[] = sprintf(
                 '<strong>%s:</strong> %s %s',
                 $this->translatorHelper->trans('order.label.summary.gross_amount'),

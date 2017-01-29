@@ -17,7 +17,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
  * Interface PaymentMethodInterface
@@ -55,34 +55,34 @@ interface PaymentMethodInterface extends
     public function setShippingMethods(Collection $shippingMethods);
     
     /**
-     * @return OrderStatusInterface
+     * @return OrderStatus
      */
     public function getPaymentPendingOrderStatus();
     
     /**
-     * @param OrderStatusInterface $paymentPendingOrderStatus
+     * @param OrderStatus $paymentPendingOrderStatus
      */
-    public function setPaymentPendingOrderStatus(OrderStatusInterface $paymentPendingOrderStatus);
+    public function setPaymentPendingOrderStatus(OrderStatus $paymentPendingOrderStatus);
     
     /**
-     * @return OrderStatusInterface
+     * @return OrderStatus
      */
     public function getPaymentSuccessOrderStatus();
     
     /**
-     * @param OrderStatusInterface $paymentSuccessOrderStatus
+     * @param OrderStatus $paymentSuccessOrderStatus
      */
-    public function setPaymentSuccessOrderStatus(OrderStatusInterface $paymentSuccessOrderStatus);
+    public function setPaymentSuccessOrderStatus(OrderStatus $paymentSuccessOrderStatus);
     
     /**
-     * @return OrderStatusInterface
+     * @return OrderStatus
      */
     public function getPaymentFailureOrderStatus();
     
     /**
-     * @param OrderStatusInterface $paymentFailureOrderStatus
+     * @param OrderStatus $paymentFailureOrderStatus
      */
-    public function setPaymentFailureOrderStatus(OrderStatusInterface $paymentFailureOrderStatus);
+    public function setPaymentFailureOrderStatus(OrderStatus $paymentFailureOrderStatus);
     
     /**
      * @return array

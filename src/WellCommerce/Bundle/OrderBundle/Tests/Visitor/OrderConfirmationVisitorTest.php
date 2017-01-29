@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\OrderBundle\Tests\Visitor;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 
 /**
@@ -48,7 +47,7 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
         $orderProduct = $this->createOrderProduct();
         $order->addProduct($orderProduct);
         
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) {
             $this->assertFalse($orderProduct->isLocked());
         });
         
@@ -56,7 +55,7 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
         
         $visitor->visitOrder($order);
         
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) {
             $this->assertTrue($orderProduct->isLocked());
         });
     }
@@ -67,7 +66,7 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
         $this->assertEquals(0, $order->getPayments()->count());
     }
     
-    private function createOrderProduct(): OrderProductInterface
+    private function createOrderProduct(): OrderProduct
     {
         /** @var ProductInterface $product */
         $product = $this->container->get('product.repository')->findOneBy([

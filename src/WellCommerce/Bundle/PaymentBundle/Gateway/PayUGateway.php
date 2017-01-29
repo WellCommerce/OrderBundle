@@ -19,8 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
@@ -88,7 +88,7 @@ final class PayUGateway implements PaymentGatewayInterface
         $trans['extOrderId']            = $transIdentifier;
         $trans['products']              = [];
         
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$trans) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$trans) {
             $trans['products'][] = [
                 'name'      => $orderProduct->getProduct()->translate()->getName(),
                 'unitPrice' => round($orderProduct->getSellPrice()->getGrossAmount() * 100, 0),
@@ -119,12 +119,12 @@ final class PayUGateway implements PaymentGatewayInterface
     {
     }
     
-    private function generateOrderTransactionId(OrderInterface $order): string
+    private function generateOrderTransactionId(Order $order): string
     {
         return sha1($order->getId() . '-' . time());
     }
     
-    private function calculateOrderPaymentAmount(OrderInterface $order): int
+    private function calculateOrderPaymentAmount(Order $order): int
     {
         $finalPrice = $order->getSummary()->getGrossAmount();
         $amount     = round($finalPrice * 100, 0);

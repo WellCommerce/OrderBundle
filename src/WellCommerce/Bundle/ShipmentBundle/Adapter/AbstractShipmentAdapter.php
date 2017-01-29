@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory;
 use WellCommerce\Bundle\ShipmentBundle\Entity\ShipmentInterface;
 
 /**
@@ -42,7 +42,7 @@ abstract class AbstractShipmentAdapter extends AbstractContainerAware implements
         return $this->get('shipment.repository');
     }
     
-    protected function createOrderStatusHistory(ShipmentInterface $shipment, array $formValues): OrderStatusHistoryInterface
+    protected function createOrderStatusHistory(ShipmentInterface $shipment, array $formValues): OrderStatusHistory
     {
         /** @var ManagerInterface $manager */
         $manager       = $this->get('order_status_history.manager');
@@ -51,16 +51,16 @@ abstract class AbstractShipmentAdapter extends AbstractContainerAware implements
         $comment       = $formValues['required_data']['comment'];
         $orderStatusId = $formValues['required_data']['orderStatus'];
         
-        /** @var OrderStatusInterface $orderStatus */
+        /** @var OrderStatus $orderStatus */
         $orderStatus = $this->get('order_status.repository')->find($orderStatusId);
         
-        if (!$orderStatus instanceof OrderStatusInterface) {
+        if (!$orderStatus instanceof OrderStatus) {
             throw new \Exception('Wrong order status given.');
         }
         
         $order->setCurrentStatus($orderStatus);
         
-        /** @var OrderStatusHistoryInterface $orderStatusHistory */
+        /** @var OrderStatusHistory $orderStatusHistory */
         $orderStatusHistory = $this->get('order_status_history.factory')->create();
         $orderStatusHistory->setNotify($notify);
         $orderStatusHistory->setComment($comment);

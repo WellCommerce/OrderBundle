@@ -43,7 +43,7 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderModifier:
             column: currency
     manyToOne:
         order:
-            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderInterface
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\Order
             fetch: LAZY
             inversedBy: modifiers
             joinColumns:

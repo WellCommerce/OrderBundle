@@ -25,6 +25,7 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
@@ -37,7 +38,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Order implements OrderInterface
+class Order implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
@@ -67,7 +68,7 @@ class Order implements OrderInterface
     protected $coupon;
     
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $currentStatus;
     
@@ -185,12 +186,12 @@ class Order implements OrderInterface
         $this->coupon = null;
     }
     
-    public function addProduct(OrderProductInterface $orderProduct)
+    public function addProduct(OrderProduct $orderProduct)
     {
         $this->products->add($orderProduct);
     }
     
-    public function removeProduct(OrderProductInterface $orderProduct)
+    public function removeProduct(OrderProduct $orderProduct)
     {
         $this->products->removeElement($orderProduct);
         $orderProduct->removeFromOrder();
@@ -204,7 +205,7 @@ class Order implements OrderInterface
     public function setProducts(Collection $products)
     {
         if ($this->products instanceof Collection) {
-            $this->products->map(function (OrderProductInterface $orderProduct) use ($products) {
+            $this->products->map(function (OrderProduct $orderProduct) use ($products) {
                 if (false === $products->contains($orderProduct)) {
                     $this->products->removeElement($orderProduct);
                 }
@@ -224,7 +225,7 @@ class Order implements OrderInterface
         $this->productTotal = $productTotal;
     }
     
-    public function addModifier(OrderModifierInterface $modifier)
+    public function addModifier(OrderModifier $modifier)
     {
         $this->modifiers->set($modifier->getName(), $modifier);
     }
@@ -239,7 +240,7 @@ class Order implements OrderInterface
         $this->modifiers->remove($name);
     }
     
-    public function getModifier(string $name): OrderModifierInterface
+    public function getModifier(string $name): OrderModifier
     {
         return $this->modifiers->get($name);
     }
@@ -266,7 +267,7 @@ class Order implements OrderInterface
     
     public function hasCurrentStatus(): bool
     {
-        return $this->currentStatus instanceof OrderStatusInterface;
+        return $this->currentStatus instanceof OrderStatus;
     }
     
     public function getCurrentStatus()
@@ -274,7 +275,7 @@ class Order implements OrderInterface
         return $this->currentStatus;
     }
     
-    public function setCurrentStatus(OrderStatusInterface $currentStatus = null)
+    public function setCurrentStatus(OrderStatus $currentStatus = null)
     {
         $this->currentStatus = $currentStatus;
     }
@@ -289,7 +290,7 @@ class Order implements OrderInterface
         return $this->orderStatusHistory;
     }
     
-    public function addOrderStatusHistory(OrderStatusHistoryInterface $orderStatusHistory)
+    public function addOrderStatusHistory(OrderStatusHistory $orderStatusHistory)
     {
         $this->orderStatusHistory->add($orderStatusHistory);
     }

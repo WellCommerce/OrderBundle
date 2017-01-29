@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\PaymentBundle\Visitor;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
 /**
@@ -22,10 +22,7 @@ use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
  */
 final class PaymentMethodOrderVisitor implements OrderVisitorInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         if (false === $order->hasShippingMethod()) {
             $order->setPaymentMethod(null);

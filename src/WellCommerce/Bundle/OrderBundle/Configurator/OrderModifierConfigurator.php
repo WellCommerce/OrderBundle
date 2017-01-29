@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Configurator;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 
 /**
  * Class OrderModifierConfigurator
@@ -42,7 +42,7 @@ final class OrderModifierConfigurator implements OrderModifierConfiguratorInterf
         $this->hierarchy     = $hierarchy;
     }
     
-    public function configure(OrderModifierInterface $modifier)
+    public function configure(OrderModifier $modifier)
     {
         $modifier->setName($this->name);
         $modifier->setDescription($this->description);

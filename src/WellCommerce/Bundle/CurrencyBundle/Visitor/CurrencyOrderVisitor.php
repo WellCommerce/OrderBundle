@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CurrencyBundle\Visitor;
 
 use WellCommerce\Bundle\CurrencyBundle\Converter\CurrencyConverterInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
 /**
@@ -27,21 +27,13 @@ final class CurrencyOrderVisitor implements OrderVisitorInterface
      * @var CurrencyConverterInterface
      */
     private $currencyConverter;
-
-    /**
-     * CurrencyOrderVisitor constructor.
-     *
-     * @param CurrencyConverterInterface $currencyConverter
-     */
+    
     public function __construct(CurrencyConverterInterface $currencyConverter)
     {
         $this->currencyConverter = $currencyConverter;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $currency     = $order->getCurrency();
         $currencyRate = $this->currencyConverter->getExchangeRate($currency);

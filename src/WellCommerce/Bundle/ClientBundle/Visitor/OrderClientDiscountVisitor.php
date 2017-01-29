@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ClientBundle\Visitor;
 
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
@@ -50,7 +50,7 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
     /**
      * {@inheritdoc}
      */
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $client = $order->getClient();
         

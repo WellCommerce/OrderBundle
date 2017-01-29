@@ -13,14 +13,13 @@
 namespace WellCommerce\Bundle\ShipmentBundle\Entity;
 
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderAwareInterface;
 
 /**
  * Interface ShipmentInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ShipmentInterface extends EntityInterface, OrderAwareInterface
+interface ShipmentInterface extends EntityInterface
 {
     public function getGuid(): string;
     

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Calculator;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Interface OrderProductTotalCalculatorInterface
@@ -21,13 +21,13 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
  */
 interface OrderProductTotalCalculatorInterface
 {
-    public function getTotalQuantity (OrderInterface $order) : int;
+    public function getTotalQuantity(Order $order): int;
     
-    public function getTotalWeight (OrderInterface $order) : float;
+    public function getTotalWeight(Order $order): float;
     
-    public function getTotalNetAmount (OrderInterface $order) : float;
+    public function getTotalNetAmount(Order $order): float;
     
-    public function getTotalGrossAmount (OrderInterface $order) : float;
+    public function getTotalGrossAmount(Order $order): float;
     
-    public function getTotalTaxAmount (OrderInterface $order) : float;
+    public function getTotalTaxAmount(Order $order): float;
 }

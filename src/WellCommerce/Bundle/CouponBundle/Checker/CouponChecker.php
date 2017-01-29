@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CouponBundle\Checker;
 
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
 
@@ -140,7 +140,7 @@ final class CouponChecker implements CouponCheckerInterface
         $hasOnlyPromotionProducts = true;
         $order                    = $this->orderProvider->getCurrentOrder();
         
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$hasOnlyPromotionProducts) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$hasOnlyPromotionProducts) {
             if (false === $orderProduct->getProduct()->getSellPrice()->isDiscountValid()) {
                 $hasOnlyPromotionProducts = false;
             }

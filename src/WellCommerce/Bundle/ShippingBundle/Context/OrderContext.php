@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\Context;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 
 /**
@@ -23,16 +23,11 @@ use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 final class OrderContext implements ShippingSubjectInterface
 {
     /**
-     * @var OrderInterface
+     * @var Order
      */
     protected $order;
     
-    /**
-     * OrderAdapter constructor.
-     *
-     * @param OrderInterface $order
-     */
-    public function __construct(OrderInterface $order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }

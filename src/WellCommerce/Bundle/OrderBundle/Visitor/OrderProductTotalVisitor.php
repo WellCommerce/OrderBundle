@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 
 /**
  * Class OrderProductTotalVisitor
@@ -38,7 +38,7 @@ final class OrderProductTotalVisitor implements OrderVisitorInterface
         $this->helper = $helper;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $summary = $order->getProductTotal();
         $summary->setQuantity($this->calculateQuantity($order));
@@ -48,31 +48,31 @@ final class OrderProductTotalVisitor implements OrderVisitorInterface
         $summary->setTaxAmount($this->calculateTaxAmount($order));
     }
     
-    private function calculateQuantity(OrderInterface $order) : int
+    private function calculateQuantity(Order $order): int
     {
         $quantity = 0;
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$quantity) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$quantity) {
             $quantity += $orderProduct->getQuantity();
         });
         
         return $quantity;
     }
     
-    private function calculateWeight(OrderInterface $order) : float
+    private function calculateWeight(Order $order): float
     {
         $weight = 0;
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$weight) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$weight) {
             $weight += $orderProduct->getWeight() * $orderProduct->getQuantity();
         });
         
         return $weight;
     }
     
-    private function calculateNetPrice(OrderInterface $order) : float
+    private function calculateNetPrice(Order $order): float
     {
         $targetCurrency = $order->getCurrency();
         $net            = 0;
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$net, $targetCurrency) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$net, $targetCurrency) {
             $sellPrice    = $orderProduct->getSellPrice();
             $baseCurrency = $sellPrice->getCurrency();
             $priceNet     = $sellPrice->getNetAmount();
@@ -83,11 +83,11 @@ final class OrderProductTotalVisitor implements OrderVisitorInterface
         return $net;
     }
     
-    private function calculateGrossPrice(OrderInterface $order) : float
+    private function calculateGrossPrice(Order $order): float
     {
         $targetCurrency = $order->getCurrency();
         $gross          = 0;
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$gross, $targetCurrency) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$gross, $targetCurrency) {
             $sellPrice    = $orderProduct->getSellPrice();
             $baseCurrency = $sellPrice->getCurrency();
             $priceGross   = $sellPrice->getGrossAmount();
@@ -98,11 +98,11 @@ final class OrderProductTotalVisitor implements OrderVisitorInterface
         return $gross;
     }
     
-    private function calculateTaxAmount(OrderInterface $order) : float
+    private function calculateTaxAmount(Order $order): float
     {
         $targetCurrency = $order->getCurrency();
         $tax            = 0;
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$tax, $targetCurrency) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$tax, $targetCurrency) {
             $sellPrice    = $orderProduct->getSellPrice();
             $baseCurrency = $sellPrice->getCurrency();
             $taxAmount    = $sellPrice->getTaxAmount();

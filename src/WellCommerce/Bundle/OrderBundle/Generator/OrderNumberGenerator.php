@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Generator;
 
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderNumberGenerator
@@ -37,7 +37,7 @@ final class OrderNumberGenerator implements OrderNumberGeneratorInterface
         $this->helper = $helper;
     }
     
-    public function generateOrderNumber(OrderInterface $order) : string
+    public function generateOrderNumber(Order $order) : string
     {
         $sql  = "SELECT MAX(CAST(orders.number AS UNSIGNED)) AS last_order FROM orders WHERE confirmed = 1";
         $em   = $this->helper->getEntityManager();

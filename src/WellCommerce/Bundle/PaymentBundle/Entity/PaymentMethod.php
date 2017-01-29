@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
  * Class PaymentMethod
@@ -42,17 +42,17 @@ class PaymentMethod implements PaymentMethodInterface
     protected $shippingMethods;
     
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $paymentPendingOrderStatus;
     
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $paymentSuccessOrderStatus;
     
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $paymentFailureOrderStatus;
     
@@ -127,42 +127,27 @@ class PaymentMethod implements PaymentMethodInterface
         return $this->paymentPendingOrderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setPaymentPendingOrderStatus(OrderStatusInterface $paymentPendingOrderStatus)
+    public function setPaymentPendingOrderStatus(OrderStatus $paymentPendingOrderStatus)
     {
         $this->paymentPendingOrderStatus = $paymentPendingOrderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getPaymentSuccessOrderStatus()
     {
         return $this->paymentSuccessOrderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setPaymentSuccessOrderStatus(OrderStatusInterface $paymentSuccessOrderStatus)
+    public function setPaymentSuccessOrderStatus(OrderStatus $paymentSuccessOrderStatus)
     {
         $this->paymentSuccessOrderStatus = $paymentSuccessOrderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getPaymentFailureOrderStatus()
     {
         return $this->paymentFailureOrderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setPaymentFailureOrderStatus(OrderStatusInterface $paymentFailureOrderStatus)
+    public function setPaymentFailureOrderStatus(OrderStatus $paymentFailureOrderStatus)
     {
         $this->paymentFailureOrderStatus = $paymentFailureOrderStatus;
     }

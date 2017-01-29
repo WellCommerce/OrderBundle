@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\CouponBundle\Visitor;
 
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
@@ -48,7 +48,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         $this->currencyHelper        = $currencyHelper;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         if ($order->hasCoupon()) {
             $coupon          = $order->getCoupon();
@@ -68,7 +68,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         }
     }
     
-    private function calculateCouponModifier(Coupon $coupon, OrderInterface $order, float $totalGrossPrice): float
+    private function calculateCouponModifier(Coupon $coupon, Order $order, float $totalGrossPrice): float
     {
         $modifierType   = $coupon->getModifierType();
         $modifierValue  = $coupon->getModifierValue();
@@ -88,12 +88,12 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return 1;
     }
     
-    private function getOrderGrossPrice(Coupon $coupon, OrderInterface $order): float
+    private function getOrderGrossPrice(Coupon $coupon, Order $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
             $gross          = 0;
-            $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$gross, $targetCurrency) {
+            $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$gross, $targetCurrency) {
                 if (false === $orderProduct->getProduct()->getSellPrice()->isDiscountValid()) {
                     $sellPrice    = $orderProduct->getSellPrice();
                     $baseCurrency = $sellPrice->getCurrency();
@@ -109,12 +109,12 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return $order->getProductTotal()->getGrossPrice();
     }
     
-    private function getOrderNetPrice(Coupon $coupon, OrderInterface $order): float
+    private function getOrderNetPrice(Coupon $coupon, Order $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
             $gross          = 0;
-            $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$gross, $targetCurrency) {
+            $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$gross, $targetCurrency) {
                 if (false === $orderProduct->getProduct()->getSellPrice()->isDiscountValid()) {
                     $sellPrice    = $orderProduct->getSellPrice();
                     $baseCurrency = $sellPrice->getCurrency();
@@ -130,12 +130,12 @@ final class CouponOrderVisitor implements OrderVisitorInterface
         return $order->getProductTotal()->getNetPrice();
     }
     
-    private function getOrderTaxAmount(Coupon $coupon, OrderInterface $order): float
+    private function getOrderTaxAmount(Coupon $coupon, Order $order): float
     {
         if (true === $coupon->isExcludePromotions()) {
             $targetCurrency = $order->getCurrency();
             $gross          = 0;
-            $order->getProducts()->map(function (OrderProductInterface $orderProduct) use (&$gross, $targetCurrency) {
+            $order->getProducts()->map(function (OrderProduct $orderProduct) use (&$gross, $targetCurrency) {
                 if (false === $orderProduct->getProduct()->getSellPrice()->isDiscountValid()) {
                     $sellPrice    = $orderProduct->getSellPrice();
                     $baseCurrency = $sellPrice->getCurrency();

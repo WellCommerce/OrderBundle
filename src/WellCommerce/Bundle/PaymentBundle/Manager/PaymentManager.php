@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\PaymentBundle\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
 
@@ -32,14 +32,14 @@ final class PaymentManager extends AbstractManager implements PaymentManagerInte
         $this->changeOrderStatus($payment);
     }
     
-    public function getPaymentProcessor(OrderInterface $order): PaymentProcessorInterface
+    public function getPaymentProcessor(Order $order): PaymentProcessorInterface
     {
         $name = $order->getPaymentMethod()->getProcessor();
         
         return $this->get('payment.processor.collection')->get($name);
     }
     
-    public function createPaymentForOrder(OrderInterface $order): Payment
+    public function createPaymentForOrder(Order $order): Payment
     {
         $processor = $order->getPaymentMethod()->getProcessor();
         
@@ -66,7 +66,7 @@ final class PaymentManager extends AbstractManager implements PaymentManagerInte
         $this->createResource($history);
     }
     
-    private function getOrderStatus(Payment $payment): OrderStatusInterface
+    private function getOrderStatus(Payment $payment): OrderStatus
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
