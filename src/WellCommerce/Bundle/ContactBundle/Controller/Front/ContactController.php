@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\ContactBundle\Controller\Front;
 
-use WellCommerce\Bundle\ContactBundle\Entity\ContactTicketInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 
 /**

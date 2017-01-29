@@ -14,13 +14,14 @@ namespace WellCommerce\Bundle\ContactBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class ContactTicket
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ContactTicket implements ContactTicketInterface
+class ContactTicket implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

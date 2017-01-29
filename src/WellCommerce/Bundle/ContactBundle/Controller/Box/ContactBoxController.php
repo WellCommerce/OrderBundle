@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ContactBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\ContactBundle\Entity\ContactTicketInterface;
+use WellCommerce\Bundle\ContactBundle\Entity\ContactTicket;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
@@ -26,7 +26,7 @@ class ContactBoxController extends AbstractBoxController
 {
     public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
-        /** @var ContactTicketInterface $resource */
+        /** @var ContactTicket $resource */
         $resource = $this->get('contact_ticket.manager')->initResource();
         
         $form = $this->getForm($resource);
