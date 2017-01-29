@@ -18,7 +18,7 @@ use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\PaymentBundle\Client\Przelewy24;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class Przelewy24Gateway
@@ -49,7 +49,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
      * @param RouterHelperInterface   $routerHelper
      * @param RequestHelperInterface  $requestHelper
      */
-    public function __construct (
+    public function __construct(
         CurrencyHelperInterface $currencyHelper,
         RouterHelperInterface $routerHelper,
         RequestHelperInterface $requestHelper
@@ -59,7 +59,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         $this->requestHelper  = $requestHelper;
     }
     
-    public function initializePayment (PaymentInterface $payment)
+    public function initializePayment(Payment $payment)
     {
         $order           = $payment->getOrder();
         $paymentMethod   = $order->getPaymentMethod();
@@ -105,20 +105,20 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         }
     }
     
-    public function executePayment (PaymentInterface $payment, Request $request)
+    public function executePayment(Payment $payment, Request $request)
     {
     }
     
-    public function confirmPayment (PaymentInterface $payment, Request $request)
+    public function confirmPayment(Payment $payment, Request $request)
     {
     }
     
-    public function cancelPayment (PaymentInterface $payment, Request $request)
+    public function cancelPayment(Payment $payment, Request $request)
     {
         $payment->setCancelled();
     }
     
-    public function notifyPayment (PaymentInterface $payment, Request $request)
+    public function notifyPayment(Payment $payment, Request $request)
     {
         $order      = $payment->getOrder();
         $amount     = $this->calculateOrderPaymentAmount($order);
@@ -140,7 +140,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         }
     }
     
-    private function createClient (PaymentInterface $payment) : Przelewy24
+    private function createClient(Payment $payment): Przelewy24
     {
         $method        = $payment->getOrder()->getPaymentMethod();
         $configuration = $method->getConfiguration();
@@ -153,7 +153,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         );
     }
     
-    private function calculateOrderPaymentAmount (OrderInterface $order) : int
+    private function calculateOrderPaymentAmount(OrderInterface $order): int
     {
         $finalPrice = $order->getSummary()->getGrossAmount();
         $amount     = round($finalPrice * 100, 0);
@@ -161,7 +161,7 @@ final class Przelewy24Gateway implements PaymentGatewayInterface
         return (int)$amount;
     }
     
-    private function generateOrderTransactionId (OrderInterface $order) : string
+    private function generateOrderTransactionId(OrderInterface $order): string
     {
         return sha1($order->getId() . '-' . time());
     }

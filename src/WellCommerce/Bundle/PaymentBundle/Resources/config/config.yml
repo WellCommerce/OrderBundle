@@ -9,7 +9,6 @@
 doctrine:
     orm:
         resolve_target_entities:
-            WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface: WellCommerce\Bundle\PaymentBundle\Entity\Payment
             WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface: WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod
 
 well_commerce_api:

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class PaymentManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
  */
 class PaymentManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('payment.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return PaymentInterface::class;
+        return Payment::class;
     }
 }

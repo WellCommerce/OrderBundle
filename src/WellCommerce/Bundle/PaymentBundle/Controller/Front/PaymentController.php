@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Manager\PaymentManagerInterface;
 
 /**
@@ -30,7 +30,7 @@ class PaymentController extends AbstractFrontController
      */
     protected $manager;
     
-    public function initializeAction (PaymentInterface $payment)
+    public function initializeAction(Payment $payment)
     {
         $order     = $payment->getOrder();
         $processor = $this->manager->getPaymentProcessor($order);
@@ -51,7 +51,7 @@ class PaymentController extends AbstractFrontController
         ]);
     }
     
-    public function confirmAction (PaymentInterface $payment, Request $request)
+    public function confirmAction(Payment $payment, Request $request)
     {
         if (!$payment->isApproved()) {
             $order     = $payment->getOrder();
@@ -65,7 +65,7 @@ class PaymentController extends AbstractFrontController
         ]);
     }
     
-    public function cancelAction (PaymentInterface $payment, Request $request)
+    public function cancelAction(Payment $payment, Request $request)
     {
         if (!$payment->isCancelled()) {
             $order     = $payment->getOrder();
@@ -79,11 +79,11 @@ class PaymentController extends AbstractFrontController
         ]);
     }
     
-    public function executeAction (PaymentInterface $payment, Request $request)
+    public function executeAction(Payment $payment, Request $request)
     {
     }
     
-    public function notifyAction (PaymentInterface $payment, Request $request)
+    public function notifyAction(Payment $payment, Request $request)
     {
         if (!$payment->isApproved()) {
             $order     = $payment->getOrder();

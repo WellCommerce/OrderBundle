@@ -17,7 +17,7 @@ use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
-use PayPal\Api\Payment;
+use PayPal\Api\Payment as PayPalPayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
@@ -30,7 +30,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class PayPalGateway
@@ -55,7 +55,7 @@ final class PayPalGateway implements PaymentGatewayInterface
      * @param array                 $options
      * @param RouterHelperInterface $routerHelper
      */
-    public function __construct (array $options = [], RouterHelperInterface $routerHelper)
+    public function __construct(array $options = [], RouterHelperInterface $routerHelper)
     {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
@@ -63,7 +63,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         $this->routerHelper = $routerHelper;
     }
     
-    public function initializePayment (PaymentInterface $payment)
+    public function initializePayment(Payment $payment)
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
@@ -73,7 +73,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         $redirectUrls  = $this->createRedirectUrls($payment);
         $transaction   = $this->createTransaction($order);
         
-        $payPalPayment = new Payment();
+        $payPalPayment = new PayPalPayment();
         $payPalPayment->setIntent("sale");
         $payPalPayment->setPayer($payer);
         $payPalPayment->setRedirectUrls($redirectUrls);
@@ -88,11 +88,11 @@ final class PayPalGateway implements PaymentGatewayInterface
         }
     }
     
-    public function executePayment (PaymentInterface $payment, Request $request)
+    public function executePayment(Payment $payment, Request $request)
     {
     }
     
-    public function confirmPayment (PaymentInterface $payment, Request $request)
+    public function confirmPayment(Payment $payment, Request $request)
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
@@ -102,7 +102,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         $apiContext    = $this->getApiContext($configuration);
         
         if ($payment->getExternalIdentifier() === $paymentId && false === $payment->isApproved()) {
-            $payPalPayment = Payment::get($paymentId, $apiContext);
+            $payPalPayment = PayPalPayment::get($paymentId, $apiContext);
             $execution     = new PaymentExecution();
             $execution->setPayerId($payerId);
             $payPalPayment->execute($execution, $apiContext);
@@ -112,16 +112,16 @@ final class PayPalGateway implements PaymentGatewayInterface
         }
     }
     
-    public function cancelPayment (PaymentInterface $payment, Request $request)
+    public function cancelPayment(Payment $payment, Request $request)
     {
         $payment->setCancelled();
     }
     
-    public function notifyPayment (PaymentInterface $payment, Request $request)
+    public function notifyPayment(Payment $payment, Request $request)
     {
     }
     
-    private function createRedirectUrls (PaymentInterface $payment) : RedirectUrls
+    private function createRedirectUrls(Payment $payment): RedirectUrls
     {
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl($this->routerHelper->generateUrl('front.payment.confirm', ['token' => $payment->getToken()]));
@@ -130,7 +130,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $redirectUrls;
     }
     
-    private function createPayer () : Payer
+    private function createPayer(): Payer
     {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -138,7 +138,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $payer;
     }
     
-    private function createTransaction (OrderInterface $order) : Transaction
+    private function createTransaction(OrderInterface $order): Transaction
     {
         $transaction = new Transaction();
         $transaction->setAmount($this->createAmount($order));
@@ -148,7 +148,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $transaction;
     }
     
-    private function createAmount (OrderInterface $order) : Amount
+    private function createAmount(OrderInterface $order): Amount
     {
         $details = $this->createDetails($order);
         $amount  = new Amount();
@@ -159,7 +159,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $amount;
     }
     
-    private function createDetails (OrderInterface $order) : Details
+    private function createDetails(OrderInterface $order): Details
     {
         $shippingCosts = $order->getModifier('shipping_cost');
         $details       = new Details();
@@ -170,7 +170,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $details;
     }
     
-    private function createItemList (OrderInterface $order) : ItemList
+    private function createItemList(OrderInterface $order): ItemList
     {
         $itemList = new ItemList();
         
@@ -181,7 +181,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $itemList;
     }
     
-    private function createItem (OrderProductInterface $orderProduct) : Item
+    private function createItem(OrderProductInterface $orderProduct): Item
     {
         $item = new Item();
         $item->setName($orderProduct->getProduct()->translate()->getName());
@@ -194,7 +194,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         return $item;
     }
     
-    private function configureOptions (OptionsResolver $resolver)
+    private function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
             'log.LogEnabled',
@@ -220,7 +220,7 @@ final class PayPalGateway implements PaymentGatewayInterface
         $resolver->setAllowedTypes('http.VerifyHost', 'int');
     }
     
-    private function getApiContext (array $configuration) : ApiContext
+    private function getApiContext(array $configuration): ApiContext
     {
         PayPalHttpConfig::$defaultCurlOptions[CURLOPT_SSLVERSION] = 6;
         

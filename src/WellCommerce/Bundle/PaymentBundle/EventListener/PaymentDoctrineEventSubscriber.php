@@ -16,7 +16,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Id\UuidGenerator;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class PaymentDoctrineEventSubscriber
@@ -27,17 +27,17 @@ class PaymentDoctrineEventSubscriber implements EventSubscriber
 {
     use ContainerAwareTrait;
     
-    public function getSubscribedEvents ()
+    public function getSubscribedEvents()
     {
         return [
             'prePersist',
         ];
     }
     
-    public function prePersist (LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if ($entity instanceof PaymentInterface) {
+        if ($entity instanceof Payment) {
             $generator = new UuidGenerator();
             $token     = $generator->generate($args->getObjectManager(), null);
             $entity->setToken($token);

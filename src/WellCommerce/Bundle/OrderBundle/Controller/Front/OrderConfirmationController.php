@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class OrderConfirmationController
@@ -24,15 +24,15 @@ use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
  */
 final class OrderConfirmationController extends AbstractFrontController
 {
-    public function indexAction() : Response
+    public function indexAction(): Response
     {
         $order = $this->getOrderProvider()->getCurrentOrder();
         $order->setConfirmed(true);
-
+        
         if ($order->isEmpty()) {
             return $this->redirectToRoute('front.order_cart.index');
         }
-
+        
         $form = $this->getForm($order);
         
         if ($form->handleRequest()->isSubmitted()) {
@@ -54,8 +54,8 @@ final class OrderConfirmationController extends AbstractFrontController
             'elements' => $form->getChildren(),
         ]);
     }
-
-    private function getPaymentForOrder(OrderInterface $order) : PaymentInterface
+    
+    private function getPaymentForOrder(OrderInterface $order): Payment
     {
         return $order->getPayments()->first();
     }

@@ -14,18 +14,27 @@ namespace WellCommerce\Bundle\PaymentBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderAwareTrait;
 
 /**
- * Class PaymentMethod
+ * Class Payment
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Payment implements PaymentInterface
+class Payment implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
     use OrderAwareTrait;
+    
+    const PAYMENT_STATE_CREATED     = 'created';
+    const PAYMENT_STATE_APPROVED    = 'approved';
+    const PAYMENT_STATE_FAILED      = 'failed';
+    const PAYMENT_STATE_CANCELLED   = 'canceled';
+    const PAYMENT_STATE_EXPIRED     = 'expired';
+    const PAYMENT_STATE_PENDING     = 'pending';
+    const PAYMENT_STATE_IN_PROGRESS = 'in_progress';
     
     /**
      * @var string
@@ -40,7 +49,7 @@ class Payment implements PaymentInterface
     /**
      * @var string
      */
-    protected $state = PaymentInterface::PAYMENT_STATE_CREATED;
+    protected $state = Payment::PAYMENT_STATE_CREATED;
     
     /**
      * @var string
@@ -169,7 +178,7 @@ class Payment implements PaymentInterface
      */
     public function isCreated(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_CREATED;
+        return $this->state === Payment::PAYMENT_STATE_CREATED;
     }
     
     /**
@@ -177,7 +186,7 @@ class Payment implements PaymentInterface
      */
     public function setCreated()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_CREATED;
+        $this->state = Payment::PAYMENT_STATE_CREATED;
     }
     
     /**
@@ -185,7 +194,7 @@ class Payment implements PaymentInterface
      */
     public function isApproved(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_APPROVED;
+        return $this->state === Payment::PAYMENT_STATE_APPROVED;
     }
     
     /**
@@ -193,7 +202,7 @@ class Payment implements PaymentInterface
      */
     public function setApproved()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_APPROVED;
+        $this->state = Payment::PAYMENT_STATE_APPROVED;
     }
     
     /**
@@ -201,7 +210,7 @@ class Payment implements PaymentInterface
      */
     public function isFailed(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_FAILED;
+        return $this->state === Payment::PAYMENT_STATE_FAILED;
     }
     
     /**
@@ -209,7 +218,7 @@ class Payment implements PaymentInterface
      */
     public function setFailed()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_FAILED;
+        $this->state = Payment::PAYMENT_STATE_FAILED;
     }
     
     /**
@@ -217,7 +226,7 @@ class Payment implements PaymentInterface
      */
     public function isCancelled(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_CANCELLED;
+        return $this->state === Payment::PAYMENT_STATE_CANCELLED;
     }
     
     /**
@@ -225,7 +234,7 @@ class Payment implements PaymentInterface
      */
     public function setCancelled()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_CANCELLED;
+        $this->state = Payment::PAYMENT_STATE_CANCELLED;
     }
     
     /**
@@ -233,7 +242,7 @@ class Payment implements PaymentInterface
      */
     public function isExpired(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_EXPIRED;
+        return $this->state === Payment::PAYMENT_STATE_EXPIRED;
     }
     
     /**
@@ -241,7 +250,7 @@ class Payment implements PaymentInterface
      */
     public function setExpired()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_EXPIRED;
+        $this->state = Payment::PAYMENT_STATE_EXPIRED;
     }
     
     /**
@@ -249,7 +258,7 @@ class Payment implements PaymentInterface
      */
     public function isPending(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_PENDING;
+        return $this->state === Payment::PAYMENT_STATE_PENDING;
     }
     
     /**
@@ -257,7 +266,7 @@ class Payment implements PaymentInterface
      */
     public function setPending()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_PENDING;
+        $this->state = Payment::PAYMENT_STATE_PENDING;
     }
     
     /**
@@ -265,7 +274,7 @@ class Payment implements PaymentInterface
      */
     public function isInProgress(): bool
     {
-        return $this->state === PaymentInterface::PAYMENT_STATE_IN_PROGRESS;
+        return $this->state === Payment::PAYMENT_STATE_IN_PROGRESS;
     }
     
     /**
@@ -273,7 +282,7 @@ class Payment implements PaymentInterface
      */
     public function setInProgress()
     {
-        $this->state = PaymentInterface::PAYMENT_STATE_IN_PROGRESS;
+        $this->state = Payment::PAYMENT_STATE_IN_PROGRESS;
     }
     
     /**

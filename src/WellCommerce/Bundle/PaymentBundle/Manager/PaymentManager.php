@@ -16,7 +16,7 @@ use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
 
 /**
@@ -26,24 +26,24 @@ use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
  */
 final class PaymentManager extends AbstractManager implements PaymentManagerInterface
 {
-    public function updatePaymentState (PaymentInterface $payment)
+    public function updatePaymentState(Payment $payment)
     {
         $this->updateResource($payment);
         $this->changeOrderStatus($payment);
     }
     
-    public function getPaymentProcessor (OrderInterface $order) : PaymentProcessorInterface
+    public function getPaymentProcessor(OrderInterface $order): PaymentProcessorInterface
     {
         $name = $order->getPaymentMethod()->getProcessor();
         
         return $this->get('payment.processor.collection')->get($name);
     }
     
-    public function createPaymentForOrder (OrderInterface $order) : PaymentInterface
+    public function createPaymentForOrder(OrderInterface $order): Payment
     {
         $processor = $order->getPaymentMethod()->getProcessor();
         
-        /** @var PaymentInterface $payment */
+        /** @var Payment $payment */
         $payment = $this->initResource();
         $payment->setOrder($order);
         $payment->setProcessor($processor);
@@ -52,7 +52,7 @@ final class PaymentManager extends AbstractManager implements PaymentManagerInte
         return $payment;
     }
     
-    private function changeOrderStatus (PaymentInterface $payment)
+    private function changeOrderStatus(Payment $payment)
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
@@ -66,7 +66,7 @@ final class PaymentManager extends AbstractManager implements PaymentManagerInte
         $this->createResource($history);
     }
     
-    private function getOrderStatus (PaymentInterface $payment) : OrderStatusInterface
+    private function getOrderStatus(Payment $payment): OrderStatusInterface
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
@@ -82,7 +82,7 @@ final class PaymentManager extends AbstractManager implements PaymentManagerInte
         return $paymentMethod->getPaymentSuccessOrderStatus();
     }
     
-    private function initOrderStatusHistory () : OrderStatusHistory
+    private function initOrderStatusHistory(): OrderStatusHistory
     {
         return $this->get('order_status_history.factory')->create();
     }

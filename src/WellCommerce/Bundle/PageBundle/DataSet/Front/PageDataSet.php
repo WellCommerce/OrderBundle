@@ -26,9 +26,6 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class PageDataSet extends BaseDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         parent::configureOptions($configurator);

@@ -21,7 +21,7 @@ use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class PayUGateway
@@ -52,7 +52,7 @@ final class PayUGateway implements PaymentGatewayInterface
      * @param RouterHelperInterface   $routerHelper
      * @param RequestHelperInterface  $requestHelper
      */
-    public function __construct (
+    public function __construct(
         CurrencyHelperInterface $currencyHelper,
         RouterHelperInterface $routerHelper,
         RequestHelperInterface $requestHelper
@@ -62,7 +62,7 @@ final class PayUGateway implements PaymentGatewayInterface
         $this->requestHelper  = $requestHelper;
     }
     
-    public function initializePayment (PaymentInterface $payment)
+    public function initializePayment(Payment $payment)
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();
@@ -111,20 +111,20 @@ final class PayUGateway implements PaymentGatewayInterface
         return $payment;
     }
     
-    public function executePayment (PaymentInterface $payment, Request $request)
+    public function executePayment(Payment $payment, Request $request)
     {
     }
     
-    public function confirmPayment (PaymentInterface $payment, Request $request)
+    public function confirmPayment(Payment $payment, Request $request)
     {
     }
     
-    private function generateOrderTransactionId (OrderInterface $order) : string
+    private function generateOrderTransactionId(OrderInterface $order): string
     {
         return sha1($order->getId() . '-' . time());
     }
     
-    private function calculateOrderPaymentAmount (OrderInterface $order) : int
+    private function calculateOrderPaymentAmount(OrderInterface $order): int
     {
         $finalPrice = $order->getSummary()->getGrossAmount();
         $amount     = round($finalPrice * 100, 0);
@@ -132,11 +132,11 @@ final class PayUGateway implements PaymentGatewayInterface
         return (int)$amount;
     }
     
-    public function cancelPayment (PaymentInterface $payment, Request $request)
+    public function cancelPayment(Payment $payment, Request $request)
     {
     }
     
-    public function notifyPayment (PaymentInterface $payment, Request $request)
+    public function notifyPayment(Payment $payment, Request $request)
     {
         $order         = $payment->getOrder();
         $paymentMethod = $order->getPaymentMethod();

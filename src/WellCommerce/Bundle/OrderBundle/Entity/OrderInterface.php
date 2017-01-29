@@ -18,11 +18,11 @@ use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetailsAwareInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareInterface;
@@ -113,7 +113,7 @@ interface OrderInterface extends
     
     public function setPayments(Collection $payments);
     
-    public function addPayment(PaymentInterface $payment);
+    public function addPayment(Payment $payment);
     
     public function acceptVisitor(OrderVisitorInterface $visitor);
     

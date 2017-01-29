@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Gateway;
 
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
  * Class OfflinePaymentGateway
@@ -22,24 +22,24 @@ use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
  */
 final class OfflinePaymentGateway implements PaymentGatewayInterface
 {
-    public function initializePayment (PaymentInterface $payment)
+    public function initializePayment(Payment $payment)
     {
         $payment->setInProgress();
     }
     
-    public function executePayment (PaymentInterface $payment, Request $request)
+    public function executePayment(Payment $payment, Request $request)
     {
     }
     
-    public function confirmPayment (PaymentInterface $payment, Request $request)
+    public function confirmPayment(Payment $payment, Request $request)
     {
     }
     
-    public function cancelPayment (PaymentInterface $payment, Request $request)
+    public function cancelPayment(Payment $payment, Request $request)
     {
     }
     
-    public function notifyPayment (PaymentInterface $payment, Request $request)
+    public function notifyPayment(Payment $payment, Request $request)
     {
     }
 }

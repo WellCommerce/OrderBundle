@@ -18,7 +18,7 @@ services:
         class: WellCommerce\Bundle\PaymentBundle\Request\ParamConverter\PaymentParamConverter
         tags:
             - { name: request.param_converter, converter: payment, priority: 0 }
-        arguments: ['@payment.repository', token, [WellCommerce\Bundle\PaymentBundle\Entity\Payment, WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface]]
+        arguments: ['@payment.repository', token, [WellCommerce\Bundle\PaymentBundle\Entity\Payment]]
 
     payment.processor.collection:
         class: WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorCollection
