@@ -36,7 +36,7 @@ class ReviewControllerTest extends AbstractAdminControllerTestCase
 
     public function testEditAction()
     {
-        $collection = $this->container->get('review.repository')->matching(new Criteria());
+        $collection = $this->container->get('review.repository')->getCollection();
 
         $collection->map(function (ReviewInterface $review) {
             $url     = $this->generateUrl('admin.review.edit', ['id' => $review->getId()]);
