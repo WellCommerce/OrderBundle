@@ -42,12 +42,14 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
     
     public function testConfirmedOrderLocksProducts()
     {
-        $visitor      = $this->container->get('order_confirmation.order.visitor');
-        $order        = new Order();
-        $orderProduct = $this->createOrderProduct();
-        $order->addProduct($orderProduct);
+        $visitor       = $this->container->get('order_confirmation.order.visitor');
+        $order         = new Order();
+        $orderProduct  = $this->createOrderProduct();
+        $orderProducts = $order->getProducts();
         
-        $order->getProducts()->map(function (OrderProduct $orderProduct) {
+        $orderProducts->add($orderProduct);
+        
+        $orderProducts->map(function (OrderProduct $orderProduct) {
             $this->assertFalse($orderProduct->isLocked());
         });
         

@@ -38,6 +38,11 @@ class OrderProduct implements EntityInterface
      */
     protected $sellPrice;
     
+    /**
+     * @var Order
+     */
+    protected $order;
+    
     public function __construct()
     {
         $this->buyPrice  = new Price();
@@ -130,5 +135,15 @@ class OrderProduct implements EntityInterface
     public function setLocked(bool $locked)
     {
         $this->locked = $locked;
+    }
+    
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+    
+    public function setOrder(Order $order = null)
+    {
+        $this->order = $order;
     }
 }

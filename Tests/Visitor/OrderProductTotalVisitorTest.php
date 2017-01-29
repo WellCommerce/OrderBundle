@@ -43,8 +43,10 @@ class OrderProductTotalVisitorTest extends AbstractTestCase
             $order->setCurrency('EUR');
             
             for ($i = 0; $i < $total; $i++) {
-                $orderProduct = $this->createOrderProduct();
-                $order->addProduct($orderProduct);
+                $orderProduct  = $this->createOrderProduct();
+                $orderProducts = $order->getProducts();
+                $orderProducts->add($orderProduct);
+                
                 $sellPrice = $orderProduct->getSellPrice();
                 $quantity  = $orderProduct->getQuantity();
                 

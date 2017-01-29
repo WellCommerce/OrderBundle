@@ -109,7 +109,20 @@ final class OrderProductCollectionToArrayTransformer extends CollectionToArrayTr
                 $collection->add($orderProduct);
             }
             
-            $modelData->setProducts($collection);
+            $this->setProducts($modelData, $collection);
         }
+    }
+    
+    private function setProducts(Order $order, Collection $products)
+    {
+        $orderProducts = $order->getProducts();
+        
+        $orderProducts->map(function (OrderProduct $orderProduct) use ($products, $orderProducts) {
+            if (false === $products->contains($orderProduct)) {
+                $orderProducts->removeElement($orderProduct);
+            }
+        });
+        
+        $order->setProducts($products);
     }
 }

@@ -101,7 +101,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $orderProduct = $this->getRepository()->findOneBy(['id' => $productValues['id']]);
         if (!$orderProduct instanceof OrderProduct) {
             $orderProduct = $this->addOrderProduct($productValues, $order);
-            $order->addProduct($orderProduct);
+            $order->getProducts()->add($orderProduct);
         } else {
             $this->updateOrderProduct($orderProduct, $productValues);
         }

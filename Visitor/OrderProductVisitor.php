@@ -70,7 +70,8 @@ final class OrderProductVisitor implements OrderVisitorInterface
             if ($stock > 0) {
                 $orderProduct->setQuantity($stock);
             } else {
-                $order->removeProduct($orderProduct);
+                $order->getProducts()->removeElement($orderProduct);
+                $orderProduct->setOrder(null);
                 
                 return false;
             }
