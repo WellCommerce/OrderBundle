@@ -51,7 +51,7 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
     {
         $client = $order->getClient();
         
-        if ($client instanceof ClientInterface && false === $order->hasCoupon()) {
+        if ($client instanceof ClientInterface && null === $order->getCoupon()) {
             $modifierValue = $this->getDiscountForClient($client);
             
             if ($modifierValue > 0) {

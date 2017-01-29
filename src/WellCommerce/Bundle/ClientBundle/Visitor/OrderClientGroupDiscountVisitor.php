@@ -53,7 +53,7 @@ class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements 
     {
         $client = $order->getClient();
         
-        if ($client instanceof ClientInterface && false === $order->hasCoupon()) {
+        if ($client instanceof ClientInterface && null === $order->getCoupon()) {
             $clientGroup   = $client->getClientGroup();
             $modifierValue = $this->getDiscountForClientGroup($clientGroup);
             
