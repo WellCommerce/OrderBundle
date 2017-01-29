@@ -16,6 +16,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodOptionsProviderInterface;
@@ -78,7 +79,7 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
      */
     private function addShippingOptions(Order $order, FormInterface $form)
     {
-        if ($order->hasShippingMethod()) {
+        if ($order->getShippingMethod() instanceof ShippingMethod) {
             $provider = $this->getOptionsProvider($order->getShippingMethod());
             if ($provider instanceof ShippingMethodOptionsProviderInterface) {
                 $form->addChild($this->getElement('select', [
@@ -124,7 +125,7 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
     {
         $order = $this->getOrderProvider()->getCurrentOrder();
         
-        if ($order->hasShippingMethod()) {
+        if ($order->getShippingMethod() instanceof ShippingMethod) {
             $collection = $order->getShippingMethod()->getPaymentMethods();
             
             $collection->map(function (PaymentMethodInterface $paymentMethod) use ($radioGroup) {

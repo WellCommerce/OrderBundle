@@ -337,11 +337,6 @@ class Order implements EntityInterface
         $this->summary = $summary;
     }
     
-    public function hasCurrentStatus(): bool
-    {
-        return $this->currentStatus instanceof OrderStatus;
-    }
-    
     public function getCurrentStatus()
     {
         return $this->currentStatus;
@@ -360,11 +355,6 @@ class Order implements EntityInterface
     public function getOrderStatusHistory(): Collection
     {
         return $this->orderStatusHistory;
-    }
-    
-    public function addOrderStatusHistory(OrderStatusHistory $orderStatusHistory)
-    {
-        $this->orderStatusHistory->add($orderStatusHistory);
     }
     
     public function getComment(): string
@@ -447,11 +437,6 @@ class Order implements EntityInterface
         $this->shippingMethod = $shippingMethod;
     }
     
-    public function hasShippingMethod(): bool
-    {
-        return $this->shippingMethod instanceof ShippingMethod;
-    }
-    
     public function getPaymentMethod()
     {
         return $this->paymentMethod;
@@ -460,10 +445,5 @@ class Order implements EntityInterface
     public function setPaymentMethod(PaymentMethod $paymentMethod = null)
     {
         $this->paymentMethod = $paymentMethod;
-    }
-    
-    public function hasPaymentMethod(): bool
-    {
-        return $this->paymentMethod instanceof PaymentMethod;
     }
 }
