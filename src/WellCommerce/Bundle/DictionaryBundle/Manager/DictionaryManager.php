@@ -18,7 +18,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Yaml\Yaml;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\DictionaryBundle\Entity\Dictionary;
-use WellCommerce\Bundle\DictionaryBundle\Entity\DictionaryInterface;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 
 /**
@@ -116,7 +115,7 @@ final class DictionaryManager extends AbstractManager
         $messages   = [];
         $collection = $this->repository->getCollection();
         
-        $collection->map(function (DictionaryInterface $dictionary) use ($locale, &$messages) {
+        $collection->map(function (Dictionary $dictionary) use ($locale, &$messages) {
             $messages[$dictionary->getIdentifier()] = $dictionary->translate($locale->getCode())->getValue();
         });
         
