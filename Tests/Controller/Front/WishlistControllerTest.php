@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\WishlistBundle\Tests\Controller\Front;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
+use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**
  * Class WishlistControllerTest
@@ -82,7 +82,7 @@ class WishlistControllerTest extends AbstractFrontControllerTestCase
         /** @var Collection $wishlist */
         $wishlist = $this->container->get('wishlist.repository')->getClientWishlistCollection($client);
         
-        $wishlist->map(function (WishlistInterface $wishlist) {
+        $wishlist->map(function (Wishlist $wishlist) {
             $url         = $this->generateUrl('front.wishlist.delete', ['id' => $wishlist->getProduct()->getId()]);
             $redirectUrl = $this->generateUrl('front.wishlist.index', [], false);
             $this->client->request('GET', $url);
