@@ -40,7 +40,6 @@ class CategoryDoctrineEventSubscriber implements EventSubscriber
         $scheduledEntityChanges = [
             'insert' => $uow->getScheduledEntityInsertions(),
             'update' => $uow->getScheduledEntityUpdates(),
-            'delete' => $uow->getScheduledEntityDeletions(),
         ];
         
         foreach ($scheduledEntityChanges as $change => $entities) {
