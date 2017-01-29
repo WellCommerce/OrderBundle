@@ -16,7 +16,7 @@ namespace WellCommerce\Bundle\OrderBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
@@ -48,12 +48,12 @@ class CompanyAddressValidator extends ConstraintValidator
         }
     }
     
-    private function isValidCompanyName(ClientBillingAddressInterface $address): bool
+    private function isValidCompanyName(ClientBillingAddress $address): bool
     {
         return strlen($address->getCompanyName()) > 0;
     }
     
-    private function isValidVatId(ClientBillingAddressInterface $address): bool
+    private function isValidVatId(ClientBillingAddress $address): bool
     {
         return strlen($address->getVatId()) > 0;
     }
