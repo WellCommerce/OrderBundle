@@ -50,7 +50,7 @@ final class CouponOrderVisitor implements OrderVisitorInterface
     
     public function visitOrder(Order $order)
     {
-        if ($order->hasCoupon()) {
+        if ($order->getCoupon() instanceof Coupon) {
             $coupon          = $order->getCoupon();
             $totalGrossPrice = $this->getOrderGrossPrice($coupon, $order);
             $totalNetPrice   = $this->getOrderNetPrice($coupon, $order);
