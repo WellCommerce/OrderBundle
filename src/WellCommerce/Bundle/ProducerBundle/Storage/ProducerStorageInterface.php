@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProducerBundle\Storage;
 
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 
 /**
  * Interface ProducerStorageInterface
@@ -21,23 +21,11 @@ use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
  */
 interface ProducerStorageInterface
 {
-    /**
-     * @param ProducerInterface $producer
-     */
-    public function setCurrentProducer(ProducerInterface $producer);
-
-    /**
-     * @return ProducerInterface
-     */
-    public function getCurrentProducer() : ProducerInterface;
-
-    /**
-     * @return int
-     */
-    public function getCurrentProducerIdentifier() : int;
-
-    /**
-     * @return bool
-     */
-    public function hasCurrentProducer() : bool;
+    public function setCurrentProducer(Producer $producer);
+    
+    public function getCurrentProducer(): Producer;
+    
+    public function getCurrentProducerIdentifier(): int;
+    
+    public function hasCurrentProducer(): bool;
 }

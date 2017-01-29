@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProducerBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 
 /**
  * Class ProducerManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
  */
 class ProducerManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('producer.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return ProducerInterface::class;
+        return Producer::class;
     }
 }

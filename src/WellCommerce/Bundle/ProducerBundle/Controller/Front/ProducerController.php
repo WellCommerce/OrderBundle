@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProducerBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -24,17 +24,17 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 class ProducerController extends AbstractFrontController
 {
-    public function indexAction(ProducerInterface $producer) : Response
+    public function indexAction(Producer $producer): Response
     {
         $this->getBreadcrumbProvider()->add(new Breadcrumb([
             'label' => $producer->translate()->getName(),
         ]));
-
+        
         $this->getProducerStorage()->setCurrentProducer($producer);
-
+        
         return $this->displayTemplate('index', [
             'producer' => $producer,
-            'metadata' => $producer->translate()->getMeta()
+            'metadata' => $producer->translate()->getMeta(),
         ]);
     }
 }

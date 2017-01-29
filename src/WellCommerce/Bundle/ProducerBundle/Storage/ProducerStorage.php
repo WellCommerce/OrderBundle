@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProducerBundle\Storage;
 
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 
 /**
  * Class ProducerStorage
@@ -22,14 +22,14 @@ use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
 class ProducerStorage implements ProducerStorageInterface
 {
     /**
-     * @var ProducerInterface
+     * @var Producer
      */
     protected $currentProducer;
 
     /**
      * {@inheritdoc}
      */
-    public function setCurrentProducer(ProducerInterface $producer)
+    public function setCurrentProducer(Producer $producer)
     {
         $this->currentProducer = $producer;
     }
@@ -37,7 +37,7 @@ class ProducerStorage implements ProducerStorageInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrentProducer() : ProducerInterface
+    public function getCurrentProducer() : Producer
     {
         return $this->currentProducer;
     }
@@ -55,7 +55,7 @@ class ProducerStorage implements ProducerStorageInterface
      */
     public function hasCurrentProducer() : bool
     {
-        return $this->currentProducer instanceof ProducerInterface;
+        return $this->currentProducer instanceof Producer;
     }
 
 }

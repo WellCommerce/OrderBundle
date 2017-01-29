@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Tests\Controller\Front;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerInterface;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 
 /**
  * Class ProducerControllerTest
@@ -26,11 +25,11 @@ class ProducerControllerTest extends AbstractAdminControllerTestCase
     public function testIndexAction()
     {
         $collection = $this->container->get('producer.repository')->getCollection();
-
-        $collection->map(function (ProducerInterface $producer) {
+        
+        $collection->map(function (Producer $producer) {
             $url     = $this->generateUrl('dynamic_' . $producer->translate()->getRoute()->getId());
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $producer->translate()->getName() . '")')->count());
         });

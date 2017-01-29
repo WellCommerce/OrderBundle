@@ -27,7 +27,7 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerAwareTrait;
+use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
@@ -48,7 +48,6 @@ class Product implements ProductInterface
     use Blameable;
     use MediaAwareTrait;
     use ShopCollectionAwareTrait;
-    use ProducerAwareTrait;
     use UnitAwareTrait;
     use ProductExtraTrait;
     
@@ -112,6 +111,11 @@ class Product implements ProductInterface
      * @var null|Availability
      */
     protected $availability;
+    
+    /**
+     * @var Producer
+     */
+    protected $producer;
     
     public function __construct()
     {
@@ -329,5 +333,15 @@ class Product implements ProductInterface
     public function setAvailability(Availability $availability = null)
     {
         $this->availability = $availability;
+    }
+    
+    public function getProducer()
+    {
+        return $this->producer;
+    }
+    
+    public function setProducer(Producer $producer)
+    {
+        $this->producer = $producer;
     }
 }

@@ -23,7 +23,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
-use WellCommerce\Bundle\ProducerBundle\Entity\ProducerAwareInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
 use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareInterface;
@@ -39,7 +38,6 @@ interface ProductInterface extends
     TimestampableInterface,
     BlameableInterface,
     ShopCollectionAwareInterface,
-    ProducerAwareInterface,
     UnitAwareInterface,
     MediaAwareInterface
 {
