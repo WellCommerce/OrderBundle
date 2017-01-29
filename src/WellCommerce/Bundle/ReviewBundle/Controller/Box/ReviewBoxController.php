@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\ReviewBundle\Entity\ReviewInterface;
+use WellCommerce\Bundle\ReviewBundle\Entity\Review;
 use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRepositoryInterface;
 
 
@@ -35,7 +35,7 @@ class ReviewBoxController extends AbstractBoxController
     {
         $product = $this->getProductStorage()->getCurrentProduct();
         
-        /** @var ReviewInterface $resource */
+        /** @var Review $resource */
         $resource = $this->getManager()->initResource();
         $resource->setProduct($product);
         
@@ -73,7 +73,7 @@ class ReviewBoxController extends AbstractBoxController
             'enabled' => 1,
         ]);
         
-        if ($review instanceof ReviewInterface) {
+        if ($review instanceof Review) {
             $currentRoute        = $review->getProduct()->translate()->getRoute()->getId();
             $mailerConfiguration = $this->getShopStorage()->getCurrentShop()->getMailerConfiguration();
             
@@ -116,7 +116,6 @@ class ReviewBoxController extends AbstractBoxController
             if (null === $review) {
                 throw new Exception($this->trans('review.label.review_not_exists'));
             }
-            
             
             $reviewRecommendationFactory = $this->get('review_recommendation.manager');
             
