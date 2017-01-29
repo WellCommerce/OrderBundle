@@ -33,7 +33,6 @@ class Client implements ClientInterface
     use Timestampable;
     use Blameable;
     use ShopAwareTrait;
-    use ClientGroupAwareTrait;
     
     /**
      * @var Collection
@@ -59,6 +58,11 @@ class Client implements ClientInterface
      * @var ClientShippingAddress
      */
     protected $shippingAddress;
+    
+    /**
+     * @var ClientGroup
+     */
+    protected $clientGroup;
     
     public function __construct()
     {
@@ -177,5 +181,15 @@ class Client implements ClientInterface
     public function getEncoderName()
     {
         return $this->clientDetails->getLegacyPasswordEncoder() ?? null;
+    }
+    
+    public function getClientGroup()
+    {
+        return $this->clientGroup;
+    }
+    
+    public function setClientGroup(ClientGroup $clientGroup = null)
+    {
+        $this->clientGroup = $clientGroup;
     }
 }

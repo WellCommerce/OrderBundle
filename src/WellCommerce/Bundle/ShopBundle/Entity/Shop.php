@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ShopBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupAwareTrait;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\CompanyBundle\Entity\Company;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareTrait;
@@ -31,7 +31,6 @@ class Shop implements ShopInterface
     use Timestampable;
     use Blameable;
     use ThemeAwareTrait;
-    use ClientGroupAwareTrait;
     
     protected $name            = '';
     protected $url             = '';
@@ -42,6 +41,11 @@ class Shop implements ShopInterface
      * @var Company
      */
     protected $company;
+    
+    /**
+     * @var ClientGroup
+     */
+    protected $clientGroup;
     
     /**
      * @var MailerConfiguration
@@ -111,5 +115,15 @@ class Shop implements ShopInterface
     public function getMailerConfiguration(): MailerConfiguration
     {
         return $this->mailerConfiguration;
+    }
+    
+    public function getClientGroup()
+    {
+        return $this->clientGroup;
+    }
+    
+    public function setClientGroup(ClientGroup $clientGroup = null)
+    {
+        $this->clientGroup = $clientGroup;
     }
 }

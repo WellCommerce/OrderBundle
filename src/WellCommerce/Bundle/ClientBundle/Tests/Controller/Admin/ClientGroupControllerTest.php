@@ -12,8 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
@@ -49,7 +48,7 @@ class ClientGroupControllerTest extends AbstractAdminControllerTestCase
     {
         $collection = $this->container->get('client_group.repository')->getCollection();
         
-        $collection->map(function (ClientGroupInterface $clientGroup) {
+        $collection->map(function (ClientGroup $clientGroup) {
             $url     = $this->generateUrl('admin.client_group.edit', ['id' => $clientGroup->getId()]);
             $crawler = $this->client->request('GET', $url);
             
@@ -67,7 +66,7 @@ class ClientGroupControllerTest extends AbstractAdminControllerTestCase
         $this->client->request('GET', $this->generateUrl('admin.client_group.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

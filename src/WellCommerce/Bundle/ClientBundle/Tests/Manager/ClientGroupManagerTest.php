@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Tests\Manager;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
 
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
  */
 class ClientGroupManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('client_group.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return ClientGroupInterface::class;
+        return ClientGroup::class;
     }
 }

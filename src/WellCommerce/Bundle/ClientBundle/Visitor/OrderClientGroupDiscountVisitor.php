@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Visitor;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
@@ -69,14 +69,7 @@ class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements 
         }
     }
     
-    /**
-     * Returns the discount for client's group
-     *
-     * @param ClientGroupInterface $clientGroup
-     *
-     * @return float
-     */
-    protected function getDiscountForClientGroup(ClientGroupInterface $clientGroup = null): float
+    private function getDiscountForClientGroup(ClientGroup $clientGroup = null): float
     {
         if (null !== $clientGroup) {
             return round((float)$clientGroup->getDiscount() / 100, 2);

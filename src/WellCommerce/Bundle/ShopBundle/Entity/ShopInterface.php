@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\ShopBundle\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroupAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
@@ -26,7 +25,6 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareInterface;
  */
 interface ShopInterface extends
     EntityInterface,
-    ClientGroupAwareInterface,
     TimestampableInterface,
     BlameableInterface,
     ThemeAwareInterface

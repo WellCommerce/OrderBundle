@@ -33,7 +33,6 @@ interface ClientInterface extends
     EquatableInterface,
     TimestampableInterface,
     BlameableInterface,
-    ClientGroupAwareInterface,
     ShopAwareInterface,
     EncoderAwareInterface
 {
