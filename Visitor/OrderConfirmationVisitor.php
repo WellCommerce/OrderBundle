@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGeneratorInterface;
 use WellCommerce\Bundle\PaymentBundle\Manager\PaymentManagerInterface;
 
@@ -47,7 +47,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         $this->paymentManager       = $paymentManager;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         if ($order->isConfirmed()) {
             $this->setOrderNumber($order);
@@ -57,7 +57,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         }
     }
     
-    private function setOrderNumber(OrderInterface $order)
+    private function setOrderNumber(Order $order)
     {
         if (null === $order->getNumber()) {
             $orderNumber = $this->orderNumberGenerator->generateOrderNumber($order);
@@ -65,7 +65,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         }
     }
     
-    private function setInitialOrderStatus(OrderInterface $order)
+    private function setInitialOrderStatus(Order $order)
     {
         if (!$order->hasCurrentStatus() && $order->hasPaymentMethod()) {
             $paymentMethod = $order->getPaymentMethod();
@@ -73,7 +73,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         }
     }
     
-    private function setInitialPayment(OrderInterface $order)
+    private function setInitialPayment(Order $order)
     {
         $payments = $order->getPayments();
         if (0 === $payments->count() && $order->hasPaymentMethod()) {
@@ -82,9 +82,9 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         }
     }
     
-    private function lockProducts(OrderInterface $order)
+    private function lockProducts(Order $order)
     {
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) {
+        $order->getProducts()->map(function (OrderProduct $orderProduct) {
             if ($orderProduct->getProduct()->getTrackStock()) {
                 $this->decrementStock($orderProduct);
             }
@@ -93,7 +93,7 @@ final class OrderConfirmationVisitor implements OrderVisitorInterface
         });
     }
     
-    private function decrementStock(OrderProductInterface $orderProduct)
+    private function decrementStock(OrderProduct $orderProduct)
     {
         if ($orderProduct->hasVariant()) {
             $currentStock = $orderProduct->getVariant()->getStock();

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
 
 /**
@@ -55,7 +55,7 @@ final class OrderConfirmationController extends AbstractFrontController
         ]);
     }
     
-    private function getPaymentForOrder(OrderInterface $order): Payment
+    private function getPaymentForOrder(Order $order): Payment
     {
         return $order->getPayments()->first();
     }

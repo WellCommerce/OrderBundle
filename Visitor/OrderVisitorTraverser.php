@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderVisitorTraverser
@@ -37,7 +37,7 @@ final class OrderVisitorTraverser
         $this->visitors = $visitors;
     }
     
-    public function traverse(OrderInterface $order)
+    public function traverse(Order $order)
     {
         $this->visitors->map(function (OrderVisitorInterface $visitor) use ($order) {
             $visitor->visitOrder($order);

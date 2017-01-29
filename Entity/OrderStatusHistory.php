@@ -14,13 +14,14 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class OrderStatus
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatusHistory implements OrderStatusHistoryInterface
+class OrderStatusHistory implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
@@ -31,7 +32,7 @@ class OrderStatusHistory implements OrderStatusHistoryInterface
     protected $notify  = false;
     
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $orderStatus;
     
@@ -40,7 +41,7 @@ class OrderStatusHistory implements OrderStatusHistoryInterface
         return $this->orderStatus;
     }
     
-    public function setOrderStatus(OrderStatusInterface $orderStatus = null)
+    public function setOrderStatus(OrderStatus $orderStatus = null)
     {
         $this->orderStatus = $orderStatus;
         $this->getOrder()->setCurrentStatus($orderStatus);

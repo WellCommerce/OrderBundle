@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\OrderBundle\Provider;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 
 /**
  * Class OrderModifierProvider
@@ -38,7 +38,7 @@ final class OrderModifierProvider implements OrderModifierProviderInterface
         $this->defaultModifiers = $defaultModifiers;
     }
     
-    public function getOrderModifier(OrderInterface $order, string $name) : OrderModifierInterface
+    public function getOrderModifier(Order $order, string $name): OrderModifier
     {
         if (false === $order->hasModifier($name)) {
             return $this->createOrderModifier($order, $name);
@@ -47,7 +47,7 @@ final class OrderModifierProvider implements OrderModifierProviderInterface
         return $order->getModifier($name);
     }
     
-    private function createOrderModifier(OrderInterface $order, string $name): OrderModifierInterface
+    private function createOrderModifier(Order $order, string $name): OrderModifier
     {
         $modifier = $this->getDefaultOrderModifier($name);
         $modifier->setOrder($order);
@@ -55,7 +55,7 @@ final class OrderModifierProvider implements OrderModifierProviderInterface
         return $modifier;
     }
     
-    private function getDefaultOrderModifier(string $name) : OrderModifierInterface
+    private function getDefaultOrderModifier(string $name): OrderModifier
     {
         return $this->defaultModifiers->get($name);
     }

@@ -17,8 +17,8 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 use WellCommerce\Bundle\CoreBundle\Helper\Image\ImageHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderProductManagerInterface;
 
 /**
@@ -56,7 +56,7 @@ final class OrderProductCollectionToArrayTransformer extends CollectionToArrayTr
         $values = [];
         
         if ($modelData instanceof Collection) {
-            $modelData->map(function (OrderProductInterface $orderProduct) use (&$values) {
+            $modelData->map(function (OrderProduct $orderProduct) use (&$values) {
                 
                 $variantId = $orderProduct->hasVariant() ? $orderProduct->getVariant()->getId() : 0;
                 $photoPath = $orderProduct->getProduct()->getPhoto()->getPath();
@@ -86,7 +86,7 @@ final class OrderProductCollectionToArrayTransformer extends CollectionToArrayTr
         return $values;
     }
     
-    protected function getVariantOptions(OrderProductInterface $orderProduct)
+    protected function getVariantOptions(OrderProduct $orderProduct)
     {
         if ($orderProduct->hasVariant()) {
             $options = [];
@@ -100,18 +100,15 @@ final class OrderProductCollectionToArrayTransformer extends CollectionToArrayTr
         return '';
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $values)
     {
         $collection = new ArrayCollection();
-        if ($modelData instanceof OrderInterface) {
+        if ($modelData instanceof Order) {
             foreach ($values as $product) {
                 $orderProduct = $this->manager->addUpdateOrderProduct($product, $modelData);
                 $collection->add($orderProduct);
             }
-        
+            
             $modelData->setProducts($collection);
         }
     }

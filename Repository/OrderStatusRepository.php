@@ -12,10 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Repository;
 
-use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
  * Class OrderStatusRepository
@@ -28,7 +26,7 @@ class OrderStatusRepository extends EntityRepository implements OrderStatusRepos
     {
         $options  = [];
         $statuses = $this->getCollection();
-        $statuses->map(function (OrderStatusInterface $status) use (&$options) {
+        $statuses->map(function (OrderStatus $status) use (&$options) {
             $options[] = [
                 'id'          => $status->getId(),
                 'name'        => $status->translate()->getName(),

@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\OrderBundle\Manager;
 
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\ChangeOrderProductQuantityException;
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteOrderProductException;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
@@ -30,11 +30,11 @@ use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
  */
 final class OrderProductManager extends AbstractManager implements OrderProductManagerInterface
 {
-    public function addProductToOrder(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1, OrderInterface $order)
+    public function addProductToOrder(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1, Order $order)
     {
         $orderProduct = $this->findProductInOrder($product, $variant, $order);
         
-        if (!$orderProduct instanceof OrderProductInterface) {
+        if (!$orderProduct instanceof OrderProduct) {
             $orderProduct = $this->createOrderProduct($product, $variant, $order);
             $orderProduct->setQuantity($quantity);
             $order->getProducts()->add($orderProduct);
@@ -45,7 +45,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $this->updateResource($order);
     }
     
-    public function findProductInOrder(ProductInterface $product, VariantInterface $variant = null, OrderInterface $order)
+    public function findProductInOrder(ProductInterface $product, VariantInterface $variant = null, Order $order)
     {
         return $this->getRepository()->findOneBy([
             'order'   => $order,
@@ -57,10 +57,9 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
     public function createOrderProduct(
         ProductInterface $product,
         VariantInterface $variant = null,
-        OrderInterface $order
-    ) : OrderProductInterface
-    {
-        /** @var OrderProductInterface $orderProduct */
+        Order $order
+    ): OrderProduct {
+        /** @var OrderProduct $orderProduct */
         $orderProduct = $this->initResource();
         $orderProduct->setOrder($order);
         $orderProduct->setProduct($product);
@@ -72,7 +71,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         return $orderProduct;
     }
     
-    public function deleteOrderProduct(OrderProductInterface $orderProduct, OrderInterface $order)
+    public function deleteOrderProduct(OrderProduct $orderProduct, Order $order)
     {
         if (false === $order->getProducts()->contains($orderProduct)) {
             throw new DeleteOrderProductException($orderProduct);
@@ -82,7 +81,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $this->updateResource($order);
     }
     
-    public function changeOrderProductQuantity(OrderProductInterface $orderProduct, OrderInterface $order, int $quantity)
+    public function changeOrderProductQuantity(OrderProduct $orderProduct, Order $order, int $quantity)
     {
         if (false === $order->getProducts()->contains($orderProduct)) {
             throw new ChangeOrderProductQuantityException($orderProduct);
@@ -97,10 +96,10 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $this->updateResource($order);
     }
     
-    public function addUpdateOrderProduct(array $productValues, OrderInterface $order) : OrderProductInterface
+    public function addUpdateOrderProduct(array $productValues, Order $order): OrderProduct
     {
         $orderProduct = $this->getRepository()->findOneBy(['id' => $productValues['id']]);
-        if (!$orderProduct instanceof OrderProductInterface) {
+        if (!$orderProduct instanceof OrderProduct) {
             $orderProduct = $this->addOrderProduct($productValues, $order);
             $order->addProduct($orderProduct);
         } else {
@@ -110,7 +109,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         return $orderProduct;
     }
     
-    private function updateOrderProduct(OrderProductInterface $orderProduct, array $productValues)
+    private function updateOrderProduct(OrderProduct $orderProduct, array $productValues)
     {
         $sellPrice   = $orderProduct->getSellPrice();
         $grossAmount = $productValues['gross_amount'];
@@ -125,7 +124,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $orderProduct->setQuantity($productValues['quantity']);
     }
     
-    private function addOrderProduct(array $productValues, OrderInterface $order) : OrderProductInterface
+    private function addOrderProduct(array $productValues, Order $order): OrderProduct
     {
         $productId = (int)$productValues['product_id'];
         $product   = $this->getEntityManager()->getRepository(Product::class)->find($productId);
@@ -133,7 +132,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
             throw new \InvalidArgumentException(sprintf('Cannot add product to order. ID "%s" does not exists.', $productId));
         }
         
-        /** @var OrderProductInterface $orderProduct */
+        /** @var OrderProduct $orderProduct */
         $orderProduct = $this->initResource();
         $orderProduct->setBuyPrice($product->getBuyPrice());
         $orderProduct->setOrder($order);

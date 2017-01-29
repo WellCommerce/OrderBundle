@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\OrderBundle\Form\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\CouponBundle\Helper\CouponHelper;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
@@ -223,7 +223,7 @@ final class OrderFormBuilder extends AbstractFormBuilder
         
         $this->addPaymentOptions($paymentMethod);
         
-        $order->getModifiers()->map(function (OrderModifierInterface $modifier) use ($paymentShippingData) {
+        $order->getModifiers()->map(function (OrderModifier $modifier) use ($paymentShippingData) {
             $paymentShippingData->addChild($this->getElement('constant', [
                 'name'  => 'summary.' . $modifier->getName(),
                 'label' => $this->trans($modifier->getDescription()),

@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
@@ -73,10 +73,10 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
     /**
      * Adds shipping options if available for order's shipping method
      *
-     * @param OrderInterface $order
-     * @param FormInterface  $form
+     * @param Order         $order
+     * @param FormInterface $form
      */
-    private function addShippingOptions(OrderInterface $order, FormInterface $form)
+    private function addShippingOptions(Order $order, FormInterface $form)
     {
         if ($order->hasShippingMethod()) {
             $provider = $this->getOptionsProvider($order->getShippingMethod());
@@ -93,12 +93,12 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
     /**
      * Adds shipping method options to select
      *
-     * @param OrderInterface              $order
+     * @param Order                       $order
      * @param ElementInterface|RadioGroup $radioGroup
      */
-    private function addShippingMethods(OrderInterface $order, ElementInterface $radioGroup)
+    private function addShippingMethods(Order $order, ElementInterface $radioGroup)
     {
-        $collection    = $this->getShippingMethodProvider()->getCosts(new OrderContext($order));
+        $collection = $this->getShippingMethodProvider()->getCosts(new OrderContext($order));
         
         $collection->map(function (ShippingMethodCostInterface $shippingMethodCost) use ($radioGroup) {
             $shippingMethod = $shippingMethodCost->getShippingMethod();
@@ -117,10 +117,10 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
     /**
      * Adds payment method options to select
      *
-     * @param OrderInterface              $order
+     * @param Order                       $order
      * @param ElementInterface|RadioGroup $radioGroup
      */
-    private function addPaymentMethods(OrderInterface $order, ElementInterface $radioGroup)
+    private function addPaymentMethods(Order $order, ElementInterface $radioGroup)
     {
         $order = $this->getOrderProvider()->getCurrentOrder();
         
@@ -135,12 +135,12 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
         }
     }
     
-    private function getShippingMethodProvider() : ShippingMethodProviderInterface
+    private function getShippingMethodProvider(): ShippingMethodProviderInterface
     {
         return $this->get('shipping_method.provider');
     }
     
-    private function getOrderProvider() : OrderProviderInterface
+    private function getOrderProvider(): OrderProviderInterface
     {
         return $this->get('order.provider.front');
     }

@@ -6,6 +6,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
 
@@ -14,7 +15,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderProduct implements OrderProductInterface
+class OrderProduct implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

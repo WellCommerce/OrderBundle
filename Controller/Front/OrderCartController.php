@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\AddCartItemException;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderProductManager;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
@@ -98,7 +98,7 @@ class OrderCartController extends AbstractFrontController
         ]);
     }
     
-    public function editAction(Request $request, OrderProductInterface $orderProduct, int $quantity) : Response
+    public function editAction(Request $request, OrderProduct $orderProduct, int $quantity) : Response
     {
         $success = true;
         $message = null;
@@ -125,7 +125,7 @@ class OrderCartController extends AbstractFrontController
         return $this->redirectResponse($request->headers->get('referer'));
     }
     
-    public function deleteAction(OrderProductInterface $orderProduct) : Response
+    public function deleteAction(OrderProduct $orderProduct) : Response
     {
         try {
             $this->getManager()->deleteOrderProduct(

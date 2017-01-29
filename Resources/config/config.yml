@@ -19,11 +19,6 @@ parameters:
         summary: 800
         order_confirmation: 900
 
-doctrine:
-    orm:
-        resolve_target_entities:
-            WellCommerce\Bundle\OrderBundle\Entity\OrderInterface: WellCommerce\Bundle\OrderBundle\Entity\Order
-
 well_commerce_api:
     request_handler:
         order:

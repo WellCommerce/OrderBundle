@@ -17,7 +17,6 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
 /**
@@ -73,7 +72,7 @@ class OrderProductTotalVisitorTest extends AbstractTestCase
         }
     }
     
-    private function createOrderProduct(): OrderProductInterface
+    private function createOrderProduct(): OrderProduct
     {
         $faker       = $this->getFakerGenerator();
         $grossAmount = $faker->randomFloat(2);

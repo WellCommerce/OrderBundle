@@ -110,7 +110,7 @@ services:
         class: WellCommerce\Bundle\OrderBundle\Request\ParamConverter\OrderProductParamConverter
         tags:
             - { name: request.param_converter, converter: cart_product, priority: 10 }
-        arguments: ['@order_product.repository', id, [WellCommerce\Bundle\OrderBundle\Entity\OrderProduct, WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface]]
+        arguments: ['@order_product.repository', id, [WellCommerce\Bundle\OrderBundle\Entity\OrderProduct]]
 
     twig.extension.order:
         class: WellCommerce\Bundle\OrderBundle\Twig\Extension\OrderExtension

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Configurator;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 
 /**
  * Class OrderModifierConfiguratorInterface
@@ -21,10 +21,5 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
  */
 interface OrderModifierConfiguratorInterface
 {
-    /**
-     * Configures the order modifier
-     *
-     * @param OrderModifierInterface $modifier
-     */
-    public function configure(OrderModifierInterface $modifier);
+    public function configure(OrderModifier $modifier);
 }

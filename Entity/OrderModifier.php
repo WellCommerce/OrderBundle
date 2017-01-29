@@ -14,13 +14,14 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class OrderModifier
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderModifier implements OrderModifierInterface
+class OrderModifier implements EntityInterface
 {
     use Identifiable;
     use Sortable;
@@ -34,11 +35,11 @@ class OrderModifier implements OrderModifierInterface
     protected $currency    = '';
     
     /**
-     * @var OrderInterface
+     * @var Order
      */
     protected $order;
     
-    public function setOrder(OrderInterface $order)
+    public function setOrder(Order $order)
     {
         $this->order = $order;
         $order->addModifier($this);

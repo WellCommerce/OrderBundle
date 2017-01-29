@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Twig\Extension;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
@@ -71,7 +71,7 @@ final class OrderExtension extends \Twig_Extension
         return $this->orderProvider->hasCurrentOrder();
     }
     
-    public function getCurrentOrder(): OrderInterface
+    public function getCurrentOrder(): Order
     {
         return $this->orderProvider->getCurrentOrder();
     }

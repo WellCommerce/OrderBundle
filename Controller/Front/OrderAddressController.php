@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderAddressController
@@ -28,7 +28,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
  */
 class OrderAddressController extends AbstractFrontController
 {
-    public function indexAction(Request $request) : Response
+    public function indexAction(Request $request): Response
     {
         $order = $this->getOrderProvider()->getCurrentOrder();
         $form  = $this->getForm($order, [
@@ -61,7 +61,7 @@ class OrderAddressController extends AbstractFrontController
         ]);
     }
     
-    protected function getValidationGroupsForRequest(Request $request) : array
+    protected function getValidationGroupsForRequest(Request $request): array
     {
         $validationGroups = [
             'order_billing_address',
@@ -76,7 +76,7 @@ class OrderAddressController extends AbstractFrontController
         if ($request->isMethod('POST') && $this->isCreateAccount($request)) {
             $validationGroups[] = 'client_registration';
         }
-    
+        
         if ($request->isMethod('POST') && $this->isIssueInvoice($request)) {
             $validationGroups[] = 'order_issue_invoice';
         }
@@ -99,20 +99,20 @@ class OrderAddressController extends AbstractFrontController
         
         foreach ($billingAddress as $key => $value) {
             list(, $fieldName) = explode('.', $key);
-            $shippingAddress['shippingAddress.'.$fieldName] = $value;
+            $shippingAddress['shippingAddress.' . $fieldName] = $value;
         }
         
         $parameters->set('shippingAddress', $shippingAddress);
     }
     
-    protected function isCopyBillingAddress(Request $request) : bool
+    protected function isCopyBillingAddress(Request $request): bool
     {
-        $shippingAddress    = $request->request->filter('shippingAddress');
+        $shippingAddress = $request->request->filter('shippingAddress');
         
         return 1 === (int)$shippingAddress['shippingAddress.copyBillingAddress'];
     }
     
-    protected function isCreateAccount(Request $request) : bool
+    protected function isCreateAccount(Request $request): bool
     {
         $clientDetails = $request->request->filter('clientDetails');
         $createAccount = $clientDetails['clientDetails.createAccount'] ?? 0;
@@ -120,12 +120,12 @@ class OrderAddressController extends AbstractFrontController
         return 1 === (int)$createAccount;
     }
     
-    protected function isIssueInvoice(Request $request) : bool
+    protected function isIssueInvoice(Request $request): bool
     {
         return 1 === (int)$request->request->filter('issueInvoice');
     }
     
-    protected function autoRegisterClient(OrderInterface $order) : ClientInterface
+    protected function autoRegisterClient(Order $order): ClientInterface
     {
         /** @var $client ClientInterface */
         $client = $this->get('client.manager')->initResource();

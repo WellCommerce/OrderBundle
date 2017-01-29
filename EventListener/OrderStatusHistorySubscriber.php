@@ -12,9 +12,9 @@
 namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelper;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory;
 
 /**
  * Class OrderStatusHistorySubscriber
@@ -48,7 +48,7 @@ final class OrderStatusHistorySubscriber implements EventSubscriberInterface
     public function onOrderStatusHistoryCreated(EntityEvent $event)
     {
         $history = $event->getEntity();
-        if ($history instanceof OrderStatusHistoryInterface) {
+        if ($history instanceof OrderStatusHistory) {
             $order = $history->getOrder();
             if ($history->isNotify()) {
                 $this->mailerHelper->sendEmail([

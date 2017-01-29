@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Admin;
 
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderStatusInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
  * Class OrderStatusControllerTest
@@ -49,7 +49,7 @@ class OrderStatusControllerTest extends AbstractAdminControllerTestCase
     {
         $collection = $this->container->get('order_status.repository')->getCollection();
 
-        $collection->map(function (OrderStatusInterface $orderStatus) {
+        $collection->map(function (OrderStatus $orderStatus) {
             $url     = $this->generateUrl('admin.order_status.edit', ['id' => $orderStatus->getId()]);
             $crawler = $this->client->request('GET', $url);
 

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Manager;
 
 use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
 
 /**
@@ -24,11 +24,11 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
  */
 final class OrderManager extends AbstractManager implements OrderManagerInterface
 {
-    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency): OrderInterface
+    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency): Order
     {
         $order = $this->findOrder($sessionId, $client, $shop);
         
-        if ($order instanceof OrderInterface) {
+        if ($order instanceof Order) {
             if ($this->isOrderDirty($order, $currency, $client, $sessionId)) {
                 $order->setCurrency($currency);
                 $order->setClient($client);
@@ -39,7 +39,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
             return $order;
         }
         
-        /** @var OrderInterface $order */
+        /** @var Order $order */
         $order = $this->initResource();
         $order->setCurrency($currency);
         $order->setShop($shop);
@@ -91,7 +91,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         ]);
     }
     
-    private function isOrderDirty(OrderInterface $order, string $currency, ClientInterface $client = null, string $sessionId): bool
+    private function isOrderDirty(Order $order, string $currency, ClientInterface $client = null, string $sessionId): bool
     {
         return $order->getClient() !== $client || $order->getCurrency() !== $currency || $order->getSessionId() !== $sessionId;
     }
