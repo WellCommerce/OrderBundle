@@ -25,7 +25,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
  */
 interface OrderStatusInterface extends
     EntityInterface,
-    EnableableInterface,
     TimestampableInterface,
     TranslatableInterface,
     BlameableInterface

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
  * Class OrderStatusGroup
@@ -23,7 +23,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\IdentifiableTrait;
  */
 class OrderStatusGroup implements OrderStatusGroupInterface
 {
-    use IdentifiableTrait;
+    use Identifiable;
     use Timestampable;
     use Blameable;
     use Translatable;

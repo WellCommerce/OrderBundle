@@ -18,11 +18,6 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderModifier:
             nullable: false
             options:
                 default: false
-        hierarchy:
-            type: integer
-            nullable: false
-            options:
-                default: 0
         netAmount:
             type: decimal
             scale: 2

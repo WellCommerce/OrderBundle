@@ -7,9 +7,6 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderStatus:
             generator:
                 strategy: AUTO
     fields:
-        enabled:
-            type: boolean
-            nullable: false
         colour:
             type: string
             nullable: true
