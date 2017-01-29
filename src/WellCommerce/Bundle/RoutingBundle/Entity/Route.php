@@ -19,7 +19,7 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Route implements RouteInterface, RoutingDiscriminatorsAwareInterface
+class Route implements RoutingDiscriminatorsAwareInterface
 {
     use Identifiable;
     

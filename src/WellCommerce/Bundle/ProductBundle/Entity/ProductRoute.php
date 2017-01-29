@@ -12,22 +12,21 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Entity;
 
-use WellCommerce\Bundle\RoutingBundle\Entity\Route as BaseRoute;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class Route
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductRoute extends BaseRoute implements RouteInterface
+class ProductRoute extends Route
 {
     /**
      * @var ProductInterface
      */
     protected $identifier;
-
-    public function getType() : string
+    
+    public function getType(): string
     {
         return 'product';
     }

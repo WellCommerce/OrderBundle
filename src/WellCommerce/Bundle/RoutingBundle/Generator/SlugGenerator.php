@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\RoutingBundle\Generator;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class SlugGenerator
@@ -37,8 +37,8 @@ final class SlugGenerator implements SlugGeneratorInterface
     {
         $this->manager = $manager;
     }
-
-    public function generate(string $name, $id, string $locale, $values, int $iteration = 0) : string
+    
+    public function generate(string $name, $id, string $locale, $values, int $iteration = 0): string
     {
         $slug           = Sluggable::makeSlug($name);
         $existsInValues = in_array($slug, (array)$values);
@@ -65,29 +65,12 @@ final class SlugGenerator implements SlugGeneratorInterface
         return $slug;
     }
     
-    /**
-     * Checks passed identifier and locale against those in route
-     *
-     * @param RouteInterface $route
-     * @param                $locale
-     * @param                $id
-     *
-     * @return bool
-     */
-    private function hasRouteSameLocaleAndId(RouteInterface $route, string $locale, $id) : bool
+    private function hasRouteSameLocaleAndId(Route $route, string $locale, $id): bool
     {
         return ((int)$route->getIdentifier()->getId() === (int)$id && $route->getLocale() === $locale);
     }
     
-    /**
-     * Makes original slug iterated
-     *
-     * @param string $slug
-     * @param int    $iteration
-     *
-     * @return string
-     */
-    private function makeSlugIterated($slug, $iteration)
+    private function makeSlugIterated(string $slug, int $iteration): string
     {
         return sprintf('%s%s%s', $slug, Sluggable::SLUG_DELIMITER, $iteration);
     }

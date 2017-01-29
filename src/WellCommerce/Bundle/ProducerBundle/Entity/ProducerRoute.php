@@ -13,14 +13,13 @@
 namespace WellCommerce\Bundle\ProducerBundle\Entity;
 
 use WellCommerce\Bundle\RoutingBundle\Entity\Route;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
  * Class ProducerRoute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProducerRoute extends Route implements RouteInterface
+class ProducerRoute extends Route
 {
     public function getType(): string
     {

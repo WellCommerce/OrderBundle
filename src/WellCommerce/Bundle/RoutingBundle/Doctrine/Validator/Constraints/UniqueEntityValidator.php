@@ -17,8 +17,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RoutableSubjectInterface;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
-use WellCommerce\Bundle\RoutingBundle\Repository\RouteRepositoryInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class UniqueEntityValidator
@@ -72,7 +71,7 @@ final class UniqueEntityValidator extends ConstraintValidator
         }
         
         // skip validation if there is exact match
-        if ($route instanceof RouteInterface && $result->getIdentifier()->getId() === $route->getIdentifier()->getId()) {
+        if ($route instanceof Route && $result->getIdentifier()->getId() === $route->getIdentifier()->getId()) {
             return;
         }
         
@@ -87,7 +86,7 @@ final class UniqueEntityValidator extends ConstraintValidator
         }
     }
     
-    private function generatePath(RouteInterface $route): string
+    private function generatePath(Route $route): string
     {
         return $this->routerHelper->generateUrl('dynamic_' . $route->getId());
     }

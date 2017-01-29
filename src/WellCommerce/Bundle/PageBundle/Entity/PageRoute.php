@@ -13,14 +13,13 @@
 namespace WellCommerce\Bundle\PageBundle\Entity;
 
 use WellCommerce\Bundle\RoutingBundle\Entity\Route;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
  * Class PageRoute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PageRoute extends Route implements RouteInterface
+class PageRoute extends Route
 {
     /**
      * @var Page

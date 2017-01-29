@@ -13,14 +13,13 @@
 namespace WellCommerce\Bundle\NewsBundle\Entity;
 
 use WellCommerce\Bundle\RoutingBundle\Entity\Route;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
  * Class NewsRoute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class NewsRoute extends Route implements RouteInterface
+class NewsRoute extends Route
 {
     public function getType(): string
     {

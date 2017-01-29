@@ -13,16 +13,15 @@
 namespace WellCommerce\Bundle\CategoryBundle\Entity;
 
 use WellCommerce\Bundle\RoutingBundle\Entity\Route;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
  * Class CategoryRoute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CategoryRoute extends Route implements RouteInterface
+class CategoryRoute extends Route
 {
-    public function getType() : string
+    public function getType(): string
     {
         return 'category';
     }

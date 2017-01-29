@@ -65,13 +65,6 @@ final class RoutableSubscriber implements EventSubscriber
         }
     }
     
-    /**
-     * Adds new route
-     *
-     * @param RoutableSubjectInterface $entity
-     *
-     * @return \WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface
-     */
     protected function addRoute(RoutableSubjectInterface $entity)
     {
         $route = $entity->getRouteEntity();
@@ -82,14 +75,11 @@ final class RoutableSubscriber implements EventSubscriber
         return $route;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents()
     {
         return [
             Events::prePersist,
-            Events::loadClassMetadata
+            Events::loadClassMetadata,
         ];
     }
 }

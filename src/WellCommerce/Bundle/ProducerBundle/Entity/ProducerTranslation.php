@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * WellCommerce Open-Source E-Commerce Platform
  *
  * This file is part of the WellCommerce package.
@@ -17,7 +17,7 @@ use WellCommerce\Bundle\AppBundle\Entity\Meta;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RoutableSubjectInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RoutableTrait;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class ProducerTranslation
@@ -79,7 +79,7 @@ class ProducerTranslation implements RoutableSubjectInterface, LocaleAwareInterf
         $this->meta = $meta;
     }
     
-    public function getRouteEntity(): RouteInterface
+    public function getRouteEntity(): Route
     {
         return new ProducerRoute();
     }

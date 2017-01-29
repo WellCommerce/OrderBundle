@@ -13,14 +13,13 @@
 namespace WellCommerce\Bundle\ProductStatusBundle\Entity;
 
 use WellCommerce\Bundle\RoutingBundle\Entity\Route;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 
 /**
  * Class ProductStatusRoute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductStatusRoute extends Route implements RouteInterface
+class ProductStatusRoute extends Route
 {
     public function getType(): string
     {
