@@ -14,11 +14,9 @@ namespace WellCommerce\Bundle\WishlistBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
-use WellCommerce\Bundle\WishlistBundle\Manager\WishlistManager;
 
 /**
  * Class WishlistController
