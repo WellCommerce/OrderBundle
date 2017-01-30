@@ -334,11 +334,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wellcommerce.less" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wellcommerce.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+            <state relative-caret-position="513">
+              <caret line="210" column="16" lean-forward="false" selection-start-line="210" selection-start-column="16" selection-end-line="210" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -354,7 +354,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceWishlistBundle/Box/WishlistBox/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -402,10 +402,10 @@
     <findStrings>
       <find>h4</find>
       <find>inv</find>
-      <find>.btn</find>
       <find>.form-con</find>
       <find>btn</find>
       <find>.form-control</find>
+      <find>.btn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -416,9 +416,9 @@
       <list>
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceAppBundle/Front/Common/coupon.html.twig" />
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceOrderBundle/Front/OrderAddress/index.html.twig" />
-        <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less" />
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceLayeredNavigationBundle/Box/LayeredNavigationBox/index.html.twig" />
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceWishlistBundle/Box/WishlistBox/index.html.twig" />
+        <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less" />
       </list>
     </option>
   </component>
@@ -825,12 +825,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1485810020147</updated>
-      <workItem from="1485810022106" duration="1551000" />
+      <workItem from="1485810022106" duration="1688000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1551000" />
+    <option name="totallyTimeSpent" value="1688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1554" y="49" width="981" height="1305" extended-state="0" />
@@ -911,14 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceLayeredNavigationBundle/Box/LayeredNavigationBox/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -931,6 +923,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="210" column="16" lean-forward="false" selection-start-line="210" selection-start-column="16" selection-end-line="210" selection-end-column="16" />
           <folding />
         </state>
       </provider>
