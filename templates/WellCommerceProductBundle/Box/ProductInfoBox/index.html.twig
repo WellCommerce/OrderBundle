@@ -22,10 +22,10 @@
 	        </div>
 	        <div class="col-sm-7 col-xs-12">
 	            <div class="description">
-	                <div class="controls clearfix">
-	                    <a href="#" class="pull-left coming-soon">Previous product</a>
-	                    <a href="#" class="pull-right coming-soon">Next product</a>
-	                </div>
+	                {#<div class="controls clearfix">#}
+	                    {#<a href="#" class="pull-left coming-soon">Previous product</a>#}
+	                    {#<a href="#" class="pull-right coming-soon">Next product</a>#}
+	                {#</div>#}
 
 	                <h1>{{ product.translate().name }}</h1>
 
@@ -34,7 +34,7 @@
                         {% if reviews.count > 0 %}
 	                        <span>{{ score }} / <a href="#add-opinion-alert">see {{ reviews.count }} reviews</a></span>
                         {% else %}
-                            <span>{{ score }} / <a href="#add-opinion-alert">{% trans %}product_review.link.first_review{% endtrans %}</a></span>
+                            <span>{{ score }} / <a href="#add-opinion-alert">{% trans %}review.link.first_review{% endtrans %}</a></span>
                         {% endif %}
 	                </div>
 
