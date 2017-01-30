@@ -1,4 +1,6 @@
 payment:
+    heading:
+        initialize: Payment
     flash:
         thank_you: "Thank you for placing an order. Below are the order's details:"
 
