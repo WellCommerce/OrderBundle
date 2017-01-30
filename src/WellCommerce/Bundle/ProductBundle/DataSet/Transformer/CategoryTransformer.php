@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
 use WellCommerce\Bundle\CategoryBundle\Repository\CategoryRepositoryInterface;

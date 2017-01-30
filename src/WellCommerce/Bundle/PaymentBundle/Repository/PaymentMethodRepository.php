@@ -11,7 +11,6 @@
  */
 namespace WellCommerce\Bundle\PaymentBundle\Repository;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 

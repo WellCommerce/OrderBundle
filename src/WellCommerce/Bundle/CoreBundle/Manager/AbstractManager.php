@@ -13,10 +13,10 @@
 namespace WellCommerce\Bundle\CoreBundle\Manager;
 
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
 use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactoryInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**

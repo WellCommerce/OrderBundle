@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\ContactBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\ContactBundle\Entity\Contact;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 

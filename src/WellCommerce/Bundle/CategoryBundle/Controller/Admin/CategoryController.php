@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

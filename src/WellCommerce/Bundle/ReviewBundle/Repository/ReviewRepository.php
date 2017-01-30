@@ -13,7 +13,6 @@ namespace WellCommerce\Bundle\ReviewBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 

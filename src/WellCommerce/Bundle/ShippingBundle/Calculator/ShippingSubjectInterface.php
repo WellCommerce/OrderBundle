@@ -12,8 +12,6 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
  * Interface ShippingSubjectInterface
  *

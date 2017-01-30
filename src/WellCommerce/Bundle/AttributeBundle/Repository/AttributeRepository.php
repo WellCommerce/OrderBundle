@@ -11,7 +11,6 @@
  */
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;

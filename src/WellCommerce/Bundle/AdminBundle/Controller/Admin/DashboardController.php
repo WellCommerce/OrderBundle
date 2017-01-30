@@ -12,15 +12,10 @@
 
 namespace WellCommerce\Bundle\AdminBundle\Controller\Admin;
 
-use Carbon\Carbon;
-use DateInterval;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
-use WellCommerce\Bundle\ReportBundle\Calculator\SalesSummaryCalculator;
-use WellCommerce\Bundle\ReportBundle\Configuration\ReportConfiguration;
-use WellCommerce\Bundle\ReportBundle\Context\LineChartContext;
 
 /**
  * Class DashboardController

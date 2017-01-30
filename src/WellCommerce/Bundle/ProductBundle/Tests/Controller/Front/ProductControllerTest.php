@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Tests\Controller\Front;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 

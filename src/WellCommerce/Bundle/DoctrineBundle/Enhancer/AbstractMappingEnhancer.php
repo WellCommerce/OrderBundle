@@ -13,10 +13,10 @@
 namespace WellCommerce\Bundle\DoctrineBundle\Enhancer;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use WellCommerce\Bundle\DoctrineBundle\Definition\MappingDefinitionCollection;
-use WellCommerce\Bundle\DoctrineBundle\Definition\MappingDefinitionInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
+use WellCommerce\Bundle\DoctrineBundle\Definition\MappingDefinitionCollection;
+use WellCommerce\Bundle\DoctrineBundle\Definition\MappingDefinitionInterface;
 use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\MethodGenerator;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\Modifiers;

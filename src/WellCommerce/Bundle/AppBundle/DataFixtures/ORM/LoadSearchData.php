@@ -14,9 +14,6 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
-use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
  * Class LoadSearchData

@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\LayoutBundle\Configurator;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
 use WellCommerce\Component\Form\Conditions\Equals;
 use WellCommerce\Component\Form\Elements\Fieldset\FieldsetInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;

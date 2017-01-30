@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Front;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 

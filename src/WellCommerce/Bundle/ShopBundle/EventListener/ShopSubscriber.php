@@ -16,7 +16,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 use WellCommerce\Bundle\ShopBundle\Entity\Shop;
 use WellCommerce\Bundle\ShopBundle\Repository\ShopRepositoryInterface;
-use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
 
 /**
  * Class ShopSubscriber

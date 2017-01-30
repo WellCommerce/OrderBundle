@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\ShopBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
 
