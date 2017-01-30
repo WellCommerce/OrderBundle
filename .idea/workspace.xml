@@ -334,11 +334,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wellcommerce.less" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wellcommerce.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="625">
               <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceLayeredNavigationBundle/Box/LayeredNavigationBox/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceWishlistBundle/Box/WishlistBox/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -369,7 +389,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="596">
               <caret line="151" column="150" lean-forward="false" selection-start-line="151" selection-start-column="150" selection-end-line="151" selection-end-column="150" />
-              <folding />
+              <folding>
+                <marker date="1485810670000" expanded="true" signature="363:9319" ph="{% block content ...%}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -395,6 +417,8 @@
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceAppBundle/Front/Common/coupon.html.twig" />
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceOrderBundle/Front/OrderAddress/index.html.twig" />
         <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/assets/css/wellcommerce.less" />
+        <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceLayeredNavigationBundle/Box/LayeredNavigationBox/index.html.twig" />
+        <option value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceWishlistBundle/Box/WishlistBox/index.html.twig" />
       </list>
     </option>
   </component>
@@ -695,6 +719,8 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/web/themes/wellcommerce-default-theme/node_modules/gulp" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
   <component name="RunManager">
     <configuration default="false" name="default" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
@@ -719,6 +745,36 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -726,6 +782,26 @@
       <tasks />
       <arguments />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
       <method />
     </configuration>
     <list size="2">
@@ -749,12 +825,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1485810020147</updated>
-      <workItem from="1485810022106" duration="1159000" />
+      <workItem from="1485810022106" duration="1551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1159000" />
+    <option name="totallyTimeSpent" value="1551000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1554" y="49" width="981" height="1305" extended-state="0" />
@@ -821,7 +897,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
           <caret line="151" column="150" lean-forward="false" selection-start-line="151" selection-start-column="150" selection-end-line="151" selection-end-column="150" />
-          <folding />
+          <folding>
+            <marker date="1485810670000" expanded="true" signature="363:9319" ph="{% block content ...%}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -837,6 +915,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceLayeredNavigationBundle/Box/LayeredNavigationBox/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/wellcommerce-default-theme/templates/WellCommerceWishlistBundle/Box/WishlistBox/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding />
         </state>
       </provider>
