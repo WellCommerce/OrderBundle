@@ -15,8 +15,9 @@ namespace WellCommerce\Bundle\WishlistBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
+use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**
  * Class WishlistController
@@ -29,37 +30,37 @@ class WishlistController extends AbstractFrontController
     {
         return $this->displayTemplate('index');
     }
-    
-    public function addAction(ProductInterface $product): RedirectResponse
+
+    public function addAction(Product $product): RedirectResponse
     {
         $wishlist = $this->findWishlist($product);
-        
-        if (!$wishlist instanceof WishlistInterface) {
-            /** @var WishlistInterface $wishlist */
+
+        if (!$wishlist instanceof Wishlist) {
+            /** @var Wishlist $wishlist */
             $wishlist = $this->manager->initResource();
             $wishlist->setClient($this->getAuthenticatedClient());
             $wishlist->setProduct($product);
             $this->manager->createResource($wishlist);
         }
-        
+
         return $this->redirectToAction('index');
     }
-    
+
     public function deleteAction(ProductInterface $product): RedirectResponse
     {
         $wishlist = $this->findWishlist($product);
-        
-        if ($wishlist instanceof WishlistInterface) {
+
+        if ($wishlist instanceof Wishlist) {
             $this->manager->removeResource($wishlist);
         }
-        
+
         return $this->redirectToAction('index');
     }
-    
+
     private function findWishlist(ProductInterface $product)
     {
         return $this->manager->getRepository()->findOneBy([
-            'client'  => $this->getAuthenticatedClient(),
+            'client' => $this->getAuthenticatedClient(),
             'product' => $product,
         ]);
     }

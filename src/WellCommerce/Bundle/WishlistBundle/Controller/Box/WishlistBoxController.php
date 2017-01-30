@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\WishlistBundle\Controller\Box;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\WishlistBundle\Entity\WishlistInterface;
+use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 use WellCommerce\Bundle\WishlistBundle\Repository\WishlistRepositoryInterface;
 use WellCommerce\Component\DataSet\Conditions\Condition\In;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
@@ -47,7 +47,7 @@ class WishlistBoxController extends AbstractBoxController
         $wishlist   = $repository->getClientWishlistCollection($this->getAuthenticatedClient());
         $productIds = [];
         
-        $wishlist->map(function (WishlistInterface $wishlist) use (&$productIds) {
+        $wishlist->map(function (Wishlist $wishlist) use (&$productIds) {
             $productIds[] = $wishlist->getProduct()->getId();
         });
         
