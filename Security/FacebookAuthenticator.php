@@ -14,11 +14,9 @@ namespace WellCommerce\Bundle\OAuthBundle\Security;
 
 use League\OAuth2\Client\Provider\Facebook;
 use League\OAuth2\Client\Provider\FacebookUser;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -26,10 +24,8 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\OAuthBundle\Manager\FacebookClientManager;
 
 /**
  * Class FacebookAuthenticator
@@ -39,37 +35,30 @@ use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 final class FacebookAuthenticator extends AbstractGuardAuthenticator
 {
     /**
-     * @var ManagerInterface
+     * @var FacebookClientManager
      */
-    private $clientManager;
+    private $facebookClientManager;
     
     /**
      * @var RouterHelperInterface
      */
     private $routerHelper;
-
+    
     /**
      * @var Facebook
      */
     private $facebookProvider;
-
+    
     /**
      * @var array
      */
     private $options;
-
-    /**
-     * FacebookAuthenticator constructor.
-     *
-     * @param ManagerInterface      $clientManager
-     * @param RouterHelperInterface $routerHelper
-     * @param array                 $options
-     */
-    public function __construct(ManagerInterface $clientManager, RouterHelperInterface $routerHelper, array $options)
+    
+    public function __construct(FacebookClientManager $facebookClientManager, RouterHelperInterface $routerHelper, array $options)
     {
-        $this->clientManager = $clientManager;
-        $this->routerHelper  = $routerHelper;
-        $resolver            = new OptionsResolver();
+        $this->facebookClientManager = $facebookClientManager;
+        $this->routerHelper          = $routerHelper;
+        $resolver                    = new OptionsResolver();
         $this->configureOptions($resolver);
         $this->options = $resolver->resolve($options);
     }
@@ -94,45 +83,8 @@ final class FacebookAuthenticator extends AbstractGuardAuthenticator
         
         /** @var FacebookUser $userDetails */
         $userDetails = $this->getProvider()->getResourceOwner($accessToken);
-        $email       = $userDetails->getEmail();
-        $user        = $this->clientManager->getRepository()->findOneBy([
-            'clientDetails.username' => $email
-        ]);
         
-        if (!$user instanceof ClientInterface) {
-            $user = $this->autoRegisterClient($userDetails);
-        }
-        
-        return $user;
-    }
-    
-    /**
-     * Automatic register process
-     *
-     * @param FacebookUser $facebookUser
-     *
-     * @return ClientInterface
-     */
-    protected function autoRegisterClient(FacebookUser $facebookUser)
-    {
-        $firstName = $facebookUser->getFirstName();
-        $lastName  = $facebookUser->getLastName();
-        $email     = $facebookUser->getEmail();
-        
-        /** @var $client ClientInterface */
-        $client = $this->clientManager->initResource();
-        $client->getClientDetails()->setUsername($email);
-        $client->getClientDetails()->setPassword(Helper::generateRandomPassword());
-        
-        $client->getContactDetails()->setEmail($email);
-        $client->getContactDetails()->setFirstName($firstName);
-        $client->getContactDetails()->setLastName($lastName);
-        $client->getContactDetails()->setPhone(' ');
-        $client->getContactDetails()->setSecondaryPhone(' ');
-        
-        $this->clientManager->createResource($client);
-        
-        return $client;
+        return $this->facebookClientManager->getClient($userDetails);
     }
     
     public function checkCredentials($credentials, UserInterface $user)
@@ -140,63 +92,32 @@ final class FacebookAuthenticator extends AbstractGuardAuthenticator
         return true;
     }
     
-    /**
-     * Scheme used after authentification fails
-     *
-     * @param Request                 $request
-     * @param AuthenticationException $exception
-     *
-     * @return RedirectResponse
-     */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         
-        return new RedirectResponse($this->routerHelper->generateUrl('front.client.login'));
+        return $this->routerHelper->redirectTo('front.client.login');
     }
     
-    /**
-     * Scheme used after authentification succeeds
-     *
-     * @param Request        $request
-     * @param TokenInterface $token
-     * @param string         $providerKey
-     *
-     * @return RedirectResponse
-     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         return $this->routerHelper->redirectTo('front.client_order.index');
     }
     
-    /**
-     * @return bool
-     */
     public function supportsRememberMe()
     {
         return true;
     }
     
-    /**
-     * Starts the authentication scheme.
-     *
-     * @param Request                      $request
-     * @param AuthenticationException|null $authException
-     *
-     * @return RedirectResponse
-     */
     public function start(Request $request, AuthenticationException $authException = null)
     {
         $authUrl = $this->getProvider()->getAuthorizationUrl([
-            'scopes' => $this->options['scopes']
+            'scopes' => $this->options['scopes'],
         ]);
         
-        return new RedirectResponse($authUrl);
+        return $this->routerHelper->redirectToUrl($authUrl);
     }
     
-    /**
-     * @return Facebook
-     */
     public function getProvider()
     {
         if (null === $this->facebookProvider) {
@@ -211,12 +132,6 @@ final class FacebookAuthenticator extends AbstractGuardAuthenticator
         return $this->facebookProvider;
     }
     
-    /**
-     * @param UserInterface $user
-     * @param string        $providerKey
-     *
-     * @return UsernamePasswordToken
-     */
     public function createAuthenticatedToken(UserInterface $user, $providerKey)
     {
         return new UsernamePasswordToken(
@@ -226,7 +141,7 @@ final class FacebookAuthenticator extends AbstractGuardAuthenticator
             $user->getRoles()
         );
     }
-
+    
     private function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
@@ -238,14 +153,14 @@ final class FacebookAuthenticator extends AbstractGuardAuthenticator
             'redirect_route',
             'redirect_uri',
         ]);
-
+        
         $resolver->setDefault('graph_version', 'v2.8');
         $resolver->setDefault('scopes', ['email']);
         $resolver->setDefault('redirect_route', 'oauth.facebook.check');
         $resolver->setDefault('redirect_uri', function (Options $options) {
-            return $this->routerHelper->generateUrl($options['redirect_route'], [], UrlGeneratorInterface::ABSOLUTE_URL);
+            return $this->routerHelper->generateUrl($options['redirect_route']);
         });
-
+        
         $resolver->setAllowedTypes('app_id', ['string', 'int', 'null']);
         $resolver->setAllowedTypes('app_secret', ['string', 'null']);
         $resolver->setAllowedTypes('page_token', ['string', 'null']);
