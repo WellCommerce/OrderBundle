@@ -38,7 +38,7 @@
                         {% endif %}
 	                </div>
 
-	                <p>{{ product.translate().shortDescription|striptags }}</p>
+	                <p>{{ product.translate().shortDescription|striptags|raw }}</p>
 
 	                <div class="row">
 	                    <div class="col-sm-6 col-xs-6">
@@ -99,7 +99,7 @@
         <div class="col-md-9 col-xs-12">
             <div class="description-block">
                 <h2>Description</h2>
-                <p>{{ product.translate().description }}</p>
+                <p>{{ product.translate().description|raw }}</p>
             </div>
 
 			{{ layout_box('review') }}
