@@ -21,7 +21,6 @@ class OrderProduct implements EntityInterface
     use Timestampable;
     use ProductAwareTrait;
     use VariantAwareTrait;
-    use OrderAwareTrait;
     
     protected $quantity = 1;
     protected $weight   = 0.00;
