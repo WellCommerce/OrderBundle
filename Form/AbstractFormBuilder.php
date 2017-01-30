@@ -69,7 +69,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function createForm(array $options, $defaultData = null) : FormInterface
+    public function createForm(array $options, $defaultData = null): FormInterface
     {
         $form = $this->getFormService($options);
         $this->buildForm($form);
@@ -97,7 +97,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function getElement(string $alias, array $options = []) : ElementInterface
+    public function getElement(string $alias, array $options = []): ElementInterface
     {
         return $this->initService('element', $alias, $options);
     }
@@ -105,7 +105,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function getRule(string $alias, array $options = []) : RuleInterface
+    public function getRule(string $alias, array $options = []): RuleInterface
     {
         return $this->initService('rule', $alias, $options);
     }
@@ -113,7 +113,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function getFilter(string $alias, array $options = []) : FilterInterface
+    public function getFilter(string $alias, array $options = []): FilterInterface
     {
         return $this->initService('filter', $alias, $options);
     }
@@ -121,7 +121,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function getDependency(string $alias, array $options = []) : DependencyInterface
+    public function getDependency(string $alias, array $options = []): DependencyInterface
     {
         return $this->initService('dependency', $alias, $options);
     }
@@ -129,7 +129,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     /**
      * {@inheritdoc}
      */
-    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository) : DataTransformerInterface
+    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository): DataTransformerInterface
     {
         /** @var $transformer \WellCommerce\Component\Form\DataTransformer\DataTransformerInterface */
         $transformer = $this->get('form.data_transformer.factory')->createRepositoryTransformer($alias);
@@ -145,7 +145,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
      *
      * @return FormInterface
      */
-    protected function getFormService(array $options) : FormInterface
+    protected function getFormService(array $options): FormInterface
     {
         return $this->getElement('form', $options);
     }
@@ -180,18 +180,18 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     {
         $metadata = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'metadata',
-            'label' => $this->trans('common.fieldset.meta')
+            'label' => $this->trans('common.fieldset.meta'),
         ]));
         
         $languageData = $metadata->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
             'label'       => $this->trans('common.fieldset.translations'),
-            'transformer' => $this->getRepositoryTransformer('translation', $repository)
+            'transformer' => $this->getRepositoryTransformer('translation', $repository),
         ]));
         
         $languageData->addChild($this->getElement('text_field', [
             'name'  => 'meta.title',
-            'label' => $this->trans('common.label.meta.title')
+            'label' => $this->trans('common.label.meta.title'),
         ]));
         
         $languageData->addChild($this->getElement('text_field', [
@@ -209,14 +209,14 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     {
         $shopsData = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'shops_data',
-            'label' => $this->trans('common.fieldset.shops')
+            'label' => $this->trans('common.fieldset.shops'),
         ]));
         
         $shopsData->addChild($this->getElement('multi_select', [
             'name'        => 'shops',
             'label'       => $this->trans('common.label.shops'),
             'options'     => $this->get('shop.dataset.admin')->getResult('select'),
-            'transformer' => $this->getRepositoryTransformer('collection', $this->get('shop.repository'))
+            'transformer' => $this->getRepositoryTransformer('collection', $this->get('shop.repository')),
         ]));
     }
 }
