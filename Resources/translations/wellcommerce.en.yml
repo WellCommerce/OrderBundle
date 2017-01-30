@@ -6,6 +6,7 @@ order:
         index: Orders
         edit: Edit order
         address: Billing & shipping address
+        confirm: Confirmation
         confirmation: Confirmation
         order_total: Summary
         products: Products
@@ -40,6 +41,7 @@ order:
         variant_options: Wybrane opcje
         accept_conditions: I accept the shop conditions
         issue_invoice: Please send me an invoice
+        shipping_cost: Shipping costs
         coupon:
             code: Coupon code
             modifier: Coupon modifier
