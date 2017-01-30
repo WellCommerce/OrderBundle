@@ -123,6 +123,11 @@ final class RouterHelper implements RouterHelperInterface
         return $response;
     }
     
+    public function redirectToUrl(string $url, int $status = 302): RedirectResponse
+    {
+        return new RedirectResponse($url, $status);
+    }
+    
     public function getCurrentRoute(): Route
     {
         $routeName = $this->getCurrentRouteName();

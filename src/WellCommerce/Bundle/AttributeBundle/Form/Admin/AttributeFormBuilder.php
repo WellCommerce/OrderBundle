@@ -21,9 +21,6 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class AttributeFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormInterface $form)
     {
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [

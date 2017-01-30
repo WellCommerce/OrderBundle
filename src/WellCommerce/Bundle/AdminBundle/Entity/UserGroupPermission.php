@@ -15,13 +15,14 @@ namespace WellCommerce\Bundle\AdminBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class UserGroupPermission
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class UserGroupPermission implements UserGroupPermissionInterface
+class UserGroupPermission implements EntityInterface
 {
     use Identifiable;
     use Enableable;
