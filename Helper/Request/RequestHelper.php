@@ -66,19 +66,11 @@ final class RequestHelper implements RequestHelperInterface
      */
     public function getCurrentHost()
     {
-        if (!is_object($this->getCurrentRequest()) || !is_object($this->request->server)) {
+        if (!$this->getCurrentRequest() instanceof Request) {
             return null;
         }
         
-        if (null !== $url = $this->request->server->get('SERVER_NAME')) {
-            return $url;
-        }
-        
-        if (null !== $url = $this->request->server->get('HTTP_HOST')) {
-            return parse_url($url, PHP_URL_HOST);
-        }
-        
-        return null;
+        return $this->getCurrentRequest()->getHost();
     }
     
     /**
@@ -108,7 +100,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function hasSessionAttribute(string $name) : bool
+    public function hasSessionAttribute(string $name): bool
     {
         if (null !== $this->getCurrentRequest() && $this->request->hasSession()) {
             return $this->request->getSession()->has($name);
@@ -120,7 +112,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getSessionId() : string
+    public function getSessionId(): string
     {
         if (null !== $this->getCurrentRequest() && $this->request->hasSession()) {
             return $this->request->getSession()->getId();
@@ -132,7 +124,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getSessionName() : string
+    public function getSessionName(): string
     {
         if (null !== $this->getCurrentRequest() && $this->request->hasSession()) {
             return $this->request->getSession()->getName();
@@ -144,7 +136,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function hasRequestBagParam(string $name) : bool
+    public function hasRequestBagParam(string $name): bool
     {
         if ($this->getCurrentRequest() instanceof Request) {
             return $this->request->request->has($name);
@@ -156,7 +148,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function hasRequestBagParams(array $params = []) : bool
+    public function hasRequestBagParams(array $params = []): bool
     {
         foreach ($params as $param) {
             if (!$this->hasRequestBagParam($param)) {
@@ -194,7 +186,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAttributesBagParam(string $name) : bool
+    public function hasAttributesBagParam(string $name): bool
     {
         if ($this->getCurrentRequest() instanceof Request) {
             return $this->request->attributes->has($name);
@@ -206,7 +198,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAttributesBagParams(array $params = []) : bool
+    public function hasAttributesBagParams(array $params = []): bool
     {
         foreach ($params as $param) {
             if (!$this->hasAttributesBagParam($param)) {
@@ -232,7 +224,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrentLocale() : string
+    public function getCurrentLocale(): string
     {
         if (null !== $this->getCurrentRequest()) {
             return $this->getCurrentRequest()->getLocale();
@@ -244,7 +236,7 @@ final class RequestHelper implements RequestHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getCurrentCurrency() : string
+    public function getCurrentCurrency(): string
     {
         return $this->getSessionAttribute('_currency', '');
     }
