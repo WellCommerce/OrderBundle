@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Manager;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
@@ -24,7 +24,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
  */
 final class OrderManager extends AbstractManager implements OrderManagerInterface
 {
-    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency): Order
+    public function getOrder(string $sessionId, Client $client = null, ShopInterface $shop, string $currency): Order
     {
         $order = $this->findOrder($sessionId, $client, $shop);
         
@@ -46,7 +46,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         $order->setClient($client);
         $order->setSessionId($sessionId);
         
-        if ($client instanceof ClientInterface) {
+        if ($client instanceof Client) {
             $order->setClientDetails($client->getClientDetails());
             $order->setContactDetails($client->getContactDetails());
             $order->setBillingAddress($client->getBillingAddress());
@@ -59,7 +59,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         return $order;
     }
     
-    public function findOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop)
+    public function findOrder(string $sessionId, Client $client = null, ShopInterface $shop)
     {
         if (null !== $client) {
             $order = $this->getCurrentClientOrder($client, $shop);
@@ -73,7 +73,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         return $order;
     }
     
-    private function getCurrentClientOrder(ClientInterface $client, ShopInterface $shop)
+    private function getCurrentClientOrder(Client $client, ShopInterface $shop)
     {
         return $this->getRepository()->findOneBy([
             'client'    => $client,
@@ -91,7 +91,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         ]);
     }
     
-    private function isOrderDirty(Order $order, string $currency, ClientInterface $client = null, string $sessionId): bool
+    private function isOrderDirty(Order $order, string $currency, Client $client = null, string $sessionId): bool
     {
         return $order->getClient() !== $client || $order->getCurrency() !== $currency || $order->getSessionId() !== $sessionId;
     }

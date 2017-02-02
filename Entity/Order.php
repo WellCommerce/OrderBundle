@@ -17,7 +17,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
@@ -50,7 +50,7 @@ class Order implements EntityInterface
     protected $conditionsAccepted   = false;
     
     /**
-     * @var null|ClientInterface
+     * @var null|Client
      */
     protected $client;
     
@@ -148,7 +148,7 @@ class Order implements EntityInterface
         return $this->client;
     }
     
-    public function setClient(ClientInterface $client = null)
+    public function setClient(Client $client = null)
     {
         $this->client = $client;
     }

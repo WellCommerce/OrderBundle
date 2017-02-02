@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
@@ -125,9 +125,9 @@ class OrderAddressController extends AbstractFrontController
         return 1 === (int)$request->request->filter('issueInvoice');
     }
     
-    protected function autoRegisterClient(Order $order): ClientInterface
+    protected function autoRegisterClient(Order $order): Client
     {
-        /** @var $client ClientInterface */
+        /** @var $client Client */
         $client = $this->get('client.manager')->initResource();
         $client->setClientDetails($order->getClientDetails());
         $client->setContactDetails($order->getContactDetails());
