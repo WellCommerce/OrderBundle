@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Storage;
 
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Interface ProductStorageInterface
@@ -21,18 +21,9 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
  */
 interface ProductStorageInterface
 {
-    /**
-     * @param ProductInterface $product
-     */
-    public function setCurrentProduct(ProductInterface $product);
-
-    /**
-     * @return ProductInterface
-     */
-    public function getCurrentProduct() : ProductInterface;
-
-    /**
-     * @return bool
-     */
-    public function hasCurrentProduct() : bool;
+    public function setCurrentProduct(Product $product);
+    
+    public function getCurrentProduct(): Product;
+    
+    public function hasCurrentProduct(): bool;
 }

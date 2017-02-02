@@ -20,6 +20,7 @@ use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\VariantExtraTrait;
 
@@ -28,13 +29,12 @@ use WellCommerce\Bundle\ProductBundle\Entity\Extra\VariantExtraTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Variant implements VariantInterface
+class Variant implements EntityInterface
 {
     use Identifiable;
     use Enableable;
     use Sortable;
     use Timestampable;
-    use ProductAwareTrait;
     use VariantExtraTrait;
     
     protected $weight        = 0.00;
@@ -42,6 +42,11 @@ class Variant implements VariantInterface
     protected $stock         = 0;
     protected $modifierType  = '%';
     protected $modifierValue = 100.00;
+    
+    /**
+     * @var Product
+     */
+    protected $product;
     
     /**
      * @var Media
@@ -95,7 +100,7 @@ class Variant implements VariantInterface
     
     private function synchronizeOptions(Collection $options)
     {
-        $this->options->map(function (VariantOptionInterface $option) use ($options) {
+        $this->options->map(function (VariantOption $option) use ($options) {
             if (false === $options->contains($option)) {
                 $this->options->removeElement($option);
             }
@@ -170,5 +175,15 @@ class Variant implements VariantInterface
     public function setAvailability(Availability $availability = null)
     {
         $this->availability = $availability;
+    }
+    
+    public function getProduct()
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
     }
 }

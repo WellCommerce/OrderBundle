@@ -15,13 +15,14 @@ namespace WellCommerce\Bundle\ProductBundle\Entity;
 use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class VariantOption
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class VariantOption implements VariantOptionInterface
+class VariantOption implements EntityInterface
 {
     use Identifiable;
     
@@ -40,12 +41,12 @@ class VariantOption implements VariantOptionInterface
      */
     protected $attributeValue;
     
-    public function getVariant(): VariantInterface
+    public function getVariant(): Variant
     {
         return $this->variant;
     }
     
-    public function setVariant(VariantInterface $variant)
+    public function setVariant(Variant $variant)
     {
         $this->variant = $variant;
     }

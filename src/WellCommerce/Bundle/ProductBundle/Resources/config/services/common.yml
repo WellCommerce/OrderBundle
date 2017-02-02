@@ -29,7 +29,7 @@ services:
         class: WellCommerce\Bundle\ProductBundle\Request\ParamConverter\ProductParamConverter
         tags:
             - { name: request.param_converter, converter: product, priority: 0 }
-        arguments: ['@product.repository', id, [WellCommerce\Bundle\ProductBundle\Entity\Product, WellCommerce\Bundle\ProductBundle\Entity\ProductInterface]]
+        arguments: ['@product.repository', id, [WellCommerce\Bundle\ProductBundle\Entity\Product]]
 
     form.product_photo_collection.data_transformer:
         class: WellCommerce\Bundle\ProductBundle\Form\DataTransformer\ProductPhotoCollectionToArrayTransformer
@@ -46,7 +46,7 @@ services:
         class: WellCommerce\Bundle\ProductBundle\Request\ParamConverter\VariantParamConverter
         tags:
             - { name: request.param_converter, converter: variant, priority: 10 }
-        arguments: ['@variant.repository', variant, [WellCommerce\Bundle\ProductBundle\Entity\Variant, WellCommerce\Bundle\ProductBundle\Entity\VariantInterface]]
+        arguments: ['@variant.repository', variant, [WellCommerce\Bundle\ProductBundle\Entity\Variant]]
 
     form.variant_collection.data_transformer:
         class: WellCommerce\Bundle\ProductBundle\Form\DataTransformer\VariantCollectionToArrayTransformer

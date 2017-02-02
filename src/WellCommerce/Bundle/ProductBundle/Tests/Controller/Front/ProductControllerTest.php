@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductBundle\Tests\Controller\Front;
 
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class ProductControllerTest
@@ -25,11 +25,11 @@ class ProductControllerTest extends AbstractAdminControllerTestCase
     public function testIndexAction()
     {
         $collection = $this->container->get('product.repository')->getCollection();
-
-        $collection->map(function (ProductInterface $product) {
+        
+        $collection->map(function (Product $product) {
             $url     = $this->generateUrl('dynamic_' . $product->translate()->getRoute()->getId());
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful(), sprintf(
                 'Code: %s, URL: %s',
                 $this->client->getResponse()->getStatusCode(),

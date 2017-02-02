@@ -22,7 +22,7 @@ use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 class ProductRoute extends Route
 {
     /**
-     * @var ProductInterface
+     * @var Product
      */
     protected $identifier;
     

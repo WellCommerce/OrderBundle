@@ -19,8 +19,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\ChangeOrderProductQuantityException;
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteOrderProductException;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
 /**
@@ -30,7 +29,7 @@ use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
  */
 final class OrderProductManager extends AbstractManager implements OrderProductManagerInterface
 {
-    public function addProductToOrder(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1, Order $order)
+    public function addProductToOrder(Product $product, Variant $variant = null, int $quantity = 1, Order $order)
     {
         $orderProduct = $this->findProductInOrder($product, $variant, $order);
         
@@ -45,7 +44,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         $this->updateResource($order);
     }
     
-    public function findProductInOrder(ProductInterface $product, VariantInterface $variant = null, Order $order)
+    public function findProductInOrder(Product $product, Variant $variant = null, Order $order)
     {
         return $this->getRepository()->findOneBy([
             'order'   => $order,
@@ -54,17 +53,14 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
         ]);
     }
     
-    public function createOrderProduct(
-        ProductInterface $product,
-        VariantInterface $variant = null,
-        Order $order
-    ): OrderProduct {
+    public function createOrderProduct(Product $product, Variant $variant = null, Order $order): OrderProduct
+    {
         /** @var OrderProduct $orderProduct */
         $orderProduct = $this->initResource();
         $orderProduct->setOrder($order);
         $orderProduct->setProduct($product);
         
-        if ($variant instanceof VariantInterface) {
+        if ($variant instanceof Variant) {
             $orderProduct->setVariant($variant);
         }
         
@@ -128,7 +124,7 @@ final class OrderProductManager extends AbstractManager implements OrderProductM
     {
         $productId = (int)$productValues['product_id'];
         $product   = $this->getEntityManager()->getRepository(Product::class)->find($productId);
-        if (!$product instanceof ProductInterface) {
+        if (!$product instanceof Product) {
             throw new \InvalidArgumentException(sprintf('Cannot add product to order. ID "%s" does not exists.', $productId));
         }
         

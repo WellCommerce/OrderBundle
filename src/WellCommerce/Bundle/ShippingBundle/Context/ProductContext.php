@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\Context;
 
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 
 /**
@@ -23,16 +23,11 @@ use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 final class ProductContext implements ShippingSubjectInterface
 {
     /**
-     * @var ProductInterface
+     * @var Product
      */
     protected $product;
     
-    /**
-     * ProductContext constructor.
-     *
-     * @param ProductInterface $product
-     */
-    public function __construct(ProductInterface $product)
+    public function __construct(Product $product)
     {
         $this->product = $product;
     }

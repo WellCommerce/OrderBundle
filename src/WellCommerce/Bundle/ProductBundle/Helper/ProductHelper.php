@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductBundle\Helper;
 
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ShippingBundle\Context\ProductContext;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
@@ -62,7 +62,7 @@ class ProductHelper implements ProductHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getProductDefaultTemplateData(ProductInterface $product): array
+    public function getProductDefaultTemplateData(Product $product): array
     {
         $shippingMethodCosts = $this->shippingMethodProvider->getCosts(new ProductContext($product));
         $variants            = $this->variantHelper->getVariants($product);

@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Search;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Component\Search\Model\DocumentInterface;
 use WellCommerce\Component\Search\Model\Field;
 use WellCommerce\Component\Search\Model\TypeInterface;
@@ -41,39 +41,33 @@ final class ProductType implements TypeInterface
      * @var Collection
      */
     private $fields;
-
-    /**
-     * ProductType constructor.
-     *
-     * @param string $name
-     * @param array  $mapping
-     */
+    
     public function __construct(string $name, array $mapping)
     {
         $this->name    = $name;
         $this->mapping = $mapping;
     }
     
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
     
-    public function createDocument(EntityInterface $entity, string $locale) : DocumentInterface
+    public function createDocument(EntityInterface $entity, string $locale): DocumentInterface
     {
-        if (!$entity instanceof ProductInterface) {
+        if (!$entity instanceof Product) {
             throw new \InvalidArgumentException(sprintf(
                 'Wrong entity type "%s" was given. Type "%s" supports only instances of "%s"',
                 get_class($entity),
                 $this->getName(),
-                ProductInterface::class
+                Product::class
             ));
         }
-
+        
         return new ProductDocument($entity, $this, $locale);
     }
     
-    public function getFields() : Collection
+    public function getFields(): Collection
     {
         if (null === $this->fields) {
             $this->fields = $this->processMappingConfiguration();
@@ -82,12 +76,12 @@ final class ProductType implements TypeInterface
         return $this->fields;
     }
     
-    private function processMappingConfiguration() : Collection
+    private function processMappingConfiguration(): Collection
     {
         $collection = new ArrayCollection();
         
         foreach ($this->mapping as $name => $options) {
-            if($options['indexable']){
+            if ($options['indexable']) {
                 $field = new Field($name, $options);
                 $collection->set($name, $field);
             }

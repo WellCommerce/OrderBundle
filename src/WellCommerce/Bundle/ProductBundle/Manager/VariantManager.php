@@ -17,9 +17,8 @@ use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\Variant;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;
 
 /**
@@ -29,7 +28,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;
  */
 class VariantManager extends AbstractManager
 {
-    public function getAttributesCollectionForProduct(ProductInterface $product, array $values): Collection
+    public function getAttributesCollectionForProduct(Product $product, array $values): Collection
     {
         $values     = $this->filterValues($values);
         $collection = new ArrayCollection();
@@ -43,9 +42,9 @@ class VariantManager extends AbstractManager
         return $collection;
     }
     
-    protected function getVariant($id, $value): VariantInterface
+    protected function getVariant($id, $value): Variant
     {
-        /** @var $variant \WellCommerce\Bundle\ProductBundle\Entity\VariantInterface */
+        /** @var $variant Variant */
         $variant = $this->repository->find($id);
         if (null === $variant) {
             $variant = $this->initResource();
@@ -64,7 +63,7 @@ class VariantManager extends AbstractManager
         return $variant;
     }
     
-    protected function makeVariantOptionCollection(VariantInterface $variant, $values): Collection
+    protected function makeVariantOptionCollection(Variant $variant, $values): Collection
     {
         $collection = new ArrayCollection();
         foreach ($values as $attributeId => $attributeValueId) {
@@ -91,7 +90,7 @@ class VariantManager extends AbstractManager
         return $variantOption;
     }
     
-    protected function findVariantOption(VariantInterface $variant, Attribute $attribute, AttributeValue $attributeValue)
+    protected function findVariantOption(Variant $variant, Attribute $attribute, AttributeValue $attributeValue)
     {
         return $this->get('variant_option.repository')->findOneBy([
             'variant'        => $variant,

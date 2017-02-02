@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\ProductBundle\Helper;
 
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantOptionInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;
 
 /**
  * Class VariantHelper
@@ -42,11 +42,11 @@ class VariantHelper implements VariantHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getVariants(ProductInterface $product) : array
+    public function getVariants(Product $product): array
     {
         $variants = [];
         
-        $product->getVariants()->map(function (VariantInterface $variant) use (&$variants) {
+        $product->getVariants()->map(function (Variant $variant) use (&$variants) {
             if ($variant->isEnabled()) {
                 $this->extractVariantData($variant, $variants);
             }
@@ -58,11 +58,11 @@ class VariantHelper implements VariantHelperInterface
     /**
      * {@inheritdoc}
      */
-    public function getAttributes(ProductInterface $product) : array
+    public function getAttributes(Product $product): array
     {
         $attributes = [];
         
-        $product->getVariants()->map(function (VariantInterface $variant) use (&$attributes) {
+        $product->getVariants()->map(function (Variant $variant) use (&$attributes) {
             if ($variant->isEnabled()) {
                 $this->extractAttributesData($variant, $attributes);
             }
@@ -71,9 +71,9 @@ class VariantHelper implements VariantHelperInterface
         return $attributes;
     }
     
-    protected function extractAttributesData(VariantInterface $variant, &$attributes)
+    protected function extractAttributesData(Variant $variant, &$attributes)
     {
-        $variant->getOptions()->map(function (VariantOptionInterface $variantOption) use (&$attributes) {
+        $variant->getOptions()->map(function (VariantOption $variantOption) use (&$attributes) {
             $attribute                                                           = $variantOption->getAttribute();
             $attributeValue                                                      = $variantOption->getAttributeValue();
             $attributes[$attribute->getId()]['name']                             = $attribute->translate()->getName();
@@ -81,7 +81,7 @@ class VariantHelper implements VariantHelperInterface
         });
     }
     
-    protected function extractVariantData(VariantInterface $variant, array &$variants)
+    protected function extractVariantData(Variant $variant, array &$variants)
     {
         $sellPrice    = $variant->getSellPrice();
         $baseCurrency = $sellPrice->getCurrency();
@@ -94,15 +94,15 @@ class VariantHelper implements VariantHelperInterface
             'discountPriceGross' => $this->currencyHelper->convertAndFormat($sellPrice->getDiscountedGrossAmount(), $baseCurrency),
             'stock'              => $variant->getStock(),
             'symbol'             => $variant->getSymbol(),
-            'options'            => $this->getVariantOptions($variant)
+            'options'            => $this->getVariantOptions($variant),
         ];
     }
     
-    protected function getVariantOptionsKey(VariantInterface $variant) : string
+    protected function getVariantOptionsKey(Variant $variant): string
     {
         $options = [];
         
-        $variant->getOptions()->map(function (VariantOptionInterface $variantOption) use (&$options) {
+        $variant->getOptions()->map(function (VariantOption $variantOption) use (&$options) {
             $attribute      = $variantOption->getAttribute();
             $attributeValue = $variantOption->getAttributeValue();
             $key            = sprintf('%s:%s', $attribute->getId(), $attributeValue->getId());
@@ -114,11 +114,11 @@ class VariantHelper implements VariantHelperInterface
         return implode(',', $options);
     }
     
-    public function getVariantOptions(VariantInterface $variant) : array
+    public function getVariantOptions(Variant $variant): array
     {
         $options = [];
         
-        $variant->getOptions()->map(function (VariantOptionInterface $variantOption) use (&$options) {
+        $variant->getOptions()->map(function (VariantOption $variantOption) use (&$options) {
             $attribute                                   = $variantOption->getAttribute();
             $attributeValue                              = $variantOption->getAttributeValue();
             $options[$attribute->translate()->getName()] = $attributeValue->translate()->getName();

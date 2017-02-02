@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**
@@ -30,11 +29,11 @@ class WishlistController extends AbstractFrontController
     {
         return $this->displayTemplate('index');
     }
-
+    
     public function addAction(Product $product): RedirectResponse
     {
         $wishlist = $this->findWishlist($product);
-
+        
         if (!$wishlist instanceof Wishlist) {
             /** @var Wishlist $wishlist */
             $wishlist = $this->manager->initResource();
@@ -42,25 +41,25 @@ class WishlistController extends AbstractFrontController
             $wishlist->setProduct($product);
             $this->manager->createResource($wishlist);
         }
-
+        
         return $this->redirectToAction('index');
     }
-
-    public function deleteAction(ProductInterface $product): RedirectResponse
+    
+    public function deleteAction(Product $product): RedirectResponse
     {
         $wishlist = $this->findWishlist($product);
-
+        
         if ($wishlist instanceof Wishlist) {
             $this->manager->removeResource($wishlist);
         }
-
+        
         return $this->redirectToAction('index');
     }
-
-    private function findWishlist(ProductInterface $product)
+    
+    private function findWishlist(Product $product)
     {
         return $this->manager->getRepository()->findOneBy([
-            'client' => $this->getAuthenticatedClient(),
+            'client'  => $this->getAuthenticatedClient(),
             'product' => $product,
         ]);
     }

@@ -7,8 +7,8 @@ use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 
 /**
  * Class OrderProduct
@@ -19,8 +19,6 @@ class OrderProduct implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
-    use ProductAwareTrait;
-    use VariantAwareTrait;
     
     protected $quantity = 1;
     protected $weight   = 0.00;
@@ -41,6 +39,16 @@ class OrderProduct implements EntityInterface
      * @var Order
      */
     protected $order;
+    
+    /**
+     * @var Product
+     */
+    protected $product;
+    
+    /**
+     * @var Variant
+     */
+    protected $variant;
     
     public function __construct()
     {
@@ -144,5 +152,30 @@ class OrderProduct implements EntityInterface
     public function setOrder(Order $order = null)
     {
         $this->order = $order;
+    }
+    
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+    }
+    
+    public function getVariant()
+    {
+        return $this->variant;
+    }
+    
+    public function setVariant(Variant $variant)
+    {
+        $this->variant = $variant;
+    }
+    
+    public function hasVariant(): bool
+    {
+        return $this->variant instanceof Variant;
     }
 }

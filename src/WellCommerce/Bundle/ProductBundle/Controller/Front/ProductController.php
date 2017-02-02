@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -26,9 +26,9 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 class ProductController extends AbstractFrontController
 {
-    public function indexAction(ProductInterface $product = null): Response
+    public function indexAction(Product $product = null): Response
     {
-        if (!$product instanceof ProductInterface || $product->getCategories()->isEmpty()) {
+        if (!$product instanceof Product || $product->getCategories()->isEmpty()) {
             return $this->redirectToRoute('front.home_page.index');
         }
         
@@ -41,7 +41,7 @@ class ProductController extends AbstractFrontController
         ]);
     }
     
-    public function viewAction(ProductInterface $product): JsonResponse
+    public function viewAction(Product $product): JsonResponse
     {
         $this->getProductStorage()->setCurrentProduct($product);
         
@@ -54,7 +54,7 @@ class ProductController extends AbstractFrontController
         ]);
     }
     
-    private function addBreadcrumbs(ProductInterface $product)
+    private function addBreadcrumbs(Product $product)
     {
         $category = $product->getCategories()->last();
         $paths    = $this->get('category.repository')->getCategoryPath($category);

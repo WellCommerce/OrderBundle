@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\ProductBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
 /**
@@ -46,24 +46,19 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
     public function onProductDataBeforeSave(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if ($entity instanceof ProductInterface) {
+        if ($entity instanceof Product) {
             $this->refreshProductSellPrices($entity);
             $this->refreshProductBuyPrices($entity);
             $this->syncProductStock($entity);
         }
         
-        if ($entity instanceof VariantInterface) {
+        if ($entity instanceof Variant) {
             $this->refreshProductVariantSellPrice($entity);
             $this->syncVariantStock($entity);
         }
     }
     
-    /**
-     * Recalculates sell prices for product
-     *
-     * @param ProductInterface $product
-     */
-    protected function refreshProductSellPrices(ProductInterface $product)
+    protected function refreshProductSellPrices(Product $product)
     {
         $sellPrice             = $product->getSellPrice();
         $grossAmount           = $sellPrice->getGrossAmount();
@@ -79,12 +74,7 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         $sellPrice->setDiscountedNetAmount($discountedNetAmount);
     }
     
-    /**
-     * Recalculates sell prices for single product attribute
-     *
-     * @param VariantInterface $variant
-     */
-    protected function refreshProductVariantSellPrice(VariantInterface $variant)
+    protected function refreshProductVariantSellPrice(Variant $variant)
     {
         $product               = $variant->getProduct();
         $sellPrice             = $product->getSellPrice();
@@ -107,15 +97,7 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         $productAttributeSellPrice->setCurrency($sellPrice->getCurrency());
     }
     
-    /**
-     * Calculates new amount for attribute
-     *
-     * @param VariantInterface          $variant
-     * @param                           $amount
-     *
-     * @return float
-     */
-    protected function calculateAttributePrice(VariantInterface $variant, $amount)
+    protected function calculateAttributePrice(Variant $variant, $amount)
     {
         $modifierType  = $variant->getModifierType();
         $modifierValue = $variant->getModifierValue();
@@ -135,12 +117,7 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         return round($amount, 2);
     }
     
-    /**
-     * Recalculates buy prices for product
-     *
-     * @param ProductInterface $product
-     */
-    protected function refreshProductBuyPrices(ProductInterface $product)
+    protected function refreshProductBuyPrices(Product $product)
     {
         $buyPrice    = $product->getBuyPrice();
         $grossAmount = $buyPrice->getGrossAmount();
@@ -152,7 +129,7 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         $buyPrice->setNetAmount($netAmount);
     }
     
-    protected function syncProductStock(ProductInterface $product)
+    protected function syncProductStock(Product $product)
     {
         $trackStock       = $product->getTrackStock();
         $stock            = $this->getProductStock($product);
@@ -175,7 +152,7 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         }
     }
     
-    protected function syncVariantStock(VariantInterface $variant)
+    protected function syncVariantStock(Variant $variant)
     {
         $product          = $variant->getProduct();
         $trackStock       = $product->getTrackStock();
@@ -188,14 +165,14 @@ class ProductDoctrineEventSubscriber implements EventSubscriber
         }
     }
     
-    protected function getProductStock(ProductInterface $product) : int
+    protected function getProductStock(Product $product): int
     {
         if (0 === $product->getVariants()->count()) {
             return $product->getStock();
         }
         
         $stock = 0;
-        $product->getVariants()->map(function (VariantInterface $variant) use (&$stock) {
+        $product->getVariants()->map(function (Variant $variant) use (&$stock) {
             $stock = $stock + $variant->getStock();
         });
         

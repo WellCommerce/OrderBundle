@@ -28,7 +28,6 @@ class ProductDistinction implements EntityInterface
 {
     use Identifiable;
     use Timestampable;
-    use ProductAwareTrait;
     
     /**
      * @var null|DateTime
@@ -39,6 +38,11 @@ class ProductDistinction implements EntityInterface
      * @var null|DateTime
      */
     protected $validTo = null;
+    
+    /**
+     * @var Product
+     */
+    protected $product;
     
     /**
      * @var ProductStatus
@@ -71,6 +75,16 @@ class ProductDistinction implements EntityInterface
         }
         
         $this->validTo = $validTo;
+    }
+    
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
     }
     
     public function setStatus(ProductStatus $status)

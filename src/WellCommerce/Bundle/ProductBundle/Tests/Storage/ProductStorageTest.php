@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\ProductBundle\Tests\Context\Front;
 
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductBundle\Storage\ProductStorage;
 
 /**
@@ -30,7 +29,7 @@ class ProductStorageTest extends AbstractTestCase
         $product = new Product();
         
         $storage->setCurrentProduct($product);
-        $this->assertInstanceOf(ProductInterface::class, $storage->getCurrentProduct());
+        $this->assertInstanceOf(Product::class, $storage->getCurrentProduct());
         $this->assertEquals($product, $storage->getCurrentProduct());
         $this->assertTrue($storage->hasCurrentProduct());
     }

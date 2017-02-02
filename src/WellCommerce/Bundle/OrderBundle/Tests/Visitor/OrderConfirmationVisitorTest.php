@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Tests\Visitor;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class OrderConfirmationVisitorTest
@@ -70,7 +70,7 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
     
     private function createOrderProduct(): OrderProduct
     {
-        /** @var ProductInterface $product */
+        /** @var Product $product */
         $product = $this->container->get('product.repository')->findOneBy([
             'enabled' => true,
         ]);

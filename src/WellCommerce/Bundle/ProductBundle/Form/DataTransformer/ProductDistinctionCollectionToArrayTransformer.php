@@ -18,8 +18,8 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus;
 
 /**
@@ -61,7 +61,7 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
     
     public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $values)
     {
-        if ($modelData instanceof ProductInterface) {
+        if ($modelData instanceof Product) {
             $collection = new ArrayCollection();
             foreach ($values as $productStatusId => $distinctionValue) {
                 if (1 === (int)$distinctionValue['enabled']) {
@@ -77,7 +77,7 @@ final class ProductDistinctionCollectionToArrayTransformer extends CollectionToA
         }
     }
     
-    private function getProductDistinction(ProductInterface $product, ProductStatus $status): ProductDistinction
+    private function getProductDistinction(Product $product, ProductStatus $status): ProductDistinction
     {
         $distinction = $this->manager->getRepository()->findOneBy([
             'product' => $product,

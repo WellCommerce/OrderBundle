@@ -26,6 +26,7 @@ use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
@@ -38,7 +39,7 @@ use WellCommerce\Bundle\UnitBundle\Entity\Unit;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Product implements ProductInterface
+class Product implements EntityInterface
 {
     use Identifiable;
     use Enableable;
@@ -290,7 +291,7 @@ class Product implements ProductInterface
     
     public function setVariants(Collection $variants)
     {
-        $this->variants->map(function (VariantInterface $variant) use ($variants) {
+        $this->variants->map(function (Variant $variant) use ($variants) {
             if (false === $variants->contains($variant)) {
                 $this->variants->removeElement($variant);
             }

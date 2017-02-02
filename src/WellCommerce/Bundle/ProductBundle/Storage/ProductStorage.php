@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Storage;
 
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class ProductStorage
@@ -22,31 +22,22 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 class ProductStorage implements ProductStorageInterface
 {
     /**
-     * @var ProductInterface
+     * @var Product
      */
     protected $currentProduct;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCurrentProduct(ProductInterface $product)
+    
+    public function setCurrentProduct(Product $product)
     {
         $this->currentProduct = $product;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentProduct() : ProductInterface
+    
+    public function getCurrentProduct(): Product
     {
         return $this->currentProduct;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasCurrentProduct() : bool
+    
+    public function hasCurrentProduct(): bool
     {
-        return $this->currentProduct instanceof ProductInterface;
+        return $this->currentProduct instanceof Product;
     }
 }

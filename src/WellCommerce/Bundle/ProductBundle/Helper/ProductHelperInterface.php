@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ProductBundle\Helper;
 
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Interface ProductHelperInterface
@@ -25,11 +25,11 @@ interface ProductHelperInterface
     /**
      * Returns the default product's template variables
      *
-     * @param ProductInterface $product
+     * @param Product $product
      *
      * @return array
      */
-    public function getProductDefaultTemplateData(ProductInterface $product): array;
+    public function getProductDefaultTemplateData(Product $product): array;
     
     /**
      * Returns a dataset of products recommended for category

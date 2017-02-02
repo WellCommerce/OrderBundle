@@ -28,7 +28,6 @@ class ProductPhoto implements EntityInterface
     use Identifiable;
     use Sortable;
     use Timestampable;
-    use ProductAwareTrait;
     
     /**
      * @var bool
@@ -36,9 +35,24 @@ class ProductPhoto implements EntityInterface
     protected $mainPhoto = false;
     
     /**
+     * @var Product
+     */
+    protected $product;
+    
+    /**
      * @var Media
      */
     protected $photo;
+    
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+    }
     
     public function getPhoto(): Media
     {

@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Search;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Component\Search\Model\DocumentInterface;
 use WellCommerce\Component\Search\Model\FieldInterface;
 use WellCommerce\Component\Search\Model\TypeInterface;
@@ -28,7 +28,7 @@ use WellCommerce\Component\Search\Model\TypeInterface;
 class ProductDocument implements DocumentInterface
 {
     /**
-     * @var ProductInterface
+     * @var Product
      */
     private $product;
     
@@ -42,41 +42,34 @@ class ProductDocument implements DocumentInterface
      */
     private $locale;
     
-    /**
-     * ProductDocument constructor.
-     *
-     * @param ProductInterface $product
-     * @param TypeInterface    $type
-     * @param string           $locale
-     */
-    public function __construct(ProductInterface $product, TypeInterface $type, string $locale)
+    public function __construct(Product $product, TypeInterface $type, string $locale)
     {
         $this->product = $product;
         $this->type    = $type;
         $this->locale  = $locale;
     }
     
-    public function getIdentifier() : int
+    public function getIdentifier(): int
     {
         return $this->product->getId();
     }
     
-    public function getEntity() : EntityInterface
+    public function getEntity(): EntityInterface
     {
         return $this->product;
     }
-
-    public function getType() : TypeInterface
+    
+    public function getType(): TypeInterface
     {
         return $this->type;
     }
-
-    public function getLocale() : string
+    
+    public function getLocale(): string
     {
         return $this->locale;
     }
     
-    public function getFields() : Collection
+    public function getFields(): Collection
     {
         $language = new ExpressionLanguage();
         $fields   = $this->type->getFields();
@@ -89,11 +82,11 @@ class ProductDocument implements DocumentInterface
         return $fields;
     }
     
-    private function getFieldValue(string $expression, ExpressionLanguage $language) : string
+    private function getFieldValue(string $expression, ExpressionLanguage $language): string
     {
         $value = $language->evaluate($expression, [
             'resource' => $this->product,
-            'locale'   => $this->locale
+            'locale'   => $this->locale,
         ]);
         
         return $value ?? '';

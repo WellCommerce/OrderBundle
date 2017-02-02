@@ -19,7 +19,6 @@ use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\MediaBundle\Form\DataTransformer\MediaCollectionToArrayTransformer;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductPhoto;
 
 /**
@@ -54,7 +53,7 @@ class ProductPhotoCollectionToArrayTransformer extends MediaCollectionToArrayTra
      */
     public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $values)
     {
-        if (!$modelData instanceof ProductInterface) {
+        if (!$modelData instanceof Product) {
             throw new \InvalidArgumentException(sprintf('Wrong entity passed "%s"', get_class($modelData)));
         }
         
@@ -158,7 +157,7 @@ class ProductPhotoCollectionToArrayTransformer extends MediaCollectionToArrayTra
         return $this->getRepository()->find($id);
     }
     
-    protected function getProductPhoto(Media $media, ProductInterface $modelData, $values)
+    protected function getProductPhoto(Media $media, Product $modelData, $values)
     {
         $mainPhoto    = $this->isMainPhoto($media, $values['main']);
         $productPhoto = new ProductPhoto();
