@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CurrencyBundle\Converter\CurrencyConverterInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 
 /**
  * Class PriceTableCalculator
@@ -39,7 +39,7 @@ final class PriceTableCalculator implements ShippingCalculatorInterface
         $this->currencyConverter = $currencyConverter;
     }
     
-    public function calculate(ShippingMethodInterface $shippingMethod, ShippingSubjectInterface $subject): Collection
+    public function calculate(ShippingMethod $shippingMethod, ShippingSubjectInterface $subject): Collection
     {
         $ranges         = $shippingMethod->getCosts();
         $baseCurrency   = $subject->getCurrency();

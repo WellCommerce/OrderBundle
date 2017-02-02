@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\ShippingBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use WellCommerce\Bundle\CountryBundle\Repository\CountryRepository;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
 /**
@@ -67,7 +67,7 @@ final class ShippingMethodEventSubscriber implements EventSubscriber
             $cost->setCurrency($shippingMethod->getCurrency()->getCode());
         }
         
-        if ($entity instanceof ShippingMethodInterface) {
+        if ($entity instanceof ShippingMethod) {
             $availableCountries = $this->countryRepository->all();
             $countries          = array_filter($entity->getCountries(), function ($k) use ($availableCountries) {
                 return array_key_exists($k, $availableCountries);

@@ -16,8 +16,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingCalculatorInterface;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Exception\CalculatorNotFoundException;
 use WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodRepositoryInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
@@ -64,7 +64,7 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         $methods    = $this->getShippingMethods($subject);
         $collection = new ArrayCollection();
         
-        $methods->map(function (ShippingMethodInterface $shippingMethod) use ($subject, $collection) {
+        $methods->map(function (ShippingMethod $shippingMethod) use ($subject, $collection) {
             $costs = $this->getShippingMethodCosts($shippingMethod, $subject);
             
             $costs->map(function (ShippingMethodCost $cost) use ($collection) {
@@ -75,7 +75,7 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         return $collection;
     }
     
-    public function getShippingMethodCosts(ShippingMethodInterface $method, ShippingSubjectInterface $subject): Collection
+    public function getShippingMethodCosts(ShippingMethod $method, ShippingSubjectInterface $subject): Collection
     {
         $calculator = $this->getCalculator($method);
         $country    = $subject->getCountry();
@@ -93,7 +93,7 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         return $calculator->calculate($method, $subject);
     }
     
-    private function getCalculator(ShippingMethodInterface $shippingMethod): ShippingCalculatorInterface
+    private function getCalculator(ShippingMethod $shippingMethod): ShippingCalculatorInterface
     {
         $calculator = $shippingMethod->getCalculator();
         
@@ -110,7 +110,7 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         $country = $subject->getCountry();
         $shop    = $this->getCurrentShop($subject);
         
-        return $methods->filter(function (ShippingMethodInterface $method) use ($country, $shop) {
+        return $methods->filter(function (ShippingMethod $method) use ($country, $shop) {
             if (strlen($country) && count($method->getCountries()) && !in_array($country, $method->getCountries())) {
                 return false;
             }

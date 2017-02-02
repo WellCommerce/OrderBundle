@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**
  * Interface ShippingCalculatorInterface
@@ -22,16 +22,16 @@ use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
  */
 interface ShippingCalculatorInterface
 {
-    public function getAlias() : string;
+    public function getAlias(): string;
     
     /**
      * Returns the shipping costs collection for given amount
      *
-     * @param ShippingMethodInterface  $method
+     * @param ShippingMethod           $method
      * @param ShippingSubjectInterface $subject
      *
      * @return Collection
      */
-    public function calculate(ShippingMethodInterface $method, ShippingSubjectInterface $subject) : Collection;
+    public function calculate(ShippingMethod $method, ShippingSubjectInterface $subject): Collection;
 }
 

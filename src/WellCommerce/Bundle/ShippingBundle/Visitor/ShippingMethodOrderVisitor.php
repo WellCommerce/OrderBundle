@@ -18,7 +18,6 @@ use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodOptionsProviderInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 
@@ -84,7 +83,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         $this->setShippingMethodOption($order, $cost->getShippingMethod());
     }
     
-    private function setShippingMethodOption(Order $order, ShippingMethodInterface $shippingMethod)
+    private function setShippingMethodOption(Order $order, ShippingMethod $shippingMethod)
     {
         $optionsProvider = $this->getOptionsProvider($shippingMethod);
         $selectedOption  = $order->getShippingMethodOption();
@@ -123,7 +122,7 @@ final class ShippingMethodOrderVisitor implements OrderVisitorInterface
         return $this->methodProvider->getShippingMethodCosts($order->getShippingMethod(), new OrderContext($order));
     }
     
-    private function getOptionsProvider(ShippingMethodInterface $method)
+    private function getOptionsProvider(ShippingMethod $method)
     {
         $provider = $method->getOptionsProvider();
         

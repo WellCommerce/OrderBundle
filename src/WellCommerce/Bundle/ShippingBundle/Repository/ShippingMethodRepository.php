@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShippingBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**
  * Class ShippingMethodRepository
@@ -29,7 +29,7 @@ class ShippingMethodRepository extends EntityRepository implements ShippingMetho
         $criteria->where($criteria->expr()->eq('enabled', true));
         $criteria->orderBy(['hierarchy' => 'asc']);
         
-        $methods = $this->matching($criteria)->filter(function (ShippingMethodInterface $shippingMethod) {
+        $methods = $this->matching($criteria)->filter(function (ShippingMethod $shippingMethod) {
             $paymentMethodsCount     = $shippingMethod->getPaymentMethods()->count();
             $shippingMethodCostCount = $shippingMethod->getCosts()->count();
             
@@ -43,7 +43,7 @@ class ShippingMethodRepository extends EntityRepository implements ShippingMetho
     {
         $options = [];
         $methods = $this->getCollection();
-        $methods->map(function (ShippingMethodInterface $method) use (&$options) {
+        $methods->map(function (ShippingMethod $method) use (&$options) {
             $options[] = [
                 'id'          => $method->getId(),
                 'name'        => $method->translate()->getName(),

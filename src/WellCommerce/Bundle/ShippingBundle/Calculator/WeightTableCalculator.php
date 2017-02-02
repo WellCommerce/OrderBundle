@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**
  * Class WeightTableCalculator
@@ -26,12 +26,12 @@ class WeightTableCalculator implements ShippingCalculatorInterface
     /**
      * {@inheritdoc}
      */
-    public function calculate(ShippingMethodInterface $shippingMethod, ShippingSubjectInterface $subject) : Collection
+    public function calculate(ShippingMethod $shippingMethod, ShippingSubjectInterface $subject): Collection
     {
         return new ArrayCollection();
     }
     
-    public function getAlias() : string
+    public function getAlias(): string
     {
         return 'weight_table';
     }
