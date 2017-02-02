@@ -16,6 +16,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
 use Symfony\Component\Yaml\Yaml;
 use WellCommerce\Bundle\ApiBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
+use WellCommerce\Bundle\ApiBundle\Resolver\MappingFileResolver;
 use WellCommerce\Bundle\DistributionBundle\Resolver\ConfigurationFileResolverInterface;
 
 /**
@@ -29,12 +30,12 @@ final class SerializationCacheWarmer extends CacheWarmer
      * @var ConfigurationFileResolverInterface
      */
     private $resolver;
-
+    
     /**
      * @var array
      */
     private $mapping;
-
+    
     /**
      * @var Filesystem
      */
@@ -43,10 +44,10 @@ final class SerializationCacheWarmer extends CacheWarmer
     /**
      * SerializationCacheWarmer constructor.
      *
-     * @param ConfigurationFileResolverInterface $resolver
-     * @param array                              $mapping
+     * @param MappingFileResolver $resolver
+     * @param array               $mapping
      */
-    public function __construct(ConfigurationFileResolverInterface $resolver, array $mapping)
+    public function __construct(MappingFileResolver $resolver, array $mapping)
     {
         $this->resolver   = $resolver;
         $this->mapping    = $mapping;
@@ -63,10 +64,10 @@ final class SerializationCacheWarmer extends CacheWarmer
         }
     }
     
-    private function getConfiguration() : array
+    private function getConfiguration(): array
     {
         $configuration = [];
-
+        
         foreach ($this->mapping as $className => $options) {
             $path = $this->resolver->resolvePath($options['mapping']);
             if ($this->filesystem->exists($path)) {
@@ -77,8 +78,8 @@ final class SerializationCacheWarmer extends CacheWarmer
         
         return $configuration;
     }
-
-    private function parseContent(string $content) : array
+    
+    private function parseContent(string $content): array
     {
         return Yaml::parse($content);
     }

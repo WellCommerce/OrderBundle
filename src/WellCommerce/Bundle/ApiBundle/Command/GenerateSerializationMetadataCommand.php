@@ -20,6 +20,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
+use WellCommerce\Bundle\ApiBundle\Resolver\MappingFileResolver;
 use WellCommerce\Bundle\DistributionBundle\Resolver\ConfigurationFileResolverInterface;
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
 
@@ -34,12 +35,12 @@ final class GenerateSerializationMetadataCommand extends Command
      * @var array
      */
     private $hiddenFields = ['createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'deletedBy', 'password', 'salt'];
-
+    
     /**
-     * @var ConfigurationFileResolverInterface
+     * @var MappingFileResolver
      */
     private $resolver;
-
+    
     /**
      * @var DoctrineHelperInterface
      */
@@ -58,11 +59,11 @@ final class GenerateSerializationMetadataCommand extends Command
     /**
      * GenerateSerializationMetadataCommand constructor.
      *
-     * @param ConfigurationFileResolverInterface $resolver
-     * @param DoctrineHelperInterface            $doctrineHelper
-     * @param array                              $mapping
+     * @param MappingFileResolver     $resolver
+     * @param DoctrineHelperInterface $doctrineHelper
+     * @param array                   $mapping
      */
-    public function __construct(ConfigurationFileResolverInterface $resolver, DoctrineHelperInterface $doctrineHelper, array $mapping = [])
+    public function __construct(MappingFileResolver $resolver, DoctrineHelperInterface $doctrineHelper, array $mapping = [])
     {
         parent::__construct();
         $this->resolver       = $resolver;
@@ -100,13 +101,13 @@ final class GenerateSerializationMetadataCommand extends Command
     protected function dumpSerializationFile(ClassMetadata $metadata, array $options, OutputInterface $output, $force = false)
     {
         $targetPath = $this->resolver->resolvePath($options['mapping']);
-
+        
         $config = [
             $metadata->getName() => [
                 'fields'       => $this->prepareMetadataFields($metadata),
                 'associations' => $this->prepareMetadataAssociations($metadata),
                 'callbacks'    => [],
-            ]
+            ],
         ];
         
         $message = 'Dumped serialization config for <info>%s</info>';

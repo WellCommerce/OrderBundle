@@ -1,32 +1,22 @@
 <?php
-/*
- * WellCommerce Open-Source E-Commerce Platform
- * 
- * This file is part of the WellCommerce package.
- *
- * (c) Adam Piotrowski <adam@wellcommerce.org>
- * 
- * For the full copyright and license information,
- * please view the LICENSE file that was distributed with this source code.
- */
 
-namespace WellCommerce\Bundle\DistributionBundle\Resolver;
+namespace WellCommerce\Bundle\ApiBundle\Resolver;
 
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * Class ConfigurationFileResolver
+ * Class MappingFileResolver
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class ConfigurationFileResolver implements ConfigurationFileResolverInterface
+final class MappingFileResolver
 {
     /**
      * @var KernelInterface
      */
     private $kernel;
-
+    
     /**
      * BundleConfigPathResolver constructor.
      *
@@ -36,8 +26,8 @@ final class ConfigurationFileResolver implements ConfigurationFileResolverInterf
     {
         $this->kernel = $kernel;
     }
-
-    public function resolvePath(string $path) : string
+    
+    public function resolvePath(string $path): string
     {
         $resourcePathExploded = explode('/', $path);
         $resourcePathRoot     = array_shift($resourcePathExploded);

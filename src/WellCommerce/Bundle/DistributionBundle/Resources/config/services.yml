@@ -1,3 +1,10 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
 
 services:
     knp.packagist_api.client:
@@ -16,23 +23,10 @@ services:
         class: WellCommerce\Bundle\DistributionBundle\Console\ConsoleActionExecutor
         arguments: ['@kernel']
 
-    distribution.bundle.locator:
-        class: WellCommerce\Bundle\DistributionBundle\Locator\BundleLocator
-        public: false
+    distribution.bundle.manipulator:
+        class: WellCommerce\Bundle\DistributionBundle\Manipulator\WellCommerceManipulator
         arguments: ['@kernel']
 
-    distribution.bundle.loader:
-        class: WellCommerce\Bundle\DistributionBundle\Loader\BundleLoader
-        public: false
-        arguments: ['@kernel']
-
-    distribution.configuration_file_resolver:
-        class: WellCommerce\Bundle\DistributionBundle\Resolver\ConfigurationFileResolver
-        arguments: ['@kernel']
-
-    distribution.bundle.cache_warmer:
-        class: WellCommerce\Bundle\DistributionBundle\CacheWarmer\BundleCacheWarmer
-        public: false
-        tags:
-            - { name: kernel.cache_warmer }
-        arguments: ['@distribution.bundle.loader']
+    distribution.bundle.generator:
+        class: WellCommerce\Bundle\DistributionBundle\Generator\WellCommerceBundleGenerator
+        arguments: ['@kernel', '@twig']
