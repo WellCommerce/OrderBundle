@@ -57,11 +57,15 @@ services:
             - { name: order.visitor, alias: order_product }
         arguments: ['@currency.helper', '@variant.helper']
 
+    product_total.order.calculator:
+        class: WellCommerce\Bundle\OrderBundle\Calculator\OrderProductTotalCalculator
+        arguments: ['@currency.helper']
+
     product_total.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderProductTotalVisitor
         tags:
             - { name: order.visitor, alias: product_total }
-        arguments: ['@currency.helper']
+        arguments: ['@product_total.order.calculator']
 
     summary.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderSummaryVisitor
