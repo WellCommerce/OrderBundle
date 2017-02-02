@@ -68,21 +68,21 @@ final class ReviewExtension extends \Twig_Extension
     
     public function getLikesCount(int $id)
     {
-        $reviewRecommendations = $this->repository->findBy([
+        $recommendations = $this->repository->findBy([
             'review' => $id,
             'liked'  => true,
         ]);
         
-        return count($reviewRecommendations);
+        return count($recommendations);
     }
     
     public function getUnlikesCount(int $id)
     {
-        $reviewRecommendations = $this->repository->findBy([
+        $recommendations = $this->repository->findBy([
             'review'  => $id,
             'unliked' => true,
         ]);
         
-        return count($reviewRecommendations);
+        return count($recommendations);
     }
 }
