@@ -16,16 +16,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class User
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class User implements UserInterface
+class User implements \Serializable, EquatableInterface, UserInterface, EntityInterface
 {
     use Identifiable;
     use Enableable;
@@ -148,7 +150,7 @@ class User implements UserInterface
         list($this->id, $this->username, $this->password) = unserialize($serialized);
     }
     
-    public function isEqualTo(BaseUserInterface $user)
+    public function isEqualTo(UserInterface $user)
     {
         if ($this->password !== $user->getPassword()) {
             return false;

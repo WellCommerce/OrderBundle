@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\AdminBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\User;
 use WellCommerce\Bundle\AdminBundle\Repository\UserRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
@@ -53,7 +53,7 @@ class AdminSubscriber extends AbstractEventSubscriber
         $password = $this->getSecurityHelper()->generateRandomPassword();
         $role     = $this->get('role.repository')->findOneByName('admin');
         $user     = $entityEvent->getEntity();
-        if ($user instanceof UserInterface) {
+        if ($user instanceof User) {
             $user->addRole($role);
             $user->setPassword($password);
             
@@ -63,14 +63,14 @@ class AdminSubscriber extends AbstractEventSubscriber
                 'template'      => 'WellCommerceAdminBundle:Admin/Email:register.html.twig',
                 'parameters'    => [
                     'user'     => $user,
-                    'password' => $password
+                    'password' => $password,
                 ],
                 'configuration' => $this->getShopStorage()->getCurrentShop()->getMailerConfiguration(),
             ]);
         }
     }
     
-    private function getUserRepository() : UserRepositoryInterface
+    private function getUserRepository(): UserRepositoryInterface
     {
         return $this->get('user.repository');
     }

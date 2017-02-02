@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Manager;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\ClientBundle\Exception\ResetPasswordException;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
@@ -27,7 +27,7 @@ class ClientManager extends AbstractManager
 {
     public function initResource(): EntityInterface
     {
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this->factory->create();
         $shop   = $this->getShopStorage()->getCurrentShop();
         
@@ -41,18 +41,18 @@ class ClientManager extends AbstractManager
         return $client;
     }
     
-    public function getClientByUsername(string $username): ClientInterface
+    public function getClientByUsername(string $username): Client
     {
         $client = $this->getRepository()->findOneBy(['clientDetails.username' => $username]);
         
-        if (!$client instanceof ClientInterface) {
+        if (!$client instanceof Client) {
             throw new ResetPasswordException(sprintf('client.flash.reset_password.email_not_found', $username));
         }
         
         return $client;
     }
     
-    public function resetPassword(ClientInterface $client)
+    public function resetPassword(Client $client)
     {
         $hash = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36) . $client->getId();
         $client->getClientDetails()->setResetPasswordHash($hash);

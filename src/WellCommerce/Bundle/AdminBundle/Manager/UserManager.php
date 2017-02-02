@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AdminBundle\Manager;
 
-use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\User;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
@@ -36,13 +36,13 @@ final class UserManager extends AbstractManager
             'template'      => 'WellCommerceAdminBundle:Admin/Email:reset_password.html.twig',
             'parameters'    => [
                 'user'     => $user,
-                'password' => $password
+                'password' => $password,
             ],
-            'configuration' => $this->getShopStorage()->getCurrentShop()->getMailerConfiguration()
+            'configuration' => $this->getShopStorage()->getCurrentShop()->getMailerConfiguration(),
         ]);
     }
     
-    private function getUser(string $username) : UserInterface
+    private function getUser(string $username): User
     {
         return $this->repository->findOneBy(['username' => $username]);
     }

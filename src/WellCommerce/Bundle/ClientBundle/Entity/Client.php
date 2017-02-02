@@ -15,8 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use Symfony\Component\Security\Core\User\UserInterface as BaseUserInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
 
@@ -25,7 +28,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Client implements ClientInterface
+class Client implements EntityInterface, \Serializable, UserInterface, EquatableInterface, EncoderAwareInterface
 {
     const ROLE_CLIENT = 'ROLE_CLIENT';
     
@@ -114,7 +117,7 @@ class Client implements ClientInterface
         $this->clientDetails->setPassword($password);
     }
     
-    public function isEqualTo(BaseUserInterface $user)
+    public function isEqualTo(UserInterface $user)
     {
         if ($this->getPassword() !== $user->getPassword()) {
             return false;

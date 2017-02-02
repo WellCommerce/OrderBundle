@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Visitor;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
@@ -51,7 +51,7 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
     {
         $client = $order->getClient();
         
-        if ($client instanceof ClientInterface && null === $order->getCoupon()) {
+        if ($client instanceof Client && null === $order->getCoupon()) {
             $modifierValue = $this->getDiscountForClient($client);
             
             if ($modifierValue > 0) {
@@ -66,14 +66,7 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
         }
     }
     
-    /**
-     * Returns the client's discount
-     *
-     * @param ClientInterface $client
-     *
-     * @return float
-     */
-    protected function getDiscountForClient(ClientInterface $client): float
+    protected function getDiscountForClient(Client $client): float
     {
         return round((float)$client->getClientDetails()->getDiscount() / 100, 2);
     }

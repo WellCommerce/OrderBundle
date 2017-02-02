@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\CoreBundle\Controller\Front;
 
 use WellCommerce\Bundle\CategoryBundle\Storage\CategoryStorageInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\ProducerBundle\Storage\ProducerStorageInterface;
@@ -51,7 +51,7 @@ abstract class AbstractFrontController extends AbstractController implements Fro
         return $this->get('order.provider.front');
     }
     
-    protected function getAuthenticatedClient(): ClientInterface
+    protected function getAuthenticatedClient(): Client
     {
         return $this->getSecurityHelper()->getAuthenticatedClient();
     }

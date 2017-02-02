@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
@@ -100,7 +100,7 @@ class OrderAddressFormBuilder extends AbstractFormBuilder
             'name'    => 'billingAddress.country',
             'label'   => $this->trans('client.label.address.country'),
             'options' => $this->get('country.repository')->all(),
-            'default' => $this->getShopStorage()->getCurrentShop()->getDefaultCountry()
+            'default' => $this->getShopStorage()->getCurrentShop()->getDefaultCountry(),
         ]));
     }
     
@@ -125,7 +125,7 @@ class OrderAddressFormBuilder extends AbstractFormBuilder
             'name'  => 'shippingAddress.lastName',
             'label' => $this->trans('client.label.address.last_name'),
         ]));
-    
+        
         $shippingAddress->addChild($this->getElement('text_field', [
             'name'  => 'shippingAddress.companyName',
             'label' => $this->trans('client.label.address.company_name'),
@@ -162,7 +162,7 @@ class OrderAddressFormBuilder extends AbstractFormBuilder
             'name'    => 'shippingAddress.country',
             'label'   => $this->trans('client.label.address.country'),
             'options' => $this->get('country.repository')->all(),
-            'default' => $this->getShopStorage()->getCurrentShop()->getDefaultCountry()
+            'default' => $this->getShopStorage()->getCurrentShop()->getDefaultCountry(),
         ]));
     }
     
@@ -201,7 +201,7 @@ class OrderAddressFormBuilder extends AbstractFormBuilder
     
     protected function addClientDetailsFieldset(FormInterface $form)
     {
-        if (!$this->getSecurityHelper()->getCurrentClient() instanceof ClientInterface) {
+        if (!$this->getSecurityHelper()->getCurrentClient() instanceof Client) {
             $clientDetails = $form->addChild($this->getElement('nested_fieldset', [
                 'name'  => 'clientDetails',
                 'label' => $this->trans('client.heading.client'),

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ClientBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 
 /**
@@ -23,15 +23,15 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
  */
 class ClientController extends AbstractFrontController
 {
-    public function loginAction() : Response
+    public function loginAction(): Response
     {
-        if ($this->getSecurityHelper()->getCurrentClient() instanceof ClientInterface) {
+        if ($this->getSecurityHelper()->getCurrentClient() instanceof Client) {
             return $this->redirectToRoute('front.client_order.index');
         }
-
+        
         return $this->displayTemplate('login');
     }
-
+    
     public function loginCheckAction()
     {
     }

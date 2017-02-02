@@ -38,23 +38,6 @@ class AttributeManager extends AbstractManager
         return $attribute;
     }
     
-    public function getAttributeSet(int $attributeGroupId): array
-    {
-        $sets                 = [];
-        $attributeGroup       = $this->findAttributeGroup($attributeGroupId);
-        $attributesCollection = $attributeGroup->getAttributes();
-        
-        $attributesCollection->map(function (Attribute $attribute) use (&$sets) {
-            $sets[] = [
-                'id'     => $attribute->getId(),
-                'name'   => $attribute->translate()->getName(),
-                'values' => $this->getAttributeValuesSet($attribute),
-            ];
-        });
-        
-        return $sets;
-    }
-    
     public function findAttributeGroup(int $id): AttributeGroup
     {
         return $this->get('attribute_group.repository')->find($id);

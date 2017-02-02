@@ -12,10 +12,11 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Controller\Box;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\ClientBundle\Exception\ResetPasswordException;
 use WellCommerce\Bundle\ClientBundle\Manager\ClientManager;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
+use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
  * Class ClientForgotPasswordBoxController
@@ -41,7 +42,7 @@ class ClientForgotPasswordBoxController extends AbstractBoxController
                     'subject'       => $this->getTranslatorHelper()->trans('client.email.heading.reset_password'),
                     'template'      => 'WellCommerceClientBundle:Email:reset_password.html.twig',
                     'parameters'    => [
-                        'client' => $client
+                        'client' => $client,
                     ],
                     'configuration' => $client->getShop()->getMailerConfiguration(),
                 ]);
@@ -63,7 +64,7 @@ class ClientForgotPasswordBoxController extends AbstractBoxController
         $hash   = $this->getRequestHelper()->getAttributesBagParam('hash');
         $client = $this->getManager()->getRepository()->findOneBy(['clientDetails.resetPasswordHash' => $hash]);
         
-        if (!$client instanceof ClientInterface) {
+        if (!$client instanceof Client) {
             return $this->getRouterHelper()->redirectToAction('reset');
         }
         
@@ -83,31 +84,23 @@ class ClientForgotPasswordBoxController extends AbstractBoxController
             
             $this->getFlashHelper()->addError('client.flash.change_password.error');
         }
-
+        
         
         return $this->displayTemplate('change', [
             'form' => $form,
         ]);
     }
     
-    protected function getManager() : ClientManager
+    protected function getManager(): ClientManager
     {
         return parent::getManager();
     }
     
-    /**
-     * Creates a change password form for client
-     *
-     * @param ClientInterface $client
-     *
-     * @return \WellCommerce\Component\Form\Elements\FormInterface
-     */
-    private function createChangePasswordForm(ClientInterface $client)
+    private function createChangePasswordForm(Client $client): FormInterface
     {
         return $this->get('client_change_password.form_builder.front')->createForm([
             'name'              => 'change_password',
-            'validation_groups' => ['client_password_change']
+            'validation_groups' => ['client_password_change'],
         ], $client);
     }
-    
 }

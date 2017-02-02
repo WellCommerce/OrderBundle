@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Visitor;
 
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
@@ -53,7 +53,7 @@ class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements 
     {
         $client = $order->getClient();
         
-        if ($client instanceof ClientInterface && null === $order->getCoupon()) {
+        if ($client instanceof Client && null === $order->getCoupon()) {
             $clientGroup   = $client->getClientGroup();
             $modifierValue = $this->getDiscountForClientGroup($clientGroup);
             

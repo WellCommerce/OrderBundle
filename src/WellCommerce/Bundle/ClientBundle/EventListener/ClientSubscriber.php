@@ -30,17 +30,5 @@ class ClientSubscriber extends AbstractEventSubscriber
     
     public function onClientPostCreate(EntityEvent $event)
     {
-//        $client = $event->getEntity();
-//        if ($client instanceof ClientInterface) {
-//            $this->getMailerHelper()->sendEmail([
-//                'recipient'     => $client->getContactDetails()->getEmail(),
-//                'subject'       => $this->getTranslatorHelper()->trans('client.email.heading.register'),
-//                'template'      => 'WellCommerceAppBundle:Email:register.html.twig',
-//                'parameters'    => [
-//                    'client' => $client,
-//                ],
-//                'configuration' => $client->getShop()->getMailerConfiguration(),
-//            ]);
-//        }
     }
 }

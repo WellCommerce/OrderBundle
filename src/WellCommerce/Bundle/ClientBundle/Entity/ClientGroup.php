@@ -70,7 +70,7 @@ class ClientGroup implements EntityInterface
         return $this->clients;
     }
     
-    public function addClient(ClientInterface $client)
+    public function addClient(Client $client)
     {
         $this->clients->add($client);
     }

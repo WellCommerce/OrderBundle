@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ClientBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 
@@ -27,7 +27,7 @@ class ClientController extends AbstractAdminController
 {
     public function addAction(Request $request): Response
     {
-        /** @var ClientInterface $resource */
+        /** @var Client $resource */
         $resource = $this->getManager()->initResource();
         $password = Helper::generateRandomPassword();
         $form     = $this->getForm($resource, [
