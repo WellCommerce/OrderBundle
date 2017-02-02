@@ -42,7 +42,7 @@ class OrderModifier implements EntityInterface
     public function setOrder(Order $order)
     {
         $this->order = $order;
-        $order->addModifier($this);
+        $order->getModifiers()->set($this->getName(), $this);
     }
     
     public function getName(): string
