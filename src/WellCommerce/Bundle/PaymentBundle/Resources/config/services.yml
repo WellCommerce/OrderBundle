@@ -56,7 +56,7 @@ services:
         shared: false
 
     bank_transfer.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\BankTransferProcessor
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
         tags:
             - { name: payment.processor }
         arguments: ['@bank_transfer.gateway', '@bank_transfer.configurator']
@@ -74,7 +74,7 @@ services:
         shared: false
 
     cash_on_delivery.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\CashOnDeliveryProcessor
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
         tags:
             - { name: payment.processor }
         arguments: ['@cash_on_delivery.gateway', '@cash_on_delivery.configurator']
@@ -93,7 +93,7 @@ services:
         shared: false
 
     paypal.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\PayPalProcessor
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
         tags:
             - { name: payment.processor }
         arguments: ['@paypal.gateway', '@paypal.configurator']
@@ -112,7 +112,7 @@ services:
         shared: false
 
     payu.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\PayUProcessor
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
         tags:
             - { name: payment.processor }
         arguments: ['@payu.gateway', '@payu.configurator']
@@ -131,7 +131,7 @@ services:
         shared: false
 
     przelewy24.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\Przelewy24Processor
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
         tags:
             - { name: payment.processor }
         arguments: ['@przelewy24.gateway', '@przelewy24.configurator']

@@ -1,27 +1,16 @@
 <?php
-/*
- * WellCommerce Open-Source E-Commerce Platform
- *
- * This file is part of the WellCommerce package.
- *
- * (c) Adam Piotrowski <adam@wellcommerce.org>
- *
- * For the full copyright and license information,
- * please view the LICENSE file that was distributed with this source code.
- */
 
 namespace WellCommerce\Bundle\PaymentBundle\Processor;
 
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\PaymentBundle\Configurator\PaymentMethodConfiguratorInterface;
 use WellCommerce\Bundle\PaymentBundle\Gateway\PaymentGatewayInterface;
 
 /**
- * Class AbstractPaymentProcessor
+ * Class GenericPaymentProcessor
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractPaymentProcessor extends AbstractContainerAware implements PaymentProcessorInterface
+class GenericPaymentProcessor implements PaymentProcessorInterface
 {
     /**
      * @var PaymentGatewayInterface
@@ -34,7 +23,7 @@ abstract class AbstractPaymentProcessor extends AbstractContainerAware implement
     protected $configurator;
     
     /**
-     * AbstractPaymentProcessor constructor.
+     * GenericPaymentProcessor constructor.
      *
      * @param PaymentGatewayInterface            $gateway
      * @param PaymentMethodConfiguratorInterface $configurator
@@ -45,12 +34,12 @@ abstract class AbstractPaymentProcessor extends AbstractContainerAware implement
         $this->configurator = $configurator;
     }
     
-    public function getGateway() : PaymentGatewayInterface
+    public function getGateway(): PaymentGatewayInterface
     {
         return $this->gateway;
     }
     
-    public function getConfigurator() : PaymentMethodConfiguratorInterface
+    public function getConfigurator(): PaymentMethodConfiguratorInterface
     {
         return $this->configurator;
     }

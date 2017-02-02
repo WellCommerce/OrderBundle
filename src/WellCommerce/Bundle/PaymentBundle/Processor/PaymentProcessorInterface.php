@@ -22,13 +22,7 @@ use WellCommerce\Bundle\PaymentBundle\Gateway\PaymentGatewayInterface;
  */
 interface PaymentProcessorInterface
 {
-    /**
-     * @return PaymentGatewayInterface
-     */
-    public function getGateway() : PaymentGatewayInterface;
-
-    /**
-     * @return PaymentMethodConfiguratorInterface
-     */
-    public function getConfigurator() : PaymentMethodConfiguratorInterface;
+    public function getGateway(): PaymentGatewayInterface;
+    
+    public function getConfigurator(): PaymentMethodConfiguratorInterface;
 }
