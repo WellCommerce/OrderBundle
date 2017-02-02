@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\Test\Controller\Front;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**
@@ -30,7 +30,7 @@ class AbstractFrontControllerTestCase extends AbstractTestCase
         parent::setUp();
     }
     
-    protected function logIn(): ClientInterface
+    protected function logIn(): Client
     {
         $client   = $this->container->get('client.repository')->findOneBy([]);
         $session  = $this->client->getContainer()->get('session');
@@ -54,28 +54,12 @@ class AbstractFrontControllerTestCase extends AbstractTestCase
         $this->client->request('GET', $this->generateUrl('front.client.logout'));
     }
     
-    /**
-     * Returns an URL generated for route
-     *
-     * @param string     $routeName
-     * @param array      $params
-     * @param bool|false $absolute
-     *
-     * @return string
-     */
-    protected function generateUrl($routeName, array $params = [], $absolute = UrlGeneratorInterface::ABSOLUTE_URL)
+    protected function generateUrl(string $routeName, array $params = [], $absolute = UrlGeneratorInterface::ABSOLUTE_URL): string
     {
         return $this->container->get('router')->generate($routeName, $params, $absolute);
     }
     
-    /**
-     * Returns a translated phrase
-     *
-     * @param string $message
-     *
-     * @return string
-     */
-    protected function trans($message, $domain = 'wellcommerce')
+    protected function trans(string $message, string $domain = 'wellcommerce'): string
     {
         return $this->container->get('translator.helper')->trans($message, [], $domain);
     }

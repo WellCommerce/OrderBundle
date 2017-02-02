@@ -13,31 +13,31 @@
 namespace WellCommerce\Bundle\CoreBundle\Helper\Security;
 
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\AdminBundle\Entity\UserInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\AdminBundle\Entity\User;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 
 /**
- * Interface TranslatorHelperInterface
+ * Interface SecurityHelperInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
 interface SecurityHelperInterface
 {
     public function getCurrentUser();
-
+    
     public function getCurrentClient();
-
+    
     public function getCurrentAdmin();
-
-    public function getAuthenticatedClient() : ClientInterface;
-
-    public function getAuthenticatedAdmin() : UserInterface;
-
-    public function isActiveFirewall(string $name) : bool;
-
-    public function isActiveAdminFirewall() : bool;
+    
+    public function getAuthenticatedClient(): Client;
+    
+    public function getAuthenticatedAdmin(): User;
+    
+    public function isActiveFirewall(string $name): bool;
+    
+    public function isActiveAdminFirewall(): bool;
     
     public function getFirewallNameForRequest(Request $request);
-
-    public function generateRandomPassword(int $length = 8) : string;
+    
+    public function generateRandomPassword(int $length = 8): string;
 }
