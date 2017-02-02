@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Configurator;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 
 /**
  * Class AbstractPaymentMethodConfigurator
@@ -24,16 +24,16 @@ use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
 abstract class AbstractPaymentMethodConfigurator extends AbstractContainerAware implements PaymentMethodConfiguratorInterface
 {
     protected $configuration;
-
-    public function configure(PaymentMethodInterface $paymentMethod)
+    
+    public function configure(PaymentMethod $paymentMethod)
     {
         $configuration = $paymentMethod->getConfiguration();
         $resolver      = new OptionsResolver();
         $this->configureOptions($resolver);
         $this->configuration = $resolver->resolve($configuration);
     }
-
-    public function getConfiguration() : array
+    
+    public function getConfiguration(): array
     {
         if (null === $this->configuration) {
             throw new \LogicException('Processor was not configured prior to accessing configuration. Please use configure() method');
@@ -42,7 +42,7 @@ abstract class AbstractPaymentMethodConfigurator extends AbstractContainerAware 
         return $this->configuration;
     }
     
-    public function getConfigurationKey(string $name) : string
+    public function getConfigurationKey(string $name): string
     {
         return sprintf('%s_%s', $this->getName(), $name);
     }
@@ -59,7 +59,7 @@ abstract class AbstractPaymentMethodConfigurator extends AbstractContainerAware 
         $resolver->setRequired($this->getSupportedConfigurationKeys());
     }
     
-    public function getSupportedConfigurationKeys() : array
+    public function getSupportedConfigurationKeys(): array
     {
         return [];
     }

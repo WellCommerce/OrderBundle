@@ -5,13 +5,14 @@ namespace WellCommerce\Bundle\ShippingBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class ShippingMethodCost
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ShippingMethodCost implements ShippingMethodCostInterface
+class ShippingMethodCost implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

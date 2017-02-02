@@ -18,7 +18,6 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 
 /**
  * Class LoadShippingData
@@ -70,7 +69,7 @@ class LoadShippingMethodData extends AbstractDataFixture
         $this->setReference('shipping_method_ups', $ups);
     }
     
-    private function getShippingCostsCollection(ShippingMethodInterface $shippingMethod)
+    private function getShippingCostsCollection(ShippingMethod $shippingMethod)
     {
         $collection = new ArrayCollection();
         

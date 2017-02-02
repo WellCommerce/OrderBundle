@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\PaymentBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorCollection;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
 
@@ -27,7 +27,7 @@ use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorInterface;
 class PaymentMethodDoctrineEventSubscriber implements EventSubscriber
 {
     use ContainerAwareTrait;
-
+    
     public function getSubscribedEvents()
     {
         return [
@@ -49,22 +49,22 @@ class PaymentMethodDoctrineEventSubscriber implements EventSubscriber
     public function onPaymentMethodBeforeSave(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if ($entity instanceof PaymentMethodInterface) {
+        if ($entity instanceof PaymentMethod) {
             $processor = $this->getPaymentProcessorCollection()->get($entity->getProcessor());
             $entity->setConfiguration($this->filterConfiguration($entity->getConfiguration(), $processor));
         }
     }
     
-    protected function filterConfiguration(array $configuration, PaymentProcessorInterface $processor) : array
+    protected function filterConfiguration(array $configuration, PaymentProcessorInterface $processor): array
     {
         $supportedConfigurationKeys = $processor->getConfigurator()->getSupportedConfigurationKeys();
-
+        
         return array_filter($configuration, function ($k) use ($supportedConfigurationKeys) {
             return in_array($k, $supportedConfigurationKeys);
         }, ARRAY_FILTER_USE_KEY);
     }
-
-    protected function getPaymentProcessorCollection() : PaymentProcessorCollection
+    
+    protected function getPaymentProcessorCollection(): PaymentProcessorCollection
     {
         return $this->container->get('payment.processor.collection');
     }

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 
 /**
  * Class PaymentMethodManagerTest
@@ -30,6 +30,6 @@ class PaymentMethodManagerTest extends AbstractManagerTestCase
     
     protected function getExpectedEntityInterface(): string
     {
-        return PaymentMethodInterface::class;
+        return PaymentMethod::class;
     }
 }

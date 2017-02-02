@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Tests\Controller\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 
 /**
  * Class PaymentMethodControllerTest
@@ -26,32 +26,32 @@ class PaymentMethodControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.payment_method.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful(), 'Wrong response code');
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('payment_method.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count(), 'No datagrid');
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count(), 'Form exists');
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.payment_method.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('payment_method.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('payment_method.repository')->getCollection();
-
-        $collection->map(function (PaymentMethodInterface $method) {
+        
+        $collection->map(function (PaymentMethod $method) {
             $url     = $this->generateUrl('admin.payment_method.edit', ['id' => $method->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('payment_method.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -59,13 +59,13 @@ class PaymentMethodControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $method->translate()->getName() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.payment_method.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

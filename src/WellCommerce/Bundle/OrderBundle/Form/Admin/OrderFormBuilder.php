@@ -16,10 +16,10 @@ use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CouponBundle\Helper\CouponHelper;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
@@ -303,7 +303,7 @@ final class OrderFormBuilder extends AbstractFormBuilder
         $order      = $this->getOrderProvider()->getCurrentOrder();
         $collection = $this->getShippingMethodProvider()->getCosts(new OrderContext($order));
         
-        $collection->map(function (ShippingMethodCostInterface $shippingMethodCost) use ($radioGroup) {
+        $collection->map(function (ShippingMethodCost $shippingMethodCost) use ($radioGroup) {
             $shippingMethod = $shippingMethodCost->getShippingMethod();
             $baseCurrency   = $shippingMethod->getCurrency()->getCode();
             $grossAmount    = $shippingMethodCost->getCost()->getGrossAmount();
@@ -327,10 +327,10 @@ final class OrderFormBuilder extends AbstractFormBuilder
     {
         $order          = $this->getOrderProvider()->getCurrentOrder();
         $shippingMethod = $order->getShippingMethod();
-        if ($shippingMethod instanceof ShippingMethodInterface) {
+        if ($shippingMethod instanceof ShippingMethod) {
             $collection = $shippingMethod->getPaymentMethods();
             
-            $collection->map(function (PaymentMethodInterface $paymentMethod) use ($radioGroup) {
+            $collection->map(function (PaymentMethod $paymentMethod) use ($radioGroup) {
                 $radioGroup->addOptionToSelect($paymentMethod->getId(), $paymentMethod->translate()->getName());
             });
         }

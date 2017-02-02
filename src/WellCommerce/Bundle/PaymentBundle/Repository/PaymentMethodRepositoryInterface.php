@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Repository;
 
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 
 /**
  * Interface PaymentMethodRepositoryInterface
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
  */
 interface PaymentMethodRepositoryInterface extends RepositoryInterface
 {
-    public function getDefaultPaymentMethod() : PaymentMethodInterface;
+    public function getDefaultPaymentMethod(): PaymentMethod;
     
     public function getDataGridFilterOptions(): array;
 }

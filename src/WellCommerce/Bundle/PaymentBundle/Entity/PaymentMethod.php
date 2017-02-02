@@ -20,6 +20,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
@@ -27,7 +28,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PaymentMethod implements PaymentMethodInterface
+class PaymentMethod implements EntityInterface
 {
     use Identifiable;
     use Enableable;

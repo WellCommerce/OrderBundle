@@ -26,13 +26,13 @@
         </property>
         <property name="shippingMethod">
             <constraint name="Type">
-                <option name="type">WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface</option>
+                <option name="type">WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod</option>
                 <option name="message">order.shipping_method_not_valid</option>
             </constraint>
         </property>
         <property name="paymentMethod">
             <constraint name="Type">
-                <option name="type">WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface</option>
+                <option name="type">WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod</option>
                 <option name="message">order.payment_method_not_valid</option>
             </constraint>
         </property>

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CurrencyBundle\Converter\CurrencyConverterInterface;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 
 /**
@@ -39,19 +39,19 @@ final class PriceTableCalculator implements ShippingCalculatorInterface
         $this->currencyConverter = $currencyConverter;
     }
     
-    public function calculate(ShippingMethodInterface $shippingMethod, ShippingSubjectInterface $subject) : Collection
+    public function calculate(ShippingMethodInterface $shippingMethod, ShippingSubjectInterface $subject): Collection
     {
         $ranges         = $shippingMethod->getCosts();
         $baseCurrency   = $subject->getCurrency();
         $targetCurrency = $shippingMethod->getCurrency()->getCode();
         $grossAmount    = $this->currencyConverter->convert($subject->getGrossPrice(), $baseCurrency, $targetCurrency);
         
-        return $ranges->filter(function (ShippingMethodCostInterface $cost) use ($grossAmount) {
+        return $ranges->filter(function (ShippingMethodCost $cost) use ($grossAmount) {
             return ($cost->getRangeFrom() <= $grossAmount && $cost->getRangeTo() >= $grossAmount);
         });
     }
     
-    public function getAlias() : string
+    public function getAlias(): string
     {
         return 'price_table';
     }

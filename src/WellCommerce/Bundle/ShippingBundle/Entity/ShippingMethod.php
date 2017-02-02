@@ -21,6 +21,7 @@ use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 
@@ -29,7 +30,7 @@ use WellCommerce\Bundle\TaxBundle\Entity\Tax;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ShippingMethod implements ShippingMethodInterface
+class ShippingMethod implements EntityInterface
 {
     use Identifiable;
     use Enableable;

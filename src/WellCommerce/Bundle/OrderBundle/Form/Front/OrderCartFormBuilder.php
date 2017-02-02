@@ -14,11 +14,10 @@ namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\ShippingBundle\Context\OrderContext;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodOptionsProviderInterface;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
@@ -101,7 +100,7 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
     {
         $collection = $this->getShippingMethodProvider()->getCosts(new OrderContext($order));
         
-        $collection->map(function (ShippingMethodCostInterface $shippingMethodCost) use ($radioGroup) {
+        $collection->map(function (ShippingMethodCost $shippingMethodCost) use ($radioGroup) {
             $shippingMethod = $shippingMethodCost->getShippingMethod();
             $baseCurrency   = $shippingMethod->getCurrency()->getCode();
             $grossAmount    = $shippingMethodCost->getCost()->getGrossAmount();
@@ -128,7 +127,7 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
         if ($order->getShippingMethod() instanceof ShippingMethod) {
             $collection = $order->getShippingMethod()->getPaymentMethods();
             
-            $collection->map(function (PaymentMethodInterface $paymentMethod) use ($radioGroup) {
+            $collection->map(function (PaymentMethod $paymentMethod) use ($radioGroup) {
                 if ($paymentMethod->isEnabled()) {
                     $radioGroup->addOptionToSelect($paymentMethod->getId(), $paymentMethod->translate()->getName());
                 }
@@ -146,7 +145,7 @@ final class OrderCartFormBuilder extends AbstractFormBuilder
         return $this->get('order.provider.front');
     }
     
-    private function getOptionsProvider(ShippingMethodInterface $method)
+    private function getOptionsProvider(ShippingMethod $method)
     {
         $provider   = $method->getOptionsProvider();
         $collection = $this->get('shipping_method.options_provider.collection');

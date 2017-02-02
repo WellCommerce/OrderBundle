@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingCalculatorInterface;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\ShippingBundle\Exception\CalculatorNotFoundException;
 use WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodRepositoryInterface;
@@ -67,7 +67,7 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         $methods->map(function (ShippingMethodInterface $shippingMethod) use ($subject, $collection) {
             $costs = $this->getShippingMethodCosts($shippingMethod, $subject);
             
-            $costs->map(function (ShippingMethodCostInterface $cost) use ($collection) {
+            $costs->map(function (ShippingMethodCost $cost) use ($collection) {
                 $collection->add($cost);
             });
         });

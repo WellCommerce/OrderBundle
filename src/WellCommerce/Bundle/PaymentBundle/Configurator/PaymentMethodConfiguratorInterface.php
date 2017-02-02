@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\PaymentBundle\Configurator;
 
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Component\Form\Dependencies\DependencyInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
@@ -24,19 +24,19 @@ use WellCommerce\Component\Form\FormBuilderInterface;
  */
 interface PaymentMethodConfiguratorInterface
 {
-    public function getName() : string;
-
-    public function configure(PaymentMethodInterface $paymentMethod);
+    public function getName(): string;
     
-    public function getConfiguration() : array;
-
-    public function getConfigurationKey(string $name) : string;
-
+    public function configure(PaymentMethod $paymentMethod);
+    
+    public function getConfiguration(): array;
+    
+    public function getConfigurationKey(string $name): string;
+    
     public function getConfigurationValue(string $name);
     
     public function addConfigurationFields(FormBuilderInterface $builder, ElementInterface $fieldset, DependencyInterface $dependency);
-
-    public function getSupportedConfigurationKeys() : array;
-
-    public function getInitializeTemplateName() : string;
+    
+    public function getSupportedConfigurationKeys(): array;
+    
+    public function getInitializeTemplateName(): string;
 }

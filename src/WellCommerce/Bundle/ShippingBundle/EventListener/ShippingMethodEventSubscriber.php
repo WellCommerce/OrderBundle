@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ShippingBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use WellCommerce\Bundle\CountryBundle\Repository\CountryRepository;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface;
+use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
@@ -54,7 +54,7 @@ final class ShippingMethodEventSubscriber implements EventSubscriber
     public function onShippingMethodCostBeforeSave(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if ($entity instanceof ShippingMethodCostInterface) {
+        if ($entity instanceof ShippingMethodCost) {
             $shippingMethod = $entity->getShippingMethod();
             $cost           = $entity->getCost();
             $grossAmount    = $cost->getGrossAmount();

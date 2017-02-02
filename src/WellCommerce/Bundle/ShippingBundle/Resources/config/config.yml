@@ -18,12 +18,6 @@ well_commerce_api:
         WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodTranslation:
             mapping: "@WellCommerceShippingBundle/Resources/config/serialization/ShippingMethodTranslation.yml"
 
-doctrine:
-    orm:
-        resolve_target_entities:
-            WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface: WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod
-            WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCostInterface: WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost
-
 well_commerce_locale:
     copier:
         entities:
