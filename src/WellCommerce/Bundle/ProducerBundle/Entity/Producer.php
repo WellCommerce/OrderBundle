@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -34,8 +34,12 @@ class Producer implements EntityInterface
     use Translatable;
     use Timestampable;
     use Blameable;
-    use MediaAwareTrait;
     use ShopCollectionAwareTrait;
+    
+    /**
+     * @var Media
+     */
+    protected $photo;
     
     /**
      * @var Collection
@@ -72,5 +76,15 @@ class Producer implements EntityInterface
     public function addDeliverer(Deliverer $deliverer)
     {
         $this->deliverers = $deliverer;
+    }
+    
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+    
+    public function setPhoto(Media $photo = null)
+    {
+        $this->photo = $photo;
     }
 }

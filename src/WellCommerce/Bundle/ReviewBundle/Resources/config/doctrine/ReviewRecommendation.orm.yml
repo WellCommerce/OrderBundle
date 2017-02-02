@@ -1,3 +1,11 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
 WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendation:
     type: entity
     table: review_recommendation
@@ -17,6 +25,7 @@ WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendation:
         review:
             targetEntity: WellCommerce\Bundle\ReviewBundle\Entity\Review
             fetch: LAZY
+            inversedBy: recommendations
             joinColumns:
                 review_id:
                     referencedColumnName: id

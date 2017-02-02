@@ -23,14 +23,6 @@ use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
  */
 class LocaleFilter extends SQLFilter
 {
-    /**
-     * Adds locale filter to query
-     *
-     * @param ClassMetadata $targetEntity
-     * @param string        $targetTableAlias
-     *
-     * @return string
-     */
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
     {
         if (!$targetEntity->reflClass->implementsInterface(LocaleAwareInterface::class)) {

@@ -120,9 +120,4 @@ class ShippingMethod implements ShippingMethodInterface
     {
         $this->currency = $currency;
     }
-    
-    public function hasCurrency(): bool
-    {
-        return $this->currency instanceof Currency;
-    }
 }

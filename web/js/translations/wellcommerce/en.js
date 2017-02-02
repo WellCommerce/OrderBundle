@@ -84,6 +84,7 @@
     Translator.add("order.heading.index", "Orders", "wellcommerce", "en");
     Translator.add("order.heading.edit", "Edit order", "wellcommerce", "en");
     Translator.add("order.heading.address", "Address", "wellcommerce", "en");
+    Translator.add("order.heading.confirm", "Confirmation", "wellcommerce", "en");
     Translator.add("order.heading.confirmation", "Confirmation", "wellcommerce", "en");
     Translator.add("order.heading.order_total", "Summary", "wellcommerce", "en");
     Translator.add("order.heading.products", "Products", "wellcommerce", "en");
@@ -116,6 +117,7 @@
     Translator.add("order.label.variant_options", "Wybrane opcje", "wellcommerce", "en");
     Translator.add("order.label.accept_conditions", "I accept the shop conditions", "wellcommerce", "en");
     Translator.add("order.label.issue_invoice", "Please send me an invoice", "wellcommerce", "en");
+    Translator.add("order.label.shipping_cost", "Shipping costs", "wellcommerce", "en");
     Translator.add("order.label.coupon.code", "Coupon code", "wellcommerce", "en");
     Translator.add("order.label.coupon.modifier", "Coupon modifier", "wellcommerce", "en");
     Translator.add("order.description.product_total", "Total products value", "wellcommerce", "en");
@@ -167,6 +169,7 @@
     Translator.add("order_status_history.label.created_by", "Created by", "wellcommerce", "en");
     Translator.add("order_status_history.label.no_history", "Order status history is empty", "wellcommerce", "en");
     Translator.add("order_status_history.button.change", "Save", "wellcommerce", "en");
+    Translator.add("payment.heading.initialize", "Payment", "wellcommerce", "en");
     Translator.add("payment.flash.thank_you", "Thank you for placing an order. Below are the order's details:", "wellcommerce", "en");
     Translator.add("payment_method.heading.index", "Payment methods", "wellcommerce", "en");
     Translator.add("payment_method.heading.add", "Add a payment method", "wellcommerce", "en");

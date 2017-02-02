@@ -20,7 +20,7 @@ use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\VariantExtraTrait;
 
 /**
@@ -34,7 +34,6 @@ class Variant implements VariantInterface
     use Enableable;
     use Sortable;
     use Timestampable;
-    use MediaAwareTrait;
     use ProductAwareTrait;
     use VariantExtraTrait;
     
@@ -43,6 +42,11 @@ class Variant implements VariantInterface
     protected $stock         = 0;
     protected $modifierType  = '%';
     protected $modifierValue = 100.00;
+    
+    /**
+     * @var Media
+     */
+    protected $photo;
     
     /**
      * @var DiscountablePrice
@@ -63,6 +67,16 @@ class Variant implements VariantInterface
     {
         $this->sellPrice = new DiscountablePrice();
         $this->options   = new ArrayCollection();
+    }
+    
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+    
+    public function setPhoto(Media $photo = null)
+    {
+        $this->photo = $photo;
     }
     
     public function getOptions(): Collection

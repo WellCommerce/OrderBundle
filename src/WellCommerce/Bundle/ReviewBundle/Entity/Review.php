@@ -43,11 +43,11 @@ class Review implements EntityInterface
     /**
      * @var Collection
      */
-    protected $reviewRecommendations;
+    protected $recommendations;
     
     public function __construct()
     {
-        $this->reviewRecommendations = new ArrayCollection();
+        $this->recommendations = new ArrayCollection();
     }
     
     public function getNick(): string
@@ -120,18 +120,18 @@ class Review implements EntityInterface
         $this->ratingRecommendation = $ratingRecommendation;
     }
     
-    public function getReviewRecommendations(): Collection
+    public function getRecommendations(): Collection
     {
-        return $this->reviewRecommendations;
+        return $this->recommendations;
     }
     
-    public function setReviewRecommendations(Collection $reviewRecommendations)
+    public function setRecommendations(Collection $recommendations)
     {
-        $this->reviewRecommendations = $reviewRecommendations;
+        $this->recommendations = $recommendations;
     }
     
-    public function addRecommendation(ReviewRecommendation $reviewRecommendation)
+    public function addRecommendation(ReviewRecommendation $recommendation)
     {
-        $this->reviewRecommendations[] = $reviewRecommendation;
+        $this->recommendations->add($recommendation);
     }
 }

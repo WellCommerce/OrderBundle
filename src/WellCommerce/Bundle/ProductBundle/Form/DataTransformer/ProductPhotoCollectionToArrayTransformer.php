@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\MediaBundle\Form\DataTransformer\MediaCollectionToArrayTransformer;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
@@ -158,16 +158,7 @@ class ProductPhotoCollectionToArrayTransformer extends MediaCollectionToArrayTra
         return $this->getRepository()->find($id);
     }
     
-    /**
-     * Returns product photo model
-     *
-     * @param MediaInterface   $media
-     * @param ProductInterface $modelData
-     * @param array            $values
-     *
-     * @return ProductPhoto
-     */
-    protected function getProductPhoto(MediaInterface $media, ProductInterface $modelData, $values)
+    protected function getProductPhoto(Media $media, ProductInterface $modelData, $values)
     {
         $mainPhoto    = $this->isMainPhoto($media, $values['main']);
         $productPhoto = new ProductPhoto();
@@ -182,15 +173,7 @@ class ProductPhotoCollectionToArrayTransformer extends MediaCollectionToArrayTra
         return $productPhoto;
     }
     
-    /**
-     * Checks whether photo was chosen as main product photo
-     *
-     * @param MediaInterface $photo
-     * @param int            $mainId
-     *
-     * @return bool
-     */
-    private function isMainPhoto(MediaInterface $photo, $mainId)
+    private function isMainPhoto(Media $photo, $mainId): bool
     {
         return $photo->getId() === (int)$mainId;
     }

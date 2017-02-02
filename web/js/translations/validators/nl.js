@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "Deze waarde moet exact {{ limit }} teken lang zijn.|Deze waarde moet exact {{ limit }} tekens lang zijn.", "validators", "nl");
     Translator.add("The file was only partially uploaded.", "Het bestand is slechts gedeeltelijk ge\u00fcpload.", "validators", "nl");
     Translator.add("No file was uploaded.", "Er is geen bestand ge\u00fcpload.", "validators", "nl");
-    Translator.add("No temporary folder was configured in php.ini.", "Er is geen tijdelijke map geconfigureerd in php.ini, of de gespecificeerde map bestaat niet.", "validators", "nl");
+    Translator.add("No temporary folder was configured in php.ini.", "Er is geen tijdelijke map geconfigureerd in php.ini.", "validators", "nl");
     Translator.add("Cannot write temporary file to disk.", "Kan het tijdelijke bestand niet wegschrijven op disk.", "validators", "nl");
     Translator.add("A PHP extension caused the upload to fail.", "De upload is mislukt vanwege een PHP-extensie.", "validators", "nl");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "Deze collectie moet {{ limit }} element of meer bevatten.|Deze collectie moet {{ limit }} elementen of meer bevatten.", "validators", "nl");

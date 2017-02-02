@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -34,13 +34,17 @@ class News implements EntityInterface
     use Translatable;
     use Timestampable;
     use Blameable;
-    use MediaAwareTrait;
     use ShopCollectionAwareTrait;
     
     protected $publish  = true;
     protected $featured = false;
     protected $startDate;
     protected $endDate;
+    
+    /**
+     * @var Media
+     */
+    protected $photo;
     
     public function __construct()
     {
@@ -87,5 +91,15 @@ class News implements EntityInterface
     public function setFeatured($featured)
     {
         $this->featured = $featured;
+    }
+    
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+    
+    public function setPhoto(Media $photo = null)
+    {
+        $this->photo = $photo;
     }
 }

@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
 
 /**
  * Interface VariantInterface
@@ -26,8 +25,7 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
 interface VariantInterface extends
     EntityInterface,
     TimestampableInterface,
-    ProductAwareInterface,
-    MediaAwareInterface
+    ProductAwareInterface
 {
     public function getWeight(): float;
     

@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "Dieser Wert sollte genau {{ limit }} Zeichen lang sein.|Dieser Wert sollte genau {{ limit }} Zeichen lang sein.", "validators", "de");
     Translator.add("The file was only partially uploaded.", "Die Datei wurde nur teilweise hochgeladen.", "validators", "de");
     Translator.add("No file was uploaded.", "Es wurde keine Datei hochgeladen.", "validators", "de");
-    Translator.add("No temporary folder was configured in php.ini.", "Es wurde kein tempor\u00e4rer Ordner in der php.ini konfiguriert oder der tempor\u00e4re Ordner existiert nicht.", "validators", "de");
+    Translator.add("No temporary folder was configured in php.ini.", "Es wurde kein tempor\u00e4rer Ordner in der php.ini konfiguriert.", "validators", "de");
     Translator.add("Cannot write temporary file to disk.", "Kann die tempor\u00e4re Datei nicht speichern.", "validators", "de");
     Translator.add("A PHP extension caused the upload to fail.", "Eine PHP-Erweiterung verhinderte den Upload.", "validators", "de");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "Diese Sammlung sollte {{ limit }} oder mehr Elemente beinhalten.|Diese Sammlung sollte {{ limit }} oder mehr Elemente beinhalten.", "validators", "de");

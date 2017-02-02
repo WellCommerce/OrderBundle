@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\MediaBundle\Tests\Manager\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 
 /**
  * Class MediaManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
  */
 class MediaManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('media.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return MediaInterface::class;
+        return Media::class;
     }
 }

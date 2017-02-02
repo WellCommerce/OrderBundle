@@ -26,7 +26,7 @@ use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareTrait;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
@@ -46,7 +46,6 @@ class Product implements ProductInterface
     use Translatable;
     use Timestampable;
     use Blameable;
-    use MediaAwareTrait;
     use ShopCollectionAwareTrait;
     use ProductExtraTrait;
     
@@ -100,6 +99,11 @@ class Product implements ProductInterface
      * @var Collection
      */
     protected $distinctions;
+    
+    /**
+     * @var Media
+     */
+    protected $photo;
     
     /**
      * @var Collection
@@ -177,6 +181,16 @@ class Product implements ProductInterface
         });
         
         $this->distinctions = $distinctions;
+    }
+    
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+    
+    public function setPhoto(Media $photo = null)
+    {
+        $this->photo = $photo;
     }
     
     public function getProductPhotos(): Collection

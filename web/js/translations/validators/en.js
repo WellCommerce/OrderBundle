@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "validators", "en");
     Translator.add("The file was only partially uploaded.", "The file was only partially uploaded.", "validators", "en");
     Translator.add("No file was uploaded.", "No file was uploaded.", "validators", "en");
-    Translator.add("No temporary folder was configured in php.ini.", "No temporary folder was configured in php.ini, or the configured folder does not exist.", "validators", "en");
+    Translator.add("No temporary folder was configured in php.ini.", "No temporary folder was configured in php.ini.", "validators", "en");
     Translator.add("Cannot write temporary file to disk.", "Cannot write temporary file to disk.", "validators", "en");
     Translator.add("A PHP extension caused the upload to fail.", "A PHP extension caused the upload to fail.", "validators", "en");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "validators", "en");

@@ -16,8 +16,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\ClearCacheAction;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\UpdateSchemaAction;
 
 /**
  * Class GenerateCommand
@@ -41,7 +39,7 @@ final class GenerateCommand extends AbstractBundleCommand
         $output->writeln('<info>New bundle was generated in ' . $bundle->getTargetDirectory() . '</info>');
         
         $helper   = $this->getHelper('question');
-        $question = new ConfirmationQuestion('Do you want to auto-register bundle (y/n)?', false);
+        $question = new ConfirmationQuestion('Do you want to auto-register bundle (y/n)?', true);
         
         if (!$helper->ask($input, $output, $question)) {
             return;

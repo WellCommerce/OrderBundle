@@ -16,7 +16,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 
 /**
  * Class Photo
@@ -31,21 +31,21 @@ class ProductPhoto implements EntityInterface
     use ProductAwareTrait;
     
     /**
-     * @var MediaInterface
-     */
-    protected $photo;
-    
-    /**
      * @var bool
      */
     protected $mainPhoto = false;
     
-    public function getPhoto(): MediaInterface
+    /**
+     * @var Media
+     */
+    protected $photo;
+    
+    public function getPhoto(): Media
     {
         return $this->photo;
     }
     
-    public function setPhoto(MediaInterface $photo)
+    public function setPhoto(Media $photo)
     {
         $this->photo = $photo;
     }

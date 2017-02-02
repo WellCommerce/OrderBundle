@@ -57,9 +57,4 @@ class Locale implements EntityInterface
     {
         $this->currency = $currency;
     }
-    
-    public function hasCurrency(): bool
-    {
-        return $this->currency instanceof Currency;
-    }
 }

@@ -22,7 +22,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaAwareInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
 
@@ -36,8 +35,7 @@ interface ProductInterface extends
     TranslatableInterface,
     TimestampableInterface,
     BlameableInterface,
-    ShopCollectionAwareInterface,
-    MediaAwareInterface
+    ShopCollectionAwareInterface
 {
     public function getSku(): string;
     

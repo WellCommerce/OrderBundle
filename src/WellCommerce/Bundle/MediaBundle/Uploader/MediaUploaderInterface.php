@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\MediaBundle\Uploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 
 /**
  * Interface MediaUploaderInterface
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
  */
 interface MediaUploaderInterface
 {
-    public function upload(UploadedFile $file, $dir) : MediaInterface;
-
-    public function getUploadDir(string $dir) : string;
+    public function upload(UploadedFile $file, $dir): Media;
+    
+    public function getUploadDir(string $dir): string;
 }

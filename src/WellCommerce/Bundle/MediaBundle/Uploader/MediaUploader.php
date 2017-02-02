@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\MediaBundle\Uploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\MediaInterface;
+use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\MediaBundle\Exception\InvalidMediaException;
 
 /**
@@ -34,12 +34,12 @@ final class MediaUploader implements MediaUploaderInterface
      * @var string
      */
     private $uploadRootDir;
-
+    
     /**
      * @var ValidatorHelperInterface
      */
     private $validatorHelper;
-
+    
     /**
      * MediaUploader constructor.
      *
@@ -54,19 +54,19 @@ final class MediaUploader implements MediaUploaderInterface
         $this->validatorHelper = $validatorHelper;
     }
     
-    public function upload(UploadedFile $file, $dir) : MediaInterface
+    public function upload(UploadedFile $file, $dir): Media
     {
         if (!$file->isValid()) {
             throw new InvalidMediaException('Passed file object is not valid');
         }
-
-        /** @var MediaInterface $media */
+        
+        /** @var Media $media */
         $media = $this->manager->initResource();
         $media->setName($file->getClientOriginalName());
         $media->setExtension($file->guessClientExtension());
         $media->setMime($file->getClientMimeType());
         $media->setSize($file->getClientSize());
-
+        
         $errors = $this->validatorHelper->validate($media);
         if (0 !== count($errors)) {
             throw new InvalidMediaException($errors);
@@ -77,8 +77,8 @@ final class MediaUploader implements MediaUploaderInterface
         
         return $media;
     }
-
-    public function getUploadDir(string $dir) : string
+    
+    public function getUploadDir(string $dir): string
     {
         $dir = rtrim($dir, '/\\');
         

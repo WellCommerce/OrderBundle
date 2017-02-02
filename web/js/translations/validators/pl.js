@@ -47,7 +47,7 @@
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znak.|Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znaki.|Ta warto\u015b\u0107 powinna mie\u0107 dok\u0142adnie {{ limit }} znak\u00f3w.", "validators", "pl");
     Translator.add("The file was only partially uploaded.", "Plik zosta\u0142 wgrany tylko cz\u0119\u015bciowo.", "validators", "pl");
     Translator.add("No file was uploaded.", "\u017baden plik nie zosta\u0142 wgrany.", "validators", "pl");
-    Translator.add("No temporary folder was configured in php.ini.", "Nie skonfigurowano folderu tymczasowego w php.ini, lub skonfigurowany folder nie istnieje.", "validators", "pl");
+    Translator.add("No temporary folder was configured in php.ini.", "Nie skonfigurowano folderu tymczasowego w php.ini.", "validators", "pl");
     Translator.add("Cannot write temporary file to disk.", "Nie mo\u017cna zapisa\u0107 pliku tymczasowego na dysku.", "validators", "pl");
     Translator.add("A PHP extension caused the upload to fail.", "Rozszerzenie PHP spowodowa\u0142o b\u0142\u0105d podczas wgrywania.", "validators", "pl");
     Translator.add("This collection should contain {{ limit }} element or more.|This collection should contain {{ limit }} elements or more.", "Ten zbi\u00f3r powinien zawiera\u0107 {{ limit }} lub wi\u0119cej element\u00f3w.", "validators", "pl");
