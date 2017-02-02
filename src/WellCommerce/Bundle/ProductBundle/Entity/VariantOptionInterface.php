@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Entity;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
@@ -23,15 +23,15 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
  */
 interface VariantOptionInterface extends EntityInterface
 {
-    public function getVariant() : VariantInterface;
-
+    public function getVariant(): VariantInterface;
+    
     public function setVariant(VariantInterface $variant);
-
-    public function getAttribute() : AttributeInterface;
-
-    public function setAttribute(AttributeInterface $attribute);
-
-    public function getAttributeValue() : AttributeValueInterface;
-
-    public function setAttributeValue(AttributeValueInterface $attributeValue);
+    
+    public function getAttribute(): Attribute;
+    
+    public function setAttribute(Attribute $attribute);
+    
+    public function getAttributeValue(): AttributeValue;
+    
+    public function setAttributeValue(AttributeValue $attributeValue);
 }

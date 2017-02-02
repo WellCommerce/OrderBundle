@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
@@ -81,7 +81,7 @@ class Product implements ProductInterface
     protected $dimension;
     
     /**
-     * @var AttributeGroupInterface
+     * @var AttributeGroup
      */
     protected $attributeGroup;
     
@@ -278,9 +278,9 @@ class Product implements ProductInterface
         return $this->attributeGroup;
     }
     
-    public function setAttributeGroup(AttributeGroupInterface $attributeGroup = null)
+    public function setAttributeGroup(AttributeGroup $group = null)
     {
-        $this->attributeGroup = $attributeGroup;
+        $this->attributeGroup = $group;
     }
     
     public function getVariants(): Collection

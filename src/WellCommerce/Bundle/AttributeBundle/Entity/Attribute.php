@@ -18,13 +18,14 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Attribute
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Attribute implements AttributeInterface
+class Attribute implements EntityInterface
 {
     use Identifiable;
     use Translatable;
@@ -54,20 +55,20 @@ class Attribute implements AttributeInterface
     
     public function setGroups(Collection $groups)
     {
-        $this->groups->map(function (AttributeGroupInterface $group) use ($groups) {
+        $this->groups->map(function (AttributeGroup $group) use ($groups) {
             if (false === $groups->contains($group)) {
                 $group->removeAttribute($this);
             }
         });
         
-        $groups->map(function (AttributeGroupInterface $group) {
+        $groups->map(function (AttributeGroup $group) {
             if (false === $this->groups->contains($group)) {
                 $group->addAttribute($this);
             }
         });
     }
     
-    public function addGroup(AttributeGroupInterface $group)
+    public function addGroup(AttributeGroup $group)
     {
         $this->groups->add($group);
         $group->addAttribute($this);
@@ -83,12 +84,12 @@ class Attribute implements AttributeInterface
         $this->values = $collection;
     }
     
-    public function removeValue(AttributeValueInterface $value)
+    public function removeValue(AttributeValue $value)
     {
         $this->values->removeElement($value);
     }
     
-    public function addValue(AttributeValueInterface $value)
+    public function addValue(AttributeValue $value)
     {
         $this->values->add($value);
     }

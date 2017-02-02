@@ -15,9 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Manager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\Variant;
@@ -93,7 +91,7 @@ class VariantManager extends AbstractManager
         return $variantOption;
     }
     
-    protected function findVariantOption(VariantInterface $variant, AttributeInterface $attribute, AttributeValueInterface $attributeValue)
+    protected function findVariantOption(VariantInterface $variant, Attribute $attribute, AttributeValue $attributeValue)
     {
         return $this->get('variant_option.repository')->findOneBy([
             'variant'        => $variant,
@@ -102,12 +100,12 @@ class VariantManager extends AbstractManager
         ]);
     }
     
-    protected function getAttribute(int $id): AttributeInterface
+    protected function getAttribute(int $id): Attribute
     {
         return $this->get('attribute.repository')->find($id);
     }
     
-    protected function getAttributeValue(int $id): AttributeValueInterface
+    protected function getAttributeValue(int $id): AttributeValue
     {
         return $this->get('attribute_value.repository')->find($id);
     }

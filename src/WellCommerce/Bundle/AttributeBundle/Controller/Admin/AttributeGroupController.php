@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\AttributeBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 
 /**
@@ -33,7 +33,7 @@ class AttributeGroupController extends AbstractAdminController
         $groups = $this->manager->getRepository()->getCollection();
         $sets   = [];
         
-        $groups->map(function (AttributeGroupInterface $attributeGroup) use (&$sets) {
+        $groups->map(function (AttributeGroup $attributeGroup) use (&$sets) {
             $sets[] = [
                 'id'               => $attributeGroup->getId(),
                 'name'             => $attributeGroup->translate()->getName(),

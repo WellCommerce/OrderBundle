@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
@@ -87,7 +87,7 @@ interface ProductInterface extends
     
     public function getAttributeGroup();
     
-    public function setAttributeGroup(AttributeGroupInterface $attributeGroup = null);
+    public function setAttributeGroup(AttributeGroup $group = null);
     
     public function getVariants(): Collection;
     

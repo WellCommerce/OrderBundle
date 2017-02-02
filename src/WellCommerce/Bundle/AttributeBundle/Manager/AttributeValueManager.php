@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AttributeBundle\Manager;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
@@ -23,32 +23,32 @@ use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
  */
 class AttributeValueManager extends AbstractManager
 {
-    public function addAttributeValue(string $attributeValueName, int $attributeId) : AttributeValueInterface
+    public function addAttributeValue(string $attributeValueName, int $attributeId): AttributeValue
     {
         $attribute = $this->findAttribute($attributeId);
         $value     = $this->createAttributeValue($attributeValueName, $attribute);
-
+        
         return $value;
     }
-
-    protected function findAttribute(int $attributeId) : AttributeInterface
+    
+    protected function findAttribute(int $attributeId): Attribute
     {
         return $this->get('attribute.repository')->find($attributeId);
     }
-
-    protected function createAttributeValue(string $name, AttributeInterface $attribute) : AttributeValueInterface
+    
+    protected function createAttributeValue(string $name, Attribute $attribute): AttributeValue
     {
-        /** @var $value AttributeValueInterface */
+        /** @var $value AttributeValue */
         $value = $this->initResource();
-
+        
         foreach ($this->getLocales() as $locale) {
             $value->translate($locale->getCode())->setName($name);
         }
-
+        
         $value->mergeNewTranslations();
         $value->addAttribute($attribute);
         $this->createResource($value);
-
+        
         return $value;
     }
 }

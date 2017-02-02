@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Entity;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 
 /**
@@ -26,17 +26,17 @@ class VariantOption implements VariantOptionInterface
     use Identifiable;
     
     /**
-     * @var VariantInterface
+     * @var Variant
      */
     protected $variant;
     
     /**
-     * @var AttributeInterface
+     * @var Attribute
      */
     protected $attribute;
     
     /**
-     * @var AttributeValueInterface
+     * @var AttributeValue
      */
     protected $attributeValue;
     
@@ -50,22 +50,22 @@ class VariantOption implements VariantOptionInterface
         $this->variant = $variant;
     }
     
-    public function getAttribute(): AttributeInterface
+    public function getAttribute(): Attribute
     {
         return $this->attribute;
     }
     
-    public function setAttribute(AttributeInterface $attribute)
+    public function setAttribute(Attribute $attribute)
     {
         $this->attribute = $attribute;
     }
     
-    public function getAttributeValue(): AttributeValueInterface
+    public function getAttributeValue(): AttributeValue
     {
         return $this->attributeValue;
     }
     
-    public function setAttributeValue(AttributeValueInterface $attributeValue)
+    public function setAttributeValue(AttributeValue $attributeValue)
     {
         $this->attributeValue = $attributeValue;
     }

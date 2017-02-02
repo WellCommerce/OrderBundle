@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AttributeBundle\Manager;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
@@ -23,9 +23,9 @@ use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
  */
 class AttributeManager extends AbstractManager
 {
-    public function createAttribute(string $attributeName, int $attributeGroupId) : AttributeInterface
+    public function createAttribute(string $attributeName, int $attributeGroupId): Attribute
     {
-        /** @var $attribute AttributeInterface */
+        /** @var $attribute Attribute */
         $attribute = $this->initResource();
         $group     = $this->findAttributeGroup($attributeGroupId);
         foreach ($this->getLocales() as $locale) {
@@ -34,28 +34,28 @@ class AttributeManager extends AbstractManager
         $attribute->addGroup($group);
         $attribute->mergeNewTranslations();
         $this->createResource($attribute);
-
+        
         return $attribute;
     }
-
-    public function getAttributeSet(int $attributeGroupId) : array
+    
+    public function getAttributeSet(int $attributeGroupId): array
     {
         $sets                 = [];
         $attributeGroup       = $this->findAttributeGroup($attributeGroupId);
         $attributesCollection = $attributeGroup->getAttributes();
-
-        $attributesCollection->map(function (AttributeInterface $attribute) use (&$sets) {
+        
+        $attributesCollection->map(function (Attribute $attribute) use (&$sets) {
             $sets[] = [
                 'id'     => $attribute->getId(),
                 'name'   => $attribute->translate()->getName(),
-                'values' => $this->getAttributeValuesSet($attribute)
+                'values' => $this->getAttributeValuesSet($attribute),
             ];
         });
-
+        
         return $sets;
     }
-
-    public function findAttributeGroup(int $id) : AttributeGroupInterface
+    
+    public function findAttributeGroup(int $id): AttributeGroup
     {
         return $this->get('attribute_group.repository')->find($id);
     }

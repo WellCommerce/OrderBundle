@@ -11,9 +11,9 @@
  */
 namespace WellCommerce\Bundle\AttributeBundle\Repository;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroupInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
@@ -23,40 +23,34 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
  */
 class AttributeRepository extends EntityRepository implements AttributeRepositoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getAttributeSet(AttributeGroupInterface $attributeGroup) : array
+    public function getAttributeSet(AttributeGroup $attributeGroup): array
     {
         $sets                 = [];
         $attributesCollection = $attributeGroup->getAttributes();
         
-        $attributesCollection->map(function (AttributeInterface $attribute) use (&$sets) {
+        $attributesCollection->map(function (Attribute $attribute) use (&$sets) {
             $sets[] = [
                 'id'     => $attribute->getId(),
                 'name'   => $attribute->translate()->getName(),
-                'values' => $this->getAttributeValuesSet($attribute)
+                'values' => $this->getAttributeValuesSet($attribute),
             ];
         });
         
         return $sets;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAttributeValuesSet(AttributeInterface $attribute) : array
+    
+    public function getAttributeValuesSet(Attribute $attribute): array
     {
         $values                    = [];
         $attributeValuesCollection = $attribute->getValues();
-
-        $attributeValuesCollection->map(function (AttributeValueInterface $attributeValue) use (&$values) {
+        
+        $attributeValuesCollection->map(function (AttributeValue $attributeValue) use (&$values) {
             $values[] = [
                 'id'   => $attributeValue->getId(),
-                'name' => $attributeValue->translate()->getName()
+                'name' => $attributeValue->translate()->getName(),
             ];
         });
-
+        
         return $values;
     }
 }

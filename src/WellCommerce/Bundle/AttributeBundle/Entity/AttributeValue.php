@@ -18,13 +18,14 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class AttributeValue
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AttributeValue implements AttributeValueInterface
+class AttributeValue implements EntityInterface
 {
     use Identifiable;
     use Translatable;
@@ -52,7 +53,7 @@ class AttributeValue implements AttributeValueInterface
         $this->syncNewAttributes($attributes);
     }
     
-    public function addAttribute(AttributeInterface $attribute)
+    public function addAttribute(Attribute $attribute)
     {
         $this->attributes->add($attribute);
         $attribute->addValue($this);
@@ -60,7 +61,7 @@ class AttributeValue implements AttributeValueInterface
     
     private function syncOldAttributes(Collection $attributes)
     {
-        $this->attributes->map(function (AttributeInterface $attribute) use ($attributes) {
+        $this->attributes->map(function (Attribute $attribute) use ($attributes) {
             if (false === $attributes->contains($attribute)) {
                 $attribute->removeValue($this);
             }
@@ -69,7 +70,7 @@ class AttributeValue implements AttributeValueInterface
     
     private function syncNewAttributes(Collection $attributes)
     {
-        $attributes->map(function (AttributeInterface $attribute) {
+        $attributes->map(function (Attribute $attribute) {
             if (false === $this->attributes->contains($attribute)) {
                 $attribute->addValue($this);
             }
