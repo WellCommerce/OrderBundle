@@ -273,11 +273,6 @@ class Order implements EntityInterface
         $this->productTotal = $productTotal;
     }
     
-    public function addModifier(OrderModifier $modifier)
-    {
-        $this->modifiers->set($modifier->getName(), $modifier);
-    }
-    
     public function hasModifier(string $name): bool
     {
         return $this->modifiers->containsKey($name);
@@ -296,11 +291,6 @@ class Order implements EntityInterface
     public function getModifiers(): Collection
     {
         return $this->modifiers;
-    }
-    
-    public function setModifiers(Collection $modifiers)
-    {
-        $this->modifiers = $modifiers;
     }
     
     public function getSummary(): OrderSummary
@@ -323,11 +313,6 @@ class Order implements EntityInterface
         $this->currentStatus = $currentStatus;
     }
     
-    public function setOrderStatusHistory(Collection $orderStatusHistory)
-    {
-        $this->orderStatusHistory = $orderStatusHistory;
-    }
-    
     public function getOrderStatusHistory(): Collection
     {
         return $this->orderStatusHistory;
@@ -346,11 +331,6 @@ class Order implements EntityInterface
     public function getPayments(): Collection
     {
         return $this->payments;
-    }
-    
-    public function setPayments(Collection $payments)
-    {
-        $this->payments = $payments;
     }
     
     public function acceptVisitor(OrderVisitorInterface $visitor)
