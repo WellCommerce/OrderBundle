@@ -32,4 +32,4 @@ category:
     comment:
         enabled: Enable category visibility
     flash:
-        empty_category: Category is empty
+        empty_category: This category is empty
