@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\WishlistBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
@@ -23,5 +23,5 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 interface WishlistRepositoryInterface extends RepositoryInterface
 {
-    public function getClientWishlistCollection(ClientInterface $client) : Collection;
+    public function getClientWishlistCollection(Client $client): Collection;
 }
