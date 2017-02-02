@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\OAuthBundle\Manager;
 
 use League\OAuth2\Client\Provider\FacebookUser;
-use Symfony\Component\Security\Core\User\UserInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
@@ -25,7 +24,7 @@ use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
  */
 class FacebookClientManager extends AbstractManager
 {
-    public function getClient(FacebookUser $facebookUser): UserInterface
+    public function getClient(FacebookUser $facebookUser): Client
     {
         $email = $facebookUser->getEmail();
         
@@ -40,7 +39,7 @@ class FacebookClientManager extends AbstractManager
         return $client;
     }
     
-    private function autoRegisterFacebookUser(FacebookUser $facebookUser): UserInterface
+    private function autoRegisterFacebookUser(FacebookUser $facebookUser): Client
     {
         $firstName = $facebookUser->getFirstName();
         $lastName  = $facebookUser->getLastName();
