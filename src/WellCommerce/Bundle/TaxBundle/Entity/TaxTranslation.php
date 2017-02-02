@@ -27,20 +27,14 @@ class TaxTranslation implements LocaleAwareInterface
     /**
      * @var string
      */
-    protected $name;
+    protected $name = '';
     
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
     
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }

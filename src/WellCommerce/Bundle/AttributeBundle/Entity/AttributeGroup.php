@@ -72,4 +72,9 @@ class AttributeGroup implements EntityInterface
     {
         $this->attributes->add($attribute);
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): AttributeGroupTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

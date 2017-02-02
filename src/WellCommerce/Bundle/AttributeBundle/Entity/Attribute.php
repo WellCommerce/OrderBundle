@@ -93,4 +93,9 @@ class Attribute implements EntityInterface
     {
         $this->values->add($value);
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): AttributeTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

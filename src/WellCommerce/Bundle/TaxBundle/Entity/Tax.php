@@ -41,4 +41,9 @@ class Tax implements EntityInterface
     {
         $this->value = $value;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): TaxTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

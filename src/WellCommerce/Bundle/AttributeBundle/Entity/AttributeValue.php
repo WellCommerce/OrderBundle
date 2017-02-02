@@ -59,6 +59,11 @@ class AttributeValue implements EntityInterface
         $attribute->addValue($this);
     }
     
+    public function translate($locale = null, $fallbackToDefault = true): AttributeValueTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
+    
     private function syncOldAttributes(Collection $attributes)
     {
         $this->attributes->map(function (Attribute $attribute) use ($attributes) {
