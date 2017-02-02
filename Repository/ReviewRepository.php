@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ReviewBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class ReviewRepository
@@ -23,7 +23,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
  */
 class ReviewRepository extends EntityRepository implements ReviewRepositoryInterface
 {
-    public function getProductReviews(ProductInterface $product): Collection
+    public function getProductReviews(Product $product): Collection
     {
         $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('product', $product));

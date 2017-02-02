@@ -18,7 +18,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class Review
@@ -30,7 +30,6 @@ class Review implements EntityInterface
     use Identifiable;
     use Enableable;
     use Timestampable;
-    use ProductAwareTrait;
     
     protected $nick                 = '';
     protected $review               = '';
@@ -39,6 +38,11 @@ class Review implements EntityInterface
     protected $ratingRecommendation = 5;
     protected $ratio                = 0.00;
     protected $likes                = 0;
+    
+    /**
+     * @var Product
+     */
+    protected $product;
     
     /**
      * @var Collection
@@ -108,6 +112,16 @@ class Review implements EntityInterface
     public function setLikes(int $likes)
     {
         $this->likes = $likes;
+    }
+    
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
     }
     
     public function getRatingRecommendation(): int
