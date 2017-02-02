@@ -73,7 +73,7 @@ class AdminMenu implements EntityInterface
         return $this->parent;
     }
     
-    public function setParent(self $parent = null)
+    public function setParent(AdminMenu $parent = null)
     {
         $this->parent = $parent;
     }
