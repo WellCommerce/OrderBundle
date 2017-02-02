@@ -170,25 +170,13 @@ class Product implements ProductInterface
     
     public function setDistinctions(Collection $distinctions)
     {
-        if ($this->distinctions instanceof Collection) {
-            $this->synchronizeDistinctions($distinctions);
-        }
-        
-        $this->distinctions = $distinctions;
-    }
-    
-    protected function synchronizeDistinctions(Collection $distinctions)
-    {
         $this->distinctions->map(function (ProductDistinction $distinction) use ($distinctions) {
             if (false === $distinctions->contains($distinction)) {
-                $this->removeDistinction($distinction);
+                $this->distinctions->removeElement($distinction);
             }
         });
-    }
-    
-    public function removeDistinction(ProductDistinction $distinction)
-    {
-        $this->distinctions->removeElement($distinction);
+        
+        $this->distinctions = $distinctions;
     }
     
     public function getProductPhotos(): Collection
@@ -288,25 +276,13 @@ class Product implements ProductInterface
     
     public function setVariants(Collection $variants)
     {
-        if ($this->variants instanceof Collection) {
-            $this->synchronizeVariants($variants);
-        }
-        
-        $this->variants = $variants;
-    }
-    
-    protected function synchronizeVariants(Collection $variants)
-    {
         $this->variants->map(function (VariantInterface $variant) use ($variants) {
             if (false === $variants->contains($variant)) {
-                $this->removeVariant($variant);
+                $this->variants->removeElement($variant);
             }
         });
-    }
-    
-    public function removeVariant(VariantInterface $variant)
-    {
-        $this->variants->removeElement($variant);
+        
+        $this->variants = $variants;
     }
     
     public function getBuyPriceTax()

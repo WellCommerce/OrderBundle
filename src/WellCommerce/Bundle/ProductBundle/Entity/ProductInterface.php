@@ -95,8 +95,6 @@ interface ProductInterface extends
     
     public function setVariants(Collection $attributes);
     
-    public function removeVariant(VariantInterface $variant);
-    
     public function getBuyPriceTax();
     
     public function setBuyPriceTax(TaxInterface $buyPriceTax = null);
