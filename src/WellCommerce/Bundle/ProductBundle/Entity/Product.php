@@ -31,7 +31,7 @@ use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
-use WellCommerce\Bundle\UnitBundle\Entity\UnitAwareTrait;
+use WellCommerce\Bundle\UnitBundle\Entity\Unit;
 
 /**
  * Class Product
@@ -48,7 +48,6 @@ class Product implements ProductInterface
     use Blameable;
     use MediaAwareTrait;
     use ShopCollectionAwareTrait;
-    use UnitAwareTrait;
     use ProductExtraTrait;
     
     protected $sku         = '';
@@ -116,6 +115,11 @@ class Product implements ProductInterface
      * @var Producer
      */
     protected $producer;
+    
+    /**
+     * @var Unit
+     */
+    protected $unit;
     
     public function __construct()
     {
@@ -343,5 +347,15 @@ class Product implements ProductInterface
     public function setProducer(Producer $producer)
     {
         $this->producer = $producer;
+    }
+    
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+    
+    public function setUnit(Unit $unit = null)
+    {
+        $this->unit = $unit;
     }
 }
