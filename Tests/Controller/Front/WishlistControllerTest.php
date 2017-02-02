@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\WishlistBundle\Tests\Controller\Front;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**
@@ -39,11 +39,11 @@ class WishlistControllerTest extends AbstractFrontControllerTestCase
         $this->client->request('GET', $url);
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
-    
+
 //    public function testAddActionForGuest()
 //    {
 //        $product = $this->container->get('product.repository')->findOneBy(['enabled' => true]);
-//        if ($product instanceof ProductInterface) {
+//        if ($product instanceof Product) {
 //            $url = $this->generateUrl('front.wishlist.add', ['id' => $product->getId()]);
 //            $this->client->request('GET', $url);
 //
@@ -56,7 +56,7 @@ class WishlistControllerTest extends AbstractFrontControllerTestCase
         $this->logIn();
         
         $product = $this->container->get('product.repository')->findOneBy(['enabled' => true]);
-        if ($product instanceof ProductInterface) {
+        if ($product instanceof Product) {
             $url         = $this->generateUrl('front.wishlist.add', ['id' => $product->getId()]);
             $redirectUrl = $this->generateUrl('front.wishlist.index', [], false);
             $this->client->request('GET', $url);
@@ -64,10 +64,10 @@ class WishlistControllerTest extends AbstractFrontControllerTestCase
             $this->assertTrue($this->client->getResponse()->isRedirect($redirectUrl));
         }
     }
-    
+
 //    public function testDeleteActionForGuest()
 //    {
-//        /** @var ProductInterface $product */
+//        /** @var Product $product */
 //        $product = $this->container->get('product.repository')->findOneBy(['enabled' => true]);
 //        $url     = $this->generateUrl('front.wishlist.delete', ['id' => $product->getId()]);
 //        $this->client->request('GET', $url);
