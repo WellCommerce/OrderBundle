@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
+use WellCommerce\Bundle\NewsBundle\Entity\News;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -25,39 +26,23 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 class NewsController extends AbstractFrontController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function indexAction(Request $request) : Response
+    public function indexAction(Request $request): Response
     {
         return $this->displayTemplate('index');
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function viewAction(Request $request) : Response
+    public function viewAction(News $news): Response
     {
-        $news = $this->findOr404($request);
-        
         $this->getBreadcrumbProvider()->add(new Breadcrumb([
             'label' => $news->translate()->getTopic(),
         ]));
         
         return $this->displayTemplate('view', [
-            'news' => $news,
-            'metadata' => $news->translate()->getMeta()
+            'news'     => $news,
+            'metadata' => $news->translate()->getMeta(),
         ]);
     }
     
-    /**
-     * Returns resource by ID parameter
-     *
-     * @param Request $request
-     * @param array   $criteria
-     *
-     * @return mixed
-     */
     protected function findOr404(Request $request, array $criteria = [])
     {
         // check whether request contains ID attribute

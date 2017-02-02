@@ -13,6 +13,9 @@ form:
         image_id: Image ID
 
 common:
+    error:
+        404: "400 Not Found. Sorry, the page you are looking for could not be found"
+        500: "500 Internal Server Error. Sorry, something went wrong."
     button:
         add: Add
         save: 'Save changes'

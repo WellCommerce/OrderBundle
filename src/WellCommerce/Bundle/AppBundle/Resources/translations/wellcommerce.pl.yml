@@ -13,6 +13,9 @@ form:
         image_id: ID obrazka
 
 common:
+    error:
+        404: "400 Not Found. Przykro nam ale podana strona nie istnieje."
+        500: "500 Internal Server Error. Przykro nam, ale wystąpił błąd krytyczny aplikacji."
     button:
         add: Dodaj
         save: Zapisz zmiany
