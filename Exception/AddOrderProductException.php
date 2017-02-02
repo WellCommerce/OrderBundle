@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Exception;
 
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 
 /**
  * Class AddCartItemException
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
  */
 class AddCartItemException extends \RuntimeException
 {
-    public function __construct(ProductInterface $product, VariantInterface $variant = null, $quantity, \Exception $previous)
+    public function __construct(Product $product, Variant $variant = null, $quantity, \Exception $previous)
     {
         $message = sprintf(
             'Cannot add item with id: "%s", attribute: "%s" and quantity: "%s" to cart',

@@ -18,8 +18,8 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\AddCartItemException;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderProductManager;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 
 /**
  * Class OrderCartController
@@ -54,7 +54,7 @@ class OrderCartController extends AbstractFrontController
         ]);
     }
     
-    public function addAction(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1) : Response
+    public function addAction(Product $product, Variant $variant = null, int $quantity = 1) : Response
     {
         $variants = $product->getVariants();
         $order    = $this->getOrderProvider()->getCurrentOrder();

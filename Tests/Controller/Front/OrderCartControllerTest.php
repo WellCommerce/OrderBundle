@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Front;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 
 /**
  * Class OrderControllerTest
@@ -28,7 +28,7 @@ class OrderCartControllerTest extends AbstractFrontControllerTestCase
         /** @var Collection $collection */
         $collection = $this->container->get('product.repository')->getCollection();
         
-        $collection->map(function (ProductInterface $product) {
+        $collection->map(function (Product $product) {
             $url     = $this->generateUrl('front.order_cart.add', ['id' => $product->getId(), 'variant' => null, 'quantity' => 1]);
             $crawler = $this->client->request('GET', $url);
             

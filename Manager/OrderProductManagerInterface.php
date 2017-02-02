@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\OrderBundle\Manager;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 
 /**
  * Interface OrderProductManagerInterface
@@ -25,11 +25,11 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
  */
 interface OrderProductManagerInterface extends ManagerInterface
 {
-    public function addProductToOrder(ProductInterface $product, VariantInterface $variant = null, int $quantity = 1, Order $order);
+    public function addProductToOrder(Product $product, Variant $variant = null, int $quantity = 1, Order $order);
     
-    public function findProductInOrder(ProductInterface $product, VariantInterface $variant = null, Order $order);
+    public function findProductInOrder(Product $product, Variant $variant = null, Order $order);
     
-    public function createOrderProduct(ProductInterface $product, VariantInterface $variant = null, Order $order): OrderProduct;
+    public function createOrderProduct(Product $product, Variant $variant = null, Order $order): OrderProduct;
     
     public function deleteOrderProduct(OrderProduct $orderProduct, Order $order);
     
