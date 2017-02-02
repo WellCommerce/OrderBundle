@@ -57,4 +57,9 @@ class OrderStatus implements EntityInterface
     {
         $this->colour = $colour;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): OrderStatusTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }
