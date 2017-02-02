@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Calculator\OrderProductTotalCalculatorInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
@@ -24,7 +23,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 final class OrderProductTotalVisitor implements OrderVisitorInterface
 {
     /**
-     * @var CurrencyHelperInterface
+     * @var OrderProductTotalCalculatorInterface
      */
     private $calculator;
     
