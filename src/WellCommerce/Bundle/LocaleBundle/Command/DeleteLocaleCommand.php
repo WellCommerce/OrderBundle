@@ -13,16 +13,17 @@
 namespace WellCommerce\Bundle\LocaleBundle\Command;
 
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
-use WellCommerce\Bundle\LocaleBundle\Repository\LocaleRepositoryInterface;
 
 /**
  * Class DeleteLocaleCommand
@@ -32,24 +33,40 @@ use WellCommerce\Bundle\LocaleBundle\Repository\LocaleRepositoryInterface;
 class DeleteLocaleCommand extends ContainerAwareCommand
 {
     /**
-     * {@inheritdoc}
+     * @var RepositoryInterface
      */
+    protected $repository;
+    
+    /**
+     * @var DoctrineHelperInterface
+     */
+    protected $doctrineHelper;
+    
+    /**
+     * @var EntityManagerInterface
+     */
+    protected $entityManager;
+    
     protected function configure()
     {
         $this->setDescription('Deletes a locale and related translatable entities');
         $this->setName('wellcommerce:locale:delete');
     }
     
-    /**
-     * {@inheritdoc}
-     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->repository     = $this->getContainer()->get('locale.repository');
+        $this->doctrineHelper = $this->getContainer()->get('doctrine.helper');
+        $this->entityManager  = $this->doctrineHelper->getEntityManager();
+    }
+    
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $sourceLocales = $this->getSourceLocales();
         if (1 === count($sourceLocales)) {
             $output->write('<error>Cannot delete any locale. Only one exists.</error>', true);
             
-            return false;
+            return;
         }
         
         $helper        = $this->getHelper('question');
@@ -58,54 +75,38 @@ class DeleteLocaleCommand extends ContainerAwareCommand
         
         $this->deleteLocaleData($choosenLocale, $output);
         
-        $this->getDoctrineHelper()->getEntityManager()->flush();
+        $this->entityManager->flush();
         
         $output->writeln(sprintf('<info>Deleted the locale "%s"</info>', $choosenLocale));
-        
-        return true;
     }
     
-    /**
-     * Deletes the locale
-     *
-     * @param                 $localeCode
-     * @param OutputInterface $output
-     */
     protected function deleteLocaleData($localeCode, OutputInterface $output)
     {
-        $entityManager = $this->getDoctrineHelper()->getEntityManager();
-        $metadata      = $this->getDoctrineHelper()->getAllMetadata();
-        $locale        = $this->getLocaleRepository()->findOneBy(['code' => $localeCode]);
+        $metadata = $this->doctrineHelper->getAllMetadata();
+        $locale   = $this->repository->findOneBy(['code' => $localeCode]);
         if (!$locale instanceof Locale) {
             throw new InvalidArgumentException(sprintf('Wrong locale code "%s" was given', $localeCode));
         }
+        
         foreach ($metadata as $classMetadata) {
             $reflectionClass = $classMetadata->getReflectionClass();
             if ($reflectionClass->implementsInterface(\WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface::class)) {
-                $repository = $entityManager->getRepository($reflectionClass->getName());
+                $repository = $this->entityManager->getRepository($reflectionClass->getName());
                 $this->deleteTranslatableEntities($repository, $locale, $output);
             }
         }
         
-        $entityManager->remove($locale);
+        $this->entityManager->remove($locale);
     }
     
-    /**
-     * Deletes the translatable entities for locale
-     *
-     * @param EntityRepository $repository
-     * @param Locale           $locale
-     * @param OutputInterface  $output
-     */
     protected function deleteTranslatableEntities(EntityRepository $repository, Locale $locale, OutputInterface $output)
     {
-        $entityManager = $this->getDoctrineHelper()->getEntityManager();
-        $criteria      = new Criteria();
+        $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('locale', $locale->getCode()));
         $collection = $repository->matching($criteria);
         
-        $collection->map(function (LocaleAwareInterface $entity) use ($entityManager) {
-            $entityManager->remove($entity);
+        $collection->map(function (LocaleAwareInterface $entity) {
+            $this->entityManager->remove($entity);
         });
         
         $output->write(sprintf(
@@ -115,29 +116,15 @@ class DeleteLocaleCommand extends ContainerAwareCommand
         ), true);
     }
     
-    
-    /**
-     * @return array
-     */
-    protected function getSourceLocales()
+    protected function getSourceLocales(): array
     {
         $locales    = [];
-        $collection = $this->getLocaleRepository()->getCollection();
+        $collection = $this->repository->getCollection();
         
         $collection->map(function (Locale $locale) use (&$locales) {
             $locales[$locale->getCode()] = $locale->getCode();
         });
         
         return $locales;
-    }
-    
-    private function getDoctrineHelper(): DoctrineHelperInterface
-    {
-        return $this->getContainer()->get('doctrine.helper');
-    }
-    
-    private function getLocaleRepository(): LocaleRepositoryInterface
-    {
-        return $this->getContainer()->get('locale.repository');
     }
 }
