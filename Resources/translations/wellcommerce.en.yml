@@ -45,6 +45,7 @@ common:
         code: Code
         slug: Slug
         group: Group
+        symbol: Symbol
         discount: Discount
         created_at: Created at
         updated_at: Updated at
