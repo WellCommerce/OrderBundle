@@ -60,8 +60,6 @@ services:
         tags:
             - { name: payment.processor }
         arguments: ['@bank_transfer.gateway', '@bank_transfer.configurator']
-        calls:
-            - [setContainer, ['@service_container']]
 
     cash_on_delivery.gateway:
         class: WellCommerce\Bundle\PaymentBundle\Gateway\OfflinePaymentGateway
@@ -78,8 +76,6 @@ services:
         tags:
             - { name: payment.processor }
         arguments: ['@cash_on_delivery.gateway', '@cash_on_delivery.configurator']
-        calls:
-            - [setContainer, ['@service_container']]
 
     paypal.configurator:
         class: WellCommerce\Bundle\PaymentBundle\Configurator\PayPalConfigurator
@@ -97,8 +93,6 @@ services:
         tags:
             - { name: payment.processor }
         arguments: ['@paypal.gateway', '@paypal.configurator']
-        calls:
-            - [setContainer, ['@service_container']]
 
     payu.configurator:
         class: WellCommerce\Bundle\PaymentBundle\Configurator\PayUConfigurator
@@ -116,8 +110,6 @@ services:
         tags:
             - { name: payment.processor }
         arguments: ['@payu.gateway', '@payu.configurator']
-        calls:
-            - [setContainer, ['@service_container']]
 
     przelewy24.configurator:
         class: WellCommerce\Bundle\PaymentBundle\Configurator\Przelewy24Configurator
@@ -135,5 +127,3 @@ services:
         tags:
             - { name: payment.processor }
         arguments: ['@przelewy24.gateway', '@przelewy24.configurator']
-        calls:
-            - [setContainer, ['@service_container']]
