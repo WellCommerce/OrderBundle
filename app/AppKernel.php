@@ -79,8 +79,7 @@ class AppKernel extends Kernel
             new \WellCommerce\Bundle\ThemeBundle\WellCommerceThemeBundle(),
             new \WellCommerce\Bundle\MediaBundle\WellCommerceMediaBundle(),
             new \WellCommerce\Bundle\WishlistBundle\WellCommerceWishlistBundle(),
-            new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
-            new WellCommerce\Bundle\SizeBundle\WellCommerceSizeBundle(),
+            new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle()
         ];
         
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
