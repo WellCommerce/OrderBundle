@@ -30,7 +30,6 @@ class AvailabilityExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'availability.repository',
-                    'availability.factory',
                     'availability.manager',
                     'availability.form_builder.admin',
                     'availability.dataset.admin',

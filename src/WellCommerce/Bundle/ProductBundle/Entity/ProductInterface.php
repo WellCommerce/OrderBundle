@@ -23,7 +23,7 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
+use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 
 /**
  * Interface ProductInterface
@@ -95,9 +95,9 @@ interface ProductInterface extends
     
     public function getBuyPriceTax();
     
-    public function setBuyPriceTax(TaxInterface $buyPriceTax = null);
+    public function setBuyPriceTax(Tax $tax = null);
     
     public function getSellPriceTax();
     
-    public function setSellPriceTax(TaxInterface $sellPriceTax = null);
+    public function setSellPriceTax(Tax $tax = null);
 }

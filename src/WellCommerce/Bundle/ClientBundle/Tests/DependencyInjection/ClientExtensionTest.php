@@ -30,21 +30,18 @@ class ClientExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'client.repository',
-                    'client.factory',
                     'client.manager',
                     'client.form_builder.admin',
                     'client.dataset.admin',
                     'client.datagrid',
                     'client.controller.admin',
-
                     'client_group.repository',
-                    'client_group.factory',
                     'client_group.manager',
                     'client_group.form_builder.admin',
                     'client_group.dataset.admin',
                     'client_group.datagrid',
                     'client_group.controller.admin',
-                ]
+                ],
             ],
         ];
     }

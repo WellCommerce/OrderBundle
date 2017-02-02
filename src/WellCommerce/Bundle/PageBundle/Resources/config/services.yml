@@ -33,5 +33,5 @@ services:
             - { name: twig.extension }
         arguments: ['@page.dataset.front']
 
-    page.storage:
-        class: WellCommerce\Bundle\PageBundle\Storage\PageStorage
+    page.request.storage:
+        class: WellCommerce\Bundle\PageBundle\Request\PageRequestStorage

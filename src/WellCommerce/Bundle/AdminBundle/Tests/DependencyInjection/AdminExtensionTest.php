@@ -31,7 +31,6 @@ class AdminExtensionTest extends AbstractExtensionTestCase
                 [
                     // user
                     'user.repository',
-                    'user.factory',
                     'user.manager',
                     'user.form_builder.admin',
                     'user.dataset.admin',
@@ -39,7 +38,6 @@ class AdminExtensionTest extends AbstractExtensionTestCase
                     'user.controller.admin',
                     // user group
                     'user_group.repository',
-                    'user_group.factory',
                     'user_group.manager',
                     'user_group.form_builder.admin',
                     'user_group.dataset.admin',

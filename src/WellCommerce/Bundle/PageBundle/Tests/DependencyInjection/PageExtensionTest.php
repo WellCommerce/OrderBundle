@@ -30,7 +30,6 @@ class PageExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'page.repository',
-                    'page.factory',
                     'page.manager',
                     'page.form_builder.admin',
                     'page.dataset.admin',

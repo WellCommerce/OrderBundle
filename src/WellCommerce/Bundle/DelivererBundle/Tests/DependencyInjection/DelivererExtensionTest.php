@@ -30,7 +30,6 @@ class DelivererExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'deliverer.repository',
-                    'deliverer.factory',
                     'deliverer.manager',
                     'deliverer.form_builder.admin',
                     'deliverer.dataset.admin',

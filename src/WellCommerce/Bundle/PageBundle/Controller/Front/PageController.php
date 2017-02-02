@@ -15,6 +15,7 @@ namespace WellCommerce\Bundle\PageBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\PageBundle\Entity\Page;
+use WellCommerce\Bundle\PageBundle\Request\PageRequestStorage;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
@@ -40,11 +41,16 @@ class PageController extends AbstractFrontController
             'label' => $page->translate()->getName(),
         ]));
         
-        $this->getPageStorage()->setCurrentPage($page);
+        $this->getPageRequestStorage()->setCurrentPage($page);
         
         return $this->displayTemplate('index', [
             'page'     => $page,
             'metadata' => $page->translate()->getMeta(),
         ]);
+    }
+    
+    private function getPageRequestStorage(): PageRequestStorage
+    {
+        return $this->get('page.request.storage');
     }
 }

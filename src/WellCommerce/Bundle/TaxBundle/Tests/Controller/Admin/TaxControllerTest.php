@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\TaxBundle\Tests\Controller\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
+use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 
 /**
  * Class TaxControllerTest
@@ -26,32 +26,32 @@ class TaxControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.tax.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('tax.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testAddAction()
     {
         $url     = $this->generateUrl('admin.tax.add');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('tax.heading.add') . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
         $collection = $this->container->get('tax.repository')->getCollection();
-
-        $collection->map(function (TaxInterface $tax) {
+        
+        $collection->map(function (Tax $tax) {
             $url     = $this->generateUrl('admin.tax.edit', ['id' => $tax->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('tax.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -59,13 +59,13 @@ class TaxControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $tax->translate()->getName() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
         $this->client->request('GET', $this->generateUrl('admin.tax.grid'), [], [], [
             'HTTP_X-Requested-With' => 'XMLHttpRequest',
         ]);
-    
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

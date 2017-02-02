@@ -10,41 +10,32 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\ContactBundle\Context\Front;
+namespace WellCommerce\Bundle\ContactBundle\Request;
 
 use WellCommerce\Bundle\ContactBundle\Entity\Contact;
 
 /**
- * Class ContactContext
+ * Class ContactRequestStorage
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ContactContext implements ContactContextInterface
+class ContactRequestStorage
 {
     /**
      * @var Contact
      */
     protected $currentContact;
     
-    /**
-     * {@inheritdoc}
-     */
     public function setCurrentContact(Contact $contact)
     {
         $this->currentContact = $contact;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getCurrentContact(): Contact
     {
         return $this->currentContact;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function hasCurrentContact(): bool
     {
         return $this->currentContact instanceof Contact;

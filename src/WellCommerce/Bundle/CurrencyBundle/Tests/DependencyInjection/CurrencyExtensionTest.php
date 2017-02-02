@@ -30,7 +30,6 @@ class CurrencyExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'currency.repository',
-                    'currency.factory',
                     'currency.manager',
                     'currency.form_builder.admin',
                     'currency.dataset.admin',

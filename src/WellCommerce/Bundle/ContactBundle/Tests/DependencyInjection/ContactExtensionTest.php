@@ -30,7 +30,6 @@ class ContactExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'contact.repository',
-                    'contact.factory',
                     'contact.manager',
                     'contact.form_builder.admin',
                     'contact.dataset.admin',

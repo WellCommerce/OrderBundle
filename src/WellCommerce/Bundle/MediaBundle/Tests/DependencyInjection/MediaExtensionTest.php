@@ -30,7 +30,6 @@ class MediaExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'media.repository',
-                    'media.factory',
                     'media.manager',
                     'media.form_builder.admin',
                     'media.dataset.admin',

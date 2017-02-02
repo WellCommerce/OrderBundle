@@ -25,5 +25,5 @@ services:
         class: WellCommerce\Bundle\ContactBundle\Controller\Box\ContactBoxController
         arguments: ['@service_container', '@contact.repository']
 
-    contact.context.front:
-        class: WellCommerce\Bundle\ContactBundle\Context\Front\ContactContext
+    contact.request.storage:
+        class: WellCommerce\Bundle\ContactBundle\Request\ContactRequestStorage

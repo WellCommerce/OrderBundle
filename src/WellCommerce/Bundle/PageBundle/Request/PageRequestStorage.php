@@ -10,41 +10,32 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\PageBundle\Storage;
+namespace WellCommerce\Bundle\PageBundle\Request;
 
 use WellCommerce\Bundle\PageBundle\Entity\Page;
 
 /**
- * Class PageStorage
+ * Class PageRequestStorage
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PageStorage implements PageStorageInterface
+class PageRequestStorage
 {
     /**
      * @var Page
      */
     protected $currentPage;
     
-    /**
-     * {@inheritdoc}
-     */
     public function setCurrentPage(Page $page)
     {
         $this->currentPage = $page;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getCurrentPage(): Page
     {
         return $this->currentPage;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function hasCurrentPage(): bool
     {
         return $this->currentPage instanceof Page;

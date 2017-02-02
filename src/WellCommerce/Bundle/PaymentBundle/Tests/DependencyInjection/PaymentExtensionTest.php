@@ -30,7 +30,6 @@ class PaymentMethodExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'payment_method.repository',
-                    'payment_method.factory',
                     'payment_method.manager',
                     'payment_method.form_builder.admin',
                     'payment_method.dataset.admin',

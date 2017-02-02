@@ -30,7 +30,6 @@ class DictionaryExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'dictionary.repository',
-                    'dictionary.factory',
                     'dictionary.manager',
                     'dictionary.form_builder.admin',
                     'dictionary.dataset.admin',

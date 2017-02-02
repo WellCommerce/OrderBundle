@@ -30,7 +30,6 @@ class ProductStatusExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'product_status.repository',
-                    'product_status.factory',
                     'product_status.manager',
                     'product_status.form_builder.admin',
                     'product_status.dataset.admin',

@@ -30,7 +30,6 @@ class LocaleExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'locale.repository',
-                    'locale.factory',
                     'locale.manager',
                     'locale.form_builder.admin',
                     'locale.dataset.admin',

@@ -18,7 +18,6 @@ use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TranslatableInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareInterface;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxAwareInterface;
 
 /**
  * Interface ShippingMethodInterface
@@ -30,7 +29,6 @@ interface ShippingMethodInterface extends
     TimestampableInterface,
     TranslatableInterface,
     BlameableInterface,
-    TaxAwareInterface,
     ShopCollectionAwareInterface
 {
     public function getCalculator(): string;

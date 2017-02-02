@@ -30,7 +30,6 @@ class ShippingMethodExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'shipping_method.repository',
-                    'shipping_method.factory',
                     'shipping_method.manager',
                     'shipping_method.form_builder.admin',
                     'shipping_method.dataset.admin',

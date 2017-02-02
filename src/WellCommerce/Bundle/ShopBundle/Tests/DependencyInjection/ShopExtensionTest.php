@@ -30,7 +30,6 @@ class ShopExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'shop.repository',
-                    'shop.factory',
                     'shop.manager',
                     'shop.form_builder.admin',
                     'shop.dataset.admin',

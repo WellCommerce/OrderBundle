@@ -30,7 +30,6 @@ class CouponExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'coupon.repository',
-                    'coupon.factory',
                     'coupon.manager',
                     'coupon.form_builder.admin',
                     'coupon.dataset.admin',

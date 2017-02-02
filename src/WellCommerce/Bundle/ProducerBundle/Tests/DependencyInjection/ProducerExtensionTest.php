@@ -30,7 +30,6 @@ class ProducerExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'producer.repository',
-                    'producer.factory',
                     'producer.manager',
                     'producer.form_builder.admin',
                     'producer.dataset.admin',

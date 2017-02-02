@@ -30,7 +30,6 @@ class TaxExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'tax.repository',
-                    'tax.factory',
                     'tax.manager',
                     'tax.form_builder.admin',
                     'tax.dataset.admin',

@@ -30,7 +30,6 @@ class LayoutBoxExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'layout_box.repository',
-                    'layout_box.factory',
                     'layout_box.manager',
                     'layout_box.form_builder.admin',
                     'layout_box.dataset.admin',

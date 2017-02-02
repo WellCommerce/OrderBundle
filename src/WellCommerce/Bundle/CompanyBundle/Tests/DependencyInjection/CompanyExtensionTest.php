@@ -30,7 +30,6 @@ class CompanyExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'company.repository',
-                    'company.factory',
                     'company.manager',
                     'company.form_builder.admin',
                     'company.dataset.admin',

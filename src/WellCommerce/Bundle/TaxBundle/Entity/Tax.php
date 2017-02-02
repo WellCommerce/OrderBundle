@@ -16,13 +16,14 @@ use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Tax
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Tax implements TaxInterface
+class Tax implements EntityInterface
 {
     use Identifiable;
     use Translatable;

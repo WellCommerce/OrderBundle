@@ -13,7 +13,9 @@
 namespace WellCommerce\Bundle\ProductBundle\Tests\Context\Front;
 
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
+use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Storage\ProductStorage;
 
 /**
  * Class ProductStorageTest
@@ -24,12 +26,12 @@ class ProductStorageTest extends AbstractTestCase
 {
     public function testContextReturnsValidData()
     {
-        $factory = $this->container->get('product.factory');
-        $storage = $this->container->get('product.storage');
-        $product = $factory->create();
-
-        $storage->setCurrentProduct($factory->create());
+        $storage = new ProductStorage();
+        $product = new Product();
+        
+        $storage->setCurrentProduct($product);
         $this->assertInstanceOf(ProductInterface::class, $storage->getCurrentProduct());
         $this->assertEquals($product, $storage->getCurrentProduct());
+        $this->assertTrue($storage->hasCurrentProduct());
     }
 }

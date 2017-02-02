@@ -30,7 +30,6 @@ class NewsExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'news.repository',
-                    'news.factory',
                     'news.manager',
                     'news.form_builder.admin',
                     'news.dataset.admin',

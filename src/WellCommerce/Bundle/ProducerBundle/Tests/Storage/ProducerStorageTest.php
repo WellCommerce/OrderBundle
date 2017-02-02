@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\ProducerBundle\Tests\Storage;
 
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
+use WellCommerce\Bundle\ProducerBundle\Storage\ProducerStorage;
 
 /**
  * Class ProducerStorageTest
@@ -24,12 +25,12 @@ class ProducerStorageTest extends AbstractTestCase
 {
     public function testContextReturnsValidData()
     {
-        $factory  = $this->container->get('producer.factory');
-        $storage  = $this->container->get('producer.storage');
-        $producer = $factory->create();
+        $storage  = new ProducerStorage();
+        $producer = new Producer();
         
-        $storage->setCurrentProducer($factory->create());
+        $storage->setCurrentProducer($producer);
         $this->assertInstanceOf(Producer::class, $storage->getCurrentProducer());
         $this->assertEquals($producer, $storage->getCurrentProducer());
+        $this->assertTrue($storage->hasCurrentProducer());
     }
 }

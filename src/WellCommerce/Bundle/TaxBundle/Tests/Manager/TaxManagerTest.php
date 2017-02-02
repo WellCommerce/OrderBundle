@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\TaxBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
+use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 
 /**
  * Class TaxManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
  */
 class TaxManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('tax.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return TaxInterface::class;
+        return Tax::class;
     }
 }

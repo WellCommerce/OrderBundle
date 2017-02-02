@@ -30,7 +30,6 @@ class UnitExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'unit.repository',
-                    'unit.factory',
                     'unit.manager',
                     'unit.form_builder.admin',
                     'unit.dataset.admin',

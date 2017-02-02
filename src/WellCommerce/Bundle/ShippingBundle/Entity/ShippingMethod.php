@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxAwareTrait;
+use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 
 /**
  * Class ShippingMethod
@@ -37,7 +37,6 @@ class ShippingMethod implements ShippingMethodInterface
     use Translatable;
     use Timestampable;
     use Blameable;
-    use TaxAwareTrait;
     use ShopCollectionAwareTrait;
     
     protected $calculator      = '';
@@ -48,6 +47,11 @@ class ShippingMethod implements ShippingMethodInterface
      * @var Currency
      */
     protected $currency;
+    
+    /**
+     * @var Tax
+     */
+    protected $tax;
     
     /**
      * @var Collection
@@ -119,5 +123,15 @@ class ShippingMethod implements ShippingMethodInterface
     public function setCurrency(Currency $currency = null)
     {
         $this->currency = $currency;
+    }
+    
+    public function getTax()
+    {
+        return $this->tax;
+    }
+    
+    public function setTax(Tax $tax = null)
+    {
+        $this->tax = $tax;
     }
 }

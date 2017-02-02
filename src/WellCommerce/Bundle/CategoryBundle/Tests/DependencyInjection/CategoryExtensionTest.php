@@ -30,7 +30,6 @@ class CategoryExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'category.repository',
-                    'category.factory',
                     'category.manager',
                     'category.form_builder.admin',
                     'category.dataset.admin',

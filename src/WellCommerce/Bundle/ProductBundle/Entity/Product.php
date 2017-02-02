@@ -30,7 +30,7 @@ use WellCommerce\Bundle\MediaBundle\Entity\Media;
 use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
-use WellCommerce\Bundle\TaxBundle\Entity\TaxInterface;
+use WellCommerce\Bundle\TaxBundle\Entity\Tax;
 use WellCommerce\Bundle\UnitBundle\Entity\Unit;
 
 /**
@@ -61,7 +61,7 @@ class Product implements ProductInterface
     protected $buyPrice;
     
     /**
-     * @var TaxInterface
+     * @var Tax
      */
     protected $buyPriceTax;
     
@@ -71,7 +71,7 @@ class Product implements ProductInterface
     protected $sellPrice;
     
     /**
-     * @var TaxInterface
+     * @var Tax
      */
     protected $sellPriceTax;
     
@@ -304,9 +304,9 @@ class Product implements ProductInterface
         return $this->buyPriceTax;
     }
     
-    public function setBuyPriceTax(TaxInterface $buyPriceTax = null)
+    public function setBuyPriceTax(Tax $tax = null)
     {
-        $this->buyPriceTax = $buyPriceTax;
+        $this->buyPriceTax = $tax;
     }
     
     public function getSellPriceTax()
@@ -314,9 +314,9 @@ class Product implements ProductInterface
         return $this->sellPriceTax;
     }
     
-    public function setSellPriceTax(TaxInterface $sellPriceTax = null)
+    public function setSellPriceTax(Tax $tax = null)
     {
-        $this->sellPriceTax = $sellPriceTax;
+        $this->sellPriceTax = $tax;
     }
     
     public function getAvailability()

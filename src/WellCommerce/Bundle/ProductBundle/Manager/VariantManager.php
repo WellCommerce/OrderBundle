@@ -14,12 +14,15 @@ namespace WellCommerce\Bundle\ProductBundle\Manager;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeInterface;
+use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValueInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantOptionInterface;
+use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;
 
 /**
  * Class VariantManager
@@ -28,30 +31,30 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantOptionInterface;
  */
 class VariantManager extends AbstractManager
 {
-    public function getAttributesCollectionForProduct(ProductInterface $product, array $values) : Collection
+    public function getAttributesCollectionForProduct(ProductInterface $product, array $values): Collection
     {
         $values     = $this->filterValues($values);
         $collection = new ArrayCollection();
-
+        
         foreach ($values as $id => $value) {
             $variant = $this->getVariant($id, $value);
             $variant->setProduct($product);
             $collection->add($variant);
         }
-
+        
         return $collection;
     }
-
-    protected function getVariant($id, $value) : VariantInterface
+    
+    protected function getVariant($id, $value): VariantInterface
     {
         /** @var $variant \WellCommerce\Bundle\ProductBundle\Entity\VariantInterface */
         $variant = $this->repository->find($id);
         if (null === $variant) {
             $variant = $this->initResource();
         }
-
+        
         $variantOptions = $this->makeVariantOptionCollection($variant, $value['attributes']);
-
+        
         $variant->setModifierType($value['suffix']);
         $variant->setModifierValue($value['modifier']);
         $variant->setStock($value['stock']);
@@ -59,11 +62,11 @@ class VariantManager extends AbstractManager
         $variant->setWeight($value['weight']);
         $variant->setHierarchy($value['hierarchy']);
         $variant->setOptions($variantOptions);
-
+        
         return $variant;
     }
-
-    protected function makeVariantOptionCollection(VariantInterface $variant, $values) : Collection
+    
+    protected function makeVariantOptionCollection(VariantInterface $variant, $values): Collection
     {
         $collection = new ArrayCollection();
         foreach ($values as $attributeId => $attributeValueId) {
@@ -72,28 +75,24 @@ class VariantManager extends AbstractManager
             $variantOption  = $this->getVariantOption($variant, $attribute, $attributeValue);
             $collection->add($variantOption);
         }
-
+        
         return $collection;
     }
-
-    protected function getVariantOption(
-        VariantInterface $variant,
-        AttributeInterface $attribute,
-        AttributeValueInterface $attributeValue
-    ) : VariantOptionInterface
+    
+    protected function getVariantOption(Variant $variant, Attribute $attribute, AttributeValue $attributeValue): VariantOption
     {
         $variantOption = $this->findVariantOption($variant, $attribute, $attributeValue);
-
-        if (!$variantOption instanceof VariantOptionInterface) {
-            $variantOption = $this->get('variant_option.factory')->create();
+        
+        if (!$variantOption instanceof VariantOption) {
+            $variantOption = new VariantOption();
             $variantOption->setVariant($variant);
             $variantOption->setAttribute($attribute);
             $variantOption->setAttributeValue($attributeValue);
         }
-
+        
         return $variantOption;
     }
-
+    
     protected function findVariantOption(VariantInterface $variant, AttributeInterface $attribute, AttributeValueInterface $attributeValue)
     {
         return $this->get('variant_option.repository')->findOneBy([
@@ -102,18 +101,18 @@ class VariantManager extends AbstractManager
             'attributeValue' => $attributeValue,
         ]);
     }
-
-    protected function getAttribute(int $id) : AttributeInterface
+    
+    protected function getAttribute(int $id): AttributeInterface
     {
         return $this->get('attribute.repository')->find($id);
     }
-
-    protected function getAttributeValue(int $id) : AttributeValueInterface
+    
+    protected function getAttributeValue(int $id): AttributeValueInterface
     {
         return $this->get('attribute_value.repository')->find($id);
     }
-
-    private function filterValues(array $values) : array
+    
+    private function filterValues(array $values): array
     {
         return array_filter($values, function ($value) {
             return is_array($value);

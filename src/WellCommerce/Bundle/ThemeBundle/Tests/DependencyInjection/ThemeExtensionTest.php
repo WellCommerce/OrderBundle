@@ -30,7 +30,6 @@ class ThemeExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'theme.repository',
-                    'theme.factory',
                     'theme.manager',
                     'theme.form_builder.admin',
                     'theme.dataset.admin',

@@ -30,7 +30,6 @@ class ReviewExtensionTest extends AbstractExtensionTestCase
             'services' => [
                 [
                     'review.repository',
-                    'review.factory',
                     'review.manager',
                     'review.form_builder.admin',
                     'review.dataset.admin',
