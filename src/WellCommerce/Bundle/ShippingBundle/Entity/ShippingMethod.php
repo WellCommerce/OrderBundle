@@ -135,4 +135,9 @@ class ShippingMethod implements EntityInterface
     {
         $this->tax = $tax;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): ShippingMethodTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

@@ -131,4 +131,9 @@ class Category implements EntityInterface
     {
         $this->childrenCount = $childrenCount;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): CategoryTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

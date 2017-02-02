@@ -63,9 +63,6 @@ class Page implements EntityInterface
         $this->shops        = new ArrayCollection();
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getPublish(): bool
     {
         return $this->publish;
@@ -97,57 +94,36 @@ class Page implements EntityInterface
         $child->setParent($this);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getRedirectRoute()
     {
         return $this->redirectRoute;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setRedirectRoute($redirectRoute)
     {
         $this->redirectRoute = $redirectRoute;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getRedirectUrl()
     {
         return $this->redirectUrl;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setRedirectUrl($redirectUrl)
     {
         $this->redirectUrl = $redirectUrl;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getClientGroups(): Collection
     {
         return $this->clientGroups;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setClientGroups(Collection $clientGroups)
     {
         $this->clientGroups = $clientGroups;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function prePersist()
     {
         $redirectType = $this->getRedirectType();
@@ -165,35 +141,28 @@ class Page implements EntityInterface
         }
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getRedirectType()
+    public function getRedirectType(): int
     {
         return $this->redirectType;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setRedirectType($redirectType)
+    public function setRedirectType(int $redirectType)
     {
         $this->redirectType = $redirectType;
     }
     
-    /**
-     * @return string
-     */
     public function getSection(): string
     {
         return $this->section;
     }
     
-    /**
-     * @param string $section
-     */
     public function setSection(string $section)
     {
         $this->section = $section;
+    }
+    
+    public function translate($locale = null, $fallbackToDefault = true): PageTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
     }
 }

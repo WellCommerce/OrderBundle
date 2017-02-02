@@ -29,4 +29,9 @@ class Unit implements EntityInterface
     use Translatable;
     use Timestampable;
     use Blameable;
+    
+    public function translate($locale = null, $fallbackToDefault = true): UnitTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

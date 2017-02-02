@@ -31,4 +31,9 @@ class Availability implements EntityInterface
     use Timestampable;
     use Blameable;
     use AvailabilityExtraTrait;
+    
+    public function translate($locale = null, $fallbackToDefault = true): AvailabilityTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

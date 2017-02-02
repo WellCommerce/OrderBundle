@@ -102,4 +102,9 @@ class News implements EntityInterface
     {
         $this->photo = $photo;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): NewsTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

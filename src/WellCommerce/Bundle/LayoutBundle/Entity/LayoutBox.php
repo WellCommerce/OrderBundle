@@ -63,4 +63,10 @@ class LayoutBox implements EntityInterface
     {
         $this->identifier = $identifier;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): LayoutBoxTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
+    
 }

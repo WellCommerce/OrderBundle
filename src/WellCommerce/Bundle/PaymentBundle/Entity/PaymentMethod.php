@@ -152,4 +152,9 @@ class PaymentMethod implements EntityInterface
     {
         $this->paymentFailureOrderStatus = $paymentFailureOrderStatus;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): PaymentMethodTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

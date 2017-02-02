@@ -41,4 +41,9 @@ class ProductStatus implements EntityInterface
     {
         $this->symbol = $symbol;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): ProductStatusTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

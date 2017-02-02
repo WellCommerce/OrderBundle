@@ -87,4 +87,9 @@ class Producer implements EntityInterface
     {
         $this->photo = $photo;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): ProducerTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

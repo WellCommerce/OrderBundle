@@ -51,4 +51,9 @@ class Deliverer implements EntityInterface
     {
         $this->producers = $collection;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): DelivererTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

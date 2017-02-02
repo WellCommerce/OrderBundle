@@ -153,4 +153,9 @@ class Coupon implements EntityInterface
     {
         $this->excludePromotions = $excludePromotions;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): CouponTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

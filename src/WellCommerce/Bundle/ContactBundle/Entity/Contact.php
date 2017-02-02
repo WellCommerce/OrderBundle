@@ -31,4 +31,9 @@ class Contact implements EntityInterface
     use Translatable;
     use Timestampable;
     use Blameable;
+    
+    public function translate($locale = null, $fallbackToDefault = true): ContactTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

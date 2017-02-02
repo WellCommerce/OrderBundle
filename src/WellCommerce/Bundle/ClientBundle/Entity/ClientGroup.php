@@ -89,5 +89,10 @@ class ClientGroup implements EntityInterface
     {
         $this->pages->add($page);
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): ClientGroupTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }
 

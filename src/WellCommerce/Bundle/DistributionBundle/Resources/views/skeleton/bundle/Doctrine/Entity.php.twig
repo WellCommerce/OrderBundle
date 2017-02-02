@@ -27,4 +27,9 @@ class {{ bundle.prefix }} implements EntityInterface
     use Timestampable;
     use Translatable;
     use Blameable;
+
+    public function translate($locale = null, $fallbackToDefault = true): {{ bundle.prefix }}Translation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

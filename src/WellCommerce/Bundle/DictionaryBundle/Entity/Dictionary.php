@@ -39,4 +39,9 @@ class Dictionary implements EntityInterface
     {
         $this->identifier = $identifier;
     }
+    
+    public function translate($locale = null, $fallbackToDefault = true): DictionaryTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }

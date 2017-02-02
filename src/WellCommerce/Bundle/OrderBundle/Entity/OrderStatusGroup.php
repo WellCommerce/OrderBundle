@@ -28,4 +28,9 @@ class OrderStatusGroup implements EntityInterface
     use Timestampable;
     use Blameable;
     use Translatable;
+    
+    public function translate($locale = null, $fallbackToDefault = true): OrderStatusGroupTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
+    }
 }
