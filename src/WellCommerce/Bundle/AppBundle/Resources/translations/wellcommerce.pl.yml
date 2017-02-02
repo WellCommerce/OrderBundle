@@ -45,6 +45,7 @@ common:
         code: Kod
         slug: Ścieżka SEO
         group: Grupa
+        symbol: Symbol
         discount: Rabat
         created_at: Utworzenie
         updated_at: Ostatnia aktualizacja
