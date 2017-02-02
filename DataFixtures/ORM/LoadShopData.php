@@ -34,7 +34,7 @@ class LoadShopData extends AbstractDataFixture
         }
         
         /**
-         * @var $theme       \WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface
+         * @var $theme       \WellCommerce\Bundle\ThemeBundle\Entity\Theme
          * @var $company     \WellCommerce\Bundle\CompanyBundle\Entity\Company
          * @var $orderStatus \WellCommerce\Bundle\OrderBundle\Entity\OrderStatus
          */
