@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ThemeBundle\Tests\Manager\Admin;
 
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
+use WellCommerce\Bundle\ThemeBundle\Entity\Theme;
 
 /**
  * Class ThemeManagerTest
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
  */
 class ThemeManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('theme.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return ThemeInterface::class;
+        return Theme::class;
     }
 }

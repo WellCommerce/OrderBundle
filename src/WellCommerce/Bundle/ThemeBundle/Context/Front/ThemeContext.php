@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ThemeBundle\Context\Front;
 
-use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
+use WellCommerce\Bundle\ThemeBundle\Entity\Theme;
 
 /**
  * Class ThemeContext
@@ -22,40 +22,28 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
 class ThemeContext implements ThemeContextInterface
 {
     /**
-     * @var ThemeInterface
+     * @var Theme
      */
     protected $currentTheme;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCurrentTheme(ThemeInterface $theme)
+    
+    public function setCurrentTheme(Theme $theme)
     {
         $this->currentTheme = $theme;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentTheme() : ThemeInterface
+    
+    public function getCurrentTheme(): Theme
     {
         return $this->currentTheme;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCurrentThemeFolder() : string
+    
+    public function getCurrentThemeFolder(): string
     {
         return $this->currentTheme->getFolder();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasCurrentTheme() : bool
+    
+    public function hasCurrentTheme(): bool
     {
-        return $this->currentTheme instanceof ThemeInterface;
+        return $this->currentTheme instanceof Theme;
     }
-
+    
 }

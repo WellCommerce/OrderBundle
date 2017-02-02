@@ -16,7 +16,6 @@ use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
-use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareInterface;
 
 /**
  * Interface ShopInterface
@@ -26,8 +25,7 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareInterface;
 interface ShopInterface extends
     EntityInterface,
     TimestampableInterface,
-    BlameableInterface,
-    ThemeAwareInterface
+    BlameableInterface
 {
     public function getName(): string;
     

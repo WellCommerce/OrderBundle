@@ -12,7 +12,8 @@
 
 namespace WellCommerce\Bundle\ThemeBundle\Context\Front;
 
-use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
+use WellCommerce\Bundle\ThemeBundle\Entity\Theme;
+
 
 /**
  * Interface ThemeContextInterface
@@ -21,23 +22,11 @@ use WellCommerce\Bundle\ThemeBundle\Entity\ThemeInterface;
  */
 interface ThemeContextInterface
 {
-    /**
-     * @param ThemeInterface $theme
-     */
-    public function setCurrentTheme(ThemeInterface $theme);
-
-    /**
-     * @return ThemeInterface
-     */
-    public function getCurrentTheme() : ThemeInterface;
-
-    /**
-     * @return string
-     */
-    public function getCurrentThemeFolder() : string;
-
-    /**
-     * @return bool
-     */
-    public function hasCurrentTheme() : bool;
+    public function setCurrentTheme(Theme $theme);
+    
+    public function getCurrentTheme(): Theme;
+    
+    public function getCurrentThemeFolder(): string;
+    
+    public function hasCurrentTheme(): bool;
 }

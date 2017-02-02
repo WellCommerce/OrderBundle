@@ -15,13 +15,14 @@ namespace WellCommerce\Bundle\ThemeBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Theme
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Theme implements ThemeInterface
+class Theme implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

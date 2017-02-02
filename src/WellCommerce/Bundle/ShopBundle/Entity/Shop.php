@@ -18,7 +18,7 @@ use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\CompanyBundle\Entity\Company;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\ThemeBundle\Entity\ThemeAwareTrait;
+use WellCommerce\Bundle\ThemeBundle\Entity\Theme;
 
 /**
  * Class Shop
@@ -30,12 +30,16 @@ class Shop implements ShopInterface
     use Identifiable;
     use Timestampable;
     use Blameable;
-    use ThemeAwareTrait;
     
     protected $name            = '';
     protected $url             = '';
     protected $defaultCountry  = '';
     protected $defaultCurrency = '';
+    
+    /**
+     * @var MailerConfiguration
+     */
+    protected $mailerConfiguration;
     
     /**
      * @var Company
@@ -48,9 +52,9 @@ class Shop implements ShopInterface
     protected $clientGroup;
     
     /**
-     * @var MailerConfiguration
+     * @var Theme
      */
-    protected $mailerConfiguration;
+    protected $theme;
     
     public function __construct()
     {
@@ -125,5 +129,15 @@ class Shop implements ShopInterface
     public function setClientGroup(ClientGroup $clientGroup = null)
     {
         $this->clientGroup = $clientGroup;
+    }
+    
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+    
+    public function setTheme(Theme $theme = null)
+    {
+        $this->theme = $theme;
     }
 }
