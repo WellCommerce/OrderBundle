@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Helper;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ShippingBundle\Context\ProductContext;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
@@ -31,17 +31,17 @@ class ProductHelper implements ProductHelperInterface
      * @var ShippingMethodProviderInterface
      */
     protected $shippingMethodProvider;
-
+    
     /**
      * @var VariantHelperInterface
      */
     protected $variantHelper;
-
+    
     /**
      * @var DataSetInterface
      */
     protected $dataset;
-
+    
     /**
      * ProductHelper constructor.
      *
@@ -58,42 +58,35 @@ class ProductHelper implements ProductHelperInterface
         $this->variantHelper          = $variantHelper;
         $this->dataset                = $dataset;
     }
-
+    
     /**
      * {@inheritdoc}
      */
-    public function getProductDefaultTemplateData(ProductInterface $product) : array
+    public function getProductDefaultTemplateData(ProductInterface $product): array
     {
         $shippingMethodCosts = $this->shippingMethodProvider->getCosts(new ProductContext($product));
         $variants            = $this->variantHelper->getVariants($product);
         $attributes          = $this->variantHelper->getAttributes($product);
-
+        
         return [
             'product'       => $product,
             'shippingCosts' => $shippingMethodCosts,
             'variants'      => json_encode($variants),
-            'attributes'    => $attributes
+            'attributes'    => $attributes,
         ];
     }
-
-    /**
-     * Returns a dataset of products recommended for category
-     *
-     * @param CategoryInterface $category
-     *
-     * @return array
-     */
-    public function getProductRecommendationsForCategory(CategoryInterface $category) : array
+    
+    public function getProductRecommendationsForCategory(Category $category): array
     {
         $conditions = new ConditionsCollection();
         $conditions->add(new Eq('category', $category->getId()));
-
+        
         return $this->dataset->getResult('datagrid', [
             'limit'      => 3,
             'order_by'   => 'name',
             'order_dir'  => 'asc',
-            'conditions' => $conditions
+            'conditions' => $conditions,
         ]);
     }
-
+    
 }

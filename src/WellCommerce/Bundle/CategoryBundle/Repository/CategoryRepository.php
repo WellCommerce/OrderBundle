@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CategoryBundle\Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
@@ -25,7 +25,7 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
  */
 class CategoryRepository extends EntityRepository implements CategoryRepositoryInterface
 {
-    public function getCategoryPath(CategoryInterface $category): array
+    public function getCategoryPath(Category $category): array
     {
         $collection = new ArrayCollection();
         $collection->add($category);
@@ -34,7 +34,7 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
         return array_reverse($collection->toArray());
     }
     
-    private function addCategoryParent(CategoryInterface $category = null, Collection $collection)
+    private function addCategoryParent(Category $category = null, Collection $collection)
     {
         if (null !== $category) {
             $collection->add($category);
@@ -42,19 +42,19 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
         }
     }
     
-    public function getDataGridFilterOptions(CategoryInterface $parent = null): array
+    public function getDataGridFilterOptions(Category $parent = null): array
     {
         $options  = [];
         $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('parent', $parent));
         $categories = $this->matching($criteria);
-        $categories->map(function (CategoryInterface $category) use (&$options) {
+        $categories->map(function (Category $category) use (&$options) {
             $parentCategory = $category->getParent();
             $options[]      = [
                 'id'          => $category->getId(),
                 'name'        => $category->translate()->getName(),
                 'hasChildren' => (bool)$category->getChildren()->count() > 0,
-                'parent'      => ($parentCategory instanceof CategoryInterface) ? $parentCategory->getId() : null,
+                'parent'      => ($parentCategory instanceof Category) ? $parentCategory->getId() : null,
                 'weight'      => $category->getHierarchy(),
             ];
         });

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Repository;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 interface CategoryRepositoryInterface extends RepositoryInterface
 {
-    public function getCategoryPath(CategoryInterface $category): array;
+    public function getCategoryPath(Category $category): array;
     
-    public function getDataGridFilterOptions(CategoryInterface $parent = null): array;
+    public function getDataGridFilterOptions(Category $parent = null): array;
 }

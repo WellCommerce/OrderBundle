@@ -16,7 +16,6 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use WellCommerce\Bundle\CategoryBundle\Entity\Category;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
 
 /**
  * Class CategoryDoctrineEventSubscriber
@@ -44,14 +43,14 @@ class CategoryDoctrineEventSubscriber implements EventSubscriber
         
         foreach ($scheduledEntityChanges as $change => $entities) {
             foreach ($entities as $entity) {
-                if ($entity instanceof CategoryInterface) {
+                if ($entity instanceof Category) {
                     $this->recalculateCategoryTotals($entity, $em);
                 }
             }
         }
     }
     
-    private function recalculateCategoryTotals(CategoryInterface $category, EntityManager $em)
+    private function recalculateCategoryTotals(Category $category, EntityManager $em)
     {
         $category->setProductsCount($category->getProducts()->count());
         $category->setChildrenCount($category->getChildren()->count());

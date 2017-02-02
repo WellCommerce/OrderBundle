@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Manager;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
@@ -34,7 +34,7 @@ class CategoryManager extends AbstractManager
     {
         $repository = $this->getRepository();
         $em         = $this->getDoctrineHelper()->getEntityManager();
-
+        
         foreach ($items as $item) {
             $parent = $repository->find($item['parent']);
             $child  = $repository->find($item['id']);
@@ -44,47 +44,30 @@ class CategoryManager extends AbstractManager
                 $em->persist($child);
             }
         }
-
+        
         $em->flush();
     }
-
-    /**
-     * Adds a new category
-     *
-     * @param string $name
-     * @param int $parent
-     * @param ShopInterface $shop
-     *
-     * @return CategoryInterface
-     */
-    public function quickAddCategory(string $name, int $parent, ShopInterface $shop) : CategoryInterface
+    
+    public function quickAddCategory(string $name, int $parent, ShopInterface $shop): Category
     {
         $parentCategory = $this->getRepository()->find($parent);
-
-        /** @var CategoryInterface $category */
+        
+        /** @var Category $category */
         $category = $this->initResource();
         $category->setParent($parentCategory);
         $category->addShop($shop);
-
+        
         foreach ($this->getLocales() as $locale) {
             $this->translateCategory($locale, $category, $name);
         }
         $em = $this->getDoctrineHelper()->getEntityManager();
         $em->persist($category);
         $em->flush();
-
+        
         return $category;
     }
-
-
-    /**
-     * Translates the category
-     *
-     * @param Locale   $locale
-     * @param CategoryInterface $category
-     * @param string   $name
-     */
-    protected function translateCategory(Locale $locale, CategoryInterface $category, $name)
+    
+    protected function translateCategory(Locale $locale, Category $category, $name)
     {
         /**
          * @var $translation \WellCommerce\Bundle\CategoryBundle\Entity\CategoryTranslation
@@ -95,15 +78,7 @@ class CategoryManager extends AbstractManager
         $translation->setSlug($slug);
         $category->mergeNewTranslations();
     }
-
-    /**
-     * Returns category slug
-     *
-     * @param Locale $locale
-     * @param string $categoryName
-     *
-     * @return mixed|string
-     */
+    
     protected function getLocaleSlug(Locale $locale, $categoryName)
     {
         $slug          = Sluggable::makeSlug($categoryName);
@@ -111,7 +86,7 @@ class CategoryManager extends AbstractManager
         if ($locale->getCode() != $currentLocale) {
             $slug = Sluggable::makeSlug(sprintf('%s-%s', $categoryName, $locale->getCode()));
         }
-
+        
         return $slug;
     }
 }

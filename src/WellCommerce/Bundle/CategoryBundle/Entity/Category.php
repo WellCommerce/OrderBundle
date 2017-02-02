@@ -21,6 +21,7 @@ use WellCommerce\Bundle\CategoryBundle\Entity\Extra\CategoryExtraTrait;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
@@ -28,7 +29,7 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Category implements CategoryInterface
+class Category implements EntityInterface
 {
     use Identifiable;
     use Sortable;
@@ -44,7 +45,7 @@ class Category implements CategoryInterface
     protected $symbol        = '';
     
     /**
-     * @var null|CategoryInterface
+     * @var null|Category
      */
     protected $parent;
     
@@ -80,7 +81,7 @@ class Category implements CategoryInterface
         return $this->parent;
     }
     
-    public function setParent(CategoryInterface $parent = null)
+    public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
     }
@@ -95,7 +96,7 @@ class Category implements CategoryInterface
         return $this->children;
     }
     
-    public function addChild(CategoryInterface $child)
+    public function addChild(Category $child)
     {
         $this->children[] = $child;
         $child->setParent($this);

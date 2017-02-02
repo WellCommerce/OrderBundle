@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Storage;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 
 /**
  * Interface CategoryContextInterface
@@ -21,11 +21,11 @@ use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
  */
 interface CategoryStorageInterface
 {
-    public function setCurrentCategory(CategoryInterface $category);
-
-    public function getCurrentCategory() : CategoryInterface;
-
-    public function getCurrentCategoryIdentifier() : int;
-
-    public function hasCurrentCategory() : bool;
+    public function setCurrentCategory(Category $category);
+    
+    public function getCurrentCategory(): Category;
+    
+    public function getCurrentCategoryIdentifier(): int;
+    
+    public function hasCurrentCategory(): bool;
 }

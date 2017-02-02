@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Storage;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 
 /**
  * Class CategoryStorage
@@ -23,12 +23,12 @@ final class CategoryStorage implements CategoryStorageInterface
 {
     private $currentCategory;
 
-    public function setCurrentCategory(CategoryInterface $category)
+    public function setCurrentCategory(Category $category)
     {
         $this->currentCategory = $category;
     }
 
-    public function getCurrentCategory() : CategoryInterface
+    public function getCurrentCategory() : Category
     {
         return $this->currentCategory;
     }
@@ -44,6 +44,6 @@ final class CategoryStorage implements CategoryStorageInterface
 
     public function hasCurrentCategory() : bool
     {
-        return $this->currentCategory instanceof CategoryInterface;
+        return $this->currentCategory instanceof Category;
     }
 }

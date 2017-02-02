@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CategoryBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CategoryBundle\Repository\CategoryRepository;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
@@ -25,7 +25,7 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 final class CategoryController extends AbstractFrontController
 {
-    public function indexAction(CategoryInterface $category): Response
+    public function indexAction(Category $category): Response
     {
         $this->addBreadcrumbs($category);
         $this->getCategoryStorage()->setCurrentCategory($category);
@@ -36,13 +36,13 @@ final class CategoryController extends AbstractFrontController
         ]);
     }
     
-    private function addBreadcrumbs(CategoryInterface $category)
+    private function addBreadcrumbs(Category $category)
     {
         /** @var CategoryRepository $repository */
         $repository = $this->manager->getRepository();
         $paths      = $repository->getCategoryPath($category);
         
-        /** @var CategoryInterface $path */
+        /** @var Category $path */
         foreach ($paths as $path) {
             $this->getBreadcrumbProvider()->add(new Breadcrumb([
                 'label' => $path->translate()->getName(),

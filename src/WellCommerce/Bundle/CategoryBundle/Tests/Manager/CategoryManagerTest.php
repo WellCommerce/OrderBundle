@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Tests\Manager;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
 
@@ -23,13 +23,13 @@ use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
  */
 class CategoryManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('category.manager');
     }
     
     protected function getExpectedEntityInterface(): string
     {
-        return CategoryInterface::class;
+        return Category::class;
     }
 }

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
@@ -26,22 +26,22 @@ use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
  */
 class ProductController extends AbstractFrontController
 {
-    public function indexAction(ProductInterface $product = null) : Response
+    public function indexAction(ProductInterface $product = null): Response
     {
         if (!$product instanceof ProductInterface || $product->getCategories()->isEmpty()) {
             return $this->redirectToRoute('front.home_page.index');
         }
-
+        
         $this->addBreadcrumbs($product);
         $this->getProductStorage()->setCurrentProduct($product);
         
         return $this->displayTemplate('index', [
-            'product' => $product,
-            'metadata' => $product->translate()->getMeta()
+            'product'  => $product,
+            'metadata' => $product->translate()->getMeta(),
         ]);
     }
     
-    public function viewAction(ProductInterface $product) : JsonResponse
+    public function viewAction(ProductInterface $product): JsonResponse
     {
         $this->getProductStorage()->setCurrentProduct($product);
         
@@ -59,7 +59,7 @@ class ProductController extends AbstractFrontController
         $category = $product->getCategories()->last();
         $paths    = $this->get('category.repository')->getCategoryPath($category);
         
-        /** @var CategoryInterface $path */
+        /** @var Category $path */
         foreach ($paths as $path) {
             $this->getBreadcrumbProvider()->add(new Breadcrumb([
                 'label' => $path->translate()->getName(),

@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ShowcaseBundle\Controller\Box;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Component\DataSet\Conditions\Condition\Eq;
@@ -33,7 +33,7 @@ class ShowcaseBoxController extends AbstractBoxController
         $categories = [];
         $collection = $this->getCategories();
         $status     = $boxSettings->getParam('status');
-        $collection->map(function (CategoryInterface $category) use (&$categories, $status) {
+        $collection->map(function (Category $category) use (&$categories, $status) {
             $conditions = $this->createConditionsCollection($status, $category->getId());
             $limit      = 10;
             $dataset    = $this->get('product.dataset.front')->getResult('array', [

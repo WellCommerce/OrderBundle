@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
@@ -61,7 +61,7 @@ class LoadProductData extends AbstractDataFixture
         $manager->flush();
         
         $products->map(function (ProductInterface $product) {
-            $product->getCategories()->map(function (CategoryInterface $category) {
+            $product->getCategories()->map(function (Category $category) {
                 $category->setProductsCount($category->getProducts()->count());
                 $category->setChildrenCount($category->getChildren()->count());
             });

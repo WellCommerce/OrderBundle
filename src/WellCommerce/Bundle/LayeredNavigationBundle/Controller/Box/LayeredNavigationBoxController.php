@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\LayeredNavigationBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
@@ -51,7 +51,7 @@ class LayeredNavigationBoxController extends AbstractBoxController
         ]);
     }
     
-    private function getAttributesForCategory(CategoryInterface $category): array
+    private function getAttributesForCategory(Category $category): array
     {
         $helper     = $this->get('variant.helper');
         $attributes = $this->get('variant_option.repository')->getVariantOptionsForCategory($category);

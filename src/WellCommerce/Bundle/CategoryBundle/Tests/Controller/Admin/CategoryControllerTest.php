@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Tests\Controller\Admin;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
@@ -25,11 +25,11 @@ class CategoryControllerTest extends AbstractAdminControllerTestCase
     public function testEditAction()
     {
         $collection = $this->container->get('category.repository')->getCollection();
-
-        $collection->map(function (CategoryInterface $category) {
+        
+        $collection->map(function (Category $category) {
             $url     = $this->generateUrl('admin.category.edit', ['id' => $category->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('category.heading.edit') . '")')->count());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());

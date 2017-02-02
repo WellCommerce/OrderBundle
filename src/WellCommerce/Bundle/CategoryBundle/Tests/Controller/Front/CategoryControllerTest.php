@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CategoryBundle\Tests\Controller\Front;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
@@ -25,11 +25,11 @@ class CategoryControllerTest extends AbstractAdminControllerTestCase
     public function testIndexAction()
     {
         $collection = $this->container->get('category.repository')->getCollection();
-
-        $collection->map(function (CategoryInterface $category) {
+        
+        $collection->map(function (Category $category) {
             $url     = $this->generateUrl('dynamic_' . $category->translate()->getRoute()->getId());
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertGreaterThan(0, $crawler->filter('html:contains("' . $category->translate()->getName() . '")')->count());
         });

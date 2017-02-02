@@ -60,7 +60,7 @@ services:
         public: false
         tags:
             - { name: request.param_converter, converter: category, priority: 0 }
-        arguments: ['@category.repository', id, [WellCommerce\Bundle\CategoryBundle\Entity\Category, WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface]]
+        arguments: ['@category.repository', id, [WellCommerce\Bundle\CategoryBundle\Entity\Category]]
 
     twig.extension.category:
         class: WellCommerce\Bundle\CategoryBundle\Twig\Extension\CategoryExtension

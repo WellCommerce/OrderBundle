@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\ProductBundle\Repository;
 
 use Doctrine\ORM\Query\Expr;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
 /**
@@ -22,7 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
  */
 class VariantOptionRepository extends EntityRepository implements VariantOptionRepositoryInterface
 {
-    public function getVariantOptionsForCategory(CategoryInterface $category)
+    public function getVariantOptionsForCategory(Category $category)
     {
         $queryBuilder = $this->getQueryBuilder();
         $queryBuilder->select('attribute_translation.name AS attributeName, value_translation.name AS valueName, IDENTITY(variant_option.attributeValue) AS value');

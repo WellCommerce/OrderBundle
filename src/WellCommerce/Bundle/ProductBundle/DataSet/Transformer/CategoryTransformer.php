@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use WellCommerce\Bundle\CategoryBundle\Entity\CategoryInterface;
+use WellCommerce\Bundle\CategoryBundle\Entity\Category;
 use WellCommerce\Bundle\CategoryBundle\Repository\CategoryRepositoryInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
@@ -29,17 +29,17 @@ final class CategoryTransformer extends AbstractDataSetTransformer
      * @var UrlGeneratorInterface
      */
     private $generator;
-
+    
     /**
      * @var CategoryRepositoryInterface
      */
     private $repository;
-
+    
     /**
      * @var Collection
      */
     private $categories;
-
+    
     /**
      * CategoryTransformer constructor.
      *
@@ -51,16 +51,16 @@ final class CategoryTransformer extends AbstractDataSetTransformer
         $this->generator  = $generator;
         $this->repository = $repository;
     }
-
+    
     public function transformValue($value)
     {
         if (null === $this->categories) {
             $this->loadCategories();
         }
-
+        
         $identifiers      = explode(',', $value);
         $transformedValue = [];
-
+        
         foreach ($identifiers as $identifier) {
             if (isset($this->categories[$identifier])) {
                 $transformedValue[] = $this->categories[$identifier];
@@ -69,14 +69,14 @@ final class CategoryTransformer extends AbstractDataSetTransformer
         
         return $transformedValue;
     }
-
+    
     private function loadCategories()
     {
         $collection = $this->repository->getCollection();
-        $collection->map(function (CategoryInterface $category) {
+        $collection->map(function (Category $category) {
             $this->categories[$category->getId()] = [
                 'name'  => $category->translate()->getName(),
-                'route' => $this->generator->generate($category->translate()->getRoute()->getId())
+                'route' => $this->generator->generate($category->translate()->getRoute()->getId()),
             ];
         });
     }
