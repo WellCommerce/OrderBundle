@@ -22,7 +22,6 @@ use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductDistinction;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
 use WellCommerce\Bundle\ProductBundle\Entity\ProductPhoto;
 
 /**
@@ -60,7 +59,7 @@ class LoadProductData extends AbstractDataFixture
         
         $manager->flush();
         
-        $products->map(function (ProductInterface $product) {
+        $products->map(function (Product $product) {
             $product->getCategories()->map(function (Category $category) {
                 $category->setProductsCount($category->getProducts()->count());
                 $category->setChildrenCount($category->getChildren()->count());
@@ -108,7 +107,7 @@ class LoadProductData extends AbstractDataFixture
         $sellPrice->setValidFrom(new \DateTime());
         $sellPrice->setValidTo((new \DateTime())->modify('+30 days'));
         
-        /** @var ProductInterface $product */
+        /** @var Product $product */
         $product = $this->get('product.factory')->create();
         $product->setSku($sku);
         $product->setHierarchy(rand(0, 10));
