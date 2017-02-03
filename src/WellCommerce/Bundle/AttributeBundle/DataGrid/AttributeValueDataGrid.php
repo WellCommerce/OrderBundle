@@ -28,7 +28,7 @@ class AttributeValueDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'appearance' => new Appearance([
                 'width'   => 90,
                 'visible' => false,
@@ -40,7 +40,7 @@ class AttributeValueDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
     }
     

@@ -29,7 +29,7 @@ class ShipmentDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,7 +44,7 @@ class ShipmentDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'guid',
-            'caption'    => $this->trans('shipment.label.guid'),
+            'caption'    => 'shipment.label.guid',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,
@@ -53,7 +53,7 @@ class ShipmentDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'packageNumber',
-            'caption'    => $this->trans('shipment.label.package_number'),
+            'caption'    => 'shipment.label.package_number',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,
@@ -62,7 +62,7 @@ class ShipmentDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'orderNumber',
-            'caption'    => $this->trans('shipment.label.order_number'),
+            'caption'    => 'shipment.label.order_number',
             'appearance' => new Appearance([
                 'width' => 120,
                 'align' => Appearance::ALIGN_CENTER,
@@ -71,7 +71,7 @@ class ShipmentDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'courier',
-            'caption'    => $this->trans('shipment.label.courier'),
+            'caption'    => 'shipment.label.courier',
             'appearance' => new Appearance([
                 'width' => 120,
                 'align' => Appearance::ALIGN_CENTER,
@@ -80,7 +80,7 @@ class ShipmentDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('common.label.created_at'),
+            'caption'    => 'common.label.created_at',
             'appearance' => new Appearance([
                 'width' => 80,
                 'align' => Appearance::ALIGN_CENTER,

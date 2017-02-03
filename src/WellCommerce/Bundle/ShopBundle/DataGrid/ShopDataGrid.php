@@ -29,7 +29,7 @@ class ShopDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_ASC,
             ]),
@@ -44,7 +44,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('common.label.name'),
+            'caption'    => 'common.label.name',
             'appearance' => new Appearance([
                 'width' => 100,
                 'align' => Appearance::ALIGN_LEFT
@@ -53,7 +53,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'url',
-            'caption'    => $this->trans('common.label.url'),
+            'caption'    => 'common.label.url',
             'appearance' => new Appearance([
                 'width' => 180,
                 'align' => Appearance::ALIGN_CENTER
@@ -62,7 +62,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'company',
-            'caption'    => $this->trans('shop.label.company'),
+            'caption'    => 'shop.label.company',
             'appearance' => new Appearance([
                 'width' => 140,
                 'align' => Appearance::ALIGN_CENTER
@@ -71,7 +71,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'theme',
-            'caption'    => $this->trans('shop.label.theme'),
+            'caption'    => 'shop.label.theme',
             'appearance' => new Appearance([
                 'width' => 140,
                 'align' => Appearance::ALIGN_CENTER
@@ -80,7 +80,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'country',
-            'caption'    => $this->trans('shop.label.default_country'),
+            'caption'    => 'shop.label.default_country',
             'appearance' => new Appearance([
                 'width' => 60,
                 'align' => Appearance::ALIGN_CENTER
@@ -89,7 +89,7 @@ class ShopDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'currency',
-            'caption'    => $this->trans('shop.label.default_currency'),
+            'caption'    => 'shop.label.default_currency',
             'appearance' => new Appearance([
                 'width' => 60,
                 'align' => Appearance::ALIGN_CENTER

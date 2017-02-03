@@ -28,7 +28,7 @@ class AttributeDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'appearance' => new Appearance([
                 'width'   => 90,
                 'visible' => false,
@@ -40,7 +40,7 @@ class AttributeDataGrid extends AbstractDataGrid
 
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
             'appearance' => new Appearance([
                 'width' => 140,
                 'align' => Appearance::ALIGN_LEFT
@@ -49,7 +49,7 @@ class AttributeDataGrid extends AbstractDataGrid
 
         $collection->add(new Column([
             'id'         => 'groups',
-            'caption'    => $this->trans('attribute.label.groups'),
+            'caption'    => 'attribute.label.groups',
             'filter'     => new Filter([
                 'type'    => Filter::FILTER_INPUT,
             ]),

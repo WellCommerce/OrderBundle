@@ -43,7 +43,7 @@ class ProductDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'appearance' => new Appearance([
                 'width'   => 90,
                 'visible' => false,
@@ -55,7 +55,7 @@ class ProductDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('common.label.name'),
+            'caption'    => 'common.label.name',
             'appearance' => new Appearance([
                 'width' => 200,
             ]),
@@ -64,12 +64,12 @@ class ProductDataGrid extends AbstractDataGrid
         $collection->add(new Column([
             'id'       => 'sku',
             'editable' => true,
-            'caption'  => $this->trans('common.label.sku'),
+            'caption'  => 'common.label.sku',
         ]));
         
         $collection->add(new Column([
             'id'      => 'category',
-            'caption' => $this->trans('common.label.categories'),
+            'caption' => 'common.label.categories',
             'filter'  => new Filter([
                 'type'                => Filter::FILTER_TREE,
                 'filtered_column'     => 'categoryId',
@@ -80,7 +80,7 @@ class ProductDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'       => 'grossAmount',
-            'caption'  => $this->trans('common.label.gross_price'),
+            'caption'  => 'common.label.gross_price',
             'editable' => true,
             'filter'   => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
@@ -89,7 +89,7 @@ class ProductDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'       => 'stock',
-            'caption'  => $this->trans('common.label.stock'),
+            'caption'  => 'common.label.stock',
             'editable' => true,
             'filter'   => new Filter([
                 'type' => Filter::FILTER_BETWEEN,

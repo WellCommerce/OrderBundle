@@ -30,7 +30,7 @@ class UserDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('user.label.id'),
+            'caption'    => 'user.label.id',
             'sorting'    => new Sorting([
                 'default_order' => ColumnInterface::SORT_DIR_DESC,
             ]),
@@ -45,27 +45,27 @@ class UserDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'username',
-            'caption' => $this->trans('user.label.username'),
+            'caption' => 'user.label.username',
         ]));
         
         $collection->add(new Column([
             'id'      => 'email',
-            'caption' => $this->trans('user.label.email'),
+            'caption' => 'user.label.email',
         ]));
         
         $collection->add(new Column([
             'id'      => 'first_name',
-            'caption' => $this->trans('user.label.first_name'),
+            'caption' => 'user.label.first_name',
         ]));
         
         $collection->add(new Column([
             'id'      => 'last_name',
-            'caption' => $this->trans('user.label.last_name'),
+            'caption' => 'user.label.last_name',
         ]));
         
         $collection->add(new Column([
             'id'      => 'enabled',
-            'caption' => $this->trans('user.label.enabled'),
+            'caption' => 'user.label.enabled',
         ]));
     }
     

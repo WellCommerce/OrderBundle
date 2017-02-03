@@ -32,7 +32,7 @@ class PageDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -47,17 +47,17 @@ class PageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
         
         $collection->add(new Column([
             'id'      => 'section',
-            'caption' => $this->trans('page.label.section'),
+            'caption' => 'page.label.section',
         ]));
         
         $collection->add(new Column([
             'id'         => 'hierarchy',
-            'caption'    => $this->trans('common.label.hierarchy'),
+            'caption'    => 'common.label.hierarchy',
             'appearance' => new Appearance([
                 'width' => 90,
             ]),
@@ -66,7 +66,7 @@ class PageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'publish',
-            'caption'    => $this->trans('common.label.publish'),
+            'caption'    => 'common.label.publish',
             'appearance' => new Appearance([
                 'width' => 90,
             ]),

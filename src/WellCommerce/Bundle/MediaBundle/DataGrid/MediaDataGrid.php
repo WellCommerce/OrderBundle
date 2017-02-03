@@ -35,7 +35,7 @@ class MediaDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -49,7 +49,7 @@ class MediaDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'preview',
-            'caption'    => $this->trans('common.label.preview'),
+            'caption'    => 'common.label.preview',
             'appearance' => new Appearance([
                 'width' => 30,
                 'align' => Appearance::ALIGN_CENTER,
@@ -58,22 +58,22 @@ class MediaDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
         
         $collection->add(new Column([
             'id'      => 'mime',
-            'caption' => $this->trans('common.label.mime'),
+            'caption' => 'common.label.mime',
         ]));
         
         $collection->add(new Column([
             'id'      => 'extension',
-            'caption' => $this->trans('common.label.extension'),
+            'caption' => 'common.label.extension',
         ]));
         
         $collection->add(new Column([
             'id'      => 'size',
-            'caption' => $this->trans('common.label.size'),
+            'caption' => 'common.label.size',
         ]));
     }
     

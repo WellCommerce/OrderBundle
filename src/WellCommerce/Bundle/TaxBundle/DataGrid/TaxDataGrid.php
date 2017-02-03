@@ -29,7 +29,7 @@ class TaxDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,7 +44,7 @@ class TaxDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('common.label.name'),
+            'caption'    => 'common.label.name',
             'appearance' => new Appearance([
                 'width' => 70,
             ]),
@@ -55,7 +55,7 @@ class TaxDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'value',
-            'caption'    => $this->trans('tax.label.value'),
+            'caption'    => 'tax.label.value',
             'appearance' => new Appearance([
                 'width' => 70,
             ]),

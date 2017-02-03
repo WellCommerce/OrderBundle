@@ -30,7 +30,7 @@ class DictionaryDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('dictionary.label.id'),
+            'caption'    => 'dictionary.label.id',
             'sorting'    => new Sorting([
                 'default_order' => ColumnInterface::SORT_DIR_DESC,
             ]),
@@ -45,17 +45,17 @@ class DictionaryDataGrid extends AbstractDataGrid
 
         $collection->add(new Column([
             'id'      => 'identifier',
-            'caption' => $this->trans('dictionary.label.identifier'),
+            'caption' => 'dictionary.label.identifier',
         ]));
 
         $collection->add(new Column([
             'id'      => 'translation',
-            'caption' => $this->trans('dictionary.label.translation'),
+            'caption' => 'dictionary.label.translation',
         ]));
 
         $collection->add(new Column([
             'id'      => 'locale',
-            'caption' => $this->trans('dictionary.label.locale'),
+            'caption' => 'dictionary.label.locale',
         ]));
     }
     

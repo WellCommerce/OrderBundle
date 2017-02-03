@@ -29,7 +29,7 @@ class NewsDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,7 +44,7 @@ class NewsDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'topic',
-            'caption' => $this->trans('news.label.topic'),
+            'caption' => 'news.label.topic',
         ]));
     }
     

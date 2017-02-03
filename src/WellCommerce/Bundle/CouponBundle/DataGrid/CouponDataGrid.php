@@ -29,7 +29,7 @@ class CouponDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,37 +44,37 @@ class CouponDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
         
         $collection->add(new Column([
             'id'      => 'code',
-            'caption' => $this->trans('common.label.code'),
+            'caption' => 'common.label.code',
         ]));
         
         $collection->add(new Column([
             'id'      => 'discount',
-            'caption' => $this->trans('common.label.discount'),
+            'caption' => 'common.label.discount',
         ]));
         
         $collection->add(new Column([
             'id'      => 'minimumOrderValue',
-            'caption' => $this->trans('common.label.minimum_order_value'),
+            'caption' => 'common.label.minimum_order_value',
         ]));
         
         $collection->add(new Column([
             'id'      => 'createdAt',
-            'caption' => $this->trans('common.label.created_at'),
+            'caption' => 'common.label.created_at',
         ]));
         
         $collection->add(new Column([
             'id'      => 'validFrom',
-            'caption' => $this->trans('common.label.valid_from'),
+            'caption' => 'common.label.valid_from',
         ]));
         
         $collection->add(new Column([
             'id'      => 'validTo',
-            'caption' => $this->trans('common.label.valid_to'),
+            'caption' => 'common.label.valid_to',
         ]));
     }
     

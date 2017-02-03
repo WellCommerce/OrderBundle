@@ -30,7 +30,7 @@ class LocaleDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => ColumnInterface::SORT_DIR_DESC,
             ]),
@@ -45,12 +45,12 @@ class LocaleDataGrid extends AbstractDataGrid
 
         $collection->add(new Column([
             'id'      => 'code',
-            'caption' => $this->trans('common.label.code'),
+            'caption' => 'common.label.code',
         ]));
 
         $collection->add(new Column([
             'id'         => 'currency',
-            'caption'    => $this->trans('common.label.currency'),
+            'caption'    => 'common.label.currency',
             'appearance' => new Appearance([
                 'width' => 140,
                 'align' => Appearance::ALIGN_CENTER

@@ -33,7 +33,7 @@ class PackageDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('package.label.id'),
+            'caption'    => 'package.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -48,7 +48,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('package.label.name'),
+            'caption'    => 'package.label.name',
             'appearance' => new Appearance([
                 'width' => 190,
             ]),
@@ -56,7 +56,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'fullName',
-            'caption'    => $this->trans('package.label.full_name'),
+            'caption'    => 'package.label.full_name',
             'appearance' => new Appearance([
                 'width' => 190,
             ]),
@@ -64,7 +64,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'vendor',
-            'caption'    => $this->trans('package.label.vendor'),
+            'caption'    => 'package.label.vendor',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,
@@ -73,7 +73,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'localVersion',
-            'caption'    => $this->trans('package.label.local_version'),
+            'caption'    => 'package.label.local_version',
             'appearance' => new Appearance([
                 'width' => 90,
             ]),
@@ -81,7 +81,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'remoteVersion',
-            'caption'    => $this->trans('package.label.remote_version'),
+            'caption'    => 'package.label.remote_version',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,
@@ -90,7 +90,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('package.label.created_at'),
+            'caption'    => 'package.label.created_at',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,
@@ -99,7 +99,7 @@ class PackageDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'updatedAt',
-            'caption'    => $this->trans('package.label.updated_at'),
+            'caption'    => 'package.label.updated_at',
             'appearance' => new Appearance([
                 'width' => 90,
                 'align' => Appearance::ALIGN_CENTER,

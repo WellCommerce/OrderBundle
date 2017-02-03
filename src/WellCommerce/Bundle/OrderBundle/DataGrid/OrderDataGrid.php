@@ -37,7 +37,7 @@ class OrderDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('order.label.id'),
+            'caption'    => 'order.label.id',
             'appearance' => new Appearance([
                 'width'   => 40,
                 'visible' => false,
@@ -50,7 +50,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'number',
-            'caption'    => $this->trans('order.label.number'),
+            'caption'    => 'order.label.number',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_INPUT,
             ]),
@@ -65,7 +65,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'client',
-            'caption'    => $this->trans('order.label.client'),
+            'caption'    => 'order.label.client',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_INPUT,
             ]),
@@ -77,7 +77,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'products',
-            'caption'    => $this->trans('order.label.products'),
+            'caption'    => 'order.label.products',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_INPUT,
             ]),
@@ -101,7 +101,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'orderTotal',
-            'caption'    => $this->trans('order.label.order_total'),
+            'caption'    => 'order.label.order_total',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
@@ -113,7 +113,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'currency',
-            'caption'    => $this->trans('order.label.currency'),
+            'caption'    => 'order.label.currency',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
@@ -126,7 +126,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'currentStatusName',
-            'caption'    => $this->trans('order.label.current_status'),
+            'caption'    => 'order.label.current_status',
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'currentStatusId',
@@ -140,7 +140,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'paymentMethodName',
-            'caption'    => $this->trans('order.label.payment_method'),
+            'caption'    => 'order.label.payment_method',
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'paymentMethodId',
@@ -154,7 +154,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'shippingMethodName',
-            'caption'    => $this->trans('order.label.shipping_method'),
+            'caption'    => 'order.label.shipping_method',
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'shippingMethodId',
@@ -168,7 +168,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('order.label.created_at'),
+            'caption'    => 'order.label.created_at',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),

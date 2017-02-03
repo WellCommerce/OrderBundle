@@ -31,7 +31,7 @@ class ReviewDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('review.label.id'),
+            'caption'    => 'review.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -46,7 +46,7 @@ class ReviewDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'nick',
-            'caption'    => $this->trans('review.label.nick'),
+            'caption'    => 'review.label.nick',
             'appearance' => new Appearance([
                 'width' => 70,
                 'align' => Appearance::ALIGN_CENTER,
@@ -58,7 +58,7 @@ class ReviewDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('review.label.created_at'),
+            'caption'    => 'review.label.created_at',
             'appearance' => new Appearance([
                 'width' => 70,
                 'align' => Appearance::ALIGN_CENTER,
@@ -70,7 +70,7 @@ class ReviewDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'product',
-            'caption'    => $this->trans('review.label.product'),
+            'caption'    => 'review.label.product',
             'appearance' => new Appearance([
                 'width' => 70,
             ]),
@@ -81,7 +81,7 @@ class ReviewDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'review',
-            'caption'    => $this->trans('review.label.review'),
+            'caption'    => 'review.label.review',
             'appearance' => new Appearance([
                 'width' => 200,
             ]),
@@ -89,7 +89,7 @@ class ReviewDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'rating',
-            'caption'    => $this->trans('review.label.rating'),
+            'caption'    => 'review.label.rating',
             'appearance' => new Appearance([
                 'width' => 70,
                 'align' => Appearance::ALIGN_CENTER,

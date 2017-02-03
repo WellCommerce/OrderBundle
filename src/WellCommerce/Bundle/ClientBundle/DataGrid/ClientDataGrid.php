@@ -31,7 +31,7 @@ class ClientDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'appearance' => new Appearance([
                 'width'   => 60,
                 'visible' => false,
@@ -43,7 +43,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'firstName',
-            'caption'    => $this->trans('common.label.first_name'),
+            'caption'    => 'common.label.first_name',
             'appearance' => new Appearance([
                 'width' => 60,
                 'align' => Appearance::ALIGN_LEFT,
@@ -52,7 +52,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'lastName',
-            'caption'    => $this->trans('common.label.last_name'),
+            'caption'    => 'common.label.last_name',
             'appearance' => new Appearance([
                 'width' => 80,
                 'align' => Appearance::ALIGN_LEFT,
@@ -79,7 +79,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'email',
-            'caption'    => $this->trans('common.label.email'),
+            'caption'    => 'common.label.email',
             'appearance' => new Appearance([
                 'width' => 60,
                 'align' => Appearance::ALIGN_CENTER,
@@ -88,7 +88,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'phone',
-            'caption'    => $this->trans('common.label.phone'),
+            'caption'    => 'common.label.phone',
             'appearance' => new Appearance([
                 'width' => 80,
                 'align' => Appearance::ALIGN_CENTER,
@@ -97,7 +97,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'groupName',
-            'caption'    => $this->trans('common.label.client_group'),
+            'caption'    => 'common.label.client_group',
             'filter'     => new Filter([
                 'type'    => Filter::FILTER_SELECT,
                 'options' => $this->get('client_group.dataset.admin')->getResult('select', ['order_by' => 'id'], [
@@ -113,7 +113,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('common.label.created_at'),
+            'caption'    => 'common.label.created_at',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
@@ -125,7 +125,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'lastActive',
-            'caption'    => $this->trans('client.label.last_active'),
+            'caption'    => 'client.label.last_active',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
@@ -137,7 +137,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'cart',
-            'caption'    => $this->trans('client.label.cart'),
+            'caption'    => 'client.label.cart',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),

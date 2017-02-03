@@ -29,7 +29,7 @@ class ProductStatusDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('product_status.label.id'),
+            'caption'    => 'product_status.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,7 +44,7 @@ class ProductStatusDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('product_status.label.name'),
+            'caption'    => 'product_status.label.name',
             'appearance' => new Appearance([
                 'width' => 70,
             ]),

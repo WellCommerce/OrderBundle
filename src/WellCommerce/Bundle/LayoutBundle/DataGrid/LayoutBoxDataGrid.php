@@ -29,7 +29,7 @@ class LayoutBoxDataGrid extends AbstractDataGrid
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,17 +44,17 @@ class LayoutBoxDataGrid extends AbstractDataGrid
 
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
 
         $collection->add(new Column([
             'id'      => 'identifier',
-            'caption' => $this->trans('layout_box.label.identifier'),
+            'caption' => 'layout_box.label.identifier',
         ]));
 
         $collection->add(new Column([
             'id'      => 'boxType',
-            'caption' => $this->trans('layout_box.label.type'),
+            'caption' => 'layout_box.label.type',
         ]));
     }
     
