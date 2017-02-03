@@ -17,7 +17,6 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DelivererBundle\Entity\Deliverer;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;
@@ -71,11 +70,6 @@ class Producer implements EntityInterface
     public function setDeliverers(Collection $collection)
     {
         $this->deliverers = $collection;
-    }
-    
-    public function addDeliverer(Deliverer $deliverer)
-    {
-        $this->deliverers = $deliverer;
     }
     
     public function getPhoto()
