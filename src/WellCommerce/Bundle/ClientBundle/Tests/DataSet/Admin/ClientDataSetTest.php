@@ -25,17 +25,24 @@ class ClientDataSetTest extends AbstractDataSetTestCase
     {
         return $this->container->get('client.dataset.admin');
     }
-
+    
     protected function getColumns()
     {
         return [
-            'id'        => 'client.id',
-            'firstName' => 'client.contactDetails.firstName',
-            'lastName'  => 'client.contactDetails.lastName',
-            'email'     => 'client.contactDetails.email',
-            'phone'     => 'client.contactDetails.phone',
-            'groupName' => 'client_group_translation.name',
-            'createdAt' => 'client.createdAt',
+            'id'          => 'client.id',
+            'firstName'   => 'client.contactDetails.firstName',
+            'lastName'    => 'client.contactDetails.lastName',
+            'companyName' => 'client.billingAddress.companyName',
+            'vatId'       => 'client.billingAddress.vatId',
+            'email'       => 'client.contactDetails.email',
+            'phone'       => 'client.contactDetails.phone',
+            'groupId'     => 'client_group.id',
+            'groupName'   => 'client_group_translation.name',
+            'createdAt'   => 'client.createdAt',
+            'shop'        => 'IDENTITY(client.shop)',
+            'lastActive'  => 'client_cart.updatedAt',
+            'cart'        => 'IF_NULL(client_cart.id, 0)',
+            'cartValue'   => 'IF_NULL(client_cart.summary.grossAmount, 0)',
         ];
     }
 }

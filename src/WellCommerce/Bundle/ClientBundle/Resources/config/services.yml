@@ -202,3 +202,7 @@ services:
             - '@router.helper'
         tags:
             - { name: twig.extension }
+
+    client_group_discount.datagrid.filter:
+        class: WellCommerce\Bundle\ClientBundle\DataGrid\ClientGroupFilter
+        arguments: ["@client_group.repository"]

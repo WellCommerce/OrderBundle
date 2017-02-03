@@ -141,3 +141,7 @@ services:
     order_status.datagrid.filter:
         class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusFilter
         arguments: ["@order_status.repository"]
+
+    order_status_group.datagrid.filter:
+        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusGroupFilter
+        arguments: ["@order_status_group.repository"]

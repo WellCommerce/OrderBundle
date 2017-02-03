@@ -37,6 +37,7 @@ class ClientDataSet extends AbstractDataSet
             'vatId'       => 'client.billingAddress.vatId',
             'email'       => 'client.contactDetails.email',
             'phone'       => 'client.contactDetails.phone',
+            'groupId'     => 'client_group.id',
             'groupName'   => 'client_group_translation.name',
             'createdAt'   => 'client.createdAt',
             'shop'        => 'IDENTITY(client.shop)',

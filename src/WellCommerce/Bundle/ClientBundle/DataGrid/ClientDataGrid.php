@@ -27,6 +27,16 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  */
 class ClientDataGrid extends AbstractDataGrid
 {
+    /**
+     * @var ClientGroupFilter
+     */
+    protected $clientGroupFilter;
+    
+    public function __construct(ClientGroupFilter $clientGroupFilter)
+    {
+        $this->clientGroupFilter = $clientGroupFilter;
+    }
+    
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -99,11 +109,9 @@ class ClientDataGrid extends AbstractDataGrid
             'id'         => 'groupName',
             'caption'    => 'common.label.client_group',
             'filter'     => new Filter([
-                'type'    => Filter::FILTER_SELECT,
-                'options' => $this->get('client_group.dataset.admin')->getResult('select', ['order_by' => 'id'], [
-                    'label_column' => 'name',
-                    'value_column' => 'name',
-                ]),
+                'type'            => Filter::FILTER_TREE,
+                'filtered_column' => 'groupId',
+                'options'         => $this->clientGroupFilter->getOptions(),
             ]),
             'appearance' => new Appearance([
                 'width' => 100,
