@@ -24,9 +24,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Filter;
  */
 class OrderStatusDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -87,5 +84,10 @@ class OrderStatusDataGrid extends AbstractDataGrid
             'value_column' => 'name',
             'label_column' => 'name',
         ]);
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'order_status';
     }
 }

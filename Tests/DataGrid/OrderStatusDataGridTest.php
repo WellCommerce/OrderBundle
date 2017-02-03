@@ -23,7 +23,7 @@ class OrderStatusDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('order_status.datagrid')->getInstance();
+        return $this->container->get('order_status.datagrid');
     }
 
     protected function getColumns()

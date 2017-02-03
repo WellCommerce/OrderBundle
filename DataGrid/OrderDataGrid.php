@@ -179,7 +179,7 @@ class OrderDataGrid extends AbstractDataGrid
         ]));
     }
     
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         parent::configureOptions($options);
         
@@ -219,5 +219,10 @@ class OrderDataGrid extends AbstractDataGrid
     private function getShippingMethodRepository(): ShippingMethodRepositoryInterface
     {
         return $this->get('shipping_method.repository');
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'order';
     }
 }
