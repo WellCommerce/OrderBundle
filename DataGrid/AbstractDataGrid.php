@@ -11,9 +11,6 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\DataGrid;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;
 use WellCommerce\Component\DataGrid\Configuration\EventHandler\ClickRowEventHandler;
 use WellCommerce\Component\DataGrid\Configuration\EventHandler\DeleteGroupEventHandler;
@@ -21,28 +18,19 @@ use WellCommerce\Component\DataGrid\Configuration\EventHandler\DeleteRowEventHan
 use WellCommerce\Component\DataGrid\Configuration\EventHandler\EditRowEventHandler;
 use WellCommerce\Component\DataGrid\Configuration\EventHandler\LoadEventHandler;
 use WellCommerce\Component\DataGrid\DataGridInterface;
-use WellCommerce\Component\DataGrid\Options\Options;
 use WellCommerce\Component\DataGrid\Options\OptionsInterface;
-use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
-use WellCommerce\Component\DataSet\Conditions\ConditionsResolver;
-use WellCommerce\Component\DataSet\DataSetInterface;
 
 /**
  * Class AbstractDataGrid
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractDataGrid extends AbstractContainerAware implements DataGridInterface
+abstract class AbstractDataGrid implements DataGridInterface
 {
     /**
      * @var string
      */
     protected $identifier;
-    
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
     
     /**
      * @var ColumnCollection
@@ -54,69 +42,7 @@ abstract class AbstractDataGrid extends AbstractContainerAware implements DataGr
      */
     protected $options;
     
-    /**
-     * @var DataSetInterface
-     */
-    protected $dataset;
-    
-    /**
-     * @var bool
-     */
-    protected $booted = false;
-    
-    /**
-     * AbstractDataGrid constructor.
-     *
-     * @param DataSetInterface         $dataset
-     * @param string                   $identifier
-     * @param EventDispatcherInterface $eventDispatcher
-     */
-    public function __construct(DataSetInterface $dataset, string $identifier, EventDispatcherInterface $eventDispatcher)
-    {
-        $this->identifier      = $identifier;
-        $this->dataset         = $dataset;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->columns         = new ColumnCollection();
-        $this->options         = new Options();
-    }
-    
-    /**
-     * Returns current DataGrid
-     *
-     * @return DataGridInterface
-     */
-    public function getInstance() : DataGridInterface
-    {
-        if (!$this->booted) {
-            $this->configure();
-        }
-        
-        return $this;
-    }
-    
-    /**
-     * Boots current datagrid
-     */
-    protected function configure()
-    {
-        $this->configureColumns($this->columns);
-        $this->configureOptions($this->options);
-        $this->booted = true;
-    }
-    
-    /**
-     * Configures DataGrid columns
-     *
-     * @param ColumnCollection $columns
-     */
-    abstract protected function configureColumns(ColumnCollection $columns);
-    
-    /**
-     * Configures DataGrid options
-     *
-     * @param OptionsInterface $options
-     */
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         $eventHandlers = $options->getEventHandlers();
         
@@ -149,98 +75,42 @@ abstract class AbstractDataGrid extends AbstractContainerAware implements DataGr
         ]));
     }
     
-    /**
-     * Returns the absolute URL pointing to the controller action
-     *
-     * @param string $actionName
-     *
-     * @return string
-     */
-    protected function getActionUrl(string $actionName) : string
+    protected function trans(string $label): string
     {
-        return $this->getRouterHelper()->getActionForCurrentController($actionName);
+        return $label;
     }
     
-    /**
-     * Returns javascript function name
-     *
-     * @param string $name
-     *
-     * @return string
-     */
-    protected function getJavascriptFunctionName(string $name) : string
+    protected function getActionUrl(string $actionName): string
     {
-        $functionName = sprintf('%s%s', $name, ucfirst($this->identifier));
+        return sprintf('admin.%s.%s', $this->getIdentifier(), $actionName);
+    }
+    
+    protected function getJavascriptFunctionName(string $name): string
+    {
+        $functionName = sprintf('%s%s', $name, ucfirst($this->getIdentifier()));
         $functionName = ucwords(str_replace(['-', '_'], ' ', $functionName));
         $functionName = str_replace(' ', '', $functionName);
         
         return lcfirst($functionName);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentifier() : string
-    {
-        return $this->identifier;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
     public function setColumns(ColumnCollection $columns)
     {
         $this->columns = $columns;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getColumns() : ColumnCollection
+    public function getColumns(): ColumnCollection
     {
         return $this->columns;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setOptions(OptionsInterface $options)
     {
         $this->options = $options;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getOptions() : OptionsInterface
+    public function getOptions(): OptionsInterface
     {
         return $this->options;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function loadResults(Request $request)
-    {
-        $page               = ($request->request->get('starting_from', 0) / $request->request->get('limit', 10)) + 1;
-        $conditions         = new ConditionsCollection();
-        $conditionsResolver = new ConditionsResolver();
-        $conditionsResolver->resolveConditions($request->request->get('where'), $conditions);
-        
-        $requestOptions = [
-            'page'       => $page,
-            'limit'      => $request->request->get('limit', 10),
-            'order_by'   => $request->request->get('order_by', 'id'),
-            'order_dir'  => $request->request->get('order_dir', 'desc'),
-            'conditions' => $conditions,
-        ];
-        
-        try {
-            $results = $this->dataset->getResult('datagrid', $requestOptions);
-        } catch (\Exception $e) {
-            $results = nl2br($e->getMessage());
-        }
-        
-        return $results;
     }
 }

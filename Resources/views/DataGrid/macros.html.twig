@@ -11,7 +11,7 @@
 
     var column_{{ id }} = new GF_Datagrid_Column({
         id: '{{ id }}',
-        caption: '{{ options.caption }}',
+        caption: '{{ options.caption|trans }}',
         editable: {{ options.editable ? 'true' : 'false' }},
         selectable: {{ options.selectable ? 'true' : 'false' }},
         sorting: {{ render_datagrid_options(options.sorting) }},
