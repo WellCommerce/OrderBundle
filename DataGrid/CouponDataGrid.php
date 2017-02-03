@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class CouponDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -79,5 +76,10 @@ class CouponDataGrid extends AbstractDataGrid
             'id'      => 'validTo',
             'caption' => $this->trans('common.label.valid_to'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'coupon';
     }
 }
