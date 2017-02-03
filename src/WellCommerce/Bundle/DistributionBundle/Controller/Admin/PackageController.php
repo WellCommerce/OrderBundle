@@ -14,6 +14,8 @@ namespace WellCommerce\Bundle\DistributionBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
+use WellCommerce\Bundle\CoreBundle\Helper\Environment\EnvironmentHelperInterface;
+use WellCommerce\Bundle\DistributionBundle\Entity\Package;
 use WellCommerce\Bundle\DistributionBundle\Helper\Package\PackageHelperInterface;
 use WellCommerce\Bundle\DistributionBundle\Manager\PackageManager;
 
@@ -24,61 +26,52 @@ use WellCommerce\Bundle\DistributionBundle\Manager\PackageManager;
  */
 class PackageController extends AbstractAdminController
 {
-    /**
-     * Action used to sync packages from remote servers ie. packagist.org
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function syncAction()
     {
-        $this->manager->syncPackages(PackageHelperInterface::DEFAULT_PACKAGE_BUNDLE_TYPE);
-        $this->manager->syncPackages(PackageHelperInterface::DEFAULT_PACKAGE_THEME_TYPE);
-        $this->manager->getFlashHelper()->addSuccess('package.flash.sync.success');
-
+        $this->getManager()->syncPackages(PackageHelperInterface::DEFAULT_PACKAGE_BUNDLE_TYPE);
+        $this->getManager()->syncPackages(PackageHelperInterface::DEFAULT_PACKAGE_THEME_TYPE);
+        $this->getManager()->getFlashHelper()->addSuccess('package.flash.sync.success');
+        
         return $this->getRouterHelper()->redirectToAction('index');
     }
-
-    public function packageAction(Request $request, $operation)
+    
+    public function packageAction(Package $package = null, $operation)
     {
-        $resource = $this->manager->findResource($request);
-        if (null === $resource) {
+        if (null === $package) {
             return $this->redirectToAction('index');
         }
-
-        $form = $this->manager->getForm($resource);
-
+        
+        $form = $this->getForm($package);
+        
         return $this->displayTemplate('package', [
             'operation'   => $operation,
-            'packageName' => $resource->getFullName(),
+            'packageName' => $package->getFullName(),
             'form'        => $form,
         ]);
     }
-
+    
     public function consoleAction(Request $request)
     {
         $helper    = $this->getHelper();
-        $arguments = $this->manager->getConsoleCommandArguments($request);
+        $arguments = $this->getManager()->getConsoleCommandArguments($request);
         $process   = $helper->getProcess($arguments, 720);
         $process->run();
-
+        
         if ($process->getExitCode() !== null) {
             if (0 === (int)$process->getExitCode()) {
-                $this->manager->changePackageStatus($request);
+                $this->getManager()->changePackageStatus($request);
             }
-
+            
             return $this->jsonResponse(['code' => $process->getExitCode(), 'error' => $process->getErrorOutput()]);
         }
     }
-
-    /**
-     * @return \WellCommerce\Bundle\CoreBundle\Helper\Environment\EnvironmentHelperInterface
-     */
-    protected function getHelper()
+    
+    protected function getHelper(): EnvironmentHelperInterface
     {
         return $this->get('environment_helper');
     }
-
-    protected function getManager() : PackageManager
+    
+    protected function getManager(): PackageManager
     {
         return parent::getManager();
     }
