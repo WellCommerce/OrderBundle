@@ -23,7 +23,7 @@ class ReviewDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('review.datagrid')->getInstance();
+        return $this->container->get('review.datagrid');
     }
 
     protected function getColumns()
