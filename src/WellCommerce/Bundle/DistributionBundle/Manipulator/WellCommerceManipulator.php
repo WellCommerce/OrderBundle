@@ -33,7 +33,7 @@ final class WellCommerceManipulator
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel  = $kernel;
-        $this->rootDir = $rootDir = $this->kernel->getRootDir() . '/config/';
+        $this->rootDir = $this->kernel->getRootDir() . '/config/';
     }
     
     public function enableBundle(WellCommerceBundle $bundle)
