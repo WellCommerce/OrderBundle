@@ -41,4 +41,6 @@ interface RequestHandlerInterface
     public function handleUpdateRequest(Request $request, int $identifier) : Response;
     
     public function handleDeleteRequest(Request $request, int $identifier) : Response;
+    
+    public function handleCountRequest() : Response;
 }

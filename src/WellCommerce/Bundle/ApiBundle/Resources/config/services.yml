@@ -23,8 +23,7 @@ services:
 
     api.controller.front:
         class: WellCommerce\Bundle\ApiBundle\Controller\ApiController
-        calls:
-            - [setContainer, ['@service_container']]
+        arguments: ["@api.request_handler.collection"]
 
     api.serializer.normalizer:
         class: WellCommerce\Bundle\ApiBundle\Serializer\EntityNormalizer
