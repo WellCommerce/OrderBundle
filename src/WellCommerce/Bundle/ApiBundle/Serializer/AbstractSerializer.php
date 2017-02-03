@@ -20,6 +20,7 @@ use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Serializer\Exception\LogicException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use WellCommerce\Bundle\ApiBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
@@ -43,7 +44,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
     protected $propertyAccessor;
     
     /**
-     * @var SerializerInterface|NormalizerInterface|DenormalizerInterface
+     * @var Serializer
      */
     protected $serializer;
     
@@ -81,9 +82,6 @@ abstract class AbstractSerializer implements SerializerAwareInterface
         $this->serializationMetadataCollection = $this->getSerializationMetadataCollection();
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setSerializer(SerializerInterface $serializer)
     {
         if (!$serializer instanceof NormalizerInterface || !$serializer instanceof DenormalizerInterface) {
@@ -114,14 +112,14 @@ abstract class AbstractSerializer implements SerializerAwareInterface
         
         return $this->serializationMetadataCollection->get($className);
     }
-
+    
     protected function hasSerializationMetadata($entity)
     {
         $className = $this->getRealClass($entity);
-
+        
         return $this->serializationMetadataCollection->has($className);
     }
-
+    
     /**
      * Returns the metadata for entity
      *
