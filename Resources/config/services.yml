@@ -31,7 +31,7 @@ services:
 
     translator.helper:
         class: WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelper
-        arguments: ['@translator']
+        autowire: true
 
     templating.helper:
         class: WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelper
