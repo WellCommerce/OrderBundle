@@ -22,7 +22,7 @@ before_script:
     - mysql -e 'CREATE DATABASE travis;'
     - cp app/config/parameters.yml.travis app/config/parameters.yml
 
-    - wget https://phar.phpunit.de/phpunit.phar
+    - wget https://phar.phpunit.de/phpunit-5.7.phar
     - composer self-update
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then composer install --no-interaction --prefer-dist; fi;
 
