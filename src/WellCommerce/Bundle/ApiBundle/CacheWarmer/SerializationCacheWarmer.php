@@ -27,7 +27,7 @@ use WellCommerce\Bundle\DistributionBundle\Resolver\ConfigurationFileResolverInt
 final class SerializationCacheWarmer extends CacheWarmer
 {
     /**
-     * @var ConfigurationFileResolverInterface
+     * @var MappingFileResolver
      */
     private $resolver;
     

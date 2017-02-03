@@ -90,7 +90,7 @@ final class RouterHelper implements RouterHelperInterface
     {
         $route = $this->getActionForCurrentController($action);
         
-        return $this->router->generate($route, $params, true);
+        return $this->router->generate($route, $params);
     }
     
     public function getActionForCurrentController(string $action): string

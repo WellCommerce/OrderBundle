@@ -30,7 +30,7 @@ use WellCommerce\Component\Form\Elements\Optioned\Select;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-final class OrderFormBuilder extends AbstractFormBuilder
+class OrderFormBuilder extends AbstractFormBuilder
 {
     /**
      * {@inheritdoc}

@@ -29,6 +29,7 @@ final class FormBuilderDefinitionFactory
         $definition->addArgument(new Reference('form.handler'));
         $definition->addArgument(new Reference('event_dispatcher'));
         $definition->addMethodCall('setContainer', [new Reference('service_container')]);
+        $definition->setLazy(true);
         
         return $definition;
     }

@@ -24,7 +24,7 @@
     var options = {
         id: '{{ datagrid.getIdentifier() }}',
         appearance: {
-            {{ render_datagrid_options(datagrid.getOptions().getAppearance()) }}
+            {{ render_datagrid_options(datagrid.options.appearance) }}
         },
         mechanics: {
             {{ render_datagrid_options(datagrid.getOptions().getMechanics()) }}
