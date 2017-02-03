@@ -23,7 +23,7 @@ class PageDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('page.datagrid')->getInstance();
+        return $this->container->get('page.datagrid');
     }
 
     protected function getColumns()

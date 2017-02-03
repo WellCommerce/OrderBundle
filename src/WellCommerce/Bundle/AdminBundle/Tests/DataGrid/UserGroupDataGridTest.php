@@ -23,7 +23,7 @@ class UserGroupDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('user_group.datagrid')->getInstance();
+        return $this->container->get('user_group.datagrid');
     }
 
     protected function getColumns()

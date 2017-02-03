@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ShipmentDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -44,50 +41,55 @@ class ShipmentDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'guid',
             'caption'    => $this->trans('shipment.label.guid'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-    
+        
         $collection->add(new Column([
             'id'         => 'packageNumber',
             'caption'    => $this->trans('shipment.label.package_number'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'orderNumber',
             'caption'    => $this->trans('shipment.label.order_number'),
             'appearance' => new Appearance([
                 'width' => 120,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-    
+        
         $collection->add(new Column([
             'id'         => 'courier',
             'caption'    => $this->trans('shipment.label.courier'),
             'appearance' => new Appearance([
                 'width' => 120,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-    
+        
         $collection->add(new Column([
             'id'         => 'createdAt',
             'caption'    => $this->trans('common.label.created_at'),
             'appearance' => new Appearance([
                 'width' => 80,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'shipment';
     }
 }

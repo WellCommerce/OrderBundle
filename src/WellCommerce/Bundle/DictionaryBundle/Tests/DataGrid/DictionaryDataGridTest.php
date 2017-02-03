@@ -23,7 +23,7 @@ class DictionaryDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('dictionary.datagrid')->getInstance();
+        return $this->container->get('dictionary.datagrid');
     }
 
     protected function getColumns()

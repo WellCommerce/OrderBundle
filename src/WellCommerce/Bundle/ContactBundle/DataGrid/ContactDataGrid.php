@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ContactDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -44,10 +41,15 @@ class ContactDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'      => 'name',
             'caption' => $this->trans('common.label.name'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'contact';
     }
 }

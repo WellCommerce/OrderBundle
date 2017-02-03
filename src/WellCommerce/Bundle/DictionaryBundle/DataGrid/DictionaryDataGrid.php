@@ -26,9 +26,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class DictionaryDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -60,5 +57,10 @@ class DictionaryDataGrid extends AbstractDataGrid
             'id'      => 'locale',
             'caption' => $this->trans('dictionary.label.locale'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'dictionary';
     }
 }

@@ -27,9 +27,6 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  */
 class ReviewDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -103,7 +100,7 @@ class ReviewDataGrid extends AbstractDataGrid
         ]));
     }
     
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         parent::configureOptions($options);
         
@@ -112,13 +109,18 @@ class ReviewDataGrid extends AbstractDataGrid
         $eventHandlers->add(new CustomRowEventHandler([
             'function'      => $this->getJavascriptFunctionName('enableOpinion'),
             'function_name' => 'enableOpinion',
-            'row_action'    => 'action_enableOpinion'
+            'row_action'    => 'action_enableOpinion',
         ]));
         
         $eventHandlers->add(new CustomRowEventHandler([
             'function'      => $this->getJavascriptFunctionName('disableOpinion'),
             'function_name' => 'disableOpinion',
-            'row_action'    => 'action_disableOpinion'
+            'row_action'    => 'action_disableOpinion',
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'review';
     }
 }

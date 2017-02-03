@@ -34,10 +34,12 @@ final class AutoRegisterControllerPass extends AbstractAutoRegisterPass
                 $managerServiceId     = $this->serviceIdGenerator->getServiceId($baseName, 'manager');
                 $formBuilderServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'form_builder.admin');
                 $dataGridServiceId    = $this->serviceIdGenerator->getServiceId($baseName, 'datagrid');
+                $dataSetServiceId     = $this->serviceIdGenerator->getServiceId($baseName, 'dataset.admin');
                 $manager              = $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
                 $formBuilder          = $container->has($formBuilderServiceId) ? new Reference($formBuilderServiceId) : null;
                 $dataGrid             = $container->has($dataGridServiceId) ? new Reference($dataGridServiceId) : null;
-                $definition           = $definitionFactory->create($className, $manager, $formBuilder, $dataGrid);
+                $dataSet              = $container->has($dataSetServiceId) ? new Reference($dataSetServiceId) : null;
+                $definition           = $definitionFactory->create($className, $manager, $formBuilder, $dataGrid, $dataSet);
                 $container->setDefinition($controllerServiceId, $definition);
             }
         }

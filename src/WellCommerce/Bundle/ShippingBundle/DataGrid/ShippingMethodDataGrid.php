@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ShippingMethodDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -44,7 +41,7 @@ class ShippingMethodDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'name',
             'caption'    => $this->trans('common.label.name'),
@@ -52,14 +49,19 @@ class ShippingMethodDataGrid extends AbstractDataGrid
                 'width' => 90,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'calculator',
             'caption'    => $this->trans('shipping_method.label.calculator'),
             'appearance' => new Appearance([
                 'width' => 120,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'shipping_method';
     }
 }

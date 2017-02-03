@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ShopDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -98,5 +95,10 @@ class ShopDataGrid extends AbstractDataGrid
                 'align' => Appearance::ALIGN_CENTER
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'shop';
     }
 }

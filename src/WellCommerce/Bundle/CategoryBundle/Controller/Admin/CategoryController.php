@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CategoryBundle\Manager\CategoryManager;
-use WellCommerce\Bundle\CategoryBundle\Repository\CategoryRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
@@ -91,11 +90,9 @@ class CategoryController extends AbstractAdminController
     
     public function ajaxGetChildrenAction(Request $request): JsonResponse
     {
-        /** @var CategoryRepositoryInterface $repository */
-        $repository = $this->manager->getRepository();
-        $parentId   = $request->request->get('parent');
-        $parent     = $repository->find($parentId);
-        $items      = $repository->getDataGridFilterOptions($parent);
+        $parentId = $request->request->get('parent');
+        $parent   = $this->manager->getRepository()->find($parentId);
+        $items    = $this->get('category.datagrid.filter')->getOptions($parent);
         
         return $this->jsonResponse($items);
     }

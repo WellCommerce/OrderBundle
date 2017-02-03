@@ -31,9 +31,6 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  */
 class MediaDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -80,10 +77,7 @@ class MediaDataGrid extends AbstractDataGrid
         ]));
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         $eventHandlers = $options->getEventHandlers();
         
@@ -107,5 +101,10 @@ class MediaDataGrid extends AbstractDataGrid
         $eventHandlers->add(new LoadedEventHandler([
             'function' => $this->getJavascriptFunctionName('data_loaded'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'media';
     }
 }

@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ProductStatusDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -44,7 +41,7 @@ class ProductStatusDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'name',
             'caption'    => $this->trans('product_status.label.name'),
@@ -55,5 +52,10 @@ class ProductStatusDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_INPUT,
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'product_status';
     }
 }

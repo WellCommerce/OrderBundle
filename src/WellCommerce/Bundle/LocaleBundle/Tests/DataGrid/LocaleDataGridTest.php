@@ -23,7 +23,7 @@ class LocaleDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('locale.datagrid')->getInstance();
+        return $this->container->get('locale.datagrid');
     }
 
     protected function getColumns()

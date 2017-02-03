@@ -23,7 +23,7 @@ class ThemeDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('theme.datagrid')->getInstance();
+        return $this->container->get('theme.datagrid');
     }
 
     protected function getColumns()

@@ -23,7 +23,7 @@ class LayoutBoxDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('layout_box.datagrid')->getInstance();
+        return $this->container->get('layout_box.datagrid');
     }
 
     protected function getColumns()

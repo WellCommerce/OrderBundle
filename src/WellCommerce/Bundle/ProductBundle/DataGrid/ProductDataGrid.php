@@ -11,6 +11,7 @@
  */
 namespace WellCommerce\Bundle\ProductBundle\DataGrid;
 
+use WellCommerce\Bundle\CategoryBundle\DataGrid\CategoryFilter;
 use WellCommerce\Bundle\CoreBundle\DataGrid\AbstractDataGrid;
 use WellCommerce\Component\DataGrid\Column\Column;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;
@@ -29,8 +30,15 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
 class ProductDataGrid extends AbstractDataGrid
 {
     /**
-     * {@inheritdoc}
+     * @var CategoryFilter
      */
+    protected $categoryFilter;
+    
+    public function __construct(CategoryFilter $categoryFilter)
+    {
+        $this->categoryFilter = $categoryFilter;
+    }
+    
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -65,7 +73,7 @@ class ProductDataGrid extends AbstractDataGrid
             'filter'  => new Filter([
                 'type'                => Filter::FILTER_TREE,
                 'filtered_column'     => 'categoryId',
-                'options'             => $this->get('category.repository')->getDataGridFilterOptions(),
+                'options'             => $this->categoryFilter->getOptions(),
                 'load_children_route' => 'admin.category.ajax.get_children',
             ]),
         ]));
@@ -98,10 +106,7 @@ class ProductDataGrid extends AbstractDataGrid
         ]));
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         parent::configureOptions($options);
         
@@ -119,5 +124,10 @@ class ProductDataGrid extends AbstractDataGrid
         $eventHandlers->add(new LoadedEventHandler([
             'function' => $this->getJavascriptFunctionName('loaded'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'product';
     }
 }

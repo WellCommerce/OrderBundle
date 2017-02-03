@@ -23,9 +23,9 @@ class UserDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('user.datagrid')->getInstance();
+        return $this->container->get('user.datagrid');
     }
-
+    
     protected function getColumns()
     {
         return ['id', 'username', 'email', 'first_name', 'last_name', 'enabled'];

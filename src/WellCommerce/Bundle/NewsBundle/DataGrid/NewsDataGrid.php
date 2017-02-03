@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class NewsDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -49,5 +46,10 @@ class NewsDataGrid extends AbstractDataGrid
             'id'      => 'topic',
             'caption' => $this->trans('news.label.topic'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'news';
     }
 }

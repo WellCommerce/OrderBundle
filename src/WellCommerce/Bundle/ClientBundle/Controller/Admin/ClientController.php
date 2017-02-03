@@ -29,7 +29,6 @@ class ClientController extends AbstractAdminController
     {
         /** @var Client $resource */
         $resource = $this->getManager()->initResource();
-        $password = Helper::generateRandomPassword();
         $form     = $this->getForm($resource, [
             'name'              => $this->getManager()->getRepository()->getAlias(),
             'validation_groups' => ['client_admin_registration'],

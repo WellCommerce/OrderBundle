@@ -23,7 +23,7 @@ class DelivererDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('deliverer.datagrid')->getInstance();
+        return $this->container->get('deliverer.datagrid');
     }
 
     protected function getColumns()

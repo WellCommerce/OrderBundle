@@ -26,9 +26,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class LocaleDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -59,5 +56,10 @@ class LocaleDataGrid extends AbstractDataGrid
                 'align' => Appearance::ALIGN_CENTER
             ])
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'locale';
     }
 }

@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class PaymentMethodDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -54,6 +51,10 @@ class PaymentMethodDataGrid extends AbstractDataGrid
             'id'      => 'processor',
             'caption' => $this->trans('payment_method.label.processor')
         ]));
-
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'payment_method';
     }
 }

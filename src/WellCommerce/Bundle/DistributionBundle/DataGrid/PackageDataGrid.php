@@ -27,11 +27,8 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class PackageDataGrid extends AbstractDataGrid
+class PackageDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -48,7 +45,7 @@ final class PackageDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'name',
             'caption'    => $this->trans('package.label.name'),
@@ -56,7 +53,7 @@ final class PackageDataGrid extends AbstractDataGrid
                 'width' => 190,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'fullName',
             'caption'    => $this->trans('package.label.full_name'),
@@ -64,16 +61,16 @@ final class PackageDataGrid extends AbstractDataGrid
                 'width' => 190,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'vendor',
             'caption'    => $this->trans('package.label.vendor'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'localVersion',
             'caption'    => $this->trans('package.label.local_version'),
@@ -81,68 +78,70 @@ final class PackageDataGrid extends AbstractDataGrid
                 'width' => 90,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'remoteVersion',
             'caption'    => $this->trans('package.label.remote_version'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'createdAt',
             'caption'    => $this->trans('package.label.created_at'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'updatedAt',
             'caption'    => $this->trans('package.label.updated_at'),
             'appearance' => new Appearance([
                 'width' => 90,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureOptions(OptionsInterface $options)
+    
+    public function configureOptions(OptionsInterface $options)
     {
         $eventHandlers = $options->getEventHandlers();
-
+        
         $eventHandlers->add(new LoadEventHandler([
             'function' => $this->getJavascriptFunctionName('load'),
             'route'    => $this->getActionUrl('grid'),
         ]));
-
+        
         $eventHandlers->add(new ClickRowEventHandler([
             'function' => $this->getJavascriptFunctionName('click'),
             'route'    => $this->getActionUrl('edit'),
         ]));
-
+        
         $eventHandlers->add(new CustomRowEventHandler([
             'function'      => $this->getJavascriptFunctionName('install'),
             'function_name' => 'installPackage',
-            'row_action'    => 'action_installPackage'
+            'row_action'    => 'action_installPackage',
         ]));
-
+        
         $eventHandlers->add(new CustomRowEventHandler([
             'function'      => $this->getJavascriptFunctionName('update'),
             'function_name' => 'updatePackage',
-            'row_action'    => 'action_updatePackage'
+            'row_action'    => 'action_updatePackage',
         ]));
-
+        
         $eventHandlers->add(new CustomRowEventHandler([
             'function'      => $this->getJavascriptFunctionName('remove'),
             'function_name' => 'removePackage',
-            'row_action'    => 'action_removePackage'
+            'row_action'    => 'action_removePackage',
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'package';
     }
 }

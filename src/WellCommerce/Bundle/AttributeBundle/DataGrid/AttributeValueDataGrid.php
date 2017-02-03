@@ -24,9 +24,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Filter;
  */
 class AttributeValueDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -40,10 +37,15 @@ class AttributeValueDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'      => 'name',
             'caption' => $this->trans('common.label.name'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'attribute_value';
     }
 }

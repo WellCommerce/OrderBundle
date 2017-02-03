@@ -27,9 +27,6 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  */
 class ClientDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -151,10 +148,7 @@ class ClientDataGrid extends AbstractDataGrid
         ]));
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureOptions(OptionsInterface $options)
+    public function configureOptions(OptionsInterface $options)
     {
         parent::configureOptions($options);
         
@@ -167,5 +161,10 @@ class ClientDataGrid extends AbstractDataGrid
         $eventHandlers->add(new LoadedEventHandler([
             'function' => $this->getJavascriptFunctionName('loaded'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'client';
     }
 }

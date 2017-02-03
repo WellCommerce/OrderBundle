@@ -23,7 +23,7 @@ class CompanyDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('company.datagrid')->getInstance();
+        return $this->container->get('company.datagrid');
     }
 
     protected function getColumns()

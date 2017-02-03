@@ -48,4 +48,9 @@ class OrderStatusGroupDataGrid extends AbstractDataGrid
             'caption' => $this->trans('common.label.name'),
         ]));
     }
+    
+    public function getIdentifier(): string
+    {
+        return 'order_status_group';
+    }
 }

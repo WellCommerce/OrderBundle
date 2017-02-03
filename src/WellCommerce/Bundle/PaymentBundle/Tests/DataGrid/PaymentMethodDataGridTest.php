@@ -23,7 +23,7 @@ class PaymentMethodDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('payment_method.datagrid')->getInstance();
+        return $this->container->get('payment_method.datagrid');
     }
 
     protected function getColumns()

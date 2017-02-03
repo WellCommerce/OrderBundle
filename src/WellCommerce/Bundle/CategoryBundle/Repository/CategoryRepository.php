@@ -41,24 +41,4 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
             $this->addCategoryParent($category->getParent(), $collection);
         }
     }
-    
-    public function getDataGridFilterOptions(Category $parent = null): array
-    {
-        $options  = [];
-        $criteria = new Criteria();
-        $criteria->where($criteria->expr()->eq('parent', $parent));
-        $categories = $this->matching($criteria);
-        $categories->map(function (Category $category) use (&$options) {
-            $parentCategory = $category->getParent();
-            $options[]      = [
-                'id'          => $category->getId(),
-                'name'        => $category->translate()->getName(),
-                'hasChildren' => (bool)$category->getChildren()->count() > 0,
-                'parent'      => ($parentCategory instanceof Category) ? $parentCategory->getId() : null,
-                'weight'      => $category->getHierarchy(),
-            ];
-        });
-        
-        return $options;
-    }
 }

@@ -24,9 +24,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Filter;
  */
 class AvailabilityDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -45,5 +42,10 @@ class AvailabilityDataGrid extends AbstractDataGrid
             'id'      => 'name',
             'caption' => $this->trans('common.label.name'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'availability';
     }
 }

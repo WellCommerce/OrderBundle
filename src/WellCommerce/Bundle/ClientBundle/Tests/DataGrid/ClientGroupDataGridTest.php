@@ -23,7 +23,7 @@ class ClientGroupDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('client_group.datagrid')->getInstance();
+        return $this->container->get('client_group.datagrid');
     }
 
     protected function getColumns()

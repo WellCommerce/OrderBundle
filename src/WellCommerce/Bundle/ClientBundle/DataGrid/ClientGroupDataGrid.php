@@ -26,9 +26,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ClientGroupDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -64,5 +61,10 @@ class ClientGroupDataGrid extends AbstractDataGrid
                 'width' => 90,
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'client_group';
     }
 }

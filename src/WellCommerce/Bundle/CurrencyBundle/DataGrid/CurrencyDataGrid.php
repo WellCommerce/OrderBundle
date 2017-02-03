@@ -26,9 +26,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class CurrencyDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -50,5 +47,10 @@ class CurrencyDataGrid extends AbstractDataGrid
             'id'      => 'code',
             'caption' => $this->trans('common.label.code'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'currency';
     }
 }

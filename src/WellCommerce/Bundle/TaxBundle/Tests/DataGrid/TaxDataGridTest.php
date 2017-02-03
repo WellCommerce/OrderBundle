@@ -23,7 +23,7 @@ class TaxDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('tax.datagrid')->getInstance();
+        return $this->container->get('tax.datagrid');
     }
 
     protected function getColumns()

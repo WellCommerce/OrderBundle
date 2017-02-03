@@ -23,7 +23,7 @@ class ShopDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('shop.datagrid')->getInstance();
+        return $this->container->get('shop.datagrid');
     }
 
     protected function getColumns()

@@ -23,7 +23,7 @@ class ProductDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('product.datagrid')->getInstance();
+        return $this->container->get('product.datagrid');
     }
 
     protected function getColumns()

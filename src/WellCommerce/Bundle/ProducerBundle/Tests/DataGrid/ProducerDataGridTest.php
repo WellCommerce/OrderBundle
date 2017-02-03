@@ -23,7 +23,7 @@ class ProducerDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('producer.datagrid')->getInstance();
+        return $this->container->get('producer.datagrid');
     }
 
     protected function getColumns()

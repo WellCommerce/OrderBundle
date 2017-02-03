@@ -26,9 +26,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class UserDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -70,5 +67,10 @@ class UserDataGrid extends AbstractDataGrid
             'id'      => 'enabled',
             'caption' => $this->trans('user.label.enabled'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'user';
     }
 }

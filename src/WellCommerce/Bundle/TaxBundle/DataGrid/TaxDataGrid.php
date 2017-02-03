@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class TaxDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -66,5 +63,10 @@ class TaxDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_INPUT,
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'tax';
     }
 }

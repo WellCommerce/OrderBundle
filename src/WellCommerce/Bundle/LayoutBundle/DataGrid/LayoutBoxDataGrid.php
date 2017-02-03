@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class LayoutBoxDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -59,5 +56,10 @@ class LayoutBoxDataGrid extends AbstractDataGrid
             'id'      => 'boxType',
             'caption' => $this->trans('layout_box.label.type'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'layout_box';
     }
 }

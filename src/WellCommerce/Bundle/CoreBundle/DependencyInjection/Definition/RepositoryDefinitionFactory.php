@@ -28,6 +28,7 @@ final class RepositoryDefinitionFactory
         $definition = new Definition(EntityManager::class);
         $definition->setFactory([new Reference('doctrine.orm.entity_manager'), 'getRepository']);
         $definition->addArgument($class);
+        $definition->addAutowiringType($class);
         
         return $definition;
     }

@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class DelivererDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -49,5 +46,10 @@ class DelivererDataGrid extends AbstractDataGrid
             'id'      => 'name',
             'caption' => $this->trans('common.label.name'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'deliverer';
     }
 }

@@ -25,9 +25,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ThemeDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -54,5 +51,10 @@ class ThemeDataGrid extends AbstractDataGrid
             'id'      => 'folder',
             'caption' => $this->trans('theme.label.folder'),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'theme';
     }
 }

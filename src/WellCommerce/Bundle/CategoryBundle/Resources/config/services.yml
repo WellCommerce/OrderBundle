@@ -75,3 +75,7 @@ services:
         class: WellCommerce\Bundle\CategoryBundle\EventListener\CategoryDoctrineEventSubscriber
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    category.datagrid.filter:
+        class: WellCommerce\Bundle\CategoryBundle\DataGrid\CategoryFilter
+        arguments: ["@category.repository"]

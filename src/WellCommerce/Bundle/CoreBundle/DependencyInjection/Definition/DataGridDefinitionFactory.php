@@ -22,14 +22,12 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class DataGridDefinitionFactory
 {
-    public function create(string $dataSetServiceId, string $identifier, string $class) : Definition
+    public function create(string $class): Definition
     {
-        $definition = new Definition();
-        $definition->setClass($class);
-        $definition->addArgument(new Reference($dataSetServiceId));
-        $definition->addArgument($identifier);
-        $definition->addArgument(new Reference('event_dispatcher'));
-        $definition->addMethodCall('setContainer', [new Reference('service_container')]);
+        $definition = new Definition($class);
+        $definition->setConfigurator([new Reference('datagrid.configurator'), 'configure']);
+        $definition->setLazy(true);
+        $definition->setAutowired(true);
         
         return $definition;
     }

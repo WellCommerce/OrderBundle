@@ -23,7 +23,7 @@ class ShippingMethodDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('shipping_method.datagrid')->getInstance();
+        return $this->container->get('shipping_method.datagrid');
     }
 
     protected function getColumns()

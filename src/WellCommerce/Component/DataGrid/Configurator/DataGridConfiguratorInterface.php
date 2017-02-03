@@ -10,17 +10,16 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CategoryBundle\Repository;
+namespace WellCommerce\Component\DataGrid\Configurator;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Component\DataGrid\DataGridInterface;
 
 /**
- * Interface CategoryRepositoryInterface
+ * Interface DataGridConfiguratorInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface CategoryRepositoryInterface extends RepositoryInterface
+interface DataGridConfiguratorInterface
 {
-    public function getCategoryPath(Category $category): array;
+    public function configure(DataGridInterface $dataGrid);
 }

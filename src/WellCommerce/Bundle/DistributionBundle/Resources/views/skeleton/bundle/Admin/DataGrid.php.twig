@@ -45,4 +45,9 @@ class {{ bundle.prefix }}DataGrid extends AbstractDataGrid
             'caption' => $this->trans('common.label.name'),
         ]));
     }
+
+    public function getIdentifier(): string
+    {
+        return '{{ bundle.alias }}';
+    }
 }

@@ -23,7 +23,7 @@ class ContactDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('contact.datagrid')->getInstance();
+        return $this->container->get('contact.datagrid');
     }
 
     protected function getColumns()

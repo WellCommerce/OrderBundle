@@ -23,7 +23,7 @@ class CurrencyDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('currency.datagrid')->getInstance();
+        return $this->container->get('currency.datagrid');
     }
 
     protected function getColumns()

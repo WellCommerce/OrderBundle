@@ -24,9 +24,6 @@ use WellCommerce\Component\DataGrid\Column\Options\Filter;
  */
 class AttributeDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -61,5 +58,10 @@ class AttributeDataGrid extends AbstractDataGrid
                 'align' => Appearance::ALIGN_CENTER
             ]),
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'attribute';
     }
 }

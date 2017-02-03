@@ -80,4 +80,9 @@ class PageDataGrid extends AbstractDataGrid
             ]),
         ]));
     }
+    
+    public function getIdentifier(): string
+    {
+        return 'page';
+    }
 }

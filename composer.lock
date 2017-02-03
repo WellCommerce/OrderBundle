@@ -3192,12 +3192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "0d965dbb265c56fb2437b7d21b3deced729603c1"
+                "reference": "c2c2296f4a6b2b9ff7e1b571d308864facaa2317"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0d965dbb265c56fb2437b7d21b3deced729603c1",
-                "reference": "0d965dbb265c56fb2437b7d21b3deced729603c1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c2c2296f4a6b2b9ff7e1b571d308864facaa2317",
+                "reference": "c2c2296f4a6b2b9ff7e1b571d308864facaa2317",
                 "shasum": ""
             },
             "require": {
@@ -3237,7 +3237,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-30 19:57:58"
+            "time": "2017-01-31 13:48:49"
         },
         {
             "name": "ocramius/package-versions",
@@ -3907,12 +3907,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7eb45205d27edd94bd2b3614085ea158bd1e2bca"
+                "reference": "95f30cd26abebb91ea4e762f040fc4bf711b81e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7eb45205d27edd94bd2b3614085ea158bd1e2bca",
-                "reference": "7eb45205d27edd94bd2b3614085ea158bd1e2bca",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/95f30cd26abebb91ea4e762f040fc4bf711b81e2",
+                "reference": "95f30cd26abebb91ea4e762f040fc4bf711b81e2",
                 "shasum": ""
             },
             "require": {
@@ -3971,7 +3971,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-26 16:15:36"
+            "time": "2017-02-02 11:33:20"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4554,25 +4554,25 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "dev-master",
+            "version": "1.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "7c391956f8086a22a257cb26461544e4fc8e02e0"
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/7c391956f8086a22a257cb26461544e4fc8e02e0",
-                "reference": "7c391956f8086a22a257cb26461544e4fc8e02e0",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0",
-                "sebastian/diff": "^1.2",
-                "sebastian/exporter": "^1.2 || ^2.0"
+                "php": ">=5.3.3",
+                "sebastian/diff": "~1.2",
+                "sebastian/exporter": "~1.2 || ~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8"
+                "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
@@ -4614,7 +4614,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-01-29 09:51:01"
+            "time": "2017-01-29 09:50:25"
         },
         {
             "name": "sebastian/diff",
@@ -4982,12 +4982,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "d57c2f297d17ee82baf8cae0b16dae34a9378784"
+                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/d57c2f297d17ee82baf8cae0b16dae34a9378784",
-                "reference": "d57c2f297d17ee82baf8cae0b16dae34a9378784",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/ed86f6fb1753e76b39ff8b87f527045ca6b97169",
+                "reference": "ed86f6fb1753e76b39ff8b87f527045ca6b97169",
                 "shasum": ""
             },
             "require": {
@@ -5042,7 +5042,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-01-10 19:42:56"
+            "time": "2017-02-02 15:31:23"
         },
         {
             "name": "sensio/generator-bundle",
@@ -6370,12 +6370,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "03864a9fd6800596460f24a99d66938d4e53771d"
+                "reference": "7bf4d2417c87de02d57d039bf2f9eaefa3eb7802"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/03864a9fd6800596460f24a99d66938d4e53771d",
-                "reference": "03864a9fd6800596460f24a99d66938d4e53771d",
+                "url": "https://api.github.com/repos/zendframework/zend-http/zipball/7bf4d2417c87de02d57d039bf2f9eaefa3eb7802",
+                "reference": "7bf4d2417c87de02d57d039bf2f9eaefa3eb7802",
                 "shasum": ""
             },
             "require": {
@@ -6393,8 +6393,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev",
-                    "dev-develop": "2.6-dev"
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
                 }
             },
             "autoload": {
@@ -6412,7 +6412,7 @@
                 "http",
                 "zf2"
             ],
-            "time": "2017-01-26 16:03:33"
+            "time": "2017-01-31 14:45:14"
         },
         {
             "name": "zendframework/zend-hydrator",

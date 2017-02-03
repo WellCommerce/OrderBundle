@@ -23,7 +23,7 @@ class AvailabilityDataGridTest extends AbstractDataGridTestCase
 {
     protected function getDataGrid()
     {
-        return $this->container->get('availability.datagrid')->getInstance();
+        return $this->container->get('availability.datagrid');
     }
 
     protected function getColumns()

@@ -23,7 +23,7 @@ class CouponDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('coupon.datagrid')->getInstance();
+        return $this->container->get('coupon.datagrid');
     }
 
     protected function getColumns()

@@ -23,7 +23,7 @@ class MediaDataGridTest extends AbstractDataGridTestCase
 {
     protected function get()
     {
-        return $this->container->get('media.datagrid')->getInstance();
+        return $this->container->get('media.datagrid');
     }
 
     protected function getColumns()
