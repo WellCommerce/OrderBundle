@@ -12,9 +12,8 @@
 namespace WellCommerce\Bundle\OrderBundle\DataGrid;
 
 use WellCommerce\Bundle\CoreBundle\DataGrid\AbstractDataGrid;
-use WellCommerce\Bundle\OrderBundle\Repository\OrderStatusRepositoryInterface;
-use WellCommerce\Bundle\PaymentBundle\Repository\PaymentMethodRepositoryInterface;
-use WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodRepositoryInterface;
+use WellCommerce\Bundle\PaymentMethodBundle\DataGrid\PaymentMethodFilter;
+use WellCommerce\Bundle\ShippingMethodBundle\DataGrid\ShippingMethodFilter;
 use WellCommerce\Component\DataGrid\Column\Column;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;
 use WellCommerce\Component\DataGrid\Column\Options\Appearance;
@@ -33,6 +32,28 @@ use WellCommerce\Component\DataGrid\Options\OptionsInterface;
  */
 class OrderDataGrid extends AbstractDataGrid
 {
+    /**
+     * @var OrderStatusFilter
+     */
+    private $statuses;
+    
+    /**
+     * @var PaymentMethodFilter
+     */
+    private $paymentMethods;
+    
+    /**
+     * @var ShippingMethodFilter
+     */
+    private $shippingMethods;
+    
+    public function __construct(OrderStatusFilter $statuses, PaymentMethodFilter $paymentMethods, ShippingMethodFilter $shippingMethods)
+    {
+        $this->statuses        = $statuses;
+        $this->paymentMethods  = $paymentMethods;
+        $this->shippingMethods = $shippingMethods;
+    }
+    
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
@@ -94,8 +115,8 @@ class OrderDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
             'appearance' => new Appearance([
-                'width'   => 40,
-                'align'   => Appearance::ALIGN_CENTER,
+                'width' => 40,
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
         
@@ -130,7 +151,7 @@ class OrderDataGrid extends AbstractDataGrid
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'currentStatusId',
-                'options'         => $this->getOrderStatusRepository()->getDataGridFilterOptions(),
+                'options'         => $this->statuses->getOptions(),
             ]),
             'appearance' => new Appearance([
                 'width' => 60,
@@ -144,7 +165,7 @@ class OrderDataGrid extends AbstractDataGrid
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'paymentMethodId',
-                'options'         => $this->getPaymentMethodRepository()->getDataGridFilterOptions(),
+                'options'         => $this->paymentMethods->getOptions(),
             ]),
             'appearance' => new Appearance([
                 'width' => 60,
@@ -158,7 +179,7 @@ class OrderDataGrid extends AbstractDataGrid
             'filter'     => new Filter([
                 'type'            => Filter::FILTER_TREE,
                 'filtered_column' => 'shippingMethodId',
-                'options'         => $this->getShippingMethodRepository()->getDataGridFilterOptions(),
+                'options'         => $this->shippingMethods->getOptions(),
             ]),
             'appearance' => new Appearance([
                 'width' => 60,
@@ -204,21 +225,6 @@ class OrderDataGrid extends AbstractDataGrid
             'function_name' => 'changeStatus',
             'row_action'    => 'action_changeStatus',
         ]));
-    }
-    
-    private function getOrderStatusRepository(): OrderStatusRepositoryInterface
-    {
-        return $this->get('order_status.repository');
-    }
-    
-    private function getPaymentMethodRepository(): PaymentMethodRepositoryInterface
-    {
-        return $this->get('payment_method.repository');
-    }
-    
-    private function getShippingMethodRepository(): ShippingMethodRepositoryInterface
-    {
-        return $this->get('shipping_method.repository');
     }
     
     public function getIdentifier(): string

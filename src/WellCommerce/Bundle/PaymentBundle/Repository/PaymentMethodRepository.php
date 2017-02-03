@@ -25,21 +25,4 @@ class PaymentMethodRepository extends EntityRepository implements PaymentMethodR
     {
         return $this->findOneBy([], ['hierarchy' => 'asc']);
     }
-    
-    public function getDataGridFilterOptions(): array
-    {
-        $options = [];
-        $methods = $this->getCollection();
-        $methods->map(function (PaymentMethod $method) use (&$options) {
-            $options[] = [
-                'id'          => $method->getId(),
-                'name'        => $method->translate()->getName(),
-                'hasChildren' => false,
-                'parent'      => null,
-                'weight'      => $method->getId(),
-            ];
-        });
-        
-        return $options;
-    }
 }

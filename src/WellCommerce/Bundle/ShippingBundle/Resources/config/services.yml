@@ -57,3 +57,7 @@ services:
             - { name: order.modifier, alias: shipping_cost }
         factory: ['@order_modifier.factory', create]
         configurator: ['@shipping_cost.order.modifier.configurator', configure]
+
+    shipping_method.datagrid.filter:
+        class: WellCommerce\Bundle\ShippingMethodBundle\DataGrid\ShippingMethodFilter
+        arguments: ["@shipping_method.repository"]

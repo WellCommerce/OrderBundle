@@ -137,3 +137,7 @@ services:
         class: WellCommerce\Bundle\OrderBundle\Validator\CompanyAddressValidator
         tags:
             - { name: validator.constraint_validator, alias: order.validator.company_address }
+
+    order_status.datagrid.filter:
+        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusFilter
+        arguments: ["@order_status.repository"]

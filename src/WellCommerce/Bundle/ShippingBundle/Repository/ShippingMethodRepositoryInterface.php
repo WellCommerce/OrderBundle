@@ -23,6 +23,4 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 interface ShippingMethodRepositoryInterface extends RepositoryInterface
 {
     public function getShippingMethods(): Collection;
-    
-    public function getDataGridFilterOptions(): array;
 }
