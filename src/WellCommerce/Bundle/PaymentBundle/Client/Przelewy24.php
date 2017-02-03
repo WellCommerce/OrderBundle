@@ -11,54 +11,13 @@ class Przelewy24
 {
     const VERSION = '3.2';
     
-    /**
-     * Live system URL address
-     *
-     * @var string
-     */
-    private $hostLive = "https://secure.przelewy24.pl/";
-    
-    /**
-     * Sandbox system URL address
-     *
-     * @var string
-     */
+    private $hostLive    = "https://secure.przelewy24.pl/";
     private $hostSandbox = "https://sandbox.przelewy24.pl/";
-    
-    /**
-     * Use Live (false) or Sandbox (true) enviroment
-     *
-     * @var bool
-     */
-    private $testMode = false;
-    
-    /**
-     * Merchant id
-     *
-     * @var int
-     */
-    private $merchantId = 0;
-    
-    /**
-     * Merchant posId
-     *
-     * @var int
-     */
-    private $posId = 0;
-    
-    /**
-     * Salt to create a control sum (from P24 panel)
-     *
-     * @var string
-     */
-    private $salt = "";
-    
-    /**
-     * Array of POST data
-     *
-     * @var array
-     */
-    private $postData = [];
+    private $testMode    = false;
+    private $merchantId  = 0;
+    private $posId       = 0;
+    private $salt        = '';
+    private $postData    = [];
     
     public function __construct(int $merchantId, int $posId, string $salt, bool $testMode = false)
     {
@@ -119,12 +78,9 @@ class Przelewy24
         }
         if ($redirect) {
             $this->trnRequest($token);
-            
         }
         
         return ["error" => 0, "token" => $token];
-        
-        
     }
     
     public function trnRequest(string $token, bool $redirect = true)
