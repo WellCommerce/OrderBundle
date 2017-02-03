@@ -98,7 +98,7 @@ class ProductDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'       => 'weight',
-            'caption'  => $this->trans('common.label.dimension.weight'),
+            'caption'  => 'common.label.dimension.weight',
             'editable' => true,
             'filter'   => new Filter([
                 'type' => Filter::FILTER_BETWEEN,

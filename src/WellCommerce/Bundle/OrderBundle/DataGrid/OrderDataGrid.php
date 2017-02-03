@@ -110,7 +110,7 @@ class OrderDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'productTotal',
-            'caption'    => $this->trans('order.label.product_total.gross_price'),
+            'caption'    => 'order.label.product_total.gross_price',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),

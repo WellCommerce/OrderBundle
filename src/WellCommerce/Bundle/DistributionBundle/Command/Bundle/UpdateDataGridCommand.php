@@ -39,7 +39,7 @@ final class UpdateDataGridCommand extends ContainerAwareCommand
         $finder->in($rootDir)->name('*DataGrid.php');
         foreach ($finder->files() as $file) {
             $contents    = $file->getContents();
-            $pattern     = '/\$this->trans\((\'\w+\.\w+\.\w+\')\)/';
+            $pattern     = '/\$this->trans\((\'\w+\.\w+\.\w+\.\w+\')\)/';
             $replacement = '${1}';
             $contents    = preg_replace($pattern, $replacement, $contents);
             $filesystem->dumpFile($file->getRealPath(), $contents);

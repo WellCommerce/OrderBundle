@@ -61,7 +61,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'companyName',
-            'caption'    => $this->trans('client.label.address.company'),
+            'caption'    => 'client.label.address.company',
             'appearance' => new Appearance([
                 'width' => 100,
                 'align' => Appearance::ALIGN_CENTER,
@@ -70,7 +70,7 @@ class ClientDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'vatId',
-            'caption'    => $this->trans('client.label.address.vat_id'),
+            'caption'    => 'client.label.address.vat_id',
             'appearance' => new Appearance([
                 'width' => 60,
                 'align' => Appearance::ALIGN_CENTER,
