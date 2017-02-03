@@ -2,14 +2,11 @@
 
 namespace WellCommerce\Bundle\PaymentBundle\Client;
 
-use WellCommerce\Component\FedExPoland\listCustom;
-
 /**
  * Class Przelewy24
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-
 class Przelewy24
 {
     const VERSION = '3.2';
@@ -63,21 +60,12 @@ class Przelewy24
      */
     private $postData = [];
     
-    /**
-     *
-     * Obcject constructor. Set initial parameters
-     *
-     * @param int    $merchantId
-     * @param int    $posId
-     * @param string $salt
-     * @param bool   $testMode
-     */
-    public function __construct($merchantId, $posId, $salt, $testMode = false)
+    public function __construct(int $merchantId, int $posId, string $salt, bool $testMode = false)
     {
-        
-        $this->merchantId = (int)$merchantId;
-        $this->posId      = (int)$posId;
+        $this->merchantId = $merchantId;
+        $this->posId      = $posId;
         $this->salt       = $salt;
+        $this->testMode   = $testMode;
         
         if ($this->merchantId === 0) {
             $this->merchantId = $this->posId;
@@ -90,42 +78,21 @@ class Przelewy24
         $this->addValue("p24_merchant_id", $merchantId);
         $this->addValue("p24_pos_id", $this->posId);
         $this->addValue("p24_api_version", self::VERSION);
-        
-        return true;
     }
     
-    /**
-     *
-     * Returns host URL
-     */
     public function getHost()
     {
         return $this->hostLive;
     }
     
-    /**
-     *
-     * Add value do post request
-     *
-     * @param string $name  Argument name
-     * @param mixed  $value Argument value
-     *
-     * @todo Add postData validation
-     */
-    public function addValue($name, $value)
+    public function addValue(string $name, string $value)
     {
         $this->postData[$name] = $value;
     }
     
-    /**
-     *
-     * Function is testing a connection with P24 server
-     *
-     * @return array Array(INT Error, Array Data), where data
-     */
     public function testConnection()
     {
-        $crc                    = md5($this->posId."|".$this->salt);
+        $crc                    = md5($this->posId . "|" . $this->salt);
         $ARG["p24_merchant_id"] = $this->merchantId;
         $ARG["p24_pos_id"]      = $this->posId;
         $ARG["p24_sign"]        = $crc;
@@ -134,16 +101,9 @@ class Przelewy24
         return $RES;
     }
     
-    /**
-     * Prepare a transaction request
-     *
-     * @param bool $redirect Set true to redirect to Przelewy24 after transaction registration
-     *
-     * @return array array(INT Error code, STRING Token)
-     */
-    public function trnRegister($redirect = false)
+    public function trnRegister(bool $redirect = false)
     {
-        $crc = md5($this->postData["p24_session_id"]."|".$this->posId."|".$this->postData["p24_amount"]."|".$this->postData["p24_currency"]."|".$this->salt);
+        $crc = md5($this->postData["p24_session_id"] . "|" . $this->posId . "|" . $this->postData["p24_amount"] . "|" . $this->postData["p24_currency"] . "|" . $this->salt);
         
         $this->addValue("p24_sign", $crc);
         
@@ -167,36 +127,20 @@ class Przelewy24
         
     }
     
-    /**
-     * Redirects or returns URL to a P24 payment screen
-     *
-     * @param string $token    Token
-     * @param bool   $redirect If set to true redirects to P24 payment screen. If set to false function returns URL to redirect to P24 payment screen
-     *
-     * @return string URL to P24 payment screen
-     */
-    public function trnRequest($token, $redirect = true)
+    public function trnRequest(string $token, bool $redirect = true)
     {
-        
         if ($redirect) {
-            header("Location:".$this->hostLive."trnRequest/".$token);
+            header("Location:" . $this->hostLive . "trnRequest/" . $token);
             
             return "";
         } else {
-            return $this->hostLive."trnRequest/".$token;
+            return $this->hostLive . "trnRequest/" . $token;
         }
-        
     }
     
-    /**
-     *
-     * Function verify received from P24 system transaction's result.
-     *
-     * @return array
-     */
-    public function trnVerify()
+    public function trnVerify(): array
     {
-        $crc = md5($this->postData["p24_session_id"]."|".$this->postData["p24_order_id"]."|".$this->postData["p24_amount"]."|".$this->postData["p24_currency"]."|".$this->salt);
+        $crc = md5($this->postData["p24_session_id"] . "|" . $this->postData["p24_order_id"] . "|" . $this->postData["p24_amount"] . "|" . $this->postData["p24_currency"] . "|" . $this->salt);
         
         $this->addValue("p24_sign", $crc);
         
@@ -206,16 +150,7 @@ class Przelewy24
         
     }
     
-    /**
-     *
-     * Function contect to P24 system
-     *
-     * @param string $function Method name
-     * @param array  $ARG      POST parameters
-     *
-     * @return array array(INT Error code, ARRAY Result)
-     */
-    private function callUrl($function, $ARG)
+    private function callUrl(string $function, $ARG)
     {
         
         if (!in_array($function, ["trnRegister", "trnRequest", "trnVerify", "testConnection"])) {
@@ -227,10 +162,10 @@ class Przelewy24
         $REQ = [];
         
         foreach ($ARG as $k => $v) {
-            $REQ[] = $k."=".urlencode($v);
+            $REQ[] = $k . "=" . urlencode($v);
         }
         
-        $url        = $this->hostLive.$function;
+        $url        = $this->hostLive . $function;
         $user_agent = "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)";
         if ($ch = curl_init()) {
             
@@ -250,7 +185,7 @@ class Przelewy24
                 
                 if ($INFO["http_code"] != 200) {
                     
-                    return ["error" => 200, "errorMessage" => "call:Page load error (".$INFO["http_code"].")"];
+                    return ["error" => 200, "errorMessage" => "call:Page load error (" . $INFO["http_code"] . ")"];
                     
                 } else {
                     
