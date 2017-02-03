@@ -10,9 +10,10 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\PaymentBundle\Configurator;
+namespace WellCommerce\Bundle\PayPalBundle\Configurator;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use WellCommerce\Bundle\PaymentBundle\Configurator\AbstractPaymentMethodConfigurator;
 use WellCommerce\Component\Form\Dependencies\DependencyInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
@@ -24,17 +25,17 @@ use WellCommerce\Component\Form\FormBuilderInterface;
  */
 final class PayPalConfigurator extends AbstractPaymentMethodConfigurator
 {
-    public function getName () : string
+    public function getName(): string
     {
         return 'paypal';
     }
     
-    public function getInitializeTemplateName () : string
+    public function getInitializeTemplateName(): string
     {
-        return 'WellCommercePaymentBundle:Front/PayPal:initialize.html.twig';
+        return 'WellCommercePayPalBundle:Front/PayPal:initialize.html.twig';
     }
     
-    public function addConfigurationFields (FormBuilderInterface $builder, ElementInterface $fieldset, DependencyInterface $dependency)
+    public function addConfigurationFields(FormBuilderInterface $builder, ElementInterface $fieldset, DependencyInterface $dependency)
     {
         $fieldset->addChild($builder->getElement('text_field', [
             'name'         => $this->getConfigurationKey('client_id'),
@@ -62,7 +63,7 @@ final class PayPalConfigurator extends AbstractPaymentMethodConfigurator
     /**
      * {@inheritdoc}
      */
-    protected function configureOptions (OptionsResolver $resolver)
+    protected function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
         
@@ -75,7 +76,7 @@ final class PayPalConfigurator extends AbstractPaymentMethodConfigurator
     /**
      * {@inheritdoc}
      */
-    public function getSupportedConfigurationKeys () : array
+    public function getSupportedConfigurationKeys(): array
     {
         return [
             $this->getConfigurationKey('client_id'),

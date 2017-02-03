@@ -77,23 +77,6 @@ services:
             - { name: payment.processor }
         arguments: ['@cash_on_delivery.gateway', '@cash_on_delivery.configurator']
 
-    paypal.configurator:
-        class: WellCommerce\Bundle\PaymentBundle\Configurator\PayPalConfigurator
-        calls:
-            - [setContainer, ['@service_container']]
-        shared: false
-
-    paypal.gateway:
-        class: WellCommerce\Bundle\PaymentBundle\Gateway\PayPalGateway
-        arguments: [{ log.FileName: '%kernel.logs_dir%/PayPal.log' }, '@router.helper']
-        shared: false
-
-    paypal.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
-        tags:
-            - { name: payment.processor }
-        arguments: ['@paypal.gateway', '@paypal.configurator']
-
     payment_method.datagrid.filter:
         class: WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter
         arguments: ["@payment_method.repository"]

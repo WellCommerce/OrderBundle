@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\PaymentBundle\Gateway;
+namespace WellCommerce\Bundle\PayPalBundle\Gateway;
 
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
@@ -31,6 +31,7 @@ use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
+use WellCommerce\Bundle\PaymentBundle\Gateway\PaymentGatewayInterface;
 
 /**
  * Class PayPalGateway

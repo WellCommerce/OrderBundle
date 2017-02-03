@@ -73,7 +73,6 @@
     "cache/filesystem-adapter": "0.3.0",
     "cache/doctrine-adapter": "^0.5.0",
     "raven/raven": "^0.13.0",
-    "paypal/rest-api-sdk-php": "^1.6",
     "emanueleminotto/twig-cache-bundle": "^1.0",
     "elasticsearch/elasticsearch": "^2.1",
     "expalmer/php-bad-words": "^0.1.3",
