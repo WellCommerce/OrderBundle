@@ -21,7 +21,7 @@ use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
  */
 interface CouponCheckerInterface
 {
-    public function isValid(Coupon $coupon): bool;
+    public function isValid(Coupon $coupon = null): bool;
     
     public function getError(): string;
     
