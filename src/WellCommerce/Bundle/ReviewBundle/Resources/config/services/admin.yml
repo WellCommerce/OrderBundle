@@ -7,12 +7,6 @@
 # please view the LICENSE file that was distributed with this source code.
 
 services:
-    review.controller.admin:
-        class: WellCommerce\Bundle\ReviewBundle\Controller\Admin\ReviewController
-        arguments: ['@review.manager', '@review.form_builder.admin', '@review.datagrid']
-        calls:
-            - [setContainer, ['@service_container']]
-
     review.layout_box.configurator:
         class: WellCommerce\Bundle\ReviewBundle\Configurator\ReviewBoxConfigurator
         tags:

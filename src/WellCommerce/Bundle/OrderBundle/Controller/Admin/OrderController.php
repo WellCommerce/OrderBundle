@@ -30,7 +30,7 @@ class OrderController extends AbstractAdminController
     public function indexAction(): Response
     {
         return $this->displayTemplate('index', [
-            'datagrid' => $this->dataGrid->getInstance(),
+            'datagrid' => $this->dataGrid,
             'statuses' => $this->get('order_status.dataset.admin')->getResult('select'),
         ]);
     }

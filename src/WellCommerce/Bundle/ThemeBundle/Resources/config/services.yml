@@ -7,6 +7,5 @@
 # please view the LICENSE file that was distributed with this source code.
 
 imports:
-    - { resource: 'services/admin.yml' }
     - { resource: 'services/front.yml' }
     - { resource: 'services/common.yml' }
