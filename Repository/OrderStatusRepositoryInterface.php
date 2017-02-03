@@ -21,5 +21,4 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 interface OrderStatusRepositoryInterface extends RepositoryInterface
 {
-    public function getDataGridFilterOptions(): array;
 }
