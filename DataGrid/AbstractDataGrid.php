@@ -75,11 +75,6 @@ abstract class AbstractDataGrid implements DataGridInterface
         ]));
     }
     
-    protected function trans(string $label): string
-    {
-        return $label;
-    }
-    
     protected function getActionUrl(string $actionName): string
     {
         return sprintf('admin.%s.%s', $this->getIdentifier(), $actionName);
