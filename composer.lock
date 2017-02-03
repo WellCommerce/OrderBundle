@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "264ab0051c4e29a9b12df4d11b0c92f8",
     "content-hash": "d1174315fc2a209d798bc807cf36f5a4",
     "packages": [
         {
@@ -220,7 +219,7 @@
             ],
             "description": "A bundle that registers cache implementations as Symfony services supporting PSR-6 and tagging",
             "homepage": "https://github.com/php-cache/adapter-bundle",
-            "time": "2016-02-05 20:42:21"
+            "time": "2016-02-05T20:42:21+00:00"
         },
         {
             "name": "cache/adapter-common",
@@ -275,7 +274,7 @@
                 "psr-6",
                 "tag"
             ],
-            "time": "2016-07-31 18:10:41"
+            "time": "2016-07-31T18:10:41+00:00"
         },
         {
             "name": "cache/apcu-adapter",
@@ -339,7 +338,7 @@
                 "cache",
                 "psr-6"
             ],
-            "time": "2016-03-01 21:01:28"
+            "time": "2016-03-01T21:01:28+00:00"
         },
         {
             "name": "cache/doctrine-adapter",
@@ -409,7 +408,7 @@
                 "psr-6",
                 "tag"
             ],
-            "time": "2016-02-25 08:03:59"
+            "time": "2016-02-25T08:03:59+00:00"
         },
         {
             "name": "cache/filesystem-adapter",
@@ -472,7 +471,7 @@
                 "psr-6",
                 "tag"
             ],
-            "time": "2016-02-25 08:03:59"
+            "time": "2016-02-25T08:03:59+00:00"
         },
         {
             "name": "cache/taggable-cache",
@@ -530,7 +529,7 @@
                 "psr6",
                 "tag"
             ],
-            "time": "2016-08-08 17:20:09"
+            "time": "2016-08-08T17:20:09+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -557,7 +556,7 @@
                 "MIT"
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "time": "2014-12-30 15:22:37"
+            "time": "2014-12-30T15:22:37+00:00"
         },
         {
             "name": "devristo/phpws",
@@ -798,7 +797,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-01-03 10:49:41"
+            "time": "2017-01-03T10:49:41+00:00"
         },
         {
             "name": "doctrine/common",
@@ -1170,7 +1169,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2016-01-26 17:28:51"
+            "time": "2016-01-26T17:28:51+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -1227,7 +1226,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-11-04 21:23:23"
+            "time": "2015-11-04T21:23:23+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -1355,7 +1354,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2016-05-12 17:23:41"
+            "time": "2016-05-12T17:23:41+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -1463,7 +1462,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09 13:34:57"
+            "time": "2014-09-09T13:34:57+00:00"
         },
         {
             "name": "doctrine/migrations",
@@ -1613,7 +1612,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2016-01-05 21:34:58"
+            "time": "2016-01-05T21:34:58+00:00"
         },
         {
             "name": "elasticsearch/elasticsearch",
@@ -1667,7 +1666,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2016-11-30 17:15:05"
+            "time": "2016-11-30T17:15:05+00:00"
         },
         {
             "name": "emanueleminotto/twig-cache-bundle",
@@ -1729,7 +1728,7 @@
                 "symfony",
                 "twig"
             ],
-            "time": "2016-07-17 20:33:30"
+            "time": "2016-07-17T20:33:30+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -1775,7 +1774,7 @@
                 "event-dispatcher",
                 "event-emitter"
             ],
-            "time": "2014-07-09 21:08:03"
+            "time": "2014-07-09T21:08:03+00:00"
         },
         {
             "name": "expalmer/php-bad-words",
@@ -1818,7 +1817,7 @@
                 "bad",
                 "words"
             ],
-            "time": "2015-06-25 20:39:53"
+            "time": "2015-06-25T20:39:53+00:00"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -1929,7 +1928,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-05-29 06:29:14"
+            "time": "2015-05-29T06:29:14+00:00"
         },
         {
             "name": "guzzle/guzzle",
@@ -2022,7 +2021,7 @@
                 "web service"
             ],
             "abandoned": "guzzlehttp/guzzle",
-            "time": "2014-01-28 22:29:15"
+            "time": "2014-01-28T22:29:15+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2301,7 +2300,7 @@
                 "Guzzle",
                 "stream"
             ],
-            "time": "2016-04-13 16:32:01"
+            "time": "2016-04-13T16:32:01+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -2358,7 +2357,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2015-09-19 16:54:05"
+            "time": "2015-09-19T16:54:05+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2409,7 +2408,7 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2015-11-10 17:04:01"
+            "time": "2015-11-10T17:04:01+00:00"
         },
         {
             "name": "ircmaxell/random-lib",
@@ -2464,7 +2463,7 @@
                 "random-numbers",
                 "random-strings"
             ],
-            "time": "2016-09-07 15:52:06"
+            "time": "2016-09-07T15:52:06+00:00"
         },
         {
             "name": "ircmaxell/security-lib",
@@ -2510,7 +2509,7 @@
             ],
             "description": "A Base Security Library",
             "homepage": "https://github.com/ircmaxell/SecurityLib",
-            "time": "2015-03-20 14:31:23"
+            "time": "2015-03-20T14:31:23+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2563,7 +2562,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2015-08-30 16:36:01"
+            "time": "2015-08-30T16:36:01+00:00"
         },
         {
             "name": "jngermon/phpunit-entity-tester",
@@ -2720,7 +2719,7 @@
                 "composer",
                 "packagist"
             ],
-            "time": "2016-01-17 21:26:35"
+            "time": "2016-01-17T21:26:35+00:00"
         },
         {
             "name": "league/flysystem",
@@ -2997,7 +2996,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2017-01-20 01:55:04"
+            "time": "2017-01-20T01:55:04+00:00"
         },
         {
             "name": "mcuelenaere/composer-revision-plugin",
@@ -3044,7 +3043,7 @@
             ],
             "description": "Simple composer plugin which generates a class containing the VCS references of all packages",
             "homepage": "https://github.com/mcuelenaere/composer-revision-plugin",
-            "time": "2015-01-03 18:44:38"
+            "time": "2015-01-03T18:44:38+00:00"
         },
         {
             "name": "mmoreram/simple-doctrine-mapping",
@@ -3106,7 +3105,7 @@
                 "mapping",
                 "mmoreram"
             ],
-            "time": "2015-11-18 22:16:30"
+            "time": "2015-11-18T22:16:30+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3285,7 +3284,7 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "time": "2016-12-30 09:49:15"
+            "time": "2016-12-30T09:49:15+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -3398,7 +3397,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-11-07 23:38:38"
+            "time": "2016-11-07T23:38:38+00:00"
         },
         {
             "name": "paypal/rest-api-sdk-php",
@@ -3447,7 +3446,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2016-12-14 21:59:21"
+            "time": "2016-12-14T21:59:21+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3546,7 +3545,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-09-30 07:12:33"
+            "time": "2016-09-30T07:12:33+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3593,7 +3592,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-11-25 06:54:22"
+            "time": "2016-11-25T06:54:22+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -3806,7 +3805,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21 13:50:34"
+            "time": "2015-06-21T13:50:34+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -3850,7 +3849,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2016-05-12 18:03:57"
+            "time": "2016-05-12T18:03:57+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4073,7 +4072,7 @@
                 "psr",
                 "psr-6"
             ],
-            "time": "2015-12-11 02:52:07"
+            "time": "2015-12-11T02:52:07+00:00"
         },
         {
             "name": "psr/http-message",
@@ -4123,7 +4122,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -4225,7 +4224,7 @@
                 "logging"
             ],
             "abandoned": "sentry/sentry",
-            "time": "2015-09-09 18:12:58"
+            "time": "2015-09-09T18:12:58+00:00"
         },
         {
             "name": "react/cache",
@@ -4259,7 +4258,7 @@
             "keywords": [
                 "cache"
             ],
-            "time": "2016-02-25 18:17:16"
+            "time": "2016-02-25T18:17:16+00:00"
         },
         {
             "name": "react/child-process",
@@ -4298,7 +4297,7 @@
             "keywords": [
                 "process"
             ],
-            "time": "2016-08-01 18:09:48"
+            "time": "2016-08-01T18:09:48+00:00"
         },
         {
             "name": "react/dns",
@@ -4335,7 +4334,7 @@
                 "dns",
                 "dns-resolver"
             ],
-            "time": "2016-08-01 10:09:07"
+            "time": "2016-08-01T10:09:07+00:00"
         },
         {
             "name": "react/event-loop",
@@ -4379,7 +4378,7 @@
                 "asynchronous",
                 "event-loop"
             ],
-            "time": "2016-03-08 02:09:32"
+            "time": "2016-03-08T02:09:32+00:00"
         },
         {
             "name": "react/promise",
@@ -4464,7 +4463,7 @@
             "keywords": [
                 "Socket"
             ],
-            "time": "2016-03-01 20:10:35"
+            "time": "2016-03-01T20:10:35+00:00"
         },
         {
             "name": "react/socket-client",
@@ -4550,7 +4549,7 @@
                 "pipe",
                 "stream"
             ],
-            "time": "2017-01-25 14:44:14"
+            "time": "2017-01-25T14:44:14+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -4922,7 +4921,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-06-21 13:59:46"
+            "time": "2015-06-21T13:59:46+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -5251,7 +5250,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2016-05-12 08:23:39"
+            "time": "2016-05-12T08:23:39+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -5311,7 +5310,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2016-08-26 08:04:47"
+            "time": "2016-08-26T08:04:47+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -5796,7 +5795,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-01-12 21:36:55"
+            "time": "2017-01-12T21:36:55+00:00"
         },
         {
             "name": "twig/extensions",
@@ -5856,12 +5855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a1c1f01eac45b68d6f17c3b499297b93e1a47321"
+                "reference": "d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a1c1f01eac45b68d6f17c3b499297b93e1a47321",
-                "reference": "a1c1f01eac45b68d6f17c3b499297b93e1a47321",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7",
+                "reference": "d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7",
                 "shasum": ""
             },
             "require": {
@@ -5909,7 +5908,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-01-19 14:55:10"
+            "time": "2017-02-03 21:34:15"
         },
         {
             "name": "webmozart/assert",
@@ -6008,7 +6007,7 @@
                 "plugin",
                 "wellcommerce"
             ],
-            "time": "2016-02-25 01:05:19"
+            "time": "2016-02-25T01:05:19+00:00"
         },
         {
             "name": "willdurand/js-translation-bundle",
@@ -6017,12 +6016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
-                "reference": "7e6839be69d7d5e0758ed0b014d13e1ff1e709d1"
+                "reference": "86692bafa212b26070a4363324af6f7dff9be6df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/7e6839be69d7d5e0758ed0b014d13e1ff1e709d1",
-                "reference": "7e6839be69d7d5e0758ed0b014d13e1ff1e709d1",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/86692bafa212b26070a4363324af6f7dff9be6df",
+                "reference": "86692bafa212b26070a4363324af6f7dff9be6df",
                 "shasum": ""
             },
             "require": {
@@ -6071,7 +6070,7 @@
                 "symfony",
                 "translation"
             ],
-            "time": "2017-01-12 15:31:25"
+            "time": "2017-02-03 14:46:25"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -6111,7 +6110,7 @@
                 }
             ],
             "description": "JSONP callback validator.",
-            "time": "2014-01-20 22:35:06"
+            "time": "2014-01-20T22:35:06+00:00"
         },
         {
             "name": "wingu/code-generator",
@@ -6164,7 +6163,7 @@
                 "generator",
                 "php code generator"
             ],
-            "time": "2014-06-18 09:14:42"
+            "time": "2014-06-18T09:14:42+00:00"
         },
         {
             "name": "wingu/reflection",
@@ -6211,7 +6210,7 @@
                 "php reflection",
                 "reflection"
             ],
-            "time": "2015-03-19 16:20:21"
+            "time": "2015-03-19T16:20:21+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -6308,7 +6307,7 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2016-06-30 19:50:10"
+            "time": "2016-06-30T19:50:10+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -6470,7 +6469,7 @@
                 "hydrator",
                 "zf2"
             ],
-            "time": "2016-02-18 22:38:26"
+            "time": "2016-02-18T22:38:26+00:00"
         },
         {
             "name": "zendframework/zend-json",
@@ -6525,7 +6524,7 @@
                 "json",
                 "zf2"
             ],
-            "time": "2016-02-04 21:20:26"
+            "time": "2016-02-04T21:20:26+00:00"
         },
         {
             "name": "zendframework/zend-loader",
@@ -6569,7 +6568,7 @@
                 "loader",
                 "zf2"
             ],
-            "time": "2016-05-05 14:59:09"
+            "time": "2016-05-05T14:59:09+00:00"
         },
         {
             "name": "zendframework/zend-log",
@@ -6695,7 +6694,7 @@
                 "servicemanager",
                 "zf"
             ],
-            "time": "2016-12-19 19:51:37"
+            "time": "2016-12-19T19:51:37+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -6754,7 +6753,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2016-04-12 21:17:31"
+            "time": "2016-04-12T21:17:31+00:00"
         },
         {
             "name": "zendframework/zend-uri",
@@ -6801,7 +6800,7 @@
                 "uri",
                 "zf2"
             ],
-            "time": "2016-05-11 18:49:50"
+            "time": "2016-05-11T18:49:50+00:00"
         },
         {
             "name": "zendframework/zend-validator",
@@ -6908,7 +6907,7 @@
                 "lucene",
                 "zf2"
             ],
-            "time": "2015-01-21 16:24:14"
+            "time": "2015-01-21T16:24:14+00:00"
         }
     ],
     "packages-dev": [],

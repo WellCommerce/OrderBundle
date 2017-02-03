@@ -1,0 +1,25 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
+services:
+    payu.configurator:
+        class: WellCommerce\Bundle\PayUBundle\Configurator\PayUConfigurator
+        calls:
+            - [setContainer, ['@service_container']]
+        shared: false
+
+    payu.gateway:
+        class: WellCommerce\Bundle\PayUBundle\Gateway\PayUGateway
+        arguments: ['@currency.helper', '@router.helper','@request.helper']
+        shared: false
+
+    payu.processor:
+        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
+        tags:
+            - { name: payment.processor }
+        arguments: ['@payu.gateway', '@payu.configurator']

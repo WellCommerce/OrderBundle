@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\PaymentBundle\Gateway;
+namespace WellCommerce\Bundle\PayUBundle\Gateway;
 
 use OpenPayU_Configuration;
 use OpenPayU_Order;
@@ -22,6 +22,7 @@ use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
+use WellCommerce\Bundle\PaymentBundle\Gateway\PaymentGatewayInterface;
 
 /**
  * Class PayUGateway

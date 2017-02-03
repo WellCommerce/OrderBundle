@@ -94,23 +94,6 @@ services:
             - { name: payment.processor }
         arguments: ['@paypal.gateway', '@paypal.configurator']
 
-    payu.configurator:
-        class: WellCommerce\Bundle\PaymentBundle\Configurator\PayUConfigurator
-        calls:
-            - [setContainer, ['@service_container']]
-        shared: false
-
-    payu.gateway:
-        class: WellCommerce\Bundle\PaymentBundle\Gateway\PayUGateway
-        arguments: ['@currency.helper', '@router.helper','@request.helper']
-        shared: false
-
-    payu.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
-        tags:
-            - { name: payment.processor }
-        arguments: ['@payu.gateway', '@payu.configurator']
-
     payment_method.datagrid.filter:
         class: WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter
         arguments: ["@payment_method.repository"]

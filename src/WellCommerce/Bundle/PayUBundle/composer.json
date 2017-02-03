@@ -1,13 +1,17 @@
 {
-  "name": "wellcommerce/payment-bundle",
+  "name": "wellcommerce/payu-bundle",
   "type": "wellcommerce-bundle",
   "license": "MIT",
   "minimum-stability": "dev",
-  "description": "WellCommerce PaymentBundle",
+  "description": "WellCommerce PayUBundle",
   "keywords": [
     "wellcommerce",
     "e-commerce",
-    "open-source"
+    "open-source",
+    "payu",
+    "openpayu",
+    "payment",
+    "symfony"
   ],
   "authors": [
     {
@@ -21,23 +25,25 @@
   ],
   "support": {
     "email": "support@wellcommerce.org",
-    "issues": "https://github.com/WellCommerce/PaymentBundle/issues",
-    "source": "https://github.com/WellCommerce/PaymentBundle/"
+    "issues": "https://github.com/WellCommerce/PayUBundle/issues",
+    "source": "https://github.com/WellCommerce/PayUBundle/"
   },
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "WellCommerce\\Bundle\\PayUBundle\\": "src/WellCommerce/Bundle/PayUBundle"
     }
   },
   "require": {
-    "php": "^7.0"
+    "php": "^7.0",
+    "wellcommerce/payment-bundle": "^0.7@dev",
+    "openpayu/openpayu" : "2.1.*"
   },
   "extra": {
     "branch-alias": {
       "dev-master": "0.7.x-dev"
     },
     "wellcommerce-bundle": {
-      "install-dir": "src/WellCommerce/Bundle/PaymentBundle"
+      "install-dir": "src/WellCommerce/Bundle/PayUBundle"
     }
   }
 }
