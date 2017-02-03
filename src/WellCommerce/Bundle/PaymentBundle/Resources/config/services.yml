@@ -111,23 +111,6 @@ services:
             - { name: payment.processor }
         arguments: ['@payu.gateway', '@payu.configurator']
 
-    przelewy24.configurator:
-        class: WellCommerce\Bundle\PaymentBundle\Configurator\Przelewy24Configurator
-        calls:
-            - [setContainer, ['@service_container']]
-        shared: false
-
-    przelewy24.gateway:
-        class: WellCommerce\Bundle\PaymentBundle\Gateway\Przelewy24Gateway
-        arguments: ['@currency.helper', '@router.helper','@request.helper']
-        shared: false
-
-    przelewy24.processor:
-        class: WellCommerce\Bundle\PaymentBundle\Processor\GenericPaymentProcessor
-        tags:
-            - { name: payment.processor }
-        arguments: ['@przelewy24.gateway', '@przelewy24.configurator']
-
     payment_method.datagrid.filter:
         class: WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter
         arguments: ["@payment_method.repository"]
