@@ -129,5 +129,5 @@ services:
         arguments: ['@przelewy24.gateway', '@przelewy24.configurator']
 
     payment_method.datagrid.filter:
-        class: WellCommerce\Bundle\PaymentMethodBundle\DataGrid\PaymentMethodFilter
+        class: WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter
         arguments: ["@payment_method.repository"]
