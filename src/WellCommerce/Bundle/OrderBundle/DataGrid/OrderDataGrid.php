@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\OrderBundle\DataGrid;
 
 use WellCommerce\Bundle\CoreBundle\DataGrid\AbstractDataGrid;
 use WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter;
-use WellCommerce\Bundle\ShippingMethodBundle\DataGrid\ShippingMethodFilter;
+use WellCommerce\Bundle\ShippingBundle\DataGrid\ShippingMethodFilter;
 use WellCommerce\Component\DataGrid\Column\Column;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;
 use WellCommerce\Component\DataGrid\Column\Options\Appearance;
