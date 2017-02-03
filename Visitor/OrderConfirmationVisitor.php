@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGeneratorInterface;
@@ -27,7 +26,7 @@ use WellCommerce\Bundle\PaymentBundle\Manager\PaymentManagerInterface;
 final class OrderConfirmationVisitor implements OrderVisitorInterface
 {
     /**
-     * @var CurrencyHelperInterface
+     * @var OrderNumberGeneratorInterface
      */
     private $orderNumberGenerator;
     
