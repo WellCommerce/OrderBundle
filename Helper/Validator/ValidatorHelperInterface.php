@@ -23,23 +23,7 @@ interface ValidatorHelperInterface
 {
     const DEFAULT_VALIDATOR_GROUPS = ['Default'];
     
-    /**
-     * Validates a given value
-     *
-     * @param mixed $value
-     * @param array $groups
-     *
-     * @return ConstraintViolationListInterface
-     */
-    public function validate($value, array $constraints = null, array $groups = []): ConstraintViolationListInterface;
+    public function validate($value, $constraints = null, array $groups = []): ConstraintViolationListInterface;
     
-    /**
-     * Checks whether the given value is valid
-     *
-     * @param mixed $value
-     * @param array $groups
-     *
-     * @return bool
-     */
-    public function isValid($value, array $constraints = null, array $groups = []): bool;
+    public function isValid($value, $constraints = null, array $groups = []): bool;
 }
