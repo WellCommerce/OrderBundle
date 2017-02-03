@@ -72,25 +72,6 @@ class LoadPaymentMethodData extends AbstractDataFixture
         $bankTransfer->mergeNewTranslations();
         $manager->persist($bankTransfer);
         
-        $payPal = new PaymentMethod();
-        $payPal->setEnabled(1);
-        $payPal->setHierarchy(30);
-        $payPal->setProcessor('paypal');
-        foreach($this->getLocales() as $locale){
-            $payPal->translate($locale->getCode())->setName('PayPal');
-        }
-        $payPal->setShippingMethods($shippingMethods);
-        $payPal->setPaymentPendingOrderStatus($this->getReference('order_status_pending_payment'));
-        $payPal->setPaymentFailureOrderStatus($this->getReference('order_status_payment_failed'));
-        $payPal->setPaymentSuccessOrderStatus($this->getReference('order_status_paid'));
-        $payPal->setConfiguration([
-            'paypal_client_id'     => 'AQSJsBNhgVhtOd5t_KUp4hWEAUPRj6Xd3IRu3g_t08D0ZqFIRVrzhnJ0w9ktQMBeOFHfj-yWx78XsKiW',
-            'paypal_client_secret' => 'EFe3yJq23ebDCUDZtT3vD6GOg5JcDMbNgzDzuRZVsEPbBSfkYwFxYeK-qWJHSRasy4hL3h7Ucv9v3ghM',
-            'paypal_mode'          => 'sandbox',
-        ]);
-        $payPal->mergeNewTranslations();
-        $manager->persist($payPal);
-        
         $manager->flush();
         
         $this->setReference('payment_method_cod', $cod);
