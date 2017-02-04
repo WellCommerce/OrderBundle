@@ -116,23 +116,6 @@ WellCommerce\Bundle\ProductBundle\Entity\Product:
                         nullable: false
                         onDelete: CASCADE
                         referencedColumnName: id
-        shops:
-            targetEntity: WellCommerce\Bundle\ShopBundle\Entity\ShopInterface
-            fetch: LAZY
-            joinTable:
-                name: shop_product
-                joinColumns:
-                    -
-                        name: product_id
-                        nullable: false
-                        onDelete: CASCADE
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    -
-                        name: shop_id
-                        nullable: false
-                        onDelete: CASCADE
-                        referencedColumnName: id
     oneToMany:
         productPhotos:
             targetEntity: WellCommerce\Bundle\ProductBundle\Entity\ProductPhoto

@@ -33,21 +33,3 @@ WellCommerce\Bundle\NewsBundle\Entity\News:
                 photo_id:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
-    manyToMany:
-        shops:
-            targetEntity: WellCommerce\Bundle\ShopBundle\Entity\ShopInterface
-            fetch: LAZY
-            joinTable:
-                name: shop_news
-                joinColumns:
-                    -
-                        name: news_id
-                        nullable: true
-                        onDelete: CASCADE
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    -
-                        name: shop_id
-                        nullable: true
-                        onDelete: CASCADE
-                        referencedColumnName: id
