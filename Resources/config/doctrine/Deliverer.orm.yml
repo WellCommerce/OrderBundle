@@ -8,6 +8,6 @@ WellCommerce\Bundle\CatalogBundle\Entity\Deliverer:
                 strategy: AUTO
     manyToMany:
         producers:
-            targetEntity: WellCommerce\Bundle\ProducerBundle\Entity\Producer
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Producer
             fetch: LAZY
             mappedBy: deliverers

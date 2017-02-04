@@ -14,6 +14,8 @@ well_commerce_api:
             manager: category.manager
         deliverer:
             manager: deliverer.manager
+        producer:
+            manager: producer.manager
         unit:
             manager: unit.manager
     serialization:
@@ -31,6 +33,12 @@ well_commerce_api:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Deliverer.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\DelivererTranslation:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/DelivererTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\Producer:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Producer.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProducerRoute:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProducerRoute.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProducerTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProducerTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Unit:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Unit.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
@@ -64,6 +72,30 @@ well_commerce_routing:
                 attributes: "[\\d+_]+"
                 categories: "[\\d+_]+"
             pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes},{categories}"
+        producer:
+            entity: WellCommerce\Bundle\CatalogBundle\Entity\ProducerRoute
+            defaults:
+                _controller: producer.controller.front:indexAction
+                limit: 12
+                page: 1
+                orderBy: hierarchy
+                orderDir: asc
+                priceFrom: 0
+                priceTo: 9999
+                view: grid
+                producers: ~
+                attributes: ~
+            requirements:
+                limit: "\\d{1,10}"
+                page: "\\d{1,10}"
+                orderBy: "hierarchy|name|finalPrice"
+                orderDir: "asc|desc"
+                priceFrom: "\\d{1,10}"
+                priceTo: "\\d{1,10}"
+                view: "grid|list"
+                producers: "[\\d+_]+"
+                attributes: "[\\d+_]+"
+            pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes}"
 
 well_commerce_locale:
     copier:
@@ -78,6 +110,10 @@ well_commerce_locale:
             WellCommerce\Bundle\CatalogBundle\Entity\DelivererTranslation:
                 properties:
                     - name
+            WellCommerce\Bundle\CatalogBundle\Entity\ProducerTranslation:
+                properties:
+                    - name
+                    - slug
             WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
                 properties:
                     - name
