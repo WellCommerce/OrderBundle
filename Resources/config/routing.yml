@@ -6,6 +6,18 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
+_admin_attribute:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing/attribute/admin.yml"
+    prefix: /admin/catalog/attribute
+
+_admin_attribute_group:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing/attribute_group/admin.yml"
+    prefix: /admin/catalog/attribute/group
+
+_admin_attribute_value:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing/attribute_value/admin.yml"
+    prefix: /admin/catalog/attribute/value
+
 _admin_availability:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing/availability/admin.yml"
     prefix: /admin/catalog/availability

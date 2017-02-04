@@ -8,6 +8,12 @@
 
 well_commerce_api:
     request_handler:
+        attribute:
+            manager: attribute.manager
+        attribute_group:
+            manager: attribute_group.manager
+        attribute_value:
+            manager: attribute_value.manager
         availability:
             manager: availability.manager
         category:
@@ -19,6 +25,18 @@ well_commerce_api:
         unit:
             manager: unit.manager
     serialization:
+        WellCommerce\Bundle\CatalogBundle\Entity\Attribute:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Attribute.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AttributeTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AttributeTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroup:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AttributeGroup.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroupTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AttributeGroupTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AttributeValue:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AttributeValue.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AttributeValueTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AttributeValueTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Availability:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Availability.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\AvailabilityTranslation:
@@ -100,6 +118,15 @@ well_commerce_routing:
 well_commerce_locale:
     copier:
         entities:
+            WellCommerce\Bundle\CatalogBundle\Entity\AttributeTranslation:
+                properties:
+                    - name
+            WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroupTranslation:
+                properties:
+                    - name
+            WellCommerce\Bundle\CatalogBundle\Entity\AttributeValueTranslation:
+                properties:
+                    - name
             WellCommerce\Bundle\CatalogBundle\Entity\AvailabilityTranslation:
                 properties:
                     - name
