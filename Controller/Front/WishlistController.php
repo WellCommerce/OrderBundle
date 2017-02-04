@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\WishlistBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**
