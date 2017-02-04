@@ -11,7 +11,6 @@ imports:
     - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceAdminBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceAttributeBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCompanyBundle/Resources/config/config.yml" }
