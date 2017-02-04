@@ -23,9 +23,11 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class OrderDataSet extends AbstractDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getIdentifier(): string
+    {
+        return 'admin.order';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([
