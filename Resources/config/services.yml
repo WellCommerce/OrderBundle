@@ -1,7 +1,5 @@
 imports:
     - { resource: 'services/breadcrumb.yml' }
-    - { resource: 'services/dataset.yml' }
-    - { resource: 'services/form.yml' }
 
 services:
     flash.helper:
