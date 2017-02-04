@@ -16,7 +16,7 @@ use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CatalogBundle\DataSet\Admin\ProducerDataSet as BaseDataSet;
 use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProducerTranslation;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 

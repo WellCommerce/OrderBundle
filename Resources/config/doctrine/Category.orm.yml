@@ -51,6 +51,6 @@ WellCommerce\Bundle\CatalogBundle\Entity\Category:
             mappedBy: parent
     manyToMany:
         products:
-            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Product
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Product
             fetch: EXTRA_LAZY
             mappedBy: categories

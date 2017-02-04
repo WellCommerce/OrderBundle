@@ -22,6 +22,8 @@ well_commerce_api:
             manager: deliverer.manager
         producer:
             manager: producer.manager
+        product:
+            manager: product.manager
         unit:
             manager: unit.manager
     serialization:
@@ -57,6 +59,20 @@ well_commerce_api:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProducerRoute.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\ProducerTranslation:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProducerTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\Product:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Product.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductDistinction:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductDistinction.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\Variant:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Variant.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\VariantOption:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/VariantOption.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductPhoto.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductRoute:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductRoute.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Unit:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Unit.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
@@ -114,6 +130,10 @@ well_commerce_routing:
                 producers: "[\\d+_]+"
                 attributes: "[\\d+_]+"
             pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes}"
+        product:
+            entity: WellCommerce\Bundle\CatalogBundle\Entity\ProductRoute
+            defaults:
+                _controller: product.controller.front:indexAction
 
 well_commerce_locale:
     copier:
@@ -141,6 +161,48 @@ well_commerce_locale:
                 properties:
                     - name
                     - slug
+            WellCommerce\Bundle\CatalogBundle\Entity\ProductTranslation:
+                properties:
+                    - name
+                    - slug
             WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
                 properties:
                     - name
+
+well_commerce_search:
+    engine:
+        index:
+            types:
+                product:
+                    class: WellCommerce\Bundle\CatalogBundle\Search\ProductType
+                    mapping:
+                        sku:
+                            indexable: true
+                            boost: 1
+                            fuzziness: 2
+                            value_expression: resource.getSku()
+                        name:
+                            indexable: true
+                            boost: 1
+                            fuzziness: 3
+                            value_expression: resource.translate(locale).getName()
+                        short_description:
+                            indexable: true
+                            boost: 0.5
+                            fuzziness: 0
+                            value_expression: resource.translate(locale).getShortDescription()
+                        description:
+                            indexable: true
+                            boost: 0.5
+                            fuzziness: 0
+                            value_expression: resource.translate(locale).getDescription()
+                        producer:
+                            indexable: true
+                            boost: 0.5
+                            fuzziness: 2
+                            value_expression: resource.getProducer().translate(locale).getName()
+                        category:
+                            indexable: true
+                            boost: 0.5
+                            fuzziness: 2
+                            value_expression: resource.getCategories().first().translate(locale).getName()

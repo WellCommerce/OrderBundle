@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\CatalogBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
+use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**

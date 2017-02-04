@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\CatalogBundle\Entity\Deliverer;
 use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
+use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 
 /**
  * Class DelivererTest
