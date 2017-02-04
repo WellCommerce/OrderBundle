@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d34f377bf1d180b8ffa2d9c94f797705",
+    "content-hash": "eed4429f2a89e19d3592ffba47c99599",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -3400,55 +3400,6 @@
             "time": "2016-11-07T23:38:38+00:00"
         },
         {
-            "name": "paypal/rest-api-sdk-php",
-            "version": "1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-                "reference": "7e664f12be32b975575371e8ad3bc17b6b318851"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/7e664f12be32b975575371e8ad3bc17b6b318851",
-                "reference": "7e664f12be32b975575371e8ad3bc17b6b318851",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.3.0",
-                "psr/log": "^1.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PayPal": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "PayPal",
-                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
-                }
-            ],
-            "description": "PayPal's PHP SDK for REST APIs",
-            "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
-            "keywords": [
-                "payments",
-                "paypal",
-                "rest",
-                "sdk"
-            ],
-            "time": "2016-12-14T21:59:21+00:00"
-        },
-        {
             "name": "phpdocumentor/reflection-common",
             "version": "dev-master",
             "source": {
@@ -6010,59 +5961,6 @@
             "time": "2016-02-25T01:05:19+00:00"
         },
         {
-            "name": "wellcommerce/przelewy24-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WellCommerce/Przelewy24Bundle.git",
-                "reference": "b9200dbb30b7d4258a2694a1b2e6fbdf7ff55eb2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WellCommerce/Przelewy24Bundle/zipball/b9200dbb30b7d4258a2694a1b2e6fbdf7ff55eb2",
-                "reference": "b9200dbb30b7d4258a2694a1b2e6fbdf7ff55eb2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0"
-            },
-            "type": "wellcommerce-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.7.x-dev"
-                },
-                "wellcommerce-bundle": {
-                    "install-dir": "src/WellCommerce/Bundle/Przelewy24Bundle"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "WellCommerce\\Bundle\\Przelewy24Bundle\\": "src/WellCommerce/Bundle/Przelewy24Bundle"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Piotrowski",
-                    "email": "adam@wellcommerce.org"
-                },
-                {
-                    "name": "WellCommerce Developers",
-                    "email": "developers@wellcommerce.org"
-                }
-            ],
-            "description": "WellCommerce Przelewy24Bundle",
-            "keywords": [
-                "e-commerce",
-                "open-source",
-                "wellcommerce"
-            ],
-            "time": "2017-02-03 22:49:18"
-        },
-        {
             "name": "willdurand/js-translation-bundle",
             "version": "dev-master",
             "target-dir": "Bazinga/Bundle/JsTranslationBundle",
@@ -6985,8 +6883,7 @@
         "zendframework/zendsearch": 20,
         "zendframework/zend-json": 20,
         "sensio/generator-bundle": 20,
-        "jngermon/phpunit-entity-tester": 20,
-        "wellcommerce/przelewy24-bundle": 20
+        "jngermon/phpunit-entity-tester": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

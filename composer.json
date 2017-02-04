@@ -76,13 +76,7 @@
     "emanueleminotto/twig-cache-bundle": "^1.0",
     "elasticsearch/elasticsearch": "^2.1",
     "expalmer/php-bad-words": "^0.1.3",
-    "jngermon/phpunit-entity-tester": "dev-master",
-    "wellcommerce/przelewy24-bundle": "^0.7.0@dev"
-  },
-  "replace": {
-    "wellcommerce/app-bundle": "self.version",
-    "wellcommerce/core-bundle": "self.version",
-    "wellcommerce/payment-bundle": "self.version"
+    "jngermon/phpunit-entity-tester": "dev-master"
   },
   "scripts": {
     "pre-install-cmd": [
