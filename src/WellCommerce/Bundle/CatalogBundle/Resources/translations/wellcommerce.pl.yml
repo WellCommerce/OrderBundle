@@ -40,6 +40,12 @@ category:
     flash:
         empty_category: Kategoria jest pusta.
 
+deliverer:
+    heading:
+        index: Dostawcy
+        add: Dodaj dostawcę
+        edit: Edytuj dostawcę
+
 unit:
     heading:
         index: Jednostki miary

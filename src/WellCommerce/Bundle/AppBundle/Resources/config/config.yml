@@ -18,7 +18,6 @@ imports:
     - { resource: "@WellCommerceContactBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCurrencyBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceDelivererBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDictionaryBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDistributionBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDoctrineBundle/Resources/config/config.yml" }

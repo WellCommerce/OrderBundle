@@ -25,7 +25,7 @@ wellcommerce_currency:
     resource: "@WellCommerceCurrencyBundle/Resources/config/routing.yml"
 
 wellcommerce_deliverer:
-    resource: "@WellCommerceDelivererBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_dictionary:
     resource: "@WellCommerceDictionaryBundle/Resources/config/routing.yml"
