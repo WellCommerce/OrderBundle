@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;

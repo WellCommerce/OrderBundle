@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Helper;
 
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ShippingBundle\Context\ProductContext;
 use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;

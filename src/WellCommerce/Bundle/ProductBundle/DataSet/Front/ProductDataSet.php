@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ProductBundle\DataSet\Front;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\AppBundle\DataSet\AbstractDataSet;
 use WellCommerce\Bundle\CurrencyBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\ProducerBundle\Entity\Producer;

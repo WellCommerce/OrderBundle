@@ -16,7 +16,7 @@ wellcommerce_availability:
     resource: "@WellCommerceAvailabilityBundle/Resources/config/routing.yml"
 
 wellcommerce_category:
-    resource: "@WellCommerceCategoryBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_contact:
     resource: "@WellCommerceContactBundle/Resources/config/routing.yml"

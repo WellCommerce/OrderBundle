@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\ProductBundle\DataSet\Transformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
-use WellCommerce\Bundle\CategoryBundle\Repository\CategoryRepositoryInterface;
+use WellCommerce\Bundle\CatalogBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Repository\CategoryRepositoryInterface;
 use WellCommerce\Component\DataSet\Transformer\AbstractDataSetTransformer;
 
 /**

@@ -1,0 +1,56 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
+well_commerce_api:
+    request_handler:
+        category:
+            manager: category.manager
+    serialization:
+        WellCommerce\Bundle\CatalogBundle\Entity\Category:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Category.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\CategoryRoute:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryRoute.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryTranslation.yml"
+
+well_commerce_routing:
+    dynamic_routing:
+        category:
+            entity: WellCommerce\Bundle\CatalogBundle\Entity\CategoryRoute
+            defaults:
+                _controller: category.controller.front:indexAction
+                limit: 12
+                page: 1
+                orderBy: hierarchy
+                orderDir: asc
+                priceFrom: 0
+                priceTo: 9999
+                view: grid
+                producers: ~
+                attributes: ~
+                categories: ~
+            requirements:
+                limit: "\\d{1,10}"
+                page: "\\d{1,10}"
+                orderBy: "hierarchy|name|finalPrice"
+                orderDir: "asc|desc"
+                priceFrom: "\\d{1,10}"
+                priceTo: "\\d{1,10}"
+                view: "grid|list"
+                producers: "[\\d+_]+"
+                attributes: "[\\d+_]+"
+                categories: "[\\d+_]+"
+            pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes},{categories}"
+
+well_commerce_locale:
+    copier:
+        entities:
+            WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation:
+                properties:
+                    - name
+                    - slug

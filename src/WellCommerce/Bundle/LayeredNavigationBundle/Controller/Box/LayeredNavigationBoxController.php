@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\LayeredNavigationBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CategoryBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 

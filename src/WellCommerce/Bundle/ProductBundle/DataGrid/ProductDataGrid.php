@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\ProductBundle\DataGrid;
 
-use WellCommerce\Bundle\CategoryBundle\DataGrid\CategoryFilter;
+use WellCommerce\Bundle\CatalogBundle\DataGrid\CategoryFilter;
 use WellCommerce\Bundle\AppBundle\DataGrid\AbstractDataGrid;
 use WellCommerce\Component\DataGrid\Column\Column;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;

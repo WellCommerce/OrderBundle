@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\Controller\Front;
 
-use WellCommerce\Bundle\CategoryBundle\Storage\CategoryStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Storage\CategoryStorageInterface;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
