@@ -46,6 +46,16 @@ deliverer:
         add: Dodaj dostawcę
         edit: Edytuj dostawcę
 
+producer:
+    heading:
+        index: Producenci
+        add: Dodaj producenta
+        edit: Edytuj producenta
+    fieldset:
+        deliverers: Dostawcy
+    label:
+        deliverers: Dostawcy
+
 unit:
     heading:
         index: Jednostki miary

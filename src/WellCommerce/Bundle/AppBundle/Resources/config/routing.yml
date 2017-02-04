@@ -76,7 +76,7 @@ wellcommerce_payment:
     resource: "@WellCommercePaymentBundle/Resources/config/routing.yml"
 
 wellcommerce_producer:
-    resource: "@WellCommerceProducerBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_product:
     resource: "@WellCommerceProductBundle/Resources/config/routing.yml"

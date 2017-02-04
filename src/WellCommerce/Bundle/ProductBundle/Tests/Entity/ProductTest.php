@@ -20,7 +20,7 @@ use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CatalogBundle\Entity\Availability;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;
-use WellCommerce\Bundle\ProducerBundle\Entity\Producer;
+use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Unit;
 
