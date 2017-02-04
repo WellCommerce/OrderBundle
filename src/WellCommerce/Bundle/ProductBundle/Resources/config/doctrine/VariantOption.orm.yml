@@ -17,14 +17,14 @@ WellCommerce\Bundle\ProductBundle\Entity\VariantOption:
                     referencedColumnName: id
                     onDelete: CASCADE
         attribute:
-            targetEntity: WellCommerce\Bundle\AttributeBundle\Entity\Attribute
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Attribute
             fetch: LAZY
             joinColumns:
                 attribute_id:
                     referencedColumnName: id
                     onDelete: CASCADE
         attributeValue:
-            targetEntity: WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\AttributeValue
             fetch: LAZY
             joinColumns:
                 attribute_value_id:

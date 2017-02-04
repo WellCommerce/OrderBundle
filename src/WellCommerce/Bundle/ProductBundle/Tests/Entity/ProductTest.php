@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
+use WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CatalogBundle\Entity\Availability;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\MediaBundle\Entity\Media;

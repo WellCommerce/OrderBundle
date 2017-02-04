@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\ProductBundle\Manager;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
+use WellCommerce\Bundle\CatalogBundle\Entity\Attribute;
+use WellCommerce\Bundle\CatalogBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\Variant;

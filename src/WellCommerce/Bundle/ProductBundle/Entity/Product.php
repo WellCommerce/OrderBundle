@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeGroup;
+use WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CatalogBundle\Entity\Availability;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;

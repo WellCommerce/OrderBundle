@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\ProductBundle\Entity;
 
-use WellCommerce\Bundle\AttributeBundle\Entity\Attribute;
-use WellCommerce\Bundle\AttributeBundle\Entity\AttributeValue;
+use WellCommerce\Bundle\CatalogBundle\Entity\Attribute;
+use WellCommerce\Bundle\CatalogBundle\Entity\AttributeValue;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 

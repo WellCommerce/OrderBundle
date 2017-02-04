@@ -10,7 +10,7 @@ wellcommerce_api:
     resource: "@WellCommerceApiBundle/Resources/config/routing.yml"
 
 wellcommerce_attribute:
-    resource: "@WellCommerceAttributeBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_availability:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
