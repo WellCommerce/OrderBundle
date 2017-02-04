@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\ProductBundle\DataGrid;
 
 use WellCommerce\Bundle\CategoryBundle\DataGrid\CategoryFilter;
-use WellCommerce\Bundle\CoreBundle\DataGrid\AbstractDataGrid;
+use WellCommerce\Bundle\AppBundle\DataGrid\AbstractDataGrid;
 use WellCommerce\Component\DataGrid\Column\Column;
 use WellCommerce\Component\DataGrid\Column\ColumnCollection;
 use WellCommerce\Component\DataGrid\Column\Options\Appearance;

@@ -22,6 +22,7 @@ use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
+use WellCommerce\Bundle\ShopBundle\Entity\ShopCollectionAwareTrait;
 
 /**
  * Class PaymentMethod
@@ -36,11 +37,17 @@ class PaymentMethod implements EntityInterface
     use Translatable;
     use Timestampable;
     use Blameable;
+    use ShopCollectionAwareTrait;
     
     /**
-     * @var Collection
+     * @var string
      */
-    protected $shippingMethods;
+    protected $processor = '';
+    
+    /**
+     * @var array
+     */
+    protected $configuration = [];
     
     /**
      * @var OrderStatus
@@ -58,18 +65,14 @@ class PaymentMethod implements EntityInterface
     protected $paymentFailureOrderStatus;
     
     /**
-     * @var string
+     * @var Collection
      */
-    protected $processor = '';
-    
-    /**
-     * @var array
-     */
-    protected $configuration = [];
+    protected $shippingMethods;
     
     public function __construct()
     {
         $this->shippingMethods = new ArrayCollection();
+        $this->shops           = new ArrayCollection();
     }
     
     /**

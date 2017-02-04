@@ -237,7 +237,7 @@
     Translator.add("category.heading.add", "Create a new category", "wellcommerce", "en");
     Translator.add("category.heading.edit", "Edit category", "wellcommerce", "en");
     Translator.add("category.comment.enabled", "Enable category visibility", "wellcommerce", "en");
-    Translator.add("category.flash.empty_category", "Category is empty", "wellcommerce", "en");
+    Translator.add("category.flash.empty_category", "This category is empty", "wellcommerce", "en");
     Translator.add("client.label.username", "Login (e-mail)", "wellcommerce", "en");
     Translator.add("client.label.password", "Password", "wellcommerce", "en");
     Translator.add("client.label.confirm_password", "Confirm password", "wellcommerce", "en");
@@ -520,6 +520,8 @@
     Translator.add("client.link.wishlist", "Wishlist", "wellcommerce", "en");
     Translator.add("form.help.required_fields", "* required fields", "wellcommerce", "en");
     Translator.add("form.media_data.image_id", "Image ID", "wellcommerce", "en");
+    Translator.add("common.error.404", "400 Not Found. Sorry, the page you are looking for could not be found", "wellcommerce", "en");
+    Translator.add("common.error.500", "500 Internal Server Error. Sorry, something went wrong.", "wellcommerce", "en");
     Translator.add("common.button.add", "Add", "wellcommerce", "en");
     Translator.add("common.button.save", "Save changes", "wellcommerce", "en");
     Translator.add("common.button.save_and_finish", "Save and finish", "wellcommerce", "en");
@@ -546,6 +548,7 @@
     Translator.add("common.label.code", "Code", "wellcommerce", "en");
     Translator.add("common.label.slug", "Slug", "wellcommerce", "en");
     Translator.add("common.label.group", "Group", "wellcommerce", "en");
+    Translator.add("common.label.symbol", "Symbol", "wellcommerce", "en");
     Translator.add("common.label.discount", "Discount", "wellcommerce", "en");
     Translator.add("common.label.created_at", "Created at", "wellcommerce", "en");
     Translator.add("common.label.updated_at", "Updated at", "wellcommerce", "en");

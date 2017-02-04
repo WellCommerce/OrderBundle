@@ -23,21 +23,11 @@ use Doctrine\ORM\Events;
  */
 class EnableableSubscriber implements EventSubscriber
 {
-    /**
-     * Returns subscribed events
-     *
-     * @return array
-     */
     public function getSubscribedEvents()
     {
         return [Events::loadClassMetadata];
     }
     
-    /**
-     * Event triggered during metadata loading
-     *
-     * @param LoadClassMetadataEventArgs $eventArgs
-     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
         /** @var \Doctrine\ORM\Mapping\ClassMetadataInfo $classMetadata */

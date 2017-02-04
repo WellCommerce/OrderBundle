@@ -44,11 +44,11 @@ class ShopableSubscriber implements EventSubscriber
             return;
         }
         
-        if ($this->hasMethod($reflectionClass, 'setShops') && $this->hasMethod($reflectionClass, 'getShops')) {
+        if ($reflectionClass->hasMethod('setShops') && $reflectionClass->hasMethod('getShops')) {
             $this->mapShopAssociation();
         }
         
-        if ($this->hasMethod($reflectionClass, 'setShop') && $this->hasMethod($reflectionClass, 'getShop')) {
+        if ($reflectionClass->hasMethod('setShop') && $reflectionClass->hasMethod('getShop')) {
             $this->mapShopField();
         }
     }
@@ -96,10 +96,5 @@ class ShopableSubscriber implements EventSubscriber
                 'targetEntity' => Shop::class,
             ]);
         }
-    }
-    
-    protected function hasMethod(\ReflectionClass $class, $methodName)
-    {
-        return $class->hasMethod($methodName);
     }
 }

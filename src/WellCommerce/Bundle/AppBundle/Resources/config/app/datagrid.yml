@@ -4,7 +4,7 @@ services:
         arguments: ['@event_dispatcher']
 
     twig.extension.datagrid:
-        class: WellCommerce\Bundle\CoreBundle\Twig\Extension\DataGridExtension
+        class: WellCommerce\Bundle\AppBundle\Twig\DataGridExtension
+        arguments: ['WellCommerceCoreBundle:DataGrid:datagrid.html.twig', '@twig']
         tags:
             - { name: twig.extension }
-        arguments: ['WellCommerceCoreBundle:DataGrid:datagrid.html.twig']

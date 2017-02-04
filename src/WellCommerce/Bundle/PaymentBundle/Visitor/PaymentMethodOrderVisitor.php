@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\PaymentBundle\Visitor;
 
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
+use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**

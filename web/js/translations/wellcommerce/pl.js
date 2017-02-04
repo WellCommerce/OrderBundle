@@ -564,6 +564,8 @@
     Translator.add("media.button.add_from_disk", "Dodaj z dysku", "wellcommerce", "pl");
     Translator.add("form.help.required_fields", "* pola wymagane", "wellcommerce", "pl");
     Translator.add("form.media_data.image_id", "ID obrazka", "wellcommerce", "pl");
+    Translator.add("common.error.404", "400 Not Found. Przykro nam ale podana strona nie istnieje.", "wellcommerce", "pl");
+    Translator.add("common.error.500", "500 Internal Server Error. Przykro nam, ale wyst\u0105pi\u0142 b\u0142\u0105d krytyczny aplikacji.", "wellcommerce", "pl");
     Translator.add("common.button.add", "Dodaj", "wellcommerce", "pl");
     Translator.add("common.button.save", "Zapisz zmiany", "wellcommerce", "pl");
     Translator.add("common.button.save_and_finish", "Zapisz i zako\u0144cz", "wellcommerce", "pl");
@@ -590,6 +592,7 @@
     Translator.add("common.label.code", "Kod", "wellcommerce", "pl");
     Translator.add("common.label.slug", "\u015acie\u017cka SEO", "wellcommerce", "pl");
     Translator.add("common.label.group", "Grupa", "wellcommerce", "pl");
+    Translator.add("common.label.symbol", "Symbol", "wellcommerce", "pl");
     Translator.add("common.label.discount", "Rabat", "wellcommerce", "pl");
     Translator.add("common.label.created_at", "Utworzenie", "wellcommerce", "pl");
     Translator.add("common.label.updated_at", "Ostatnia aktualizacja", "wellcommerce", "pl");
