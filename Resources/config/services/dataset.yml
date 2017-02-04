@@ -8,6 +8,7 @@ services:
 
     dataset.configurator:
         class: WellCommerce\Component\DataSet\Configurator\DataSetConfigurator
+        arguments: ['@event_dispatcher']
 
     dataset.paginator:
         class: WellCommerce\Component\DataSet\Paginator\DataSetPaginator

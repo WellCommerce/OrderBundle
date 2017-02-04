@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\CoreBundle\DataSet;
 
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
@@ -21,7 +20,6 @@ use WellCommerce\Component\DataSet\Column\ColumnCollection;
 use WellCommerce\Component\DataSet\Column\ColumnInterface;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;
-use WellCommerce\Component\DataSet\Event\DataSetInitEvent;
 use WellCommerce\Component\DataSet\Manager\DataSetManagerInterface;
 use WellCommerce\Component\DataSet\QueryBuilder\DataSetQueryBuilder;
 use WellCommerce\Component\DataSet\Request\DataSetRequestInterface;
@@ -45,11 +43,6 @@ abstract class AbstractDataSet extends AbstractContainerAware implements DataSet
     protected $repository;
     
     /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-    
-    /**
      * @var ColumnTransformerCollection
      */
     protected $columnTransformers;
@@ -67,18 +60,13 @@ abstract class AbstractDataSet extends AbstractContainerAware implements DataSet
     /**
      * AbstractDataSet constructor.
      *
-     * @param RepositoryInterface      $repository
-     * @param DataSetManagerInterface  $manager
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param RepositoryInterface     $repository
+     * @param DataSetManagerInterface $manager
      */
-    public function __construct(
-        RepositoryInterface $repository,
-        DataSetManagerInterface $manager,
-        EventDispatcherInterface $eventDispatcher
-    ) {
+    public function __construct(RepositoryInterface $repository, DataSetManagerInterface $manager)
+    {
         $this->repository         = $repository;
         $this->manager            = $manager;
-        $this->eventDispatcher    = $eventDispatcher;
         $this->columns            = new ColumnCollection();
         $this->columnTransformers = new ColumnTransformerCollection();
         $this->cacheOptions       = new CacheOptions();
@@ -111,11 +99,6 @@ abstract class AbstractDataSet extends AbstractContainerAware implements DataSet
     
     abstract public function configureOptions(DataSetConfiguratorInterface $configurator);
     
-    public function dispatchOnDataSetInitEvent()
-    {
-        $this->eventDispatcher->dispatch($this->getEventName(DataSetInitEvent::EVENT_SUFFIX), new DataSetInitEvent($this));
-    }
-    
     public function getResult(string $contextType, array $requestOptions = [], array $contextOptions = []): array
     {
         $this->getDoctrineHelper()->enableFilter('locale')->setParameter('locale', $this->getRequestHelper()->getCurrentLocale());
@@ -144,10 +127,5 @@ abstract class AbstractDataSet extends AbstractContainerAware implements DataSet
         $dataSetQueryBuilder = new DataSetQueryBuilder($this->createQueryBuilder());
         
         return $dataSetQueryBuilder->getQueryBuilder($this->columns, $request);
-    }
-    
-    private function getEventName(string $eventSuffix): string
-    {
-        return sprintf('%s.%s', $this->repository->getAlias(), $eventSuffix);
     }
 }
