@@ -18,8 +18,8 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\AddCartItemException;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderProductManager;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 
 /**
  * Class OrderCartController

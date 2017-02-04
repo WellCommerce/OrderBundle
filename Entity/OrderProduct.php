@@ -7,8 +7,8 @@ use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 
 /**
  * Class OrderProduct

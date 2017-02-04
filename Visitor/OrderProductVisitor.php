@@ -16,7 +16,7 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\ProductBundle\Helper\VariantHelperInterface;
+use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
 
 /**
  * Class OrderProductVisitor

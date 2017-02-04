@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Exception;
 
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 
 /**
  * Class AddCartItemException
