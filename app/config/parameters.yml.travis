@@ -30,7 +30,7 @@ parameters:
 
     php_binary_path: ~
 
-    search_engine: lucene
+    search_engine: elasticsearch
 
     facebook:
         app_id: ~
