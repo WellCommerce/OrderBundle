@@ -8,15 +8,27 @@
 
 well_commerce_api:
     request_handler:
+        availability:
+            manager: availability.manager
         category:
             manager: category.manager
+        unit:
+            manager: unit.manager
     serialization:
+        WellCommerce\Bundle\CatalogBundle\Entity\Availability:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Availability.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\AvailabilityTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/AvailabilityTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Category:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Category.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\CategoryRoute:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryRoute.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\Unit:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Unit.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/UnitTranslation.yml"
 
 well_commerce_routing:
     dynamic_routing:
@@ -50,7 +62,13 @@ well_commerce_routing:
 well_commerce_locale:
     copier:
         entities:
+            WellCommerce\Bundle\CatalogBundle\Entity\AvailabilityTranslation:
+                properties:
+                    - name
             WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation:
                 properties:
                     - name
                     - slug
+            WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
+                properties:
+                    - name
