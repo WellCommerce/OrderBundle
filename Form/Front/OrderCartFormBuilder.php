@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 
-use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\AppBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
