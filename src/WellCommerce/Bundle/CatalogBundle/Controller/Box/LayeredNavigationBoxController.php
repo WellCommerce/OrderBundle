@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\LayeredNavigationBundle\Controller\Box;
+namespace WellCommerce\Bundle\CatalogBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;

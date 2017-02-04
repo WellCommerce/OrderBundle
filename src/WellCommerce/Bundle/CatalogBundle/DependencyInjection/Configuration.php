@@ -11,6 +11,7 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -19,13 +20,34 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class Configuration implements ConfigurationInterface
+class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('well_commerce_catalog');
+        $rootNode    = $treeBuilder->root('well_commerce_catalog');
+        $this->processConfiguration($rootNode);
 
         return $treeBuilder;
     }
+
+    //@formatter:off
+    protected function processConfiguration(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('filters')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('type')->isRequired()->end()
+                            ->scalarNode('condition')->isRequired()->end()
+                            ->booleanNode('enabled')->isRequired()->end()
+                            ->scalarNode('column')->isRequired()->end()
+                            ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+    //@formatter:on
 }

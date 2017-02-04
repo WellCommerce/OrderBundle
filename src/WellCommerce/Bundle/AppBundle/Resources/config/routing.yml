@@ -34,7 +34,7 @@ wellcommerce_distribution:
     resource: "@WellCommerceDistributionBundle/Resources/config/routing.yml"
 
 wellcommerce_layered_navigation:
-    resource: "@WellCommerceLayeredNavigationBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_layout:
     resource: "@WellCommerceLayoutBundle/Resources/config/routing.yml"

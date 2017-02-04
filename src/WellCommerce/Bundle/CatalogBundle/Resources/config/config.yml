@@ -169,6 +169,34 @@ well_commerce_locale:
                 properties:
                     - name
 
+well_commerce_catalog:
+    filters:
+        priceFrom:
+            type: integer
+            condition: WellCommerce\Component\DataSet\Conditions\Condition\Gte
+            enabled: true
+            column: finalPrice
+        priceTo:
+            type: integer
+            condition: WellCommerce\Component\DataSet\Conditions\Condition\Lte
+            enabled: true
+            column: finalPrice
+        attributes:
+            type: array
+            condition: WellCommerce\Component\DataSet\Conditions\Condition\In
+            enabled: true
+            column: variantOption
+        producers:
+            type: array
+            condition: WellCommerce\Component\DataSet\Conditions\Condition\In
+            enabled: true
+            column: producerId
+        categories:
+            type: array
+            condition: WellCommerce\Component\DataSet\Conditions\Condition\In
+            enabled: true
+            column: filteredCategory
+
 well_commerce_search:
     engine:
         index:

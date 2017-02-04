@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\LayeredNavigationBundle\Controller\Front;
+namespace WellCommerce\Bundle\CatalogBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
