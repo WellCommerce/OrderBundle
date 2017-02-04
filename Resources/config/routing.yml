@@ -30,6 +30,10 @@ _admin_deliverer:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing/deliverer/admin.yml"
     prefix: /admin/catalog/deliverer
 
+_front_layered_navigation:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing/layered_navigation/front.yml"
+    prefix: /filter
+
 _admin_producer:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing/producer/admin.yml"
     prefix: /admin/catalog/producer

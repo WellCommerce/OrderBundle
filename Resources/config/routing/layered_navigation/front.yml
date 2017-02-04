@@ -6,8 +6,9 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-imports:
-    - { resource: 'services/category.yml' }
-    - { resource: 'services/layered_navigation.yml' }
-    - { resource: 'services/producer.yml' }
-    - { resource: 'services/product.yml' }
+front.layered_navigation.filter:
+    path: /
+    defaults:
+        _controller: 'layered_navigation.controller.front:filterAction'
+    options:
+        expose: true
