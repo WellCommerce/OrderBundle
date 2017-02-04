@@ -69,16 +69,18 @@ class OrderAddressController extends AbstractFrontController
             'order_contact_details',
         ];
         
-        if ($request->isMethod('POST') && false === $this->isCopyBillingAddress($request)) {
-            $validationGroups[] = 'order_shipping_address';
-        }
-        
-        if ($request->isMethod('POST') && $this->isCreateAccount($request)) {
-            $validationGroups[] = 'client_registration';
-        }
-        
-        if ($request->isMethod('POST') && $this->isIssueInvoice($request)) {
-            $validationGroups[] = 'order_issue_invoice';
+        if ($request->isMethod('POST')) {
+            if (false === $this->isCopyBillingAddress($request)) {
+                $validationGroups[] = 'order_shipping_address';
+            }
+            
+            if ($this->isCreateAccount($request)) {
+                $validationGroups[] = 'client_registration';
+            }
+            
+            if ($this->isIssueInvoice($request)) {
+                $validationGroups[] = 'order_issue_invoice';
+            }
         }
         
         return $validationGroups;
