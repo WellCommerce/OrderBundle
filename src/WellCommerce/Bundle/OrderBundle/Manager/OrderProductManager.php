@@ -18,8 +18,8 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\ChangeOrderProductQuantityException;
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteOrderProductException;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
-use WellCommerce\Bundle\ProductBundle\Entity\Variant;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
 
 /**

@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Front;
 
 use Doctrine\Common\Collections\Collection;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 
 /**
  * Class OrderControllerTest

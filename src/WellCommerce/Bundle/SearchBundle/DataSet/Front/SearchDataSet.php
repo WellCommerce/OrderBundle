@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\SearchBundle\DataSet\Front;
 
 use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\ProductBundle\DataSet\Front\ProductDataSet;
+use WellCommerce\Bundle\CatalogBundle\DataSet\Front\ProductDataSet;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 use WellCommerce\Component\Search\Storage\SearchResultStorage;
 

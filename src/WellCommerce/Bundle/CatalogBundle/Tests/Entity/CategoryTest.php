@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\CatalogBundle\Tests\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ShopBundle\Entity\Shop;
 
 /**

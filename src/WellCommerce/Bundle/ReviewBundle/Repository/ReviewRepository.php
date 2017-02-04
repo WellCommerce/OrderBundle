@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ReviewBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 
 /**
  * Class ReviewRepository

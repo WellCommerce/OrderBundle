@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Controller\Admin;
 
-use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 use WellCommerce\Bundle\CatalogBundle\Entity\Deliverer;
+use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
  * Class DelivererControllerTest

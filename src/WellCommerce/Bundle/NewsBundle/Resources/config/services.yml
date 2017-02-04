@@ -8,7 +8,7 @@
 
 services:
     news.layout_box.configurator:
-        class: WellCommerce\Bundle\ProductBundle\Configurator\ProductInfoBoxConfigurator
+        class: WellCommerce\Bundle\CatalogBundle\Configurator\ProductInfoBoxConfigurator
         tags:
             - { name: layout_box.configurator }
         arguments: [News, news.controller.box]

@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\Context;
 
-use WellCommerce\Bundle\ProductBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 
 /**

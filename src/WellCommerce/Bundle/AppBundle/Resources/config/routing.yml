@@ -79,7 +79,7 @@ wellcommerce_producer:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_product:
-    resource: "@WellCommerceProductBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_product_status:
     resource: "@WellCommerceProductStatusBundle/Resources/config/routing.yml"

@@ -16,7 +16,7 @@ use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\CatalogBundle\Storage\ProducerStorageInterface;
-use WellCommerce\Bundle\ProductBundle\Storage\ProductStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Storage\ProductStorageInterface;
 use WellCommerce\Bundle\ProductStatusBundle\Storage\ProductStatusStorageInterface;
 
 /**

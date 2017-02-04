@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\CatalogBundle\Repository;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
 
