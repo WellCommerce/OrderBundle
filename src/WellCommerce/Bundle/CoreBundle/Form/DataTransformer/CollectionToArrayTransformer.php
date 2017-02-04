@@ -23,49 +23,37 @@ use Symfony\Component\PropertyAccess\PropertyPathInterface;
  */
 class CollectionToArrayTransformer extends AbstractDataTransformer
 {
-    /**
-     * {@inheritdoc}
-     */
     public function transform($modelData)
     {
         $items      = [];
         $meta       = $this->getRepository()->getMetaData();
         $identifier = $meta->getSingleIdentifierFieldName();
-
+        
         if ($modelData instanceof Collection) {
             foreach ($modelData as $item) {
                 $items[] = $this->propertyAccessor->getValue($item, $identifier);
             }
         }
-
+        
         return $items;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function reverseTransform($modelData, PropertyPathInterface $propertyPath, $value)
     {
         $collection = new ArrayCollection();
-
+        
         foreach ($value as $key => $val) {
             if (is_int($key)) {
                 $item = $this->getRepository()->find($val);
                 $collection->add($item);
             }
         }
-
+        
         $previousCollection = $this->propertyAccessor->getValue($modelData, $propertyPath);
         $this->synchronizeCollection($previousCollection, $collection);
         $this->propertyAccessor->setValue($modelData, $propertyPath, $collection);
     }
-
-    /**
-     * Removes all elements from old collection which have not been passed in new collection
-     *
-     * @param Collection $oldEntities
-     * @param Collection $newEntities
-     */
+    
     protected function synchronizeCollection(Collection $oldCollection, Collection $newCollection)
     {
         foreach ($oldCollection as $oldEntity) {

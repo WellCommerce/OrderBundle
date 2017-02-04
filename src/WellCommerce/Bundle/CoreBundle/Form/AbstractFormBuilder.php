@@ -14,9 +14,10 @@ namespace WellCommerce\Bundle\CoreBundle\Form;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\DataTransformerFactory;
+use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\RepositoryAwareDataTransformerInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Component\Form\DataTransformer\DataTransformerInterface;
 use WellCommerce\Component\Form\Dependencies\DependencyInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
@@ -45,30 +46,27 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     protected $formHandler;
     
     /**
+     * @var DataTransformerFactory
+     */
+    protected $dataTransformerFactory;
+    
+    /**
      * @var EventDispatcherInterface
      */
     protected $eventDispatcher;
     
-    /**
-     * AbstractFormBuilder constructor.
-     *
-     * @param FormResolverFactoryInterface $resolverFactory
-     * @param FormHandlerInterface         $formHandler
-     * @param EventDispatcherInterface     $eventDispatcher
-     */
     public function __construct(
         FormResolverFactoryInterface $resolverFactory,
         FormHandlerInterface $formHandler,
+        DataTransformerFactory $dataTransformerFactory,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->resolverFactory = $resolverFactory;
-        $this->formHandler     = $formHandler;
-        $this->eventDispatcher = $eventDispatcher;
+        $this->resolverFactory        = $resolverFactory;
+        $this->formHandler            = $formHandler;
+        $this->dataTransformerFactory = $dataTransformerFactory;
+        $this->eventDispatcher        = $eventDispatcher;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function createForm(array $options, $defaultData = null): FormInterface
     {
         $form = $this->getFormService($options);
@@ -80,81 +78,40 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
         return $form;
     }
     
-    /**
-     * Dispatches a form event
-     *
-     * @param FormInterface        $form
-     * @param EntityInterface|null $entity
-     * @param string               $name
-     */
-    protected function dispatchFormEvent(FormInterface $form, EntityInterface $entity = null, string $name)
-    {
-        $eventName = sprintf('%s.%s', $form->getOption('name'), $name);
-        
-        $this->eventDispatcher->dispatch($eventName, new FormEvent($this, $form, $entity));
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
     public function getElement(string $alias, array $options = []): ElementInterface
     {
         return $this->initService('element', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getRule(string $alias, array $options = []): RuleInterface
     {
         return $this->initService('rule', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getFilter(string $alias, array $options = []): FilterInterface
     {
         return $this->initService('filter', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getDependency(string $alias, array $options = []): DependencyInterface
     {
         return $this->initService('dependency', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository): DataTransformerInterface
+    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository): RepositoryAwareDataTransformerInterface
     {
-        /** @var $transformer \WellCommerce\Component\Form\DataTransformer\DataTransformerInterface */
-        $transformer = $this->get('form.data_transformer.factory')->createRepositoryTransformer($alias);
+        /** @var RepositoryAwareDataTransformerInterface $transformer */
+        $transformer = $this->dataTransformerFactory->createRepositoryTransformer($alias);
         $transformer->setRepository($repository);
         
         return $transformer;
     }
     
-    /**
-     * Initializes form service
-     *
-     * @param array $options
-     *
-     * @return FormInterface
-     */
     protected function getFormService(array $options): FormInterface
     {
         return $this->getElement('form', $options);
     }
     
-    /**
-     * Builds the form
-     *
-     * @param FormInterface $form
-     */
     abstract protected function buildForm(FormInterface $form);
     
     /**
@@ -174,6 +131,13 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
         $service->setOptions($options);
         
         return $service;
+    }
+    
+    protected function dispatchFormEvent(FormInterface $form, EntityInterface $entity = null, string $name)
+    {
+        $eventName = sprintf('%s.%s', $form->getOption('name'), $name);
+        
+        $this->eventDispatcher->dispatch($eventName, new FormEvent($this, $form, $entity));
     }
     
     protected function addMetadataFieldset(FormInterface $form, RepositoryInterface $repository)
