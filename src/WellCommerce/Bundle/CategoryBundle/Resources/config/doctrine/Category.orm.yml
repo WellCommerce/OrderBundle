@@ -54,20 +54,3 @@ WellCommerce\Bundle\CategoryBundle\Entity\Category:
             targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Product
             fetch: EXTRA_LAZY
             mappedBy: categories
-        shops:
-            targetEntity: WellCommerce\Bundle\ShopBundle\Entity\ShopInterface
-            fetch: LAZY
-            joinTable:
-                name: shop_category
-                joinColumns:
-                    -
-                        name: category_id
-                        nullable: false
-                        onDelete: CASCADE
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    -
-                        name: shop_id
-                        nullable: false
-                        onDelete: CASCADE
-                        referencedColumnName: id

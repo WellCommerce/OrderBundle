@@ -17,6 +17,11 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
+    shopable.event_subscriber:
+        class: WellCommerce\Bundle\ShopBundle\EventListener\ShopableSubscriber
+        tags:
+            - { name: doctrine.event_subscriber }
+
     twig.extension.shop:
         class: WellCommerce\Bundle\ShopBundle\Twig\Extension\ShopExtension
         tags:

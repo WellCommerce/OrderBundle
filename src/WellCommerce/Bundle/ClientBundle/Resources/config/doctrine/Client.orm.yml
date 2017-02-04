@@ -37,13 +37,6 @@ WellCommerce\Bundle\ClientBundle\Entity\Client:
             fetch: EXTRA_LAZY
             mappedBy: client
     manyToOne:
-        shop:
-            targetEntity: WellCommerce\Bundle\ShopBundle\Entity\ShopInterface
-            fetch: LAZY
-            joinColumns:
-                shop_id:
-                    referencedColumnName: id
-                    onDelete: CASCADE
         clientGroup:
             targetEntity: WellCommerce\Bundle\ClientBundle\Entity\ClientGroup
             fetch: LAZY
