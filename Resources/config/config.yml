@@ -8,11 +8,12 @@
 
 imports:
     - { resource: "app/" }
+    - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceAdminBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceAttributeBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceAvailabilityBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceCategoryBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCompanyBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceContactBundle/Resources/config/config.yml" }
@@ -22,7 +23,6 @@ imports:
     - { resource: "@WellCommerceDictionaryBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDistributionBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDoctrineBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLayoutBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLayeredNavigationBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLocaleBundle/Resources/config/config.yml" }
