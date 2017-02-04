@@ -39,10 +39,10 @@ class CouponCheckerTest extends AbstractTestCase
         $checker = $this->getCheckerService();
         $coupon  = new Coupon();
         
-        $coupon->setValidFrom(Carbon::now());
+        $coupon->setValidFrom(Carbon::now()->subSecond(10));
         $this->assertTrue($checker->isStartDateValid($coupon));
         
-        $coupon->setValidFrom(Carbon::now()->addMinute(1));
+        $coupon->setValidFrom(Carbon::now()->addSecond(10));
         $this->assertFalse($checker->isStartDateValid($coupon));
     }
     
