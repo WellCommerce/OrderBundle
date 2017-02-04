@@ -32,7 +32,7 @@ class WishlistBoxController extends AbstractBoxController
         $dataset = $this->get('product.dataset.front')->getResult('array', [
             'order_by'   => 'name',
             'order_dir'  => 'asc',
-            'conditions' => $this->getConditions()
+            'conditions' => $this->createConditions(),
         ]);
         
         return $this->displayTemplate('index', [
@@ -40,7 +40,7 @@ class WishlistBoxController extends AbstractBoxController
         ]);
     }
     
-    private function getConditions(): ConditionsCollection
+    private function createConditions(): ConditionsCollection
     {
         /** @var WishlistRepositoryInterface $repository */
         $repository = $this->getManager()->getRepository();
