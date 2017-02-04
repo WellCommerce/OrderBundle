@@ -9,3 +9,4 @@
 imports:
     - { resource: 'services/category.yml' }
     - { resource: 'services/producer.yml' }
+    - { resource: 'services/product.yml' }
