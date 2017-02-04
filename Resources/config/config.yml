@@ -12,6 +12,8 @@ well_commerce_api:
             manager: availability.manager
         category:
             manager: category.manager
+        deliverer:
+            manager: deliverer.manager
         unit:
             manager: unit.manager
     serialization:
@@ -25,6 +27,10 @@ well_commerce_api:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryRoute.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/CategoryTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\Deliverer:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Deliverer.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\DelivererTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/DelivererTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Unit:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Unit.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
@@ -69,6 +75,9 @@ well_commerce_locale:
                 properties:
                     - name
                     - slug
+            WellCommerce\Bundle\CatalogBundle\Entity\DelivererTranslation:
+                properties:
+                    - name
             WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
                 properties:
                     - name

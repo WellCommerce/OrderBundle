@@ -14,6 +14,10 @@ _admin_category:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing/category/admin.yml"
     prefix: /admin/catalog/category
 
+_admin_deliverer:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing/deliverer/admin.yml"
+    prefix: /admin/catalog/deliverer
+
 _admin_unit:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing/unit/admin.yml"
     prefix: /admin/catalog/unit

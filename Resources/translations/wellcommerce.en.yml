@@ -40,6 +40,12 @@ category:
     flash:
         empty_category: This category is empty
 
+deliverer:
+    heading:
+        index: Deliverers
+        add: Create a new deliverer
+        edit: Edit deliverer
+
 unit:
     heading:
         index: Units of measure
