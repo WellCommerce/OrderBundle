@@ -6,6 +6,12 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
+availability:
+    heading:
+        index: Availability statuses
+        add: Add a status
+        edit: Edit a status
+
 category:
     form:
         fieldset:
@@ -33,3 +39,9 @@ category:
         enabled: Enable category visibility
     flash:
         empty_category: This category is empty
+
+unit:
+    heading:
+        index: Units of measure
+        add: Add a unit of measure
+        edit: Edit a unit of measure

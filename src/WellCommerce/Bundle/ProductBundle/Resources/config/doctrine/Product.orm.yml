@@ -56,14 +56,14 @@ WellCommerce\Bundle\ProductBundle\Entity\Product:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
         unit:
-            targetEntity: WellCommerce\Bundle\UnitBundle\Entity\Unit
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Unit
             fetch: LAZY
             joinColumns:
                 unit_id:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
         availability:
-            targetEntity: WellCommerce\Bundle\AvailabilityBundle\Entity\Availability
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Availability
             fetch: LAZY
             joinColumns:
                 availability_id:
