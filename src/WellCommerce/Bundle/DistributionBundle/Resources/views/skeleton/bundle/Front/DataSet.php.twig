@@ -21,6 +21,11 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class {{ bundle.prefix }}DataSet extends AbstractDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'front.{{ bundle.alias }}';
+    }
+
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

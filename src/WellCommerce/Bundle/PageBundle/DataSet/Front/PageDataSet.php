@@ -26,6 +26,11 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class PageDataSet extends BaseDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'front.page';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         parent::configureOptions($configurator);

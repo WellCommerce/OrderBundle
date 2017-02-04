@@ -23,8 +23,13 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-final class CurrencyDataSet extends AbstractDataSet
+class CurrencyDataSet extends AbstractDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'admin.currency';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

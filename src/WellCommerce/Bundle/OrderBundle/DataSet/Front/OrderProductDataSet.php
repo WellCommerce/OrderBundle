@@ -31,6 +31,11 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class OrderProductDataSet extends AbstractDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'front.order_product';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

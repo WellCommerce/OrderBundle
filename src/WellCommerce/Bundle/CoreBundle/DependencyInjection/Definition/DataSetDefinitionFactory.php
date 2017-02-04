@@ -22,15 +22,13 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class DataSetDefinitionFactory
 {
-    public function create(string $repositoryServiceId, string $class) : Definition
+    public function create(string $repositoryServiceId, string $class): Definition
     {
-        $definition = new Definition();
-        $definition->setClass($class);
-        $definition->addArgument(new Reference($repositoryServiceId));
-        $definition->addArgument(new Reference('dataset.manager'));
-        $definition->addArgument(new Reference('event_dispatcher'));
+        $definition = new Definition($class);
+        $definition->setArguments([new Reference($repositoryServiceId), new Reference('dataset.manager')]);
         $definition->setConfigurator([new Reference('dataset.configurator'), 'configure']);
         $definition->addMethodCall('setContainer', [new Reference('service_container')]);
+        $definition->setLazy(true);
         
         return $definition;
     }

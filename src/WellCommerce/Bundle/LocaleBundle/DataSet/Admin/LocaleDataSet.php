@@ -24,8 +24,13 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-final class LocaleDataSet extends AbstractDataSet
+class LocaleDataSet extends AbstractDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'admin.locale';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

@@ -21,8 +21,13 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-final class CategoryDataSet extends AbstractDataSet
+class CategoryDataSet extends AbstractDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'admin.category';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

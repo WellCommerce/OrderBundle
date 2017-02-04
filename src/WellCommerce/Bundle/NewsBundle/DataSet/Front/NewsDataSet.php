@@ -26,9 +26,11 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class NewsDataSet extends BaseDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getIdentifier(): string
+    {
+        return 'front.news';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         parent::configureOptions($configurator);

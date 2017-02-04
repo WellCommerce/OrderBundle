@@ -38,4 +38,9 @@ class UserDataSetTest extends AbstractDataSetTestCase
             'enabled'    => 'user.enabled',
         ];
     }
+    
+    protected function getIdentifier(): string
+    {
+        return 'availability.admin';
+    }
 }

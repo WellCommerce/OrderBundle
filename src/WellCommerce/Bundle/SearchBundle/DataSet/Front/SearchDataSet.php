@@ -22,8 +22,13 @@ use WellCommerce\Component\Search\Storage\SearchResultStorage;
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-final class SearchDataSet extends ProductDataSet
+class SearchDataSet extends ProductDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'front.search';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([

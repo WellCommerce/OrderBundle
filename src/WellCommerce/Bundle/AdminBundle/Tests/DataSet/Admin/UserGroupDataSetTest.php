@@ -33,4 +33,9 @@ class UserGroupDataSetTest extends AbstractDataSetTestCase
             'name' => 'user_group.name',
         ];
     }
+    
+    protected function getIdentifier(): string
+    {
+        return 'user_group.admin';
+    }
 }

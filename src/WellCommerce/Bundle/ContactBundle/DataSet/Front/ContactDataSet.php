@@ -21,4 +21,8 @@ use WellCommerce\Bundle\ContactBundle\DataSet\Admin\ContactDataSet as BaseDataSe
  */
 class ContactDataSet extends BaseDataSet
 {
+    public function getIdentifier(): string
+    {
+        return 'front.contact';
+    }
 }
