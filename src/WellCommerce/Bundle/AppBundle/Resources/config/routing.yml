@@ -82,7 +82,7 @@ wellcommerce_product:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_product_status:
-    resource: "@WellCommerceProductStatusBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_report:
     resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
@@ -94,7 +94,7 @@ wellcommerce_routing:
     resource: "@WellCommerceRoutingBundle/Resources/config/routing.yml"
 
 wellcommerce_search:
-    resource: "@WellCommerceSearchBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_shipping:
     resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"

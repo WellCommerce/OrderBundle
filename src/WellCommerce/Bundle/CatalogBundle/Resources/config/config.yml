@@ -24,6 +24,8 @@ well_commerce_api:
             manager: producer.manager
         product:
             manager: product.manager
+        product_status:
+            manager: product_status.manager
         unit:
             manager: unit.manager
     serialization:
@@ -73,6 +75,12 @@ well_commerce_api:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductRoute.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\ProductTranslation:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductTranslation.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductStatus.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductStatusRoute:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductStatusRoute.yml"
+        WellCommerce\Bundle\CatalogBundle\Entity\ProductStatusTranslation:
+            mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/ProductStatusTranslation.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\Unit:
             mapping: "@WellCommerceCatalogBundle/Resources/config/serialization/Unit.yml"
         WellCommerce\Bundle\CatalogBundle\Entity\UnitTranslation:
@@ -134,6 +142,30 @@ well_commerce_routing:
             entity: WellCommerce\Bundle\CatalogBundle\Entity\ProductRoute
             defaults:
                 _controller: product.controller.front:indexAction
+        product_status:
+            entity: WellCommerce\Bundle\CatalogBundle\Entity\ProductStatusRoute
+            defaults:
+                _controller: product_status.controller.front:indexAction
+                limit: 10
+                page: 1
+                orderBy: hierarchy
+                orderDir: asc
+                priceFrom: 0
+                priceTo: 9999
+                view: grid
+                producers: ~
+                attributes: ~
+            requirements:
+                limit: "\\d{1,10}"
+                page: "\\d{1,10}"
+                orderBy: "hierarchy|name|finalPrice"
+                orderDir: "asc|desc"
+                priceFrom: "\\d{1,10}"
+                priceTo: "\\d{1,10}"
+                view: "grid|list"
+                producers: "[\\d+_]+"
+                attributes: "[\\d+_]+"
+            pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes}"
 
 well_commerce_locale:
     copier:
@@ -162,6 +194,10 @@ well_commerce_locale:
                     - name
                     - slug
             WellCommerce\Bundle\CatalogBundle\Entity\ProductTranslation:
+                properties:
+                    - name
+                    - slug
+            WellCommerce\Bundle\CatalogBundle\Entity\ProductStatusTranslation:
                 properties:
                     - name
                     - slug
@@ -196,8 +232,34 @@ well_commerce_catalog:
             condition: WellCommerce\Component\DataSet\Conditions\Condition\In
             enabled: true
             column: filteredCategory
+    search_engine:
+        quick_search:
+            limit: 20
+            order_by: "score"
+            order_dir: "asc"
+        adapters:
+            elasticsearch:
+                class: WellCommerce\Component\Search\Adapter\ElasticSearch\ElasticSearchAdapter
+                options:
+                    number_of_shards: 2
+                    number_of_replicas: 0
+                    index_prefix: wellcommerce_
+                    query_min_length: 3
+                    result_limit: 100
+                    query_builder_class: WellCommerce\Component\Search\Adapter\ElasticSearch\ElasticSearchQueryBuilder
+            lucene:
+                class: WellCommerce\Component\Search\Adapter\ZendLucene\ZendLuceneAdapter
+                options:
+                    index_path: "%kernel.root_dir%/lucene"
+                    max_buffered_docs: 10
+                    max_merge_docs: 100000
+                    merge_factor: 10
+                    index_prefix: wellcommerce_
+                    query_min_length: 3
+                    result_limit: 100
+                    query_builder_class: WellCommerce\Component\Search\Adapter\ZendLucene\ZendLuceneQueryBuilder
 
-well_commerce_search:
+well_commerce_catalog:
     engine:
         index:
             types:

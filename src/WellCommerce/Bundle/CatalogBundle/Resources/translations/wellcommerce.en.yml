@@ -183,6 +183,26 @@ product:
             list: List view
             grid: Grid view
 
+product_status:
+    heading:
+        index: Products statuses
+        add: Add a new products status
+        edit: Edit the products status
+    label:
+        css_class: CSS class
+        id: Id
+        name: Name
+    comment:
+        css_class: A symbol used for example in CSS templates. Alphanumeric characters permitted.
+
+search:
+    heading:
+        index: Search results
+    label:
+        phrase: Enter search phrase
+    flash:
+        no_results: No search results
+
 unit:
     heading:
         index: Units of measure

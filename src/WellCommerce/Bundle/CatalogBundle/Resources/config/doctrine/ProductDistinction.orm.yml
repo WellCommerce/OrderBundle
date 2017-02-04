@@ -27,7 +27,7 @@ WellCommerce\Bundle\CatalogBundle\Entity\ProductDistinction:
                     referencedColumnName: id
                     onDelete: CASCADE
         status:
-            targetEntity: WellCommerce\Bundle\ProductStatusBundle\Entity\ProductStatus
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus
             fetch: LAZY
             joinColumns:
                 product_status_id:

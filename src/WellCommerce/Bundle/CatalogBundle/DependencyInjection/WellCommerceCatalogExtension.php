@@ -13,6 +13,7 @@
 namespace WellCommerce\Bundle\CatalogBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
 
 /**
@@ -29,5 +30,33 @@ class WellCommerceCatalogExtension extends AbstractExtension
         $filters = $configuration['filters'];
         
         $container->setParameter('layered_navigation.filters', $filters);
+        
+        $adapters = $configuration['search_engine']['adapters'];
+        $index    = $configuration['search_engine']['index'];
+        $adapter  = $adapters[$container->getParameter('search_engine')] ?? current($adapters);
+        
+        $this->processTypes($index['types'], $container);
+        $this->processAdapterConfiguration($adapter, $container);
+        $container->setParameter('quick_search', $configuration['engine']['quick_search']);
+    }
+    
+    private function processTypes(array $types, ContainerBuilder $container)
+    {
+        foreach ($types as $name => $options) {
+            $definition = new Definition($options['class']);
+            $definition->addArgument($name);
+            $definition->addArgument($options['mapping']);
+            $definition->setPublic(false);
+            $definition->addTag('search.type', ['type' => $name]);
+            $container->setDefinition('search.type.' . $name, $definition);
+        }
+    }
+    
+    private function processAdapterConfiguration(array $configuration, ContainerBuilder $container)
+    {
+        $definition = new Definition($configuration['class']);
+        $definition->addArgument($configuration['options']);
+        $definition->setPublic(false);
+        $container->setDefinition('search.adapter', $definition);
     }
 }
