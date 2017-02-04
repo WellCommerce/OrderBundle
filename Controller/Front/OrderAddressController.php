@@ -69,18 +69,16 @@ class OrderAddressController extends AbstractFrontController
             'order_contact_details',
         ];
         
-        if ($request->isMethod('POST')) {
-            if (false === $this->isCopyBillingAddress($request)) {
-                $validationGroups[] = 'order_shipping_address';
-            }
-            
-            if ($this->isCreateAccount($request)) {
-                $validationGroups[] = 'client_registration';
-            }
-            
-            if ($this->isIssueInvoice($request)) {
-                $validationGroups[] = 'order_issue_invoice';
-            }
+        if (false === $this->isCopyBillingAddress($request)) {
+            $validationGroups[] = 'order_shipping_address';
+        }
+        
+        if ($this->isCreateAccount($request)) {
+            $validationGroups[] = 'client_registration';
+        }
+        
+        if ($this->isIssueInvoice($request)) {
+            $validationGroups[] = 'order_issue_invoice';
         }
         
         return $validationGroups;
@@ -109,22 +107,34 @@ class OrderAddressController extends AbstractFrontController
     
     protected function isCopyBillingAddress(Request $request): bool
     {
-        $shippingAddress = $request->request->filter('shippingAddress');
+        if ($request->isMethod('POST')) {
+            $shippingAddress = $request->request->filter('shippingAddress');
+            
+            return 1 === (int)$shippingAddress['shippingAddress.copyBillingAddress'];
+        }
         
-        return 1 === (int)$shippingAddress['shippingAddress.copyBillingAddress'];
+        return false;
     }
     
     protected function isCreateAccount(Request $request): bool
     {
-        $clientDetails = $request->request->filter('clientDetails');
-        $createAccount = $clientDetails['clientDetails.createAccount'] ?? 0;
+        if ($request->isMethod('POST')) {
+            $clientDetails = $request->request->filter('clientDetails');
+            $createAccount = $clientDetails['clientDetails.createAccount'] ?? 0;
+            
+            return 1 === (int)$createAccount;
+        }
         
-        return 1 === (int)$createAccount;
+        return false;
     }
     
     protected function isIssueInvoice(Request $request): bool
     {
-        return 1 === (int)$request->request->filter('issueInvoice');
+        if ($request->isMethod('POST')) {
+            return 1 === (int)$request->request->filter('issueInvoice');
+        }
+        
+        return false;
     }
     
     protected function autoRegisterClient(Order $order): Client
