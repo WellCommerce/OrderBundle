@@ -9,7 +9,7 @@
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
-namespace WellCommerce\Bundle\CoreBundle\Twig\Extension;
+namespace WellCommerce\Bundle\AppBundle\Twig;
 
 use WellCommerce\Component\Form\Elements\FormInterface;
 use WellCommerce\Component\Form\Renderer\FormRendererInterface;
@@ -31,18 +31,9 @@ final class FormExtension extends \Twig_Extension
      */
     private $environment;
     
-    /**
-     * FormJavascriptExtension constructor.
-     *
-     * @param FormRendererInterface $renderer
-     */
-    public function __construct(FormRendererInterface $renderer)
+    public function __construct(FormRendererInterface $renderer, \Twig_Environment $environment)
     {
-        $this->renderer = $renderer;
-    }
-    
-    public function initRuntime(\Twig_Environment $environment)
-    {
+        $this->renderer    = $renderer;
         $this->environment = $environment;
     }
     
@@ -50,18 +41,18 @@ final class FormExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('render_form', [$this, 'renderForm'], ['is_safe' => ['html', 'javascript']]),
-            new \Twig_SimpleFunction('render_form_javascript', [$this, 'renderFormJavascript'], ['is_safe' => ['html', 'javascript']])
+            new \Twig_SimpleFunction('render_form_javascript', [$this, 'renderFormJavascript'], ['is_safe' => ['html', 'javascript']]),
         ];
     }
     
-    public function renderForm(FormInterface $form) : string
+    public function renderForm(FormInterface $form): string
     {
         return $this->environment->render($this->renderer->getTemplateName(), [
-            'form' => $form
+            'form' => $form,
         ]);
     }
     
-    public function renderFormJavascript(FormInterface $form) : string
+    public function renderFormJavascript(FormInterface $form): string
     {
         return $this->renderer->renderForm($form);
     }

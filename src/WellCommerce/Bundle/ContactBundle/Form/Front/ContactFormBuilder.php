@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\ContactBundle\Form\Front;
 
-use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\AppBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**

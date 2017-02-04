@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\ProductBundle\Form\DataTransformer;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\AvailabilityBundle\Entity\Availability;
-use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
+use WellCommerce\Bundle\AppBundle\Form\DataTransformer\CollectionToArrayTransformer;
 use WellCommerce\Bundle\ProductBundle\Entity\Product;
 use WellCommerce\Bundle\ProductBundle\Entity\Variant;
 use WellCommerce\Bundle\ProductBundle\Entity\VariantOption;

@@ -13,7 +13,7 @@ namespace WellCommerce\Bundle\ShipmentBundle\Form\Admin;
 
 use ElektronicznyNadawca;
 use getUrzedyNadania;
-use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\AppBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Component\Form\Elements\FormInterface;
 

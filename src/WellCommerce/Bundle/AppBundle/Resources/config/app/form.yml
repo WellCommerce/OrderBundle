@@ -1,22 +1,30 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
 services:
     form.data_transformer.collection:
         class: WellCommerce\Component\Form\DataTransformer\DataTransformerCollection
 
     form.data_transformer.factory:
-        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\DataTransformerFactory
+        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\DataTransformerFactory
         arguments: ['@form.data_transformer.collection']
         calls:
             - [setContainer, ['@service_container']]
 
     form.collection.data_transformer:
-        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer
+        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\CollectionToArrayTransformer
         tags:
             - { name: form.data_transformer, alias: collection }
         arguments: ['@doctrine.helper']
         shared: false
 
     form.entity.data_transformer:
-        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\EntityToIdentifierTransformer
+        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\EntityToIdentifierTransformer
         tags:
             - { name: form.data_transformer, alias: entity }
         arguments: ['@doctrine.helper']
@@ -27,7 +35,7 @@ services:
 
     form.renderer.javascript:
         class: WellCommerce\Component\Form\Renderer\JavascriptRenderer
-        arguments: ['@form.formatter.javascript', 'WellCommerceCoreBundle:Form:form.html.twig']
+        arguments: ['@form.formatter.javascript', 'WellCommerceAppBundle:Form:form.html.twig']
 
     form.property_accessor:
         class: Symfony\Component\PropertyAccess\PropertyAccess
@@ -328,7 +336,7 @@ services:
         shared: false
 
     twig.extension.form:
-        class: WellCommerce\Bundle\CoreBundle\Twig\Extension\FormExtension
-        arguments: ['@form.renderer.javascript']
+        class: WellCommerce\Bundle\AppBundle\Twig\FormExtension
+        arguments: ['@form.renderer.javascript', '@twig']
         tags:
             - { name: twig.extension }

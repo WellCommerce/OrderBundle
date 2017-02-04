@@ -12,7 +12,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Form\Admin;
 
 use Symfony\Component\PropertyAccess\PropertyPath;
-use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\AppBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\PaymentBundle\Processor\PaymentProcessorCollection;
 use WellCommerce\Component\Form\Conditions\Equals;
 use WellCommerce\Component\Form\Elements\FormInterface;
