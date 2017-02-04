@@ -13,7 +13,7 @@ wellcommerce_attribute:
     resource: "@WellCommerceAttributeBundle/Resources/config/routing.yml"
 
 wellcommerce_availability:
-    resource: "@WellCommerceAvailabilityBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_category:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
@@ -109,7 +109,7 @@ wellcommerce_theme:
     resource: "@WellCommerceThemeBundle/Resources/config/routing.yml"
 
 wellcommerce_unit:
-    resource: "@WellCommerceUnitBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_wishlist:
     resource: "@WellCommerceWishlistBundle/Resources/config/routing.yml"
