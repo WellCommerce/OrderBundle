@@ -69,7 +69,7 @@ WellCommerce\Bundle\CmsBundle\Entity\Page:
             orphanRemoval: false
     manyToMany:
         clientGroups:
-            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\ClientGroup
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\ClientGroup
             fetch: LAZY
             inversedBy: pages
             joinTable:
