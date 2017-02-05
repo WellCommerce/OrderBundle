@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OAuthBundle\Manager;
 
 use League\OAuth2\Client\Provider\FacebookUser;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
