@@ -24,7 +24,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('well_commerce_page');
+        $treeBuilder->root('well_commerce_cms');
 
         return $treeBuilder;
     }

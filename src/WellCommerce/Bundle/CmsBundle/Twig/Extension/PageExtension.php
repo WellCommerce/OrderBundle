@@ -18,18 +18,13 @@ use WellCommerce\Component\DataSet\DataSetInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PageExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class PageExtension extends \Twig_Extension
 {
     /**
      * @var DataSetInterface
      */
     protected $dataset;
     
-    /**
-     * Constructor
-     *
-     * @param DataSetInterface $dataset
-     */
     public function __construct(DataSetInterface $dataset)
     {
         $this->dataset = $dataset;
@@ -42,19 +37,13 @@ class PageExtension extends \Twig_Extension implements \Twig_Extension_GlobalsIn
         ];
     }
     
-    /**
-     * @return array
-     */
-    public function getCmsPages() : array
+    public function getCmsPages(): array
     {
         return $this->dataset->getResult('tree', [
-            'order_by' => 'hierarchy'
+            'order_by' => 'hierarchy',
         ]);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'cms_page';

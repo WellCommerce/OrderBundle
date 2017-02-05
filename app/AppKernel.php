@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new \Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
             new \Cache\AdapterBundle\CacheAdapterBundle(),
             new \EmanueleMinotto\TwigCacheBundle\TwigCacheBundle(),
+            new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
             new \WellCommerce\Bundle\CoreBundle\WellCommerceCoreBundle(),
             new \WellCommerce\Bundle\ReportBundle\WellCommerceReportBundle(),
             new \WellCommerce\Bundle\OrderBundle\WellCommerceOrderBundle(),
@@ -48,7 +49,6 @@ class AppKernel extends Kernel
             new \WellCommerce\Bundle\CatalogBundle\WellCommerceCatalogBundle(),
             new \WellCommerce\Bundle\ClientBundle\WellCommerceClientBundle(),
             new \WellCommerce\Bundle\ApiBundle\WellCommerceApiBundle(),
-            new \WellCommerce\Bundle\RoutingBundle\WellCommerceRoutingBundle(),
             new \WellCommerce\Bundle\ShipmentBundle\WellCommerceShipmentBundle(),
             new \WellCommerce\Bundle\TaxBundle\WellCommerceTaxBundle(),
             new \WellCommerce\Bundle\CountryBundle\WellCommerceCountryBundle(),
@@ -68,7 +68,6 @@ class AppKernel extends Kernel
             new \WellCommerce\Bundle\ThemeBundle\WellCommerceThemeBundle(),
             new \WellCommerce\Bundle\MediaBundle\WellCommerceMediaBundle(),
             new \WellCommerce\Bundle\WishlistBundle\WellCommerceWishlistBundle(),
-            new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
         ];
         
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

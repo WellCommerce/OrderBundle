@@ -10,19 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CatalogBundle\Entity;
+namespace WellCommerce\Bundle\CmsBundle\DependencyInjection;
 
-use WellCommerce\Bundle\CoreBundle\Entity\Route;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
 
 /**
- * Class ProductStatusRoute
+ * Class WellCommerceCmsExtension
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ProductStatusRoute extends Route
+class WellCommerceCmsExtension extends AbstractExtension
 {
-    public function getType(): string
-    {
-        return 'product_status';
-    }
 }

@@ -1,5 +1,6 @@
 imports:
     - { resource: 'services/breadcrumb.yml' }
+    - { resource: 'services/routing.yml' }
 
 services:
     flash.helper:
