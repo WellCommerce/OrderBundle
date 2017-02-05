@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CatalogBundle\DataSet\Front;
 
 use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\AppBundle\DataSet\AbstractDataSet;
+use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductStatusTranslation;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
