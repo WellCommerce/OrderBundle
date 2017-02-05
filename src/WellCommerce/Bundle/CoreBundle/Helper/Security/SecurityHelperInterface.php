@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CoreBundle\Helper\Security;
 
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\AdminBundle\Entity\User;
+use WellCommerce\Bundle\AppBundle\Entity\User;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
 
 /**

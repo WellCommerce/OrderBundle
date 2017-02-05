@@ -14,10 +14,10 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\AdminBundle\Entity\Role;
-use WellCommerce\Bundle\AdminBundle\Entity\User;
-use WellCommerce\Bundle\AdminBundle\Entity\UserGroup;
-use WellCommerce\Bundle\AdminBundle\Entity\UserGroupPermission;
+use WellCommerce\Bundle\AppBundle\Entity\Role;
+use WellCommerce\Bundle\AppBundle\Entity\User;
+use WellCommerce\Bundle\AppBundle\Entity\UserGroup;
+use WellCommerce\Bundle\AppBundle\Entity\UserGroupPermission;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 

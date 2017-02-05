@@ -30,7 +30,7 @@ knp_doctrine_behaviors:
     translatable:   true
 
 parameters:
-    knp.doctrine_behaviors.blameable_subscriber.user_entity: WellCommerce\Bundle\AdminBundle\Entity\User
+    knp.doctrine_behaviors.blameable_subscriber.user_entity: WellCommerce\Bundle\AppBundle\Entity\User
     knp.doctrine_behaviors.blameable_subscriber.class: WellCommerce\Bundle\CoreBundle\EventListener\BlameableSubscriber
 
 doctrine_cache:

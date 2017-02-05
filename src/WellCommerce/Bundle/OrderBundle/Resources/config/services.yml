@@ -9,6 +9,7 @@
 imports:
     - { resource: 'services/payment.yml' }
     - { resource: 'services/payment_method.yml' }
+    - { resource: 'services/sales_report.yml' }
     - { resource: 'services/shipping_method.yml' }
 
 services:
