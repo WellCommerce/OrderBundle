@@ -21,12 +21,6 @@ services:
         arguments: ['@doctrine.helper']
         shared: false
 
-    dataset.transformer.image_path:
-        class: WellCommerce\Bundle\AppBundle\DataSet\Transformer\ImagePathTransformer
-        tags:
-            - { name: dataset.transformer, alias: image_path }
-        arguments: ['@image.helper']
-
     media.uploader:
         class: WellCommerce\Bundle\AppBundle\Uploader\MediaUploader
         arguments: ['@media.manager', '%kernel.root_dir%/../web/media', '@validator.helper']

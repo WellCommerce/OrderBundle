@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\DataSet\Transformer;
+namespace WellCommerce\Bundle\CoreBundle\DataSet\Transformer;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use WellCommerce\Bundle\CoreBundle\Helper\Image\ImageHelperInterface;
@@ -28,20 +28,12 @@ class ImagePathTransformer extends AbstractDataSetTransformer
      */
     protected $imageHelper;
     
-    /**
-     * Constructor
-     *
-     * @param ImageHelperInterface $imageHelper
-     */
-    public function __construct (ImageHelperInterface $imageHelper)
+    public function __construct(ImageHelperInterface $imageHelper)
     {
         $this->imageHelper = $imageHelper;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions (OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
             'filter',
@@ -54,10 +46,7 @@ class ImagePathTransformer extends AbstractDataSetTransformer
         $resolver->setAllowedTypes('filter', 'string');
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function transformValue ($value)
+    public function transformValue($value)
     {
         if (null === $value) {
             return '';
