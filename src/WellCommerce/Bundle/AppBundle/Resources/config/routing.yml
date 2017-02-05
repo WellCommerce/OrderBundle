@@ -16,10 +16,10 @@ wellcommerce_cms:
     resource: "@WellCommerceCmsBundle/Resources/config/routing.yml"
 
 wellcommerce_core:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCoreBundle/Resources/config/routing.yml"
 
-wellcommerce_dictionary:
-    resource: "@WellCommerceDictionaryBundle/Resources/config/routing.yml"
+wellcommerce_review:
+    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
 
 wellcommerce_coupon:
     resource: "@WellCommerceCouponBundle/Resources/config/routing.yml"
@@ -55,6 +55,10 @@ _admin_company:
 _admin_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/admin.yml"
     prefix: /admin/configuration/currency
+
+_admin_dictionary:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/dictionary/admin.yml"
+    prefix: /admin/configuration/dictionary
 
 _admin_layout_box:
     resource: "@WellCommerceAppBundle/Resources/config/routing/layout_box/admin.yml"
