@@ -21,9 +21,6 @@ services:
         calls:
             - [setContainer, ['@service_container']]
 
-    news.context.front:
-        class: WellCommerce\Bundle\CmsBundle\Context\Front\NewsContext
-
     news.controller.front:
         class: WellCommerce\Bundle\CmsBundle\Controller\Front\NewsController
         arguments: ['@news.manager']
@@ -35,3 +32,6 @@ services:
         tags:
             - { name: twig.extension }
         arguments: ['@news.dataset.front']
+
+    news.request.storage:
+        class: WellCommerce\Bundle\CmsBundle\Request\NewsRequestStorage
