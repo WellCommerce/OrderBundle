@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AppBundle\Form\DataTransformer;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\DataTransformer\DataTransformerInterface;
 
 /**

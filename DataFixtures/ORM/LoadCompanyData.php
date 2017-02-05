@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CompanyBundle\Entity\Company;
-use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class LoadCompanyData
