@@ -15,13 +15,14 @@ namespace WellCommerce\Bundle\CoreBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\Compiler;
+use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
  * Class WellCommerceCoreBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCoreBundle extends Bundle
+class WellCommerceCoreBundle extends AbstractWellCommerceBundle
 {
     public function build(ContainerBuilder $container)
     {

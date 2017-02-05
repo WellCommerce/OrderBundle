@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\Twig\Extension;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
-use WellCommerce\Bundle\RoutingBundle\Provider\RouteProvider;
+use WellCommerce\Bundle\CoreBundle\Provider\RouteProvider;
 
 /**
  * Class DynamicRoutingExtension
