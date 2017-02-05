@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\AppBundle\Locator;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\AppBundle\Context\Front\ThemeContextInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ThemeStorageInterface;
 
 /**
  * Class ThemeLocator
@@ -25,9 +25,9 @@ use WellCommerce\Bundle\AppBundle\Context\Front\ThemeContextInterface;
 final class ThemeLocator implements ThemeLocatorInterface
 {
     /**
-     * @var ThemeContextInterface
+     * @var ThemeStorageInterface
      */
-    private $themeContext;
+    private $ThemeStorage;
     
     /**
      * @var KernelInterface
@@ -53,25 +53,25 @@ final class ThemeLocator implements ThemeLocatorInterface
      * ThemeLocator constructor.
      *
      * @param KernelInterface       $kernel
-     * @param ThemeContextInterface $themeContext
+     * @param ThemeStorageInterface $ThemeStorage
      * @param string                $fallbackTheme
      * @param string                $themesDir
      */
-    public function __construct(KernelInterface $kernel, ThemeContextInterface $themeContext, string $fallbackTheme, string $themesDir)
+    public function __construct(KernelInterface $kernel, ThemeStorageInterface $ThemeStorage, string $fallbackTheme, string $themesDir)
     {
         $this->kernel        = $kernel;
         $this->fallBackTheme = $fallbackTheme;
-        $this->themeContext  = $themeContext;
+        $this->ThemeStorage  = $ThemeStorage;
         $this->themesDir     = $themesDir;
     }
     
     public function getCurrentThemeFolder() : string
     {
-        if (false === $this->themeContext->hasCurrentTheme()) {
+        if (false === $this->ThemeStorage->hasCurrentTheme()) {
             return $this->fallBackTheme;
         }
         
-        return $this->themeContext->getCurrentThemeFolder();
+        return $this->ThemeStorage->getCurrentThemeFolder();
     }
     
     public function getThemesDirectory() : string

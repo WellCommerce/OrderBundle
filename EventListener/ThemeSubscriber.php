@@ -11,32 +11,43 @@
  */
 namespace WellCommerce\Bundle\AppBundle\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ThemeStorageInterface;
 
 /**
  * Class ThemeSubscriber
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ThemeSubscriber extends AbstractEventSubscriber
+final class ThemeSubscriber implements EventSubscriberInterface
 {
     /**
-     * {@inheritdoc}
+     * @var ThemeStorageInterface
      */
+    private $themeStorage;
+    
+    /**
+     * @var ShopStorageInterface
+     */
+    private $shopStorage;
+    
+    public function __construct(ThemeStorageInterface $themeStorage, ShopStorageInterface $shopStorage)
+    {
+        $this->themeStorage = $themeStorage;
+        $this->shopStorage  = $shopStorage;
+    }
+    
+    public function onKernelController()
+    {
+        $this->themeStorage->setCurrentTheme($this->shopStorage->getCurrentShop()->getTheme());
+    }
+    
     public static function getSubscribedEvents()
     {
         return [
             KernelEvents::CONTROLLER => ['onKernelController', -10],
         ];
-    }
-    
-    /**
-     * Sets shop context related session variables
-     */
-    public function onKernelController()
-    {
-        $themeContext = $this->container->get('theme.context.front');
-        $themeContext->setCurrentTheme($this->getShopStorage()->getCurrentShop()->getTheme());
     }
 }

@@ -10,17 +10,17 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Context\Front;
+namespace WellCommerce\Bundle\AppBundle\Storage;
 
 use WellCommerce\Bundle\AppBundle\Entity\Theme;
 
 
 /**
- * Interface ThemeContextInterface
+ * Interface ThemeStorageInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface ThemeContextInterface
+interface ThemeStorageInterface
 {
     public function setCurrentTheme(Theme $theme);
     
