@@ -21,7 +21,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 use WellCommerce\Bundle\ApiBundle\Resolver\MappingFileResolver;
-use WellCommerce\Bundle\DistributionBundle\Resolver\ConfigurationFileResolverInterface;
+use WellCommerce\Bundle\CoreBundle\Resolver\ConfigurationFileResolverInterface;
 use WellCommerce\Bundle\DoctrineBundle\Helper\Doctrine\DoctrineHelperInterface;
 
 /**
