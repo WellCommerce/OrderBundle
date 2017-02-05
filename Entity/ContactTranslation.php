@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CmsBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
 
 /**
@@ -21,7 +21,7 @@ use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ContactTranslation implements LocaleAwareInterface
+class ContactTranslation extends AbstractTranslation
 {
     use Translation;
     use AddressTrait;
