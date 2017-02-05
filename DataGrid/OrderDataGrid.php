@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\DataGrid;
 
-use WellCommerce\Bundle\AppBundle\DataGrid\AbstractDataGrid;
+use WellCommerce\Bundle\CoreBundle\DataGrid\AbstractDataGrid;
 use WellCommerce\Bundle\PaymentBundle\DataGrid\PaymentMethodFilter;
 use WellCommerce\Bundle\ShippingBundle\DataGrid\ShippingMethodFilter;
 use WellCommerce\Component\DataGrid\Column\Column;

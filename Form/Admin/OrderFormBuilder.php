@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Form\Admin;
 
-use WellCommerce\Bundle\AppBundle\Form\AbstractFormBuilder;
+use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CouponBundle\Helper\CouponHelper;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
