@@ -15,6 +15,7 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
@@ -27,15 +28,10 @@ class Company implements EntityInterface
     use Identifiable;
     use Timestampable;
     use Blameable;
+    use AddressTrait;
     
     protected $name      = '';
     protected $shortName = '';
-    protected $address;
-    
-    public function __construct()
-    {
-        $this->address = new CompanyAddress();
-    }
     
     public function getName(): string
     {
@@ -55,15 +51,5 @@ class Company implements EntityInterface
     public function setShortName(string $shortName)
     {
         $this->shortName = $shortName;
-    }
-    
-    public function getAddress(): CompanyAddress
-    {
-        return $this->address;
-    }
-    
-    public function setAddress(CompanyAddress $address)
-    {
-        $this->address = $address;
     }
 }

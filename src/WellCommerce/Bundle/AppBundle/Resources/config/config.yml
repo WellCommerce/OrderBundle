@@ -121,8 +121,6 @@ well_commerce_core:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientShippingAddress.yml"
         WellCommerce\Bundle\AppBundle\Entity\Company:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/Company.yml"
-        WellCommerce\Bundle\AppBundle\Entity\CompanyAddress:
-            mapping: "@WellCommerceAppBundle/Resources/config/serialization/CompanyAddress.yml"
         WellCommerce\Bundle\AppBundle\Entity\Currency:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/Currency.yml"
         WellCommerce\Bundle\AppBundle\Entity\CurrencyRate:
