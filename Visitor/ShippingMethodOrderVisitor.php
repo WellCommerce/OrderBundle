@@ -13,11 +13,10 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 use WellCommerce\Bundle\OrderBundle\Context\OrderContext;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
+use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodOptionsProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodProviderInterface;
 

@@ -14,9 +14,9 @@ namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
 
 /**
  * Class OrderProductVisitor

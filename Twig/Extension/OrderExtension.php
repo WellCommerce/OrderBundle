@@ -11,9 +11,9 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Twig\Extension;
 
+use WellCommerce\Bundle\OrderBundle\Context\OrderContext;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
-use WellCommerce\Bundle\OrderBundle\Context\OrderContext;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;
 

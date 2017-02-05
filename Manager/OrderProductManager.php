@@ -13,14 +13,14 @@
 namespace WellCommerce\Bundle\OrderBundle\Manager;
 
 use WellCommerce\Bundle\AppBundle\Entity\Price;
+use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Exception\ChangeOrderProductQuantityException;
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteOrderProductException;
-use WellCommerce\Bundle\CatalogBundle\Entity\Product;
-use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
-use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 
 /**
  * Class OrderProductManager

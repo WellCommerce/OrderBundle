@@ -14,10 +14,10 @@ namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 use WellCommerce\Bundle\AppBundle\Repository\CountryRepository;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 
 /**
  * Class ShippingMethodEventSubscriber

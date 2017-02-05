@@ -12,12 +12,12 @@
 namespace WellCommerce\Bundle\OrderBundle\Form\Front;
 
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
-use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\OrderBundle\Context\OrderContext;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodCost;
+use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodOptionsProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodProviderInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;

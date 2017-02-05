@@ -13,8 +13,6 @@
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 
 /**
