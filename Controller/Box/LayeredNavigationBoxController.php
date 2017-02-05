@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CatalogBundle\Controller\Box;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
-use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
+use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class LayeredNavigationBoxController
