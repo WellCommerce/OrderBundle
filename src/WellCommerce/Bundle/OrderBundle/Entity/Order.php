@@ -24,8 +24,8 @@ use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
+use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
+use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**

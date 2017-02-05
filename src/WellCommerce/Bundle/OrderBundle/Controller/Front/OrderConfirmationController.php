@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\PaymentBundle\Entity\Payment;
+use WellCommerce\Bundle\OrderBundle\Entity\Payment;
 
 /**
  * Class OrderConfirmationController

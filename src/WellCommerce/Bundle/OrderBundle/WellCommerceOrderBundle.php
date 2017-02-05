@@ -28,5 +28,8 @@ final class WellCommerceOrderBundle extends AbstractWellCommerceBundle
         parent::build($container);
         $container->addCompilerPass(new Compiler\RegisterOrderVisitorPass());
         $container->addCompilerPass(new Compiler\RegisterOrderModifierPass());
+        $container->addCompilerPass(new Compiler\RegisterPaymentProcessorPass());
+        $container->addCompilerPass(new Compiler\RegisterShippingMethodCalculatorPass());
+        $container->addCompilerPass(new Compiler\RegisterShippingMethodOptionsProviderPass());
     }
 }

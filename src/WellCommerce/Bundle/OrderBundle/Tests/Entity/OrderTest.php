@@ -23,8 +23,8 @@ use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProductTotal;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderSummary;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
+use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
+use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**

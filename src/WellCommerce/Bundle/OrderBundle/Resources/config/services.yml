@@ -6,6 +6,11 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
+imports:
+    - { resource: 'services/payment.yml' }
+    - { resource: 'services/payment_method.yml' }
+    - { resource: 'services/shipping_method.yml' }
+
 services:
     order_cart.controller.front:
         class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderCartController

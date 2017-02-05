@@ -125,3 +125,44 @@ order_status_history:
         no_history: Order status history is empty
     button:
         change: Save
+
+payment:
+    heading:
+        initialize: Payment
+    flash:
+        thank_you: "Thank you for placing an order. Below are the order's details:"
+
+payment_method:
+    heading:
+        index: Payment methods
+        add: Add a payment method
+        edit: Edit a payment method
+    fieldset:
+        shipping_methods: Allowed shipping methods
+        processor_configuration: Processor configuration
+        order_statuses: Order statuses
+    label:
+        processor: Payment processor
+        shipping_methods: Allowed shipping methods
+        payment_pending_order_status: Waiting for payment
+        payment_success_order_status: Paid
+        payment_failure_order_status: Payment failed
+        bank_transfer:
+            tip: 'Your order will be processed upon receiving of the payment at the following bank account'
+            account_number: Account number
+            account_owner: Account owner
+            sort_number: Sort code
+            title: 'Transfer title'
+
+shipping_method:
+    heading:
+        index: Shipping methods
+        add: Add a shipping method
+        edit: Edit a shipping method
+    label:
+        calculator: Type of costs calculation
+        costs: Shipping costs
+        options_provider: Options provider service
+    fieldset:
+        costs: Shipping costs settings
+        countries: Countries
