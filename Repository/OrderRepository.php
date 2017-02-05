@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Repository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
-use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
+use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 
 /**
  * Class OrderRepository
