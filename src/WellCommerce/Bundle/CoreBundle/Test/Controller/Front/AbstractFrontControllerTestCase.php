@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\Test\Controller\Front;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**

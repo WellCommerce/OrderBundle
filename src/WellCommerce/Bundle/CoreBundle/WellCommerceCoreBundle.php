@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CoreBundle;
 
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\Compiler;
 use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
@@ -33,5 +33,6 @@ class WellCommerceCoreBundle extends AbstractWellCommerceBundle
         $container->addCompilerPass(new Compiler\DataSetTransformerPass());
         $container->addCompilerPass(new Compiler\RegisterTraitGeneratorEnhancerPass());
         $container->addCompilerPass(new Compiler\RegisterClassMetadataEnhancerPass());
+        $container->addCompilerPass(new Compiler\RegisterRequestHandlerPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 }

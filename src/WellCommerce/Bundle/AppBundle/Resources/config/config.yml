@@ -9,10 +9,7 @@
 imports:
     - { resource: "app/" }
     - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceAppBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
@@ -89,8 +86,12 @@ parameters:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadLayeredNavigationData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadWishlistData: true
 
-well_commerce_api:
+well_commerce_core:
     request_handler:
+        client:
+            manager: client.manager
+        client_group:
+            manager: client_group.manager
         company:
             manager: company.manager
         currency:
@@ -104,6 +105,20 @@ well_commerce_api:
         tax:
             manager: tax.manager
     serialization:
+        WellCommerce\Bundle\AppBundle\Entity\Client:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/Client.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientBillingAddress.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientDetails:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientDetails.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientContactDetails.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientGroup:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientGroup.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientGroupTranslation:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientGroupTranslation.yml"
+        WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/ClientShippingAddress.yml"
         WellCommerce\Bundle\AppBundle\Entity\Company:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/Company.yml"
         WellCommerce\Bundle\AppBundle\Entity\CompanyAddress:
@@ -126,6 +141,9 @@ well_commerce_api:
 well_commerce_app:
     locale_copier:
         entities:
+            WellCommerce\Bundle\AppBundle\Entity\ClientGroupTranslation:
+                properties:
+                    - name
             WellCommerce\Bundle\AppBundle\Entity\DictionaryTranslation:
                 properties:
                     - value

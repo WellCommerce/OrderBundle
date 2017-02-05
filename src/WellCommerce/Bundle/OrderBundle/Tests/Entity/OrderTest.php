@@ -13,11 +13,11 @@
 namespace WellCommerce\Bundle\OrderBundle\Tests\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientDetails;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails;
+use WellCommerce\Bundle\AppBundle\Entity\ClientDetails;
+use WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;

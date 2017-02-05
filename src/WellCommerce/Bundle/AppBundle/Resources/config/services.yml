@@ -8,6 +8,7 @@
 
 imports:
     - { resource: 'services/admin.yml' }
+    - { resource: 'services/client.yml' }
     - { resource: 'services/currency.yml' }
     - { resource: 'services/media.yml' }
     - { resource: 'services/layout_box.yml' }

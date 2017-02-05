@@ -24,16 +24,16 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             class: WellCommerce\Bundle\OrderBundle\Entity\OrderSummary
             columnPrefix: summary_
         billingAddress:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress
             columnPrefix: billing_address_
         shippingAddress:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress
             columnPrefix: shipping_address_
         clientDetails:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientDetails
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientDetails
             columnPrefix: client_details_
         contactDetails:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails
             columnPrefix: contact_details_
     fields:
         confirmed:
@@ -111,7 +111,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                     referencedColumnName: id
                     onDelete: SET NULL
         client:
-            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\Client
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Client
             fetch: LAZY
             inversedBy: orders
             joinColumns:

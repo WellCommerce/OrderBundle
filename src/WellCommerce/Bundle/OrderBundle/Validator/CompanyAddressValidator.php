@@ -16,7 +16,7 @@ namespace WellCommerce\Bundle\OrderBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\WishlistBundle\Repository;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**

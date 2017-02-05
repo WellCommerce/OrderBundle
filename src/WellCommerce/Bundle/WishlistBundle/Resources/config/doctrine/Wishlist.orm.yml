@@ -17,7 +17,7 @@ WellCommerce\Bundle\WishlistBundle\Entity\Wishlist:
                 strategy: AUTO
     manyToOne:
         client:
-            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\Client
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Client
             fetch: LAZY
             joinColumns:
                 client_id:
