@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Command;
+namespace WellCommerce\Bundle\AppBundle\Command\Locale;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +29,7 @@ use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class AddLocaleCommand extends ContainerAwareCommand
+final class AddCommand extends ContainerAwareCommand
 {
     /**
      * @var ManagerInterface
@@ -64,7 +64,7 @@ final class AddLocaleCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this->setDescription('Adds a new locale and copies translatable entities');
-        $this->setName('wellcommerce:locale:add');
+        $this->setName('locale:add');
     }
     
     protected function initialize(InputInterface $input, OutputInterface $output)
@@ -174,7 +174,7 @@ final class AddLocaleCommand extends ContainerAwareCommand
     private function getAvailableLocales(): array
     {
         $locales    = [];
-        $collection = Intl::getAppBundle()->getLocaleNames();
+        $collection = Intl::getLocaleBundle()->getLocaleNames();
         
         foreach ($collection as $locale => $name) {
             if (!in_array($locale, $this->installedLocales)) {
