@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\CoreBundle\Helper\Security;
 
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\AppBundle\Entity\User;
 use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\User;
 
 /**
  * Interface SecurityHelperInterface

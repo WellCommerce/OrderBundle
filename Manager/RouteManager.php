@@ -12,8 +12,6 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-
 /**
  * Class RouteManager
  *

@@ -23,8 +23,8 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use WellCommerce\Bundle\CoreBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
 
 /**
  * Class AbstractSerializer

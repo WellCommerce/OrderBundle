@@ -13,7 +13,6 @@ namespace WellCommerce\Bundle\CoreBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 
 /**
  * Class ApiSubscriber

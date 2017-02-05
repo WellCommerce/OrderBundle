@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Generator;
 
+use WellCommerce\Bundle\CoreBundle\Entity\Route;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\CoreBundle\Entity\Route;
 
 /**
  * Class SlugGenerator
