@@ -17,7 +17,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AdminControllerInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CoreBundle\Factory\EntityFactoryInterface;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Factory\EntityFactoryInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Component\DataGrid\DataGridInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;

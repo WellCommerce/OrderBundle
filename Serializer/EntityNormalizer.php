@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\CoreBundle\Serializer;
 
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use WellCommerce\Bundle\CoreBundle\Metadata\Collection\AssociationMetadataCollection;
-use WellCommerce\Bundle\CoreBundle\Metadata\Collection\FieldMetadataCollection;
+use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\AssociationMetadataCollection;
+use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\FieldMetadataCollection;
 
 /**
  * Class EntityNormalizer

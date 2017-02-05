@@ -39,24 +39,13 @@ services:
             - { name: serializer.normalizer }
         arguments: ['@doctrine.helper', '@api.serialization.metadata_loader']
 
-    api.mapping_configuration_resolver:
-        class: WellCommerce\Bundle\CoreBundle\Resolver\MappingFileResolver
-        public: false
-        arguments: ['@kernel']
-
     api.serialization.cache_warmer:
         class: WellCommerce\Bundle\CoreBundle\CacheWarmer\SerializationCacheWarmer
         public: false
         tags:
             - { name: kernel.cache_warmer }
-        arguments: ['@api.mapping_configuration_resolver', '%api.serialization_mapping_map%']
-
-    api.generate_serialization_metadata.command:
-        class: WellCommerce\Bundle\CoreBundle\Command\GenerateSerializationMetadataCommand
-        tags:
-            - { name: console.command }
-        arguments: ['@api.mapping_configuration_resolver', '@doctrine.helper', '%api.serialization_mapping_map%']
+        arguments: ['@kernel', '%api.serialization_mapping_map%']
 
     api.serialization.metadata_loader:
-        class: WellCommerce\Bundle\CoreBundle\Metadata\Loader\SerializationMetadataLoader
+        class: WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoader
         arguments: ['@kernel']

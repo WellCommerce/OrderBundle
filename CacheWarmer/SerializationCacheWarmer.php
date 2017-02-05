@@ -13,10 +13,11 @@
 namespace WellCommerce\Bundle\CoreBundle\CacheWarmer;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Yaml\Yaml;
-use WellCommerce\Bundle\CoreBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
-use WellCommerce\Bundle\CoreBundle\Resolver\MappingFileResolver;
+use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
 
 /**
  * Class SerializationCacheWarmer
@@ -26,9 +27,9 @@ use WellCommerce\Bundle\CoreBundle\Resolver\MappingFileResolver;
 final class SerializationCacheWarmer extends CacheWarmer
 {
     /**
-     * @var MappingFileResolver
+     * @var KernelInterface
      */
-    private $resolver;
+    private $kernel;
     
     /**
      * @var array
@@ -40,15 +41,9 @@ final class SerializationCacheWarmer extends CacheWarmer
      */
     private $filesystem;
     
-    /**
-     * SerializationCacheWarmer constructor.
-     *
-     * @param MappingFileResolver $resolver
-     * @param array               $mapping
-     */
-    public function __construct(MappingFileResolver $resolver, array $mapping)
+    public function __construct(KernelInterface $kernel, array $mapping)
     {
-        $this->resolver   = $resolver;
+        $this->kernel     = $kernel;
         $this->mapping    = $mapping;
         $this->filesystem = new Filesystem();
     }
@@ -81,6 +76,25 @@ final class SerializationCacheWarmer extends CacheWarmer
     private function parseContent(string $content): array
     {
         return Yaml::parse($content);
+    }
+    
+    private function resolvePath(string $path): string
+    {
+        $resourcePathExploded = explode('/', $path);
+        $resourcePathRoot     = array_shift($resourcePathExploded);
+        
+        if (strpos($resourcePathRoot, '@') === 0) {
+            $mappingFileBundle = ltrim($resourcePathRoot, '@');
+            $bundle            = $this->kernel->getBundle($mappingFileBundle);
+            
+            if ($bundle instanceof BundleInterface) {
+                $resourcePathRoot = $bundle->getPath();
+            }
+        }
+        
+        array_unshift($resourcePathExploded, $resourcePathRoot);
+        
+        return implode('/', $resourcePathExploded);
     }
     
     public function isOptional()
