@@ -10,20 +10,31 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CmsBundle\Context\Front;
+namespace WellCommerce\Bundle\CmsBundle\Request;
 
 use WellCommerce\Bundle\CmsBundle\Entity\News;
 
 /**
- * Interface NewsContextInterface
+ * Class NewsContext
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface NewsContextInterface
+class NewsRequestStorage
 {
-    public function setCurrentNews(News $news);
+    protected $currentNews;
     
-    public function getCurrentNews(): News;
+    public function setCurrentNews(News $news)
+    {
+        $this->currentNews = $news;
+    }
     
-    public function hasCurrentNews(): bool;
+    public function getCurrentNews(): News
+    {
+        return $this->currentNews;
+    }
+    
+    public function hasCurrentNews(): bool
+    {
+        return $this->currentNews instanceof News;
+    }
 }

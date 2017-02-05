@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use WellCommerce\Bundle\AppBundle\Entity\Currency;
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
 use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 
 /**
@@ -30,12 +31,12 @@ class CurrencySubscriber extends AbstractEventSubscriber
             KernelEvents::CONTROLLER => ['onKernelController', -100],
         ];
     }
-
+    
     public function onKernelController(FilterControllerEvent $event)
     {
         $request = $event->getRequest();
         $session = $request->getSession();
-
+        
         if (!$session->has('_currency')) {
             $currency = $this->getLocaleCurrency($request);
             if (null !== $currency) {
@@ -43,23 +44,16 @@ class CurrencySubscriber extends AbstractEventSubscriber
             }
         }
     }
-
-    /**
-     * Returns the currency code for active locale
-     *
-     * @param Request $request
-     *
-     * @return string
-     */
-    protected function getLocaleCurrency(Request $request)
+    
+    private function getLocaleCurrency(Request $request)
     {
         $currentLocale = $request->getLocale();
         $locale        = $this->container->get('locale.repository')->findOneBy(['code' => $currentLocale]);
-
-        if (null !== $locale && $locale->getCurrency() instanceof Currency) {
+        
+        if ($locale instanceof Locale && $locale->getCurrency() instanceof Currency) {
             return $locale->getCurrency()->getCode();
         }
-
+        
         return null;
     }
 }
