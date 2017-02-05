@@ -20,7 +20,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
-use WellCommerce\Bundle\TaxBundle\Entity\Tax;
+use WellCommerce\Bundle\AppBundle\Entity\Tax;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 

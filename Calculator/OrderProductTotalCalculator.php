@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Calculator;
 
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 

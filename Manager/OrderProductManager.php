@@ -20,7 +20,7 @@ use WellCommerce\Bundle\OrderBundle\Exception\ChangeOrderProductQuantityExceptio
 use WellCommerce\Bundle\OrderBundle\Exception\DeleteOrderProductException;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
-use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
+use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 
 /**
  * Class OrderProductManager

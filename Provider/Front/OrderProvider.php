@@ -16,7 +16,7 @@ use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Security\SecurityHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderManagerInterface;
-use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 
 /**
  * Class OrderProvider
