@@ -22,6 +22,10 @@ _admin_payment_method:
     resource: "@WellCommerceOrderBundle/Resources/config/routing/payment_method/admin.yml"
     prefix: /admin/configuration/payment_method
 
+_admin_sales_report:
+    resource: "@WellCommerceOrderBundle/Resources/config/routing/sales_report/admin.yml"
+    prefix: /admin/order/report
+
 _admin_shipment:
     resource: "@WellCommerceOrderBundle/Resources/config/routing/shipment/admin.yml"
     prefix: /admin/order/shipment

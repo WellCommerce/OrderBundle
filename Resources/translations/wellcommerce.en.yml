@@ -154,6 +154,17 @@ payment_method:
             sort_number: Sort code
             title: 'Transfer title'
 
+sales_report:
+    heading:
+        sales: Sales summary
+    label:
+        sales: Sales
+        clients: Clients
+        orders: Orders
+        today: today
+        current_month: current month
+        current_period: current period
+
 shipping_method:
     heading:
         index: Shipping methods

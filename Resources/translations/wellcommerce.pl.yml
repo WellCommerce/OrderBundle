@@ -165,6 +165,17 @@ payment_method:
             sort_number: Sort code banku
             title: Tytuł przelewu
 
+sales_report:
+    heading:
+        sales: Podsumowanie sprzedaży
+    label:
+        sales: Sprzedaż
+        clients: Klienci
+        orders: Zamówienia
+        today: dzisiaj
+        current_month: w tym miesiącu
+        current_period: w tym okresie
+
 shipping_method:
     heading:
         index: Formy wysyłki
