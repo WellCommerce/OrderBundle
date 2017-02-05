@@ -7,19 +7,18 @@
 # please view the LICENSE file that was distributed with this source code.
 
 services:
-    theme.context.front:
-        class: WellCommerce\Bundle\AppBundle\Context\Front\ThemeContext
+    theme.storage:
+        class: WellCommerce\Bundle\AppBundle\Storage\ThemeStorage
 
     theme.locator:
         class: WellCommerce\Bundle\AppBundle\Locator\ThemeLocator
-        arguments: ['@kernel', '@theme.context.front', '%fallback_theme%', '%kernel.root_dir%/../web/themes']
+        arguments: ['@kernel', '@theme.storage', '%fallback_theme%', '%kernel.root_dir%/../web/themes']
 
     theme.subscriber:
         class: WellCommerce\Bundle\AppBundle\EventListener\ThemeSubscriber
+        arguments: ['@theme.storage', '@shop.storage']
         tags:
             - { name: kernel.event_subscriber }
-        calls:
-            - [setContainer, ['@service_container']]
 
     theme.file_locator:
         class: WellCommerce\Bundle\AppBundle\Locator\FileLocator
