@@ -19,13 +19,7 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
  */
 interface ShopAwareInterface
 {
-    /**
-     * @param ShopInterface $shop
-     */
-    public function setShop(ShopInterface $shop);
+    public function setShop(Shop $shop);
     
-    /**
-     * @return Shop
-     */
-    public function getShop() : ShopInterface;
+    public function getShop(): Shop;
 }

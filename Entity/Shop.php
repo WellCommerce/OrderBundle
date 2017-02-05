@@ -14,18 +14,16 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
-use WellCommerce\Bundle\AppBundle\Entity\Company;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\ThemeBundle\Entity\Theme;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class Shop
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Shop implements ShopInterface
+class Shop implements EntityInterface
 {
     use Identifiable;
     use Timestampable;

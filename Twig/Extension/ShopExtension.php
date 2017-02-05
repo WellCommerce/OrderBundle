@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\AppBundle\Twig\Extension;
 
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;
 
@@ -26,12 +26,12 @@ class ShopExtension extends \Twig_Extension
      * @var ShopStorageInterface
      */
     protected $shopStorage;
-
+    
     /**
      * @var DataSetInterface
      */
     protected $shopDataset;
-
+    
     /**
      * ShopExtension constructor.
      *
@@ -43,7 +43,7 @@ class ShopExtension extends \Twig_Extension
         $this->shopStorage = $shopStorage;
         $this->shopDataset = $shopDataset;
     }
-
+    
     public function getFunctions()
     {
         return [
@@ -52,12 +52,12 @@ class ShopExtension extends \Twig_Extension
         ];
     }
     
-    public function getCurrentShop() : ShopInterface
+    public function getCurrentShop(): Shop
     {
         return $this->shopStorage->getCurrentShop();
     }
-
-    public function getShops() : array
+    
+    public function getShops(): array
     {
         return $this->shopDataset->getResult('select');
     }

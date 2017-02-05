@@ -21,18 +21,9 @@ use Doctrine\Common\Collections\Collection;
  */
 interface ShopCollectionAwareInterface
 {
-    /**
-     * @return Collection
-     */
-    public function getShops() : Collection;
+    public function getShops(): Collection;
     
-    /**
-     * @param Collection $shops
-     */
     public function setShops(Collection $shops);
     
-    /**
-     * @param ShopInterface $shop
-     */
-    public function addShop(ShopInterface $shop);
+    public function addShop(Shop $shop);
 }

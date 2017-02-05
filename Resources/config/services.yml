@@ -8,7 +8,10 @@
 
 imports:
     - { resource: 'services/currency.yml' }
+    - { resource: 'services/media.yml' }
+    - { resource: 'services/locale.yml' }
     - { resource: 'services/shop.yml' }
+    - { resource: 'services/theme.yml' }
 
 services:
     web.home_page.controller.front:

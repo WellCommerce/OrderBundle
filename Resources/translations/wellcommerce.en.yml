@@ -132,6 +132,26 @@ currency:
     comment:
         enabled: Currency will be visible in shop
 
+locale:
+    heading:
+        index: Locales
+        add: Add a locale
+        edit: Edit a locale
+    label:
+        code: Code
+        currency: Default currency
+        language: Language
+        translations: Translations
+    comment:
+        enabled: Locale will be visible in shop
+
+media:
+    heading:
+        index: Media
+    button:
+        select_from_library: Select from library
+        add_from_disk: Add from disk
+
 price:
     sell_price:
         net:    Sell price net
@@ -174,6 +194,16 @@ tax:
         edit: Edit a tax rate
     label:
         value: Tax rate
+
+theme:
+    heading:
+        index: Themes
+        add: Add a theme
+        edit: Edit theme
+    label:
+        folder: Folder
+    comment:
+        folder: Choose a folder which contains your theme
 
 dataset:
     label:

@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle\Repository;
 
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Interface ShopRepositoryInterface
@@ -22,5 +22,5 @@ use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
  */
 interface ShopRepositoryInterface extends RepositoryInterface
 {
-    public function resolve(int $currentShopId, string $host) : ShopInterface;
+    public function resolve(int $currentShopId, string $host): Shop;
 }

@@ -133,12 +133,23 @@ currency:
 
 locale:
     heading:
-        index: Języki
-        add: Dodaj język
-        edit: Edytuj język
+        index: Tłumaczenia
+        add: Dodaj tłumaczenie
+        edit: Edytuj tłumaczenie
     label:
         code: Kod
         currency: Domyślna waluta
+        language: Język
+        translations: Tłumaczenia
+    comment:
+        enabled: Tłumaczenie będzie widoczne w sklepie
+
+media:
+    heading:
+        index: Media
+    button:
+        select_from_library: Wybierz z biblioteki
+        add_from_disk: Dodaj z dysku
 
 price:
     sell_price:
@@ -182,6 +193,16 @@ tax:
         edit: Edytuj stawkę VAT
     label:
         value: Wysokość stawki
+
+theme:
+    heading:
+        index: Szablony
+        add: Dodaj szablon
+        edit: Edytuj szablon
+    label:
+        folder: Folder
+    comment:
+        folder: Wybierz folder zawierający szablon
 
 dataset:
     label:
