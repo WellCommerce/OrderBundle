@@ -63,7 +63,7 @@ final class SerializationCacheWarmer extends CacheWarmer
         $configuration = [];
         
         foreach ($this->mapping as $className => $options) {
-            $path = $this->resolver->resolvePath($options['mapping']);
+            $path = $this->resolvePath($options['mapping']);
             if ($this->filesystem->exists($path)) {
                 $content       = file_get_contents($path);
                 $configuration = array_replace_recursive($configuration, $this->parseContent($content));
