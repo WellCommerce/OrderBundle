@@ -17,8 +17,8 @@ use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRepositoryInterface;
-use WellCommerce\Bundle\ShippingBundle\Context\ProductContext;
-use WellCommerce\Bundle\ShippingBundle\Provider\ShippingMethodProviderInterface;
+use WellCommerce\Bundle\OrderBundle\Context\ProductContext;
+use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodProviderInterface;
 
 /**
  * Class ProductInfoBoxController
