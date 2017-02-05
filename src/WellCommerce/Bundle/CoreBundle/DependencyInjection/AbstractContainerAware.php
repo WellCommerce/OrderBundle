@@ -29,8 +29,6 @@ use WellCommerce\Bundle\CoreBundle\Helper\Security\SecurityHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Provider\OrderProviderInterface;
-use WellCommerce\Bundle\OrderBundle\Storage\OrderStorageInterface;
 use WellCommerce\Component\Breadcrumb\Provider\BreadcrumbProviderInterface;
 
 /**
