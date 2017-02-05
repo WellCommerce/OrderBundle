@@ -91,3 +91,9 @@ services:
     distribution.bundle.generator:
         class: WellCommerce\Bundle\CoreBundle\Generator\WellCommerceBundleGenerator
         arguments: ['@kernel', '@twig']
+
+    dataset.transformer.image_path:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\ImagePathTransformer
+        tags:
+            - { name: dataset.transformer, alias: image_path }
+        arguments: ['@image.helper']
