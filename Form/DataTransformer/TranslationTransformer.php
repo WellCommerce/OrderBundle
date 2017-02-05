@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\AppBundle\Form\DataTransformer;
 
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\AbstractDataTransformer;
 use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\RepositoryAwareDataTransformerInterface;
 
@@ -31,20 +31,20 @@ class TranslationTransformer extends AbstractDataTransformer implements Reposito
     public function transform($modelData)
     {
         $values = [];
-
+        
         if ($modelData instanceof PersistentCollection) {
             $mapping  = $modelData->getMapping();
             $metaData = $this->getClassMetadata($mapping['targetEntity']);
             $fields   = $metaData->getFieldNames();
-
+            
             foreach ($modelData as $translation) {
                 $this->transformTranslation($translation, $fields, $values);
             }
         }
-
+        
         return $values;
     }
-
+    
     /**
      * Transforms single translation
      *
@@ -58,7 +58,7 @@ class TranslationTransformer extends AbstractDataTransformer implements Reposito
             $values[$translation->getLocale()][$field] = $this->propertyAccessor->getValue($translation, $field);
         }
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -70,7 +70,7 @@ class TranslationTransformer extends AbstractDataTransformer implements Reposito
                 $this->propertyAccessor->setValue($translation, $fieldName, $fieldValue);
             }
         }
-
+        
         $modelData->mergeNewTranslations();
     }
 }

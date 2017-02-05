@@ -13,13 +13,14 @@
 namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class LayoutBoxTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class LayoutBoxTranslation implements LocaleAwareInterface
+class LayoutBoxTranslation extends AbstractTranslation
 {
     use Translation;
     
