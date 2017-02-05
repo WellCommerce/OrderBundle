@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Entity;
 
-use WellCommerce\Bundle\DoctrineBundle\Entity\AddressTrait;
+use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
 
 /**
  * Class ClientShippingAddress

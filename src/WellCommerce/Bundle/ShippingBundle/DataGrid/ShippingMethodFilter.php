@@ -2,7 +2,7 @@
 
 namespace WellCommerce\Bundle\ShippingBundle\DataGrid;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 
 /**

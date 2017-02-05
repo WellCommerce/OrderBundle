@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\ShopBundle\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
-use WellCommerce\Bundle\DoctrineBundle\Entity\BlameableInterface;
-use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\DoctrineBundle\Entity\TimestampableInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\BlameableInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\TimestampableInterface;
 
 /**
  * Interface ShopInterface

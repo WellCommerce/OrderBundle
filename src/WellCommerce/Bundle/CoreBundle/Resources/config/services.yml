@@ -1,6 +1,7 @@
 imports:
     - { resource: 'services/breadcrumb.yml' }
     - { resource: 'services/routing.yml' }
+    - { resource: 'services/doctrine.yml' }
 
 services:
     flash.helper:

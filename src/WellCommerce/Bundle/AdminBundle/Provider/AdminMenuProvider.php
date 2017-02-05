@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use WellCommerce\Bundle\AdminBundle\Entity\AdminMenu;
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**
  * Class AdminMenuProvider

@@ -2,7 +2,7 @@
 
 namespace WellCommerce\Bundle\PaymentBundle\DataGrid;
 
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 
 /**
