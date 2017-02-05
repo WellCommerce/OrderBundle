@@ -18,7 +18,7 @@ use Swift_Plugins_LoggerPlugin;
 use Swift_Plugins_Loggers_EchoLogger;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
+use WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
 
