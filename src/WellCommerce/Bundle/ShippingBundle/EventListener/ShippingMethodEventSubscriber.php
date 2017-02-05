@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use WellCommerce\Bundle\AppBundle\Repository\CountryRepository;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
-use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
+use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 
 /**
  * Class ShippingMethodEventSubscriber

@@ -110,6 +110,28 @@ common:
     flashes:
         success: Success!
 
+company:
+    heading:
+        index: Companies
+        add: Add a company
+        edit: Edit a company
+    label:
+        name: Full name
+        short_name: Short name
+
+currency:
+    heading:
+        index: Currencies
+        add: Add a currency
+        edit: Edit a currency
+    button:
+        sync: Synchronize exchange rates
+    label:
+        code: Code
+        name: Currency
+    comment:
+        enabled: Currency will be visible in shop
+
 price:
     sell_price:
         net:    Sell price net
@@ -121,6 +143,37 @@ price:
         net: Discounted price net
         gross: Discounted price gross
         discount:   Discount
+
+shop:
+    heading:
+        index: Shops
+        add: Add a shop
+        edit: Edit a shop
+    fieldset:
+        mailer_configuration: Mailer configuration
+        url_configuration: URL configuration
+        cart_configuration: Cart configuration
+    label:
+        company: Company
+        url: URL
+        theme: Default theme
+        default_country: Default country
+        default_currency: Default currency
+        mailer_configuration:
+            from: Sender (e-mail)
+            host: SMTP host
+            port: SMTP port
+            user: SMTP username
+            pass: SMTP password
+            bcc: BCC
+
+tax:
+    heading:
+        index: Tax rates
+        add: Add a tax rate
+        edit: Edit a tax rate
+    label:
+        value: Tax rate
 
 dataset:
     label:

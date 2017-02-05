@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
-use WellCommerce\Bundle\ShopBundle\Entity\Shop;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class CategoryTest

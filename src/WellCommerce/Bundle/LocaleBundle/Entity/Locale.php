@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\LocaleBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
+use WellCommerce\Bundle\AppBundle\Entity\Currency;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;

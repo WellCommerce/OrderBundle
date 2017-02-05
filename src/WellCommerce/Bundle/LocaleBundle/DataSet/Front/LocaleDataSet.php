@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\LocaleBundle\DataSet\Front;
 
 use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
-use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
+use WellCommerce\Bundle\AppBundle\Entity\Currency;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;

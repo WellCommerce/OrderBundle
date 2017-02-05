@@ -21,14 +21,14 @@ WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod:
             type: json_array
     manyToOne:
         currency:
-            targetEntity: WellCommerce\Bundle\CurrencyBundle\Entity\Currency
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Currency
             fetch: LAZY
             joinColumns:
                 currency_id:
                     referencedColumnName: id
                     onDelete: 'RESTRICT'
         tax:
-            targetEntity: WellCommerce\Bundle\TaxBundle\Entity\Tax
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Tax
             fetch: LAZY
             joinColumns:
                 tax_id:

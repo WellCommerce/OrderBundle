@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\ShippingBundle\Calculator;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\CurrencyBundle\Converter\CurrencyConverterInterface;
+use WellCommerce\Bundle\AppBundle\Converter\CurrencyConverterInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 

@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\OrderBundle\Manager;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Interface OrderManagerInterface

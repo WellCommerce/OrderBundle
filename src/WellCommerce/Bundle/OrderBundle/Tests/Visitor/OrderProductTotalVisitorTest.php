@@ -17,7 +17,7 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
+use WellCommerce\Bundle\AppBundle\Helper\TaxHelper;
 
 /**
  * Class OrderProductTotalVisitorTest

@@ -26,11 +26,11 @@ use WellCommerce\Bundle\CoreBundle\Helper\Security\SecurityHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Storage\OrderStorageInterface;
-use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 use WellCommerce\Component\Breadcrumb\Provider\BreadcrumbProviderInterface;
 
 /**

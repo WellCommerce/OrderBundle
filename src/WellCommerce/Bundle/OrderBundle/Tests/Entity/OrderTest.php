@@ -25,7 +25,7 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderProductTotal;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderSummary;
 use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\ShopBundle\Entity\Shop;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class OrderTest

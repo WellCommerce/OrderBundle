@@ -14,9 +14,9 @@ namespace WellCommerce\Bundle\ShippingBundle\Tests\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
-use WellCommerce\Bundle\CurrencyBundle\Entity\Currency;
+use WellCommerce\Bundle\AppBundle\Entity\Currency;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\TaxBundle\Entity\Tax;
+use WellCommerce\Bundle\AppBundle\Entity\Tax;
 
 /**
  * Class ShippingMethodTest

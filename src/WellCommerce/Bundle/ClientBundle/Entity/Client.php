@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
+use WellCommerce\Bundle\AppBundle\Entity\ShopAwareTrait;
 
 /**
  * Class Client

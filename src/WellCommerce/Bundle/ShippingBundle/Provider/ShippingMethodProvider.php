@@ -20,8 +20,8 @@ use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Exception\CalculatorNotFoundException;
 use WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodRepositoryInterface;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
-use WellCommerce\Bundle\ShopBundle\Storage\ShopStorageInterface;
+use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 
 /**
  * Class ShippingMethodProvider

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CouponBundle\Visitor;
 
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;

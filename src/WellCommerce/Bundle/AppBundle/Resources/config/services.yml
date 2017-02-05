@@ -6,6 +6,10 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
+imports:
+    - { resource: 'services/currency.yml' }
+    - { resource: 'services/shop.yml' }
+
 services:
     web.home_page.controller.front:
         class: WellCommerce\Bundle\AppBundle\Controller\Front\HomePageController

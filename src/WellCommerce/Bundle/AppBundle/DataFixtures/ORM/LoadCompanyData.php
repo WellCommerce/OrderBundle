@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\CompanyBundle\Entity\Company;
+use WellCommerce\Bundle\AppBundle\Entity\Company;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 
 /**
