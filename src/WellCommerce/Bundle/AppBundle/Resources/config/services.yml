@@ -24,3 +24,6 @@ services:
         tags:
             - { name: console.command }
         arguments: ['@distribution.console.action_executor']
+
+    country.repository:
+        class: WellCommerce\Bundle\AppBundle\Repository\CountryRepository

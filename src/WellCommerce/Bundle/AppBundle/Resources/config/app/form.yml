@@ -11,20 +11,20 @@ services:
         class: WellCommerce\Component\Form\DataTransformer\DataTransformerCollection
 
     form.data_transformer.factory:
-        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\DataTransformerFactory
+        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\DataTransformerFactory
         arguments: ['@form.data_transformer.collection']
         calls:
             - [setContainer, ['@service_container']]
 
     form.collection.data_transformer:
-        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\CollectionToArrayTransformer
+        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer
         tags:
             - { name: form.data_transformer, alias: collection }
         arguments: ['@doctrine.helper']
         shared: false
 
     form.entity.data_transformer:
-        class: WellCommerce\Bundle\AppBundle\Form\DataTransformer\EntityToIdentifierTransformer
+        class: WellCommerce\Bundle\CoreBundle\Form\DataTransformer\EntityToIdentifierTransformer
         tags:
             - { name: form.data_transformer, alias: entity }
         arguments: ['@doctrine.helper']

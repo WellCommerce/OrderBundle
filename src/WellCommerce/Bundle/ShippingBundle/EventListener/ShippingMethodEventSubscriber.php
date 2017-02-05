@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ShippingBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use WellCommerce\Bundle\CountryBundle\Repository\CountryRepository;
+use WellCommerce\Bundle\AppBundle\Repository\CountryRepository;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\TaxBundle\Helper\TaxHelper;
