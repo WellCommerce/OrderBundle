@@ -152,6 +152,11 @@ services:
         class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusGroupFilter
         arguments: ["@order_status_group.repository"]
 
+    currency.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\CurrencyOrderVisitor
+        arguments: ['@currency.helper']
+        tags:
+            - { name: order.visitor, alias: currency }
 
     client_discount.order.modifier.configurator:
         class: WellCommerce\Bundle\OrderBundle\Configurator\OrderModifierConfigurator

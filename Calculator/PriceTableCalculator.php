@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Calculator;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\AppBundle\Converter\CurrencyConverterInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodCost;
 
@@ -25,18 +25,13 @@ use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodCost;
 final class PriceTableCalculator implements ShippingCalculatorInterface
 {
     /**
-     * @var CurrencyConverterInterface
+     * @var CurrencyHelperInterface
      */
-    private $currencyConverter;
+    private $currencyHelper;
     
-    /**
-     * PriceTableCalculator constructor.
-     *
-     * @param CurrencyConverterInterface $currencyConverter
-     */
-    public function __construct(CurrencyConverterInterface $currencyConverter)
+    public function __construct(CurrencyHelperInterface $currencyHelper)
     {
-        $this->currencyConverter = $currencyConverter;
+        $this->currencyHelper = $currencyHelper;
     }
     
     public function calculate(ShippingMethod $shippingMethod, ShippingSubjectInterface $subject): Collection
@@ -44,7 +39,7 @@ final class PriceTableCalculator implements ShippingCalculatorInterface
         $ranges         = $shippingMethod->getCosts();
         $baseCurrency   = $subject->getCurrency();
         $targetCurrency = $shippingMethod->getCurrency()->getCode();
-        $grossAmount    = $this->currencyConverter->convert($subject->getGrossPrice(), $baseCurrency, $targetCurrency);
+        $grossAmount    = $this->currencyHelper->convert($subject->getGrossPrice(), $baseCurrency, $targetCurrency);
         
         return $ranges->filter(function (ShippingMethodCost $cost) use ($grossAmount) {
             return ($cost->getRangeFrom() <= $grossAmount && $cost->getRangeTo() >= $grossAmount);
