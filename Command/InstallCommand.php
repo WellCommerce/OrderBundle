@@ -15,12 +15,12 @@ namespace WellCommerce\Bundle\AppBundle\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\ClearCacheAction;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\InstallAssetsAction;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\InstallDatabaseAction;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\InstallFixturesAction;
-use WellCommerce\Bundle\DistributionBundle\Console\Action\ReindexAction;
-use WellCommerce\Bundle\DistributionBundle\Console\ConsoleActionExecutorInterface;
+use WellCommerce\Bundle\CoreBundle\Console\Action\ClearCacheAction;
+use WellCommerce\Bundle\CoreBundle\Console\Action\InstallAssetsAction;
+use WellCommerce\Bundle\CoreBundle\Console\Action\InstallDatabaseAction;
+use WellCommerce\Bundle\CoreBundle\Console\Action\InstallFixturesAction;
+use WellCommerce\Bundle\CoreBundle\Console\Action\ReindexAction;
+use WellCommerce\Bundle\CoreBundle\Console\ConsoleActionExecutorInterface;
 
 /**
  * Class InstallCommand
