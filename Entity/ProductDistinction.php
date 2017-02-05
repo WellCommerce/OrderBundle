@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CatalogBundle\Entity;
 use Carbon\Carbon;
 use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
