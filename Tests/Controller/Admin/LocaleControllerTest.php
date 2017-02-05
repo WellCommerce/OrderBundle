@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle\Tests\Controller\Admin;
 
-use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
+use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
  * Class LocaleControllerTest

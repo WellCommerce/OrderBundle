@@ -12,11 +12,11 @@
 
 namespace WellCommerce\Bundle\AppBundle\Converter;
 
-use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\AppBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\AppBundle\Exception\MissingCurrencyRateException;
 use WellCommerce\Bundle\AppBundle\Exception\MissingCurrencyRatesException;
 use WellCommerce\Bundle\AppBundle\Repository\CurrencyRateRepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**

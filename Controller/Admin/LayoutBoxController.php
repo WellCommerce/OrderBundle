@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\AppBundle\Controller\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 
 /**
  * Class LayoutBoxController

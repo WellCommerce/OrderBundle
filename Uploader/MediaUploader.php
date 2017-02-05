@@ -13,10 +13,10 @@
 namespace WellCommerce\Bundle\AppBundle\Uploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Media;
 use WellCommerce\Bundle\AppBundle\Exception\InvalidMediaException;
+use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 
 /**
  * Class MediaUploader

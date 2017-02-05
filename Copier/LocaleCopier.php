@@ -15,9 +15,9 @@ namespace WellCommerce\Bundle\AppBundle\Copier;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
 use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 
 /**
  * Class LocaleCopier

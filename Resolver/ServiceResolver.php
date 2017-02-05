@@ -14,9 +14,9 @@ namespace WellCommerce\Bundle\AppBundle\Resolver;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
-use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorCollection;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 
 /**
  * Class ServiceResolver

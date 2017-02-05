@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\AppBundle\Tests\Manager\Admin;
 
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\AppBundle\Entity\Locale;
 
 /**
  * Class LocaleManagerTest

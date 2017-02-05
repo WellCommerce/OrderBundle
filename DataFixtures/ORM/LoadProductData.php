@@ -18,11 +18,11 @@ use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
-use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductDistinction;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto;
+use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 
 /**
  * Class LoadProductData

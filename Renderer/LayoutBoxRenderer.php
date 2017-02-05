@@ -13,13 +13,13 @@
 namespace WellCommerce\Bundle\AppBundle\Renderer;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\AppBundle\Exception\LayoutBoxNotFoundException;
 use WellCommerce\Bundle\AppBundle\Resolver\ServiceResolverInterface;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 
 /**
  * Class LayoutBoxRenderer
