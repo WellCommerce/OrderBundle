@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\CmsBundle\Controller\Front;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\CmsBundle\Entity\News;
+use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**

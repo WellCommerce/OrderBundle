@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\CmsBundle\Tests\Manager;
 
+use WellCommerce\Bundle\CmsBundle\Entity\Page;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\CmsBundle\Entity\Page;
 
 /**
  * Class PageManagerTest

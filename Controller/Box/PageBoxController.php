@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\CmsBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\CmsBundle\Request\PageRequestStorage;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 
 /**
  * Class PageBoxController

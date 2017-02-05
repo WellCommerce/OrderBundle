@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\CmsBundle\Controller\Front;
 
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\CmsBundle\Entity\Page;
 use WellCommerce\Bundle\CmsBundle\Request\PageRequestStorage;
+use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**
