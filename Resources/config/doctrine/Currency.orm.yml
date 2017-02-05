@@ -1,0 +1,17 @@
+WellCommerce\Bundle\AppBundle\Entity\Currency:
+    type: entity
+    cache:
+        usage: NONSTRICT_READ_WRITE
+    table: currency
+    repositoryClass: WellCommerce\Bundle\AppBundle\Repository\CurrencyRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            length: 12
+            unique: true
+            nullable: false

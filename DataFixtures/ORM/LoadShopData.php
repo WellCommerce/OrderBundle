@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
-use WellCommerce\Bundle\ShopBundle\Entity\Shop;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class LoadShopData
@@ -35,7 +35,7 @@ class LoadShopData extends AbstractDataFixture
         
         /**
          * @var $theme       \WellCommerce\Bundle\ThemeBundle\Entity\Theme
-         * @var $company     \WellCommerce\Bundle\CompanyBundle\Entity\Company
+         * @var $company     \WellCommerce\Bundle\AppBundle\Entity\Company
          * @var $orderStatus \WellCommerce\Bundle\OrderBundle\Entity\OrderStatus
          */
         $theme    = $this->getReference('theme');

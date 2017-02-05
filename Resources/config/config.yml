@@ -13,10 +13,8 @@ imports:
     - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceCompanyBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceCurrencyBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDictionaryBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLayoutBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLocaleBundle/Resources/config/config.yml" }
@@ -27,13 +25,12 @@ imports:
     - { resource: "@WellCommerceReviewBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShippingBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShipmentBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceShopBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShowcaseBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceTaxBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceThemeBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceWishlistBundle/Resources/config/config.yml" }
 
 parameters:
+    number_formatter_locale: ~
     fixtures_load_order:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadAdminMenuData: 0
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadThemeData: 10
@@ -100,3 +97,36 @@ parameters:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadShowcaseData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadLayeredNavigationData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadWishlistData: true
+
+well_commerce_api:
+    request_handler:
+        company:
+            manager: company.manager
+        currency:
+            manager: currency.manager
+        shop:
+            manager: shop.manager
+        tax:
+            manager: tax.manager
+    serialization:
+        WellCommerce\Bundle\AppBundle\Entity\Company:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/Company.yml"
+        WellCommerce\Bundle\AppBundle\Entity\CompanyAddress:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/CompanyAddress.yml"
+        WellCommerce\Bundle\AppBundle\Entity\Currency:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/Currency.yml"
+        WellCommerce\Bundle\AppBundle\Entity\CurrencyRate:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/CurrencyRate.yml"
+        WellCommerce\Bundle\AppBundle\Entity\Shop:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/Shop.yml"
+        WellCommerce\Bundle\AppBundle\Entity\Tax:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/Tax.yml"
+        WellCommerce\Bundle\AppBundle\Entity\TaxTranslation:
+            mapping: "@WellCommerceAppBundle/Resources/config/serialization/TaxTranslation.yml"
+
+well_commerce_locale:
+    copier:
+        entities:
+            WellCommerce\Bundle\AppBundle\Entity\TaxTranslation:
+                properties:
+                    - name

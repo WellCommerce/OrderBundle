@@ -110,6 +110,36 @@ common:
     flashes:
         success: Sukces!
 
+company:
+    heading:
+        index: Firmy
+        add: Dodaj firmę
+        edit: Edytuj firmę
+    label:
+        name: Pełna nazwa
+        short_name: Skrócona nazwa
+
+currency:
+    heading:
+        index: Waluty
+        add: Dodaj walutę
+        edit: Edytuj walutę
+    button:
+        sync: Synchronizuj kursy walutowe
+    label:
+        code: Kod
+    comment:
+        enabled: Waluta będzie widoczna w sklepie
+
+locale:
+    heading:
+        index: Języki
+        add: Dodaj język
+        edit: Edytuj język
+    label:
+        code: Kod
+        currency: Domyślna waluta
+
 price:
     sell_price:
         net:    Cena sprzedaży netto
@@ -121,6 +151,37 @@ price:
         net: Cena promocyjna netto
         gross: Cena promocyjna brutto
         discount: Rabat
+
+shop:
+    heading:
+        index: Sklepy
+        add: Dodaj sklep
+        edit: Edytuj sklep
+    fieldset:
+        mailer_configuration: Ustawienia mailera
+        url_configuration: Ustawienia adresów
+        cart_configuration: Ustawienia koszyka
+    label:
+        company: Firma
+        url: Adres URL
+        theme: Domyślny szablon sklepu
+        default_country: Domyślne państwo
+        default_currency: Domyślna waluta
+        mailer_configuration:
+            from: Nadawca (e-mail)
+            host: Host SMTP
+            port: Port SMTP
+            user: Login SMTP
+            pass: Hasło SMTP
+            bcc: BCC
+
+tax:
+    heading:
+        index: Stawki VAT
+        add: Dodaj stawkę VAT
+        edit: Edytuj stawkę VAT
+    label:
+        value: Wysokość stawki
 
 dataset:
     label:
