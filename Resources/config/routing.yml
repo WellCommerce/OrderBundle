@@ -15,6 +15,9 @@ wellcommerce_catalog:
 wellcommerce_cms:
     resource: "@WellCommerceCmsBundle/Resources/config/routing.yml"
 
+wellcommerce_core:
+    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
+
 wellcommerce_currency:
     resource: "@WellCommerceCurrencyBundle/Resources/config/routing.yml"
 
@@ -60,11 +63,8 @@ wellcommerce_payment:
 wellcommerce_report:
     resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
 
-wellcommerce_review:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
-
 wellcommerce_routing:
-    resource: "@WellCommerceRoutingBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceCoreBundle/Resources/config/routing.yml"
 
 wellcommerce_shipping:
     resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"
@@ -80,15 +80,6 @@ wellcommerce_theme:
 
 wellcommerce_wishlist:
     resource: "@WellCommerceWishlistBundle/Resources/config/routing.yml"
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-_bazinga_jstranslation:
-    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
-
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
 front.home_page.index:
     path: /
