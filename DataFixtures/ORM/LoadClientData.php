@@ -13,9 +13,9 @@
 namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 
 /**

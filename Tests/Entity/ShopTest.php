@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\AppBundle\Tests\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientGroup;
+use WellCommerce\Bundle\AppBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\AppBundle\Entity\Company;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\AppBundle\Entity\Shop;

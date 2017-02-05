@@ -48,7 +48,7 @@ WellCommerce\Bundle\AppBundle\Entity\Shop:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
         clientGroup:
-            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\ClientGroup
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\ClientGroup
             fetch: LAZY
             joinColumns:
                 client_group_id:

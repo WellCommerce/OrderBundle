@@ -7,14 +7,14 @@
 # please view the LICENSE file that was distributed with this source code.
 
 admin.user.index:
-    path: /admin/user/index
+    path: /index
     defaults:
         _controller: 'user.controller.admin:indexAction'
     options:
         require_admin_permission: user.index
 
 admin.user.grid:
-    path: /admin/user/grid
+    path: /grid
     condition: "request.isXmlHttpRequest()"
     defaults:
         _controller: 'user.controller.admin:gridAction'
@@ -23,14 +23,14 @@ admin.user.grid:
         require_admin_permission: user.index
 
 admin.user.add:
-    path: /admin/user/add
+    path: /add
     defaults:
         _controller: 'user.controller.admin:addAction'
     options:
         require_admin_permission: user.add
 
 admin.user.edit:
-    path: '/admin/user/edit/{id}'
+    path: '/edit/{id}'
     defaults:
         _controller: 'user.controller.admin:editAction'
     options:
@@ -38,7 +38,7 @@ admin.user.edit:
         require_admin_permission: user.edit
 
 admin.user.delete:
-    path: '/admin/user/delete/{id}'
+    path: '/delete/{id}'
     defaults:
         _controller: 'user.controller.admin:deleteAction'
     options:
@@ -46,7 +46,7 @@ admin.user.delete:
         require_admin_permission: user.delete
 
 admin.user.delete_group:
-    path: '/admin/user/delete_group'
+    path: '/delete_group'
     defaults:
         _controller: 'user.controller.admin:deleteGroupAction'
     options:
@@ -54,17 +54,17 @@ admin.user.delete_group:
         require_admin_permission: user.delete
 
 admin.user.login:
-    path: /admin/user/login
+    path: /login
     defaults:
         _controller: 'user.controller.admin:loginAction'
 
 admin.user.reset_password:
-    path: /admin/user/reset
+    path: /reset
     defaults:
         _controller: 'user.controller.admin:resetPasswordAction'
 
 admin.user.login_check:
-    path: /admin/user/login_check
+    path: /login_check
 
 admin.user.logout:
-    path: /admin/user/logout
+    path: /logout

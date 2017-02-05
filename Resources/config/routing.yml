@@ -6,9 +6,6 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-wellcommerce_api:
-    resource: "@WellCommerceApiBundle/Resources/config/routing.yml"
-
 wellcommerce_catalog:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
@@ -24,26 +21,19 @@ wellcommerce_review:
 wellcommerce_coupon:
     resource: "@WellCommerceCouponBundle/Resources/config/routing.yml"
 
-wellcommerce_client:
-    resource: "@WellCommerceClientBundle/Resources/config/routing.yml"
-
 wellcommerce_oauth:
     resource: "@WellCommerceOAuthBundle/Resources/config/routing.yml"
 
 wellcommerce_order:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
-wellcommerce_payment:
-    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
+_admin_client:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client/admin.yml"
+    prefix: /admin/client
 
-wellcommerce_report:
-    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
-
-wellcommerce_shipping:
-    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
-
-wellcommerce_shipment:
-    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
+_admin_client_group:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client_group/admin.yml"
+    prefix: /admin/client/group
 
 _admin_company:
     resource: "@WellCommerceAppBundle/Resources/config/routing/company/admin.yml"
@@ -87,11 +77,15 @@ _admin_theme:
 
 _admin_user:
     resource: "@WellCommerceAppBundle/Resources/config/routing/user/admin.yml"
-    prefix: /admin/user/group
+    prefix: /admin/user
 
 _admin_user_group:
     resource: "@WellCommerceAppBundle/Resources/config/routing/user_group/admin.yml"
     prefix: /admin/user/group
+
+_front_client:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client/front.yml"
+    prefix: /client
 
 _front_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/front.yml"
