@@ -9,18 +9,14 @@
 services:
     layout_box.renderer:
         class: WellCommerce\Bundle\AppBundle\Renderer\LayoutBoxRenderer
-        arguments: ['@layout_box.service_resolver', '@layout_box.manager', '@router.helper']
+        arguments: ['@layout_box.configurator.collection', '@layout_box.manager']
+        calls:
+            - [setContainer, ['@service_container']]
 
     layout_box.subscriber:
         class: WellCommerce\Bundle\AppBundle\EventListener\LayoutBoxSubscriber
         tags:
             - { name: kernel.event_subscriber }
-        calls:
-            - [setContainer, ['@service_container']]
-
-    layout_box.service_resolver:
-        class: WellCommerce\Bundle\AppBundle\Resolver\ServiceResolver
-        arguments: ['@layout_box.configurator.collection']
         calls:
             - [setContainer, ['@service_container']]
 

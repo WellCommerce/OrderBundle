@@ -12,13 +12,14 @@
 
 namespace WellCommerce\Bundle\AppBundle\Renderer;
 
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
+use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorCollection;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\AppBundle\Exception\LayoutBoxNotFoundException;
-use WellCommerce\Bundle\AppBundle\Resolver\ServiceResolverInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 
 /**
@@ -26,7 +27,7 @@ use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class LayoutBoxRenderer implements LayoutBoxRendererInterface
+final class LayoutBoxRenderer extends AbstractContainerAware implements LayoutBoxRendererInterface
 {
     /**
      * @var ManagerInterface
@@ -34,27 +35,14 @@ final class LayoutBoxRenderer implements LayoutBoxRendererInterface
     private $manager;
     
     /**
-     * @var ServiceResolverInterface
+     * @var LayoutBoxConfiguratorCollection
      */
-    private $serviceResolver;
+    private $configurators;
     
-    /**
-     * @var RouterHelperInterface
-     */
-    private $routerHelper;
-    
-    /**
-     * LayoutBoxRenderer constructor.
-     *
-     * @param ServiceResolverInterface $serviceResolver
-     * @param ManagerInterface         $manager
-     * @param RouterHelperInterface    $routerHelper
-     */
-    public function __construct(ServiceResolverInterface $serviceResolver, ManagerInterface $manager, RouterHelperInterface $routerHelper)
+    public function __construct(LayoutBoxConfiguratorCollection $configurators, ManagerInterface $manager)
     {
-        $this->manager         = $manager;
-        $this->serviceResolver = $serviceResolver;
-        $this->routerHelper    = $routerHelper;
+        $this->manager       = $manager;
+        $this->configurators = $configurators;
     }
     
     public function render(string $identifier, array $params): string
@@ -78,7 +66,7 @@ final class LayoutBoxRenderer implements LayoutBoxRendererInterface
     private function getLayoutBoxContent(string $identifier, array $params = []): Response
     {
         $layoutBox  = $this->findLayoutBox($identifier);
-        $controller = $this->serviceResolver->resolveControllerService($layoutBox);
+        $controller = $this->resolveControllerService($layoutBox);
         $action     = $this->resolveControllerAction($controller);
         $settings   = $this->makeSettingsCollection($layoutBox, $params);
         
@@ -101,18 +89,24 @@ final class LayoutBoxRenderer implements LayoutBoxRendererInterface
         return $collection;
     }
     
-    /**
-     * Resolves action which can be used in controller method call
-     *
-     * @param BoxControllerInterface $controller
-     *
-     * @return string
-     */
-    private function resolveControllerAction(BoxControllerInterface $controller)
+    private function resolveControllerService(LayoutBox $layoutBox): BoxControllerInterface
     {
-        $currentAction = $this->routerHelper->getCurrentAction();
+        $boxType      = $layoutBox->getBoxType();
+        $configurator = $this->configurators->get($boxType);
+        $service      = $configurator->getControllerService();
         
-        if ($this->routerHelper->hasControllerAction($controller, $currentAction)) {
+        if (!$this->has($service)) {
+            throw new ServiceNotFoundException($service);
+        }
+        
+        return $this->get($service);
+    }
+    
+    private function resolveControllerAction(BoxControllerInterface $controller): string
+    {
+        $currentAction = $this->getRouterHelper()->getCurrentAction();
+        
+        if ($this->getRouterHelper()->hasControllerAction($controller, $currentAction)) {
             return $currentAction;
         }
         
