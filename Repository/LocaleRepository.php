@@ -57,7 +57,7 @@ class LocaleRepository extends EntityRepository implements LocaleRepositoryInter
      */
     public function getLocaleNames() : array
     {
-        $locales = Intl::getAppBundle()->getLocaleNames();
+        $locales = Intl::getLocaleBundle()->getLocaleNames();
 
         $Data = [];
 

@@ -132,6 +132,18 @@ currency:
     comment:
         enabled: Currency will be visible in shop
 
+layout_box:
+    heading:
+        index: Layout boxes
+        add: Add a layout box
+        edit: Edit layout box
+    label:
+        type: Type
+        identifier: Identifier
+        name: Name
+        content: Content
+        settings: Settings
+
 locale:
     heading:
         index: Locales

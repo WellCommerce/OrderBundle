@@ -21,12 +21,6 @@ wellcommerce_core:
 wellcommerce_dictionary:
     resource: "@WellCommerceDictionaryBundle/Resources/config/routing.yml"
 
-wellcommerce_distribution:
-    resource: "@WellCommerceCoreBundle/Resources/config/routing.yml"
-
-wellcommerce_layout:
-    resource: "@WellCommerceLayoutBundle/Resources/config/routing.yml"
-
 wellcommerce_coupon:
     resource: "@WellCommerceCouponBundle/Resources/config/routing.yml"
 
@@ -48,9 +42,6 @@ wellcommerce_payment:
 wellcommerce_report:
     resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
 
-wellcommerce_routing:
-    resource: "@WellCommerceCoreBundle/Resources/config/routing.yml"
-
 wellcommerce_shipping:
     resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"
 
@@ -65,13 +56,17 @@ _admin_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/admin.yml"
     prefix: /admin/configuration/currency
 
-_admin_media:
-    resource: "@WellCommerceAppBundle/Resources/config/routing/media/admin.yml"
-    prefix: /admin/media
+_admin_layout_box:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/layout_box/admin.yml"
+    prefix: /admin/layout/box
 
 _admin_locale:
     resource: "@WellCommerceAppBundle/Resources/config/routing/locale/admin.yml"
     prefix: /admin/configuration/locale
+
+_admin_media:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/media/admin.yml"
+    prefix: /admin/media
 
 _admin_shop:
     resource: "@WellCommerceAppBundle/Resources/config/routing/shop/admin.yml"
@@ -83,7 +78,7 @@ _admin_tax:
 
 _admin_theme:
     resource: "@WellCommerceAppBundle/Resources/config/routing/theme/admin.yml"
-    prefix: /admin/configuration/theme
+    prefix: /admin/layout/theme
 
 _front_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/front.yml"
