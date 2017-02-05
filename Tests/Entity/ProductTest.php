@@ -15,6 +15,7 @@ namespace WellCommerce\Bundle\CatalogBundle\Tests\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
+use WellCommerce\Bundle\AppBundle\Entity\Media;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\CatalogBundle\Entity\AttributeGroup;
 use WellCommerce\Bundle\CatalogBundle\Entity\Availability;
@@ -22,7 +23,6 @@ use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Unit;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
-use WellCommerce\Bundle\AppBundle\Entity\Media;
 
 /**
  * Class ProductTest

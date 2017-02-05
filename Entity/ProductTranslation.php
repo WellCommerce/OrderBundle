@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\CatalogBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\Meta;
 use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Meta;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableSubjectInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\Route;

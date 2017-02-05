@@ -13,12 +13,12 @@
 namespace WellCommerce\Bundle\CatalogBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
-use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
-use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRepositoryInterface;
 use WellCommerce\Bundle\OrderBundle\Context\ProductContext;
 use WellCommerce\Bundle\OrderBundle\Provider\ShippingMethodProviderInterface;
+use WellCommerce\Bundle\ReviewBundle\Repository\ReviewRepositoryInterface;
 
 /**
  * Class ProductInfoBoxController

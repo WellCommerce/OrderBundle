@@ -19,15 +19,15 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\AppBundle\Entity\Dimension;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
+use WellCommerce\Bundle\AppBundle\Entity\Media;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
+use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
+use WellCommerce\Bundle\AppBundle\Entity\Tax;
 use WellCommerce\Bundle\CatalogBundle\Entity\Extra\ProductExtraTrait;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\AppBundle\Entity\Media;
-use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
-use WellCommerce\Bundle\AppBundle\Entity\Tax;
 
 /**
  * Class Product
