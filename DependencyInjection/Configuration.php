@@ -15,6 +15,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use WellCommerce\Bundle\AppBundle\Copier\LocaleCopier;
+use WellCommerce\Bundle\CoreBundle\Handler\RequestHandler;
 
 /**
  * Class Configuration
@@ -37,6 +38,24 @@ class Configuration implements ConfigurationInterface
     {
         $node
             ->children()
+                ->arrayNode('request_handler')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->booleanNode('enabled')->defaultTrue()->end()
+                            ->scalarNode('manager')->isRequired()->end()
+                            ->scalarNode('class')->defaultValue(RequestHandler::class)->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('serialization')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('mapping')->isRequired()->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('routers')
                     ->defaultValue(['router.default' => 100])
                     ->useAttributeAsKey('id')

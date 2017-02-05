@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\Helper\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use WellCommerce\Bundle\AppBundle\Entity\User;
-use WellCommerce\Bundle\ClientBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Helper\Request\RequestHelperInterface;
 
 /**
