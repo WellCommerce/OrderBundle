@@ -18,6 +18,7 @@ use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails;
 use WellCommerce\Bundle\AppBundle\Entity\ClientDetails;
 use WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
@@ -25,7 +26,6 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderProductTotal;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderSummary;
 use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
 use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class OrderTest

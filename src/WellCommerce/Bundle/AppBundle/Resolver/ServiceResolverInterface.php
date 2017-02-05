@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle\Resolver;
 
-use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 
 /**
  * Interface ServiceResolverInterface

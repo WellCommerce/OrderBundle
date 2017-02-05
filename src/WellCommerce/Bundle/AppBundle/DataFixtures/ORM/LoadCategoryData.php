@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CatalogBundle\Entity\CategoryTranslation;
-use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 
 /**
  * Class LoadCategoryData

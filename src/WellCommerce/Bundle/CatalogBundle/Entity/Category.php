@@ -17,12 +17,12 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\CatalogBundle\Entity\Extra\CategoryExtraTrait;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Sortable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
 
 /**
  * Class Category

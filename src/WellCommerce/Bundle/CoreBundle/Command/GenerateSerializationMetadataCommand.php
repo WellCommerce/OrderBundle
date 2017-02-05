@@ -20,9 +20,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
-use WellCommerce\Bundle\CoreBundle\Resolver\MappingFileResolver;
-use WellCommerce\Bundle\CoreBundle\Resolver\ConfigurationFileResolverInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\CoreBundle\Resolver\ConfigurationFileResolverInterface;
+use WellCommerce\Bundle\CoreBundle\Resolver\MappingFileResolver;
 
 /**
  * Class GenerateMetadataCommand

@@ -13,9 +13,9 @@ namespace WellCommerce\Bundle\AppBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\AppBundle\Repository\ShopRepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 
 /**
  * Class ShopSubscriber

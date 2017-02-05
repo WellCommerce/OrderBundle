@@ -19,11 +19,11 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
+use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
-use WellCommerce\Bundle\AppBundle\Entity\Locale;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 
 /**
  * Class DeleteLocaleCommand

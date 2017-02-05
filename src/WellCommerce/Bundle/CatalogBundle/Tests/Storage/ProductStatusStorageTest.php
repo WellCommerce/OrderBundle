@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Context\Front;
 
-use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus;
 use WellCommerce\Bundle\CatalogBundle\Storage\ProductStatusStorage;
+use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**
  * Class ProductStatusStorageTest

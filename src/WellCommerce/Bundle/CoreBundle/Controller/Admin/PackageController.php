@@ -13,9 +13,8 @@
 namespace WellCommerce\Bundle\CoreBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
-use WellCommerce\Bundle\CoreBundle\Helper\Environment\EnvironmentHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\Package;
+use WellCommerce\Bundle\CoreBundle\Helper\Environment\EnvironmentHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Package\PackageHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\PackageManager;
 

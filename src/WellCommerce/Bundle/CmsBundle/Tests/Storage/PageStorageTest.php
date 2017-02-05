@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\CmsBundle\Tests\Storage;
 
-use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\CmsBundle\Entity\Page;
 use WellCommerce\Bundle\CmsBundle\Request\PageRequestStorage;
+use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**
  * Class PageStorageTest

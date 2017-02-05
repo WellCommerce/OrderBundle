@@ -13,10 +13,10 @@
 namespace WellCommerce\Bundle\OrderBundle\Tests\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\AppBundle\Entity\Currency;
-use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\AppBundle\Entity\Tax;
+use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
+use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
 
 /**
  * Class ShippingMethodTest

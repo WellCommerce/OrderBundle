@@ -14,19 +14,17 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
 use WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails;
 use WellCommerce\Bundle\AppBundle\Entity\ClientDetails;
-use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress;
-use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
-use WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod;
-use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class Order

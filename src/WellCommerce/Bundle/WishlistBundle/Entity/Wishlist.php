@@ -13,9 +13,9 @@ namespace WellCommerce\Bundle\WishlistBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 
 /**
  * Class Wishlist

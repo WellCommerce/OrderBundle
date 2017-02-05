@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\CoreBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class Package

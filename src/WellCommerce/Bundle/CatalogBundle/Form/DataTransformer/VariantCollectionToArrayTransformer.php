@@ -14,12 +14,12 @@ namespace WellCommerce\Bundle\CatalogBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 use WellCommerce\Bundle\CatalogBundle\Entity\Availability;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 use WellCommerce\Bundle\CatalogBundle\Entity\VariantOption;
 use WellCommerce\Bundle\CatalogBundle\Manager\VariantManager;
+use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\CollectionToArrayTransformer;
 
 /**
  * Class VariantCollectionToArrayTransformer

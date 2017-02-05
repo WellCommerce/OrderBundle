@@ -17,7 +17,6 @@ use DateTime;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus;
 
 /**
  * Class ProductDistinction

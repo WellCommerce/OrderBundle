@@ -12,10 +12,10 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\Helper;
 
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
 use WellCommerce\Bundle\CatalogBundle\Entity\VariantOption;
-use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 
 /**
  * Class VariantHelper

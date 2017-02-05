@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Test\Configurator;
 
+use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
-use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorInterface;
 
 /**
  * Class AbstractLayoutBoxConfiguratorTestCase

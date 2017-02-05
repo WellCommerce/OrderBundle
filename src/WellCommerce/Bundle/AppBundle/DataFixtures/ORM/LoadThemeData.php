@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\AppBundle\Entity\Theme;
+use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class LoadThemeData

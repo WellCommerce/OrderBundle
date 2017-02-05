@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Context;
 
-use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Calculator\ShippingSubjectInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderAdapter

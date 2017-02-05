@@ -15,12 +15,12 @@ namespace WellCommerce\Bundle\OrderBundle\Provider;
 use DateInterval;
 use DateTime;
 use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Calculator\SalesSummaryCalculator;
 use WellCommerce\Bundle\OrderBundle\Configuration\ReportConfiguration;
 use WellCommerce\Bundle\OrderBundle\Context\LineChartContext;
 use WellCommerce\Bundle\OrderBundle\Data\ReportRow;
 use WellCommerce\Bundle\OrderBundle\Data\ReportRowCollection;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class SalesReportDataProvider

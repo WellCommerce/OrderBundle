@@ -13,8 +13,8 @@
 namespace WellCommerce\Bundle\WishlistBundle\Tests\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\Client;
-use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\WishlistBundle\Entity\Wishlist;
 
 /**

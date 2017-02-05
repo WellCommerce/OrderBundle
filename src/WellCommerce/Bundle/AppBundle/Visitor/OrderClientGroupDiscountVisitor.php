@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\AppBundle\Visitor;
 
 use WellCommerce\Bundle\AppBundle\Entity\Client;
 use WellCommerce\Bundle\AppBundle\Entity\ClientGroup;
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;

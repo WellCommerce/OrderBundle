@@ -5,10 +5,10 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
 use WellCommerce\Bundle\AppBundle\Entity\Price;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
+use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class OrderProduct

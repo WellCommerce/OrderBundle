@@ -17,6 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpKernel\KernelInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Flash\FlashHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Image\ImageHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Mailer\MailerHelperInterface;
@@ -26,11 +29,8 @@ use WellCommerce\Bundle\CoreBundle\Helper\Security\SecurityHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Templating\TemplatingHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Translator\TranslatorHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Validator\ValidatorHelperInterface;
-use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Storage\OrderStorageInterface;
-use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 use WellCommerce\Component\Breadcrumb\Provider\BreadcrumbProviderInterface;
 
 /**

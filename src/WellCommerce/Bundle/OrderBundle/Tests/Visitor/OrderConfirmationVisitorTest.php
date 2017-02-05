@@ -12,10 +12,10 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Tests\Visitor;
 
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
-use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 
 /**
  * Class OrderConfirmationVisitorTest

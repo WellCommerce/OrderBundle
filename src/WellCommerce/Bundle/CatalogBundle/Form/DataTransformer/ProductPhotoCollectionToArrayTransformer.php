@@ -16,10 +16,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
-use WellCommerce\Bundle\CatalogBundle\Entity\Product;
-use WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto;
 use WellCommerce\Bundle\AppBundle\Entity\Media;
 use WellCommerce\Bundle\AppBundle\Form\DataTransformer\MediaCollectionToArrayTransformer;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto;
 
 /**
  * Class ProductPhotoCollectionToArrayTransformer

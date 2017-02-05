@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\CoreBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 use WellCommerce\Bundle\CoreBundle\Generator\SlugGeneratorInterface;
 
 /**

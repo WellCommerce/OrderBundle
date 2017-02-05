@@ -14,13 +14,13 @@ namespace WellCommerce\Bundle\CatalogBundle\DataSet\Front;
 
 use Doctrine\ORM\Query\Expr;
 use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
+use WellCommerce\Bundle\AppBundle\Entity\CurrencyRate;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProducerTranslation;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductTranslation;
-use WellCommerce\Bundle\AppBundle\Entity\CurrencyRate;
+use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 

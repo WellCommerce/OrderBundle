@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle\Tests\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 use WellCommerce\Bundle\AppBundle\Entity\Currency;
+use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 
 /**
  * Class CurrencyTest

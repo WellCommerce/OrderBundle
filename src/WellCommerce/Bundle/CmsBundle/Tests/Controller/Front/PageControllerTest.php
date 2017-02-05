@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CmsBundle\Tests\Controller\Front;
 
-use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 use WellCommerce\Bundle\CmsBundle\Entity\Page;
+use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
 
 /**
  * Class PageControllerTest

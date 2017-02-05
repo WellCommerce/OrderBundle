@@ -18,9 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
 use WellCommerce\Bundle\CatalogBundle\Manager\SearchManagerInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Search\Model\TypeInterface;
 
 /**
