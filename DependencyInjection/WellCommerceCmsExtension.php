@@ -15,10 +15,10 @@ namespace WellCommerce\Bundle\CmsBundle\DependencyInjection;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
 
 /**
- * Class WellCommercePageExtension
+ * Class WellCommerceCmsExtension
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommercePageExtension extends AbstractExtension
+class WellCommerceCmsExtension extends AbstractExtension
 {
 }

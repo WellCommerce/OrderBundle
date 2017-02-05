@@ -47,7 +47,7 @@ well_commerce_locale:
                     - name
                     - slug
 
-well_commerce_routing:
+well_commerce_core:
     dynamic_routing:
         news:
             entity: WellCommerce\Bundle\CmsBundle\Entity\NewsRoute
