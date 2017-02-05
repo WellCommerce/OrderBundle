@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
-use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
 
 /**
  * Class LoadLocaleData

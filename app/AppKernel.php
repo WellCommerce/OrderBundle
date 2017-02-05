@@ -57,9 +57,6 @@ class AppKernel extends Kernel
             new \WellCommerce\Bundle\ShippingBundle\WellCommerceShippingBundle(),
             new \WellCommerce\Bundle\LayoutBundle\WellCommerceLayoutBundle(),
             new \WellCommerce\Bundle\ShowcaseBundle\WellCommerceShowcaseBundle(),
-            new \WellCommerce\Bundle\LocaleBundle\WellCommerceLocaleBundle(),
-            new \WellCommerce\Bundle\ThemeBundle\WellCommerceThemeBundle(),
-            new \WellCommerce\Bundle\MediaBundle\WellCommerceMediaBundle(),
             new \WellCommerce\Bundle\WishlistBundle\WellCommerceWishlistBundle(),
         ];
         

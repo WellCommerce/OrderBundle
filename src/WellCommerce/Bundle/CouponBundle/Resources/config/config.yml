@@ -16,8 +16,8 @@ well_commerce_api:
         WellCommerce\Bundle\CouponBundle\Entity\CouponTranslation:
             mapping: "@WellCommerceCouponBundle/Resources/config/serialization/CouponTranslation.yml"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\CouponBundle\Entity\CouponTranslation:
                 properties:

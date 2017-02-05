@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CmsBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 use WellCommerce\Bundle\AppBundle\Entity\Meta;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableSubjectInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\Route;

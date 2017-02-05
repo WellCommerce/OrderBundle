@@ -12,10 +12,10 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Manager;
 
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\ClientBundle\Entity\Client;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Class OrderManager
@@ -24,7 +24,7 @@ use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
  */
 final class OrderManager extends AbstractManager implements OrderManagerInterface
 {
-    public function getOrder(string $sessionId, Client $client = null, ShopInterface $shop, string $currency): Order
+    public function getOrder(string $sessionId, Client $client = null, Shop $shop, string $currency): Order
     {
         $order = $this->findOrder($sessionId, $client, $shop);
         
@@ -59,7 +59,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         return $order;
     }
     
-    public function findOrder(string $sessionId, Client $client = null, ShopInterface $shop)
+    public function findOrder(string $sessionId, Client $client = null, Shop $shop)
     {
         if (null !== $client) {
             $order = $this->getCurrentClientOrder($client, $shop);
@@ -73,7 +73,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         return $order;
     }
     
-    private function getCurrentClientOrder(Client $client, ShopInterface $shop)
+    private function getCurrentClientOrder(Client $client, Shop $shop)
     {
         return $this->getRepository()->findOneBy([
             'client'    => $client,
@@ -82,7 +82,7 @@ final class OrderManager extends AbstractManager implements OrderManagerInterfac
         ]);
     }
     
-    private function getCurrentSessionOrder($sessionId, ShopInterface $shop)
+    private function getCurrentSessionOrder($sessionId, Shop $shop)
     {
         return $this->getRepository()->findOneBy([
             'sessionId' => $sessionId,

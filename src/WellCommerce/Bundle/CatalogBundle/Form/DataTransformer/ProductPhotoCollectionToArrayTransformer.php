@@ -18,8 +18,8 @@ use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\PropertyAccess\PropertyPathInterface;
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto;
-use WellCommerce\Bundle\MediaBundle\Entity\Media;
-use WellCommerce\Bundle\MediaBundle\Form\DataTransformer\MediaCollectionToArrayTransformer;
+use WellCommerce\Bundle\AppBundle\Entity\Media;
+use WellCommerce\Bundle\AppBundle\Form\DataTransformer\MediaCollectionToArrayTransformer;
 
 /**
  * Class ProductPhotoCollectionToArrayTransformer
@@ -150,7 +150,7 @@ class ProductPhotoCollectionToArrayTransformer extends MediaCollectionToArrayTra
      *
      * @param int $id
      *
-     * @return \WellCommerce\Bundle\MediaBundle\Entity\Media
+     * @return \WellCommerce\Bundle\AppBundle\Entity\Media
      */
     protected function getMediaById($id)
     {

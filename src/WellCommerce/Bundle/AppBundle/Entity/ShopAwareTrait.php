@@ -20,22 +20,16 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
 trait ShopAwareTrait
 {
     /**
-     * @var ShopInterface
+     * @var Shop
      */
     protected $shop;
     
-    /**
-     * @return ShopInterface
-     */
-    public function getShop() : ShopInterface
+    public function getShop(): Shop
     {
         return $this->shop;
     }
     
-    /**
-     * @param Shop $shop
-     */
-    public function setShop(ShopInterface $shop)
+    public function setShop(Shop $shop)
     {
         $this->shop = $shop;
     }

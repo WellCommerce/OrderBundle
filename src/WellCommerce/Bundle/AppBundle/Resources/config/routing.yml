@@ -27,17 +27,11 @@ wellcommerce_distribution:
 wellcommerce_layout:
     resource: "@WellCommerceLayoutBundle/Resources/config/routing.yml"
 
-wellcommerce_locale:
-    resource: "@WellCommerceLocaleBundle/Resources/config/routing.yml"
-
 wellcommerce_coupon:
     resource: "@WellCommerceCouponBundle/Resources/config/routing.yml"
 
 wellcommerce_client:
     resource: "@WellCommerceClientBundle/Resources/config/routing.yml"
-
-wellcommerce_media:
-    resource: "@WellCommerceMediaBundle/Resources/config/routing.yml"
 
 wellcommerce_admin:
     resource: "@WellCommerceAdminBundle/Resources/config/routing.yml"
@@ -71,6 +65,14 @@ _admin_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/admin.yml"
     prefix: /admin/configuration/currency
 
+_admin_media:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/media/admin.yml"
+    prefix: /admin/media
+
+_admin_locale:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/locale/admin.yml"
+    prefix: /admin/configuration/locale
+
 _admin_shop:
     resource: "@WellCommerceAppBundle/Resources/config/routing/shop/admin.yml"
     prefix: /admin/configuration/shop
@@ -79,13 +81,17 @@ _admin_tax:
     resource: "@WellCommerceAppBundle/Resources/config/routing/tax/admin.yml"
     prefix: /admin/configuration/tax
 
+_admin_theme:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/theme/admin.yml"
+    prefix: /admin/configuration/theme
+
 _front_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/front.yml"
     prefix: /currency
 
-
-wellcommerce_theme:
-    resource: "@WellCommerceThemeBundle/Resources/config/routing.yml"
+_front_locale:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/locale/front.yml"
+    prefix: /locale
 
 wellcommerce_wishlist:
     resource: "@WellCommerceWishlistBundle/Resources/config/routing.yml"

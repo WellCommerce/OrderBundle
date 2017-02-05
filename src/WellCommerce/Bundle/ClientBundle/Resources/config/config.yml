@@ -28,8 +28,8 @@ well_commerce_api:
         WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress:
             mapping: "@WellCommerceClientBundle/Resources/config/serialization/ClientShippingAddress.yml"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\ClientBundle\Entity\ClientGroupTranslation:
                 properties:

@@ -11,21 +11,48 @@
 
 namespace WellCommerce\Bundle\AppBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use WellCommerce\Bundle\AppBundle\Copier\LocaleCopier;
 
 /**
  * Class Configuration
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class Configuration implements ConfigurationInterface
+class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('well_commerce_app');
+        $rootNode    = $treeBuilder->root('well_commerce_app');
+        $this->processConfiguration($rootNode);
         
         return $treeBuilder;
     }
+    
+    //@formatter:off
+    protected function processConfiguration(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('locale_copier')
+                    ->children()
+                        ->scalarNode('class')->defaultValue(LocaleCopier::class)->end()
+                        ->arrayNode('entities')->isRequired()
+                            ->useAttributeAsKey('name')
+                            ->prototype('array')
+                                ->children()
+                                ->arrayNode('properties')
+                                    ->useAttributeAsKey('name')
+                                    ->prototype('scalar')->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+    //@formatter:on
 }

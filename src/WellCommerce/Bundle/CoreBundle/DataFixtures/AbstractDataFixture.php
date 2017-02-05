@@ -22,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
-use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
 
 /**
  * Class AbstractDataFixture

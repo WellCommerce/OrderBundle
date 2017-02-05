@@ -14,14 +14,14 @@ namespace WellCommerce\Bundle\ShippingBundle\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
+use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingCalculatorInterface;
 use WellCommerce\Bundle\ShippingBundle\Calculator\ShippingSubjectInterface;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod;
 use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodCost;
 use WellCommerce\Bundle\ShippingBundle\Exception\CalculatorNotFoundException;
 use WellCommerce\Bundle\ShippingBundle\Repository\ShippingMethodRepositoryInterface;
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
-use WellCommerce\Bundle\AppBundle\Storage\ShopStorageInterface;
 
 /**
  * Class ShippingMethodProvider
@@ -119,9 +119,9 @@ final class ShippingMethodProvider implements ShippingMethodProviderInterface
         });
     }
     
-    private function getCurrentShop(ShippingSubjectInterface $subject): ShopInterface
+    private function getCurrentShop(ShippingSubjectInterface $subject): Shop
     {
-        if (!$subject->getShop() instanceof ShopInterface) {
+        if (!$subject->getShop() instanceof Shop) {
             return $this->shopStorage->getCurrentShop();
         }
         

@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle\Repository;
 
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Class ShopRepository
@@ -22,18 +22,18 @@ use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
  */
 class ShopRepository extends EntityRepository implements ShopRepositoryInterface
 {
-    public function resolve(int $currentShopId, string $url): ShopInterface
+    public function resolve(int $currentShopId, string $url): Shop
     {
         if (0 === $currentShopId) {
             $currentShop = $this->findOneBy(['url' => $url]);
             
-            if ($currentShop instanceof ShopInterface) {
+            if ($currentShop instanceof Shop) {
                 return $currentShop;
             }
         }
         
         $currentShop = $this->find($currentShopId);
-        if ($currentShop instanceof ShopInterface) {
+        if ($currentShop instanceof Shop) {
             return $currentShop;
         }
         

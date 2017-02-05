@@ -49,8 +49,8 @@ well_commerce_api:
         WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroupTranslation:
             mapping: "@WellCommerceOrderBundle/Resources/config/serialization/OrderStatusGroupTranslation.yml"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\OrderBundle\Entity\OrderStatusTranslation:
                 properties:

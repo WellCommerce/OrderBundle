@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AppBundle\Storage;
 
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Interface ShopStorageInterface
@@ -21,11 +21,11 @@ use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
  */
 interface ShopStorageInterface
 {
-    public function getCurrentShop() : ShopInterface;
-
-    public function getCurrentShopIdentifier() : int;
-
-    public function setCurrentShop(ShopInterface $shop);
-
-    public function hasCurrentShop() : bool;
+    public function getCurrentShop(): Shop;
+    
+    public function getCurrentShopIdentifier(): int;
+    
+    public function setCurrentShop(Shop $shop);
+    
+    public function hasCurrentShop(): bool;
 }

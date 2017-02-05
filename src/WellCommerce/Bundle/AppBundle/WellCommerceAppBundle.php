@@ -12,6 +12,8 @@
 
 namespace WellCommerce\Bundle\AppBundle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use WellCommerce\Bundle\AppBundle\DependencyInjection\Compiler;
 use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
@@ -21,4 +23,9 @@ use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
  */
 final class WellCommerceAppBundle extends AbstractWellCommerceBundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+        $container->addCompilerPass(new Compiler\ThemeCompilerPass());
+    }
 }

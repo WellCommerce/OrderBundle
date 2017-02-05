@@ -18,8 +18,8 @@ well_commerce_api:
         WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodTranslation:
             mapping: "@WellCommerceShippingBundle/Resources/config/serialization/ShippingMethodTranslation.yml"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodTranslation:
                 properties:

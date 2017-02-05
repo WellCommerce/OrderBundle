@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AppBundle\Storage;
 
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 
 /**
  * Class ShopStorage
@@ -22,30 +22,30 @@ use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 final class ShopStorage implements ShopStorageInterface
 {
     /**
-     * @var ShopInterface
+     * @var Shop
      */
     private $currentShop;
-
-    public function getCurrentShopIdentifier() : int
+    
+    public function getCurrentShopIdentifier(): int
     {
         if ($this->hasCurrentShop()) {
             return $this->getCurrentShop()->getId();
         }
-
+        
         return 0;
     }
-
-    public function hasCurrentShop() : bool
+    
+    public function hasCurrentShop(): bool
     {
-        return $this->currentShop instanceof ShopInterface;
+        return $this->currentShop instanceof Shop;
     }
-
-    public function getCurrentShop() : ShopInterface
+    
+    public function getCurrentShop(): Shop
     {
         return $this->currentShop;
     }
-
-    public function setCurrentShop(ShopInterface $shop)
+    
+    public function setCurrentShop(Shop $shop)
     {
         $this->currentShop = $shop;
     }

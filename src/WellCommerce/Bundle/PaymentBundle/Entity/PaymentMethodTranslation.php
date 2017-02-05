@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\PaymentBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 
 /**
  * Class PaymentMethodTranslation

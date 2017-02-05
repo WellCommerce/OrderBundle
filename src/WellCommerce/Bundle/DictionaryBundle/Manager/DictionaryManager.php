@@ -18,7 +18,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Yaml\Yaml;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\DictionaryBundle\Entity\Dictionary;
-use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
 
 /**
  * Class DictionaryManager
@@ -33,7 +33,7 @@ final class DictionaryManager extends AbstractManager
     protected $kernel;
     
     /**
-     * @var array|\WellCommerce\Bundle\LocaleBundle\Entity\Locale[]
+     * @var array|\WellCommerce\Bundle\AppBundle\Entity\Locale[]
      */
     protected $locales;
     

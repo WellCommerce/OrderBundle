@@ -26,27 +26,18 @@ trait ShopCollectionAwareTrait
      */
     protected $shops;
     
-    /**
-     * @return Collection
-     */
-    public function getShops() : Collection
+    public function getShops(): Collection
     {
         return $this->shops;
     }
     
-    /**
-     * @param Collection $shops
-     */
     public function setShops(Collection $shops)
     {
         $this->shops = $shops;
     }
     
-    /**
-     * @param ShopInterface $shop
-     */
-    public function addShop(ShopInterface $shop)
+    public function addShop(Shop $shop)
     {
-        $this->shops[] = $shop;
+        $this->shops->add($shop);
     }
 }

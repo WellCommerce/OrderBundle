@@ -20,8 +20,8 @@ well_commerce_api:
         WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodTranslation:
             mapping: "@WellCommercePaymentBundle/Resources/config/serialization/PaymentMethodTranslation.yml"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodTranslation:
                 properties:
