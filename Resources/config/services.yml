@@ -65,3 +65,27 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+    knp.packagist_api.client:
+        class: Packagist\Api\Client
+
+    dataset.transformer.package_version_reference:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\VersionReferenceTransformer
+        tags:
+            - { name: dataset.transformer, alias: package_version_reference }
+
+    package.helper:
+        class: WellCommerce\Bundle\CoreBundle\Helper\Package\PackageHelper
+        arguments: ['@knp.packagist_api.client']
+
+    distribution.console.action_executor:
+        class: WellCommerce\Bundle\CoreBundle\Console\ConsoleActionExecutor
+        arguments: ['@kernel']
+
+    distribution.bundle.manipulator:
+        class: WellCommerce\Bundle\CoreBundle\Manipulator\WellCommerceManipulator
+        arguments: ['@kernel']
+
+    distribution.bundle.generator:
+        class: WellCommerce\Bundle\CoreBundle\Generator\WellCommerceBundleGenerator
+        arguments: ['@kernel', '@twig']
