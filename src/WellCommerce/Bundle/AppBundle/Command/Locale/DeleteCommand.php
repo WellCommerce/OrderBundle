@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Command;
+namespace WellCommerce\Bundle\AppBundle\Command\Locale;
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,11 +26,11 @@ use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
 /**
- * Class DeleteLocaleCommand
+ * Class DeleteCommand
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class DeleteLocaleCommand extends ContainerAwareCommand
+class DeleteCommand extends ContainerAwareCommand
 {
     /**
      * @var RepositoryInterface
@@ -50,7 +50,7 @@ class DeleteLocaleCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this->setDescription('Deletes a locale and related translatable entities');
-        $this->setName('wellcommerce:locale:delete');
+        $this->setName('locale:delete');
     }
     
     protected function initialize(InputInterface $input, OutputInterface $output)

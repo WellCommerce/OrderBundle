@@ -10,20 +10,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Visitor;
+namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\ClientGroup;
 use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Provider\OrderModifierProviderInterface;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
 /**
  * Class OrderClientDiscountVisitor
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderClientDiscountVisitor implements OrderVisitorInterface
+class OrderClientGroupDiscountVisitor extends AbstractContainerAware implements OrderVisitorInterface
 {
     /**
      * @var OrderModifierProviderInterface
@@ -52,22 +53,27 @@ class OrderClientDiscountVisitor implements OrderVisitorInterface
         $client = $order->getClient();
         
         if ($client instanceof Client && null === $order->getCoupon()) {
-            $modifierValue = $this->getDiscountForClient($client);
+            $clientGroup   = $client->getClientGroup();
+            $modifierValue = $this->getDiscountForClientGroup($clientGroup);
             
             if ($modifierValue > 0) {
-                $modifier = $this->orderModifierProvider->getOrderModifier($order, 'client_discount');
+                $modifier = $this->orderModifierProvider->getOrderModifier($order, 'client_group_discount');
                 $modifier->setCurrency($order->getCurrency());
                 $modifier->setGrossAmount($order->getProductTotal()->getGrossPrice() * $modifierValue);
                 $modifier->setNetAmount($order->getProductTotal()->getNetPrice() * $modifierValue);
                 $modifier->setTaxAmount($order->getProductTotal()->getTaxAmount() * $modifierValue);
             }
         } else {
-            $order->removeModifier('client_discount');
+            $order->removeModifier('client_group_discount');
         }
     }
     
-    protected function getDiscountForClient(Client $client): float
+    private function getDiscountForClientGroup(ClientGroup $clientGroup = null): float
     {
-        return round((float)$client->getClientDetails()->getDiscount() / 100, 2);
+        if (null !== $clientGroup) {
+            return round((float)$clientGroup->getDiscount() / 100, 2);
+        }
+        
+        return 0;
     }
 }

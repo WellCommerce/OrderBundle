@@ -10,11 +10,10 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Visitor;
+namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
 use WellCommerce\Bundle\AppBundle\Converter\CurrencyConverterInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
-use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
 
 /**
  * Class ShippingMethodCartVisitor
