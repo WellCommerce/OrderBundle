@@ -132,6 +132,21 @@ currency:
     comment:
         enabled: Currency will be visible in shop
 
+dictionary:
+    heading:
+        index: Translations
+        add: Add a translation
+        edit: Edit a translation
+    label:
+        id: ID
+        identifier: Identifier
+        translation: Translation
+        locale: Locale
+        value: Value
+    button:
+        add: Add new translation
+        sync: Synchronize translations
+
 layout_box:
     heading:
         index: Layout boxes

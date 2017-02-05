@@ -15,7 +15,6 @@ imports:
     - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceDictionaryBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
     - { resource: "@WellCommercePaymentBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReportBundle/Resources/config/config.yml" }
@@ -131,6 +130,9 @@ well_commerce_api:
 well_commerce_app:
     locale_copier:
         entities:
+            WellCommerce\Bundle\AppBundle\Entity\DictionaryTranslation:
+                properties:
+                    - value
             WellCommerce\Bundle\AppBundle\Entity\LayoutBoxTranslation:
                 properties:
                     - name
