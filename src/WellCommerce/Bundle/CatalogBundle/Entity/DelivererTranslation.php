@@ -13,14 +13,14 @@
 namespace WellCommerce\Bundle\CatalogBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class DelivererTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class DelivererTranslation implements LocaleAwareInterface
+class DelivererTranslation extends AbstractTranslation
 {
     use Translation;
     

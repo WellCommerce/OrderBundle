@@ -13,15 +13,14 @@
 namespace WellCommerce\Bundle\CatalogBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * UnitTranslation
  */
-class UnitTranslation implements LocaleAwareInterface
+class UnitTranslation extends AbstractTranslation
 {
     use Translation;
-    
     protected $name = '';
     
     public function getName(): string

@@ -12,13 +12,13 @@
 
 namespace {{ bundle.namespace }}\Entity;
 
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 
 /**
  * {{ bundle.prefix }}Translation
  */
-class {{ bundle.prefix }}Translation implements LocaleAwareInterface
+class {{ bundle.prefix }}Translation extends AbstractTranslation
 {
     use Translation;
 

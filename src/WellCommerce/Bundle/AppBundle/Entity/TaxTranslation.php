@@ -13,13 +13,14 @@
 namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class TaxTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class TaxTranslation implements LocaleAwareInterface
+class TaxTranslation extends AbstractTranslation
 {
     use Translation;
     

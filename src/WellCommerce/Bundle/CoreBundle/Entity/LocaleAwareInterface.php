@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Entity;
+namespace WellCommerce\Bundle\CoreBundle\Entity;
 
 /**
  * Interface LocaleAwareInterface
@@ -23,7 +23,7 @@ interface LocaleAwareInterface
      * @param string $locale
      */
     public function setLocale($locale);
-
+    
     /**
      * @return string
      */

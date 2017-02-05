@@ -3,8 +3,8 @@
 namespace WellCommerce\Bundle\CatalogBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Meta;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableSubjectInterface;
 use WellCommerce\Bundle\CoreBundle\Entity\RoutableTrait;
 use WellCommerce\Bundle\CoreBundle\Entity\Route;
@@ -14,7 +14,7 @@ use WellCommerce\Bundle\CoreBundle\Entity\Route;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CategoryTranslation implements RoutableSubjectInterface, LocaleAwareInterface
+class CategoryTranslation extends AbstractTranslation implements RoutableSubjectInterface
 {
     use Translation;
     use RoutableTrait;

@@ -20,7 +20,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
@@ -90,7 +90,7 @@ class DeleteCommand extends ContainerAwareCommand
         
         foreach ($metadata as $classMetadata) {
             $reflectionClass = $classMetadata->getReflectionClass();
-            if ($reflectionClass->implementsInterface(\WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface::class)) {
+            if ($reflectionClass->implementsInterface(LocaleAwareInterface::class)) {
                 $repository = $this->entityManager->getRepository($reflectionClass->getName());
                 $this->deleteTranslatableEntities($repository, $locale, $output);
             }

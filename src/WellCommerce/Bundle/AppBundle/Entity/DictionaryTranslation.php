@@ -13,13 +13,14 @@
 namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class DictionaryTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class DictionaryTranslation implements LocaleAwareInterface
+class DictionaryTranslation extends AbstractTranslation
 {
     use Translation;
     

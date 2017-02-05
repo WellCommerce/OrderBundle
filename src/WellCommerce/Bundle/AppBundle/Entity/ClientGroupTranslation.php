@@ -13,13 +13,14 @@
 namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class ClientGroupTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ClientGroupTranslation implements LocaleAwareInterface
+class ClientGroupTranslation extends AbstractTranslation
 {
     use Translation;
     

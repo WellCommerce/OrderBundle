@@ -13,33 +13,24 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class PaymentMethodTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class PaymentMethodTranslation implements LocaleAwareInterface
+class PaymentMethodTranslation extends AbstractTranslation
 {
     use Translation;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @return string
-     */
-    public function getName() : string
+    
+    protected $name = '';
+    
+    public function getName(): string
     {
         return $this->name;
     }
-
-    /**
-     * @param string $name
-     */
+    
     public function setName(string $name)
     {
         $this->name = $name;

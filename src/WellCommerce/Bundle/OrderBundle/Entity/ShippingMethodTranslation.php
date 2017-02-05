@@ -13,14 +13,14 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class ShippingMethodTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ShippingMethodTranslation implements LocaleAwareInterface
+class ShippingMethodTranslation extends AbstractTranslation
 {
     use Translation;
     

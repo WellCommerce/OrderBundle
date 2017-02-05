@@ -13,33 +13,24 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class OrderStatusGroupTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatusGroupTranslation implements LocaleAwareInterface
+class OrderStatusGroupTranslation extends AbstractTranslation
 {
     use Translation;
     
-    /**
-     * @var string
-     */
-    protected $name;
+    protected $name = '';
     
-    /**
-     * @return string
-     */
     public function getName()
     {
         return $this->name;
     }
     
-    /**
-     * @param string $name
-     */
     public function setName($name)
     {
         $this->name = $name;
