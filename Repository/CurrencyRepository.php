@@ -21,11 +21,8 @@ use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
  */
 class CurrencyRepository extends EntityRepository implements CurrencyRepositoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getCurrenciesToSelect()
     {
-        return Intl::getAppBundle()->getCurrencyNames();
+        return Intl::getCurrencyBundle()->getCurrencyNames();
     }
 }

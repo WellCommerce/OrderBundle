@@ -37,16 +37,16 @@ wellcommerce_order:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 wellcommerce_payment:
-    resource: "@WellCommercePaymentBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 wellcommerce_report:
     resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
 
 wellcommerce_shipping:
-    resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 wellcommerce_shipment:
-    resource: "@WellCommerceShipmentBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 _admin_company:
     resource: "@WellCommerceAppBundle/Resources/config/routing/company/admin.yml"

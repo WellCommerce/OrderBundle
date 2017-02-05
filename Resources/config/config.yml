@@ -16,11 +16,8 @@ imports:
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommercePaymentBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReportBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReviewBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceShippingBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceShipmentBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShowcaseBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceWishlistBundle/Resources/config/config.yml" }
 
