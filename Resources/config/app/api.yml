@@ -12,8 +12,6 @@ well_commerce_core:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/Dimension.yml"
         WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/DiscountablePrice.yml"
-        WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration:
-            mapping: "@WellCommerceAppBundle/Resources/config/serialization/MailerConfiguration.yml"
         WellCommerce\Bundle\AppBundle\Entity\Meta:
             mapping: "@WellCommerceAppBundle/Resources/config/serialization/Meta.yml"
         WellCommerce\Bundle\AppBundle\Entity\Price:

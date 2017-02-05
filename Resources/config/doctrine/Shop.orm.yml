@@ -11,7 +11,7 @@ WellCommerce\Bundle\AppBundle\Entity\Shop:
                 strategy: IDENTITY
     embedded:
         mailerConfiguration:
-            class: WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration
+            class: WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration
             columnPrefix: mailer_configuration_
     fields:
         name:
