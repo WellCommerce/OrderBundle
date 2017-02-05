@@ -55,19 +55,6 @@ abstract class AbstractContainerAware
         return $this->getTranslatorHelper()->trans($id, $params, $domain);
     }
     
-    public function getThemeDir(string $themeFolder = '') : string
-    {
-        $kernelDir = $this->getKernel()->getRootDir();
-        $webDir    = $kernelDir . '/../web';
-        $dir       = $webDir . DIRECTORY_SEPARATOR . 'themes' . (strlen($themeFolder) ? DIRECTORY_SEPARATOR . $themeFolder : '');
-        
-        if (!is_dir($dir)) {
-            throw new FileException(sprintf('Directory "%s" not found.', $dir));
-        }
-        
-        return $dir;
-    }
-    
     public function getKernel() : KernelInterface
     {
         return $this->get('kernel');
