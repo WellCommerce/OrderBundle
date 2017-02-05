@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ShowcaseBundle\Configurator;
 
-use WellCommerce\Bundle\LayoutBundle\Configurator\AbstractLayoutBoxConfigurator;
+use WellCommerce\Bundle\AppBundle\Configurator\AbstractLayoutBoxConfigurator;
 use WellCommerce\Component\Form\Elements\FormInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
 

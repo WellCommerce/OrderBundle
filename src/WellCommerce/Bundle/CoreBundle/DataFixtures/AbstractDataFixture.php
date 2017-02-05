@@ -20,8 +20,8 @@ use Faker\Factory as FakerFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBox;
-use WellCommerce\Bundle\LayoutBundle\Entity\LayoutBoxTranslation;
+use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
+use WellCommerce\Bundle\AppBundle\Entity\LayoutBoxTranslation;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
 
 /**

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Manager;
 
 use WellCommerce\Bundle\CoreBundle\Test\Configurator\AbstractLayoutBoxConfiguratorTestCase;
-use WellCommerce\Bundle\LayoutBundle\Configurator\LayoutBoxConfiguratorInterface;
+use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorInterface;
 
 /**
  * Class ProductInfoBoxConfiguratorTest

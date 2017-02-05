@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CmsBundle\Controller\Box;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CmsBundle\Entity\ContactTicket;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
-use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
+use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class ContactBoxController

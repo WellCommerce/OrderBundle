@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\ClientBundle\Configurator;
 
-use WellCommerce\Bundle\LayoutBundle\Configurator\AbstractLayoutBoxConfigurator;
+use WellCommerce\Bundle\AppBundle\Configurator\AbstractLayoutBoxConfigurator;
 
 /**
  * Class ClientRegistrationBoxConfigurator
