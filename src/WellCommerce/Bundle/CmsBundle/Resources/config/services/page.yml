@@ -28,10 +28,10 @@ services:
             - [setContainer, ['@service_container']]
 
     twig.extension.page:
-        class: WellCommerce\Bundle\CmsBundle\Twig\Extension\PageExtension
+        class: WellCommerce\Bundle\CmsBundle\Twig\PageExtension
+        arguments: ['@page.dataset.front']
         tags:
             - { name: twig.extension }
-        arguments: ['@page.dataset.front']
 
     page.request.storage:
         class: WellCommerce\Bundle\CmsBundle\Request\PageRequestStorage
