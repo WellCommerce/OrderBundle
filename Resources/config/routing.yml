@@ -27,9 +27,6 @@ wellcommerce_coupon:
 wellcommerce_client:
     resource: "@WellCommerceClientBundle/Resources/config/routing.yml"
 
-wellcommerce_admin:
-    resource: "@WellCommerceAdminBundle/Resources/config/routing.yml"
-
 wellcommerce_oauth:
     resource: "@WellCommerceOAuthBundle/Resources/config/routing.yml"
 
@@ -40,7 +37,7 @@ wellcommerce_payment:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 wellcommerce_report:
-    resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
+    resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
 wellcommerce_shipping:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
@@ -55,6 +52,10 @@ _admin_company:
 _admin_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/admin.yml"
     prefix: /admin/configuration/currency
+
+_admin_dashboard:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/dashboard/admin.yml"
+    prefix: /admin/dashboard
 
 _admin_dictionary:
     resource: "@WellCommerceAppBundle/Resources/config/routing/dictionary/admin.yml"
@@ -83,6 +84,14 @@ _admin_tax:
 _admin_theme:
     resource: "@WellCommerceAppBundle/Resources/config/routing/theme/admin.yml"
     prefix: /admin/layout/theme
+
+_admin_user:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/user/admin.yml"
+    prefix: /admin/user/group
+
+_admin_user_group:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/user_group/admin.yml"
+    prefix: /admin/user/group
 
 _front_currency:
     resource: "@WellCommerceAppBundle/Resources/config/routing/currency/front.yml"

@@ -7,6 +7,7 @@
 # please view the LICENSE file that was distributed with this source code.
 
 imports:
+    - { resource: 'services/admin.yml' }
     - { resource: 'services/currency.yml' }
     - { resource: 'services/media.yml' }
     - { resource: 'services/layout_box.yml' }
