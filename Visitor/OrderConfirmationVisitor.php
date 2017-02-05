@@ -15,8 +15,8 @@ namespace WellCommerce\Bundle\OrderBundle\Visitor;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGeneratorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod;
-use WellCommerce\Bundle\PaymentBundle\Manager\PaymentManagerInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
+use WellCommerce\Bundle\OrderBundle\Manager\PaymentManagerInterface;
 
 /**
  * Class OrderConfirmationVisitor

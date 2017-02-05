@@ -27,6 +27,12 @@ well_commerce_api:
             manager: order_status.manager
         order_status_group:
             manager: order_status_group.manager
+        payment:
+            manager: payment.manager
+        payment_method:
+            manager: payment_method.manager
+        shipping_method:
+            manager: shipping_method.manager
     serialization:
         WellCommerce\Bundle\OrderBundle\Entity\Order:
             mapping: "@WellCommerceOrderBundle/Resources/config/serialization/Order.yml"
@@ -48,6 +54,18 @@ well_commerce_api:
             mapping: "@WellCommerceOrderBundle/Resources/config/serialization/OrderStatusGroup.yml"
         WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroupTranslation:
             mapping: "@WellCommerceOrderBundle/Resources/config/serialization/OrderStatusGroupTranslation.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\Payment:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/Payment.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/PaymentMethod.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\PaymentMethodTranslation:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/PaymentMethodTranslation.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/ShippingMethod.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodCost:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/ShippingMethodCost.yml"
+        WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodTranslation:
+            mapping: "@WellCommerceOrderBundle/Resources/config/serialization/ShippingMethodTranslation.yml"
 
 well_commerce_app:
     locale_copier:
@@ -56,5 +74,11 @@ well_commerce_app:
                 properties:
                     - name
             WellCommerce\Bundle\OrderBundle\Entity\OrderStatusGroupTranslation:
+                properties:
+                    - name
+            WellCommerce\Bundle\OrderBundle\Entity\PaymentMethodTranslation:
+                properties:
+                    - name
+            WellCommerce\Bundle\OrderBundle\Entity\ShippingMethodTranslation:
                 properties:
                     - name

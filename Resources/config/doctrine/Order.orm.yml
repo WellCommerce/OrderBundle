@@ -100,7 +100,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             mappedBy: order
             orphanRemoval: true
         payments:
-            targetEntity:  WellCommerce\Bundle\PaymentBundle\Entity\Payment
+            targetEntity:  WellCommerce\Bundle\OrderBundle\Entity\Payment
             mappedBy: order
     manyToOne:
         coupon:
@@ -119,7 +119,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                     referencedColumnName: id
                     onDelete: SET NULL
         paymentMethod:
-            targetEntity: WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod
             fetch: LAZY
             joinColumns:
                 payment_method_id:
@@ -133,7 +133,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                     referencedColumnName: id
                     onDelete: RESTRICT
         shippingMethod:
-            targetEntity: WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod
             fetch: LAZY
             joinColumns:
                 shipping_method_id:

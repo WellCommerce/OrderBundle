@@ -1,0 +1,54 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
+front.order_cart.index:
+    path: /order/cart
+    defaults:
+        _controller: 'order_cart.controller.front:indexAction'
+    options:
+        breadcrumb:
+            label: order.heading.cart
+
+front.order_cart.add:
+    path: '/order/cart/add/{id},{variant},{quantity}'
+    defaults:
+        _controller: 'order_cart.controller.front:addAction'
+        variant: 'null'
+        quantity: '1'
+    options:
+        expose: true
+
+front.order_cart.edit:
+    path: '/order/cart/edit/{id},{quantity}'
+    defaults:
+        _controller: 'order_cart.controller.front:editAction'
+    options:
+        expose: true
+
+front.order_cart.delete:
+    path: '/order/cart/delete/{id}'
+    defaults:
+        _controller: 'order_cart.controller.front:deleteAction'
+    options:
+        expose: true
+
+front.order_address.index:
+    path: /order/address
+    defaults:
+        _controller: 'order_address.controller.front:indexAction'
+    options:
+        breadcrumb:
+            label: order.heading.address
+
+front.order_confirm.index:
+    path: /order/confirm
+    defaults:
+        _controller: 'order_confirmation.controller.front:indexAction'
+    options:
+        breadcrumb:
+            label: order.heading.confirm

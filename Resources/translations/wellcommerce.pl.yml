@@ -137,3 +137,43 @@ order_status_history:
         no_history: Brak informacji o zmianach statusów zamówienia
     button:
         change: Zapisz
+
+payment:
+    heading:
+        initialize: Płatność
+    flash:
+        thank_you: "Dziękujemy za złożenie zamówienia. Poniżej prezentujemy jego szczegóły:"
+
+payment_method:
+    heading:
+        index: Formy płatności
+        add: Dodaj formę płatności
+        edit: Edytuj formę płatności
+    fieldset:
+        shipping_methods: Formy wysyłki
+        processor_configuration: Konfiguracja procesora
+        order_statuses: Statusy zamówienia
+    label:
+        processor: Typ procesora płatności
+        shipping_methods: Dozwolone formy wysyłki
+        payment_pending_order_status: Oczekuje na płatność
+        payment_success_order_status: Płatność zakończona
+        payment_failure_order_status: Płatność anulowana
+        bank_transfer:
+            tip: Twoje zamówienie będzie realizowane po otrzymaniu przelewu na poniższe dane rachunku.
+            account: Numer rachunku
+            sort_number: Sort code banku
+            title: Tytuł przelewu
+
+shipping_method:
+    heading:
+        index: Formy wysyłki
+        add: Dodaj formę wysyłki
+        edit: Edytuj formę wysyłki
+    label:
+        calculator: Rodzaj kalkulacji kosztów
+        costs: Koszty wysyłki
+        options_provider: Service opcji wysyłki
+    fieldset:
+        costs: Ustawienia kosztów wysyłki
+        countries: Państwa
