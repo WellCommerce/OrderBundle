@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\Manager;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\CoreBundle\Event\EntityEvent;
-use WellCommerce\Bundle\CoreBundle\Factory\EntityFactoryInterface;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Factory\EntityFactoryInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 

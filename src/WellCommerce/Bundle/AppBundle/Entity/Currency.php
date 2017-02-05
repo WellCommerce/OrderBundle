@@ -14,8 +14,8 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Enableable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**

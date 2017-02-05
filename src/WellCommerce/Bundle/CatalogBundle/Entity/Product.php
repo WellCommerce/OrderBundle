@@ -24,9 +24,9 @@ use WellCommerce\Bundle\AppBundle\Entity\Price;
 use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
 use WellCommerce\Bundle\AppBundle\Entity\Tax;
 use WellCommerce\Bundle\CatalogBundle\Entity\Extra\ProductExtraTrait;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Enableable;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
-use WellCommerce\Bundle\CoreBundle\Behaviours\Sortable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Enableable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Sortable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**

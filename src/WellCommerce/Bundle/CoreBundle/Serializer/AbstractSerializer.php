@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Metadata\Loader\SerializationMetadataLoaderInterface;
+use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
 
 /**
  * Class AbstractSerializer
@@ -54,7 +54,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
     protected $serializationMetadataLoader;
     
     /**
-     * @var \WellCommerce\Bundle\CoreBundle\Metadata\Collection\SerializationMetadataCollection
+     * @var \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection
      */
     protected $serializationMetadataCollection;
     
@@ -92,7 +92,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
     }
     
     /**
-     * @return \WellCommerce\Bundle\CoreBundle\Metadata\Collection\SerializationMetadataCollection
+     * @return \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection
      */
     protected function getSerializationMetadataCollection()
     {
@@ -104,7 +104,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      *
      * @param object $entity
      *
-     * @return \WellCommerce\Bundle\CoreBundle\Metadata\SerializationClassMetadataInterface
+     * @return \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\SerializationClassMetadataInterface
      */
     protected function getSerializationMetadata($entity)
     {
