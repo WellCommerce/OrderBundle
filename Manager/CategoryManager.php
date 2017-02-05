@@ -16,7 +16,7 @@ use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Class CategoryManager
