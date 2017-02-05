@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Checker;
 
-use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
