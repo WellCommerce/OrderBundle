@@ -12,22 +12,27 @@ WellCommerce\Bundle\AppBundle\Entity\Company:
             groups:
                 - default
                 - company
-        address:
+        line1:
             groups:
                 - default
                 - company
-        createdAt:
-            groups: {  }
-        updatedAt:
-            groups: {  }
-    associations:
-        createdBy:
+        line2:
             groups:
+                - default
                 - company
-        updatedBy:
+        postalCode:
             groups:
+                - default
                 - company
-        deletedBy:
+        state:
             groups:
+                - default
                 - company
-    callbacks: {  }
+        city:
+            groups:
+                - default
+                - company
+        country:
+            groups:
+                - default
+                - company

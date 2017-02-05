@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\AppBundle\Tests\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\Company;
-use WellCommerce\Bundle\AppBundle\Entity\CompanyAddress;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 
 /**
@@ -33,9 +32,14 @@ class CompanyTest extends AbstractEntityTestCase
         $faker = $this->getFakerGenerator();
         
         return [
-            ['address', new CompanyAddress()],
             ['name', $faker->company],
             ['shortName', $faker->company],
+            ['line1', $faker->address],
+            ['line2', $faker->address],
+            ['postalCode', $faker->postcode],
+            ['state', $faker->citySuffix],
+            ['country', $faker->country],
+            ['city', $faker->city],
             ['createdAt', $faker->dateTime],
             ['updatedAt', $faker->dateTime],
         ];
