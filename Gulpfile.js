@@ -12,23 +12,23 @@ var paths = {
     admin: {
         libs: [
             'web/bundles/fosjsrouting/js/router.js',
-            'web/bundles/wellcommerceadmin/js/libs/**',
+            'web/bundles/wellcommerceapp/js/libs/**',
             'web/bundles/bazingajstranslation/js/translator.min.js',
             'js/translations/config.js',
             'web/js/translations/**/*.js',
-            'web/bundles/wellcommerceadmin/js/core/plugin/*.js',
-            'web/bundles/wellcommerceadmin/js/core/form/*.js',
-            'web/bundles/wellcommerceadmin/js/core/language/*.js'
+            'web/bundles/wellcommerceapp/js/core/plugin/*.js',
+            'web/bundles/wellcommerceapp/js/core/form/*.js',
+            'web/bundles/wellcommerceapp/js/core/language/*.js'
         ],
         core: [
-            'web/bundles/wellcommerceadmin/js/core/gf.js',
-            'web/bundles/wellcommerceadmin/js/core/init.js'
+            'web/bundles/wellcommerceapp/js/core/gf.js',
+            'web/bundles/wellcommerceapp/js/core/init.js'
         ],
         css:  [
-            'web/bundles/wellcommerceadmin/css/**'
+            'web/bundles/wellcommerceapp/css/**'
         ],
         images: [
-            'web/bundles/wellcommerceadmin/images/**'
+            'web/bundles/wellcommerceapp/images/**'
         ]
     }
 };
