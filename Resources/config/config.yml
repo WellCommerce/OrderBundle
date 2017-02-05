@@ -14,7 +14,7 @@ imports:
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceClientBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCompanyBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceContactBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCurrencyBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDictionaryBundle/Resources/config/config.yml" }
@@ -23,9 +23,7 @@ imports:
     - { resource: "@WellCommerceLayoutBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceLocaleBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceMediaBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommerceNewsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
-    - { resource: "@WellCommercePageBundle/Resources/config/config.yml" }
     - { resource: "@WellCommercePaymentBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReportBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReviewBundle/Resources/config/config.yml" }

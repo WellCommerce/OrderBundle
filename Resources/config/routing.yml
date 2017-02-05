@@ -9,32 +9,20 @@
 wellcommerce_api:
     resource: "@WellCommerceApiBundle/Resources/config/routing.yml"
 
-wellcommerce_attribute:
+wellcommerce_catalog:
     resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
-wellcommerce_availability:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
-
-wellcommerce_category:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
-
-wellcommerce_contact:
-    resource: "@WellCommerceContactBundle/Resources/config/routing.yml"
+wellcommerce_cms:
+    resource: "@WellCommerceCmsBundle/Resources/config/routing.yml"
 
 wellcommerce_currency:
     resource: "@WellCommerceCurrencyBundle/Resources/config/routing.yml"
-
-wellcommerce_deliverer:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_dictionary:
     resource: "@WellCommerceDictionaryBundle/Resources/config/routing.yml"
 
 wellcommerce_distribution:
     resource: "@WellCommerceDistributionBundle/Resources/config/routing.yml"
-
-wellcommerce_layered_navigation:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_layout:
     resource: "@WellCommerceLayoutBundle/Resources/config/routing.yml"
@@ -57,9 +45,6 @@ wellcommerce_client:
 wellcommerce_media:
     resource: "@WellCommerceMediaBundle/Resources/config/routing.yml"
 
-wellcommerce_news:
-    resource: "@WellCommerceNewsBundle/Resources/config/routing.yml"
-
 wellcommerce_admin:
     resource: "@WellCommerceAdminBundle/Resources/config/routing.yml"
 
@@ -69,20 +54,8 @@ wellcommerce_oauth:
 wellcommerce_order:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
-wellcommerce_page:
-    resource: "@WellCommercePageBundle/Resources/config/routing.yml"
-
 wellcommerce_payment:
     resource: "@WellCommercePaymentBundle/Resources/config/routing.yml"
-
-wellcommerce_producer:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
-
-wellcommerce_product:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
-
-wellcommerce_product_status:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_report:
     resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
@@ -92,9 +65,6 @@ wellcommerce_review:
 
 wellcommerce_routing:
     resource: "@WellCommerceRoutingBundle/Resources/config/routing.yml"
-
-wellcommerce_search:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_shipping:
     resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"
@@ -107,9 +77,6 @@ wellcommerce_tax:
 
 wellcommerce_theme:
     resource: "@WellCommerceThemeBundle/Resources/config/routing.yml"
-
-wellcommerce_unit:
-    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
 wellcommerce_wishlist:
     resource: "@WellCommerceWishlistBundle/Resources/config/routing.yml"
