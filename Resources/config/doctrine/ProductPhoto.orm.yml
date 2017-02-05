@@ -27,7 +27,7 @@ WellCommerce\Bundle\CatalogBundle\Entity\ProductPhoto:
             column: main_photo
     manyToOne:
         photo:
-            targetEntity: WellCommerce\Bundle\MediaBundle\Entity\Media
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Media
             fetch: LAZY
             joinColumns:
                 photo_id:

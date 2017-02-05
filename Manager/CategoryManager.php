@@ -12,11 +12,11 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\Manager;
 
+use WellCommerce\Bundle\AppBundle\Entity\Locale;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
 use WellCommerce\Bundle\CatalogBundle\Entity\Category;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
-use WellCommerce\Bundle\LocaleBundle\Entity\Locale;
-use WellCommerce\Bundle\AppBundle\Entity\ShopInterface;
 
 /**
  * Class CategoryManager
@@ -48,7 +48,7 @@ class CategoryManager extends AbstractManager
         $em->flush();
     }
     
-    public function quickAddCategory(string $name, int $parent, ShopInterface $shop): Category
+    public function quickAddCategory(string $name, int $parent, Shop $shop): Category
     {
         $parentCategory = $this->getRepository()->find($parent);
         

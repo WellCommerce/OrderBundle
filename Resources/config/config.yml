@@ -167,8 +167,8 @@ well_commerce_core:
                 attributes: "[\\d+_]+"
             pattern: "{page},{limit},{orderBy},{orderDir},{priceFrom},{priceTo},{view},{producers},{attributes}"
 
-well_commerce_locale:
-    copier:
+well_commerce_app:
+    locale_copier:
         entities:
             WellCommerce\Bundle\CatalogBundle\Entity\AttributeTranslation:
                 properties:
