@@ -37,9 +37,9 @@ services:
 
     price_table.calculator:
         class: WellCommerce\Bundle\OrderBundle\Calculator\PriceTableCalculator
+        arguments: ['@currency.helper']
         tags:
             - { name: shipping_method.calculator, alias: price_table }
-        arguments: ['@currency.converter']
 
     shipping_method.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\ShippingMethodOrderVisitor

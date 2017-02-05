@@ -12,30 +12,30 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use WellCommerce\Bundle\AppBundle\Converter\CurrencyConverterInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
- * Class ShippingMethodCartVisitor
+ * Class CurrencyOrderVisitor
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
 final class CurrencyOrderVisitor implements OrderVisitorInterface
 {
     /**
-     * @var CurrencyConverterInterface
+     * @var CurrencyHelperInterface
      */
-    private $currencyConverter;
+    private $currencyHelper;
     
-    public function __construct(CurrencyConverterInterface $currencyConverter)
+    public function __construct(CurrencyHelperInterface $currencyHelper)
     {
-        $this->currencyConverter = $currencyConverter;
+        $this->currencyHelper = $currencyHelper;
     }
     
     public function visitOrder(Order $order)
     {
         $currency     = $order->getCurrency();
-        $currencyRate = $this->currencyConverter->getExchangeRate($currency);
+        $currencyRate = $this->currencyHelper->getCurrencyRate($currency);
         $order->setCurrencyRate($currencyRate);
     }
 }
