@@ -80,3 +80,14 @@ services:
         class: WellCommerce\Component\DataSet\Transformer\DateTransformer
         tags:
             - { name: dataset.transformer, alias: date }
+
+    dataset.transformer.image_path:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\ImagePathTransformer
+        tags:
+            - { name: dataset.transformer, alias: image_path }
+        arguments: ['@image.helper']
+
+    dataset.transformer.package_version_reference:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\VersionReferenceTransformer
+        tags:
+            - { name: dataset.transformer, alias: package_version_reference }

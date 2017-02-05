@@ -3,6 +3,9 @@ imports:
     - { resource: 'services/breadcrumb.yml' }
     - { resource: 'services/routing.yml' }
     - { resource: 'services/doctrine.yml' }
+    - { resource: 'services/form.yml' }
+    - { resource: 'services/dataset.yml' }
+    - { resource: 'services/datagrid.yml' }
 
 services:
     flash.helper:
@@ -71,11 +74,6 @@ services:
     knp.packagist_api.client:
         class: Packagist\Api\Client
 
-    dataset.transformer.package_version_reference:
-        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\VersionReferenceTransformer
-        tags:
-            - { name: dataset.transformer, alias: package_version_reference }
-
     package.helper:
         class: WellCommerce\Bundle\CoreBundle\Helper\Package\PackageHelper
         arguments: ['@knp.packagist_api.client']
@@ -91,9 +89,3 @@ services:
     distribution.bundle.generator:
         class: WellCommerce\Bundle\CoreBundle\Generator\WellCommerceBundleGenerator
         arguments: ['@kernel', '@twig']
-
-    dataset.transformer.image_path:
-        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\ImagePathTransformer
-        tags:
-            - { name: dataset.transformer, alias: image_path }
-        arguments: ['@image.helper']

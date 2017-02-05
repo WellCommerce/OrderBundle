@@ -21,25 +21,11 @@ use WellCommerce\Component\Collections\ArrayCollection;
  */
 class LayoutBoxSettingsCollection extends ArrayCollection
 {
-    /**
-     * Adds parameter to stack
-     *
-     * @param string $param
-     * @param mixed  $value
-     */
     public function add($name, $value)
     {
         $this->items[$name] = $value;
     }
-
-    /**
-     * Returns a box parameter or default value
-     *
-     * @param string $name
-     * @param null   $default
-     *
-     * @return mixed|null
-     */
+    
     public function getParam($name, $default = null)
     {
         return $this->has($name) ? $this->get($name) : $default;
