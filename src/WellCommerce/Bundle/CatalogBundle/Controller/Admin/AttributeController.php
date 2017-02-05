@@ -15,7 +15,6 @@ namespace WellCommerce\Bundle\CatalogBundle\Controller\Admin;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use WellCommerce\Bundle\CatalogBundle\Generator\CartesianProductGenerator;
 use WellCommerce\Bundle\CatalogBundle\Manager\AttributeManager;
 use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
 
@@ -87,7 +86,7 @@ class AttributeController extends AbstractAdminController
             $attributesMap[$attribute['attribute']][] = $attribute['value'];
         }
         
-        $variantsCombinations = CartesianProductGenerator::generateCartesianProduct($attributesMap);
+        $variantsCombinations = $this->generateCartesianProduct($attributesMap);
         
         return $this->jsonResponse([
             'variants' => $variantsCombinations,
@@ -97,5 +96,40 @@ class AttributeController extends AbstractAdminController
     protected function getManager(): AttributeManager
     {
         return parent::getManager();
+    }
+    
+    private function generateCartesianProduct(array $input): array
+    {
+        $result = [];
+        
+        while (list($key, $values) = each($input)) {
+            if (empty($values)) {
+                continue;
+            }
+            
+            if (empty($result)) {
+                foreach ($values as $value) {
+                    $result[] = [$key => $value];
+                }
+            } else {
+                $append = [];
+                
+                foreach ($result as &$product) {
+                    $product[$key] = array_shift($values);
+                    $copy          = $product;
+                    
+                    foreach ($values as $item) {
+                        $copy[$key] = $item;
+                        $append[]   = $copy;
+                    }
+                    
+                    array_unshift($values, $product[$key]);
+                }
+                
+                $result = array_merge($result, $append);
+            }
+        }
+        
+        return $result;
     }
 }
