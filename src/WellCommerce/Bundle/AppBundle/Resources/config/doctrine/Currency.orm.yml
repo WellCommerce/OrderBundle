@@ -3,7 +3,6 @@ WellCommerce\Bundle\AppBundle\Entity\Currency:
     cache:
         usage: NONSTRICT_READ_WRITE
     table: currency
-    repositoryClass: WellCommerce\Bundle\AppBundle\Repository\CurrencyRepository
     id:
         id:
             type: integer

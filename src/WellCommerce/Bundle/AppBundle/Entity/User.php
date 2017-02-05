@@ -186,9 +186,4 @@ class User implements \Serializable, EquatableInterface, UserInterface, EntityIn
     {
         $this->apiKey = $apiKey;
     }
-    
-    public function __toString(): string
-    {
-        return sprintf('%s %s', $this->getFirstName(), $this->getLastName());
-    }
 }

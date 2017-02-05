@@ -11,7 +11,7 @@
  */
 namespace WellCommerce\Bundle\AppBundle\Form\Admin;
 
-use WellCommerce\Bundle\AppBundle\Repository\CurrencyRepositoryInterface;
+use Symfony\Component\Intl\Intl;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
@@ -29,29 +29,29 @@ class CurrencyFormBuilder extends AbstractFormBuilder
     {
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'required_data',
-            'label' => $this->trans('common.fieldset.general')
+            'label' => $this->trans('common.fieldset.general'),
         ]));
-
+        
         $requiredData->addChild($this->getElement('select', [
             'name'    => 'code',
             'label'   => $this->trans('currency.label.code'),
-            'options' => $this->getCurrencyRepository()->getCurrenciesToSelect(),
-            'default' => $this->getRequestHelper()->getCurrentCurrency()
+            'options' => $this->getCurrenciesToSelect(),
+            'default' => $this->getRequestHelper()->getCurrentCurrency(),
         ]));
-
+        
         $requiredData->addChild($this->getElement('checkbox', [
             'name'    => 'enabled',
             'label'   => $this->trans('common.label.enabled'),
             'comment' => $this->trans('currency.comment.enabled'),
         ]));
-
+        
         $form->addFilter($this->getFilter('no_code'));
         $form->addFilter($this->getFilter('trim'));
         $form->addFilter($this->getFilter('secure'));
     }
-
-    private function getCurrencyRepository() : CurrencyRepositoryInterface
+    
+    private function getCurrenciesToSelect()
     {
-        return $this->get('currency.repository');
+        return Intl::getCurrencyBundle()->getCurrencyNames();
     }
 }
