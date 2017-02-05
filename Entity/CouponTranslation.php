@@ -13,14 +13,14 @@
 namespace WellCommerce\Bundle\CouponBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class CouponTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CouponTranslation implements LocaleAwareInterface
+class CouponTranslation extends AbstractTranslation
 {
     use Translation;
     
