@@ -32,6 +32,6 @@ WellCommerce\Bundle\ClientBundle\Entity\ClientGroup:
             orderBy: null
     manyToMany:
         pages:
-            targetEntity: WellCommerce\Bundle\PageBundle\Entity\Page
+            targetEntity: WellCommerce\Bundle\CmsBundle\Entity\Page
             fetch: LAZY
             mappedBy: clientGroups

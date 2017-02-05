@@ -16,8 +16,8 @@ use Carbon\Carbon;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
 use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
-use WellCommerce\Bundle\NewsBundle\Entity\News;
-use WellCommerce\Bundle\NewsBundle\Entity\NewsTranslation;
+use WellCommerce\Bundle\CmsBundle\Entity\News;
+use WellCommerce\Bundle\CmsBundle\Entity\NewsTranslation;
 
 /**
  * Class LoadNewsData

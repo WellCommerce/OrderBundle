@@ -258,9 +258,6 @@ well_commerce_catalog:
                     query_min_length: 3
                     result_limit: 100
                     query_builder_class: WellCommerce\Component\Search\Adapter\ZendLucene\ZendLuceneQueryBuilder
-
-well_commerce_catalog:
-    engine:
         index:
             types:
                 product:
