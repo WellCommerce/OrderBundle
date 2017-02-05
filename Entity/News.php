@@ -20,7 +20,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use WellCommerce\Bundle\CoreBundle\Behaviours\Identifiable;
 use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\MediaBundle\Entity\Media;
+use WellCommerce\Bundle\AppBundle\Entity\Media;
 use WellCommerce\Bundle\AppBundle\Entity\ShopCollectionAwareTrait;
 
 /**

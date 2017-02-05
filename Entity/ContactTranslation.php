@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CmsBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\AppBundle\Entity\LocaleAwareInterface;
 
 /**
  * Class ContactTranslation
