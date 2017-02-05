@@ -6,27 +6,20 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-WellCommerce\Bundle\AppBundle\Entity\MailerConfiguration:
+WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration:
     fields:
         from:
             groups:
-                - default
                 - mailer_configuration
         host:
             groups:
-                - default
                 - mailer_configuration
         port:
             groups:
-                - default
                 - mailer_configuration
         user:
             groups:
-                - default
                 - mailer_configuration
         pass:
             groups:
-                - default
                 - mailer_configuration
-    associations: {  }
-    callbacks: {  }

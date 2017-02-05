@@ -10,6 +10,9 @@ well_commerce_core:
     routers:
         router.default:             100
         routing.dynamic_router:     50
+    serialization:
+        WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration:
+            mapping: "@WellCommerceCoreBundle/Resources/config/serialization/MailerConfiguration.yml"
 
 fos_js_routing:
     router: router.default
