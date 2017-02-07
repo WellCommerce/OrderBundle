@@ -21,11 +21,6 @@ use WellCommerce\Bundle\CoreBundle\Entity\Route;
  */
 class ProductRoute extends Route
 {
-    /**
-     * @var Product
-     */
-    protected $identifier;
-    
     public function getType(): string
     {
         return 'product';
