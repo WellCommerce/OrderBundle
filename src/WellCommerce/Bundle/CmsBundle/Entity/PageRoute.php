@@ -21,11 +21,6 @@ use WellCommerce\Bundle\CoreBundle\Entity\Route;
  */
 class PageRoute extends Route
 {
-    /**
-     * @var Page
-     */
-    protected $identifier;
-    
     public function getType(): string
     {
         return 'page';
