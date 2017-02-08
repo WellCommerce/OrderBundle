@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\AppBundle\Tests\Entity;
 
 use WellCommerce\Bundle\AppBundle\Entity\User;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Test\Entity\AbstractEntityTestCase;
 
 /**
@@ -34,7 +33,7 @@ class UserTest extends AbstractEntityTestCase
             ['firstName', 'John'],
             ['lastName', 'Doe'],
             ['username', 'johndoe@domain.org'],
-            ['apiKey', Helper::generateUUIDv5()],
+            ['apiKey', base_convert(sha1(uniqid(mt_rand(), true)), 16, 36)],
         ];
     }
 }
