@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\AppBundle\Handler;
+namespace WellCommerce\Bundle\CoreBundle\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,12 +36,6 @@ final class LoginFailureHandler implements AuthenticationFailureHandlerInterface
      */
     private $loginRoute;
     
-    /**
-     * LoginFailureHandler constructor.
-     *
-     * @param RouterInterface $router
-     * @param string          $loginRoute
-     */
     public function __construct(RouterInterface $router, string $loginRoute)
     {
         $this->router     = $router;

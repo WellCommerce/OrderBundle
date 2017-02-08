@@ -141,7 +141,7 @@ services:
             - { name: twig.extension }
 
     client.failure.handler:
-        class: WellCommerce\Bundle\AppBundle\Handler\LoginFailureHandler
+        class: WellCommerce\Bundle\CoreBundle\Security\LoginFailureHandler
         arguments: ['@router', front.client.login]
 
     client.validator.unique_username:
