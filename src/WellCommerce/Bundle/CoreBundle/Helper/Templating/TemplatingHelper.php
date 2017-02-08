@@ -25,7 +25,7 @@ use WellCommerce\Bundle\CoreBundle\Controller\ControllerInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class TemplatingHelper implements TemplatingHelperInterface
+final class TemplatingHelper implements TemplatingHelperInterface
 {
     /**
      * @var EngineInterface
@@ -42,13 +42,6 @@ class TemplatingHelper implements TemplatingHelperInterface
      */
     protected $kernel;
     
-    /**
-     * TemplatingHelper constructor.
-     *
-     * @param EngineInterface $engine
-     * @param KernelInterface $kernel
-     * @param Environment     $environment
-     */
     public function __construct(EngineInterface $engine, KernelInterface $kernel, Environment $environment)
     {
         $this->engine      = $engine;
@@ -56,38 +49,26 @@ class TemplatingHelper implements TemplatingHelperInterface
         $this->kernel      = $kernel;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function render(string $name, array $parameters = []) : string
+    public function render(string $name, array $parameters = []): string
     {
         return $this->engine->render($name, $parameters);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function renderTemplateString(string $template, array $parameters = []) : string
+    public function renderTemplateString(string $template, array $parameters = []): string
     {
         $template = $this->environment->createTemplate($template);
         
         return $template->render($parameters);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function renderControllerResponse(ControllerInterface $controller, string $templateName, array $parameters = []) : Response
+    public function renderControllerResponse(ControllerInterface $controller, string $templateName, array $parameters = []): Response
     {
         $template = $this->resolveControllerTemplate($controller, $templateName);
         
         return $this->engine->renderResponse($template, $parameters);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function resolveControllerTemplate(ControllerInterface $controller, string $templateName) : string
+    public function resolveControllerTemplate(ControllerInterface $controller, string $templateName): string
     {
         $reflectionClass = new ReflectionClass($controller);
         $controllerName  = $this->getControllerLogicalName($reflectionClass);
@@ -96,14 +77,7 @@ class TemplatingHelper implements TemplatingHelperInterface
         return sprintf('%s:%s:%s.html.twig', $bundleName, $controllerName, $templateName);
     }
     
-    /**
-     * Returns the controller's logical name
-     *
-     * @param ReflectionClass $reflectionClass
-     *
-     * @return string
-     */
-    protected function getControllerLogicalName(ReflectionClass $reflectionClass) : string
+    protected function getControllerLogicalName(ReflectionClass $reflectionClass): string
     {
         $className = $reflectionClass->getName();
         preg_match('/Controller\\\(.+)Controller$/', $className, $matchController);
@@ -111,28 +85,14 @@ class TemplatingHelper implements TemplatingHelperInterface
         return $matchController[1];
     }
     
-    /**
-     * Returns the bundle's name
-     *
-     * @param ReflectionClass $reflectionClass
-     *
-     * @return string
-     */
-    protected function getBundleName(ReflectionClass $reflectionClass) : string
+    protected function getBundleName(ReflectionClass $reflectionClass): string
     {
         $currentBundle = $this->getBundleForClass($reflectionClass);
         
         return $currentBundle->getName();
     }
     
-    /**
-     * Returns bundle for particular controller
-     *
-     * @param ReflectionClass $class
-     *
-     * @return BundleInterface
-     */
-    protected function getBundleForClass(ReflectionClass $reflectionClass) : BundleInterface
+    protected function getBundleForClass(ReflectionClass $reflectionClass): BundleInterface
     {
         $bundles = $this->kernel->getBundles();
         

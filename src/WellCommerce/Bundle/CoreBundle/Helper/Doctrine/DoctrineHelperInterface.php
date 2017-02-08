@@ -51,6 +51,4 @@ interface DoctrineHelperInterface
     public function truncateTable(string $className);
 
     public function getMetadataFactory() : ClassMetadataFactory;
-
-    public function getAllClassesForQueryBuilder(QueryBuilder $queryBuilder) : array;
 }

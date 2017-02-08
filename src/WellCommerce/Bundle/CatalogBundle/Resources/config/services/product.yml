@@ -16,7 +16,7 @@ services:
             - [setContainer, ['@service_container']]
 
     product.storage:
-        class: WellCommerce\Bundle\CatalogBundle\Storage\ProductStorage
+        class: WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStorage
 
     product_info.layout_box.controller:
         class: WellCommerce\Bundle\CatalogBundle\Controller\Box\ProductInfoBoxController

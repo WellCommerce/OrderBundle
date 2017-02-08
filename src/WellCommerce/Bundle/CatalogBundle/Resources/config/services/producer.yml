@@ -42,7 +42,7 @@ services:
             - [setContainer, ['@service_container']]
 
     producer.storage:
-        class: WellCommerce\Bundle\CatalogBundle\Storage\ProducerStorage
+        class: WellCommerce\Bundle\CatalogBundle\Request\Storage\ProducerStorage
 
     twig.extension.producer:
         class: WellCommerce\Bundle\CatalogBundle\Twig\Extension\ProducerExtension

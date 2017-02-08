@@ -69,7 +69,7 @@ services:
         arguments: ['@category.dataset.front']
 
     category.storage:
-        class: WellCommerce\Bundle\CatalogBundle\Storage\CategoryStorage
+        class: WellCommerce\Bundle\CatalogBundle\Request\Storage\CategoryStorage
 
     category.doctrine.event_subscriber:
         class: WellCommerce\Bundle\CatalogBundle\EventListener\CategoryDoctrineEventSubscriber

@@ -34,11 +34,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
      */
     private $registry;
     
-    /**
-     * DoctrineHelper constructor.
-     *
-     * @param ManagerRegistry $registry
-     */
     public function __construct(ManagerRegistry $registry)
     {
         $this->registry = $registry;
@@ -89,19 +84,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
         return $this->getEntityManager()->getMetadataFactory();
     }
 
-    public function getAllClassesForQueryBuilder(QueryBuilder $queryBuilder) : array
-    {
-        $classes      = [];
-        $rootEntities = $queryBuilder->getRootEntities();
-        foreach ($rootEntities as $rootEntity) {
-            $classes[$rootEntity] = $rootEntity;
-            $metadata             = $this->getClassMetadata($rootEntity);
-            $this->addAssociationsTargetClasses($metadata, $classes);
-        }
-        
-        return $classes;
-    }
-
     public function getRepositoryForClass(string $className) : EntityRepository
     {
         return $this->getEntityManager()->getRepository($className);
@@ -125,15 +107,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
         }
         
         return false;
-    }
-
-    private function addAssociationsTargetClasses(ClassMetadata $metadata, array &$classes)
-    {
-        $associationNames = $metadata->getAssociationNames();
-        foreach ($associationNames as $associationName) {
-            $associationClass           = $metadata->getAssociationTargetClass($associationName);
-            $classes[$associationClass] = $associationClass;
-        }
     }
 
     private function getRealClass($object) : string

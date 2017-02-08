@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Context\Front;
 
 use WellCommerce\Bundle\CatalogBundle\Entity\ProductStatus;
-use WellCommerce\Bundle\CatalogBundle\Storage\ProductStatusStorage;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStatusStorage;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**

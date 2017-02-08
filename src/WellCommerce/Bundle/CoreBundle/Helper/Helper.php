@@ -18,27 +18,7 @@ namespace WellCommerce\Bundle\CoreBundle\Helper;
  */
 class Helper
 {
-    /**
-     * Replaces commas with dots
-     *
-     * @param $value
-     *
-     * @return string
-     */
-    public static function changeCommaToDot($value)
-    {
-        return str_replace(',', '.', $value);
-    }
-    
-    /**
-     * Converts string to snake-case
-     *
-     * @param string $value
-     * @param string $delimiter
-     *
-     * @return string
-     */
-    public static function snake($value, $delimiter = '_')
+    public static function snake(string $value, string $delimiter = '_'): string
     {
         $replace = '$1' . $delimiter . '$2';
         

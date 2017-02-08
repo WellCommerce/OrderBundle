@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CatalogBundle\Storage;
+namespace WellCommerce\Bundle\CatalogBundle\Request\Storage;
 
 use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 
