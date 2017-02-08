@@ -12,10 +12,10 @@
 namespace WellCommerce\Bundle\CoreBundle\Controller\Front;
 
 use WellCommerce\Bundle\AppBundle\Entity\Client;
-use WellCommerce\Bundle\CatalogBundle\Storage\CategoryStorageInterface;
-use WellCommerce\Bundle\CatalogBundle\Storage\ProducerStorageInterface;
-use WellCommerce\Bundle\CatalogBundle\Storage\ProductStatusStorageInterface;
-use WellCommerce\Bundle\CatalogBundle\Storage\ProductStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\CategoryStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProducerStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStatusStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStorageInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
 
