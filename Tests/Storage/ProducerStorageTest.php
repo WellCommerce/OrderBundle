@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CatalogBundle\Tests\Storage;
 
 use WellCommerce\Bundle\CatalogBundle\Entity\Producer;
-use WellCommerce\Bundle\CatalogBundle\Storage\ProducerStorage;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProducerStorage;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
 
 /**

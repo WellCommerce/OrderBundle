@@ -16,7 +16,7 @@ services:
             - [setContainer, ['@service_container']]
 
     product_status.storage:
-        class: WellCommerce\Bundle\CatalogBundle\Storage\ProductStatusStorage
+        class: WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStatusStorage
 
     product_status.transformer:
         class: WellCommerce\Bundle\CatalogBundle\DataSet\Transformer\ProductStatusTransformer
