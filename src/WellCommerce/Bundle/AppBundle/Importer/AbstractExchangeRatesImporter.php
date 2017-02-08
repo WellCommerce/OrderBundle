@@ -13,8 +13,6 @@
 namespace WellCommerce\Bundle\AppBundle\Importer;
 
 use WellCommerce\Bundle\AppBundle\Entity\CurrencyRate;
-use WellCommerce\Bundle\AppBundle\Repository\CurrencyRateRepositoryInterface;
-use WellCommerce\Bundle\AppBundle\Repository\CurrencyRepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
 use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 
@@ -26,7 +24,7 @@ use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 abstract class AbstractExchangeRatesImporter
 {
     /**
-     * @var CurrencyRepositoryInterface
+     * @var RepositoryInterface
      */
     protected $currencyRepository;
     
@@ -48,12 +46,12 @@ abstract class AbstractExchangeRatesImporter
     /**
      * AbstractExchangeRatesImporter constructor.
      *
-     * @param CurrencyRepositoryInterface $currencyRepository
-     * @param RepositoryInterface         $currencyRateRepository
-     * @param DoctrineHelperInterface     $helper
+     * @param RepositoryInterface     $currencyRepository
+     * @param RepositoryInterface     $currencyRateRepository
+     * @param DoctrineHelperInterface $helper
      */
     public function __construct(
-        CurrencyRepositoryInterface $currencyRepository,
+        RepositoryInterface $currencyRepository,
         RepositoryInterface $currencyRateRepository,
         DoctrineHelperInterface $helper
     ) {
