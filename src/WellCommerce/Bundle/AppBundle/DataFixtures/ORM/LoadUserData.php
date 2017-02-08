@@ -60,7 +60,7 @@ class LoadUserData extends AbstractDataFixture
         $user->setPassword('admin');
         $user->addRole($role);
         $user->getGroups()->add($group);
-        $user->setApiKey(Helper::generateRandomPassword(8));
+        $user->setApiKey($this->container->get('security.helper')->generateRandomPassword());
         $manager->persist($user);
         
         $manager->flush();

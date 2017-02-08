@@ -13,7 +13,6 @@
 namespace WellCommerce\Bundle\AppBundle\Manager;
 
 use WellCommerce\Bundle\AppBundle\Entity\User;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
@@ -26,7 +25,7 @@ final class UserManager extends AbstractManager
     public function resetPassword(string $username)
     {
         $user     = $this->getUser($username);
-        $password = Helper::generateRandomPassword();
+        $password = $this->getSecurityHelper()->generateRandomPassword();
         $user->setPassword($password);
         $this->updateResource($user);
         

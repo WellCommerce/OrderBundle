@@ -14,7 +14,6 @@ namespace WellCommerce\Bundle\OAuthBundle\Manager;
 
 use League\OAuth2\Client\Provider\FacebookUser;
 use WellCommerce\Bundle\AppBundle\Entity\Client;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
 
 /**
@@ -48,7 +47,7 @@ class FacebookClientManager extends AbstractManager
         /** @var $client Client */
         $client = $this->initResource();
         $client->getClientDetails()->setUsername($email);
-        $client->getClientDetails()->setPassword(Helper::generateRandomPassword());
+        $client->getClientDetails()->setPassword($this->getSecurityHelper()->generateRandomPassword());
         
         $client->getContactDetails()->setEmail($email);
         $client->getContactDetails()->setFirstName($firstName);

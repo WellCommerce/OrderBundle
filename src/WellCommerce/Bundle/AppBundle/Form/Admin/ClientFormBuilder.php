@@ -92,7 +92,7 @@ class ClientFormBuilder extends AbstractFormBuilder
             $clientDetailsData->addChild($this->getElement('text_field', [
                 'name'  => 'clientDetails.hashedPassword',
                 'label' => $this->trans('client.label.password'),
-            ]))->setValue(Helper::generateRandomPassword());
+            ]))->setValue($this->getSecurityHelper()->generateRandomPassword());
         }
         
         $contactDetailsData = $requiredData->addChild($this->getElement('nested_fieldset', [
