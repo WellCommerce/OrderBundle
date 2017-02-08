@@ -13,10 +13,9 @@
 namespace WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\CoreBundle\Doctrine\Definition\MappingDefinitionCollection;
 use WellCommerce\Bundle\CoreBundle\Doctrine\Definition\MappingDefinitionInterface;
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use Wingu\OctopusCore\CodeGenerator\CodeLineGenerator;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\MethodGenerator;
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\Modifiers;
@@ -32,7 +31,7 @@ use Wingu\OctopusCore\CodeGenerator\PHP\ParameterGenerator;
 abstract class AbstractMappingEnhancer extends AbstractContainerAware implements MappingEnhancerInterface
 {
     abstract protected function configureMappingDefinition(MappingDefinitionCollection $collection);
-
+    
     /**
      * @return MappingDefinitionCollection
      */
@@ -40,32 +39,32 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
     {
         $collection = new MappingDefinitionCollection();
         $this->configureMappingDefinition($collection);
-
+        
         return $collection;
     }
-
+    
     public function visitClassMetadata(ClassMetadataInfo $metadata)
     {
         $collection = $this->getMappingDefinitionCollection();
         $this->extendClassMetadata($metadata, $collection);
     }
-
+    
     public function visitTraitGenerator(TraitGenerator $generator)
     {
         $collection = $this->getMappingDefinitionCollection();
         $this->extendTrait($generator, $collection);
     }
-
-    public function supportsEntity(string $className) : bool
+    
+    public function supportsEntity(string $className): bool
     {
         return $className === $this->getSupportedEntityClass();
     }
-
-    public function supportsEntityExtraTrait(string $className) : bool
+    
+    public function supportsEntityExtraTrait(string $className): bool
     {
         return $className === $this->getSupportedEntityExtraTraitClass();
     }
-
+    
     /**
      * Extends the mapping
      *
@@ -81,7 +80,7 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
             }
         });
     }
-
+    
     /**
      * Extend the trait
      *
@@ -96,7 +95,7 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
             $this->addSetterMethod($generator, $definition->getPropertyName());
         });
     }
-
+    
     /**
      * Adds a property to generator
      *
@@ -107,7 +106,7 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
     {
         $generator->addProperty(new PropertyGenerator($property, null, Modifiers::MODIFIER_PROTECTED));
     }
-
+    
     /**
      * Adds a getter method to generator
      *
@@ -116,14 +115,14 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
      */
     protected function addGetterMethod(TraitGenerator $generator, string $property)
     {
-        $getterMethodName = 'get' . Helper::studly($property);
+        $getterMethodName = 'get' . $this->convertToStudlyCase($property);
         $variableName     = strval($property);
         $method           = new MethodGenerator($getterMethodName);
         $method->addBodyLine(new CodeLineGenerator('return $this->' . $variableName . ';'));
         $method->setVisibility(Modifiers::VISIBILITY_PUBLIC);
         $generator->addMethod($method);
     }
-
+    
     /**
      * Adds a setter method to generator
      *
@@ -132,12 +131,19 @@ abstract class AbstractMappingEnhancer extends AbstractContainerAware implements
      */
     protected function addSetterMethod(TraitGenerator $generator, string $property)
     {
-        $setterMethodName = 'set' . Helper::studly($property);
+        $setterMethodName = 'set' . $this->convertToStudlyCase($property);
         $variableName     = strval($property);
         $method           = new MethodGenerator($setterMethodName);
         $method->addBodyLine(new CodeLineGenerator('$this->' . $variableName . ' = $' . $variableName . ';'));
         $method->addParameter(new ParameterGenerator($variableName));
         $method->setVisibility(Modifiers::VISIBILITY_PUBLIC);
         $generator->addMethod($method);
+    }
+    
+    protected function convertToStudlyCase(string $value): string
+    {
+        $value = ucwords(str_replace(['-', '_'], ' ', $value));
+        
+        return str_replace(' ', '', $value);
     }
 }
