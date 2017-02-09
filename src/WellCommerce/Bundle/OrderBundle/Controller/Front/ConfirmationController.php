@@ -18,11 +18,11 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\Payment;
 
 /**
- * Class OrderConfirmationController
+ * Class ConfirmationController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class OrderConfirmationController extends AbstractFrontController
+class ConfirmationController extends AbstractFrontController
 {
     public function indexAction(): Response
     {
@@ -30,7 +30,7 @@ final class OrderConfirmationController extends AbstractFrontController
         $order->setConfirmed(true);
         
         if ($order->isEmpty()) {
-            return $this->redirectToRoute('front.order_cart.index');
+            return $this->redirectToRoute('front.cart.index');
         }
         
         $form = $this->getForm($order);

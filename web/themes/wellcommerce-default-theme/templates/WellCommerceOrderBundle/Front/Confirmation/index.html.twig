@@ -47,22 +47,19 @@
                             <div class="client-details">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <h4>Delivery address <a href="{{ path('front.order_address.index') }}">Change</a></h4>
-
+                                        <h4>Delivery address <a href="{{ path('front.address.index') }}">Change</a></h4>
                                         <p>
                                             {{ format_shipping_address(order.shippingAddress) }}
                                         </p>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h4>Contact info <a href="{{ path('front.order_address.index') }}">Change</a></h4>
-
+                                        <h4>Contact info <a href="{{ path('front.address.index') }}">Change</a></h4>
                                         <p>
                                             {{ format_contact_details(order.contactDetails) }}
                                         </p>
                                     </div>
                                     <div class="col-sm-4">
-                                        <h4>Billing data <a href="{{ path('front.order_address.index') }}">Change</a></h4>
-
+                                        <h4>Billing data <a href="{{ path('front.address.index') }}">Change</a></h4>
                                         <p>
                                             {{ format_billing_address(order.billingAddress) }}
                                         </p>
@@ -83,7 +80,7 @@
                 {% include 'WellCommerceOrderBundle:Front/Common:summary.html.twig' %}
 
                 <div class="clearfix">
-                    <a href="{{ path('front.order_address.index') }}" class="btn btn-link btn-light btn-lg notransform nopadding">Back to address details</a>
+                    <a href="{{ path('front.address.index') }}" class="btn btn-link btn-light btn-lg notransform nopadding">Back to address details</a>
                     <button class="btn btn-primary btn-lg pull-right">Place an order</button>
                 </div>
             </div>

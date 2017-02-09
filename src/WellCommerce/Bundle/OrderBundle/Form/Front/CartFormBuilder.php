@@ -29,7 +29,7 @@ use WellCommerce\Component\Form\Elements\Optioned\RadioGroup;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderCartFormBuilder extends AbstractFormBuilder
+class CartFormBuilder extends AbstractFormBuilder
 {
     public function buildForm(FormInterface $form)
     {

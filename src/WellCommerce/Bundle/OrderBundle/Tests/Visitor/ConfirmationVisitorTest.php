@@ -18,18 +18,18 @@ use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 
 /**
- * Class OrderConfirmationVisitorTest
+ * Class ConfirmationVisitorTest
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderConfirmationVisitorTest extends AbstractTestCase
+class ConfirmationVisitorTest extends AbstractTestCase
 {
     public function testValidOrderNumberIsGenerated()
     {
         $order     = new Order();
         $generator = $this->container->get('order.number_generator');
         $number    = $generator->generateOrderNumber($order);
-        $visitor   = $this->container->get('order_confirmation.order.visitor');
+        $visitor   = $this->container->get('confirmation.order.visitor');
         
         $this->assertNull($order->getNumber());
         
@@ -42,7 +42,7 @@ class OrderConfirmationVisitorTest extends AbstractTestCase
     
     public function testConfirmedOrderLocksProducts()
     {
-        $visitor       = $this->container->get('order_confirmation.order.visitor');
+        $visitor       = $this->container->get('confirmation.order.visitor');
         $order         = new Order();
         $orderProduct  = $this->createOrderProduct();
         $orderProducts = $order->getProducts();

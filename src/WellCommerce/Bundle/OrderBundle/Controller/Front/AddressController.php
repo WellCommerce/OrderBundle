@@ -22,11 +22,11 @@ use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
- * Class OrderAddressController
+ * Class AddressController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderAddressController extends AbstractFrontController
+class AddressController extends AbstractFrontController
 {
     public function indexAction(Request $request): Response
     {
@@ -149,7 +149,7 @@ class OrderAddressController extends AbstractFrontController
         $this->get('client.manager')->createResource($client);
         
         $token = new UsernamePasswordToken($client, $client->getPassword(), "client", $client->getRoles());
-        $this->container->get('security.token_storage')->setToken($token);
+        $this->get('security.token_storage')->setToken($token);
         
         $event = new InteractiveLoginEvent($this->getRequestHelper()->getCurrentRequest(), $token);
         $this->get("event_dispatcher")->dispatch('security.interactive_login', $event);

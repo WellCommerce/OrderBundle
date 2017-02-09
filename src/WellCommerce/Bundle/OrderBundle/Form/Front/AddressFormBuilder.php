@@ -16,15 +16,12 @@ use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class OrderAddressFormBuilder
+ * Class AddressFormBuilder
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderAddressFormBuilder extends AbstractFormBuilder
+class AddressFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormInterface $form)
     {
         $form->addChild($this->getElement('checkbox', [

@@ -13,21 +13,21 @@ imports:
     - { resource: 'services/shipping_method.yml' }
 
 services:
-    order_cart.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderCartController
-        arguments: ['@order_product.manager', '@order_cart.form_builder.front']
+    cart.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\CartController
+        arguments: ['@order_product.manager', '@cart.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
-    order_address.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderAddressController
-        arguments: ['@order.manager', '@order_address.form_builder.front']
+    address.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\AddressController
+        arguments: ['@order.manager', '@address.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
-    order_confirmation.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderConfirmationController
-        arguments: ['@order.manager', '@order_confirmation.form_builder.front']
+    confirmation.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\ConfirmationController
+        arguments: ['@order.manager', '@confirmation.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
@@ -51,10 +51,10 @@ services:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorTraverser
         arguments: ['@order.visitor.collection']
 
-    order_confirmation.order.visitor:
-        class: WellCommerce\Bundle\OrderBundle\Visitor\OrderConfirmationVisitor
+    confirmation.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\ConfirmationVisitor
         tags:
-            - { name: order.visitor, alias: order_confirmation }
+            - { name: order.visitor, alias: confirmation }
         arguments: ['@order.number_generator','@payment.manager']
 
     order_product.order.visitor:

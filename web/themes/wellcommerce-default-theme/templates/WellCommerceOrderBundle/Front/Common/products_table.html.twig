@@ -40,7 +40,7 @@
                 </td>
                 <td class="text-center">
                     {% if confirmation == false %}
-                    <a href="{{ path('front.order_cart.delete',{"id": item.id}) }}" class="btn btn-link btn-remove" title="Remove this product">
+                    <a href="{{ path('front.cart.delete',{"id": item.id}) }}" class="btn btn-link btn-remove" title="Remove this product">
 						<span>
 							<span class="glyphicon glyphicon-menu-left"></span>
 							<span class="glyphicon glyphicon-menu-right"></span>

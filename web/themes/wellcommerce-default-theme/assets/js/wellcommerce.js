@@ -9,7 +9,7 @@ $(document).ready(function () {
         sVariantSelector: '#variant',
         sQuantitySelector: '#quantity',
         sPriceSelector: '#price',
-        sAddProductRoute: 'front.order_cart.add',
+        sAddProductRoute: 'front.cart.add',
         sAttributesSelectClass: '.attribute'
     };
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
     });
 
     $('.cart').GCart({
-        sChangeQuantityRoute: 'front.order_cart.edit',
+        sChangeQuantityRoute: 'front.cart.edit',
         sQuantitySpinnerClass: 'quantity-spinner'
     });
 
