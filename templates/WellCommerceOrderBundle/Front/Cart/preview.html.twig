@@ -2,7 +2,7 @@
 <li class="dropdown" id="cart-preview">
     <span class="push-search btn btn-link hidden-md hidden-lg"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
     {% if hasCurrentOrder() %}
-    <a href="{{ path('front.order_cart.index') }}" class="dropdown-toggle cartQty" data-target="#" data-toggle="dropdown" role="button" aria-expanded="true">
+    <a href="{{ path('front.cart.index') }}" class="dropdown-toggle cartQty" data-target="#" data-toggle="dropdown" role="button" aria-expanded="true">
         <span class="hidden-xs">Cart</span><span class="cart-qty">{{ getCurrentOrder().productTotal.quantity }}</span>
     </a>
     <ul class="dropdown-menu" role="menu">
@@ -12,7 +12,7 @@
                 {% for item in currentOrderProducts().rows %}
                     <tr>
                         <td>
-                            <a href="{{ path('front.order_cart.delete',{"id": item.id }) }}" class="delete" title="Remove item">
+                            <a href="{{ path('front.cart.delete',{"id": item.id }) }}" class="delete" title="Remove item">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                             </a>
                         </td>
@@ -32,7 +32,7 @@
                 {% endfor %}
                 <tr>
                     <td colspan="3">
-                        <a href="{{ path('front.order_cart.index') }}">
+                        <a href="{{ path('front.cart.index') }}">
                             {% trans %}cart.link.checkout{% endtrans %} <span class="glyphicon glyphicon-menu-right"></span>
                         </a>
                     </td>
