@@ -15,15 +15,12 @@ use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
 use WellCommerce\Component\Form\Elements\FormInterface;
 
 /**
- * Class OrderConfirmationFormBuilder
+ * Class ConfirmationFormBuilder
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderConfirmationFormBuilder extends AbstractFormBuilder
+class ConfirmationFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormInterface $form)
     {
         $form->addChild($this->getElement('text_area', [
@@ -32,12 +29,12 @@ class OrderConfirmationFormBuilder extends AbstractFormBuilder
             'cols'  => 20,
             'label' => $this->trans('order.label.comment'),
         ]));
-    
+        
         $form->addChild($this->getElement('checkbox', [
             'name'    => 'conditionsAccepted',
             'label'   => $this->trans('order.label.accept_conditions'),
             'default' => false,
-            'comment' => $this->trans('order.label.accept_conditions')
+            'comment' => $this->trans('order.label.accept_conditions'),
         ]));
         
         $form->addFilter($this->getFilter('no_code'));

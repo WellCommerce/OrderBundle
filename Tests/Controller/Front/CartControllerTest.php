@@ -17,11 +17,11 @@ use WellCommerce\Bundle\CatalogBundle\Entity\Product;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Front\AbstractFrontControllerTestCase;
 
 /**
- * Class OrderControllerTest
+ * Class CartControllerTest
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderCartControllerTest extends AbstractFrontControllerTestCase
+class CartControllerTest extends AbstractFrontControllerTestCase
 {
     public function testAddAction()
     {
@@ -29,7 +29,7 @@ class OrderCartControllerTest extends AbstractFrontControllerTestCase
         $collection = $this->container->get('product.repository')->getCollection();
         
         $collection->map(function (Product $product) {
-            $url     = $this->generateUrl('front.order_cart.add', ['id' => $product->getId(), 'variant' => null, 'quantity' => 1]);
+            $url     = $this->generateUrl('front.cart.add', ['id' => $product->getId(), 'variant' => null, 'quantity' => 1]);
             $crawler = $this->client->request('GET', $url);
             
             if ($product->getVariants()->count()) {
@@ -44,7 +44,7 @@ class OrderCartControllerTest extends AbstractFrontControllerTestCase
     
     public function testIndexAction()
     {
-        $url     = $this->generateUrl('front.order_cart.index');
+        $url     = $this->generateUrl('front.cart.index');
         $crawler = $this->client->request('GET', $url);
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }

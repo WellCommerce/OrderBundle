@@ -17,7 +17,7 @@ parameters:
         client_discount: 600
         client_group_discount: 700
         summary: 800
-        order_confirmation: 900
+        confirmation: 900
 
 well_commerce_core:
     request_handler:

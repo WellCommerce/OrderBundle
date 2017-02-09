@@ -22,24 +22,24 @@ use WellCommerce\Bundle\OrderBundle\Exception\AddCartItemException;
 use WellCommerce\Bundle\OrderBundle\Manager\OrderProductManager;
 
 /**
- * Class OrderCartController
+ * Class CartController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderCartController extends AbstractFrontController
+class CartController extends AbstractFrontController
 {
-    public function indexAction() : Response
+    public function indexAction(): Response
     {
         $order = $this->getOrderProvider()->getCurrentOrder();
         $form  = $this->getForm($order, [
-            'validation_groups' => ['order_cart'],
+            'validation_groups' => ['cart'],
         ]);
         
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
                 $this->getManager()->updateResource($order);
                 
-                return $this->getRouterHelper()->redirectTo('front.order_cart.index');
+                return $this->getRouterHelper()->redirectTo('front.cart.index');
             }
             
             if (count($form->getError())) {
@@ -54,7 +54,7 @@ class OrderCartController extends AbstractFrontController
         ]);
     }
     
-    public function addAction(Product $product, Variant $variant = null, int $quantity = 1) : Response
+    public function addAction(Product $product, Variant $variant = null, int $quantity = 1): Response
     {
         $variants = $product->getVariants();
         $order    = $this->getOrderProvider()->getCurrentOrder();
@@ -79,13 +79,13 @@ class OrderCartController extends AbstractFrontController
         $category        = $product->getCategories()->first();
         $recommendations = $this->get('product.helper')->getProductRecommendationsForCategory($category);
         
-        $basketModalContent = $this->renderView('WellCommerceOrderBundle:Front/OrderCart:add.html.twig', [
+        $basketModalContent = $this->renderView('WellCommerceOrderBundle:Front/Cart:add.html.twig', [
             'product'         => $product,
             'order'           => $order,
             'recommendations' => $recommendations,
         ]);
         
-        $cartPreviewContent = $this->renderView('WellCommerceOrderBundle:Front/OrderCart:preview.html.twig');
+        $cartPreviewContent = $this->renderView('WellCommerceOrderBundle:Front/Cart:preview.html.twig');
         
         return $this->jsonResponse([
             'basketModalContent' => $basketModalContent,
@@ -98,7 +98,7 @@ class OrderCartController extends AbstractFrontController
         ]);
     }
     
-    public function editAction(Request $request, OrderProduct $orderProduct, int $quantity) : Response
+    public function editAction(Request $request, OrderProduct $orderProduct, int $quantity): Response
     {
         $success = true;
         $message = null;
@@ -125,7 +125,7 @@ class OrderCartController extends AbstractFrontController
         return $this->redirectResponse($request->headers->get('referer'));
     }
     
-    public function deleteAction(OrderProduct $orderProduct) : Response
+    public function deleteAction(OrderProduct $orderProduct): Response
     {
         try {
             $this->getManager()->deleteOrderProduct(
@@ -139,7 +139,7 @@ class OrderCartController extends AbstractFrontController
         return $this->redirectToAction('index');
     }
     
-    protected function getManager() : OrderProductManager
+    protected function getManager(): OrderProductManager
     {
         return parent::getManager();
     }

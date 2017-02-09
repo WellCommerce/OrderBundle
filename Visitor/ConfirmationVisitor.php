@@ -19,11 +19,11 @@ use WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGeneratorInterface;
 use WellCommerce\Bundle\OrderBundle\Manager\PaymentManagerInterface;
 
 /**
- * Class OrderConfirmationVisitor
+ * Class ConfirmationVisitor
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class OrderConfirmationVisitor implements OrderVisitorInterface
+final class ConfirmationVisitor implements OrderVisitorInterface
 {
     /**
      * @var OrderNumberGeneratorInterface
