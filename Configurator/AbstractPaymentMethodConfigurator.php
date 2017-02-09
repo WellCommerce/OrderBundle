@@ -23,7 +23,36 @@ use WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod;
  */
 abstract class AbstractPaymentMethodConfigurator extends AbstractContainerAware implements PaymentMethodConfiguratorInterface
 {
+    /**
+     * @var string
+     */
+    protected $name;
+    
+    /**
+     * @var array
+     */
     protected $configuration;
+    
+    /**
+     * @var string
+     */
+    protected $initializeTemplate;
+    
+    public function __construct(string $name, string $initializeTemplate)
+    {
+        $this->name               = $name;
+        $this->initializeTemplate = $initializeTemplate;
+    }
+    
+    public function getInitializeTemplateName(): string
+    {
+        return $this->initializeTemplate;
+    }
+    
+    public function getName(): string
+    {
+        return $this->name;
+    }
     
     public function configure(PaymentMethod $paymentMethod)
     {
