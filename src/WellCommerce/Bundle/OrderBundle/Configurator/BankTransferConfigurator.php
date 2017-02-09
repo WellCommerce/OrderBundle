@@ -24,16 +24,6 @@ use WellCommerce\Component\Form\FormBuilderInterface;
  */
 final class BankTransferConfigurator extends AbstractPaymentMethodConfigurator
 {
-    public function getName() : string
-    {
-        return 'bank_transfer';
-    }
-    
-    public function getInitializeTemplateName() : string
-    {
-        return 'WellCommerceOrderBundle:Front/BankTransfer:initialize.html.twig';
-    }
-    
     public function addConfigurationFields(FormBuilderInterface $builder, ElementInterface $fieldset, DependencyInterface $dependency)
     {
         $fieldset->addChild($builder->getElement('text_field', [

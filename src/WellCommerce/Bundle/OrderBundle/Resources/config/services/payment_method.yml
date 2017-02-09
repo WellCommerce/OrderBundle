@@ -42,6 +42,7 @@ services:
 
     bank_transfer.configurator:
         class: WellCommerce\Bundle\OrderBundle\Configurator\BankTransferConfigurator
+        arguments: ["bank_transfer", "WellCommerceOrderBundle:Front/Payment/BankTransfer:initialize.html.twig"]
         calls:
             - [setContainer, ['@service_container']]
         shared: false
@@ -58,6 +59,7 @@ services:
 
     cash_on_delivery.configurator:
         class: WellCommerce\Bundle\OrderBundle\Configurator\CashOnDeliveryConfigurator
+        arguments: ["cash_on_delivery", "WellCommerceOrderBundle:Front/Payment/CashOnDelivery:initialize.html.twig"]
         calls:
             - [setContainer, ['@service_container']]
         shared: false

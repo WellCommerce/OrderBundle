@@ -23,21 +23,16 @@ use WellCommerce\Component\Form\FormBuilderInterface;
  */
 final class CashOnDeliveryConfigurator extends AbstractPaymentMethodConfigurator
 {
-    public function getName() : string
+    public function getName(): string
     {
         return 'cash_on_delivery';
     }
-
-    public function getInitializeTemplateName() : string
-    {
-        return 'WellCommerceOrderBundle:Front/CashOnDelivery:initialize.html.twig';
-    }
-
+    
     public function addConfigurationFields(FormBuilderInterface $builder, ElementInterface $fieldset, DependencyInterface $dependency)
     {
         $fieldset->addChild($builder->getElement('tip', [
             'tip'          => $this->trans('payment_method.cod.configuration'),
-            'dependencies' => [$dependency]
+            'dependencies' => [$dependency],
         ]));
     }
 }

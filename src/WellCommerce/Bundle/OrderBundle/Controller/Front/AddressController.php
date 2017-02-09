@@ -47,7 +47,7 @@ class AddressController extends AbstractFrontController
                 }
                 $this->getManager()->updateResource($order);
                 
-                return $this->getRouterHelper()->redirectTo('front.order_confirm.index');
+                return $this->getRouterHelper()->redirectTo('front.confirm.index');
             }
             
             if (count($form->getError())) {
