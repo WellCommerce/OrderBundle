@@ -31,8 +31,6 @@ interface DoctrineHelperInterface
 
     public function getEntityManager() : EntityManagerInterface;
 
-    public function getRepositoryForClass(string $className) : EntityRepository;
-
     public function disableFilter(string $filter);
 
     public function enableFilter(string $filter) : SQLFilter;
