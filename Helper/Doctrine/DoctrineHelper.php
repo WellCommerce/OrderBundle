@@ -83,26 +83,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
         return $this->getEntityManager()->getMetadataFactory();
     }
 
-    public function truncateTable(string $className)
-    {
-        $entityManager = $this->getEntityManager();
-        $metadata      = $this->getClassMetadata($className);
-        if ($metadata instanceof ClassMetadata) {
-            $repository = $entityManager->getRepository($className);
-            $collection = $repository->findAll();
-            
-            foreach ($collection as $entity) {
-                $entityManager->remove($entity);
-            }
-            
-            $entityManager->flush();
-            
-            return true;
-        }
-        
-        return false;
-    }
-
     private function getRealClass($object) : string
     {
         return ClassUtils::getRealClass(get_class($object));
