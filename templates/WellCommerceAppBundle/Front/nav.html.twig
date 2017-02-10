@@ -8,29 +8,10 @@
 			</div>
 
             <a class="navbar-brand" href="{{ path('front.home_page.index') }}">
-                <img alt="Logo" src="{{ asset( 'themes/wellcommerce-default-theme/assets/img/logo.png') }}">
+                <img alt="Logo" src="{{ asset( 'themes/wellcommerce-default-theme/assets/img/logo.svg') }}">
             </a>
         </div>
 
-		{% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
-		{% if currentPath|replace({'/app_dev.php':''}) == '/order/address' %}
-		<ul class="steps pull-right">
-			<li class="passed">
-				Step 1
-				<small>Address</small>
-			</li>
-
-			<li class="active">
-				Step 2
-				<small>Finalization</small>
-			</li>
-
-			<li>
-				Step 3
-				<small>Payment and confirmation</small>
-			</li>
-		</ul>
-		{% else %}
         <ul class="nav navbar-nav hidden-sm hidden-xs">
             {% for status in productStatuses().rows %}
                 <li><a href="{{ status.route }}">{{ status.name }}</a></li>
@@ -62,8 +43,7 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="topCart">
-            {% include 'WellCommerceOrderBundle:Front/OrderCart:preview.html.twig' %}
+            {% include 'WellCommerceOrderBundle:Front/Cart:preview.html.twig' %}
         </ul>
-        {% endif %}
     </div>
 </nav>

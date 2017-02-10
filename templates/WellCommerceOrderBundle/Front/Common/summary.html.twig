@@ -1,8 +1,9 @@
+{% trans_default_domain "wellcommerce" %}
 <div class="summary mbt60">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2">
             <div class="col-sm-9 col-xs-6 text-right">
-                <span class="text-sm">{% trans %}cart.label.product_total{% endtrans %}</span>
+                <span class="text-sm">{% trans %}order.label.product_total{% endtrans %}</span>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <span class="text-sm addition">{{ format_price(order.productTotal.grossPrice, order.currency) }}</span>
@@ -21,7 +22,6 @@
                 {% else %}
                     <span class="text-sm addition">{{ format_price(modifier.grossAmount, modifier.currency, order.currency) }}</span>
                 {% endif %}
-
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2">
             <div class="col-sm-9 col-xs-6 text-right">
-                <span class="text">Summary</span>
+                <span class="text">{% trans %}order.heading.order_total{% endtrans %}</span>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <span class="value">{{ format_price(order.summary.grossAmount) }}</span>
