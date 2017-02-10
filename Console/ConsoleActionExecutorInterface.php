@@ -25,10 +25,8 @@ interface ConsoleActionExecutorInterface
     /**
      * Executes the console commands
      *
-     * @param array|ConsoleActionInterface[] $actions
-     * @param ConsoleOutputInterface|null    $output
-     *
-     * @return mixed
+     * @param ConsoleActionInterface[]    $actions
+     * @param ConsoleOutputInterface|null $output
      */
     public function execute(array $actions = [], ConsoleOutputInterface $output = null);
 }
