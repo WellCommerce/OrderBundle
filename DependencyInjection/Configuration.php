@@ -14,8 +14,7 @@ namespace WellCommerce\Bundle\CoreBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use WellCommerce\Bundle\ApiBundle\Request\RequestHandler;
-use WellCommerce\Bundle\DoctrineBundle\Manager\Manager;
+use WellCommerce\Bundle\CoreBundle\Handler\RequestHandler;
 
 /**
  * Class Configuration
@@ -24,95 +23,74 @@ use WellCommerce\Bundle\DoctrineBundle\Manager\Manager;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * @var string
-     */
-    protected $treeRoot;
-    
-    /**
-     * AbstractConfiguration constructor.
-     *
-     * @param string $treeRoot
-     */
-    public function __construct(string $treeRoot)
-    {
-        $this->treeRoot = $treeRoot;
-    }
-    
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        if (null !== $this->treeRoot) {
-            $rootNode = $treeBuilder->root($this->treeRoot);
-            $this->addBaseExtensionConfiguration($rootNode);
-        }
+        $rootNode    = $treeBuilder->root('well_commerce_core');
+        $this->processConfiguration($rootNode);
         
         return $treeBuilder;
     }
     
     //@formatter:off
-    protected function addBaseExtensionConfiguration(ArrayNodeDefinition $node)
+    protected function processConfiguration(ArrayNodeDefinition $node)
     {
         $node
             ->children()
-                ->append($this->addCustomConfigurationNode())
-                ->arrayNode('configuration')
+                ->arrayNode('request_handler')
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                         ->children()
-                            ->arrayNode('orm')->addDefaultsIfNotSet()
-                                ->children()
-                                    ->scalarNode('manager')->defaultValue(Manager::class)->end()
-                                    ->scalarNode('repository')->defaultNull()->end()
-                                    ->scalarNode('factory')->defaultNull()->end()
-                                    ->scalarNode('entity')->isRequired()->end()
-                                    ->scalarNode('mapping')->isRequired()->end()
-                                ->end()
+                            ->booleanNode('enabled')->defaultTrue()->end()
+                            ->scalarNode('manager')->isRequired()->end()
+                            ->scalarNode('class')->defaultValue(RequestHandler::class)->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('serialization')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('mapping')->isRequired()->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('routers')
+                    ->defaultValue(['router.default' => 100])
+                    ->useAttributeAsKey('id')
+                    ->prototype('scalar')->end()
+                ->end()
+                ->arrayNode('dynamic_routing')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('entity')->isRequired()->end()
+                            ->arrayNode('defaults')
+                                ->useAttributeAsKey('name')
+                                ->prototype('scalar')->end()
                             ->end()
-                            ->arrayNode('api')
-                                ->children()
-                                    ->booleanNode('exposed')->defaultFalse()->end()
-                                    ->scalarNode('dataset')->defaultNull()->end()
-                                    ->scalarNode('manager')->defaultNull()->end()
-                                    ->scalarNode('request_handler')->defaultValue(RequestHandler::class)->end()
-                                ->end()
+                            ->arrayNode('requirements')
+                               ->useAttributeAsKey('name')
+                                ->prototype('scalar')->end()
                             ->end()
-                            ->arrayNode('dynamic_routing')
+                            ->arrayNode('options')
+                                ->prototype('array')->end()
                                 ->children()
-                                    ->scalarNode('entity')->isRequired()->end()
-                                    ->scalarNode('generator')->isRequired()->end()
-                                    ->arrayNode('defaults')
-                                        ->useAttributeAsKey('name')
-                                        ->prototype('scalar')->end()
-                                    ->end()
-                                    ->arrayNode('requirements')
-                                       ->useAttributeAsKey('name')
-                                        ->prototype('scalar')->end()
-                                    ->end()
-                                    ->arrayNode('options')
+                                    ->arrayNode('breadcrumb')
                                         ->children()
-                                            ->arrayNode('breadcrumb')
-                                                ->children()
-                                                    ->scalarNode('label')->isRequired()->end()
-                                                    ->scalarNode('css_class')->defaultValue('')->end()
-                                                    ->scalarNode('route')->defaultValue('')->end()
-                                                    ->scalarNode('parent_route')->defaultValue('')->end()
-                                                ->end()
-                                            ->end()
+                                            ->scalarNode('label')->isRequired()->end()
+                                            ->scalarNode('css_class')->defaultValue('')->end()
+                                            ->scalarNode('route')->defaultValue('')->end()
+                                            ->scalarNode('parent_route')->defaultValue('')->end()
                                         ->end()
                                     ->end()
-                                    ->scalarNode('pattern')->defaultValue('')->end()
                                 ->end()
                             ->end()
+                            ->scalarNode('pattern')->defaultValue('')->end()
                         ->end()
                     ->end()
                 ->end()
             ->end();
-    }
-
-    protected function addCustomConfigurationNode()
-    {
-        return new ArrayNodeDefinition('custom');
     }
     //@formatter:on
 }

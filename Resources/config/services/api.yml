@@ -1,0 +1,51 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
+services:
+    api.security.token_authenticator:
+        class: WellCommerce\Bundle\CoreBundle\Security\ApiTokenAuthenticator
+        arguments: ['@user.repository']
+
+    api.subscriber:
+        class: WellCommerce\Bundle\CoreBundle\EventListener\ApiSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
+        calls:
+            - [setContainer, ['@service_container']]
+
+    api.request_handler.collection:
+        class: WellCommerce\Bundle\CoreBundle\Handler\RequestHandlerCollection
+
+    api.controller.front:
+        class: WellCommerce\Bundle\CoreBundle\Controller\ApiController
+        arguments: ["@api.request_handler.collection"]
+
+    api.serializer.normalizer:
+        class: WellCommerce\Bundle\CoreBundle\Serializer\EntityNormalizer
+        public: false
+        tags:
+            - { name: serializer.normalizer }
+        arguments: ['@doctrine.helper', '@api.serialization.metadata_loader']
+
+    api.serializer.denormalizer:
+        class: WellCommerce\Bundle\CoreBundle\Serializer\EntityDenormalizer
+        public: false
+        tags:
+            - { name: serializer.normalizer }
+        arguments: ['@doctrine.helper', '@api.serialization.metadata_loader']
+
+    api.serialization.cache_warmer:
+        class: WellCommerce\Bundle\CoreBundle\CacheWarmer\SerializationCacheWarmer
+        public: false
+        tags:
+            - { name: kernel.cache_warmer }
+        arguments: ['@kernel', '%api.serialization_mapping_map%']
+
+    api.serialization.metadata_loader:
+        class: WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoader
+        arguments: ['@kernel']

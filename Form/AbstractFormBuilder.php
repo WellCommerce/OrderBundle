@@ -14,9 +14,10 @@ namespace WellCommerce\Bundle\CoreBundle\Form;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
-use WellCommerce\Component\Form\DataTransformer\DataTransformerInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\DataTransformerFactory;
+use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\RepositoryAwareDataTransformerInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\Dependencies\DependencyInterface;
 use WellCommerce\Component\Form\Elements\ElementInterface;
 use WellCommerce\Component\Form\Elements\FormInterface;
@@ -35,11 +36,6 @@ use WellCommerce\Component\Form\Rules\RuleInterface;
 abstract class AbstractFormBuilder extends AbstractContainerAware implements FormBuilderInterface
 {
     /**
-     * @var string
-     */
-    protected $alias;
-
-    /**
      * @var FormResolverFactoryInterface
      */
     protected $resolverFactory;
@@ -48,121 +44,74 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
      * @var FormHandlerInterface
      */
     protected $formHandler;
-
+    
+    /**
+     * @var DataTransformerFactory
+     */
+    protected $dataTransformerFactory;
+    
     /**
      * @var EventDispatcherInterface
      */
     protected $eventDispatcher;
-
-    /**
-     * AbstractFormBuilder constructor.
-     *
-     * @param string                       $alias
-     * @param FormResolverFactoryInterface $resolverFactory
-     * @param FormHandlerInterface         $formHandler
-     * @param EventDispatcherInterface     $eventDispatcher
-     */
+    
     public function __construct(
-        string $alias,
         FormResolverFactoryInterface $resolverFactory,
         FormHandlerInterface $formHandler,
+        DataTransformerFactory $dataTransformerFactory,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->alias           = $alias;
-        $this->resolverFactory = $resolverFactory;
-        $this->formHandler     = $formHandler;
-        $this->eventDispatcher = $eventDispatcher;
+        $this->resolverFactory        = $resolverFactory;
+        $this->formHandler            = $formHandler;
+        $this->dataTransformerFactory = $dataTransformerFactory;
+        $this->eventDispatcher        = $eventDispatcher;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function createForm(array $options, $defaultData = null) : FormInterface
+    public function createForm(array $options, $defaultData = null): FormInterface
     {
         $form = $this->getFormService($options);
         $this->buildForm($form);
+        $this->dispatchFormEvent($form, $defaultData, FormEvent::FORM_PRE_INIT_EVENT);
         $this->formHandler->initForm($form, $defaultData);
-
-        $this->dispatchOnInitEvent($form, $defaultData);
-
+        $this->dispatchFormEvent($form, $defaultData, FormEvent::FORM_POST_INIT_EVENT);
+        
         return $form;
     }
-
-    /**
-     * Dispatches the event after form initialization
-     *
-     * @param FormInterface        $form
-     * @param EntityInterface|null $entity
-     */
-    protected function dispatchOnInitEvent(FormInterface $form, EntityInterface $entity = null)
-    {
-        $eventName = sprintf('%s.%s', $this->alias, FormEvent::FORM_INIT_EVENT);
-        $event     = new FormEvent($this, $form, $entity);
-
-        $this->eventDispatcher->dispatch($eventName, $event);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getElement(string $alias, array $options = []) : ElementInterface
+    
+    public function getElement(string $alias, array $options = []): ElementInterface
     {
         return $this->initService('element', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getRule(string $alias, array $options = []) : RuleInterface
+    public function getRule(string $alias, array $options = []): RuleInterface
     {
         return $this->initService('rule', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getFilter(string $alias, array $options = []) : FilterInterface
+    public function getFilter(string $alias, array $options = []): FilterInterface
     {
         return $this->initService('filter', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getDependency(string $alias, array $options = []) : DependencyInterface
+    public function getDependency(string $alias, array $options = []): DependencyInterface
     {
         return $this->initService('dependency', $alias, $options);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository) : DataTransformerInterface
+    public function getRepositoryTransformer(string $alias, RepositoryInterface $repository): RepositoryAwareDataTransformerInterface
     {
-        /** @var $transformer \WellCommerce\Component\Form\DataTransformer\DataTransformerInterface */
-        $transformer = $this->get('form.data_transformer.factory')->createRepositoryTransformer($alias);
+        /** @var RepositoryAwareDataTransformerInterface $transformer */
+        $transformer = $this->dataTransformerFactory->createRepositoryTransformer($alias);
         $transformer->setRepository($repository);
         
         return $transformer;
     }
     
-    /**
-     * Initializes form service
-     *
-     * @param array $options
-     *
-     * @return FormInterface
-     */
-    protected function getFormService(array $options) : FormInterface
+    protected function getFormService(array $options): FormInterface
     {
         return $this->getElement('form', $options);
     }
     
-    /**
-     * Builds the form
-     *
-     * @param FormInterface $form
-     */
     abstract protected function buildForm(FormInterface $form);
     
     /**
@@ -184,22 +133,29 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
         return $service;
     }
     
+    protected function dispatchFormEvent(FormInterface $form, EntityInterface $entity = null, string $name)
+    {
+        $eventName = sprintf('%s.%s', $form->getOption('name'), $name);
+        
+        $this->eventDispatcher->dispatch($eventName, new FormEvent($this, $form, $entity));
+    }
+    
     protected function addMetadataFieldset(FormInterface $form, RepositoryInterface $repository)
     {
         $metadata = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'metadata',
-            'label' => $this->trans('common.fieldset.meta')
+            'label' => $this->trans('common.fieldset.meta'),
         ]));
         
         $languageData = $metadata->addChild($this->getElement('language_fieldset', [
             'name'        => 'translations',
             'label'       => $this->trans('common.fieldset.translations'),
-            'transformer' => $this->getRepositoryTransformer('translation', $repository)
+            'transformer' => $this->getRepositoryTransformer('translation', $repository),
         ]));
         
         $languageData->addChild($this->getElement('text_field', [
             'name'  => 'meta.title',
-            'label' => $this->trans('common.label.meta.title')
+            'label' => $this->trans('common.label.meta.title'),
         ]));
         
         $languageData->addChild($this->getElement('text_field', [
@@ -217,14 +173,14 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     {
         $shopsData = $form->addChild($this->getElement('nested_fieldset', [
             'name'  => 'shops_data',
-            'label' => $this->trans('common.fieldset.shops')
+            'label' => $this->trans('common.fieldset.shops'),
         ]));
         
         $shopsData->addChild($this->getElement('multi_select', [
             'name'        => 'shops',
             'label'       => $this->trans('common.label.shops'),
             'options'     => $this->get('shop.dataset.admin')->getResult('select'),
-            'transformer' => $this->getRepositoryTransformer('collection', $this->get('shop.repository'))
+            'transformer' => $this->getRepositoryTransformer('collection', $this->get('shop.repository')),
         ]));
     }
 }

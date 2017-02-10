@@ -12,10 +12,10 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Test\Manager;
 
+use WellCommerce\Bundle\CoreBundle\Doctrine\Factory\EntityFactoryInterface;
+use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\CoreBundle\Test\AbstractTestCase;
-use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactoryInterface;
-use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 
 /**
  * Class AbstractManagerTestCase
@@ -24,40 +24,41 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
  */
 abstract class AbstractManagerTestCase extends AbstractTestCase
 {
-    public function testManagerServiceIsValid()
+    public function testServiceIsValid()
     {
         $manager = $this->get();
         $this->assertInstanceOf($this->getManagerInterfaceName(), $manager);
     }
-
-    public function testManagerReturnsValidRepository()
+    
+    public function testReturnsValidRepository()
     {
         $manager = $this->get();
         $this->assertInstanceOf($this->getRepositoryInterfaceClass(), $manager->getRepository());
     }
-
-    public function testManagerReturnsValidFactory()
+    
+    public function testReturnsValidEntityAfterInitialization()
     {
-        $manager = $this->get();
-        $this->assertInstanceOf($this->getFactoryInterfaceClass(), $manager->getFactory());
+        $manager  = $this->get();
+        $resource = $manager->initResource();
+        $this->assertInstanceOf($this->getExpectedEntityInterface(), $resource);
     }
-
-    protected function getManagerInterfaceName() : string
+    
+    protected function getManagerInterfaceName(): string
     {
         return ManagerInterface::class;
     }
-
-    protected function getRepositoryInterfaceClass() : string
+    
+    protected function getRepositoryInterfaceClass(): string
     {
         return RepositoryInterface::class;
     }
-
-    protected function getFactoryInterfaceClass() : string
+    
+    protected function getFactoryInterfaceClass(): string
     {
         return EntityFactoryInterface::class;
     }
-
-    abstract protected function get() : ManagerInterface;
-
-
+    
+    abstract protected function get(): ManagerInterface;
+    
+    abstract protected function getExpectedEntityInterface(): string;
 }

@@ -26,29 +26,24 @@ final class ValidatorHelper implements ValidatorHelperInterface
      * @var ValidatorInterface
      */
     private $validator;
-
-    /**
-     * ValidatorHelper constructor.
-     *
-     * @param ValidatorInterface $validator
-     */
+    
     public function __construct(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
-
-    public function validate($value, array $groups = []) : ConstraintViolationListInterface
+    
+    public function validate($value, $constraints = null, array $groups = []): ConstraintViolationListInterface
     {
         $groups = array_merge(self::DEFAULT_VALIDATOR_GROUPS, $groups);
-
-        return $this->validator->validate($value, null, $groups);
+        
+        return $this->validator->validate($value, $constraints, $groups);
     }
-
-    public function isValid($value, array $groups = []) : bool
+    
+    public function isValid($value, $constraints = null, array $groups = []): bool
     {
         $groups = array_merge(self::DEFAULT_VALIDATOR_GROUPS, $groups);
-        $errors = $this->validator->validate($value, null, $groups);
-
+        $errors = $this->validator->validate($value, $constraints, $groups);
+        
         return 0 === $errors->count();
     }
 }

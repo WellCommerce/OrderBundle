@@ -12,8 +12,8 @@
 namespace WellCommerce\Bundle\CoreBundle\Controller\Box;
 
 use Symfony\Component\HttpFoundation\Response;
+use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
-use WellCommerce\Bundle\LayoutBundle\Collection\LayoutBoxSettingsCollection;
 
 /**
  * Class AbstractFrontController

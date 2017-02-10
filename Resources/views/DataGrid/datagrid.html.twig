@@ -1,6 +1,6 @@
 {% import "WellCommerceCoreBundle:DataGrid:macros.html.twig" as macros %}
 
-{{ macros.datagrid_header(datagrid.getIdentifier()) }}
+{{ macros.datagrid_header(datagrid.identifier) }}
 
 <script type="text/javascript">
 var DataGrid;
@@ -14,6 +14,6 @@ $(document).ready(function() {
     {% endfor %}
     {{ macros.datagrid_options(datagrid) }}
 
-    DataGrid = new GF_Datagrid($('#datagrid-{{ datagrid.getIdentifier() }}'), options);
+    DataGrid = new GF_Datagrid($('#datagrid-{{ datagrid.identifier }}'), options);
 });
 </script>

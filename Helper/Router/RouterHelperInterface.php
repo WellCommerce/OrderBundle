@@ -25,89 +25,25 @@ use WellCommerce\Bundle\CoreBundle\Controller\ControllerInterface;
  */
 interface RouterHelperInterface
 {
-    /**
-     * Checks whether controller action is callable
-     *
-     * @param ControllerInterface $controller
-     * @param string              $action
-     *
-     * @return bool
-     */
-    public function hasControllerAction(ControllerInterface $controller, string $action) : bool;
-
-    /**
-     * @return string
-     */
-    public function getCurrentAction() : string;
-
-    /**
-     * Returns the current request context
-     *
-     * @return RequestContext
-     */
-    public function getRouterRequestContext() : RequestContext;
-
-    /**
-     * Redirects the user to another resource
-     *
-     * @param string $route
-     * @param array  $routeParams
-     *
-     * @return RedirectResponse
-     */
-    public function redirectTo(string $route, array $routeParams = []) : RedirectResponse;
-
-    /**
-     * Resolves current route and redirects user to given controller action
-     *
-     * @param string $action
-     * @param array  $params
-     *
-     * @return RedirectResponse
-     */
-    public function redirectToAction(string $action, array $params = []) : RedirectResponse;
-
-    /**
-     * Resolves the route for given action
-     *
-     * @param string $action
-     *
-     * @return string
-     */
-    public function getActionForCurrentController(string $action) : string;
-
-    /**
-     * Generates an absolute url pointing to particular controller action
-     *
-     * @param string $action
-     * @param array  $params
-     *
-     * @return string
-     */
-    public function getRedirectToActionUrl(string $action, array $params = []) : string;
-
-    /**
-     * Generates an URL
-     *
-     * @param string $routeName
-     * @param array  $params
-     * @param int    $referenceType
-     *
-     * @return string
-     */
-    public function generateUrl(string $routeName, array $params = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL) : string;
-
-    /**
-     * Returns current Route object
-     *
-     * @return Route
-     */
-    public function getCurrentRoute() : Route;
-
-    /**
-     * Returns current route name
-     *
-     * @return string
-     */
-    public function getCurrentRouteName() : string;
+    public function hasControllerAction(ControllerInterface $controller, string $action): bool;
+    
+    public function getCurrentAction(): string;
+    
+    public function getRouterRequestContext(): RequestContext;
+    
+    public function redirectTo(string $route, array $routeParams = []): RedirectResponse;
+    
+    public function redirectToAction(string $action, array $params = []): RedirectResponse;
+    
+    public function redirectToUrl(string $url, int $status = 302): RedirectResponse;
+    
+    public function getActionForCurrentController(string $action): string;
+    
+    public function getRedirectToActionUrl(string $action, array $params = []): string;
+    
+    public function generateUrl(string $routeName, array $params = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_URL): string;
+    
+    public function getCurrentRoute(): Route;
+    
+    public function getCurrentRouteName(): string;
 }

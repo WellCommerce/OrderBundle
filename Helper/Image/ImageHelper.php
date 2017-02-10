@@ -25,21 +25,13 @@ final class ImageHelper implements ImageHelperInterface
      * @var CacheManager
      */
     private $cacheManager;
-
-    /**
-     * ImageHelper constructor.
-     *
-     * @param CacheManager $cacheManager
-     */
+    
     public function __construct(CacheManager $cacheManager)
     {
         $this->cacheManager = $cacheManager;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getImage(string $path, string $filter, array $config = []) : string
+    
+    public function getImage(string $path, string $filter, array $config = []): string
     {
         return $this->cacheManager->getBrowserPath($path, $filter, $config);
     }

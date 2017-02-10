@@ -21,44 +21,33 @@ use Symfony\Component\Process\ProcessBuilder;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class EnvironmentHelper implements EnvironmentHelperInterface
+final class EnvironmentHelper implements EnvironmentHelperInterface
 {
     const DEFAULT_PROCESS_TIMEOUT = 360;
-
+    
     /**
      * @var KernelInterface
      */
     protected $kernel;
-
-    /**
-     * Constructor
-     *
-     * @param KernelInterface $kernel
-     */
+    
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getProcess(array $arguments, $timeout = self::DEFAULT_PROCESS_TIMEOUT)
     {
         $command = $this->getProcessBuilder($arguments, $timeout)->getProcess()->getCommandLine();
         $process = new Process($command, $this->getCwd());
         $process->setTimeout($timeout);
-
+        
         return $process;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getPhpBinary()
     {
         $binaryPath = $this->kernel->getContainer()->getParameter('php_binary_path');
-
+        
         if (null === $binaryPath) {
             $process = new Process('whereis php');
             $process->run();
@@ -68,30 +57,20 @@ class EnvironmentHelper implements EnvironmentHelperInterface
                 $binaryPath = current($lines);
             }
         }
-
+        
         return $binaryPath;
     }
-
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getCwd()
     {
         return $this->kernel->getRootDir() . '/../';
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getFreePort()
     {
         return rand(4444, 65525);
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getProcessBuilder(array $arguments, $timeout = self::DEFAULT_PROCESS_TIMEOUT)
     {
         $builder = new ProcessBuilder();
@@ -100,13 +79,10 @@ class EnvironmentHelper implements EnvironmentHelperInterface
         $builder->setArguments($arguments);
         $builder->setTimeout($timeout);
         $builder->inheritEnvironmentVariables(true);
-
+        
         return $builder;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function getComposerPhar()
     {
         return 'composer.phar';
