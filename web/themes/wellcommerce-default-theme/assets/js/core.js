@@ -251,8 +251,8 @@ GAjaxRequest = function (sUrl, oRequest, fCallBack) {
 };
 
 var oCartDefaults = {
-    sChangeQuantityRoute: 'front.order_cart.edit',
-    sDeleteRoute: 'front.order_cart.delete'
+    sChangeQuantityRoute: 'front.cart.edit',
+    sDeleteRoute: 'front.cart.delete'
 };
 
 var GCart = function(oOptions) {
@@ -266,6 +266,7 @@ var GCart = function(oOptions) {
 
     gThis.InitializeEvents = function(){
         $("input[type='radio']", gThis.m_gForm).bind('change', gThis.SubmitForm);
+        $("select", gThis.m_gForm).bind('change', gThis.SubmitForm);
         $('.' + gThis.m_oOptions.sQuantitySpinnerClass, gThis).bind('change', gThis.ChangeItemQuantity);
     };
 
@@ -306,7 +307,7 @@ new GPlugin('GCart', oCartDefaults, GCart);
  * GProductAddCartForm
  */
 var oProductCartAddFormDefaults = {
-    sAddProductRoute: 'front.order_cart.add'
+    sAddProductRoute: 'front.cart.add'
 };
 
 var GProductAddCartForm = function(oOptions) {
@@ -335,7 +336,6 @@ var GProductAddCartForm = function(oOptions) {
 
         if(gThis.m_oOptions.aoVariants[checkedVariant] != undefined){
             var variant = gThis.m_oOptions.aoVariants[checkedVariant];
-            console.log(variant);
             gThis.m_oOptions.oVariant.val(variant.id);
             gThis.m_oOptions.oPrice.text(variant.finalPriceGross);
             gThis.m_gForm.find('button[type="submit"]').show();
@@ -414,6 +414,7 @@ var GProductAddCartButton = function(oOptions) {
                     aoVariants: variants
                 });
             }
+            $(this).off('shown.bs.modal');
         });
 
         if(oResponse.cartPreviewContent != undefined) {
@@ -492,7 +493,8 @@ new GPlugin('GCoupon', oCouponDefaults, GCoupon);
 var oLayeredNavigationDefaults = {
     sFilterRoute:      'front.product_layered.filter',
     sCurrentRoute:      '',
-    sCurrentRouteParams:      'front.product_layered.filter'
+    sCurrentRouteParams: {},
+    sCurrentQueryParams: {},
 };
 
 var GLayeredNavigation = function(oOptions) {
@@ -511,7 +513,8 @@ var GLayeredNavigation = function(oOptions) {
         var oRequest = {
             form: $(gThis).serialize(),
             route: gThis.m_oOptions.sCurrentRoute,
-            route_params: gThis.m_oOptions.sCurrentRouteParams
+            route_params: gThis.m_oOptions.sCurrentRouteParams,
+            query_params: gThis.m_oOptions.sCurrentQueryParams,
         };
 
         GAjaxRequest(Routing.generate(gThis.m_oOptions.sFilterRoute), oRequest, function(oResponse){
@@ -532,7 +535,7 @@ new GPlugin('GLayeredNavigation', oLayeredNavigationDefaults, GLayeredNavigation
 
 var oSearchDefaultParams = {
     sProductSearchRoute:      'front.search.index',
-    sProductLiveSearchRoute:  'front.search.view',
+    sProductLiveSearchRoute:  'front.search.quick',
     sPhraseInputSelector:     'form#search #phrase',
     sSearchResultsSelector:   'div#search-results',
     oAddCartButtonSettings:   {}

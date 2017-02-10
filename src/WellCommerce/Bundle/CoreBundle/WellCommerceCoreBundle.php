@@ -12,27 +12,27 @@
 
 namespace WellCommerce\Bundle\CoreBundle;
 
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\Compiler;
+use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
  * Class WellCommerceCoreBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCoreBundle extends Bundle
+class WellCommerceCoreBundle extends AbstractWellCommerceBundle
 {
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-        $container->addCompilerPass(new Compiler\FirewallMapPass());
         $container->addCompilerPass(new Compiler\FormResolverPass());
         $container->addCompilerPass(new Compiler\FormDataTransformerPass());
-        $container->addCompilerPass(new Compiler\DataSetPass());
         $container->addCompilerPass(new Compiler\DataSetContextPass());
         $container->addCompilerPass(new Compiler\DataSetTransformerPass());
-        $container->addCompilerPass(new Compiler\DataGridPass());
-        $container->addCompilerPass(new Compiler\FormBuilderPass());
+        $container->addCompilerPass(new Compiler\RegisterTraitGeneratorEnhancerPass());
+        $container->addCompilerPass(new Compiler\RegisterClassMetadataEnhancerPass());
+        $container->addCompilerPass(new Compiler\RegisterRequestHandlerPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 }

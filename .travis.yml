@@ -4,6 +4,10 @@ sudo: false
 
 php:
   - 7.0
+  - 7.1
+
+services:
+  - elasticsearch
 
 addons:
     apt:
@@ -14,7 +18,8 @@ before_install:
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then pecl config-set preferred_state beta; echo yes | pecl install apcu; fi;
 
 before_script:
-    - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini; fi;
+    - sleep 10
+    - phpenv config-rm xdebug.ini
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo "zend.enable_gc = 0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi;
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo "apc.enabled = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi;
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini; fi;
@@ -25,11 +30,11 @@ before_script:
     - composer self-update
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]] ; then composer install --no-interaction --prefer-dist; fi;
 
-    - php app/console wellcommerce:install
+    - php app/console wellcommerce:app:install
     - php app/console cache:warmup --env=test
 
 script:
-    - bin/phpunit -c app/phpunit.xml.dist
+    - phpunit -c phpunit.xml.dist
 
 notifications:
     email: false

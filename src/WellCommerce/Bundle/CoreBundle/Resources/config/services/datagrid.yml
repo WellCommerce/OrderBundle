@@ -1,18 +1,18 @@
-parameters:
-    dataset.loader.class: WellCommerce\Component\DataSet\Loader\DataSetLoader
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
 
 services:
-    datagrid_options:
-        class: WellCommerce\Component\DataGrid\Options\Options
-
-    datagrid_columns:
-        class: WellCommerce\Component\DataGrid\Column\ColumnCollection
-
-    datagrid.column_collection:
-        class: WellCommerce\Component\DataGrid\Column\ColumnCollection
+    datagrid.configurator:
+        class: WellCommerce\Component\DataGrid\Configurator\DataGridConfigurator
+        arguments: ['@event_dispatcher']
 
     twig.extension.datagrid:
-        class: WellCommerce\Bundle\CoreBundle\Twig\Extension\DataGridExtension
+        class: WellCommerce\Bundle\CoreBundle\Twig\DataGridExtension
+        arguments: ['WellCommerceCoreBundle:DataGrid:datagrid.html.twig', '@twig']
         tags:
             - { name: twig.extension }
-        arguments: ['WellCommerceCoreBundle:DataGrid:datagrid.html.twig']

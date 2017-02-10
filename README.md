@@ -14,7 +14,7 @@ WellCommerce is an e-commerce platform for PHP 7.x. It can be used to develop al
 
 The code is still hot but it only gets cooler :). Here are most important things which we have used to create this solution:
 
-- [Symfony 3.1 Full-stack framework][1]
+- [Symfony 3.2 Full-stack framework][1]
 - [Doctrine 2.5 ORM][2]
 - [PHPUnit 5 testing framework][3]
 - [Twig template engine][4]
@@ -60,12 +60,16 @@ For developer/contributor edition use following command:
 
     php composer.phar create-project wellcommerce/wellcommerce -s dev path/to/wellcommerce
 
+ or if the Composer is installed globally
+    
+    composer create-project wellcommerce/wellcommerce -s dev path/to/wellcommerce
+    
 Composer will install WellCommerce and all its dependencies under the `path/to/wellcommerce` directory. You will be asked to enter configuration parameters during the install process.
 
 After the download is complete, run following command to create a database, install assets and import sample data:
 
     cd path/to/wellcommerce
-    php app/console wellcommerce:install
+    php app/console wellcommerce:app:install
 
 Contributors
 ------------
@@ -73,8 +77,6 @@ Contributors
 Every contributor is WellComme :). If you'd like to join us, please send a message at contributors@wellcommerce.org
 
 You can also discuss and share your opinions on WellCommerce in our gitter chat:
-
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/WellCommerce/WellCommerce?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [1]:  http://symfony.com
 [2]:  http://doctrine-project.org

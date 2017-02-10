@@ -12,13 +12,13 @@
 
 namespace WellCommerce\Bundle\CouponBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
  * Class WellCommerceCouponBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCouponBundle extends Bundle
+final class WellCommerceCouponBundle extends AbstractWellCommerceBundle
 {
 }

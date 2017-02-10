@@ -75,6 +75,9 @@
     Translator.add("The image is landscape oriented ({{ width }}x{{ height }}px). Landscape oriented images are not allowed.", "Obr\u00e1zek je orientovan\u00fd na \u0161\u00ed\u0159ku ({{ width }}x{{ height }}px). Obr\u00e1zky orientovan\u00e9 na \u0161\u00ed\u0159ku nejsou povolen\u00e9.", "validators", "cs");
     Translator.add("The image is portrait oriented ({{ width }}x{{ height }}px). Portrait oriented images are not allowed.", "Obr\u00e1zek je orientovan\u00fd na v\u00fd\u0161ku ({{ width }}x{{ height }}px). Obr\u00e1zky orientovan\u00e9 na v\u00fd\u0161ku nejsou povolen\u00e9.", "validators", "cs");
     Translator.add("An empty file is not allowed.", "Soubor nesm\u00ed b\u00fdt pr\u00e1zdn\u00fd.", "validators", "cs");
+    Translator.add("The host could not be resolved.", "Hostitele nebylo mo\u017en\u00e9 rozpoznat.", "validators", "cs");
+    Translator.add("This value does not match the expected {{ charset }} charset.", "Tato hodnota neodpov\u00edd\u00e1 o\u010dek\u00e1van\u00e9 znakov\u00e9 sad\u011b {{ charset }}.", "validators", "cs");
+    Translator.add("This is not a valid Business Identifier Code (BIC).", "Tato hodnota nen\u00ed platn\u00fd identifika\u010dn\u00ed k\u00f3d podniku (BIC).", "validators", "cs");
     Translator.add("This form should not contain extra fields.", "Tato skupina pol\u00ed nesm\u00ed obsahovat dal\u0161\u00ed pole.", "validators", "cs");
     Translator.add("The uploaded file was too large. Please try to upload a smaller file.", "Nahran\u00fd soubor je p\u0159\u00edli\u0161 velk\u00fd. Nahrajte pros\u00edm men\u0161\u00ed soubor.", "validators", "cs");
     Translator.add("The CSRF token is invalid. Please try to resubmit the form.", "CSRF token je neplatn\u00fd. Zkuste pros\u00edm znovu odeslat formul\u00e1\u0159.", "validators", "cs");

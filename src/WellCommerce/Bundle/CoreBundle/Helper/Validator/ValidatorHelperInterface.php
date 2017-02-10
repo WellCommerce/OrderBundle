@@ -22,24 +22,8 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 interface ValidatorHelperInterface
 {
     const DEFAULT_VALIDATOR_GROUPS = ['Default'];
-
-    /**
-     * Validates the object
-     *
-     * @param object $value
-     * @param array  $groups
-     *
-     * @return ConstraintViolationListInterface
-     */
-    public function validate($value, array $groups = []) : ConstraintViolationListInterface;
-
-    /**
-     * Checks whether the given value is valid
-     *
-     * @param object $value
-     * @param array  $groups
-     *
-     * @return bool
-     */
-    public function isValid($value, array $groups = []) : bool;
+    
+    public function validate($value, $constraints = null, array $groups = []): ConstraintViolationListInterface;
+    
+    public function isValid($value, $constraints = null, array $groups = []): bool;
 }

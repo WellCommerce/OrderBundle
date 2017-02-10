@@ -12,6 +12,10 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
             groups:
                 - default
                 - order_product
+        options:
+            groups:
+                - default
+                - order_product
         buyPrice:
             groups:
                 - default
@@ -20,23 +24,12 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
             groups:
                 - default
                 - order_product
-        createdAt:
-            groups:
-                - default
-                - order_product
-        updatedAt:
-            groups:
-                - default
-                - order_product
     associations:
-        order:
-            groups:
-                - order_product
         product:
             groups:
-                - order
                 - order_product
-        productAttribute:
+                - default
+        variant:
             groups:
                 - order_product
-    callbacks: {  }
+                - default

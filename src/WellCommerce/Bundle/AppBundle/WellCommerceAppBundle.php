@@ -12,13 +12,21 @@
 
 namespace WellCommerce\Bundle\AppBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use WellCommerce\Bundle\AppBundle\DependencyInjection\Compiler;
+use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
  * Class WellCommerceAppBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceAppBundle extends Bundle
+final class WellCommerceAppBundle extends AbstractWellCommerceBundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+        $container->addCompilerPass(new Compiler\ThemeCompilerPass());
+        $container->addCompilerPass(new Compiler\LayoutBoxConfiguratorPass());
+    }
 }

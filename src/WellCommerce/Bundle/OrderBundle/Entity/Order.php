@@ -11,103 +11,187 @@
  */
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientAwareTrait;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddressAwareTrait;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetailsAwareTrait;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddressAwareTrait;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponAwareTrait;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Timestampable\TimestampableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails;
+use WellCommerce\Bundle\AppBundle\Entity\ClientDetails;
+use WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
+use WellCommerce\Bundle\OrderBundle\Entity\Extra\OrderExtraTrait;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentInterface;
-use WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodAwareTrait;
-use WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodAwareTrait;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopAwareTrait;
 
 /**
  * Class Order
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class Order extends AbstractEntity implements OrderInterface
+class Order implements EntityInterface
 {
-    use TimestampableTrait;
-    use ShopAwareTrait;
-    use ShippingMethodAwareTrait;
-    use PaymentMethodAwareTrait;
-    use ClientAwareTrait;
-    use ClientContactDetailsAwareTrait;
-    use ClientBillingAddressAwareTrait;
-    use ClientShippingAddressAwareTrait;
-    use CouponAwareTrait;
+    use Identifiable;
+    use Timestampable;
+    use OrderExtraTrait;
+    
+    protected $confirmed            = false;
+    protected $number               = null;
+    protected $currency             = null;
+    protected $currencyRate         = 1.0000;
+    protected $sessionId            = '';
+    protected $shippingMethodOption = null;
+    protected $comment              = '';
+    protected $issueInvoice         = false;
+    protected $conditionsAccepted   = false;
     
     /**
-     * @var bool
+     * @var null|Client
      */
-    protected $confirmed;
+    protected $client;
     
     /**
-     * @var string
+     * @var ClientDetails
      */
-    protected $number;
+    protected $clientDetails;
     
     /**
-     * @var Collection|OrderProductInterface[]
+     * @var ClientContactDetails
      */
-    protected $products;
+    protected $contactDetails;
     
     /**
-     * @var string
+     * @var ClientBillingAddress
      */
-    protected $currency;
+    protected $billingAddress;
     
     /**
-     * @var float
+     * @var ClientShippingAddress
      */
-    protected $currencyRate;
+    protected $shippingAddress;
     
     /**
-     * @var Collection|PaymentInterface[]
+     * @var Coupon
      */
-    protected $payments;
+    protected $coupon;
     
     /**
-     * @var string
-     */
-    protected $sessionId;
-    
-    /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $currentStatus;
     
     /**
-     * @var Collection|OrderStatusHistoryInterface[]
-     */
-    protected $orderStatusHistory;
-    
-    /**
-     * @var OrderProductTotalInterface
-     */
-    protected $productTotal;
-    
-    /**
-     * @var Collection|OrderModifierInterface[]
-     */
-    protected $modifiers;
-    
-    /**
-     * @var OrderSummaryInterface
+     * @var OrderSummary
      */
     protected $summary;
     
     /**
-     * @var string
+     * @var OrderProductTotal
      */
-    protected $comment;
+    protected $productTotal;
     
-    public function isConfirmed() : bool
+    /**
+     * @var Collection
+     */
+    protected $products;
+    
+    /**
+     * @var Collection
+     */
+    protected $payments;
+    
+    /**
+     * @var Collection
+     */
+    protected $orderStatusHistory;
+    
+    /**
+     * @var Collection
+     */
+    protected $modifiers;
+    
+    /**
+     * @var Shop
+     */
+    protected $shop;
+    
+    /**
+     * @var ShippingMethod
+     */
+    protected $shippingMethod;
+    
+    /**
+     * @var PaymentMethod
+     */
+    protected $paymentMethod;
+    
+    public function __construct()
+    {
+        $this->products           = new ArrayCollection();
+        $this->modifiers          = new ArrayCollection();
+        $this->payments           = new ArrayCollection();
+        $this->orderStatusHistory = new ArrayCollection();
+        $this->productTotal       = new OrderProductTotal();
+        $this->summary            = new OrderSummary();
+        $this->clientDetails      = new ClientDetails();
+        $this->contactDetails     = new ClientContactDetails();
+        $this->billingAddress     = new ClientBillingAddress();
+        $this->shippingAddress    = new ClientShippingAddress();
+    }
+    
+    public function getClient()
+    {
+        return $this->client;
+    }
+    
+    public function setClient(Client $client = null)
+    {
+        $this->client = $client;
+    }
+    
+    public function getClientDetails(): ClientDetails
+    {
+        return $this->clientDetails;
+    }
+    
+    public function setClientDetails(ClientDetails $clientDetails)
+    {
+        $this->clientDetails = $clientDetails;
+    }
+    
+    public function getContactDetails(): ClientContactDetails
+    {
+        return $this->contactDetails;
+    }
+    
+    public function setContactDetails(ClientContactDetails $contactDetails)
+    {
+        $this->contactDetails = $contactDetails;
+    }
+    
+    public function getBillingAddress(): ClientBillingAddress
+    {
+        return $this->billingAddress;
+    }
+    
+    public function setBillingAddress(ClientBillingAddress $billingAddress)
+    {
+        $this->billingAddress = $billingAddress;
+    }
+    
+    public function getShippingAddress(): ClientShippingAddress
+    {
+        return $this->shippingAddress;
+    }
+    
+    public function setShippingAddress(ClientShippingAddress $shippingAddress)
+    {
+        $this->shippingAddress = $shippingAddress;
+    }
+    
+    public function isConfirmed(): bool
     {
         return $this->confirmed;
     }
@@ -127,7 +211,7 @@ class Order extends AbstractEntity implements OrderInterface
         $this->number = $number;
     }
     
-    public function getCurrency() : string
+    public function getCurrency(): string
     {
         return $this->currency;
     }
@@ -137,7 +221,7 @@ class Order extends AbstractEntity implements OrderInterface
         $this->currency = $currency;
     }
     
-    public function getCurrencyRate() : float
+    public function getCurrencyRate(): float
     {
         return $this->currencyRate;
     }
@@ -147,7 +231,7 @@ class Order extends AbstractEntity implements OrderInterface
         $this->currencyRate = $currencyRate;
     }
     
-    public function getSessionId() : string
+    public function getSessionId(): string
     {
         return $this->sessionId;
     }
@@ -157,17 +241,17 @@ class Order extends AbstractEntity implements OrderInterface
         $this->sessionId = $sessionId;
     }
     
-    public function addProduct(OrderProductInterface $orderProduct)
+    public function getCoupon()
     {
-        $this->products->add($orderProduct);
+        return $this->coupon;
     }
     
-    public function removeProduct(OrderProductInterface $orderProduct)
+    public function setCoupon(Coupon $coupon = null)
     {
-        $this->products->removeElement($orderProduct);
+        $this->coupon = $coupon;
     }
     
-    public function getProducts() : Collection
+    public function getProducts(): Collection
     {
         return $this->products;
     }
@@ -177,22 +261,17 @@ class Order extends AbstractEntity implements OrderInterface
         $this->products = $products;
     }
     
-    public function getProductTotal() : OrderProductTotalInterface
+    public function getProductTotal(): OrderProductTotal
     {
         return $this->productTotal;
     }
     
-    public function setProductTotal(OrderProductTotalInterface $productTotal)
+    public function setProductTotal(OrderProductTotal $productTotal)
     {
         $this->productTotal = $productTotal;
     }
     
-    public function addModifier(OrderModifierInterface $modifier)
-    {
-        $this->modifiers->set($modifier->getName(), $modifier);
-    }
-    
-    public function hasModifier(string $name) : bool
+    public function hasModifier(string $name): bool
     {
         return $this->modifiers->containsKey($name);
     }
@@ -202,62 +281,42 @@ class Order extends AbstractEntity implements OrderInterface
         $this->modifiers->remove($name);
     }
     
-    public function getModifier(string $name) : OrderModifierInterface
+    public function getModifier(string $name): OrderModifier
     {
         return $this->modifiers->get($name);
     }
     
-    public function getModifiers() : Collection
+    public function getModifiers(): Collection
     {
         return $this->modifiers;
     }
     
-    public function setModifiers(Collection $modifiers)
-    {
-        $this->modifiers = $modifiers;
-    }
-    
-    public function getSummary() : OrderSummaryInterface
+    public function getSummary(): OrderSummary
     {
         return $this->summary;
     }
     
-    public function setSummary(OrderSummaryInterface $summary)
+    public function setSummary(OrderSummary $summary)
     {
         $this->summary = $summary;
     }
-
-    public function hasCurrentStatus() : bool
-    {
-        return $this->currentStatus instanceof OrderStatusInterface;
-    }
-
-    public function getCurrentStatus() : OrderStatusInterface
+    
+    public function getCurrentStatus()
     {
         return $this->currentStatus;
     }
     
-    public function setCurrentStatus(OrderStatusInterface $currentStatus)
+    public function setCurrentStatus(OrderStatus $currentStatus = null)
     {
         $this->currentStatus = $currentStatus;
     }
     
-    public function setOrderStatusHistory(Collection $orderStatusHistory)
-    {
-        $this->orderStatusHistory = $orderStatusHistory;
-    }
-    
-    public function getOrderStatusHistory() : Collection
+    public function getOrderStatusHistory(): Collection
     {
         return $this->orderStatusHistory;
     }
     
-    public function addOrderStatusHistory(OrderStatusHistoryInterface $orderStatusHistory)
-    {
-        $this->orderStatusHistory->add($orderStatusHistory);
-    }
-    
-    public function getComment() : string
+    public function getComment(): string
     {
         return $this->comment;
     }
@@ -267,19 +326,9 @@ class Order extends AbstractEntity implements OrderInterface
         $this->comment = $comment;
     }
     
-    public function getPayments() : Collection
+    public function getPayments(): Collection
     {
         return $this->payments;
-    }
-    
-    public function setPayments(Collection $payments)
-    {
-        $this->payments = $payments;
-    }
-    
-    public function addPayment(PaymentInterface $payment)
-    {
-        $this->payments[] = $payment;
     }
     
     public function acceptVisitor(OrderVisitorInterface $visitor)
@@ -287,8 +336,68 @@ class Order extends AbstractEntity implements OrderInterface
         $visitor->visitOrder($this);
     }
     
-    public function isEmpty() : bool
+    public function isEmpty(): bool
     {
         return 0 === $this->productTotal->getQuantity();
+    }
+    
+    public function getShippingMethodOption()
+    {
+        return $this->shippingMethodOption;
+    }
+    
+    public function setShippingMethodOption($shippingMethodOption)
+    {
+        $this->shippingMethodOption = $shippingMethodOption;
+    }
+    
+    public function isConditionsAccepted(): bool
+    {
+        return $this->conditionsAccepted;
+    }
+    
+    public function setConditionsAccepted(bool $conditionsAccepted)
+    {
+        $this->conditionsAccepted = $conditionsAccepted;
+    }
+    
+    public function isIssueInvoice(): bool
+    {
+        return $this->issueInvoice;
+    }
+    
+    public function setIssueInvoice(bool $issueInvoice)
+    {
+        $this->issueInvoice = $issueInvoice;
+    }
+    
+    public function getShop(): Shop
+    {
+        return $this->shop;
+    }
+    
+    public function setShop(Shop $shop)
+    {
+        $this->shop = $shop;
+    }
+    
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+    
+    public function setShippingMethod(ShippingMethod $shippingMethod = null)
+    {
+        $this->shippingMethod = $shippingMethod;
+    }
+    
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+    
+    public function setPaymentMethod(PaymentMethod $paymentMethod = null)
+    {
+        $this->paymentMethod = $paymentMethod;
     }
 }

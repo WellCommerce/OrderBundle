@@ -11,14 +11,13 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\Controller\Front;
 
-use WellCommerce\Bundle\CategoryBundle\Storage\CategoryStorageInterface;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\CategoryStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProducerStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStatusStorageInterface;
+use WellCommerce\Bundle\CatalogBundle\Request\Storage\ProductStorageInterface;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\OrderBundle\Provider\Front\OrderProviderInterface;
-use WellCommerce\Bundle\PageBundle\Storage\PageStorageInterface;
-use WellCommerce\Bundle\ProducerBundle\Storage\ProducerStorageInterface;
-use WellCommerce\Bundle\ProductBundle\Storage\ProductStorageInterface;
-use WellCommerce\Bundle\ProductStatusBundle\Storage\ProductStatusStorageInterface;
 
 /**
  * Class AbstractFrontController
@@ -27,37 +26,32 @@ use WellCommerce\Bundle\ProductStatusBundle\Storage\ProductStatusStorageInterfac
  */
 abstract class AbstractFrontController extends AbstractController implements FrontControllerInterface
 {
-    protected function getCategoryStorage() : CategoryStorageInterface
+    protected function getCategoryStorage(): CategoryStorageInterface
     {
         return $this->get('category.storage');
     }
-
-    protected function getProductStorage() : ProductStorageInterface
+    
+    protected function getProductStorage(): ProductStorageInterface
     {
         return $this->get('product.storage');
     }
-
-    protected function getProductStatusStorage() : ProductStatusStorageInterface
+    
+    protected function getProductStatusStorage(): ProductStatusStorageInterface
     {
         return $this->get('product_status.storage');
     }
-
-    protected function getProducerStorage() : ProducerStorageInterface
+    
+    protected function getProducerStorage(): ProducerStorageInterface
     {
         return $this->get('producer.storage');
     }
     
-    protected function getPageStorage() : PageStorageInterface
-    {
-        return $this->get('page.storage');
-    }
-
-    protected function getOrderProvider() : OrderProviderInterface
+    protected function getOrderProvider(): OrderProviderInterface
     {
         return $this->get('order.provider.front');
     }
-
-    protected function getAuthenticatedClient() : ClientInterface
+    
+    protected function getAuthenticatedClient(): Client
     {
         return $this->getSecurityHelper()->getAuthenticatedClient();
     }

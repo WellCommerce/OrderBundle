@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Interface OrderVisitorInterface
@@ -21,5 +21,5 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
  */
 interface OrderVisitorInterface
 {
-    public function visitOrder(OrderInterface $order);
+    public function visitOrder(Order $order);
 }

@@ -12,32 +12,40 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Sortable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class OrderModifier
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderModifier extends AbstractEntity implements OrderModifierInterface
+class OrderModifier implements EntityInterface
 {
-    protected $order;
-    protected $name;
-    protected $description;
-    protected $subtraction;
-    protected $hierarchy;
-    protected $netAmount   = 0;
-    protected $grossAmount = 0;
-    protected $taxAmount   = 0;
-    protected $currency;
+    use Identifiable;
+    use Sortable;
     
-    public function setOrder(OrderInterface $order)
+    protected $name        = '';
+    protected $description = '';
+    protected $subtraction = false;
+    protected $netAmount   = 0.00;
+    protected $grossAmount = 0.00;
+    protected $taxAmount   = 0.00;
+    protected $currency    = '';
+    
+    /**
+     * @var Order
+     */
+    protected $order;
+    
+    public function setOrder(Order $order)
     {
         $this->order = $order;
-        $order->addModifier($this);
+        $order->getModifiers()->set($this->getName(), $this);
     }
     
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -47,7 +55,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->name = $name;
     }
     
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -57,7 +65,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->description = $description;
     }
     
-    public function isSubtraction() : bool
+    public function isSubtraction(): bool
     {
         return $this->subtraction;
     }
@@ -67,17 +75,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->subtraction = $subtraction;
     }
     
-    public function getHierarchy() : int
-    {
-        return $this->hierarchy;
-    }
-    
-    public function setHierarchy(int $hierarchy)
-    {
-        $this->hierarchy = $hierarchy;
-    }
-    
-    public function getNetAmount() : float
+    public function getNetAmount(): float
     {
         return $this->netAmount;
     }
@@ -87,7 +85,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->netAmount = $netAmount;
     }
     
-    public function getGrossAmount() : float
+    public function getGrossAmount(): float
     {
         return $this->grossAmount;
     }
@@ -97,7 +95,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->grossAmount = $grossAmount;
     }
     
-    public function getTaxAmount() : float
+    public function getTaxAmount(): float
     {
         return $this->taxAmount;
     }
@@ -107,7 +105,7 @@ class OrderModifier extends AbstractEntity implements OrderModifierInterface
         $this->taxAmount = $taxAmount;
     }
     
-    public function getCurrency() : string
+    public function getCurrency(): string
     {
         return $this->currency;
     }

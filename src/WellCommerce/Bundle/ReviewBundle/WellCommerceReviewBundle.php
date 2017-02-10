@@ -12,13 +12,13 @@
 
 namespace WellCommerce\Bundle\ReviewBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
 
 /**
  * Class WellCommerceReviewBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceReviewBundle extends Bundle
+final class WellCommerceReviewBundle extends AbstractWellCommerceBundle
 {
 }

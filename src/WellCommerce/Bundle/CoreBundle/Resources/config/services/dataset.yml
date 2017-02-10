@@ -1,3 +1,11 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
 services:
     dataset.manager:
         class: WellCommerce\Component\DataSet\Manager\DataSetManager
@@ -8,6 +16,7 @@ services:
 
     dataset.configurator:
         class: WellCommerce\Component\DataSet\Configurator\DataSetConfigurator
+        arguments: ['@event_dispatcher']
 
     dataset.paginator:
         class: WellCommerce\Component\DataSet\Paginator\DataSetPaginator
@@ -71,3 +80,14 @@ services:
         class: WellCommerce\Component\DataSet\Transformer\DateTransformer
         tags:
             - { name: dataset.transformer, alias: date }
+
+    dataset.transformer.image_path:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\ImagePathTransformer
+        tags:
+            - { name: dataset.transformer, alias: image_path }
+        arguments: ['@image.helper']
+
+    dataset.transformer.package_version_reference:
+        class: WellCommerce\Bundle\CoreBundle\DataSet\Transformer\VersionReferenceTransformer
+        tags:
+            - { name: dataset.transformer, alias: package_version_reference }

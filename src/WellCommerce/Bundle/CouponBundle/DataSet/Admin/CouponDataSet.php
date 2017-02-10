@@ -12,6 +12,7 @@
 
 namespace WellCommerce\Bundle\CouponBundle\DataSet\Admin;
 
+use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 
@@ -22,25 +23,38 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class CouponDataSet extends AbstractDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getIdentifier(): string
+    {
+        return 'admin.coupon';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([
-            'id'        => 'coupon.id',
-            'name'      => 'coupon_translation.name',
-            'code'      => 'coupon.code',
-            'createdAt' => 'coupon.createdAt',
-            'validFrom' => 'coupon.validFrom',
-            'validTo'   => 'coupon.validTo',
-            'discount'  => 'IF_ELSE(coupon.modifierType = \'%\', CONCAT_WS(\'\', coupon.modifierValue, coupon.modifierType), CONCAT_WS(\' \', coupon.modifierValue, coupon.currency))',
+            'id'                => 'coupon.id',
+            'name'              => 'coupon_translation.name',
+            'code'              => 'coupon.code',
+            'createdAt'         => 'coupon.createdAt',
+            'validFrom'         => 'coupon.validFrom',
+            'validTo'           => 'coupon.validTo',
+            'currency'          => 'coupon.currency',
+            'minimumOrderValue' => 'coupon.minimumOrderValue',
+            'discount'          => 'IF_ELSE(coupon.modifierType = \'%\', CONCAT_WS(\'\', coupon.modifierValue, coupon.modifierType), CONCAT_WS(\' \', coupon.modifierValue, coupon.currency))',
         ]);
-
+        
         $configurator->setColumnTransformers([
-            'createdAt' => $this->getDataSetTransformer('date', ['format' => 'Y-m-d H:i:s']),
-            'validFrom' => $this->getDataSetTransformer('date', ['format' => 'Y-m-d']),
-            'validTo'   => $this->getDataSetTransformer('date', ['format' => 'Y-m-d']),
+            'createdAt' => $this->manager->createTransformer('date', ['format' => 'Y-m-d H:i:s']),
+            'validFrom' => $this->manager->createTransformer('date', ['format' => 'Y-m-d']),
+            'validTo'   => $this->manager->createTransformer('date', ['format' => 'Y-m-d']),
         ]);
+    }
+    
+    protected function createQueryBuilder(): QueryBuilder
+    {
+        $queryBuilder = $this->repository->getQueryBuilder();
+        $queryBuilder->groupBy('coupon.id');
+        $queryBuilder->leftJoin('coupon.translations', 'coupon_translation');
+        
+        return $queryBuilder;
     }
 }

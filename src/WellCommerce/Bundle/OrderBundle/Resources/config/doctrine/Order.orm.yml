@@ -4,6 +4,13 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
         usage: NONSTRICT_READ_WRITE
     table: orders
     repositoryClass: WellCommerce\Bundle\OrderBundle\Repository\OrderRepository
+    indexes:
+        IDX_orders_number:
+            columns: [number]
+        IDX_orders_client_shop_confirmed:
+            columns: [client_id, shop_id, confirmed]
+        IDX_orders_session_shop_confirmed:
+            columns: [session_id, shop_id, confirmed]
     id:
         id:
             type: integer
@@ -17,13 +24,16 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             class: WellCommerce\Bundle\OrderBundle\Entity\OrderSummary
             columnPrefix: summary_
         billingAddress:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientBillingAddress
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientBillingAddress
             columnPrefix: billing_address_
         shippingAddress:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientShippingAddress
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientShippingAddress
             columnPrefix: shipping_address_
+        clientDetails:
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientDetails
+            columnPrefix: client_details_
         contactDetails:
-            class: WellCommerce\Bundle\ClientBundle\Entity\ClientContactDetails
+            class: WellCommerce\Bundle\AppBundle\Entity\ClientContactDetails
             columnPrefix: contact_details_
     fields:
         confirmed:
@@ -50,6 +60,22 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             type: string
             length: 1000
             nullable: false
+        shippingMethodOption:
+            type: string
+            length: 255
+            nullable: true
+        conditionsAccepted:
+            type: boolean
+            nullable: false
+            column: conditions_accepted
+            options:
+                default: true
+        issueInvoice:
+            type: boolean
+            nullable: false
+            column: issue_invoice
+            options:
+                default: false
     oneToMany:
         products:
             targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderProduct
@@ -57,6 +83,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                 - persist
             fetch: LAZY
             mappedBy: order
+            orphanRemoval: true
         orderStatusHistory:
             targetEntity: WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory
             cascade:
@@ -73,7 +100,7 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
             mappedBy: order
             orphanRemoval: true
         payments:
-            targetEntity:  WellCommerce\Bundle\PaymentBundle\Entity\Payment
+            targetEntity:  WellCommerce\Bundle\OrderBundle\Entity\Payment
             mappedBy: order
     manyToOne:
         coupon:
@@ -84,15 +111,15 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                     referencedColumnName: id
                     onDelete: SET NULL
         client:
-            targetEntity: WellCommerce\Bundle\ClientBundle\Entity\Client
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Client
             fetch: LAZY
             inversedBy: orders
             joinColumns:
                 client_id:
                     referencedColumnName: id
-                    onDelete: CASCADE
+                    onDelete: SET NULL
         paymentMethod:
-            targetEntity: WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethod
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod
             fetch: LAZY
             joinColumns:
                 payment_method_id:
@@ -106,14 +133,14 @@ WellCommerce\Bundle\OrderBundle\Entity\Order:
                     referencedColumnName: id
                     onDelete: RESTRICT
         shippingMethod:
-            targetEntity: WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethod
+            targetEntity: WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod
             fetch: LAZY
             joinColumns:
                 shipping_method_id:
                     referencedColumnName: id
                     onDelete: 'SET NULL'
         shop:
-            targetEntity: WellCommerce\Bundle\ShopBundle\Entity\ShopInterface
+            targetEntity: WellCommerce\Bundle\AppBundle\Entity\Shop
             fetch: LAZY
             joinColumns:
                 shop_id:

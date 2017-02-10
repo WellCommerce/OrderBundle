@@ -13,26 +13,24 @@
 namespace WellCommerce\Bundle\CoreBundle\DataSet;
 
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
+use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\DataSet\Cache\CacheOptions;
 use WellCommerce\Component\DataSet\Column\ColumnCollection;
 use WellCommerce\Component\DataSet\Column\ColumnInterface;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;
-use WellCommerce\Component\DataSet\Event\DataSetInitEvent;
-use WellCommerce\Component\DataSet\Event\DataSetRequestEvent;
 use WellCommerce\Component\DataSet\Manager\DataSetManagerInterface;
-use WellCommerce\Component\DataSet\Repository\DataSetAwareRepositoryInterface;
+use WellCommerce\Component\DataSet\QueryBuilder\DataSetQueryBuilder;
 use WellCommerce\Component\DataSet\Request\DataSetRequestInterface;
 use WellCommerce\Component\DataSet\Transformer\ColumnTransformerCollection;
-use WellCommerce\Component\DataSet\Transformer\DataSetTransformerInterface;
 
 /**
  * Class AbstractDataSet
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractDataSet implements DataSetInterface
+abstract class AbstractDataSet extends AbstractContainerAware implements DataSetInterface
 {
     /**
      * @var ColumnCollection
@@ -40,14 +38,9 @@ abstract class AbstractDataSet implements DataSetInterface
     protected $columns;
     
     /**
-     * @var DataSetAwareRepositoryInterface
+     * @var RepositoryInterface
      */
-    private $repository;
-    
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    protected $repository;
     
     /**
      * @var ColumnTransformerCollection
@@ -57,48 +50,34 @@ abstract class AbstractDataSet implements DataSetInterface
     /**
      * @var DataSetManagerInterface
      */
-    private $manager;
-    
-    /**
-     * @var array
-     */
-    protected $defaultContextOptions = [];
-    
-    /**
-     * @var array
-     */
-    protected $defaultRequestOptions = [];
+    protected $manager;
     
     /**
      * @var CacheOptions
      */
     protected $cacheOptions;
-
+    
     /**
      * AbstractDataSet constructor.
      *
-     * @param DataSetAwareRepositoryInterface $repository
-     * @param DataSetManagerInterface         $manager
-     * @param EventDispatcherInterface        $eventDispatcher
+     * @param RepositoryInterface     $repository
+     * @param DataSetManagerInterface $manager
      */
-    public function __construct(
-        DataSetAwareRepositoryInterface $repository,
-        DataSetManagerInterface $manager,
-        EventDispatcherInterface $eventDispatcher
-    ) {
-        $this->repository      = $repository;
-        $this->manager         = $manager;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->columns         = new ColumnCollection();
-        $this->cacheOptions    = new CacheOptions();
+    public function __construct(RepositoryInterface $repository, DataSetManagerInterface $manager)
+    {
+        $this->repository         = $repository;
+        $this->manager            = $manager;
+        $this->columns            = new ColumnCollection();
+        $this->columnTransformers = new ColumnTransformerCollection();
+        $this->cacheOptions       = new CacheOptions();
     }
     
     public function setCacheOptions(CacheOptions $options)
     {
         $this->cacheOptions = $options;
     }
-
-    public function getColumns() : ColumnCollection
+    
+    public function getColumns(): ColumnCollection
     {
         return $this->columns;
     }
@@ -113,81 +92,40 @@ abstract class AbstractDataSet implements DataSetInterface
         $this->columns->add($column);
     }
     
+    public function setColumnTransformers(ColumnTransformerCollection $transformers)
+    {
+        $this->columnTransformers = $transformers;
+    }
+    
     abstract public function configureOptions(DataSetConfiguratorInterface $configurator);
     
-    public function setDefaultRequestOption(string $name, $value)
+    public function getResult(string $contextType, array $requestOptions = [], array $contextOptions = []): array
     {
-        $this->defaultRequestOptions[$name] = $value;
-    }
-
-    public function setDefaultContextOption(string $name, $value)
-    {
-        $this->defaultContextOptions[$name] = $value;
-    }
-
-    public function dispatchOnDataSetInitEvent()
-    {
-        $this->eventDispatcher->dispatch($this->getEventName(DataSetInitEvent::EVENT_SUFFIX), new DataSetInitEvent($this));
-    }
-
-    public function getResult(string $contextType, array $requestOptions = [], array $contextOptions = []) : array
-    {
-        $contextOptions = $this->getContextOptions($contextOptions);
-        $requestOptions = $this->getRequestOptions($requestOptions);
-        $context        = $this->manager->createContext($contextType, $contextOptions);
-        $request        = $this->getDataSetRequest($requestOptions);
-        $queryBuilder   = $this->getQueryBuilder($request);
-
+        $this->getDoctrineHelper()->enableFilter('locale')->setParameter('locale', $this->getRequestHelper()->getCurrentLocale());
+        
+        $context      = $this->manager->createContext($contextType, $contextOptions, $this->columnTransformers);
+        $request      = $this->manager->createRequest($requestOptions);
+        $queryBuilder = $this->getQueryBuilder($request);
+        
         try {
-            return $context->getResult($queryBuilder, $request, $this->columns, $this->cacheOptions);
+            $result = $context->getResult($queryBuilder, $request, $this->columns, $this->cacheOptions);
         } catch (\Exception $e) {
-            return [
-                'error' => $e->getMessage()
+            $result = [
+                'error' => $e->getMessage(),
             ];
         }
-    }
-
-    protected function getDataSetRequest(array $requestOptions = []) : DataSetRequestInterface
-    {
-        $request = $this->manager->createRequest($requestOptions);
-        $this->dispatchDataSetRequestEvent($request);
-
-        return $request;
-    }
-
-    protected function getDataSetTransformer(string $type, array $options = []) : DataSetTransformerInterface
-    {
-        return $this->manager->createTransformer($type, $options);
-    }
-
-    protected function getQueryBuilder(DataSetRequestInterface $request) : QueryBuilder
-    {
-        $dataSetQueryBuilder = $this->manager->createQueryBuilder($this->repository);
-
-        return $dataSetQueryBuilder->getQueryBuilder($this->columns, $request);
-    }
-
-    private function getContextOptions(array $contextOptions = []) : array
-    {
-        $contextOptions = array_merge($this->defaultContextOptions, $contextOptions);
-
-        return $contextOptions;
-    }
-
-    private function getRequestOptions(array $requestOptions = []) : array
-    {
-        $requestOptions = array_merge($this->defaultRequestOptions, $requestOptions);
-
-        return $requestOptions;
-    }
-
-    private function dispatchDataSetRequestEvent(DataSetRequestInterface $request)
-    {
-        $this->eventDispatcher->dispatch($this->getEventName(DataSetRequestEvent::EVENT_SUFFIX), new DataSetRequestEvent($this, $request));
+        
+        $this->getDoctrineHelper()->disableFilter('locale');
+        
+        return $result;
     }
     
-    private function getEventName(string $eventSuffix): string
+    abstract protected function createQueryBuilder(): QueryBuilder;
+    
+    protected function getQueryBuilder(DataSetRequestInterface $request): QueryBuilder
     {
-        return sprintf('%s.%s', $this->repository->getAlias(), $eventSuffix);
+        $dataSetQueryBuilder = new DataSetQueryBuilder($this->createQueryBuilder());
+        
+        return $dataSetQueryBuilder->getQueryBuilder($this->columns, $request);
     }
 }

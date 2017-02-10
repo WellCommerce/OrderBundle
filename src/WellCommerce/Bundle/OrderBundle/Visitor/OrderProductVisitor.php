@@ -12,12 +12,11 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use Doctrine\Common\Util\Debug;
-use WellCommerce\Bundle\AppBundle\Factory\PriceFactory;
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
-use WellCommerce\Bundle\ProductBundle\Helper\VariantHelperInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Price;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\CatalogBundle\Helper\VariantHelperInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 
 /**
  * Class OrderProductVisitor
@@ -37,58 +36,70 @@ final class OrderProductVisitor implements OrderVisitorInterface
     private $variantHelper;
     
     /**
-     * @var PriceFactory
-     */
-    private $priceFactory;
-    
-    /**
      * OrderProductVisitor constructor.
      *
      * @param CurrencyHelperInterface $currencyHelper
      * @param VariantHelperInterface  $variantHelper
-     * @param PriceFactory            $priceFactory
      */
-    public function __construct(CurrencyHelperInterface $currencyHelper, VariantHelperInterface $variantHelper, PriceFactory $priceFactory)
+    public function __construct(CurrencyHelperInterface $currencyHelper, VariantHelperInterface $variantHelper)
     {
         $this->currencyHelper = $currencyHelper;
         $this->variantHelper  = $variantHelper;
-        $this->priceFactory   = $priceFactory;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
-        $order->getProducts()->map(function (OrderProductInterface $orderProduct) {
-            $this->refreshOrderProductSellPrice($orderProduct);
-            $this->refreshOrderProductBuyPrice($orderProduct);
-            $this->refreshOrderProductVariantOptions($orderProduct);
+        $order->getProducts()->map(function (OrderProduct $orderProduct) use ($order) {
+            if (false === $orderProduct->isLocked()) {
+                if ($this->checkOrderStock($order, $orderProduct)) {
+                    $this->refreshOrderProductSellPrice($orderProduct);
+                    $this->refreshOrderProductBuyPrice($orderProduct);
+                    $this->refreshOrderProductVariantOptions($orderProduct);
+                }
+            }
         });
     }
     
-    private function refreshOrderProductSellPrice(OrderProductInterface $orderProduct)
+    private function checkOrderStock(Order $order, OrderProduct $orderProduct): bool
     {
-        if ($orderProduct->hasVariant()) {
-            $baseSellPrice = $orderProduct->getVariant()->getSellPrice();
-        } else {
-            $baseSellPrice = $orderProduct->getProduct()->getSellPrice();
+        $trackStock      = $orderProduct->getProduct()->getTrackStock();
+        $orderedQuantity = $orderProduct->getQuantity();
+        $stock           = $orderProduct->getCurrentStock();
+        
+        if ($trackStock && $orderedQuantity > $stock) {
+            if ($stock > 0) {
+                $orderProduct->setQuantity($stock);
+            } else {
+                $order->getProducts()->removeElement($orderProduct);
+                $orderProduct->setOrder(null);
+                
+                return false;
+            }
         }
         
+        return true;
+    }
+    
+    private function refreshOrderProductSellPrice(OrderProduct $orderProduct)
+    {
+        $baseSellPrice  = $orderProduct->getCurrentSellPrice();
         $baseCurrency   = $baseSellPrice->getCurrency();
         $targetCurrency = $orderProduct->getOrder()->getCurrency();
         $grossAmount    = $this->currencyHelper->convert($baseSellPrice->getFinalGrossAmount(), $baseCurrency, $targetCurrency);
         $netAmount      = $this->currencyHelper->convert($baseSellPrice->getFinalNetAmount(), $baseCurrency, $targetCurrency);
         $taxAmount      = $this->currencyHelper->convert($baseSellPrice->getFinalTaxAmount(), $baseCurrency, $targetCurrency);
-
-        $sellPrice = $this->priceFactory->create();
+        
+        $sellPrice = new Price();
         $sellPrice->setCurrency($targetCurrency);
         $sellPrice->setGrossAmount($grossAmount);
         $sellPrice->setNetAmount($netAmount);
         $sellPrice->setTaxAmount($taxAmount);
         $sellPrice->setTaxRate($baseSellPrice->getTaxRate());
-
+        
         $orderProduct->setSellPrice($sellPrice);
     }
     
-    private function refreshOrderProductBuyPrice(OrderProductInterface $orderProduct)
+    private function refreshOrderProductBuyPrice(OrderProduct $orderProduct)
     {
         $baseBuyPrice   = $orderProduct->getProduct()->getBuyPrice();
         $baseCurrency   = $baseBuyPrice->getCurrency();
@@ -96,18 +107,18 @@ final class OrderProductVisitor implements OrderVisitorInterface
         $grossAmount    = $this->currencyHelper->convert($baseBuyPrice->getGrossAmount(), $baseCurrency, $targetCurrency);
         $netAmount      = $this->currencyHelper->convert($baseBuyPrice->getNetAmount(), $baseCurrency, $targetCurrency);
         $taxAmount      = $this->currencyHelper->convert($baseBuyPrice->getTaxAmount(), $baseCurrency, $targetCurrency);
-
-        $buyPrice = $this->priceFactory->create();
+        
+        $buyPrice = new Price();
         $buyPrice->setCurrency($targetCurrency);
         $buyPrice->setGrossAmount($grossAmount);
         $buyPrice->setNetAmount($netAmount);
         $buyPrice->setTaxAmount($taxAmount);
         $buyPrice->setTaxRate($baseBuyPrice->getTaxRate());
-
+        
         $orderProduct->setBuyPrice($buyPrice);
     }
     
-    private function refreshOrderProductVariantOptions(OrderProductInterface $orderProduct)
+    private function refreshOrderProductVariantOptions(OrderProduct $orderProduct)
     {
         if ($orderProduct->hasVariant()) {
             $options = $this->variantHelper->getVariantOptions($orderProduct->getVariant());

@@ -25,13 +25,20 @@ use WellCommerce\Component\DataGrid\Column\Options\Filter;
 class OrderStatusDataGrid extends AbstractDataGrid
 {
     /**
-     * {@inheritdoc}
+     * @var OrderStatusGroupFilter
      */
+    protected $orderStatusGroupFilter;
+    
+    public function __construct(OrderStatusGroupFilter $orderStatusGroupFilter)
+    {
+        $this->orderStatusGroupFilter = $orderStatusGroupFilter;
+    }
+    
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'appearance' => new Appearance([
                 'width'   => 90,
                 'visible' => false,
@@ -43,49 +50,41 @@ class OrderStatusDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'         => 'name',
-            'caption'    => $this->trans('common.label.name'),
+            'caption'    => 'common.label.name',
             'appearance' => new Appearance([
                 'width' => 340,
             ]),
         ]));
         
-        
         $collection->add(new Column([
             'id'         => 'groupName',
-            'caption'    => $this->trans('common.label.group'),
+            'caption'    => 'common.label.group',
             'filter'     => new Filter([
-                'type'    => Filter::FILTER_SELECT,
-                'options' => $this->getOrderStatusGroups()
+                'type'    => Filter::FILTER_TREE,
+                'filtered_column' => 'groupId',
+                'options' => $this->orderStatusGroupFilter->getOptions(),
             ]),
             'appearance' => new Appearance([
                 'width' => 140,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
         
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('common.label.created_at'),
+            'caption'    => 'common.label.created_at',
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
             'appearance' => new Appearance([
                 'width' => 40,
-                'align' => Appearance::ALIGN_CENTER
+                'align' => Appearance::ALIGN_CENTER,
             ]),
         ]));
     }
     
-    /**
-     * Returns order status groups to for filter
-     *
-     * @return array
-     */
-    protected function getOrderStatusGroups()
+    public function getIdentifier(): string
     {
-        return $this->get('order_status_group.dataset.admin')->getResult('select', [], [
-            'value_column' => 'name',
-            'label_column' => 'name',
-        ]);
+        return 'order_status';
     }
 }

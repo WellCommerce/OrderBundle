@@ -11,8 +11,10 @@
  */
 namespace WellCommerce\Bundle\ReviewBundle\Repository;
 
-use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 
 /**
  * Class ReviewRepository
@@ -21,16 +23,21 @@ use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
  */
 class ReviewRepository extends EntityRepository implements ReviewRepositoryInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getDataSetQueryBuilder() : QueryBuilder
+    public function getProductReviews(Product $product): Collection
     {
-        $queryBuilder = $this->getQueryBuilder();
-        $queryBuilder->groupBy('review.id');
-        $queryBuilder->leftJoin('review.product', 'product_info');
-        $queryBuilder->leftJoin('product_info.translations', 'product_translation');
-
-        return $queryBuilder;
+        $criteria = new Criteria();
+        $criteria->where($criteria->expr()->eq('product', $product));
+        $criteria->andWhere($criteria->expr()->eq('enabled', true));
+        $criteria->orderBy([
+            'ratio' => 'desc',
+            'likes' => 'asc',
+        ]);
+        
+        return $this->matching($criteria);
+    }
+    
+    public function getAlias(): string
+    {
+        return 'reviews';
     }
 }

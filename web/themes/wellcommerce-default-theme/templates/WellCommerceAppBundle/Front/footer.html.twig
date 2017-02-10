@@ -1,4 +1,5 @@
 {% trans_default_domain "wellcommerce" %}
+{# {% cache 'wellcommerce-default-theme/footer' {time: 3600} %} #}
 <footer>
     <div class="container">
         <div class="row">
@@ -22,7 +23,7 @@
                                 <li><a href="{{ path('front.client.logout') }}">{% trans %}client.link.logout{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_order.index') }}">{% trans %}client.link.orders{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_address_book.index') }}">{% trans %}client.link.address_book{% endtrans %}</a></li>
-                                <li><a href="{{ path('front.client_wishlist.index') }}">{% trans %}client.link.wishlist{% endtrans %}</a></li>
+                                <li><a href="{{ path('front.wishlist.index') }}">{% trans %}client.link.wishlist{% endtrans %}</a></li>
                             {%  else %}
                                 <li><a href="{{ path('front.client.login') }}">{% trans %}client.link.login{% endtrans %}</a></li>
                                 <li><a href="{{ path('front.client_password.reset') }}">{% trans %}client.link.password_forgotten{% endtrans %}</a></li>
@@ -38,16 +39,15 @@
     <div class="copy">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 left">
+                <div class="col-lg-6">
                     {{ "now"|date("Y") }} © {{ currentShop().name }} / All rights reserved
                 </div>
-                <div class="col-lg-6 right text-right">
-                    Powered by <a href="http://wellcommerce.org" title="WellCommerce - an open-source e-commerce solution">
-                        <img src="{{ asset('themes/wellcommerce-default-theme/assets/img/footer-print.png') }}"/>
-                    </a>
+                <div class="col-lg-6 text-right">
+                    Powered by <a href="http://wellcommerce.org" class="logo" title="WellCommerce - an open-source e-commerce solution"><img src="{{ asset('themes/wellcommerce-default-theme/assets/img/logo-white.svg') }}"/></a>
                 </div>
             </div>
         </div>
     </div>
     {% include 'WellCommerceAppBundle:Front:modals.html.twig' %}
 </footer>
+{# {% endcache %} #}

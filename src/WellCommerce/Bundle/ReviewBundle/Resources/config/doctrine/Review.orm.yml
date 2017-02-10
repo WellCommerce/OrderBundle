@@ -1,3 +1,11 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
 WellCommerce\Bundle\ReviewBundle\Entity\Review:
     type: entity
     table: review
@@ -12,20 +20,37 @@ WellCommerce\Bundle\ReviewBundle\Entity\Review:
             type: string
             nullable: false
         review:
-            type: string
+            type: text
             nullable: false
         rating:
             type: integer
             nullable: false
-        enabled:
-            type: boolean
+        ratingLevel:
+            type: integer
+            nullable: false
+        ratio:
+            type: float
+            nullable: false
+        likes:
+            type: integer
+            nullable: false
+        ratingRecommendation:
+            type: integer
             nullable: false
     manyToOne:
         product:
-            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Product
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Product
             fetch: LAZY
-            inversedBy: reviews
             joinColumns:
                 product_id:
                     referencedColumnName: id
                     onDelete: CASCADE
+    oneToMany:
+        recommendations:
+            targetEntity: WellCommerce\Bundle\ReviewBundle\Entity\ReviewRecommendation
+            cascade:
+                - remove
+                - persist
+            fetch: EXTRA_LAZY
+            mappedBy: review
+            orphanRemoval: true

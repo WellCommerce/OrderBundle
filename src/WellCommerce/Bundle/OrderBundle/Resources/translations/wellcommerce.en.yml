@@ -6,16 +6,18 @@ order:
         index: Orders
         edit: Edit order
         address: Billing & shipping address
+        confirm: Confirmation
         confirmation: Confirmation
         order_total: Summary
         products: Products
         contact_details: Contact details
+        cart: Cart
     button:
         confirm: Go to confirmation
         add_product: Add product
     label:
         id: ID
-        order_no: Order no.
+        number: Order no.
         client: Client
         product_total: Products value
         shipping_total: Shipping cost
@@ -35,11 +37,21 @@ order:
         gross_amount: Price
         gross_total: Total
         currency: Currency
+        products: Products
+        variant_options: Wybrane opcje
+        accept_conditions: I accept the shop conditions
+        issue_invoice: Please send me an invoice
+        shipping_cost: Shipping costs
+        coupon:
+            code: Coupon code
+            modifier: Coupon modifier
     description:
         product_total: Total products value
         shipping_cost: Shipping costs
     notice:
         empty_order_list: You have not placed any orders
+    error:
+        no_methods: There are no available shipping & payment methods for this order
     cart:
         flash:
             added: was added to cart
@@ -73,11 +85,10 @@ address:
     label:
         copy_address: Shipping address same as billing address
         addresses: Addresses
-        street: Street
-        street_no: Street no.
-        flat_no: Flat no.
+        line1: Address line 1
+        line2: Address line 2
         province: Province
-        post_code: Post code
+        postal_code: Post code
         country: Country
         city: City
 
@@ -114,3 +125,55 @@ order_status_history:
         no_history: Order status history is empty
     button:
         change: Save
+
+payment:
+    heading:
+        initialize: Payment
+    flash:
+        thank_you: "Thank you for placing an order. Below are the order's details:"
+
+payment_method:
+    heading:
+        index: Payment methods
+        add: Add a payment method
+        edit: Edit a payment method
+    fieldset:
+        shipping_methods: Allowed shipping methods
+        processor_configuration: Processor configuration
+        order_statuses: Order statuses
+    label:
+        processor: Payment processor
+        shipping_methods: Allowed shipping methods
+        payment_pending_order_status: Waiting for payment
+        payment_success_order_status: Paid
+        payment_failure_order_status: Payment failed
+        bank_transfer:
+            tip: 'Your order will be processed upon receiving of the payment at the following bank account'
+            account_number: Account number
+            account_owner: Account owner
+            sort_number: Sort code
+            title: 'Transfer title'
+
+sales_report:
+    heading:
+        sales: Sales summary
+    label:
+        sales: Sales
+        clients: Clients
+        orders: Orders
+        today: today
+        current_month: current month
+        current_period: current period
+
+shipping_method:
+    heading:
+        index: Shipping methods
+        add: Add a shipping method
+        edit: Edit a shipping method
+    label:
+        calculator: Type of costs calculation
+        costs: Shipping costs
+        options_provider: Options provider service
+    fieldset:
+        costs: Shipping costs settings
+        countries: Countries

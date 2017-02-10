@@ -17,6 +17,8 @@ use WellCommerce\Component\DataGrid\Column\ColumnCollection;
 use WellCommerce\Component\DataGrid\Column\Options\Appearance;
 use WellCommerce\Component\DataGrid\Column\Options\Filter;
 use WellCommerce\Component\DataGrid\Column\Options\Sorting;
+use WellCommerce\Component\DataGrid\Configuration\EventHandler\CustomRowEventHandler;
+use WellCommerce\Component\DataGrid\Options\OptionsInterface;
 
 /**
  * Class ReviewDataGrid
@@ -25,14 +27,11 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class ReviewDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('review.label.id'),
+            'caption'    => 'review.label.id',
             'sorting'    => new Sorting([
                 'default_order' => Sorting::SORT_DIR_DESC,
             ]),
@@ -44,32 +43,34 @@ class ReviewDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'nick',
-            'caption'    => $this->trans('review.label.nick'),
+            'caption'    => 'review.label.nick',
             'appearance' => new Appearance([
                 'width' => 70,
+                'align' => Appearance::ALIGN_CENTER,
             ]),
             'filter'     => new Filter([
                 'type' => Filter::FILTER_INPUT,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'createdAt',
-            'caption'    => $this->trans('review.label.created_at'),
+            'caption'    => 'review.label.created_at',
             'appearance' => new Appearance([
                 'width' => 70,
+                'align' => Appearance::ALIGN_CENTER,
             ]),
             'filter'     => new Filter([
                 'type' => Filter::FILTER_INPUT,
             ]),
         ]));
-
+        
         $collection->add(new Column([
             'id'         => 'product',
-            'caption'    => $this->trans('review.label.product'),
+            'caption'    => 'review.label.product',
             'appearance' => new Appearance([
                 'width' => 70,
             ]),
@@ -77,16 +78,49 @@ class ReviewDataGrid extends AbstractDataGrid
                 'type' => Filter::FILTER_INPUT,
             ]),
         ]));
-
+        
+        $collection->add(new Column([
+            'id'         => 'review',
+            'caption'    => 'review.label.review',
+            'appearance' => new Appearance([
+                'width' => 200,
+            ]),
+        ]));
+        
         $collection->add(new Column([
             'id'         => 'rating',
-            'caption'    => $this->trans('review.label.rating'),
+            'caption'    => 'review.label.rating',
             'appearance' => new Appearance([
                 'width' => 70,
+                'align' => Appearance::ALIGN_CENTER,
             ]),
             'filter'     => new Filter([
                 'type' => Filter::FILTER_BETWEEN,
             ]),
         ]));
+    }
+    
+    public function configureOptions(OptionsInterface $options)
+    {
+        parent::configureOptions($options);
+        
+        $eventHandlers = $options->getEventHandlers();
+        
+        $eventHandlers->add(new CustomRowEventHandler([
+            'function'      => $this->getJavascriptFunctionName('enableOpinion'),
+            'function_name' => 'enableOpinion',
+            'row_action'    => 'action_enableOpinion',
+        ]));
+        
+        $eventHandlers->add(new CustomRowEventHandler([
+            'function'      => $this->getJavascriptFunctionName('disableOpinion'),
+            'function_name' => 'disableOpinion',
+            'row_action'    => 'action_disableOpinion',
+        ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'review';
     }
 }

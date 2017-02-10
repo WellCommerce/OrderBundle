@@ -12,11 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Generator;
 
-use Carbon\Carbon;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderNumberGenerator
@@ -26,36 +23,28 @@ use WellCommerce\Bundle\OrderBundle\Repository\OrderRepositoryInterface;
 final class OrderNumberGenerator implements OrderNumberGeneratorInterface
 {
     /**
-     * @var OrderRepositoryInterface
+     * @var DoctrineHelperInterface
      */
-    private $orderRepository;
+    private $helper;
     
     /**
      * OrderNumberGenerator constructor.
      *
-     * @param OrderRepositoryInterface $orderRepository
+     * @param DoctrineHelperInterface $helper
      */
-    public function __construct(OrderRepositoryInterface $orderRepository)
+    public function __construct(DoctrineHelperInterface $helper)
     {
-        $this->orderRepository = $orderRepository;
+        $this->helper = $helper;
     }
     
-    public function generateOrderNumber(OrderInterface $order) : string
+    public function generateOrderNumber(Order $order) : string
     {
-        $date   = Carbon::now()->format('d/m/Y');
-        $orders = $this->findPreviousOrdersToday();
-        $number = sprintf('%s/%s', $orders->count() + 1, $date);
-
-        return $number;
-    }
-
-    private function findPreviousOrdersToday() : Collection
-    {
-        $today    = Carbon::now()->startOfDay();
-        $criteria = new Criteria();
-        $criteria->where($criteria->expr()->gte('updatedAt', $today));
-        $criteria->andWhere($criteria->expr()->eq('confirmed', true));
-
-        return $this->orderRepository->matching($criteria);
+        $sql  = "SELECT MAX(CAST(orders.number AS UNSIGNED)) AS last_order FROM orders WHERE confirmed = 1";
+        $em   = $this->helper->getEntityManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+        $rs = $stmt->fetch();
+        
+        return $rs['last_order'] + 1;
     }
 }

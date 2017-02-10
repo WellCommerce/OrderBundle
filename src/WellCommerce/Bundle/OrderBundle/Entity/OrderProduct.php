@@ -2,31 +2,79 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
-use WellCommerce\Bundle\AppBundle\Entity\PriceInterface;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Timestampable\TimestampableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductAwareTrait;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantAwareTrait;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use WellCommerce\Bundle\AppBundle\Entity\DiscountablePrice;
+use WellCommerce\Bundle\AppBundle\Entity\Price;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class OrderProduct
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderProduct extends AbstractEntity implements OrderProductInterface
+class OrderProduct implements EntityInterface
 {
-    use TimestampableTrait;
-    use ProductAwareTrait;
-    use VariantAwareTrait;
-    use OrderAwareTrait;
+    use Identifiable;
+    use Timestampable;
     
-    protected $quantity;
+    protected $quantity = 1;
+    protected $weight   = 0.00;
+    protected $options  = [];
+    protected $locked   = false;
+    
+    /**
+     * @var Price
+     */
     protected $buyPrice;
-    protected $sellPrice;
-    protected $weight;
-    protected $options;
     
-    public function getQuantity() : int
+    /**
+     * @var Price
+     */
+    protected $sellPrice;
+    
+    /**
+     * @var Order
+     */
+    protected $order;
+    
+    /**
+     * @var Product
+     */
+    protected $product;
+    
+    /**
+     * @var Variant
+     */
+    protected $variant;
+    
+    public function __construct()
+    {
+        $this->buyPrice  = new Price();
+        $this->sellPrice = new Price();
+    }
+    
+    public function getCurrentStock(): int
+    {
+        if ($this->hasVariant()) {
+            return $this->getVariant()->getStock();
+        }
+        
+        return $this->getProduct()->getStock();
+    }
+    
+    public function getCurrentSellPrice(): DiscountablePrice
+    {
+        if ($this->hasVariant()) {
+            return $this->getVariant()->getSellPrice();
+        }
+        
+        return $this->getProduct()->getSellPrice();
+    }
+    
+    public function getQuantity(): int
     {
         return $this->quantity;
     }
@@ -46,27 +94,27 @@ class OrderProduct extends AbstractEntity implements OrderProductInterface
         $this->quantity -= $decrease;
     }
     
-    public function getSellPrice() : PriceInterface
+    public function getSellPrice(): Price
     {
         return $this->sellPrice;
     }
     
-    public function setSellPrice(PriceInterface $sellPrice)
+    public function setSellPrice(Price $sellPrice)
     {
         $this->sellPrice = $sellPrice;
     }
     
-    public function getBuyPrice() : PriceInterface
+    public function getBuyPrice(): Price
     {
         return $this->buyPrice;
     }
     
-    public function setBuyPrice(PriceInterface $buyPrice)
+    public function setBuyPrice(Price $buyPrice)
     {
         $this->buyPrice = $buyPrice;
     }
     
-    public function getWeight() : float
+    public function getWeight(): float
     {
         return $this->weight;
     }
@@ -76,7 +124,7 @@ class OrderProduct extends AbstractEntity implements OrderProductInterface
         $this->weight = $weight;
     }
     
-    public function getOptions() : array
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -84,5 +132,50 @@ class OrderProduct extends AbstractEntity implements OrderProductInterface
     public function setOptions(array $options)
     {
         $this->options = $options;
+    }
+    
+    public function isLocked(): bool
+    {
+        return $this->locked;
+    }
+    
+    public function setLocked(bool $locked)
+    {
+        $this->locked = $locked;
+    }
+    
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+    
+    public function setOrder(Order $order = null)
+    {
+        $this->order = $order;
+    }
+    
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+    
+    public function setProduct(Product $product)
+    {
+        $this->product = $product;
+    }
+    
+    public function getVariant()
+    {
+        return $this->variant;
+    }
+    
+    public function setVariant(Variant $variant)
+    {
+        $this->variant = $variant;
+    }
+    
+    public function hasVariant(): bool
+    {
+        return $this->variant instanceof Variant;
     }
 }

@@ -1,6 +1,6 @@
 (function (Translator) {
     // nl
-    Translator.add("This value should be false.", "Deze waarde mag niet waar zijn.", "validators", "nl");
+    Translator.add("This value should be false.", "Deze waarde moet onwaar zijn.", "validators", "nl");
     Translator.add("This value should be true.", "Deze waarde moet waar zijn.", "validators", "nl");
     Translator.add("This value should be of type {{ type }}.", "Deze waarde moet van het type {{ type }} zijn.", "validators", "nl");
     Translator.add("This value should be blank.", "Deze waarde moet leeg zijn.", "validators", "nl");
@@ -8,12 +8,12 @@
     Translator.add("You must select at least {{ limit }} choice.|You must select at least {{ limit }} choices.", "Selecteer ten minste {{ limit }} optie.|Selecteer ten minste {{ limit }} opties.", "validators", "nl");
     Translator.add("You must select at most {{ limit }} choice.|You must select at most {{ limit }} choices.", "Selecteer maximaal {{ limit }} optie.|Selecteer maximaal {{ limit }} opties.", "validators", "nl");
     Translator.add("One or more of the given values is invalid.", "E\u00e9n of meer van de ingegeven waarden zijn ongeldig.", "validators", "nl");
-    Translator.add("This field was not expected.", "Dit veld was niet verwacht.", "validators", "nl");
+    Translator.add("This field was not expected.", "Dit veld werd niet verwacht.", "validators", "nl");
     Translator.add("This field is missing.", "Dit veld ontbreekt.", "validators", "nl");
     Translator.add("This value is not a valid date.", "Deze waarde is geen geldige datum.", "validators", "nl");
     Translator.add("This value is not a valid datetime.", "Deze waarde is geen geldige datum en tijd.", "validators", "nl");
     Translator.add("This value is not a valid email address.", "Deze waarde is geen geldig e-mailadres.", "validators", "nl");
-    Translator.add("The file could not be found.", "Het bestand is niet gevonden.", "validators", "nl");
+    Translator.add("The file could not be found.", "Het bestand kon niet gevonden worden.", "validators", "nl");
     Translator.add("The file is not readable.", "Het bestand is niet leesbaar.", "validators", "nl");
     Translator.add("The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.", "Het bestand is te groot ({{ size }} {{ suffix }}). Toegestane maximum grootte is {{ limit }} {{ suffix }}.", "validators", "nl");
     Translator.add("The mime type of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.", "Het mime type van het bestand is ongeldig ({{ type }}). Toegestane mime types zijn {{ types }}.", "validators", "nl");
@@ -24,19 +24,19 @@
     Translator.add("This value should not be blank.", "Deze waarde mag niet leeg zijn.", "validators", "nl");
     Translator.add("This value should not be null.", "Deze waarde mag niet null zijn.", "validators", "nl");
     Translator.add("This value should be null.", "Deze waarde moet null zijn.", "validators", "nl");
-    Translator.add("This value is not valid.", "Deze waarde is ongeldig.", "validators", "nl");
+    Translator.add("This value is not valid.", "Deze waarde is niet geldig.", "validators", "nl");
     Translator.add("This value is not a valid time.", "Deze waarde is geen geldige tijd.", "validators", "nl");
     Translator.add("This value is not a valid URL.", "Deze waarde is geen geldige URL.", "validators", "nl");
     Translator.add("The two values should be equal.", "De twee waarden moeten gelijk zijn.", "validators", "nl");
     Translator.add("The file is too large. Allowed maximum size is {{ limit }} {{ suffix }}.", "Het bestand is te groot. Toegestane maximum grootte is {{ limit }} {{ suffix }}.", "validators", "nl");
     Translator.add("The file is too large.", "Het bestand is te groot.", "validators", "nl");
-    Translator.add("The file could not be uploaded.", "Het bestand kon niet ge\u00fcpload worden.", "validators", "nl");
+    Translator.add("The file could not be uploaded.", "Het bestand kon niet worden ge\u00fcpload.", "validators", "nl");
     Translator.add("This value should be a valid number.", "Deze waarde moet een geldig getal zijn.", "validators", "nl");
     Translator.add("This file is not a valid image.", "Dit bestand is geen geldige afbeelding.", "validators", "nl");
     Translator.add("This is not a valid IP address.", "Dit is geen geldig IP-adres.", "validators", "nl");
-    Translator.add("This value is not a valid language.", "Deze waarde representeert geen geldige taal.", "validators", "nl");
-    Translator.add("This value is not a valid locale.", "Deze waarde representeert geen geldige lokalisering.", "validators", "nl");
-    Translator.add("This value is not a valid country.", "Deze waarde representeert geen geldig land.", "validators", "nl");
+    Translator.add("This value is not a valid language.", "Deze waarde is geen geldige taal.", "validators", "nl");
+    Translator.add("This value is not a valid locale.", "Deze waarde is geen geldige locale.", "validators", "nl");
+    Translator.add("This value is not a valid country.", "Deze waarde is geen geldig land.", "validators", "nl");
     Translator.add("This value is already used.", "Deze waarde wordt al gebruikt.", "validators", "nl");
     Translator.add("The size of the image could not be detected.", "De grootte van de afbeelding kon niet bepaald worden.", "validators", "nl");
     Translator.add("The image width is too big ({{ width }}px). Allowed maximum width is {{ max_width }}px.", "De afbeelding is te breed ({{ width }}px). De maximaal toegestane breedte is {{ max_width }}px.", "validators", "nl");
@@ -45,7 +45,7 @@
     Translator.add("The image height is too small ({{ height }}px). Minimum height expected is {{ min_height }}px.", "De afbeelding is niet hoog genoeg ({{ height }}px). De minimaal verwachte hoogte is {{ min_height }}px.", "validators", "nl");
     Translator.add("This value should be the user's current password.", "Deze waarde moet het huidige wachtwoord van de gebruiker zijn.", "validators", "nl");
     Translator.add("This value should have exactly {{ limit }} character.|This value should have exactly {{ limit }} characters.", "Deze waarde moet exact {{ limit }} teken lang zijn.|Deze waarde moet exact {{ limit }} tekens lang zijn.", "validators", "nl");
-    Translator.add("The file was only partially uploaded.", "Het bestand is niet geheel ge\u00fcpload.", "validators", "nl");
+    Translator.add("The file was only partially uploaded.", "Het bestand is slechts gedeeltelijk ge\u00fcpload.", "validators", "nl");
     Translator.add("No file was uploaded.", "Er is geen bestand ge\u00fcpload.", "validators", "nl");
     Translator.add("No temporary folder was configured in php.ini.", "Er is geen tijdelijke map geconfigureerd in php.ini.", "validators", "nl");
     Translator.add("Cannot write temporary file to disk.", "Kan het tijdelijke bestand niet wegschrijven op disk.", "validators", "nl");

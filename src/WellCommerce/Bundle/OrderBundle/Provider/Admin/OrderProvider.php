@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Provider\Admin;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderProvider
@@ -22,19 +22,19 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
 final class OrderProvider implements OrderProviderInterface
 {
     private $currentOrder;
-
-    public function setCurrentOrder(OrderInterface $order)
+    
+    public function setCurrentOrder(Order $order)
     {
         $this->currentOrder = $order;
     }
-
-    public function getCurrentOrder() : OrderInterface
+    
+    public function getCurrentOrder(): Order
     {
         return $this->currentOrder;
     }
-
-    public function hasCurrentOrder() : bool
+    
+    public function hasCurrentOrder(): bool
     {
-        return $this->currentOrder instanceof OrderInterface;
+        return $this->currentOrder instanceof Order;
     }
 }

@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use WellCommerce\Bundle\CoreBundle\Controller\Front\AbstractFrontController;
 use WellCommerce\Bundle\CouponBundle\Checker\CouponCheckerInterface;
-use WellCommerce\Bundle\CouponBundle\Entity\CouponInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
 
 /**
@@ -26,19 +26,19 @@ use WellCommerce\Bundle\CouponBundle\Exception\CouponException;
  */
 class CouponController extends AbstractFrontController
 {
-    public function addAction(CouponInterface $coupon = null) : JsonResponse
+    public function addAction(Coupon $coupon = null): JsonResponse
     {
         try {
             if (!$this->getCouponChecker()->isValid($coupon)) {
                 throw new CouponException($this->getCouponChecker()->getError());
             }
-
+            
             $order = $this->getOrderProvider()->getCurrentOrder();
             $order->setCoupon($coupon);
             $this->getManager()->updateResource($order);
-
+            
             $result = [
-                'success' => true
+                'success' => true,
             ];
         } catch (CouponException $e) {
             $result = [
@@ -46,23 +46,23 @@ class CouponController extends AbstractFrontController
                 'message' => $this->trans($e->getMessage()),
             ];
         }
-
+        
         return $this->jsonResponse($result);
     }
-
-    public function deleteAction(Request $request) : JsonResponse
+    
+    public function deleteAction(Request $request): JsonResponse
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('cart.front.index');
         }
-
+        
         try {
             $order = $this->getOrderProvider()->getCurrentOrder();
-            $order->removeCoupon();
+            $order->setCoupon(null);
             $this->getManager()->updateResource($order);
-
+            
             $result = [
-                'success' => true
+                'success' => true,
             ];
         } catch (CouponException $e) {
             $result = [
@@ -70,11 +70,11 @@ class CouponController extends AbstractFrontController
                 'message' => $this->trans($e->getMessage()),
             ];
         }
-
+        
         return $this->jsonResponse($result);
     }
-
-    protected function getCouponChecker() : CouponCheckerInterface
+    
+    protected function getCouponChecker(): CouponCheckerInterface
     {
         return $this->get('coupon.checker');
     }

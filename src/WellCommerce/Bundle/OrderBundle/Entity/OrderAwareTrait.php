@@ -21,18 +21,23 @@ trait OrderAwareTrait
 {
     protected $order;
     
-    public function getOrder() : OrderInterface
+    public function getOrder(): Order
     {
         return $this->order;
     }
     
-    public function setOrder(OrderInterface $order)
+    public function removeFromOrder()
+    {
+        $this->order = null;
+    }
+    
+    public function setOrder(Order $order)
     {
         $this->order = $order;
     }
     
-    public function hasOrder() : bool
+    public function hasOrder(): bool
     {
-        return $this->order instanceof OrderInterface;
+        return $this->order instanceof Order;
     }
 }

@@ -1,4 +1,4 @@
-{% extends 'WellCommerceAdminBundle:Admin:layout.html.twig' %}
+{% extends 'WellCommerceAppBundle:Admin:layout.html.twig' %}
 {% trans_default_domain "wellcommerce" %}
 {% block content %}
     <h2>{% trans %}order.heading.heading{% endtrans %}</h2>
@@ -6,5 +6,5 @@
         <li><a href="{{ path('admin.order.index') }}" class="button return"><span></span></a></li>
         <li><a href="#{{ form.getName() }}" rel="submit" class="button"><span>{% trans %}common.button.save_and_finish{% endtrans %}</span></a></li>
     </ul>
-    {{ form_js(form) }}
+    {{ render_form(form) }}
 {% endblock %}

@@ -12,7 +12,6 @@
 
 namespace WellCommerce\Bundle\ReviewBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
 
 /**
@@ -20,6 +19,6 @@ use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceReviewExtension extends AbstractExtension
+final class WellCommerceReviewExtension extends AbstractExtension
 {
 }

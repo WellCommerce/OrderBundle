@@ -19,15 +19,20 @@
                 <option name="traverse">true</option>
             </constraint>
         </property>
+        <property name="clientDetails">
+            <constraint name="Valid">
+                <option name="traverse">true</option>
+            </constraint>
+        </property>
         <property name="shippingMethod">
             <constraint name="Type">
-                <option name="type">WellCommerce\Bundle\ShippingBundle\Entity\ShippingMethodInterface</option>
+                <option name="type">WellCommerce\Bundle\OrderBundle\Entity\ShippingMethod</option>
                 <option name="message">order.shipping_method_not_valid</option>
             </constraint>
         </property>
         <property name="paymentMethod">
             <constraint name="Type">
-                <option name="type">WellCommerce\Bundle\PaymentBundle\Entity\PaymentMethodInterface</option>
+                <option name="type">WellCommerce\Bundle\OrderBundle\Entity\PaymentMethod</option>
                 <option name="message">order.payment_method_not_valid</option>
             </constraint>
         </property>
@@ -37,14 +42,19 @@
                 <option name="minMessage">order.empty_product_collection</option>
             </constraint>
         </property>
-    </class>
-
-    <class name="WellCommerce\Bundle\OrderBundle\Entity\OrderStatusHistory">
-        <property name="comment">
-            <constraint name="NotNull" />
+        <property name="conditionsAccepted">
+            <constraint name="EqualTo">
+                <option name="value">1</option>
+                <option name="message">client.conditions_not_accepted</option>
+                <option name="groups">
+                    <value>confirmation</value>
+                </option>
+            </constraint>
         </property>
-        <property name="orderStatus">
-            <constraint name="NotNull" />
-        </property>
+        <constraint name="WellCommerce\Bundle\OrderBundle\Validator\CompanyAddress">
+            <option name="groups">
+                <value>order_issue_invoice</value>
+            </option>
+        </constraint>
     </class>
 </constraint-mapping>

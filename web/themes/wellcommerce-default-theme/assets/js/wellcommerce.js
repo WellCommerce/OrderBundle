@@ -9,7 +9,7 @@ $(document).ready(function () {
         sVariantSelector: '#variant',
         sQuantitySelector: '#quantity',
         sPriceSelector: '#price',
-        sAddProductRoute: 'front.order_cart.add',
+        sAddProductRoute: 'front.cart.add',
         sAttributesSelectClass: '.attribute'
     };
 
@@ -22,13 +22,13 @@ $(document).ready(function () {
     });
 
     $('.cart').GCart({
-        sChangeQuantityRoute: 'front.order_cart.edit',
+        sChangeQuantityRoute: 'front.cart.edit',
         sQuantitySpinnerClass: 'quantity-spinner'
     });
 
     $('form#search').GSearch({
         sProductSearchRoute:        'front.search.index',
-        sProductLiveSearchRoute:    'front.search.view',
+        sProductLiveSearchRoute:    'front.search.quick',
         sPhraseInputSelector:       '#phrase',
         sSearchResultsSelector:     'div#search-results',
         oAddCartButtonSettings:     oAddCartButtonSettings
@@ -55,9 +55,9 @@ $(document).ready(function () {
         }
     });
 
-	 $('.sliding-search > div > form').click(function(event){
-	     event.stopPropagation();
-	 });
+	$('.sliding-search > div > form').click(function(event){
+		event.stopPropagation();
+	});
 
     $('.push-hamburger').click(function() {
 		$('body').toggleClass('hamburger-is-open');

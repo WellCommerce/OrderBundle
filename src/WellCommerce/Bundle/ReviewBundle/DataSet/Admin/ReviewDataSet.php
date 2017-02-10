@@ -12,6 +12,7 @@
 
 namespace WellCommerce\Bundle\ReviewBundle\DataSet\Admin;
 
+use Doctrine\ORM\QueryBuilder;
 use WellCommerce\Bundle\CoreBundle\DataSet\AbstractDataSet;
 use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
 
@@ -22,21 +23,35 @@ use WellCommerce\Component\DataSet\Configurator\DataSetConfiguratorInterface;
  */
 class ReviewDataSet extends AbstractDataSet
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getIdentifier(): string
+    {
+        return 'admin.review';
+    }
+    
     public function configureOptions(DataSetConfiguratorInterface $configurator)
     {
         $configurator->setColumns([
-            'id'        => 'review.id',
-            'nick'      => 'review.nick',
-            'rating'    => 'review.rating',
-            'createdAt' => 'review.createdAt',
+            'id'        => 'reviews.id',
+            'nick'      => 'reviews.nick',
+            'enabled'   => 'reviews.enabled',
+            'rating'    => 'reviews.rating',
+            'review'    => 'reviews.review',
+            'createdAt' => 'reviews.createdAt',
             'product'   => 'product_translation.name',
         ]);
-
+        
         $configurator->setColumnTransformers([
-            'createdAt' => $this->getDataSetTransformer('date', ['format' => 'Y-m-d H:i:s']),
+            'createdAt' => $this->manager->createTransformer('date', ['format' => 'Y-m-d H:i:s']),
         ]);
+    }
+    
+    protected function createQueryBuilder(): QueryBuilder
+    {
+        $queryBuilder = $this->repository->getQueryBuilder();
+        $queryBuilder->groupBy('reviews.id');
+        $queryBuilder->leftJoin('reviews.product', 'product_info');
+        $queryBuilder->leftJoin('product_info.translations', 'product_translation');
+        
+        return $queryBuilder;
     }
 }

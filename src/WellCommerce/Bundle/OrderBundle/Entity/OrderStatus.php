@@ -14,39 +14,52 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable\EnableableTrait;
-use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Enableable;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class OrderStatus
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatus extends AbstractEntity implements OrderStatusInterface
+class OrderStatus implements EntityInterface
 {
+    use Identifiable;
+    use Enableable;
     use Timestampable;
     use Blameable;
     use Translatable;
-    use EnableableTrait;
+    
+    protected $colour = '#fff';
     
     /**
-     * @var OrderStatusGroupInterface
+     * @var OrderStatusGroup
      */
     protected $orderStatusGroup;
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getOrderStatusGroup() : OrderStatusGroupInterface
+    public function getOrderStatusGroup(): OrderStatusGroup
     {
         return $this->orderStatusGroup;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setOrderStatusGroup(OrderStatusGroupInterface $orderStatusGroup)
+    public function setOrderStatusGroup(OrderStatusGroup $orderStatusGroup)
     {
         $this->orderStatusGroup = $orderStatusGroup;
+    }
+    
+    public function getColour(): string
+    {
+        return $this->colour;
+    }
+    
+    public function setColour(string $colour)
+    {
+        $this->colour = $colour;
+    }
+    
+    public function translate($locale = null, $fallbackToDefault = true): OrderStatusTranslation
+    {
+        return $this->doTranslate($locale, $fallbackToDefault);
     }
 }
