@@ -1,3 +1,11 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
 WellCommerce\Bundle\ReviewBundle\Entity\Review:
     fields:
         id:
@@ -16,11 +24,15 @@ WellCommerce\Bundle\ReviewBundle\Entity\Review:
             groups:
                 - default
                 - review
-        createdAt:
+        ratingLevel:
             groups:
                 - default
                 - review
-        updatedAt:
+        ratingRecommendation:
+            groups:
+                - default
+                - review
+        enabled:
             groups:
                 - default
                 - review
@@ -28,4 +40,3 @@ WellCommerce\Bundle\ReviewBundle\Entity\Review:
         product:
             groups:
                 - review
-    callbacks: {  }

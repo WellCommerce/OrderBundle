@@ -6,10 +6,10 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-_admin:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing/admin.yml"
-    prefix: /admin/review
-
-_front:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing/front.yml"
-    prefix: /review
+review:
+    error:
+        nick:
+            not_blank: Pole "Imię" musi być uzupełnione
+        content:
+            not_blank: Pole "Treść" musi być uzupełnione
+            bad_words: Pole "Treść" nie może zawierać przekleństw
