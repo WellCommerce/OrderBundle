@@ -1,59 +1,25 @@
-wellcommerce_api:
-    resource: "@WellCommerceApiBundle/Resources/config/routing.yml"
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
 
-wellcommerce_attribute:
-    resource: "@WellCommerceAttributeBundle/Resources/config/routing.yml"
+wellcommerce_catalog:
+    resource: "@WellCommerceCatalogBundle/Resources/config/routing.yml"
 
-wellcommerce_availability:
-    resource: "@WellCommerceAvailabilityBundle/Resources/config/routing.yml"
+wellcommerce_cms:
+    resource: "@WellCommerceCmsBundle/Resources/config/routing.yml"
 
-wellcommerce_category:
-    resource: "@WellCommerceCategoryBundle/Resources/config/routing.yml"
+wellcommerce_core:
+    resource: "@WellCommerceCoreBundle/Resources/config/routing.yml"
 
-wellcommerce_contact:
-    resource: "@WellCommerceContactBundle/Resources/config/routing.yml"
-
-wellcommerce_currency:
-    resource: "@WellCommerceCurrencyBundle/Resources/config/routing.yml"
-
-wellcommerce_deliverer:
-    resource: "@WellCommerceDelivererBundle/Resources/config/routing.yml"
-
-wellcommerce_dictionary:
-    resource: "@WellCommerceDictionaryBundle/Resources/config/routing.yml"
-
-wellcommerce_distribution:
-    resource: "@WellCommerceDistributionBundle/Resources/config/routing.yml"
-
-wellcommerce_layered_navigation:
-    resource: "@WellCommerceLayeredNavigationBundle/Resources/config/routing.yml"
-
-wellcommerce_layout:
-    resource: "@WellCommerceLayoutBundle/Resources/config/routing.yml"
-
-wellcommerce_locale:
-    resource: "@WellCommerceLocaleBundle/Resources/config/routing.yml"
-
-wellcommerce_shop:
-    resource: "@WellCommerceShopBundle/Resources/config/routing.yml"
-
-wellcommerce_company:
-    resource: "@WellCommerceCompanyBundle/Resources/config/routing.yml"
+wellcommerce_review:
+    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
 
 wellcommerce_coupon:
     resource: "@WellCommerceCouponBundle/Resources/config/routing.yml"
-
-wellcommerce_client:
-    resource: "@WellCommerceClientBundle/Resources/config/routing.yml"
-
-wellcommerce_media:
-    resource: "@WellCommerceMediaBundle/Resources/config/routing.yml"
-
-wellcommerce_news:
-    resource: "@WellCommerceNewsBundle/Resources/config/routing.yml"
-
-wellcommerce_admin:
-    resource: "@WellCommerceAdminBundle/Resources/config/routing.yml"
 
 wellcommerce_oauth:
     resource: "@WellCommerceOAuthBundle/Resources/config/routing.yml"
@@ -61,53 +27,76 @@ wellcommerce_oauth:
 wellcommerce_order:
     resource: "@WellCommerceOrderBundle/Resources/config/routing.yml"
 
-wellcommerce_page:
-    resource: "@WellCommercePageBundle/Resources/config/routing.yml"
+_admin_client:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client/admin.yml"
+    prefix: /admin/client
 
-wellcommerce_payment:
-    resource: "@WellCommercePaymentBundle/Resources/config/routing.yml"
+_admin_client_group:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client_group/admin.yml"
+    prefix: /admin/client/group
 
-wellcommerce_producer:
-    resource: "@WellCommerceProducerBundle/Resources/config/routing.yml"
+_admin_company:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/company/admin.yml"
+    prefix: /admin/configuration/company
 
-wellcommerce_product:
-    resource: "@WellCommerceProductBundle/Resources/config/routing.yml"
+_admin_currency:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/currency/admin.yml"
+    prefix: /admin/configuration/currency
 
-wellcommerce_product_status:
-    resource: "@WellCommerceProductStatusBundle/Resources/config/routing.yml"
+_admin_dashboard:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/dashboard/admin.yml"
+    prefix: /admin/dashboard
 
-wellcommerce_report:
-    resource: "@WellCommerceReportBundle/Resources/config/routing.yml"
+_admin_dictionary:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/dictionary/admin.yml"
+    prefix: /admin/configuration/dictionary
 
-wellcommerce_review:
-    resource: "@WellCommerceReviewBundle/Resources/config/routing.yml"
+_admin_layout_box:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/layout_box/admin.yml"
+    prefix: /admin/layout/box
 
-wellcommerce_routing:
-    resource: "@WellCommerceRoutingBundle/Resources/config/routing.yml"
+_admin_locale:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/locale/admin.yml"
+    prefix: /admin/configuration/locale
 
-wellcommerce_search:
-    resource: "@WellCommerceSearchBundle/Resources/config/routing.yml"
+_admin_media:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/media/admin.yml"
+    prefix: /admin/media
 
-wellcommerce_shipping:
-    resource: "@WellCommerceShippingBundle/Resources/config/routing.yml"
+_admin_shop:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/shop/admin.yml"
+    prefix: /admin/configuration/shop
 
-wellcommerce_tax:
-    resource: "@WellCommerceTaxBundle/Resources/config/routing.yml"
+_admin_tax:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/tax/admin.yml"
+    prefix: /admin/configuration/tax
 
-wellcommerce_theme:
-    resource: "@WellCommerceThemeBundle/Resources/config/routing.yml"
+_admin_theme:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/theme/admin.yml"
+    prefix: /admin/layout/theme
 
-wellcommerce_unit:
-    resource: "@WellCommerceUnitBundle/Resources/config/routing.yml"
+_admin_user:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/user/admin.yml"
+    prefix: /admin/user
 
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+_admin_user_group:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/user_group/admin.yml"
+    prefix: /admin/user/group
 
-_bazinga_jstranslation:
-    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+_front_client:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/client/front.yml"
+    prefix: /client
 
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+_front_currency:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/currency/front.yml"
+    prefix: /currency
+
+_front_locale:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/locale/front.yml"
+    prefix: /locale
+
+wellcommerce_wishlist:
+    resource: "@WellCommerceWishlistBundle/Resources/config/routing.yml"
 
 front.home_page.index:
     path: /
