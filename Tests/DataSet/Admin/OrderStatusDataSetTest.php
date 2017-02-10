@@ -32,6 +32,7 @@ class OrderStatusDataSetTest extends AbstractDataSetTestCase
             'id'        => 'order_status.id',
             'name'      => 'order_status_translation.name',
             'createdAt' => 'order_status.createdAt',
+            'groupId'   => 'order_status_group.id',
             'groupName' => 'order_status_group_translation.name',
         ];
     }

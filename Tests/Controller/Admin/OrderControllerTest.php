@@ -12,9 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Tests\Controller\Admin;
 
-use Doctrine\Common\Collections\Criteria;
 use WellCommerce\Bundle\CoreBundle\Test\Controller\Admin\AbstractAdminControllerTestCase;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderControllerTest
@@ -27,21 +26,21 @@ class OrderControllerTest extends AbstractAdminControllerTestCase
     {
         $url     = $this->generateUrl('admin.order.index');
         $crawler = $this->client->request('GET', $url);
-
+        
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('order.heading.index') . '")')->count());
         $this->assertEquals(1, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
         $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsFormClass . '")')->count());
     }
-
+    
     public function testEditAction()
     {
-        $collection = $this->container->get('order.repository')->matching(new Criteria());
-
-        $collection->map(function (OrderInterface $order) {
+        $collection = $this->container->get('order.repository')->getCollection();
+        
+        $collection->map(function (Order $order) {
             $url     = $this->generateUrl('admin.order.edit', ['id' => $order->getId()]);
             $crawler = $this->client->request('GET', $url);
-
+            
             $this->assertTrue($this->client->getResponse()->isSuccessful());
             $this->assertEquals(1, $crawler->filter('html:contains("' . $this->trans('order.heading.edit') . '")')->count());
             $this->assertEquals(0, $crawler->filter('html:contains("' . $this->jsDataGridClass . '")')->count());
@@ -49,10 +48,13 @@ class OrderControllerTest extends AbstractAdminControllerTestCase
             $this->assertEquals(1, $crawler->filter('html:contains("' . $order->getId() . '")')->count());
         });
     }
-
+    
     public function testGridAction()
     {
-        $this->client->request('GET', $this->generateUrl('admin.order.grid'));
-        $this->assertTrue($this->client->getResponse()->isRedirect($this->generateUrl('admin.order.index', [], true)));
+        $this->client->request('GET', $this->generateUrl('admin.order.grid'), [], [], [
+            'HTTP_X-Requested-With' => 'XMLHttpRequest',
+        ]);
+        
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
 }

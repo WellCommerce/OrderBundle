@@ -1,7 +1,6 @@
 WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
     type: entity
     table: orders_product
-    repositoryClass: WellCommerce\Bundle\OrderBundle\Repository\OrderProductRepository
     id:
         id:
             type: integer
@@ -25,6 +24,10 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
             precision: 15
         options:
             type: json_array
+        locked:
+            type: boolean
+            options:
+                default: false
     manyToOne:
         order:
             targetEntity: WellCommerce\Bundle\OrderBundle\Entity\Order
@@ -35,14 +38,14 @@ WellCommerce\Bundle\OrderBundle\Entity\OrderProduct:
                     referencedColumnName: id
                     onDelete: CASCADE
         product:
-            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Product
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Product
             fetch: LAZY
             joinColumns:
                 product_id:
                     referencedColumnName: id
                     onDelete: RESTRICT
         variant:
-            targetEntity: WellCommerce\Bundle\ProductBundle\Entity\Variant
+            targetEntity: WellCommerce\Bundle\CatalogBundle\Entity\Variant
             fetch: LAZY
             joinColumns:
                 variant_id:

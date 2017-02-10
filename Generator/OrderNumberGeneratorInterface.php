@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Generator;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Interface OrderNumberGeneratorInterface
@@ -21,5 +21,5 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
  */
 interface OrderNumberGeneratorInterface
 {
-    public function generateOrderNumber(OrderInterface $order) : string;
+    public function generateOrderNumber(Order $order): string;
 }

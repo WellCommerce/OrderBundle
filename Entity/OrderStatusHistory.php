@@ -13,78 +13,55 @@ namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
-use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractEntity;
+use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
 
 /**
  * Class OrderStatus
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderStatusHistory extends AbstractEntity implements OrderStatusHistoryInterface
+class OrderStatusHistory implements EntityInterface
 {
+    use Identifiable;
     use Timestampable;
     use Blameable;
     use OrderAwareTrait;
     
+    protected $comment = '';
+    protected $notify  = false;
+    
     /**
-     * @var OrderStatusInterface
+     * @var OrderStatus
      */
     protected $orderStatus;
     
-    /**
-     * @var string
-     */
-    protected $comment;
-    
-    /**
-     * @var bool
-     */
-    protected $notify;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getOrderStatus() : OrderStatusInterface
+    public function getOrderStatus()
     {
         return $this->orderStatus;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setOrderStatus(OrderStatusInterface $orderStatus)
+    public function setOrderStatus(OrderStatus $orderStatus = null)
     {
         $this->orderStatus = $orderStatus;
-        $this->order->setCurrentStatus($orderStatus);
+        $this->getOrder()->setCurrentStatus($orderStatus);
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getComment() : string
+    public function getComment(): string
     {
         return $this->comment;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setComment(string $comment)
     {
         $this->comment = $comment;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function isNotify() : bool
+    public function isNotify(): bool
     {
         return $this->notify;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function setNotify(bool $notify)
     {
         $this->notify = $notify;

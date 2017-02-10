@@ -1,64 +1,39 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
+
+imports:
+    - { resource: 'services/payment.yml' }
+    - { resource: 'services/payment_method.yml' }
+    - { resource: 'services/sales_report.yml' }
+    - { resource: 'services/shipping_method.yml' }
 
 services:
-    order.controller.admin:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Admin\OrderController
-        arguments: ['@order.manager', '@order.form_builder.admin', '@order.datagrid']
+    cart.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\CartController
+        arguments: ['@order_product.manager', '@cart.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
-    order.form_builder.admin:
-        class: WellCommerce\Bundle\OrderBundle\Form\Admin\OrderFormBuilder
-        tags:
-            - { name: form_builder }
-
-    order_cart.form_builder.front:
-        class: WellCommerce\Bundle\OrderBundle\Form\Front\OrderCartFormBuilder
-        tags:
-            - { name: form_builder }
-
-    order_address.form_builder.front:
-        class: WellCommerce\Bundle\OrderBundle\Form\Front\OrderAddressFormBuilder
-        tags:
-            - { name: form_builder }
-
-    order_confirmation.form_builder.front:
-        class: WellCommerce\Bundle\OrderBundle\Form\Front\OrderConfirmationFormBuilder
-        tags:
-            - { name: form_builder }
-
-    order.dataset.admin:
-        class: WellCommerce\Bundle\OrderBundle\DataSet\Admin\OrderDataSet
-        tags:
-            - { name: dataset, alias: order.admin }
-        arguments: ['@order.repository']
-
-    order.datagrid:
-        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderDataGrid
-        tags:
-            - { name: datagrid, alias: orders }
-        arguments: ['@order.dataset.admin']
-
-    order_cart.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderCartController
-        arguments: ['@order_product.manager', '@order_cart.form_builder.front']
+    address.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\AddressController
+        arguments: ['@order.manager', '@address.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
-    order_address.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderAddressController
-        arguments: ['@order.manager', '@order_address.form_builder.front']
-        calls:
-            - [setContainer, ['@service_container']]
-
-    order_confirmation.controller.front:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Front\OrderConfirmationController
-        arguments: ['@order.manager', '@order_confirmation.form_builder.front']
+    confirmation.controller.front:
+        class: WellCommerce\Bundle\OrderBundle\Controller\Front\ConfirmationController
+        arguments: ['@order.manager', '@confirmation.form_builder.front']
         calls:
             - [setContainer, ['@service_container']]
 
     order.number_generator:
         class: WellCommerce\Bundle\OrderBundle\Generator\OrderNumberGenerator
-        arguments: ['@order.repository']
+        arguments: ['@doctrine.helper']
 
     order.modifier.collection:
         class: Doctrine\Common\Collections\ArrayCollection
@@ -76,29 +51,33 @@ services:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorTraverser
         arguments: ['@order.visitor.collection']
 
-    order_confirmation.order.visitor:
-        class: WellCommerce\Bundle\OrderBundle\Visitor\OrderConfirmationVisitor
+    confirmation.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\ConfirmationVisitor
         tags:
-            - { name: order.visitor, alias: order_confirmation }
+            - { name: order.visitor, alias: confirmation }
         arguments: ['@order.number_generator','@payment.manager']
 
     order_product.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderProductVisitor
         tags:
             - { name: order.visitor, alias: order_product }
-        arguments: ['@currency.helper', '@variant.helper', '@price.factory']
+        arguments: ['@currency.helper', '@variant.helper']
+
+    product_total.order.calculator:
+        class: WellCommerce\Bundle\OrderBundle\Calculator\OrderProductTotalCalculator
+        arguments: ['@currency.helper']
 
     product_total.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderProductTotalVisitor
         tags:
             - { name: order.visitor, alias: product_total }
-        arguments: ['@currency.helper']
+        arguments: ['@product_total.order.calculator']
 
     summary.order.visitor:
         class: WellCommerce\Bundle\OrderBundle\Visitor\OrderSummaryVisitor
         tags:
             - { name: order.visitor, alias: summary }
-        arguments: ['@currency.helper', '@order_summary.factory']
+        arguments: ['@currency.helper']
 
     order.subscriber:
         class: WellCommerce\Bundle\OrderBundle\EventListener\OrderSubscriber
@@ -106,10 +85,28 @@ services:
             - { name: kernel.event_subscriber }
         arguments: ['@order.visitor.traverser']
 
+    order_status.subscriber:
+        class: WellCommerce\Bundle\OrderBundle\EventListener\OrderStatusSubscriber
+        arguments: ['@order_status_group.repository']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    order_status_history.subscriber:
+        class: WellCommerce\Bundle\OrderBundle\EventListener\OrderStatusHistorySubscriber
+        arguments: ['@mailer.helper']
+        tags:
+            - { name: kernel.event_subscriber }
+
     order.dataset.transformer.order_client:
         class: WellCommerce\Bundle\OrderBundle\DataSet\Transformer\ClientTransformer
         tags:
             - { name: dataset.transformer, alias: order_client }
+
+    order.dataset.transformer.order_products:
+        class: WellCommerce\Bundle\OrderBundle\DataSet\Transformer\OrderProductsTransformer
+        arguments: ['@order_product.repository']
+        tags:
+            - { name: dataset.transformer, alias: order_products }
 
     order.provider.admin:
         class: WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProvider
@@ -123,21 +120,13 @@ services:
         class: WellCommerce\Bundle\OrderBundle\Request\ParamConverter\OrderProductParamConverter
         tags:
             - { name: request.param_converter, converter: cart_product, priority: 10 }
-        arguments: ['@order_product.repository', id, [WellCommerce\Bundle\OrderBundle\Entity\OrderProduct, WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface]]
+        arguments: ['@order_product.repository', id, [WellCommerce\Bundle\OrderBundle\Entity\OrderProduct]]
 
     twig.extension.order:
         class: WellCommerce\Bundle\OrderBundle\Twig\Extension\OrderExtension
         tags:
             - { name: twig.extension }
-        arguments: ['@order.provider.front', '@order_product.dataset.front']
-
-    order_product.dataset.front:
-        class: WellCommerce\Bundle\OrderBundle\DataSet\Front\OrderProductDataSet
-        tags:
-            - { name: dataset }
-        arguments: ['@order_product.repository']
-        calls:
-            - [setOrderProvider, ['@order.provider.front']]
+        arguments: ['@order.provider.front', '@order_product.dataset.front','@shipping_method.provider']
 
     form.order_product_collection.data_transformer:
         class: WellCommerce\Bundle\OrderBundle\Form\DataTransformer\OrderProductCollectionToArrayTransformer
@@ -146,56 +135,59 @@ services:
         arguments: ['@doctrine.helper']
         calls:
             - [setOrderProductManager, ['@order_product.manager']]
+            - [setImageHelper, ['@image.helper']]
 
         shared: false
 
-    order_status.controller.admin:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Admin\OrderStatusController
-        arguments: ['@order_status.manager', '@order_status.form_builder.admin', '@order_status.datagrid']
-        calls:
-            - [setContainer, ['@service_container']]
-
-    order_status.dataset.admin:
-        class: WellCommerce\Bundle\OrderBundle\DataSet\Admin\OrderStatusDataSet
+    order.validator.company_address:
+        class: WellCommerce\Bundle\OrderBundle\Validator\CompanyAddressValidator
         tags:
-            - { name: dataset }
-        arguments: ['@order_status.repository']
+            - { name: validator.constraint_validator, alias: order.validator.company_address }
 
-    order_status.datagrid:
-        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusDataGrid
+    order_status.datagrid.filter:
+        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusFilter
+        arguments: ["@order_status.repository"]
+
+    order_status_group.datagrid.filter:
+        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusGroupFilter
+        arguments: ["@order_status_group.repository"]
+
+    currency.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\CurrencyOrderVisitor
+        arguments: ['@currency.helper']
         tags:
-            - { name: datagrid, alias: order_status }
-        arguments: ['@order_status.dataset.admin']
+            - { name: order.visitor, alias: currency }
 
-    order_status.form_builder.admin:
-        class: WellCommerce\Bundle\OrderBundle\Form\Admin\OrderStatusFormBuilder
+    client_discount.order.modifier.configurator:
+        class: WellCommerce\Bundle\OrderBundle\Configurator\OrderModifierConfigurator
+        arguments: { name: client_discount, description: client.label.client_discount, subtraction: true, hierarchy: 100 }
+
+    client_discount.order.modifier:
+        class: WellCommerce\Bundle\OrderBundle\Entity\OrderModifier
+        factory: ['@order_modifier.factory', create]
+        configurator: ['@client_discount.order.modifier.configurator', configure]
         tags:
-            - { name: form_builder }
+            - { name: order.modifier, alias: client_discount }
 
-    order_status_history.form_builder.admin:
-        class: WellCommerce\Bundle\OrderBundle\Form\Admin\OrderStatusHistoryFormBuilder
+    client_group_discount.order.modifier.configurator:
+        class: WellCommerce\Bundle\OrderBundle\Configurator\OrderModifierConfigurator
+        arguments: { name: client_group_discount, description: client.label.client_group_discount, subtraction: true, hierarchy: 100 }
+
+    client_group_discount.order.modifier:
+        class: WellCommerce\Bundle\OrderBundle\Entity\OrderModifier
+        factory: ['@order_modifier.factory', create]
+        configurator: ['@client_group_discount.order.modifier.configurator', configure]
         tags:
-            - { name: form_builder }
+            - { name: order.modifier, alias: client_group_discount }
 
-    order_status_group.controller.admin:
-        class: WellCommerce\Bundle\OrderBundle\Controller\Admin\OrderStatusGroupController
-        arguments: ['@order_status_group.manager', '@order_status_group.form_builder.admin', '@order_status_group.datagrid']
-        calls:
-            - [setContainer, ['@service_container']]
-
-    order_status_group.dataset.admin:
-        class: WellCommerce\Bundle\OrderBundle\DataSet\Admin\OrderStatusGroupDataSet
+    client_discount.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\OrderClientDiscountVisitor
+        arguments: ['@order.modifier.provider', '@currency.helper']
         tags:
-            - { name: dataset }
-        arguments: ['@order_status_group.repository']
+            - { name: order.visitor, alias: client_discount }
 
-    order_status_group.datagrid:
-        class: WellCommerce\Bundle\OrderBundle\DataGrid\OrderStatusGroupDataGrid
+    client_group_discount.order.visitor:
+        class: WellCommerce\Bundle\OrderBundle\Visitor\OrderClientGroupDiscountVisitor
+        arguments: ['@order.modifier.provider', '@currency.helper']
         tags:
-            - { name: datagrid, alias: order_status_group }
-        arguments: ['@order_status_group.dataset.admin']
-
-    order_status_group.form_builder.admin:
-        class: WellCommerce\Bundle\OrderBundle\Form\Admin\OrderStatusGroupFormBuilder
-        tags:
-            - { name: form_builder }
+            - { name: order.visitor, alias: client_group_discount }

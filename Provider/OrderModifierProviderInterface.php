@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Provider;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
 
 /**
  * Interface OrderModifierProviderInterface
@@ -22,5 +22,5 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
  */
 interface OrderModifierProviderInterface
 {
-    public function getOrderModifier(OrderInterface $order, string $name) : OrderModifierInterface;
+    public function getOrderModifier(Order $order, string $name): OrderModifier;
 }

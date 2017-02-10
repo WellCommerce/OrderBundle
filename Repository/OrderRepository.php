@@ -12,10 +12,10 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Repository;
 
-use Doctrine\ORM\QueryBuilder;
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
-use WellCommerce\Bundle\DoctrineBundle\Repository\EntityRepository;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\CoreBundle\Repository\EntityRepository;
 
 /**
  * Class OrderRepository
@@ -24,17 +24,16 @@ use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
  */
 final class OrderRepository extends EntityRepository implements OrderRepositoryInterface
 {
-    public function getDataSetQueryBuilder() : QueryBuilder
+    public function getClientOrdersCollection(Client $client): Collection
     {
-        $queryBuilder = $this->getQueryBuilder();
-        $queryBuilder->leftJoin('orders.currentStatus', 'status');
-        $queryBuilder->leftJoin('status.translations', 'status_translation');
-        $queryBuilder->groupBy('orders.id');
+        $criteria = new Criteria();
+        $criteria->where($criteria->expr()->eq('client', $client));
+        $criteria->andWhere($criteria->expr()->eq('confirmed', true));
         
-        return $queryBuilder;
+        return $this->matching($criteria);
     }
-
-    public function getAlias() : string
+    
+    public function getAlias(): string
     {
         return 'orders';
     }

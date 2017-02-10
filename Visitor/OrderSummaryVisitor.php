@@ -12,11 +12,10 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Visitor;
 
-use WellCommerce\Bundle\CurrencyBundle\Helper\CurrencyHelperInterface;
-use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactoryInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderModifierInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderSummaryInterface;
+use WellCommerce\Bundle\AppBundle\Helper\CurrencyHelperInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderModifier;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderSummary;
 
 /**
  * Class OrderSummaryVisitor
@@ -31,35 +30,27 @@ final class OrderSummaryVisitor implements OrderVisitorInterface
     private $helper;
     
     /**
-     * @var EntityFactoryInterface
-     */
-    private $factory;
-    
-    /**
      * CartSummaryVisitor constructor.
      *
      * @param CurrencyHelperInterface $helper
-     * @param EntityFactoryInterface  $factory
      */
-    public function __construct(CurrencyHelperInterface $helper, EntityFactoryInterface $factory)
+    public function __construct(CurrencyHelperInterface $helper)
     {
-        $this->helper  = $helper;
-        $this->factory = $factory;
+        $this->helper = $helper;
     }
     
-    public function visitOrder(OrderInterface $order)
+    public function visitOrder(Order $order)
     {
         $productTotal   = $order->getProductTotal();
         $modifiers      = $order->getModifiers();
         $targetCurrency = $order->getCurrency();
         
-        /** @var OrderSummaryInterface $summary */
-        $summary = $this->factory->create();
+        $summary = new OrderSummary();
         $summary->setGrossAmount($productTotal->getGrossPrice());
         $summary->setNetAmount($productTotal->getNetPrice());
         $summary->setTaxAmount($productTotal->getTaxAmount());
         
-        $modifiers->map(function (OrderModifierInterface $modifier) use ($summary, $targetCurrency) {
+        $modifiers->map(function (OrderModifier $modifier) use ($summary, $targetCurrency) {
             $baseCurrency = $modifier->getCurrency();
             $grossAmount  = $this->helper->convert($modifier->getGrossAmount(), $baseCurrency, $targetCurrency);
             $netAmount    = $this->helper->convert($modifier->getNetAmount(), $baseCurrency, $targetCurrency);

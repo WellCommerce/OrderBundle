@@ -12,11 +12,11 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Manager;
 
-use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\ProductInterface;
-use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
+use WellCommerce\Bundle\CatalogBundle\Entity\Product;
+use WellCommerce\Bundle\CatalogBundle\Entity\Variant;
+use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
+use WellCommerce\Bundle\OrderBundle\Entity\OrderProduct;
 
 /**
  * Interface OrderProductManagerInterface
@@ -25,22 +25,13 @@ use WellCommerce\Bundle\ProductBundle\Entity\VariantInterface;
  */
 interface OrderProductManagerInterface extends ManagerInterface
 {
-    public function addProductToOrder(
-        ProductInterface $product,
-        VariantInterface $variant = null,
-        int $quantity = 1,
-        OrderInterface $order
-    );
-
-    public function findProductInOrder(ProductInterface $product, VariantInterface $variant = null, OrderInterface $order);
-
-    public function createOrderProduct(
-        ProductInterface $product,
-        VariantInterface $variant = null,
-        OrderInterface $order
-    ) : OrderProductInterface;
-
-    public function deleteOrderProduct(OrderProductInterface $orderProduct, OrderInterface $order);
-
-    public function changeOrderProductQuantity(OrderProductInterface $orderProduct, OrderInterface $order, int $quantity);
+    public function addProductToOrder(Product $product, Variant $variant = null, int $quantity = 1, Order $order);
+    
+    public function findProductInOrder(Product $product, Variant $variant = null, Order $order);
+    
+    public function createOrderProduct(Product $product, Variant $variant = null, Order $order): OrderProduct;
+    
+    public function deleteOrderProduct(OrderProduct $orderProduct, Order $order);
+    
+    public function changeOrderProductQuantity(OrderProduct $orderProduct, Order $order, int $quantity);
 }

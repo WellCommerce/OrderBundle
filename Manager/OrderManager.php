@@ -12,39 +12,54 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Manager;
 
-use WellCommerce\Bundle\ClientBundle\Entity\ClientInterface;
-use WellCommerce\Bundle\DoctrineBundle\Manager\Manager;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
-use WellCommerce\Bundle\ShopBundle\Entity\ShopInterface;
+use WellCommerce\Bundle\AppBundle\Entity\Client;
+use WellCommerce\Bundle\AppBundle\Entity\Shop;
+use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Class OrderManager
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OrderManager extends Manager implements OrderManagerInterface
+final class OrderManager extends AbstractManager implements OrderManagerInterface
 {
-    public function getOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop, string $currency) : OrderInterface
+    public function getOrder(string $sessionId, Client $client = null, Shop $shop, string $currency): Order
     {
         $order = $this->findOrder($sessionId, $client, $shop);
-
-        if (!$order instanceof OrderInterface) {
-            /** @var OrderInterface $order */
-            $order = $this->initResource();
-            $this->createResource($order);
+        
+        if ($order instanceof Order) {
+            if ($this->isOrderDirty($order, $currency, $client, $sessionId)) {
+                $order->setCurrency($currency);
+                $order->setClient($client);
+                $order->setSessionId($sessionId);
+                $this->updateResource($order);
+            }
+            
+            return $order;
         }
-
-        if ($this->isOrderDirty($order, $currency, $client, $sessionId)) {
-            $order->setCurrency($currency);
-            $order->setClient($client);
-            $order->setSessionId($sessionId);
-            $this->updateResource($order);
+        
+        /** @var Order $order */
+        $order = $this->initResource();
+        $order->setCurrency($currency);
+        $order->setShop($shop);
+        $order->setClient($client);
+        $order->setSessionId($sessionId);
+        
+        if ($client instanceof Client) {
+            $order->setClientDetails($client->getClientDetails());
+            $order->setContactDetails($client->getContactDetails());
+            $order->setBillingAddress($client->getBillingAddress());
+            $order->setShippingAddress($client->getShippingAddress());
+            $order->getClientDetails()->setResetPasswordHash(null);
         }
-
+        
+        $this->createResource($order);
+        
         return $order;
     }
-
-    public function findOrder(string $sessionId, ClientInterface $client = null, ShopInterface $shop)
+    
+    public function findOrder(string $sessionId, Client $client = null, Shop $shop)
     {
         if (null !== $client) {
             $order = $this->getCurrentClientOrder($client, $shop);
@@ -54,29 +69,29 @@ class OrderManager extends Manager implements OrderManagerInterface
         } else {
             $order = $this->getCurrentSessionOrder($sessionId, $shop);
         }
-
+        
         return $order;
     }
-
-    private function getCurrentClientOrder(ClientInterface $client, ShopInterface $shop)
+    
+    private function getCurrentClientOrder(Client $client, Shop $shop)
     {
         return $this->getRepository()->findOneBy([
             'client'    => $client,
             'shop'      => $shop,
-            'confirmed' => false
+            'confirmed' => false,
         ]);
     }
-
-    private function getCurrentSessionOrder($sessionId, ShopInterface $shop)
+    
+    private function getCurrentSessionOrder($sessionId, Shop $shop)
     {
         return $this->getRepository()->findOneBy([
             'sessionId' => $sessionId,
             'shop'      => $shop,
-            'confirmed' => false
+            'confirmed' => false,
         ]);
     }
-
-    private function isOrderDirty(OrderInterface $order, string $currency, ClientInterface $client = null, string $sessionId) : bool
+    
+    private function isOrderDirty(Order $order, string $currency, Client $client = null, string $sessionId): bool
     {
         return $order->getClient() !== $client || $order->getCurrency() !== $currency || $order->getSessionId() !== $sessionId;
     }

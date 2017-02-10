@@ -26,14 +26,11 @@ use WellCommerce\Component\DataGrid\Column\Options\Sorting;
  */
 class OrderStatusGroupDataGrid extends AbstractDataGrid
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureColumns(ColumnCollection $collection)
     {
         $collection->add(new Column([
             'id'         => 'id',
-            'caption'    => $this->trans('common.label.id'),
+            'caption'    => 'common.label.id',
             'sorting'    => new Sorting([
                 'default_order' => ColumnInterface::SORT_DIR_DESC,
             ]),
@@ -48,7 +45,12 @@ class OrderStatusGroupDataGrid extends AbstractDataGrid
         
         $collection->add(new Column([
             'id'      => 'name',
-            'caption' => $this->trans('common.label.name'),
+            'caption' => 'common.label.name',
         ]));
+    }
+    
+    public function getIdentifier(): string
+    {
+        return 'order_status_group';
     }
 }

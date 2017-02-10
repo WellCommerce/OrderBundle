@@ -12,8 +12,8 @@
 namespace WellCommerce\Bundle\OrderBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use WellCommerce\Bundle\DoctrineBundle\Event\EntityEvent;
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\CoreBundle\Event\EntityEvent;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 use WellCommerce\Bundle\OrderBundle\Visitor\OrderVisitorTraverser;
 
 /**
@@ -49,7 +49,7 @@ final class OrderSubscriber implements EventSubscriberInterface
     public function onOrderChangedEvent(EntityEvent $event)
     {
         $order = $event->getEntity();
-        if ($order instanceof OrderInterface) {
+        if ($order instanceof Order) {
             $this->orderVisitorTraverser->traverse($order);
         }
     }

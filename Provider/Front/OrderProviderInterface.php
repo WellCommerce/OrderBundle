@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\Provider\Front;
 
-use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
+use WellCommerce\Bundle\OrderBundle\Entity\Order;
 
 /**
  * Interface OrderProviderInterface
@@ -21,9 +21,9 @@ use WellCommerce\Bundle\OrderBundle\Entity\OrderInterface;
  */
 interface OrderProviderInterface
 {
-    public function getCurrentOrder() : OrderInterface;
-
-    public function hasCurrentOrder() : bool;
-
-    public function getCurrentOrderIdentifier() : int;
+    public function getCurrentOrder(): Order;
+    
+    public function hasCurrentOrder(): bool;
+    
+    public function getCurrentOrderIdentifier(): int;
 }
