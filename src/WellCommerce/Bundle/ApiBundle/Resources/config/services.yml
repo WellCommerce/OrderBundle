@@ -8,7 +8,7 @@
 
 services:
     api.security.token_authenticator:
-        class: WellCommerce\Bundle\CoreBundle\Security\ApiTokenAuthenticator
+        class: WellCommerce\Bundle\ApiBundle\Security\ApiTokenAuthenticator
         arguments: ['@user.repository']
 
     api.subscriber:
@@ -19,10 +19,10 @@ services:
             - [setContainer, ['@service_container']]
 
     api.request_handler.collection:
-        class: WellCommerce\Bundle\CoreBundle\Handler\RequestHandlerCollection
+        class: WellCommerce\Bundle\ApiBundle\Handler\RequestHandlerCollection
 
-    api.controller.front:
-        class: WellCommerce\Bundle\CoreBundle\Controller\ApiController
+    api.controller:
+        class: WellCommerce\Bundle\ApiBundle\Controller\ApiController
         arguments: ["@api.request_handler.collection"]
 
     api.serializer.normalizer:
@@ -40,7 +40,7 @@ services:
             - { name: serializer.normalizer }
 
     api.serialization.cache_warmer:
-        class: WellCommerce\Bundle\CoreBundle\CacheWarmer\SerializationCacheWarmer
+        class: WellCommerce\Bundle\ApiBundle\CacheWarmer\SerializationCacheWarmer
         public: false
         tags:
             - { name: kernel.cache_warmer }

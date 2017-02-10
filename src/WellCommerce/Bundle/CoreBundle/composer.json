@@ -30,6 +30,7 @@
     }
   },
   "require": {
+    "wellcommerce/api-bundle": "^0.7@dev",
     "symfony/symfony": "v3.2.2",
     "doctrine/orm": "2.5.4",
     "twig/extensions": "1.4.x-dev",

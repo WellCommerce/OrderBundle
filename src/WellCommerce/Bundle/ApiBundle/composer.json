@@ -1,9 +1,9 @@
 {
-  "name": "wellcommerce/coupon-bundle",
+  "name": "wellcommerce/api-bundle",
   "type": "wellcommerce-bundle",
   "license": "MIT",
   "minimum-stability": "dev",
-  "description": "WellCommerce CouponBundle",
+  "description": "WellCommerce ApiBundle",
   "keywords": [
     "wellcommerce",
     "e-commerce",
@@ -21,25 +21,25 @@
   ],
   "support": {
     "email": "support@wellcommerce.org",
-    "issues": "https://github.com/WellCommerce/CouponBundle/issues",
-    "source": "https://github.com/WellCommerce/CouponBundle/"
+    "issues": "https://github.com/WellCommerce/ApiBundle/issues",
+    "source": "https://github.com/WellCommerce/ApiBundle/"
   },
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "WellCommerce\\Bundle\\ApiBundle\\": "src/WellCommerce/Bundle/ApiBundle"
     }
   },
   "require": {
     "php": "^7.0",
     "wellcommerce/core-bundle": "^0.7@dev",
-    "wellcommerce/api-bundle": "^0.7@dev"
+    "wellcommerce/serializer": "^0.7@dev"
   },
   "extra": {
     "branch-alias": {
       "dev-master": "0.7.x-dev"
     },
     "wellcommerce-bundle": {
-      "install-dir": "src/WellCommerce/Bundle/CouponBundle"
+      "install-dir": "src/WellCommerce/Bundle/ApiBundle"
     }
   }
 }

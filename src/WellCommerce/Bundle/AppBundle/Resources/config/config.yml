@@ -8,6 +8,7 @@
 
 imports:
     - { resource: "app/" }
+    - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
@@ -86,7 +87,7 @@ parameters:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadLayeredNavigationData: true
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadWishlistData: true
 
-well_commerce_core:
+well_commerce_api:
     request_handler:
         client:
             manager: client.manager

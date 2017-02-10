@@ -19,7 +19,7 @@ parameters:
         summary: 800
         confirmation: 900
 
-well_commerce_core:
+well_commerce_api:
     request_handler:
         order:
             manager: order.manager
