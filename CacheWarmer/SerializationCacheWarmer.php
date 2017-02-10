@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmer;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Yaml\Yaml;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
+use WellCommerce\Component\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
 
 /**
  * Class SerializationCacheWarmer

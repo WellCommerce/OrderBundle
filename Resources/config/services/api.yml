@@ -26,18 +26,18 @@ services:
         arguments: ["@api.request_handler.collection"]
 
     api.serializer.normalizer:
-        class: WellCommerce\Bundle\CoreBundle\Serializer\EntityNormalizer
+        class: WellCommerce\Component\Serializer\EntityNormalizer
         public: false
+        arguments: ['@doctrine', '@api.serialization.metadata_loader']
         tags:
             - { name: serializer.normalizer }
-        arguments: ['@doctrine.helper', '@api.serialization.metadata_loader']
 
     api.serializer.denormalizer:
-        class: WellCommerce\Bundle\CoreBundle\Serializer\EntityDenormalizer
+        class: WellCommerce\Component\Serializer\EntityDenormalizer
         public: false
+        arguments: ['@doctrine', '@api.serialization.metadata_loader']
         tags:
             - { name: serializer.normalizer }
-        arguments: ['@doctrine.helper', '@api.serialization.metadata_loader']
 
     api.serialization.cache_warmer:
         class: WellCommerce\Bundle\CoreBundle\CacheWarmer\SerializationCacheWarmer
@@ -47,5 +47,5 @@ services:
         arguments: ['@kernel', '%api.serialization_mapping_map%']
 
     api.serialization.metadata_loader:
-        class: WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoader
+        class: WellCommerce\Component\Serializer\Metadata\Loader\SerializationMetadataLoader
         arguments: ['@kernel']
