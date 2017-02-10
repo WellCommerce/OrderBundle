@@ -83,11 +83,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
         return $this->getEntityManager()->getMetadataFactory();
     }
 
-    public function getRepositoryForClass(string $className) : EntityRepository
-    {
-        return $this->getEntityManager()->getRepository($className);
-    }
-
     public function truncateTable(string $className)
     {
         $entityManager = $this->getEntityManager();
