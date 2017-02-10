@@ -10,7 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader;
+namespace WellCommerce\Component\Serializer\Metadata\Loader;
+
+use WellCommerce\Component\Serializer\Metadata\Collection\SerializationMetadataCollection;
 
 /**
  * Interface SerializationMetadataLoaderInterface
@@ -21,9 +23,6 @@ interface SerializationMetadataLoaderInterface
 {
     const CACHE_FILENAME   = 'serialization.php';
     const MAPPING_FILENAME = 'serialization.yml';
-
-    /**
-     * @return \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection
-     */
-    public function loadMetadata();
+    
+    public function loadMetadata(): SerializationMetadataCollection;
 }

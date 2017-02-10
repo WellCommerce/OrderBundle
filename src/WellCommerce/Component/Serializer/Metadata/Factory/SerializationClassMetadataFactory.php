@@ -10,9 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory;
+namespace WellCommerce\Component\Serializer\Metadata\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\SerializationClassMetadata;
+use WellCommerce\Component\Serializer\Metadata\SerializationClassMetadata;
 
 /**
  * Class SerializationClassMetadataFactory
@@ -29,10 +29,8 @@ class SerializationClassMetadataFactory
      *
      * @return SerializationClassMetadata
      */
-    public function create($class, array $parameters)
+    public function create(string $class, array $parameters): SerializationClassMetadata
     {
-        $metadata = new SerializationClassMetadata($class, $parameters);
-
-        return $metadata;
+        return new SerializationClassMetadata($class, $parameters);
     }
 }

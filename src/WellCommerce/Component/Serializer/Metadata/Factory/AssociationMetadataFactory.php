@@ -10,9 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory;
+namespace WellCommerce\Component\Serializer\Metadata\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\AssociationMetadata;
+use WellCommerce\Component\Serializer\Metadata\AssociationMetadata;
 
 /**
  * Class AssociationMetadataFactory
@@ -29,10 +29,8 @@ class AssociationMetadataFactory
      *
      * @return AssociationMetadata
      */
-    public function create($associationName, array $parameters)
+    public function create(string $associationName, array $parameters): AssociationMetadata
     {
-        $metadata = new AssociationMetadata($associationName, $parameters);
-
-        return $metadata;
+        return new AssociationMetadata($associationName, $parameters);
     }
 }

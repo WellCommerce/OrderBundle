@@ -10,9 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory;
+namespace WellCommerce\Component\Serializer\Metadata\Factory;
 
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\FieldMetadata;
+use WellCommerce\Component\Serializer\Metadata\FieldMetadata;
 
 /**
  * Class FieldMetadataFactory
@@ -29,10 +29,8 @@ class FieldMetadataFactory
      *
      * @return FieldMetadata
      */
-    public function create($fieldName, array $parameters)
+    public function create(string $fieldName, array $parameters): FieldMetadata
     {
-        $metadata = new FieldMetadata($fieldName, $parameters);
-
-        return $metadata;
+        return new FieldMetadata($fieldName, $parameters);
     }
 }

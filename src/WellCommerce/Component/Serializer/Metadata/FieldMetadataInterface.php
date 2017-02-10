@@ -10,14 +10,18 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata;
+namespace WellCommerce\Component\Serializer\Metadata;
 
 /**
- * Class AssociationMetadata
+ * Interface FieldMetadataInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AssociationMetadata extends FieldMetadata implements AssociationMetadataInterface
+interface FieldMetadataInterface
 {
+    public function getName(): string;
     
+    public function getGroups(): array;
+    
+    public function hasGroup(string $group): bool;
 }

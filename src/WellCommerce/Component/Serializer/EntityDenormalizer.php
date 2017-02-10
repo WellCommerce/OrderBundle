@@ -10,12 +10,13 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer;
+namespace WellCommerce\Component\Serializer;
 
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\AssociationMetadataCollection;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\FieldMetadataCollection;
+use WellCommerce\Component\Serializer\Metadata\Collection\AssociationMetadataCollection;
+use WellCommerce\Component\Serializer\Metadata\Collection\FieldMetadataCollection;
 
 /**
  * Class EntityDenormalizer
@@ -24,9 +25,6 @@ use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\FieldMetadataC
  */
 class EntityDenormalizer extends AbstractSerializer implements DenormalizerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
         $resource               = $context['resource'];
@@ -83,7 +81,7 @@ class EntityDenormalizer extends AbstractSerializer implements DenormalizerInter
      * @param array  $propertyValue
      * @param object $resource
      */
-    protected function updateEntityAssociation($propertyName, array $propertyValue, $resource, ClassMetadata $entityMetadata)
+    protected function updateEntityAssociation(string $propertyName, array $propertyValue, $resource, ClassMetadata $entityMetadata)
     {
         if ($entityMetadata->isSingleValuedAssociation($propertyName)) {
             $associationTargetClass = $entityMetadata->getAssociationTargetClass($propertyName);
@@ -95,23 +93,19 @@ class EntityDenormalizer extends AbstractSerializer implements DenormalizerInter
         }
     }
     
-    /**
-     * Returns the repository object for given class
-     *
-     * @param string $targetClass
-     *
-     * @return \WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface
-     */
-    protected function getRepositoryByTargetClass($targetClass)
+    protected function getRepositoryByTargetClass(string $class): ObjectRepository
     {
-        return $this->doctrineHelper->getEntityManager()->getRepository($targetClass);
+        $manager = $this->managerRegistry->getManagerForClass($class);
+        
+        return $manager->getRepository($class);
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return is_array($data) && $this->doctrineHelper->getMetadataFactory()->hasMetadataFor($type);
+        $class   = $this->getRealClass($data);
+        $manager = $this->getEntityManager($class);
+        $factory = $manager->getMetadataFactory();
+        
+        return is_array($data) && $factory->hasMetadataFor($type);
     }
 }

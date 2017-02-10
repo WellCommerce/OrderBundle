@@ -10,24 +10,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection;
+namespace WellCommerce\Component\Serializer\Metadata\Collection;
 
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\AssociationMetadataInterface;
+use WellCommerce\Component\Serializer\Metadata\FieldMetadataInterface;
 use WellCommerce\Component\Collections\ArrayCollection;
 
 /**
- * Class AssociationMetadataCollection
+ * Class FieldMetadataCollection
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class AssociationMetadataCollection extends ArrayCollection
+class FieldMetadataCollection extends ArrayCollection
 {
     /**
-     * Adds new association metadata to collection
+     * Adds new field metadata to collection
      *
-     * @param AssociationMetadataInterface $metadata
+     * @param FieldMetadataInterface $metadata
      */
-    public function add(AssociationMetadataInterface $metadata)
+    public function add(FieldMetadataInterface $metadata)
     {
         $this->items[$metadata->getName()] = $metadata;
     }
@@ -35,7 +35,7 @@ class AssociationMetadataCollection extends ArrayCollection
     /**
      * Returns all metadata entries
      *
-     * @return AssociationMetadataInterface[]
+     * @return FieldMetadataInterface[]
      */
     public function all()
     {
@@ -45,17 +45,17 @@ class AssociationMetadataCollection extends ArrayCollection
     /**
      * Returns the metadata for field or throw an exception if metadata was not found
      *
-     * @param string $associationName
+     * @param string $fieldName
      *
-     * @return AssociationMetadataInterface
+     * @return FieldMetadataInterface
      * @throws \InvalidArgumentException
      */
-    public function get($associationName)
+    public function get($fieldName)
     {
-        if (!$this->has($associationName)) {
-            throw new \InvalidArgumentException(sprintf('Metadata for association "%s" does not exists', $associationName));
+        if (!$this->has($fieldName)) {
+            throw new \InvalidArgumentException(sprintf('Metadata for field "%s" does not exists', $fieldName));
         }
 
-        return $this->items[$associationName];
+        return $this->items[$fieldName];
     }
 }

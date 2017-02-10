@@ -10,11 +10,11 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader;
+namespace WellCommerce\Component\Serializer\Metadata\Loader;
 
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory\SerializationClassMetadataFactory;
+use WellCommerce\Component\Serializer\Metadata\Collection\SerializationMetadataCollection;
+use WellCommerce\Component\Serializer\Metadata\Factory\SerializationClassMetadataFactory;
 
 /**
  * Class SerializationMetadataLoader
@@ -27,42 +27,31 @@ class SerializationMetadataLoader implements SerializationMetadataLoaderInterfac
      * @var KernelInterface
      */
     protected $kernel;
-
+    
     /**
      * @var array
      */
     protected $cache = [];
-
-    /**
-     * SerializationMetadataLoader constructor.
-     *
-     * @param KernelInterface $kernel
-     */
+    
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function loadMetadata()
+    
+    public function loadMetadata(): SerializationMetadataCollection
     {
         $factory    = new SerializationClassMetadataFactory();
         $cache      = $this->getMetadataCache();
         $collection = new SerializationMetadataCollection();
-
+        
         foreach ($cache as $className => $parameters) {
             $metadata = $factory->create($className, $parameters);
             $collection->add($metadata);
         }
-
+        
         return $collection;
     }
-
-    /**
-     * @return mixed
-     */
+    
     protected function getMetadataCache()
     {
         if (empty($this->cache)) {
@@ -70,7 +59,7 @@ class SerializationMetadataLoader implements SerializationMetadataLoaderInterfac
                 $this->cache = require $cache;
             }
         }
-
+        
         return $this->cache;
     }
 }

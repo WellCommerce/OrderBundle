@@ -10,9 +10,11 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer;
+namespace WellCommerce\Component\Serializer;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\Common\Util\Inflector;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -23,8 +25,9 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
+use WellCommerce\Component\Serializer\Metadata\Collection\SerializationMetadataCollection;
+use WellCommerce\Component\Serializer\Metadata\Loader\SerializationMetadataLoaderInterface;
+use WellCommerce\Component\Serializer\Metadata\SerializationClassMetadataInterface;
 
 /**
  * Class AbstractSerializer
@@ -34,9 +37,9 @@ use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Loader\SerializationMetad
 abstract class AbstractSerializer implements SerializerAwareInterface
 {
     /**
-     * @var DoctrineHelperInterface
+     * @var ManagerRegistry
      */
-    protected $doctrineHelper;
+    protected $managerRegistry;
     
     /**
      * @var \Symfony\Component\PropertyAccess\PropertyAccessor
@@ -54,7 +57,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
     protected $serializationMetadataLoader;
     
     /**
-     * @var \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection
+     * @var \WellCommerce\Component\Serializer\Metadata\Collection\SerializationMetadataCollection
      */
     protected $serializationMetadataCollection;
     
@@ -68,15 +71,9 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      */
     protected $format;
     
-    /**
-     * AbstractSerializer constructor.
-     *
-     * @param DoctrineHelperInterface              $doctrineHelper
-     * @param SerializationMetadataLoaderInterface $serializationMetadataLoader
-     */
-    public function __construct(DoctrineHelperInterface $doctrineHelper, SerializationMetadataLoaderInterface $serializationMetadataLoader)
+    public function __construct(ManagerRegistry $managerRegistry, SerializationMetadataLoaderInterface $serializationMetadataLoader)
     {
-        $this->doctrineHelper                  = $doctrineHelper;
+        $this->managerRegistry                 = $managerRegistry;
         $this->serializationMetadataLoader     = $serializationMetadataLoader;
         $this->propertyAccessor                = PropertyAccess::createPropertyAccessor();
         $this->serializationMetadataCollection = $this->getSerializationMetadataCollection();
@@ -91,45 +88,31 @@ abstract class AbstractSerializer implements SerializerAwareInterface
         $this->serializer = $serializer;
     }
     
-    /**
-     * @return \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection\SerializationMetadataCollection
-     */
-    protected function getSerializationMetadataCollection()
+    protected function getSerializationMetadataCollection(): SerializationMetadataCollection
     {
         return $this->serializationMetadataLoader->loadMetadata();
     }
     
-    /**
-     * Returns the serialization metadata for given entity
-     *
-     * @param object $entity
-     *
-     * @return \WellCommerce\Bundle\CoreBundle\Serializer\Metadata\SerializationClassMetadataInterface
-     */
-    protected function getSerializationMetadata($entity)
+    protected function getSerializationMetadata($entity): SerializationClassMetadataInterface
     {
         $className = $this->getRealClass($entity);
         
         return $this->serializationMetadataCollection->get($className);
     }
     
-    protected function hasSerializationMetadata($entity)
+    protected function hasSerializationMetadata($entity): bool
     {
         $className = $this->getRealClass($entity);
         
         return $this->serializationMetadataCollection->has($className);
     }
     
-    /**
-     * Returns the metadata for entity
-     *
-     * @param object $entity
-     *
-     * @return \Doctrine\Common\Persistence\Mapping\ClassMetadata
-     */
-    protected function getEntityMetadata($entity)
+    protected function getEntityMetadata($entity): ClassMetadata
     {
-        return $this->doctrineHelper->getClassMetadataForEntity($entity);
+        $class   = $this->getRealClass($entity);
+        $manager = $this->getEntityManager($class);
+        
+        return $manager->getClassMetadata($class);
     }
     
     /**
@@ -139,7 +122,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      *
      * @return PropertyPath
      */
-    protected function getPropertyPath($attributeName)
+    protected function getPropertyPath(string $attributeName): PropertyPath
     {
         $elements = explode('.', $attributeName);
         
@@ -152,11 +135,13 @@ abstract class AbstractSerializer implements SerializerAwareInterface
     }
     
     /**
+     * Builds a property path from string
+     *
      * @param $propertyName
      *
      * @return PropertyPath
      */
-    protected function buildPath($propertyName)
+    protected function buildPath(string $propertyName): PropertyPath
     {
         $elements = explode('.', $propertyName);
         $wrapped  = array_map(function ($element) {
@@ -175,7 +160,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      *
      * @return array
      */
-    protected function getEntityFields(ClassMetadata $metadata)
+    protected function getEntityFields(ClassMetadata $metadata): array
     {
         $entityFields = $metadata->getFieldNames();
         $fields       = [];
@@ -195,7 +180,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      *
      * @return array
      */
-    protected function getEntityEmbeddables(ClassMetadata $metadata)
+    protected function getEntityEmbeddables(ClassMetadata $metadata): array
     {
         $entityFields = $metadata->getFieldNames();
         $embeddables  = [];
@@ -216,7 +201,7 @@ abstract class AbstractSerializer implements SerializerAwareInterface
      *
      * @return array
      */
-    protected function getEntityAssociations(ClassMetadata $metadata)
+    protected function getEntityAssociations(ClassMetadata $metadata): array
     {
         $entityAssociations = $metadata->getAssociationNames();
         $associations       = [];
@@ -227,17 +212,19 @@ abstract class AbstractSerializer implements SerializerAwareInterface
         return $associations;
     }
     
-    /**
-     * Returns the real class name
-     *
-     * @param object $object
-     *
-     * @return string
-     */
-    private function getRealClass($object)
+    protected function getRealClass($object): string
     {
         $className = get_class($object);
         
         return ClassUtils::getRealClass($className);
+    }
+    
+    protected function getEntityManager(string $class = null): ObjectManager
+    {
+        if (null === $class) {
+            return $this->managerRegistry->getManager();
+        }
+        
+        return $this->managerRegistry->getManagerForClass($class);
     }
 }

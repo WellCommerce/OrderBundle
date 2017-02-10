@@ -20,7 +20,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 use Doctrine\ORM\Query\FilterCollection;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class DoctrineHelper

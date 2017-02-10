@@ -10,13 +10,13 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata;
+namespace WellCommerce\Component\Serializer\Metadata;
 
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Collection;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory\AssociationMetadataFactory;
-use WellCommerce\Bundle\CoreBundle\Serializer\Metadata\Factory\FieldMetadataFactory;
+use WellCommerce\Component\Serializer\Metadata\Collection;
+use WellCommerce\Component\Serializer\Metadata\Factory\AssociationMetadataFactory;
+use WellCommerce\Component\Serializer\Metadata\Factory\FieldMetadataFactory;
 
 /**
  * Class ClassMetadata
@@ -35,13 +35,7 @@ class SerializationClassMetadata implements SerializationClassMetadataInterface
      */
     protected $options = [];
     
-    /**
-     * SerializationClassMetadata constructor.
-     *
-     * @param string $class
-     * @param array  $options
-     */
-    public function __construct($class, array $options = [])
+    public function __construct(string $class, array $options = [])
     {
         $this->class = $class;
         $resolver    = new OptionsResolver();
@@ -49,9 +43,26 @@ class SerializationClassMetadata implements SerializationClassMetadataInterface
         $this->options = $resolver->resolve($options);
     }
     
-    /**
-     * @param OptionsResolver $resolver
-     */
+    public function getClass(): string
+    {
+        return $this->class;
+    }
+    
+    public function getFields(): Collection\FieldMetadataCollection
+    {
+        return $this->options['fields'];
+    }
+    
+    public function getAssociations(): Collection\AssociationMetadataCollection
+    {
+        return $this->options['associations'];
+    }
+    
+    public function getCallbacks(): array
+    {
+        return $this->options['callbacks'];
+    }
+    
     protected function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
@@ -96,37 +107,5 @@ class SerializationClassMetadata implements SerializationClassMetadataInterface
         $resolver->setAllowedTypes('fields', ['array', Collection\FieldMetadataCollection::class]);
         $resolver->setAllowedTypes('associations', ['array', Collection\AssociationMetadataCollection::class]);
         $resolver->setAllowedTypes('callbacks', 'array');
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getFields()
-    {
-        return $this->options['fields'];
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getAssociations()
-    {
-        return $this->options['associations'];
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getCallbacks()
-    {
-        return $this->options['callbacks'];
     }
 }

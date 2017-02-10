@@ -10,11 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata;
-
+namespace WellCommerce\Component\Serializer\Metadata;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class FieldMetadata
+ *
+ * @author  Adam Piotrowski <adam@wellcommerce.org>
+ */
 class FieldMetadata implements FieldMetadataInterface
 {
     /**
@@ -27,13 +31,7 @@ class FieldMetadata implements FieldMetadataInterface
      */
     protected $options;
     
-    /**
-     * FieldMetadata constructor.
-     *
-     * @param $name
-     * @param $options
-     */
-    public function __construct($name, $options)
+    public function __construct(string $name, array $options)
     {
         $this->name = $name;
         $resolver   = new OptionsResolver();
@@ -41,9 +39,21 @@ class FieldMetadata implements FieldMetadataInterface
         $this->options = $resolver->resolve($options);
     }
     
-    /**
-     * @param OptionsResolver $resolver
-     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    
+    public function getGroups(): array
+    {
+        return $this->options['groups'];
+    }
+    
+    public function hasGroup(string $group): bool
+    {
+        return in_array($group, $this->getGroups());
+    }
+    
     protected function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
@@ -55,37 +65,5 @@ class FieldMetadata implements FieldMetadataInterface
         ]);
         
         $resolver->setAllowedTypes('groups', 'array');
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getGroups()
-    {
-        return $this->options['groups'];
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function hasGroup($group)
-    {
-        return in_array($group, $this->getGroups());
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function hasDefaultGroup()
-    {
-        return $this->hasGroup('default');
     }
 }

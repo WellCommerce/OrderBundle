@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata;
+namespace WellCommerce\Component\Serializer\Metadata;
 
 /**
  * Interface AssociationMetadataInterface
@@ -19,5 +19,4 @@ namespace WellCommerce\Bundle\CoreBundle\Serializer\Metadata;
  */
 interface AssociationMetadataInterface extends FieldMetadataInterface
 {
-    
 }
