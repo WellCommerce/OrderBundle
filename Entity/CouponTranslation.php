@@ -13,66 +13,37 @@
 namespace WellCommerce\Bundle\CouponBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\LocaleBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
 
 /**
  * Class CouponTranslation
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class CouponTranslation implements LocaleAwareInterface
+class CouponTranslation extends AbstractTranslation
 {
     use Translation;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * @return string
-     */
-    public function getName()
+    
+    protected $name        = '';
+    protected $description = '';
+    
+    public function getName(): string
     {
         return $this->name;
     }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    
+    public function setName(string $name)
     {
         $this->name = $name;
     }
-
-    /**
-     * @return string
-     */
-    public function getDescription()
+    
+    public function getDescription(): string
     {
         return $this->description;
     }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
+    
+    public function setDescription(string $description)
     {
         $this->description = $description;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCopyingSensitiveProperties() : array
-    {
-        return [
-            'name',
-        ];
     }
 }

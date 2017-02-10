@@ -12,8 +12,9 @@
 
 namespace WellCommerce\Bundle\CouponBundle\Tests\Manager;
 
+use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\CoreBundle\Test\Manager\AbstractManagerTestCase;
-use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\CouponBundle\Entity\Coupon;
 
 /**
  * Class CouponManagerTest
@@ -22,8 +23,13 @@ use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
  */
 class CouponManagerTest extends AbstractManagerTestCase
 {
-    protected function get() : ManagerInterface
+    protected function get(): ManagerInterface
     {
         return $this->container->get('coupon.manager');
+    }
+    
+    protected function getExpectedEntityInterface(): string
+    {
+        return Coupon::class;
     }
 }

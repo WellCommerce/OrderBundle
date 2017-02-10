@@ -1,28 +1,5 @@
 
 services:
-    coupon.controller.admin:
-        class: WellCommerce\Bundle\CouponBundle\Controller\Admin\CouponController
-        arguments: ['@coupon.manager', '@coupon.form_builder.admin', '@coupon.datagrid']
-        calls:
-            - [setContainer, ['@service_container']]
-
-    coupon.dataset.admin:
-        class: WellCommerce\Bundle\CouponBundle\DataSet\Admin\CouponDataSet
-        tags:
-            - { name: dataset }
-        arguments: ['@coupon.repository']
-
-    coupon.datagrid:
-        class: WellCommerce\Bundle\CouponBundle\DataGrid\CouponDataGrid
-        tags:
-            - { name: datagrid, alias: coupon }
-        arguments: ['@coupon.dataset.admin']
-
-    coupon.form_builder.admin:
-        class: WellCommerce\Bundle\CouponBundle\Form\Admin\CouponFormBuilder
-        tags:
-            - { name: form_builder }
-
     coupon.controller.front:
         class: WellCommerce\Bundle\CouponBundle\Controller\Front\CouponController
         arguments: ['@order.manager']
@@ -33,11 +10,11 @@ services:
         class: WellCommerce\Bundle\CouponBundle\Request\ParamConverter\CouponParamConverter
         tags:
             - { name: request.param_converter, converter: category, priority: 0 }
-        arguments: ['@coupon.repository', code, [WellCommerce\Bundle\CouponBundle\Entity\Coupon, WellCommerce\Bundle\CouponBundle\Entity\CouponInterface]]
+        arguments: ['@coupon.repository', code, [WellCommerce\Bundle\CouponBundle\Entity\Coupon]]
 
     coupon.checker:
         class: WellCommerce\Bundle\CouponBundle\Checker\CouponChecker
-        arguments: ['@order.repository']
+        arguments: ['@order.provider.front', '@order.repository', '@currency.helper']
 
     coupon.order.visitor:
         class: WellCommerce\Bundle\CouponBundle\Visitor\CouponOrderVisitor
