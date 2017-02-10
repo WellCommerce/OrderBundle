@@ -1,5 +1,4 @@
 imports:
-    - { resource: 'services/api.yml' }
     - { resource: 'services/breadcrumb.yml' }
     - { resource: 'services/routing.yml' }
     - { resource: 'services/doctrine.yml' }
