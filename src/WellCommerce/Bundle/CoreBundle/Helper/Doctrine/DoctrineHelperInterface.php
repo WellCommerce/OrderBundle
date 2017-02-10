@@ -46,7 +46,5 @@ interface DoctrineHelperInterface
      */
     public function getAllMetadata() : array;
 
-    public function truncateTable(string $className);
-
     public function getMetadataFactory() : ClassMetadataFactory;
 }
