@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\ApiBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use WellCommerce\Bundle\CoreBundle\Handler\RequestHandler;
+use WellCommerce\Bundle\ApiBundle\Handler\RequestHandler;
 
 /**
  * Class Configuration
