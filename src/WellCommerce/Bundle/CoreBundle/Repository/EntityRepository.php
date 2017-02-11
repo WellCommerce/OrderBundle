@@ -44,18 +44,6 @@ class EntityRepository extends BaseEntityRepository implements RepositoryInterfa
         return $this->createQueryBuilder($this->getAlias());
     }
     
-    public function getTotalCount(): int
-    {
-        $queryBuilder = $this->getQueryBuilder();
-        $query        = $queryBuilder->getQuery();
-        $query->useQueryCache(true);
-        $query->useResultCache(true);
-        $paginator = new Paginator($query, true);
-        $paginator->setUseOutputWalkers(false);
-        
-        return $paginator->count();
-    }
-    
     public function getCollection(Criteria $criteria = null): Collection
     {
         if (null === $criteria) {

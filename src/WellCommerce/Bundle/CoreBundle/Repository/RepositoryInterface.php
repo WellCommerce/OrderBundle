@@ -94,12 +94,5 @@ interface RepositoryInterface extends DataSetAwareRepositoryInterface
      */
     public function matching(Criteria $criteria);
     
-    /**
-     * Returns the total count of entities in repository
-     *
-     * @return int
-     */
-    public function getTotalCount(): int;
-    
     public function getCollection(Criteria $criteria = null): Collection;
 }

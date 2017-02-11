@@ -14,7 +14,9 @@ namespace WellCommerce\Bundle\CatalogBundle\Command;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -100,7 +102,7 @@ final class ReindexCommand extends ContainerAwareCommand
     
     private function reindex(string $locale, OutputInterface $output)
     {
-        $totalEntities = $this->repository->getTotalCount();
+        $totalEntities = $this->getTotalCount();
         $iterations    = $this->getIterations($totalEntities, $this->batchSize);
         
         $output->writeln(sprintf('<comment>Total entities:</comment> %s', $totalEntities));
@@ -111,25 +113,25 @@ final class ReindexCommand extends ContainerAwareCommand
         $output->writeln('<info>Flushing index</info>');
         $this->manager->removeIndex($locale);
         $this->manager->createIndex($locale);
-
-//        $progress = new ProgressBar($output, $totalEntities);
-//        $progress->setFormat('verbose');
-//        $progress->setRedrawFrequency($this->batchSize);
-//        $progress->start();
-//
-//        foreach ($iterations as $iteration) {
-//            $entities = $this->getEntities($iteration);
-//            foreach ($entities as $entity) {
-//                $document = $this->type->createDocument($entity, $locale);
-//                $this->manager->addDocument($document);
-//                $progress->advance();
-//            }
-//        }
-//
-//        $progress->finish();
-//        $output->writeln('');
-//        $output->writeln('<info>Optimizing index</info>');
-//        $this->manager->optimizeIndex($locale);
+        
+        $progress = new ProgressBar($output, $totalEntities);
+        $progress->setFormat('verbose');
+        $progress->setRedrawFrequency($this->batchSize);
+        $progress->start();
+        
+        foreach ($iterations as $iteration) {
+            $entities = $this->getEntities($iteration);
+            foreach ($entities as $entity) {
+                $document = $this->type->createDocument($entity, $locale);
+                $this->manager->addDocument($document);
+                $progress->advance();
+            }
+        }
+        
+        $progress->finish();
+        $output->writeln('');
+        $output->writeln('<info>Optimizing index</info>');
+        $this->manager->optimizeIndex($locale);
     }
     
     private function getEntities(int $iteration): array
@@ -162,5 +164,17 @@ final class ReindexCommand extends ContainerAwareCommand
     private function getSearchManager(): SearchManagerInterface
     {
         return $this->getContainer()->get('search.manager');
+    }
+    
+    private function getTotalCount(): int
+    {
+        $queryBuilder = $this->repository->getQueryBuilder();
+        $query        = $queryBuilder->getQuery();
+        $query->useQueryCache(true);
+        $query->useResultCache(true);
+        $paginator = new Paginator($query, true);
+        $paginator->setUseOutputWalkers(false);
+        
+        return $paginator->count();
     }
 }

@@ -31,8 +31,6 @@ interface DoctrineHelperInterface
 
     public function getEntityManager() : EntityManagerInterface;
 
-    public function getRepositoryForClass(string $className) : EntityRepository;
-
     public function disableFilter(string $filter);
 
     public function enableFilter(string $filter) : SQLFilter;
@@ -47,8 +45,6 @@ interface DoctrineHelperInterface
      * @return \Doctrine\Common\Persistence\Mapping\ClassMetadata[]
      */
     public function getAllMetadata() : array;
-
-    public function truncateTable(string $className);
 
     public function getMetadataFactory() : ClassMetadataFactory;
 }

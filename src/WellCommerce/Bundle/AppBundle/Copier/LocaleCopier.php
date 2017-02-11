@@ -60,7 +60,7 @@ final class LocaleCopier implements LocaleCopierInterface
         $criteria->where($criteria->expr()->eq('locale', $sourceLocale->getCode()));
         
         foreach ($this->entityClasses as $className => $options) {
-            $repository = $this->doctrineHelper->getRepositoryForClass($className);
+            $repository = $this->doctrineHelper->getEntityManager()->getRepository($className);
             $entities   = $repository->matching($criteria);
             $this->duplicateTranslatableEntities($entities, $options['properties'], $targetLocale);
         }

@@ -6,7 +6,7 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-well_commerce_core:
+well_commerce_api:
     request_handler:
         contact:
             manager: contact.manager
@@ -31,6 +31,8 @@ well_commerce_core:
             mapping: "@WellCommerceCmsBundle/Resources/config/serialization/PageRoute.yml"
         WellCommerce\Bundle\CmsBundle\Entity\PageTranslation:
             mapping: "@WellCommerceCmsBundle/Resources/config/serialization/PageTranslation.yml"
+
+well_commerce_core:
     dynamic_routing:
         news:
             entity: WellCommerce\Bundle\CmsBundle\Entity\NewsRoute

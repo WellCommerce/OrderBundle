@@ -86,7 +86,8 @@ final class DictionaryManager extends AbstractManager
     
     protected function synchronizeDatabaseTranslations()
     {
-        $this->getDoctrineHelper()->truncateTable(Dictionary::class);
+        $this->purgeTranslations();
+        
         $em = $this->getDoctrineHelper()->getEntityManager();
         
         foreach ($this->translations as $identifier => $translation) {
@@ -100,7 +101,26 @@ final class DictionaryManager extends AbstractManager
             $em->persist($dictionary);
         }
         
-        $this->getDoctrineHelper()->getEntityManager()->flush();
+        $em->flush();
+    }
+    
+    protected function purgeTranslations()
+    {
+        $em             = $this->getEntityManager();
+        $batchSize      = 20;
+        $i              = 0;
+        $q              = $em->createQuery('SELECT d from ' . Dictionary::class . ' d');
+        $iterableResult = $q->iterate();
+        while (($row = $iterableResult->next()) !== false) {
+            $em->remove($row[0]);
+            if (($i % $batchSize) === 0) {
+                $em->flush();
+                $em->clear();
+            }
+            ++$i;
+        }
+        
+        $em->flush();
     }
     
     /**

@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new \Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
             new \Cache\AdapterBundle\CacheAdapterBundle(),
             new \EmanueleMinotto\TwigCacheBundle\TwigCacheBundle(),
+            new \WellCommerce\Bundle\ApiBundle\WellCommerceApiBundle(),
             new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
             new \WellCommerce\Bundle\CoreBundle\WellCommerceCoreBundle(),
             new \WellCommerce\Bundle\OrderBundle\WellCommerceOrderBundle(),

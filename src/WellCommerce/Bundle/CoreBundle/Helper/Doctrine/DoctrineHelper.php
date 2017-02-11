@@ -20,7 +20,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Filter\SQLFilter;
 use Doctrine\ORM\Query\FilterCollection;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class DoctrineHelper
@@ -82,31 +81,6 @@ final class DoctrineHelper implements DoctrineHelperInterface
     public function getMetadataFactory() : ClassMetadataFactory
     {
         return $this->getEntityManager()->getMetadataFactory();
-    }
-
-    public function getRepositoryForClass(string $className) : EntityRepository
-    {
-        return $this->getEntityManager()->getRepository($className);
-    }
-
-    public function truncateTable(string $className)
-    {
-        $entityManager = $this->getEntityManager();
-        $metadata      = $this->getClassMetadata($className);
-        if ($metadata instanceof ClassMetadata) {
-            $repository = $entityManager->getRepository($className);
-            $collection = $repository->findAll();
-            
-            foreach ($collection as $entity) {
-                $entityManager->remove($entity);
-            }
-            
-            $entityManager->flush();
-            
-            return true;
-        }
-        
-        return false;
     }
 
     private function getRealClass($object) : string
