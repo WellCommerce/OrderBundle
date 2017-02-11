@@ -109,6 +109,9 @@ class Client implements EntityInterface, \Serializable, UserInterface, Equatable
     public function unserialize($serialized)
     {
         list($this->id, $username, $password) = unserialize($serialized);
+        if (!$this->clientDetails instanceof ClientDetails) {
+            $this->clientDetails = new ClientDetails();
+        }
         $this->clientDetails->setUsername($username);
         $this->clientDetails->setPassword($password);
     }
