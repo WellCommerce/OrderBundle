@@ -37,7 +37,7 @@ before_script:
 
 script:
     - phpunit -c phpunit.xml.dist
-    - php security-checker security:check composer.lock
+    - php security-checker.phar security:check composer.lock
 
 notifications:
     email: false
