@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cb392ab18ed4340ce2038413c208aed",
+    "content-hash": "0c61ce6779a104439c867516ec74579d",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -62,7 +62,7 @@
         },
         {
             "name": "beberlei/DoctrineExtensions",
-            "version": "dev-master",
+            "version": "v1.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/DoctrineExtensions.git",
@@ -120,7 +120,7 @@
                 "doctrine",
                 "orm"
             ],
-            "time": "2017-01-11 07:22:12"
+            "time": "2017-01-11T07:22:12+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -2364,7 +2364,7 @@
         },
         {
             "name": "incenteev/composer-parameter-handler",
-            "version": "dev-master",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Incenteev/ParameterHandler.git",
@@ -2412,107 +2412,6 @@
                 "parameters management"
             ],
             "time": "2015-11-10T17:04:01+00:00"
-        },
-        {
-            "name": "ircmaxell/random-lib",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ircmaxell/RandomLib.git",
-                "reference": "e9e0204f40e49fa4419946c677eccd3fa25b8cf4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/RandomLib/zipball/e9e0204f40e49fa4419946c677eccd3fa25b8cf4",
-                "reference": "e9e0204f40e49fa4419946c677eccd3fa25b8cf4",
-                "shasum": ""
-            },
-            "require": {
-                "ircmaxell/security-lib": "^1.1",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.11",
-                "mikey179/vfsstream": "^1.6",
-                "phpunit/phpunit": "^4.8|^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "RandomLib": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Ferrara",
-                    "email": "ircmaxell@ircmaxell.com",
-                    "homepage": "http://blog.ircmaxell.com"
-                }
-            ],
-            "description": "A Library For Generating Secure Random Numbers",
-            "homepage": "https://github.com/ircmaxell/RandomLib",
-            "keywords": [
-                "cryptography",
-                "random",
-                "random-numbers",
-                "random-strings"
-            ],
-            "time": "2016-09-07T15:52:06+00:00"
-        },
-        {
-            "name": "ircmaxell/security-lib",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ircmaxell/SecurityLib.git",
-                "reference": "f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/SecurityLib/zipball/f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5",
-                "reference": "f3db6de12c20c9bcd1aa3db4353a1bbe0e44e1b5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "mikey179/vfsstream": "1.1.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "SecurityLib": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Ferrara",
-                    "email": "ircmaxell@ircmaxell.com",
-                    "homepage": "http://blog.ircmaxell.com"
-                }
-            ],
-            "description": "A Base Security Library",
-            "homepage": "https://github.com/ircmaxell/SecurityLib",
-            "time": "2015-03-20T14:31:23+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2608,16 +2507,16 @@
         },
         {
             "name": "knplabs/doctrine-behaviors",
-            "version": "dev-master",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/DoctrineBehaviors.git",
-                "reference": "a52f2de6788f1f7f3a797d22a5412f69a046e5c2"
+                "reference": "c41433f5519d791d2fbdb2164633035c173b9db1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/a52f2de6788f1f7f3a797d22a5412f69a046e5c2",
-                "reference": "a52f2de6788f1f7f3a797d22a5412f69a046e5c2",
+                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/c41433f5519d791d2fbdb2164633035c173b9db1",
+                "reference": "c41433f5519d791d2fbdb2164633035c173b9db1",
                 "shasum": ""
             },
             "require": {
@@ -2640,7 +2539,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -2670,7 +2569,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2016-11-26 12:36:06"
+            "time": "2016-09-30T06:03:12+00:00"
         },
         {
             "name": "knplabs/packagist-api",
@@ -2809,30 +2708,36 @@
         },
         {
             "name": "league/oauth2-client",
-            "version": "1.x-dev",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-client.git",
-                "reference": "fbe4f9cafe5c0bc0df74993d20c46c8e3fa1898b"
+                "reference": "5f57366c99ac013ee9d78670c1fc0b9ca7871d95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/fbe4f9cafe5c0bc0df74993d20c46c8e3fa1898b",
-                "reference": "fbe4f9cafe5c0bc0df74993d20c46c8e3fa1898b",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/5f57366c99ac013ee9d78670c1fc0b9ca7871d95",
+                "reference": "5f57366c99ac013ee9d78670c1fc0b9ca7871d95",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",
-                "ircmaxell/random-lib": "^1.2",
-                "php": ">=5.5.0"
+                "paragonie/random_compat": "^2.0",
+                "php": ">=5.6.0"
             },
             "require-dev": {
+                "eloquent/liberator": "^2.0",
+                "eloquent/phony": "^0.14.1",
                 "jakub-onderka/php-parallel-lint": "~0.9",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^5.0",
                 "squizlabs/php_codesniffer": "^2.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "League\\OAuth2\\Client\\": "src/"
@@ -2866,25 +2771,25 @@
                 "oauth2",
                 "single sign on"
             ],
-            "time": "2016-12-27 14:56:46"
+            "time": "2017-02-02T04:08:45+00:00"
         },
         {
             "name": "league/oauth2-facebook",
-            "version": "1.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-facebook.git",
-                "reference": "c1af92b501649f99bd7670abd0c8153bed8d3d47"
+                "reference": "3843204ccd856eed7d726afc2ef5afa12122d572"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-facebook/zipball/c1af92b501649f99bd7670abd0c8153bed8d3d47",
-                "reference": "c1af92b501649f99bd7670abd0c8153bed8d3d47",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-facebook/zipball/3843204ccd856eed7d726afc2ef5afa12122d572",
+                "reference": "3843204ccd856eed7d726afc2ef5afa12122d572",
                 "shasum": ""
             },
             "require": {
-                "league/oauth2-client": "~1.0",
-                "php": ">=5.5.0"
+                "league/oauth2-client": "^2.0",
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -2917,7 +2822,7 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2016-10-21 00:54:37"
+            "time": "2017-01-25T14:36:10+00:00"
         },
         {
             "name": "liip/imagine-bundle",
@@ -3053,68 +2958,6 @@
             "time": "2015-01-03T18:44:38+00:00"
         },
         {
-            "name": "mmoreram/simple-doctrine-mapping",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mmoreram/SimpleDoctrineMapping.git",
-                "reference": "58309688540f211b1c087ebe5979fc89674d4db2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mmoreram/SimpleDoctrineMapping/zipball/58309688540f211b1c087ebe5979fc89674d4db2",
-                "reference": "58309688540f211b1c087ebe5979fc89674d4db2",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/common": "~2.4",
-                "doctrine/orm": "~2.4",
-                "php": ">=5.4",
-                "symfony/dependency-injection": "^2.4|^3.0",
-                "symfony/http-kernel": "^2.4|^3.0"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "~1.2",
-                "fabpot/php-cs-fixer": "1.4.2",
-                "mmoreram/php-formatter": "1.0.4",
-                "phpunit/phpunit": "4.5.0",
-                "symfony/framework-bundle": "^2.4.8|^3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mmoreram\\SimpleDoctrineMapping\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marc Morera",
-                    "email": "yuhu@mmoreram.com"
-                },
-                {
-                    "name": "SimpleDoctrineMapping Community",
-                    "homepage": "https://github.com/mmoreram/SimpleDoctrineMapping/contributors"
-                }
-            ],
-            "description": "Simple Doctrine Mapping ",
-            "homepage": "https://github.com/mmoreram/SimpleDoctrineMapping",
-            "keywords": [
-                "doctrine",
-                "mapping",
-                "mmoreram"
-            ],
-            "time": "2015-11-18T22:16:30+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.x-dev",
             "source": {
@@ -3194,16 +3037,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "dev-master",
+            "version": "1.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "926aee5ab38c2868816aa760f862a85ad01cb61a"
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/926aee5ab38c2868816aa760f862a85ad01cb61a",
-                "reference": "926aee5ab38c2868816aa760f862a85ad01cb61a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
+                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
                 "shasum": ""
             },
             "require": {
@@ -3243,7 +3086,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-02-06 22:02:47"
+            "time": "2017-01-16T07:55:07+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -4881,7 +4724,7 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "dev-master",
+            "version": "v5.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
@@ -4929,11 +4772,11 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-01-10 14:58:45"
+            "time": "2017-01-10T14:58:45+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "3.0.x-dev",
+            "version": "v3.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
@@ -4997,20 +4840,20 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-02-02 15:31:23"
+            "time": "2017-02-02T15:31:23+00:00"
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "dev-master",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "d635c8192fe8168a8ae32e19a996482aa13b5897"
+                "reference": "ec278c0bd530edf155c4a00900577b5cb80f559e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/d635c8192fe8168a8ae32e19a996482aa13b5897",
-                "reference": "d635c8192fe8168a8ae32e19a996482aa13b5897",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/ec278c0bd530edf155c4a00900577b5cb80f559e",
+                "reference": "ec278c0bd530edf155c4a00900577b5cb80f559e",
                 "shasum": ""
             },
             "require": {
@@ -5049,7 +4892,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2017-01-16 16:53:36"
+            "time": "2016-12-05T16:01:19+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -5151,23 +4994,23 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "dev-master",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/routing.git",
-                "reference": "d24d49a248e16803d743850b326574d33e239c30"
+                "url": "https://github.com/symfony-cmf/Routing.git",
+                "reference": "b93704ca098334f56e9b317932f21a4362e620db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/routing/zipball/d24d49a248e16803d743850b326574d33e239c30",
-                "reference": "d24d49a248e16803d743850b326574d33e239c30",
+                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/b93704ca098334f56e9b317932f21a4362e620db",
+                "reference": "b93704ca098334f56e9b317932f21a4362e620db",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6.0|^7.0",
-                "psr/log": "^1.0",
-                "symfony/http-kernel": "^2.2|^3.0",
-                "symfony/routing": "^2.2|^3.0"
+                "php": "^5.3.9|^7.0",
+                "psr/log": "1.*",
+                "symfony/http-kernel": "^2.2|3.*",
+                "symfony/routing": "^2.2|3.*"
             },
             "require-dev": {
                 "friendsofsymfony/jsrouting-bundle": "^1.1",
@@ -5206,7 +5049,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2016-05-12T08:23:39+00:00"
+            "time": "2016-03-31T09:11:39+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -5755,20 +5598,20 @@
         },
         {
             "name": "twig/extensions",
-            "version": "dev-master",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "7c3b21c60be61dcc6473652603c68a5b576ea0d2"
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/7c3b21c60be61dcc6473652603c68a5b576ea0d2",
-                "reference": "7c3b21c60be61dcc6473652603c68a5b576ea0d2",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+                "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
                 "shasum": ""
             },
             "require": {
-                "twig/twig": "~1.27|~2.0"
+                "twig/twig": "~1.20|~2.0"
             },
             "require-dev": {
                 "symfony/translation": "~2.3"
@@ -5803,20 +5646,20 @@
                 "i18n",
                 "text"
             ],
-            "time": "2017-01-09 14:44:40"
+            "time": "2016-10-25T17:34:14+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "1.x-dev",
+            "version": "v1.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7"
+                "reference": "ddc9e3e20ee9c0b6908f401ac8353635b750eca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7",
-                "reference": "d6715ac8c3a77ae6d0ebad9ff12511cc1b27f4a7",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ddc9e3e20ee9c0b6908f401ac8353635b750eca7",
+                "reference": "ddc9e3e20ee9c0b6908f401ac8353635b750eca7",
                 "shasum": ""
             },
             "require": {
@@ -5864,7 +5707,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-02-03 21:34:15"
+            "time": "2017-01-11T19:36:15+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -6870,20 +6713,13 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "twig/extensions": 20,
-        "sensio/distribution-bundle": 20,
-        "knplabs/doctrine-behaviors": 20,
         "friendsofsymfony/jsrouting-bundle": 20,
-        "beberlei/doctrineextensions": 20,
-        "twig/twig": 20,
         "wellcommerce/composer-plugin": 20,
         "react/child-process": 20,
         "knplabs/packagist-api": 20,
         "devristo/phpws": 20,
-        "nesbot/carbon": 20,
         "zendframework/zendsearch": 20,
         "zendframework/zend-json": 20,
-        "sensio/generator-bundle": 20,
         "jngermon/phpunit-entity-tester": 20
     },
     "prefer-stable": false,
