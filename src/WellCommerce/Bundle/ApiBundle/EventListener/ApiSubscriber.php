@@ -11,6 +11,7 @@
  */
 namespace WellCommerce\Bundle\CoreBundle\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -19,7 +20,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ApiSubscriber extends AbstractEventSubscriber
+class ApiSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
