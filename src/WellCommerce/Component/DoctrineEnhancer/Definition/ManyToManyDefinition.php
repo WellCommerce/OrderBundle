@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,11 +20,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ManyToManyDefinition extends AbstractMappingDefinition
+final class ManyToManyDefinition extends AbstractMappingDefinition
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
@@ -36,7 +33,7 @@ class ManyToManyDefinition extends AbstractMappingDefinition
             'joinTable',
             'orderBy',
         ]);
-
+        
         $resolver->setDefaults([
             'fetch'     => ClassMetadataInfo::FETCH_EXTRA_LAZY,
             'cascade'   => [
@@ -50,7 +47,7 @@ class ManyToManyDefinition extends AbstractMappingDefinition
             'joinTable' => [],
             'orderBy'   => null,
         ]);
-
+        
         $resolver->setAllowedTypes('fieldName', 'string');
         $resolver->setAllowedTypes('targetEntity', 'string');
         $resolver->setAllowedTypes('fetch', 'integer');
@@ -59,11 +56,8 @@ class ManyToManyDefinition extends AbstractMappingDefinition
         $resolver->setAllowedTypes('joinTable', 'array');
         $resolver->setAllowedTypes('orderBy', ['string', 'null']);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getClassMetadataMethod()
+    
+    public function getClassMetadataMethod(): string
     {
         return MappingDefinitionInterface::CLASS_METADATA_METHOD_MANY_TO_MANY;
     }

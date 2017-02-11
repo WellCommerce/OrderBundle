@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,12 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class OneToManyDefinition extends AbstractMappingDefinition
+final class OneToManyDefinition extends AbstractMappingDefinition
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions (OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
             'fieldName',
@@ -57,10 +54,7 @@ class OneToManyDefinition extends AbstractMappingDefinition
         $resolver->setAllowedTypes('cascade', 'array');
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getClassMetadataMethod ()
+    public function getClassMetadataMethod(): string
     {
         return MappingDefinitionInterface::CLASS_METADATA_METHOD_ONE_TO_MANY;
     }

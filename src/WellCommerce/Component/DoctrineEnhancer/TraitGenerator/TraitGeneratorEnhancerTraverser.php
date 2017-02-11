@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\TraitGenerator;
+namespace WellCommerce\Component\DoctrineEnhancer\TraitGenerator;
 
 use Wingu\OctopusCore\CodeGenerator\PHP\OOP\TraitGenerator;
 
@@ -25,20 +25,12 @@ class TraitGeneratorEnhancerTraverser implements TraitGeneratorEnhancerTraverser
      * @var TraitGeneratorEnhancerCollection
      */
     protected $collection;
-
-    /**
-     * TraitGeneratorEnhancerTraverser constructor.
-     *
-     * @param TraitGeneratorEnhancerCollection $collection
-     */
+    
     public function __construct(TraitGeneratorEnhancerCollection $collection)
     {
         $this->collection = $collection;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function traverse(TraitGenerator $generator)
     {
         $class = ltrim($generator->getFullyQualifiedName(), '\\');

@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,23 +26,11 @@ interface MappingDefinitionInterface
     const CLASS_METADATA_METHOD_MANY_TO_ONE  = 'mapManyToOne';
     const CLASS_METADATA_METHOD_ONE_TO_MANY  = 'mapOneToMany';
     
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions (OptionsResolver $resolver);
+    public function configureOptions(OptionsResolver $resolver);
     
-    /**
-     * @return array
-     */
-    public function getOptions ();
+    public function getOptions(): array;
     
-    /**
-     * @return string
-     */
-    public function getClassMetadataMethod ();
+    public function getClassMetadataMethod(): string;
     
-    /**
-     * @return string
-     */
-    public function getPropertyName ();
+    public function getPropertyName(): string;
 }

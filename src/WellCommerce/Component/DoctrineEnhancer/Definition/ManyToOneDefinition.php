@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,11 +20,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class ManyToOneDefinition extends AbstractMappingDefinition
+final class ManyToOneDefinition extends AbstractMappingDefinition
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired([
@@ -35,7 +32,7 @@ class ManyToOneDefinition extends AbstractMappingDefinition
             'joinColumns',
             'targetEntity',
         ]);
-
+        
         $resolver->setDefaults([
             'inversedBy' => null,
             'fetch'      => ClassMetadataInfo::FETCH_EXTRA_LAZY,
@@ -47,7 +44,7 @@ class ManyToOneDefinition extends AbstractMappingDefinition
                 'detach',
             ],
         ]);
-
+        
         $resolver->setAllowedTypes('fieldName', 'string');
         $resolver->setAllowedTypes('targetEntity', 'string');
         $resolver->setAllowedTypes('fetch', 'integer');
@@ -55,11 +52,8 @@ class ManyToOneDefinition extends AbstractMappingDefinition
         $resolver->setAllowedTypes('inversedBy', ['string', 'null']);
         $resolver->setAllowedTypes('joinColumns', 'array');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getClassMetadataMethod()
+    
+    public function getClassMetadataMethod(): string
     {
         return MappingDefinitionInterface::CLASS_METADATA_METHOD_MANY_TO_ONE;
     }

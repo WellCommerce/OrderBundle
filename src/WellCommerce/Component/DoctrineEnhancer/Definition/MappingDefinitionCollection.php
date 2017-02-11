@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use WellCommerce\Component\Collections\ArrayCollection;
 
@@ -19,7 +19,7 @@ use WellCommerce\Component\Collections\ArrayCollection;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class MappingDefinitionCollection extends ArrayCollection
+final class MappingDefinitionCollection extends ArrayCollection
 {
     /**
      * @param MappingDefinitionInterface $mappingDefinition

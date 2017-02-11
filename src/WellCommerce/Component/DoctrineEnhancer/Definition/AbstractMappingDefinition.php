@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Definition;
+namespace WellCommerce\Component\DoctrineEnhancer\Definition;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,36 +25,20 @@ abstract class AbstractMappingDefinition implements MappingDefinitionInterface
      * @var array
      */
     protected $options = [];
-
-    /**
-     * MappingDefinition constructor.
-     *
-     * @param array $options
-     */
+    
     public function __construct(array $options)
     {
         $optionsResolver = new OptionsResolver();
         $this->configureOptions($optionsResolver);
         $this->options = $optionsResolver->resolve($options);
     }
-
-    /**
-     * @param OptionsResolver $resolver
-     */
-    abstract public function configureOptions(OptionsResolver $resolver);
-
-    /**
-     * @return array
-     */
-    public function getOptions()
+    
+    public function getOptions(): array
     {
         return $this->options;
     }
-
-    /**
-     * @return array
-     */
-    public function getPropertyName()
+    
+    public function getPropertyName(): string
     {
         return $this->options['fieldName'];
     }

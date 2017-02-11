@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\ClassMetadata;
+namespace WellCommerce\Component\DoctrineEnhancer\ClassMetadata;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
@@ -25,24 +25,16 @@ class ClassMetadataEnhancerTraverser implements ClassMetadataEnhancerTraverserIn
      * @var ClassMetadataEnhancerCollection
      */
     protected $collection;
-
-    /**
-     * ClassMetadataEnhancerTraverser constructor.
-     *
-     * @param ClassMetadataEnhancerCollection $collection
-     */
+    
     public function __construct(ClassMetadataEnhancerCollection $collection)
     {
         $this->collection = $collection;
     }
-
-    /**
-     * {@inheritdoc}
-     */
+    
     public function traverse(ClassMetadataInfo $metadata)
     {
         $class = $metadata->getName();
-
+        
         if (true === $this->collection->has($class)) {
             foreach ($this->collection->get($class) as $enhancer) {
                 $enhancer->visitClassMetadata($metadata);

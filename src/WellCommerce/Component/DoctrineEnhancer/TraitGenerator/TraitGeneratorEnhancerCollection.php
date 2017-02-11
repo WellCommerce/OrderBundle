@@ -10,9 +10,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\TraitGenerator;
+namespace WellCommerce\Component\DoctrineEnhancer\TraitGenerator;
 
-use WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\MappingEnhancerInterface;
+use WellCommerce\Component\DoctrineEnhancer\MappingEnhancerInterface;
 use WellCommerce\Component\Collections\ArrayCollection;
 
 /**
