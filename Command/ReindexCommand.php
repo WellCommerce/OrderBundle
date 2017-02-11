@@ -14,6 +14,7 @@ namespace WellCommerce\Bundle\CatalogBundle\Command;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -100,7 +101,7 @@ final class ReindexCommand extends ContainerAwareCommand
     
     private function reindex(string $locale, OutputInterface $output)
     {
-        $totalEntities = $this->repository->getTotalCount();
+        $totalEntities = $this->getTotalCount();
         $iterations    = $this->getIterations($totalEntities, $this->batchSize);
         
         $output->writeln(sprintf('<comment>Total entities:</comment> %s', $totalEntities));
@@ -162,5 +163,17 @@ final class ReindexCommand extends ContainerAwareCommand
     private function getSearchManager(): SearchManagerInterface
     {
         return $this->getContainer()->get('search.manager');
+    }
+    
+    private function getTotalCount(): int
+    {
+        $queryBuilder = $this->repository->getQueryBuilder();
+        $query        = $queryBuilder->getQuery();
+        $query->useQueryCache(true);
+        $query->useResultCache(true);
+        $paginator = new Paginator($query, true);
+        $paginator->setUseOutputWalkers(false);
+        
+        return $paginator->count();
     }
 }
