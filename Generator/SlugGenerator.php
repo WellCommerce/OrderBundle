@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CoreBundle\Generator;
 
 use WellCommerce\Bundle\CoreBundle\Entity\Route;
-use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
+use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 
 /**
@@ -40,7 +40,7 @@ final class SlugGenerator implements SlugGeneratorInterface
     
     public function generate(string $name, $id, string $locale, $values, int $iteration = 0): string
     {
-        $slug           = Sluggable::makeSlug($name);
+        $slug           = Helper::urlize($name);
         $existsInValues = in_array($slug, (array)$values);
         
         // if slug is the same as other values, try to add locale part
@@ -72,6 +72,6 @@ final class SlugGenerator implements SlugGeneratorInterface
     
     private function makeSlugIterated(string $slug, int $iteration): string
     {
-        return sprintf('%s%s%s', $slug, Sluggable::SLUG_DELIMITER, $iteration);
+        return sprintf('%s-%s', $slug, $iteration);
     }
 }
