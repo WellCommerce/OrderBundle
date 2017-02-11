@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\CoreBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
-use WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\ClassMetadata\ClassMetadataEnhancerTraverserInterface;
+use WellCommerce\Component\DoctrineEnhancer\ClassMetadata\ClassMetadataEnhancerTraverserInterface;
 
 /**
  * Class ClassMetadataEventSubscriber

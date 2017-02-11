@@ -8,17 +8,17 @@
 
 services:
     doctrine.class_metadata.enhancer_collection:
-        class: WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\ClassMetadata\ClassMetadataEnhancerCollection
+        class: WellCommerce\Component\DoctrineEnhancer\ClassMetadata\ClassMetadataEnhancerCollection
 
     doctrine.class_metadata.enhancer_traverser:
-        class: WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\ClassMetadata\ClassMetadataEnhancerTraverser
+        class: WellCommerce\Component\DoctrineEnhancer\ClassMetadata\ClassMetadataEnhancerTraverser
         arguments: ['@doctrine.class_metadata.enhancer_collection']
 
     doctrine.trait_generator.enhancer_collection:
-        class: WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\TraitGenerator\TraitGeneratorEnhancerCollection
+        class: WellCommerce\Component\DoctrineEnhancer\TraitGenerator\TraitGeneratorEnhancerCollection
 
     doctrine.trait_generator.enhancer_traverser:
-        class: WellCommerce\Bundle\CoreBundle\Doctrine\Enhancer\TraitGenerator\TraitGeneratorEnhancerTraverser
+        class: WellCommerce\Component\DoctrineEnhancer\TraitGenerator\TraitGeneratorEnhancerTraverser
         arguments: ['@doctrine.trait_generator.enhancer_collection']
 
     doctrine.class_metadata.event_subscriber:
