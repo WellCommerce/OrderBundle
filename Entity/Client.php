@@ -82,7 +82,7 @@ class Client implements EntityInterface, \Serializable, UserInterface, Equatable
     
     public function getSalt()
     {
-        return $this->clientDetails->getSalt();
+        return null;
     }
     
     public function getUsername()
@@ -109,20 +109,17 @@ class Client implements EntityInterface, \Serializable, UserInterface, Equatable
     public function unserialize($serialized)
     {
         list($this->id, $username, $password) = unserialize($serialized);
-        if (!$this->clientDetails instanceof ClientDetails) {
-            $this->clientDetails = new ClientDetails();
-        }
         $this->clientDetails->setUsername($username);
         $this->clientDetails->setPassword($password);
     }
     
     public function isEqualTo(UserInterface $user)
     {
-        if ($this->getPassword() !== $user->getPassword()) {
+        if (!$user instanceof Client) {
             return false;
         }
         
-        if ($this->getSalt() !== $user->getSalt()) {
+        if ($this->getPassword() !== $user->getPassword()) {
             return false;
         }
         
