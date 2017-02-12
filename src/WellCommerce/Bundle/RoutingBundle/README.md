@@ -1,2 +1,3 @@
 # RoutingBundle
-Subtree split of main WellCommerce repository
+
+Provides common routing features for all WellCommerce projects.
