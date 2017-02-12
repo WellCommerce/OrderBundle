@@ -15,7 +15,7 @@ namespace WellCommerce\Bundle\AppBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CmsBundle\Entity\Contact;
 use WellCommerce\Bundle\CmsBundle\Entity\ContactTranslation;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 
 /**
  * Class LoadContactData
