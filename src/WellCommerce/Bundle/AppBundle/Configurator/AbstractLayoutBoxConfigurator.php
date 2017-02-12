@@ -38,45 +38,27 @@ abstract class AbstractLayoutBoxConfigurator extends AbstractContainerAware impl
      */
     protected $controllerService;
     
-    /**
-     * Constructor
-     *
-     * @param string $type
-     * @param string $controllerService
-     */
     public function __construct(string $type, string $controllerService)
     {
         $this->type              = $type;
         $this->controllerService = $controllerService;
     }
     
-    /**
-     * @return PropertyAccessor
-     */
     protected function getPropertyAccessor(): PropertyAccessor
     {
         return PropertyAccess::createPropertyAccessor();
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getControllerService(): string
     {
         return $this->controllerService;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getType(): string
     {
         return $this->type;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function addFormFields(FormBuilderInterface $builder, FormInterface $form, $defaults)
     {
         $fieldset = $this->getFieldset($builder, $form);
@@ -88,9 +70,6 @@ abstract class AbstractLayoutBoxConfigurator extends AbstractContainerAware impl
         return $fieldset;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     protected function getFieldset(FormBuilderInterface $builder, FormInterface $form): FieldsetInterface
     {
         $boxTypeSelect = $this->getBoxTypeSelect($form);
@@ -111,11 +90,6 @@ abstract class AbstractLayoutBoxConfigurator extends AbstractContainerAware impl
         return $fieldset;
     }
     
-    /**
-     * @param FormInterface $form
-     *
-     * @return Select
-     */
     protected function getBoxTypeSelect(FormInterface $form): Select
     {
         return $form->getChildren()->get('required_data')->getChildren()->get('boxType');

@@ -24,10 +24,9 @@ services:
 
     exception.subscriber:
         class: WellCommerce\Bundle\AppBundle\EventListener\ExceptionSubscriber
+        arguments: ['@kernel', '@templating.helper']
         tags:
             - { name: kernel.event_subscriber }
-        calls:
-            - [setContainer, ['@service_container']]
 
     app.install.command:
         class: WellCommerce\Bundle\AppBundle\Command\InstallCommand

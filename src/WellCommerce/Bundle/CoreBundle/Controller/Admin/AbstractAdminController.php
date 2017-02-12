@@ -85,7 +85,7 @@ abstract class AbstractAdminController extends AbstractController
     public function addAction(Request $request): Response
     {
         $resource = $this->getManager()->initResource();
-        $form     = $this->getForm($resource);
+        $form     = $this->formBuilder->createForm($resource);
         
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {
@@ -108,7 +108,7 @@ abstract class AbstractAdminController extends AbstractController
             return $this->redirectToAction('index');
         }
         
-        $form = $this->getForm($resource);
+        $form = $this->formBuilder->createForm($resource);
         
         if ($form->handleRequest()->isSubmitted()) {
             if ($form->isValid()) {

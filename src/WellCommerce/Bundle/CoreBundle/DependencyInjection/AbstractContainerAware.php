@@ -54,11 +54,6 @@ abstract class AbstractContainerAware
         return $this->getTranslatorHelper()->trans($id, $params, $domain);
     }
     
-    public function getKernel(): KernelInterface
-    {
-        return $this->get('kernel');
-    }
-    
     public function getTranslatorHelper(): TranslatorHelperInterface
     {
         return $this->get('translator.helper');

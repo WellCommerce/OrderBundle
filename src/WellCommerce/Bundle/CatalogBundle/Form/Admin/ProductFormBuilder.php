@@ -24,9 +24,11 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class ProductFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.product';
+    }
+    
     public function buildForm(FormInterface $form)
     {
         $currencies = $this->get('currency.dataset.admin')->getResult('select', ['order_by' => 'code'], [

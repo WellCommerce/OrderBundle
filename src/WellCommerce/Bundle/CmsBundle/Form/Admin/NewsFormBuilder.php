@@ -22,9 +22,11 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class NewsFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.news';
+    }
+    
     public function buildForm(FormInterface $form)
     {
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [
