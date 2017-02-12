@@ -32,9 +32,11 @@ use WellCommerce\Component\Form\Elements\Optioned\Select;
  */
 class OrderFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.order';
+    }
+    
     public function buildForm(FormInterface $form)
     {
         $order     = $this->getOrderProvider()->getCurrentOrder();
