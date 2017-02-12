@@ -16,10 +16,7 @@ services:
 
     doctrine.trait_generator.enhancer_collection:
         class: WellCommerce\Component\DoctrineEnhancer\TraitGenerator\TraitGeneratorEnhancerCollection
-
-    doctrine.trait_generator.enhancer_traverser:
-        class: WellCommerce\Component\DoctrineEnhancer\TraitGenerator\TraitGeneratorEnhancerTraverser
-        arguments: ['@doctrine.trait_generator.enhancer_collection']
+        public: false
 
     doctrine.class_metadata.event_subscriber:
         class: WellCommerce\Bundle\CoreBundle\EventListener\ClassMetadataEventSubscriber
@@ -51,3 +48,9 @@ services:
     doctrine.helper:
         class: WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelper
         arguments: ['@doctrine']
+
+    doctrine.enhance.command:
+        class: WellCommerce\Bundle\CoreBundle\Command\DoctrineEnhanceCommand
+        arguments: ['@environment_helper', '@doctrine.trait_generator.enhancer_collection']
+        tags:
+            - { name: console.command }

@@ -62,6 +62,7 @@ if [ "$action" == 'push' ]
         git subtree push --prefix=src/WellCommerce/Component/Collections git@github.com:WellCommerce/Collections.git master
         git subtree push --prefix=src/WellCommerce/Component/DataSet git@github.com:WellCommerce/DataSet.git master
         git subtree push --prefix=src/WellCommerce/Component/DataGrid git@github.com:WellCommerce/DataGrid.git master
+        git subtree push --prefix=src/WellCommerce/Component/DoctrineEnhancer git@github.com:WellCommerce/DoctrineEnhancer.git master
         git subtree push --prefix=src/WellCommerce/Component/Form git@github.com:WellCommerce/Form.git master
         git subtree push --prefix=src/WellCommerce/Component/Serializer git@github.com:WellCommerce/Serializer.git master
         git subtree push --prefix=src/WellCommerce/Bundle/AdminBundle git@github.com:WellCommerce/AdminBundle.git master

@@ -10,16 +10,19 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Component\DoctrineEnhancer\TraitGenerator;
-
-use Wingu\OctopusCore\CodeGenerator\PHP\OOP\TraitGenerator;
+namespace WellCommerce\Bundle\CoreBundle\Console\Action;
 
 /**
- * Interface TraitGeneratorEnhancerTraverserInterface
+ * Class ClearMetadataAction
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-interface TraitGeneratorEnhancerTraverserInterface
+class ClearMetadataAction implements ConsoleActionInterface
 {
-    public function traverse(TraitGenerator $generator);
+    public function getCommandsToExecute()
+    {
+        return [
+            'doctrine:cache:clear-metadata' => [],
+        ];
+    }
 }

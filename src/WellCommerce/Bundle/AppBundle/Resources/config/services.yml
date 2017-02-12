@@ -31,9 +31,9 @@ services:
 
     app.install.command:
         class: WellCommerce\Bundle\AppBundle\Command\InstallCommand
+        arguments: ['@distribution.console.action_executor']
         tags:
             - { name: console.command }
-        arguments: ['@distribution.console.action_executor']
 
     country.repository:
         class: WellCommerce\Bundle\AppBundle\Repository\CountryRepository
