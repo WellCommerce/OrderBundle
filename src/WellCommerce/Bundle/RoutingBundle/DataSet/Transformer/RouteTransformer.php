@@ -27,19 +27,11 @@ class RouteTransformer extends AbstractDataSetTransformer
      */
     protected $generator;
     
-    /**
-     * Constructor
-     *
-     * @param UrlGeneratorInterface $generator
-     */
     public function __construct(UrlGeneratorInterface $generator)
     {
         $this->generator = $generator;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function transformValue($value)
     {
         if (null === $value) {

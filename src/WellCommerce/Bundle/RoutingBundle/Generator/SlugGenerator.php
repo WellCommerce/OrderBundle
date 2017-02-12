@@ -12,9 +12,9 @@
 
 namespace WellCommerce\Bundle\RoutingBundle\Generator;
 
-use WellCommerce\Bundle\CoreBundle\Helper\Sluggable;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
+use WellCommerce\Bundle\CoreBundle\Helper\Helper;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class SlugGenerator
@@ -24,23 +24,18 @@ use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
 final class SlugGenerator implements SlugGeneratorInterface
 {
     /**
-     * @var ManagerInterface
+     * @var RepositoryInterface
      */
-    private $manager;
+    private $repository;
     
-    /**
-     * SlugGenerator constructor.
-     *
-     * @param ManagerInterface $manager
-     */
-    public function __construct(ManagerInterface $manager)
+    public function __construct(RepositoryInterface $repository)
     {
-        $this->manager = $manager;
+        $this->repository = $repository;
     }
-
-    public function generate(string $name, $id, string $locale, $values, int $iteration = 0) : string
+    
+    public function generate(string $name, $id, string $locale, $values, int $iteration = 0): string
     {
-        $slug           = Sluggable::makeSlug($name);
+        $slug           = Helper::urlize($name);
         $existsInValues = in_array($slug, (array)$values);
         
         // if slug is the same as other values, try to add locale part
@@ -48,7 +43,7 @@ final class SlugGenerator implements SlugGeneratorInterface
             $slug = sprintf('%s-%s', $slug, $locale);
         }
         
-        $route = $this->manager->getRepository()->findOneBy(['path' => $slug]);
+        $route = $this->repository->findOneBy(['path' => $slug]);
         
         if (null !== $route) {
             // if passed identifier and locale are same as in route, assume we can change the slug directly
@@ -65,30 +60,13 @@ final class SlugGenerator implements SlugGeneratorInterface
         return $slug;
     }
     
-    /**
-     * Checks passed identifier and locale against those in route
-     *
-     * @param RouteInterface $route
-     * @param                $locale
-     * @param                $id
-     *
-     * @return bool
-     */
-    private function hasRouteSameLocaleAndId(RouteInterface $route, string $locale, $id) : bool
+    private function hasRouteSameLocaleAndId(Route $route, string $locale, $id): bool
     {
         return ((int)$route->getIdentifier()->getId() === (int)$id && $route->getLocale() === $locale);
     }
     
-    /**
-     * Makes original slug iterated
-     *
-     * @param string $slug
-     * @param int    $iteration
-     *
-     * @return string
-     */
-    private function makeSlugIterated($slug, $iteration)
+    private function makeSlugIterated(string $slug, int $iteration): string
     {
-        return sprintf('%s%s%s', $slug, Sluggable::SLUG_DELIMITER, $iteration);
+        return sprintf('%s-%s', $slug, $iteration);
     }
 }

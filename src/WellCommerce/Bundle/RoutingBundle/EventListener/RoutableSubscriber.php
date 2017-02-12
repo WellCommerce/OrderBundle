@@ -31,11 +31,6 @@ final class RoutableSubscriber implements EventSubscriber
      */
     private $routingDiscriminatorMap;
     
-    /**
-     * RoutableSubscriber constructor.
-     *
-     * @param array $routingDiscriminatorsMap
-     */
     public function __construct(array $routingDiscriminatorMap = [])
     {
         $this->routingDiscriminatorMap = $routingDiscriminatorMap;
@@ -51,11 +46,6 @@ final class RoutableSubscriber implements EventSubscriber
         }
     }
     
-    /**
-     * Add Route for new entity
-     *
-     * @param LifecycleEventArgs $args
-     */
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -65,13 +55,6 @@ final class RoutableSubscriber implements EventSubscriber
         }
     }
     
-    /**
-     * Adds new route
-     *
-     * @param RoutableSubjectInterface $entity
-     *
-     * @return \WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface
-     */
     protected function addRoute(RoutableSubjectInterface $entity)
     {
         $route = $entity->getRouteEntity();
@@ -82,14 +65,11 @@ final class RoutableSubscriber implements EventSubscriber
         return $route;
     }
     
-    /**
-     * {@inheritdoc}
-     */
     public function getSubscribedEvents()
     {
         return [
             Events::prePersist,
-            Events::loadClassMetadata
+            Events::loadClassMetadata,
         ];
     }
 }

@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
-use WellCommerce\Bundle\DoctrineBundle\Entity\LocaleAwareInterfacee;
+use WellCommerce\Bundle\DoctrineBundle\Entity\LocaleAwareInterface;
 use WellCommerce\Bundle\DoctrineBundle\Helper\DoctrineHelperInterface;
 
 /**

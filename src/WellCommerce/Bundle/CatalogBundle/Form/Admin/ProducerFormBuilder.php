@@ -49,7 +49,7 @@ class ProducerFormBuilder extends AbstractFormBuilder
             'name'            => 'slug',
             'label'           => $this->trans('common.label.slug'),
             'name_field'      => $name,
-            'generate_route'  => 'admin.routing.generate',
+            'generate_route'  => 'route.generate',
             'translatable_id' => $this->getRequestHelper()->getAttributesBagParam('id'),
             'rules'           => [
                 $this->getRule('required')

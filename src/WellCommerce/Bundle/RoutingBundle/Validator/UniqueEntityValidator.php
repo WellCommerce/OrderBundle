@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\RoutingBundle\Doctrine\Validator\Constraints;
+namespace WellCommerce\Bundle\RoutingBundle\Validator;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\RoutingBundle\Entity\RoutableSubjectInterface;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
-use WellCommerce\Bundle\RoutingBundle\Repository\RouteRepositoryInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
+use WellCommerce\Bundle\RoutingBundle\Helper\RouterHelperInterface;
 
 /**
  * Class UniqueEntityValidator
@@ -27,9 +27,9 @@ use WellCommerce\Bundle\RoutingBundle\Repository\RouteRepositoryInterface;
 final class UniqueEntityValidator extends ConstraintValidator
 {
     /**
-     * @var RouteRepositoryInterface
+     * @var RepositoryInterface
      */
-    private $routeRepository;
+    private $repository;
     
     /**
      * @var RouterHelperInterface
@@ -39,13 +39,13 @@ final class UniqueEntityValidator extends ConstraintValidator
     /**
      * UniqueEntityValidator constructor.
      *
-     * @param RouteRepositoryInterface $routeRepository
-     * @param RouterHelperInterface    $routerHelper
+     * @param RepositoryInterface   $repository
+     * @param RouterHelperInterface $routerHelper
      */
-    public function __construct(RouteRepositoryInterface $routeRepository, RouterHelperInterface $routerHelper)
+    public function __construct(RepositoryInterface $repository, RouterHelperInterface $routerHelper)
     {
-        $this->routeRepository = $routeRepository;
-        $this->routerHelper    = $routerHelper;
+        $this->repository   = $repository;
+        $this->routerHelper = $routerHelper;
     }
     
     /**
@@ -63,7 +63,7 @@ final class UniqueEntityValidator extends ConstraintValidator
         $route  = $entity->getRoute();
         $slug   = $entity->getSlug();
         $locale = $entity->getLocale();
-        $result = $this->routeRepository->findOneBy(['path' => $slug, 'locale' => $locale]);
+        $result = $this->repository->findOneBy(['path' => $slug, 'locale' => $locale]);
         
         // route is unique always if no result was found
         if (null === $result) {
@@ -71,7 +71,7 @@ final class UniqueEntityValidator extends ConstraintValidator
         }
         
         // skip validation if there is exact match
-        if ($route instanceof RouteInterface && $result->getIdentifier()->getId() === $route->getIdentifier()->getId()) {
+        if ($route instanceof Route && $result->getIdentifier()->getId() === $route->getIdentifier()->getId()) {
             return;
         }
         
@@ -86,12 +86,7 @@ final class UniqueEntityValidator extends ConstraintValidator
         }
     }
     
-    /**
-     * @param RouteInterface $route
-     *
-     * @return string
-     */
-    private function generatePath(RouteInterface $route)
+    private function generatePath(Route $route): string
     {
         return $this->routerHelper->generateUrl('dynamic_' . $route->getId());
     }

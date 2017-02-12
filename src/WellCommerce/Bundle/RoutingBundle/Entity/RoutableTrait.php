@@ -31,7 +31,7 @@ trait RoutableTrait
     public function setSlug(string $slug)
     {
         $this->slug = $slug;
-        if ($this->route instanceof RouteInterface) {
+        if ($this->route instanceof Route) {
             $this->route->setPath($slug);
         }
     }
@@ -43,10 +43,10 @@ trait RoutableTrait
     
     public function hasRoute(): bool
     {
-        return $this->route instanceof RouteInterface;
+        return $this->route instanceof Route;
     }
     
-    public function setRoute(RouteInterface $route)
+    public function setRoute(Route $route)
     {
         $this->route = $route;
     }

@@ -29,7 +29,7 @@ interface RoutableSubjectInterface
     
     public function hasRoute(): bool;
     
-    public function setRoute(RouteInterface $route);
+    public function setRoute(Route $route);
     
-    public function getRouteEntity(): RouteInterface;
+    public function getRouteEntity(): Route;
 }

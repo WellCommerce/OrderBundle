@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\RoutingBundle\Doctrine\Validator\Constraints;
+namespace WellCommerce\Bundle\RoutingBundle\Validator;
 
 use Symfony\Component\Validator\Constraint;
 
