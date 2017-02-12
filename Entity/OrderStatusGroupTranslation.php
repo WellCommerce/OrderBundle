@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\OrderBundle\Entity;
 
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
-use WellCommerce\Bundle\CoreBundle\Entity\AbstractTranslation;
+use WellCommerce\Bundle\DoctrineBundle\Entity\AbstractTranslation;
 
 /**
  * Class OrderStatusGroupTranslation

@@ -2,7 +2,7 @@
 
 namespace WellCommerce\Bundle\OrderBundle\DataGrid;
 
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Bundle\OrderBundle\Entity\OrderStatus;
 
 /**
