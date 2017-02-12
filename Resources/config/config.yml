@@ -5,17 +5,3 @@
 #
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
-
-well_commerce_api:
-    serialization:
-        WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration:
-            mapping: "@WellCommerceCoreBundle/Resources/config/serialization/MailerConfiguration.yml"
-
-knp_doctrine_behaviors:
-    blameable:      true
-    geocodable:     false
-    loggable:       false
-    sluggable:      false
-    soft_deletable: false
-    timestampable:  true
-    translatable:   true
