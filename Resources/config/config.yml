@@ -11,14 +11,6 @@ well_commerce_api:
         WellCommerce\Bundle\CoreBundle\Entity\MailerConfiguration:
             mapping: "@WellCommerceCoreBundle/Resources/config/serialization/MailerConfiguration.yml"
 
-well_commerce_core:
-    routers:
-        router.default:             100
-        routing.dynamic_router:     50
-
-fos_js_routing:
-    router: router.default
-
 knp_doctrine_behaviors:
     blameable:      true
     geocodable:     false

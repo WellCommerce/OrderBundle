@@ -1,6 +1,5 @@
 imports:
     - { resource: 'services/breadcrumb.yml' }
-    - { resource: 'services/routing.yml' }
     - { resource: 'services/form.yml' }
     - { resource: 'services/dataset.yml' }
     - { resource: 'services/datagrid.yml' }
@@ -15,7 +14,7 @@ services:
         arguments: ['@liip_imagine.cache.manager']
 
     router.helper:
-        class: WellCommerce\Bundle\CoreBundle\Helper\Router\RouterHelper
+        class: WellCommerce\Bundle\RoutingBundle\Helper\RouterHelper
         arguments: ['@router', '@request.helper']
 
     request.helper:
@@ -51,12 +50,6 @@ services:
         tags:
             - { name: twig.extension }
         arguments: ['@image.helper']
-
-    twig.extension.dynamic_routing:
-        class: WellCommerce\Bundle\CoreBundle\Twig\Extension\DynamicRoutingExtension
-        tags:
-            - { name: twig.extension }
-        arguments: ['@router', '@request.helper']
 
     twig.extension.mail:
         class: WellCommerce\Bundle\CoreBundle\Twig\Extension\MailExtension
