@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\CmsBundle\Manager;
 
-use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
+use WellCommerce\Bundle\DoctrineBundle\Manager\AbstractManager;
 
 /**
  * Class ContactTicketManager

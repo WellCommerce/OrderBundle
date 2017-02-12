@@ -20,7 +20,7 @@ use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\AppBundle\Exception\LayoutBoxNotFoundException;
 use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
 
 /**
  * Class LayoutBoxRenderer

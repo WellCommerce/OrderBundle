@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\AppBundle\Manager;
 
 use WellCommerce\Bundle\AppBundle\Entity\User;
-use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
+use WellCommerce\Bundle\DoctrineBundle\Manager\AbstractManager;
 
 /**
  * Class UserManager

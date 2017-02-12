@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CatalogBundle\Manager;
 
 use WellCommerce\Bundle\CatalogBundle\Entity\Attribute;
 use WellCommerce\Bundle\CatalogBundle\Entity\AttributeValue;
-use WellCommerce\Bundle\CoreBundle\Manager\AbstractManager;
+use WellCommerce\Bundle\DoctrineBundle\Manager\AbstractManager;
 
 /**
  * Class AttributeValueManager
