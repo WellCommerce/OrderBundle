@@ -16,6 +16,7 @@ imports:
     - { resource: "@WellCommerceDoctrineBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReviewBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceRoutingBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShowcaseBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceWishlistBundle/Resources/config/config.yml" }
 
