@@ -70,19 +70,6 @@ abstract class AbstractController extends AbstractContainerAware implements Cont
         ]);
     }
     
-    protected function getForm($resource, array $config = []) : FormInterface
-    {
-        $builder       = $this->getFormBuilder();
-        $defaultConfig = [
-            'name'              => $this->getManager()->getRepository()->getAlias(),
-            'validation_groups' => ValidatorHelperInterface::DEFAULT_VALIDATOR_GROUPS
-        ];
-
-        $config = array_merge($defaultConfig, $config);
-        
-        return $builder->createForm($config, $resource);
-    }
-    
     protected function jsonResponse(array $content) : JsonResponse
     {
         return new JsonResponse($content);

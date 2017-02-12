@@ -63,14 +63,6 @@ final class MailerHelper implements MailerHelperInterface
         $this->debug            = $debug;
     }
     
-    public function isEmailValid(string $email): bool
-    {
-        return $this->validatorHelper->isValid($email, [
-            new \Symfony\Component\Validator\Constraints\Email(),
-            new \Symfony\Component\Validator\Constraints\NotBlank(),
-        ]);
-    }
-    
     public function sendEmail(array $options): int
     {
         $resolver = new OptionsResolver();
@@ -179,5 +171,13 @@ final class MailerHelper implements MailerHelperInterface
         }
         
         return $mailer;
+    }
+    
+    private function isEmailValid(string $email): bool
+    {
+        return $this->validatorHelper->isValid($email, [
+            new \Symfony\Component\Validator\Constraints\Email(),
+            new \Symfony\Component\Validator\Constraints\NotBlank(),
+        ]);
     }
 }
