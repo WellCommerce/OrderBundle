@@ -31,8 +31,5 @@ class WellCommerceCoreBundle extends AbstractWellCommerceBundle
         $container->addCompilerPass(new Compiler\FormDataTransformerPass());
         $container->addCompilerPass(new Compiler\DataSetContextPass());
         $container->addCompilerPass(new Compiler\DataSetTransformerPass());
-        $container->addCompilerPass(new Compiler\RegisterTraitGeneratorEnhancerPass());
-        $container->addCompilerPass(new Compiler\RegisterClassMetadataEnhancerPass());
-        $container->addCompilerPass(new Compiler\RegisterRequestHandlerPass(), PassConfig::TYPE_BEFORE_REMOVING);
     }
 }
