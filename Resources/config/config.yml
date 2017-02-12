@@ -13,12 +13,15 @@ imports:
     - { resource: "@WellCommerceCatalogBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCmsBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCouponBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceDoctrineBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceOrderBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceReviewBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceShowcaseBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceWishlistBundle/Resources/config/config.yml" }
 
 parameters:
+    knp.doctrine_behaviors.blameable_subscriber.user_entity: WellCommerce\Bundle\AppBundle\Entity\User
+    knp.doctrine_behaviors.blameable_subscriber.class: WellCommerce\Bundle\CoreBundle\EventListener\BlameableSubscriber
     number_formatter_locale: ~
     fixtures_load_order:
         WellCommerce\Bundle\AppBundle\DataFixtures\ORM\LoadAdminMenuData: 0
