@@ -15,10 +15,10 @@ namespace WellCommerce\Bundle\CoreBundle\DependencyInjection;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
-use WellCommerce\Bundle\CoreBundle\Controller\Admin\AdminControllerInterface;
-use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
+use WellCommerce\Bundle\CoreBundle\Controller\ControllerInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
 use WellCommerce\Component\DataGrid\DataGridInterface;
 use WellCommerce\Component\DataSet\DataSetInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
@@ -94,7 +94,7 @@ final class ClassFinder
     {
         $directory = $bundle->getPath() . '/Controller/Admin';
         $namespace = $bundle->getNamespace() . '\Controller\Admin';
-        $interface = AdminControllerInterface::class;
+        $interface = ControllerInterface::class;
         $classes   = $this->findClassesImplementingInterface($directory, $namespace, $interface);
         
         return $classes;
