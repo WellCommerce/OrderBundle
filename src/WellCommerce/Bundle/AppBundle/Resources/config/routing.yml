@@ -69,6 +69,10 @@ _admin_media:
     resource: "@WellCommerceAppBundle/Resources/config/routing/media/admin.yml"
     prefix: /admin/media
 
+_admin_package:
+    resource: "@WellCommerceAppBundle/Resources/config/routing/package/admin.yml"
+    prefix: /admin/package
+
 _admin_shop:
     resource: "@WellCommerceAppBundle/Resources/config/routing/shop/admin.yml"
     prefix: /admin/configuration/shop

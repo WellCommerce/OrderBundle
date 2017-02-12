@@ -9,7 +9,7 @@
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
-namespace WellCommerce\Bundle\CoreBundle\Form\Admin;
+namespace WellCommerce\Bundle\AppBundle\Form\Admin;
 
 use Packagist\Api\Result\Package\Version;
 use WellCommerce\Bundle\CoreBundle\Form\AbstractFormBuilder;
@@ -34,16 +34,16 @@ class PackageFormBuilder extends AbstractFormBuilder
         $operation = $this->getRequestHelper()->getAttributesBagParam('operation');
         $port      = $helper->getFreePort();
         $versions  = $this->getPackageVersions($package);
-
+        
         $packageData = $packageForm->addChild($this->getElement('nested_fieldset', [
             'name'  => 'package_data',
-            'label' => $this->trans('package.fieldset.information')
+            'label' => $this->trans('package.fieldset.information'),
         ]));
-
+        
         foreach ($versions as $version) {
-
+            
             $license = implode('<br />', $version['license']);
-
+            
             $packageData->addChild($this->getElement('static_text', [
                 'text' => "
                     <table>
@@ -51,15 +51,15 @@ class PackageFormBuilder extends AbstractFormBuilder
                         <tr><td><strong>Description:</strong></td><td>{$version['description']}</td></tr>
                         <tr><td><strong>License:</strong></td><td>{$license}</td></tr>
                     </table>
-                "
+                ",
             ]));
         }
-
+        
         $packageRequiredData = $packageForm->addChild($this->getElement('nested_fieldset', [
             'name'  => 'progress_data',
-            'label' => $this->trans('package.fieldset.progress')
+            'label' => $this->trans('package.fieldset.progress'),
         ]));
-
+        
         $packageRequiredData->addChild($this->getElement('console_output', [
             'name'        => 'console_output',
             'label'       => $this->trans('package.label.console_output'),
@@ -68,12 +68,12 @@ class PackageFormBuilder extends AbstractFormBuilder
                 'admin.package.console', [
                     'id'        => $package,
                     'operation' => $operation,
-                    'port'      => $port
+                    'port'      => $port,
                 ]
-            )
+            ),
         ]));
     }
-
+    
     /**
      * Returns version information for package
      *
@@ -87,14 +87,14 @@ class PackageFormBuilder extends AbstractFormBuilder
         $remotePackage = $this->get('package.helper')->getPackage($localPackage->getFullName());
         $versions      = $remotePackage->getVersions();
         $result        = [];
-
+        
         foreach ($versions as $version) {
             $this->getPackageInfo($version, $result);
         }
-
+        
         return $result;
     }
-
+    
     /**
      * Adds information about single version to result array
      *

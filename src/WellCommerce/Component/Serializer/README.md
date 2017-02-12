@@ -1,2 +1,3 @@
 # Serializer
-WellCommerce Serializer Component
+
+Provides common serialization & normalization features in all WellCommerce projects.
