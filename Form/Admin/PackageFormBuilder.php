@@ -23,9 +23,11 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class PackageFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.package';
+    }
+    
     public function buildForm(FormInterface $packageForm)
     {
         $router    = $this->getRouterHelper();

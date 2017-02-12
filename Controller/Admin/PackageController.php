@@ -41,7 +41,7 @@ class PackageController extends AbstractAdminController
             return $this->redirectToAction('index');
         }
         
-        $form = $this->getForm($package);
+        $form = $this->formBuilder->createForm($package);
         
         return $this->displayTemplate('package', [
             'operation'   => $operation,
