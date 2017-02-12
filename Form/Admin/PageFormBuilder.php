@@ -22,9 +22,11 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class PageFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.page';
+    }
+    
     public function buildForm(FormInterface $form)
     {
         $this->addMainFieldset($form);
