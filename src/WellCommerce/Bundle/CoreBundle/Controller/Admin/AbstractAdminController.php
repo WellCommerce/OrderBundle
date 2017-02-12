@@ -28,7 +28,7 @@ use WellCommerce\Component\Form\FormBuilderInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-abstract class AbstractAdminController extends AbstractController implements AdminControllerInterface
+abstract class AbstractAdminController extends AbstractController
 {
     /**
      * @var null|DataGridInterface

@@ -18,7 +18,7 @@ use WellCommerce\Bundle\AppBundle\Collection\LayoutBoxSettingsCollection;
 use WellCommerce\Bundle\AppBundle\Configurator\LayoutBoxConfiguratorCollection;
 use WellCommerce\Bundle\AppBundle\Entity\LayoutBox;
 use WellCommerce\Bundle\AppBundle\Exception\LayoutBoxNotFoundException;
-use WellCommerce\Bundle\CoreBundle\Controller\Box\BoxControllerInterface;
+use WellCommerce\Bundle\CoreBundle\Controller\ControllerInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
 use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
 
@@ -89,7 +89,7 @@ final class LayoutBoxRenderer extends AbstractContainerAware implements LayoutBo
         return $collection;
     }
     
-    private function resolveControllerService(LayoutBox $layoutBox): BoxControllerInterface
+    private function resolveControllerService(LayoutBox $layoutBox): ControllerInterface
     {
         $boxType      = $layoutBox->getBoxType();
         $configurator = $this->configurators->get($boxType);
@@ -102,7 +102,7 @@ final class LayoutBoxRenderer extends AbstractContainerAware implements LayoutBo
         return $this->get($service);
     }
     
-    private function resolveControllerAction(BoxControllerInterface $controller): string
+    private function resolveControllerAction(ControllerInterface $controller): string
     {
         $currentAction = $this->getRouterHelper()->getCurrentAction();
         
