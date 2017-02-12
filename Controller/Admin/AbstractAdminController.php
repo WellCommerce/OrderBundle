@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\CoreBundle\Controller\Admin;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\CoreBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
 use WellCommerce\Component\DataGrid\Conditions\ConditionsResolver;

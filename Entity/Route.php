@@ -12,7 +12,8 @@
 
 namespace WellCommerce\Bundle\CoreBundle\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class Route

@@ -13,7 +13,7 @@
 namespace WellCommerce\Bundle\CoreBundle\DependencyInjection\Definition;
 
 use Symfony\Component\DependencyInjection\Definition;
-use WellCommerce\Bundle\CoreBundle\Doctrine\Factory\EntityFactory;
+use WellCommerce\Bundle\DoctrineBundle\Factory\EntityFactory;
 
 /**
  * Class RepositoryDefinitionFactory
