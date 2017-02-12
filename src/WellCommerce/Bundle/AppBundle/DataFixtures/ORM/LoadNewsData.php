@@ -16,7 +16,7 @@ use Carbon\Carbon;
 use Doctrine\Common\Persistence\ObjectManager;
 use WellCommerce\Bundle\CmsBundle\Entity\News;
 use WellCommerce\Bundle\CmsBundle\Entity\NewsTranslation;
-use WellCommerce\Bundle\CoreBundle\DataFixtures\AbstractDataFixture;
+use WellCommerce\Bundle\DoctrineBundle\DataFixtures\AbstractDataFixture;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
 
 /**
