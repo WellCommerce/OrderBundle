@@ -12,7 +12,7 @@
 
 namespace WellCommerce\Bundle\AppBundle\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Entity\AddressTrait;
+use WellCommerce\Bundle\AppBundle\Entity\AddressTrait;
 
 /**
  * Class ClientBillingAddress
