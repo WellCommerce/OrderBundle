@@ -6,10 +6,14 @@
 # For the full copyright and license information,
 # please view the LICENSE file that was distributed with this source code.
 
-admin.routing.generate:
-    path: /routing/generate
+route.generate:
+    path: /route/generate
+    condition: "request.isXmlHttpRequest()"
     defaults:
-        _controller: 'route.controller.admin:generateAction'
+        _controller: 'route.controller:generateAction'
     options:
         expose: true
         require_admin_permission: routing.index
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

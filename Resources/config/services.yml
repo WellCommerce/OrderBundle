@@ -1,5 +1,16 @@
+# WellCommerce Open-Source E-Commerce Platform
+#
+# This file is part of the WellCommerce package.
+# (c) Adam Piotrowski <adam@wellcommerce.org>
+#
+# For the full copyright and license information,
+# please view the LICENSE file that was distributed with this source code.
 
 services:
+    route.controller:
+        class: WellCommerce\Bundle\RoutingBundle\Controller\Admin\RouteController
+        arguments: ["@slug.generator"]
+
     routable.subscriber:
         class: WellCommerce\Bundle\RoutingBundle\EventListener\RoutableSubscriber
         tags:
@@ -13,7 +24,7 @@ services:
         arguments: ['@routing.generator']
 
     routing.orm.validator.unique:
-        class: WellCommerce\Bundle\RoutingBundle\Doctrine\Validator\Constraints\UniqueEntityValidator
+        class: WellCommerce\Bundle\RoutingBundle\Validator\UniqueEntityValidator
         tags:
             - { name: validator.constraint_validator, alias: routing.orm.validator.unique }
         arguments: ['@route.repository', '@router.helper']
@@ -54,4 +65,14 @@ services:
 
     slug.generator:
         class: WellCommerce\Bundle\RoutingBundle\Generator\SlugGenerator
-        arguments: ['@route.manager']
+        arguments: ['@route.repository']
+
+    router.helper:
+        class: WellCommerce\Bundle\RoutingBundle\Helper\RouterHelper
+        arguments: ['@router', '@request.helper']
+
+    twig.extension.dynamic_routing:
+        class: WellCommerce\Bundle\RoutingBundle\Twig\DynamicRoutingExtension
+        tags:
+            - { name: twig.extension }
+        arguments: ['@router', '@request.helper']

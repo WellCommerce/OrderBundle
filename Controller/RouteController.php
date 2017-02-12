@@ -14,7 +14,7 @@ namespace WellCommerce\Bundle\RoutingBundle\Controller\Admin;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use WellCommerce\Bundle\CoreBundle\Controller\Admin\AbstractAdminController;
+use WellCommerce\Bundle\CoreBundle\Controller\ControllerInterface;
 use WellCommerce\Bundle\RoutingBundle\Generator\SlugGeneratorInterface;
 
 /**
@@ -22,37 +22,29 @@ use WellCommerce\Bundle\RoutingBundle\Generator\SlugGeneratorInterface;
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class RouteController extends AbstractAdminController
+final class RouteController implements ControllerInterface
 {
     /**
-     * Generates slug using ajax request
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @var SlugGeneratorInterface
      */
-    public function generateAction(Request $request)
+    private $generator;
+    
+    public function __construct(SlugGeneratorInterface $generator)
     {
-        if (!$request->isXmlHttpRequest()) {
-            return $this->redirectToAction('index');
-        }
-
-        $slug = $this->getSlugGenerator()->generate(
+        $this->generator = $generator;
+    }
+    
+    public function generateAction(Request $request): JsonResponse
+    {
+        $slug = $this->generator->generate(
             $request->get('name'),
             $request->get('id'),
             $request->get('locale'),
             $request->get('fields')
         );
-
-        $response = [
-            'slug' => $slug
-        ];
-
-        return $this->jsonResponse($response);
-    }
-
-    private function getSlugGenerator() : SlugGeneratorInterface
-    {
-        return $this->get('slug.generator');
+        
+        return new JsonResponse([
+            'slug' => $slug,
+        ]);
     }
 }

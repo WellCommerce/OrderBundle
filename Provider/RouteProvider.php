@@ -12,14 +12,13 @@
 
 namespace WellCommerce\Bundle\RoutingBundle\Provider;
 
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Cmf\Component\Routing\RouteProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
-use WellCommerce\Bundle\RoutingBundle\Entity\RouteInterface;
-use WellCommerce\Bundle\RoutingBundle\Repository\RouteRepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\RoutingBundle\Entity\Route;
 
 /**
  * Class RouteProvider
@@ -37,17 +36,17 @@ final class RouteProvider implements RouteProviderInterface
     private $routingGeneratorMap;
     
     /**
-     * @var RouteRepositoryInterface
+     * @var RepositoryInterface
      */
     private $repository;
     
     /**
      * RouteProvider constructor.
      *
-     * @param array                    $routingGeneratorMap
-     * @param RouteRepositoryInterface $repository
+     * @param array               $routingGeneratorMap
+     * @param RepositoryInterface $repository
      */
-    public function __construct(array $routingGeneratorMap = [], RouteRepositoryInterface $repository)
+    public function __construct(array $routingGeneratorMap = [], RepositoryInterface $repository)
     {
         $this->routingGeneratorMap = $routingGeneratorMap;
         $this->repository          = $repository;
@@ -89,7 +88,7 @@ final class RouteProvider implements RouteProviderInterface
         $id       = str_replace(self::DYNAMIC_PREFIX, '', $identifier);
         $resource = $this->repository->find($id);
         
-        if ($resource instanceof RouteInterface) {
+        if ($resource instanceof Route) {
             return $this->createRoute($resource);
         }
         
@@ -98,10 +97,10 @@ final class RouteProvider implements RouteProviderInterface
     
     public function getRoutesByNames($names, $parameters = [])
     {
-        $collection = $this->repository->matching(new Criteria());
+        $collection = $this->repository->getCollection();
         $routes     = [];
         
-        $collection->map(function (RouteInterface $route) use (&$routes) {
+        $collection->map(function (Route $route) use (&$routes) {
             $routes[] = $this->getRouteByName($route->getId());
         });
         
@@ -123,14 +122,7 @@ final class RouteProvider implements RouteProviderInterface
         return current($paths);
     }
     
-    /**
-     * Creates a route object
-     *
-     * @param RouteInterface $resource
-     *
-     * @return SymfonyRoute
-     */
-    private function createRoute(RouteInterface $resource) : SymfonyRoute
+    private function createRoute(Route $resource): SymfonyRoute
     {
         $settings                        = $this->getRouteGenerationSettings($resource);
         $settings['defaults']['id']      = $resource->getIdentifier()->getId();
@@ -144,7 +136,7 @@ final class RouteProvider implements RouteProviderInterface
         );
     }
     
-    private function getRouteGenerationSettings(RouteInterface $resource) : array
+    private function getRouteGenerationSettings(Route $resource): array
     {
         $class = ClassUtils::getRealClass(get_class($resource));
         
@@ -157,15 +149,7 @@ final class RouteProvider implements RouteProviderInterface
         return $this->routingGeneratorMap[$class];
     }
     
-    /**
-     * Returns a concatenated path
-     *
-     * @param RouteInterface $resource
-     * @param string         $pattern
-     *
-     * @return string
-     */
-    private function getPath(RouteInterface $resource, string $pattern) : string
+    private function getPath(Route $resource, string $pattern): string
     {
         if (strlen($pattern)) {
             return $resource->getPath() . self::PATH_PARAMS_SEPARATOR . $pattern;
