@@ -21,9 +21,11 @@ use WellCommerce\Component\Form\Elements\FormInterface;
  */
 class CategoryFormBuilder extends AbstractFormBuilder
 {
-    /**
-     * {@inheritdoc}
-     */
+    public function getAlias(): string
+    {
+        return 'admin.category';
+    }
+    
     public function buildForm(FormInterface $form)
     {
         $requiredData = $form->addChild($this->getElement('nested_fieldset', [
