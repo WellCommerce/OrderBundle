@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Exception;
+namespace WellCommerce\Bundle\ApiBundle\Exception;
 
 /**
  * Class ResourceNotFoundException
