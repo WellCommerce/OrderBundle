@@ -1,28 +1,31 @@
 <?php
-/**
+/*
  * WellCommerce Open-Source E-Commerce Platform
- *
+ * 
  * This file is part of the WellCommerce package.
  *
  * (c) Adam Piotrowski <adam@wellcommerce.org>
- *
+ * 
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours;
+namespace WellCommerce\Bundle\DoctrineBundle\Entity;
 
 /**
- * Class Identifiable
+ * Interface LocaleAwareInterface
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-trait Identifiable
+interface LocaleAwareInterface
 {
-    protected $id;
+    /**
+     * @param string $locale
+     */
+    public function setLocale($locale);
     
-    public function getId(): int
-    {
-        return $this->id;
-    }
+    /**
+     * @return string
+     */
+    public function getLocale();
 }

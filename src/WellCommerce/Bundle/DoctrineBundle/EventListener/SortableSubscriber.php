@@ -10,37 +10,47 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\EventListener;
+namespace WellCommerce\Bundle\DoctrineBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 
 /**
- * Class EnableableSubscriber
+ * Class SortableSubscriber
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class EnableableSubscriber implements EventSubscriber
+class SortableSubscriber implements EventSubscriber
 {
+    /**
+     * Returns subscribed events
+     *
+     * @return array
+     */
     public function getSubscribedEvents()
     {
         return [Events::loadClassMetadata];
     }
     
+    /**
+     * Event triggered during metadata loading
+     *
+     * @param LoadClassMetadataEventArgs $eventArgs
+     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
         /** @var \Doctrine\ORM\Mapping\ClassMetadataInfo $classMetadata */
         $classMetadata   = $eventArgs->getClassMetadata();
         $reflectionClass = $classMetadata->getReflectionClass();
         
-        if ($reflectionClass->hasMethod('setEnabled') && !$classMetadata->hasField('enabled')) {
+        if ($reflectionClass->hasMethod('setHierarchy') && !$classMetadata->hasField('hierarchy')) {
             $classMetadata->mapField([
-                'fieldName' => 'enabled',
-                'type'      => 'boolean',
+                'fieldName' => 'hierarchy',
+                'type'      => 'integer',
                 'nullable'  => false,
                 'options'   => [
-                    'default' => true,
+                    'default' => 0,
                 ],
             ]);
         }

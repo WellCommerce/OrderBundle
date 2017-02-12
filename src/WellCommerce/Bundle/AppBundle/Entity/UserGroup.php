@@ -15,9 +15,9 @@ namespace WellCommerce\Bundle\AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
-use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Enableable;
-use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Enableable;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class UserGroup

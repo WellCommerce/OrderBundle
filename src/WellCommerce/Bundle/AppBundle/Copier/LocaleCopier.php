@@ -16,8 +16,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
-use WellCommerce\Bundle\CoreBundle\Entity\LocaleAwareInterface;
-use WellCommerce\Bundle\CoreBundle\Helper\Doctrine\DoctrineHelperInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\LocaleAwareInterfacee;
+use WellCommerce\Bundle\DoctrineBundle\Helper\DoctrineHelperInterface;
 
 /**
  * Class LocaleCopier

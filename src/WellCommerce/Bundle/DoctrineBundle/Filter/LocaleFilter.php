@@ -10,11 +10,11 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Filter;
+namespace WellCommerce\Bundle\DoctrineBundle\Filter;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
-use WellCommerce\Bundle\CoreBundle\Entity\LocaleAwareInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\LocaleAwareInterface;
 
 /**
  * Class LocaleFilter

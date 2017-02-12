@@ -12,8 +12,8 @@
 
 namespace WellCommerce\Bundle\CatalogBundle\Entity;
 
-use WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours\Identifiable;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Behaviours\Identifiable;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Class VariantOption

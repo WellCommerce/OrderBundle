@@ -10,24 +10,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Doctrine\Behaviours;
+namespace WellCommerce\Bundle\DoctrineBundle\Behaviours;
 
 /**
- * Class Sortable
+ * Class Enableable
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-trait Sortable
+trait Enableable
 {
-    protected $hierarchy = 0;
+    protected $enabled = true;
     
-    public function getHierarchy(): int
+    public function isEnabled(): bool
     {
-        return $this->hierarchy;
+        return $this->enabled;
     }
     
-    public function setHierarchy(int $hierarchy)
+    public function setEnabled(bool $enabled)
     {
-        $this->hierarchy = $hierarchy;
+        $this->enabled = $enabled;
     }
 }

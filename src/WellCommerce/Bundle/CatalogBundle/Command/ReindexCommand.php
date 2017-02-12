@@ -22,7 +22,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use WellCommerce\Bundle\AppBundle\Entity\Locale;
 use WellCommerce\Bundle\CatalogBundle\Manager\SearchManagerInterface;
-use WellCommerce\Bundle\CoreBundle\Repository\RepositoryInterface;
+use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Search\Model\TypeInterface;
 
 /**

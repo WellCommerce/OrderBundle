@@ -1,6 +1,6 @@
 <?php
 
-namespace WellCommerce\Bundle\CoreBundle\Entity;
+namespace WellCommerce\Bundle\DoctrineBundle\Entity;
 
 /**
  * Class AbstractTranslation
