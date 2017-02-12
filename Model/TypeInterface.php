@@ -13,7 +13,7 @@
 namespace WellCommerce\Component\Search\Model;
 
 use Doctrine\Common\Collections\Collection;
-use WellCommerce\Bundle\CoreBundle\Entity\EntityInterface;
+use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 
 /**
  * Interface TypeInterface
