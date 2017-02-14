@@ -68,11 +68,3 @@ services:
     distribution.console.action_executor:
         class: WellCommerce\Bundle\CoreBundle\Console\ConsoleActionExecutor
         arguments: ['@kernel']
-
-    distribution.bundle.manipulator:
-        class: WellCommerce\Bundle\CoreBundle\Manipulator\WellCommerceManipulator
-        arguments: ['@kernel']
-
-    distribution.bundle.generator:
-        class: WellCommerce\Bundle\CoreBundle\Generator\WellCommerceBundleGenerator
-        arguments: ['@kernel', '@twig']

@@ -1,6 +1,6 @@
 <?php
 
-namespace WellCommerce\Bundle\CoreBundle\Manipulator;
+namespace WellCommerce\Bundle\GeneratorBundle\Manipulator;
 
 use Sensio\Bundle\GeneratorBundle\Manipulator\ConfigurationManipulator;
 use Sensio\Bundle\GeneratorBundle\Manipulator\KernelManipulator;

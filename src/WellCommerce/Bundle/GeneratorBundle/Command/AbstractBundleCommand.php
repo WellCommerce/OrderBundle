@@ -9,7 +9,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
 use WellCommerce\Bundle\CoreBundle\Console\ConsoleActionExecutor;
 use WellCommerce\Bundle\CoreBundle\Generator\WellCommerceBundleGenerator;
-use WellCommerce\Bundle\CoreBundle\Manipulator\WellCommerceManipulator;
+use WellCommerce\Bundle\GeneratorBundle\Manipulator\WellCommerceManipulator;
 
 /**
  * Class AbstractBundleCommand
