@@ -10,21 +10,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Command\Package;
+namespace WellCommerce\Bundle\AppBundle\Command\Package;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Package\PackageHelperInterface;
 
 /**
- * Class UpdateCommand
+ * Class RemoveCommand
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class UpdateCommand extends AbstractPackageCommand
+class RemoveCommand extends AbstractPackageCommand
 {
     /**
      * @var string
      */
-    protected $composerOperation = PackageHelperInterface::ACTION_UPDATE;
+    protected $composerOperation = PackageHelperInterface::ACTION_REMOVE;
 
     /**
      * {@inheritdoc}
@@ -32,7 +32,8 @@ class UpdateCommand extends AbstractPackageCommand
     protected function configure()
     {
         parent::configure();
-        $this->setDescription('Update WellCommerce package');
-        $this->setName('wellcommerce:package:update');
+        $this->setDescription('Remove WellCommerce package');
+        $this->setName('wellcommerce:package:remove');
     }
 }
+
