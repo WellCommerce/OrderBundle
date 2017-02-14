@@ -138,7 +138,7 @@ abstract class AbstractFormBuilder extends AbstractContainerAware implements For
     
     protected function dispatchFormEvent(FormInterface $form, EntityInterface $entity = null, string $name)
     {
-        $eventName = sprintf('%s.%s', $form->getOption('name'), $name);
+        $eventName = sprintf('%s.%s', $this->getAlias(), $name);
         
         $this->eventDispatcher->dispatch($eventName, new FormEvent($this, $form, $entity));
     }
