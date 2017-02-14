@@ -1,6 +1,6 @@
 <?php
 
-namespace WellCommerce\Bundle\CoreBundle\Command\Bundle;
+namespace WellCommerce\Bundle\GeneratorBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

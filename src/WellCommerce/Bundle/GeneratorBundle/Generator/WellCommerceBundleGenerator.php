@@ -1,10 +1,10 @@
 <?php
 
-namespace WellCommerce\Bundle\CoreBundle\Generator;
+namespace WellCommerce\Bundle\GeneratorBundle\Generator;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\CoreBundle\Generator\Model\WellCommerceBundle;
+use WellCommerce\Bundle\GeneratorBundle\Model\WellCommerceBundle;
 
 /**
  * Class WellCommerceBundleGenerator

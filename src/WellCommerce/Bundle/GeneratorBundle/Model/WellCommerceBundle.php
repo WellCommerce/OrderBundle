@@ -1,6 +1,6 @@
 <?php
 
-namespace WellCommerce\Bundle\CoreBundle\Generator\Model;
+namespace WellCommerce\Bundle\GeneratorBundle\Model;
 
 use Sensio\Bundle\GeneratorBundle\Model\Bundle;
 use WellCommerce\Bundle\CoreBundle\Helper\Helper;
