@@ -6,7 +6,7 @@ use Sensio\Bundle\GeneratorBundle\Manipulator\ConfigurationManipulator;
 use Sensio\Bundle\GeneratorBundle\Manipulator\KernelManipulator;
 use Sensio\Bundle\GeneratorBundle\Manipulator\RoutingManipulator;
 use Symfony\Component\HttpKernel\KernelInterface;
-use WellCommerce\Bundle\CoreBundle\Generator\Model\WellCommerceBundle;
+use WellCommerce\Bundle\GeneratorBundle\Model\WellCommerceBundle;
 
 /**
  * Class WellCommerceManipulator
