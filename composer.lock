@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "123faa26bd55f6be538f6170e9631f02",
+    "content-hash": "1513e38c4f8f8570c72acbfa5dbd4c95",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6422,6 +6422,58 @@
             "time": "2017-02-16 08:58:05"
         },
         {
+            "name": "wellcommerce/dataset-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/DataSetBundle.git",
+                "reference": "061e57c9ddc10d3c0ab60b7c376eb54efc80719c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/DataSetBundle/zipball/061e57c9ddc10d3c0ab60b7c376eb54efc80719c",
+                "reference": "061e57c9ddc10d3c0ab60b7c376eb54efc80719c",
+                "shasum": ""
+            },
+            "require": {
+                "wellcommerce/dataset": "^0.7@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Bundle\\DataSetBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce DataSetBundle",
+            "keywords": [
+                "dataset",
+                "e-commerce",
+                "open-source",
+                "symfony",
+                "wellcommerce"
+            ],
+            "time": "2017-02-16 22:50:24"
+        },
+        {
             "name": "wellcommerce/doctrine-enhancer",
             "version": "dev-master",
             "source": {
@@ -7558,7 +7610,8 @@
         "wellcommerce/form": 20,
         "wellcommerce/dataset": 20,
         "wellcommerce/breadcrumb": 20,
-        "wellcommerce/search": 20
+        "wellcommerce/search": 20,
+        "wellcommerce/dataset-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
