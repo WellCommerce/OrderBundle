@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fecf00e097723c51d2cbf8408748e7f7",
+    "content-hash": "388bfde9b5ef3078ec263e18459e1c66",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6112,6 +6112,56 @@
             "time": "2016-11-23 20:04:41"
         },
         {
+            "name": "wellcommerce/breadcrumb",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/Breadcrumb.git",
+                "reference": "1108d51bb2804bd6aa14e11b7a5784aeb1a2e218"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/Breadcrumb/zipball/1108d51bb2804bd6aa14e11b7a5784aeb1a2e218",
+                "reference": "1108d51bb2804bd6aa14e11b7a5784aeb1a2e218",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Component\\Breadcrumb\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce Breadcrumb",
+            "keywords": [
+                "breadcrumb",
+                "component",
+                "wellcommerce"
+            ],
+            "time": "2017-02-16 09:09:04"
+        },
+        {
             "name": "wellcommerce/collections",
             "version": "dev-master",
             "source": {
@@ -7453,7 +7503,8 @@
         "wellcommerce/serializer": 20,
         "wellcommerce/doctrine-enhancer": 20,
         "wellcommerce/form": 20,
-        "wellcommerce/dataset": 20
+        "wellcommerce/dataset": 20,
+        "wellcommerce/breadcrumb": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
