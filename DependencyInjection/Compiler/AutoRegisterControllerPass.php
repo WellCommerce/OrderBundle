@@ -32,17 +32,41 @@ final class AutoRegisterControllerPass extends AbstractAutoRegisterPass
             $controllerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'controller.admin');
             
             if (false === $container->has($controllerServiceId)) {
-                $managerServiceId     = $this->serviceIdGenerator->getServiceId($baseName, 'manager');
-                $formBuilderServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'form_builder.admin');
-                $dataGridServiceId    = $this->serviceIdGenerator->getServiceId($baseName, 'datagrid');
-                $dataSetServiceId     = $this->serviceIdGenerator->getServiceId($baseName, 'dataset.admin');
-                $manager              = $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
-                $formBuilder          = $container->has($formBuilderServiceId) ? new Reference($formBuilderServiceId) : null;
-                $dataGrid             = $container->has($dataGridServiceId) ? new Reference($dataGridServiceId) : null;
-                $dataSet              = $container->has($dataSetServiceId) ? new Reference($dataSetServiceId) : null;
-                $definition           = $definitionFactory->create($className, $manager, $formBuilder, $dataGrid, $dataSet);
+                $manager     = $this->getManager($baseName, $container);
+                $formBuilder = $this->getFormBuilder($baseName, $container);
+                $dataGrid    = $this->getDataGrid($baseName, $container);
+                $dataSet     = $this->getDataSet($baseName, $container);
+                $definition  = $definitionFactory->create($className, $manager, $formBuilder, $dataGrid, $dataSet);
                 $container->setDefinition($controllerServiceId, $definition);
             }
         }
+    }
+    
+    private function getManager(string $baseName, ContainerBuilder $container)
+    {
+        $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'manager');
+        
+        return $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
+    }
+    
+    private function getFormBuilder(string $baseName, ContainerBuilder $container)
+    {
+        $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'form_builder.admin');
+        
+        return $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
+    }
+    
+    private function getDataGrid(string $baseName, ContainerBuilder $container)
+    {
+        $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'datagrid');
+        
+        return $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
+    }
+    
+    private function getDataSet(string $baseName, ContainerBuilder $container)
+    {
+        $managerServiceId = $this->serviceIdGenerator->getServiceId($baseName, 'dataset.admin');
+        
+        return $container->has($managerServiceId) ? new Reference($managerServiceId) : null;
     }
 }
