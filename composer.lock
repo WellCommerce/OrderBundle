@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2920a78ade88b23bde0af0064a22545d",
+    "content-hash": "6ab875d251978540fb6689f16a1daaff",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6372,6 +6372,62 @@
             "time": "2017-02-16 00:49:48"
         },
         {
+            "name": "wellcommerce/form",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/Form.git",
+                "reference": "605a27ea3a4c25fd7e7c538e272f74b1b35ad4f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/Form/zipball/605a27ea3a4c25fd7e7c538e272f74b1b35ad4f8",
+                "reference": "605a27ea3a4c25fd7e7c538e272f74b1b35ad4f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "symfony/http-foundation": "v3.2.2",
+                "symfony/options-resolver": "v3.2.2",
+                "symfony/property-access": "v3.2.2",
+                "symfony/validator": "v3.2.2",
+                "wellcommerce/collections": "^0.7@dev",
+                "zendframework/zend-json": "^2.6@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Component\\Form\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce Form",
+            "keywords": [
+                "component",
+                "form",
+                "wellcommerce"
+            ],
+            "time": "2017-02-16 00:54:21"
+        },
+        {
             "name": "wellcommerce/serializer",
             "version": "dev-master",
             "source": {
@@ -7341,7 +7397,8 @@
         "jngermon/phpunit-entity-tester": 20,
         "wellcommerce/datagrid-bundle": 20,
         "wellcommerce/serializer": 20,
-        "wellcommerce/doctrine-enhancer": 20
+        "wellcommerce/doctrine-enhancer": 20,
+        "wellcommerce/form": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
