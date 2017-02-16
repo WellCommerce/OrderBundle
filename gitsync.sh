@@ -9,6 +9,7 @@ if [ "$action" == 'init' ]
         rm -rf web/themes/wellcommerce-default-theme
         git commit -a -m "Reinitializing subtrees"
 
+        git subtree add --prefix=src/WellCommerce/Component/Breadcrumb git@github.com:WellCommerce/Breadcrumb.git master
         git subtree add --prefix=src/WellCommerce/Component/Collections git@github.com:WellCommerce/Collections.git master
         git subtree add --prefix=src/WellCommerce/Component/DataSet git@github.com:WellCommerce/DataSet.git master
         git subtree add --prefix=src/WellCommerce/Component/DataGrid git@github.com:WellCommerce/DataGrid.git master
