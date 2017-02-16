@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37f8b8231abe577f34d37952e5d4ec21",
+    "content-hash": "6d0c2649983b64256d549b07bde6ec90",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6637,6 +6637,56 @@
             "time": "2017-02-16 00:54:21"
         },
         {
+            "name": "wellcommerce/generator-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/GeneratorBundle.git",
+                "reference": "9335eae23597de44d6e2a72ba6da73b2c55035ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/GeneratorBundle/zipball/9335eae23597de44d6e2a72ba6da73b2c55035ab",
+                "reference": "9335eae23597de44d6e2a72ba6da73b2c55035ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce GeneratorBundle",
+            "keywords": [
+                "e-commerce",
+                "open-source",
+                "wellcommerce"
+            ],
+            "time": "2017-02-16 23:48:40"
+        },
+        {
             "name": "wellcommerce/search",
             "version": "dev-master",
             "source": {
@@ -7665,7 +7715,8 @@
         "wellcommerce/breadcrumb": 20,
         "wellcommerce/search": 20,
         "wellcommerce/dataset-bundle": 20,
-        "wellcommerce/doctrine-bundle": 20
+        "wellcommerce/doctrine-bundle": 20,
+        "wellcommerce/generator-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
