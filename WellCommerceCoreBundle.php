@@ -29,7 +29,5 @@ class WellCommerceCoreBundle extends AbstractWellCommerceBundle
         parent::build($container);
         $container->addCompilerPass(new Compiler\FormResolverPass());
         $container->addCompilerPass(new Compiler\FormDataTransformerPass());
-        $container->addCompilerPass(new Compiler\DataSetContextPass());
-        $container->addCompilerPass(new Compiler\DataSetTransformerPass());
     }
 }
