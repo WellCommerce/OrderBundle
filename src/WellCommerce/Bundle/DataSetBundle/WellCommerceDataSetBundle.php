@@ -10,24 +10,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle;
+namespace WellCommerce\Bundle\DataSetBundle;
 
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use WellCommerce\Bundle\CoreBundle\DependencyInjection\Compiler;
-use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use WellCommerce\Bundle\DataSetBundle\DependencyInjection\Compiler\DataSetContextPass;
+use WellCommerce\Bundle\DataSetBundle\DependencyInjection\Compiler\DataSetTransformerPass;
 
 /**
- * Class WellCommerceCoreBundle
+ * Class WellCommerceDataSetBundle
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCoreBundle extends AbstractWellCommerceBundle
+class WellCommerceDataSetBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-        $container->addCompilerPass(new Compiler\FormResolverPass());
-        $container->addCompilerPass(new Compiler\FormDataTransformerPass());
+        $container->addCompilerPass(new DataSetContextPass());
+        $container->addCompilerPass(new DataSetTransformerPass());
     }
 }

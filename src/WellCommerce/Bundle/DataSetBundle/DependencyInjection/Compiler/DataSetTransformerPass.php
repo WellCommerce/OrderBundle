@@ -10,19 +10,19 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\DependencyInjection\Compiler;
+namespace WellCommerce\Bundle\DataSetBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use WellCommerce\Component\DataSet\Context\DataSetContextInterface;
+use WellCommerce\Component\DataSet\Transformer\DataSetTransformerInterface;
 
 /**
- * Class DataSetContextPass
+ * Class DataSetTransformerPass
  *
  * @author Adam Piotrowski <adam@wellcommerce.org>
  */
-class DataSetContextPass implements CompilerPassInterface
+class DataSetTransformerPass implements CompilerPassInterface
 {
     /**
      * Processes the container
@@ -31,9 +31,9 @@ class DataSetContextPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $tag        = 'dataset.context';
-        $interface  = DataSetContextInterface::class;
-        $definition = $container->getDefinition('dataset.context.collection');
+        $tag        = 'dataset.transformer';
+        $interface  = DataSetTransformerInterface::class;
+        $definition = $container->getDefinition('dataset.transformer.collection');
 
         foreach ($container->findTaggedServiceIds($tag) as $id => $attributes) {
             $itemDefinition = $container->getDefinition($id);
@@ -41,7 +41,7 @@ class DataSetContextPass implements CompilerPassInterface
 
             if (!$refClass->implementsInterface($interface)) {
                 throw new \InvalidArgumentException(
-                    sprintf('DataSetContext "%s" tagged with "%s" must implement interface "%s".', $id, $tag, $interface)
+                    sprintf('DataSetTransformer "%s" tagged with "%s" must implement interface "%s".', $id, $tag, $interface)
                 );
             }
 

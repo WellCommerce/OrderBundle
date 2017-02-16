@@ -43,6 +43,7 @@ class AppKernel extends Kernel
             new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
             new \WellCommerce\Bundle\CoreBundle\WellCommerceCoreBundle(),
             new \WellCommerce\Bundle\DataGridBundle\WellCommerceDataGridBundle(),
+            new \WellCommerce\Bundle\DataSetBundle\WellCommerceDataSetBundle(),
             new \WellCommerce\Bundle\GeneratorBundle\WellCommerceGeneratorBundle(),
             new \WellCommerce\Bundle\DoctrineBundle\WellCommerceDoctrineBundle(),
             new \WellCommerce\Bundle\OrderBundle\WellCommerceOrderBundle(),
