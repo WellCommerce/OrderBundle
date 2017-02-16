@@ -1,12 +1,5 @@
 .idea
-*.phar
-app/bootstrap.*
-app/cache/*
-app/config/parameters.yml
-app/logs/*
-app/sessions/*
-app/sql/*
-app/lucene/*
-/bin/
-/vendor/
-*node_modules
+vendor/
+phpunit.xml
+composer.phar
+composer.lock
