@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dede4e2345b8512063774a91eade72b",
+    "content-hash": "f1cfea7196dadc3991d7d4b4503a6fbc",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6318,6 +6318,61 @@
             "time": "2017-02-16 00:33:04"
         },
         {
+            "name": "wellcommerce/serializer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/Serializer.git",
+                "reference": "8aeede019cbf887ce90fdffb265c84e3b45e6e75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/Serializer/zipball/8aeede019cbf887ce90fdffb265c84e3b45e6e75",
+                "reference": "8aeede019cbf887ce90fdffb265c84e3b45e6e75",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "2.5.4",
+                "php": "^7.0",
+                "symfony/options-resolver": "v3.2.2",
+                "symfony/property-access": "v3.2.2",
+                "symfony/serializer": "v3.2.2",
+                "wellcommerce/collections": "^0.7@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Component\\Serializer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce Serializer",
+            "keywords": [
+                "component",
+                "form",
+                "wellcommerce"
+            ],
+            "time": "2017-02-10 21:23:30"
+        },
+        {
             "name": "willdurand/js-translation-bundle",
             "version": "2.6.2",
             "target-dir": "Bazinga/Bundle/JsTranslationBundle",
@@ -7230,7 +7285,8 @@
         "zendframework/zendsearch": 20,
         "zendframework/zend-json": 20,
         "jngermon/phpunit-entity-tester": 20,
-        "wellcommerce/datagrid-bundle": 20
+        "wellcommerce/datagrid-bundle": 20,
+        "wellcommerce/serializer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
