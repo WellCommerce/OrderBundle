@@ -81,7 +81,8 @@
     "wellcommerce/dataset": "^0.7.0@dev",
     "wellcommerce/breadcrumb": "^0.7.0@dev",
     "wellcommerce/search": "^0.7.0@dev",
-    "wellcommerce/dataset-bundle": "^0.7.0@dev"
+    "wellcommerce/dataset-bundle": "^0.7.0@dev",
+    "wellcommerce/doctrine-bundle": "^0.7.0@dev"
   },
   "scripts": {
     "pre-install-cmd": [
