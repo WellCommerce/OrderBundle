@@ -1,6 +1,5 @@
 {
   "name": "wellcommerce/generator-bundle",
-  "type": "wellcommerce-bundle",
   "license": "MIT",
   "minimum-stability": "dev",
   "description": "WellCommerce GeneratorBundle",
