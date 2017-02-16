@@ -60,6 +60,7 @@ if [ "$action" == 'push' ]
     then
         git commit -a -m "Pushing changes before synchronizing subtrees"
 
+        git subtree push --prefix=src/WellCommerce/Component/Breadcrumb git@github.com:WellCommerce/Breadcrumb.git master
         git subtree push --prefix=src/WellCommerce/Component/Collections git@github.com:WellCommerce/Collections.git master
         git subtree push --prefix=src/WellCommerce/Component/DataSet git@github.com:WellCommerce/DataSet.git master
         git subtree push --prefix=src/WellCommerce/Component/DataGrid git@github.com:WellCommerce/DataGrid.git master
