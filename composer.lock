@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "388bfde9b5ef3078ec263e18459e1c66",
+    "content-hash": "123faa26bd55f6be538f6170e9631f02",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6532,6 +6532,60 @@
             "time": "2017-02-16 00:54:21"
         },
         {
+            "name": "wellcommerce/search",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/Search.git",
+                "reference": "e6634234f4f8204b17f5ffdd5699e1cdb247d46b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/Search/zipball/e6634234f4f8204b17f5ffdd5699e1cdb247d46b",
+                "reference": "e6634234f4f8204b17f5ffdd5699e1cdb247d46b",
+                "shasum": ""
+            },
+            "require": {
+                "elasticsearch/elasticsearch": "v2.3.0",
+                "php": "^7.0",
+                "symfony/options-resolver": "v3.2.2",
+                "wellcommerce/collections": "^0.7@dev",
+                "zendframework/zendsearch": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Component\\Search\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce Search Component",
+            "keywords": [
+                "component",
+                "search",
+                "wellcommerce"
+            ],
+            "time": "2017-02-16 09:20:58"
+        },
+        {
             "name": "wellcommerce/serializer",
             "version": "dev-master",
             "source": {
@@ -7496,7 +7550,6 @@
         "react/child-process": 20,
         "knplabs/packagist-api": 20,
         "devristo/phpws": 20,
-        "zendframework/zendsearch": 20,
         "zendframework/zend-json": 20,
         "jngermon/phpunit-entity-tester": 20,
         "wellcommerce/datagrid-bundle": 20,
@@ -7504,7 +7557,8 @@
         "wellcommerce/doctrine-enhancer": 20,
         "wellcommerce/form": 20,
         "wellcommerce/dataset": 20,
-        "wellcommerce/breadcrumb": 20
+        "wellcommerce/breadcrumb": 20,
+        "wellcommerce/search": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
