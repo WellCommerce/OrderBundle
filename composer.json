@@ -29,7 +29,7 @@
     }
   },
   "require": {
-    "wellcommerce/api-bundle": "^0.7@dev"
+    "wellcommerce/datagrid": "^0.7@dev"
   },
   "extra": {
     "branch-alias": {
