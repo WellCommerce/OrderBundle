@@ -17,9 +17,9 @@ use WellCommerce\Bundle\CoreBundle\Controller\AbstractController;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Manager\ManagerInterface;
 use WellCommerce\Bundle\OrderBundle\Provider\Admin\OrderProviderInterface;
-use WellCommerce\Component\DataGrid\Conditions\ConditionsResolver;
 use WellCommerce\Component\DataGrid\DataGridInterface;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
+use WellCommerce\Component\DataSet\Conditions\ConditionsResolver;
 use WellCommerce\Component\DataSet\DataSetInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
 

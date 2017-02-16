@@ -82,6 +82,7 @@ if [ "$action" == 'push' ]
         git subtree push --prefix=src/WellCommerce/Bundle/DelivererBundle git@github.com:WellCommerce/DelivererBundle.git master
         git subtree push --prefix=src/WellCommerce/Bundle/DictionaryBundle git@github.com:WellCommerce/DictionaryBundle.git master
         git subtree push --prefix=src/WellCommerce/Bundle/DistributionBundle git@github.com:WellCommerce/DistributionBundle.git master
+        git subtree push --prefix=src/WellCommerce/Bundle/DataGridBundle git@github.com:WellCommerce/DataGridBundle.git master
         git subtree push --prefix=src/WellCommerce/Bundle/LayeredNavigationBundle git@github.com:WellCommerce/LayeredNavigationBundle.git master
         git subtree push --prefix=src/WellCommerce/Bundle/LayoutBundle git@github.com:WellCommerce/LayoutBundle.git master
         git subtree push --prefix=src/WellCommerce/Bundle/LocaleBundle git@github.com:WellCommerce/LocaleBundle.git master
