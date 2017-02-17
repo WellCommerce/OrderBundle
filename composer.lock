@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d0c2649983b64256d549b07bde6ec90",
+    "content-hash": "877518c9fcac83dea624bc6a9372e9c2",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6637,6 +6637,63 @@
             "time": "2017-02-16 00:54:21"
         },
         {
+            "name": "wellcommerce/form-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/FormBundle.git",
+                "reference": "59debdd5fd4d8489b77991fe3fefe78e58e81005"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/FormBundle/zipball/59debdd5fd4d8489b77991fe3fefe78e58e81005",
+                "reference": "59debdd5fd4d8489b77991fe3fefe78e58e81005",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "v2.5.4",
+                "php": "^7.0",
+                "symfony/options-resolver": "v3.2.2",
+                "symfony/property-access": "v3.2.2",
+                "wellcommerce/collections": "^0.7@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Bundle\\FormBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce FormBundle",
+            "keywords": [
+                "bundle",
+                "e-commerce",
+                "form",
+                "open-source",
+                "symfony",
+                "wellcommerce"
+            ],
+            "time": "2017-02-17 21:55:17"
+        },
+        {
             "name": "wellcommerce/generator-bundle",
             "version": "dev-master",
             "source": {
@@ -7717,7 +7774,8 @@
         "wellcommerce/search": 20,
         "wellcommerce/dataset-bundle": 20,
         "wellcommerce/doctrine-bundle": 20,
-        "wellcommerce/generator-bundle": 20
+        "wellcommerce/generator-bundle": 20,
+        "wellcommerce/form-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
