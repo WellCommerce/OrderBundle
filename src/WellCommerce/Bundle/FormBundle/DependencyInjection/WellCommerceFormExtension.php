@@ -10,15 +10,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle;
+namespace WellCommerce\Bundle\FormBundle\DependencyInjection;
 
-use WellCommerce\Bundle\CoreBundle\HttpKernel\AbstractWellCommerceBundle;
+use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractExtension;
 
 /**
- * Class WellCommerceCoreBundle
+ * Class WellCommerceFormExtension
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class WellCommerceCoreBundle extends AbstractWellCommerceBundle
+final class WellCommerceFormExtension extends AbstractExtension
 {
 }

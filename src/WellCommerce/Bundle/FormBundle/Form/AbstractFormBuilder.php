@@ -10,12 +10,12 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Form;
+namespace WellCommerce\Bundle\FormBundle\Form;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use WellCommerce\Bundle\CoreBundle\DependencyInjection\AbstractContainerAware;
-use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\DataTransformerFactory;
-use WellCommerce\Bundle\CoreBundle\Form\DataTransformer\RepositoryAwareDataTransformerInterface;
+use WellCommerce\Bundle\FormBundle\Form\DataTransformer\DataTransformerFactory;
+use WellCommerce\Bundle\FormBundle\Form\DataTransformer\RepositoryAwareDataTransformerInterface;
 use WellCommerce\Bundle\DoctrineBundle\Entity\EntityInterface;
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\Dependencies\DependencyInterface;

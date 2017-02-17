@@ -10,7 +10,7 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace WellCommerce\Bundle\CoreBundle\Form\DataTransformer;
+namespace WellCommerce\Bundle\FormBundle\Form\DataTransformer;
 
 use WellCommerce\Bundle\DoctrineBundle\Repository\RepositoryInterface;
 use WellCommerce\Component\Form\DataTransformer\DataTransformerInterface;
