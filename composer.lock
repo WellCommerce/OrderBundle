@@ -941,12 +941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "a8447cb8571cd06172db3eddf9de62ab49bf0738"
+                "reference": "5a4ff4673c98f18fc034c7222ce2d4b1481d4565"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/a8447cb8571cd06172db3eddf9de62ab49bf0738",
-                "reference": "a8447cb8571cd06172db3eddf9de62ab49bf0738",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/5a4ff4673c98f18fc034c7222ce2d4b1481d4565",
+                "reference": "5a4ff4673c98f18fc034c7222ce2d4b1481d4565",
                 "shasum": ""
             },
             "require": {
@@ -1004,7 +1004,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-02-10 18:30:02"
+            "time": "2017-02-16 19:16:41"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1366,12 +1366,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "68099b02b60bbf3b088ff5cb67bf506770ef9cac"
+                "reference": "5acd2bd8c2b600ad5cc4c9180ebf0a930604d6a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/68099b02b60bbf3b088ff5cb67bf506770ef9cac",
-                "reference": "68099b02b60bbf3b088ff5cb67bf506770ef9cac",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/5acd2bd8c2b600ad5cc4c9180ebf0a930604d6a5",
+                "reference": "5acd2bd8c2b600ad5cc4c9180ebf0a930604d6a5",
                 "shasum": ""
             },
             "require": {
@@ -1412,7 +1412,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2017-01-23 09:23:06"
+            "time": "2017-02-16 16:15:51"
         },
         {
             "name": "doctrine/lexer",
@@ -6323,12 +6323,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WellCommerce/DataGridBundle.git",
-                "reference": "f018e7bca64a66d611c587ff2df006c52fe3842a"
+                "reference": "8a058cd75a50a1205b9b9a2a3a5584e882922c8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WellCommerce/DataGridBundle/zipball/f018e7bca64a66d611c587ff2df006c52fe3842a",
-                "reference": "f018e7bca64a66d611c587ff2df006c52fe3842a",
+                "url": "https://api.github.com/repos/WellCommerce/DataGridBundle/zipball/8a058cd75a50a1205b9b9a2a3a5584e882922c8b",
+                "reference": "8a058cd75a50a1205b9b9a2a3a5584e882922c8b",
                 "shasum": ""
             },
             "require": {
@@ -6365,7 +6365,7 @@
                 "open-source",
                 "wellcommerce"
             ],
-            "time": "2017-02-16 00:33:04"
+            "time": "2017-02-16 00:43:27"
         },
         {
             "name": "wellcommerce/dataset",
@@ -6642,12 +6642,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/WellCommerce/GeneratorBundle.git",
-                "reference": "9335eae23597de44d6e2a72ba6da73b2c55035ab"
+                "reference": "0574bd7a036fd4cbcca821840cb2f368877adf76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WellCommerce/GeneratorBundle/zipball/9335eae23597de44d6e2a72ba6da73b2c55035ab",
-                "reference": "9335eae23597de44d6e2a72ba6da73b2c55035ab",
+                "url": "https://api.github.com/repos/WellCommerce/GeneratorBundle/zipball/0574bd7a036fd4cbcca821840cb2f368877adf76",
+                "reference": "0574bd7a036fd4cbcca821840cb2f368877adf76",
                 "shasum": ""
             },
             "require": {
@@ -6661,7 +6661,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "": "src/"
+                    "WellCommerce\\Bundle\\GeneratorBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6682,9 +6682,10 @@
             "keywords": [
                 "e-commerce",
                 "open-source",
+                "symfony",
                 "wellcommerce"
             ],
-            "time": "2017-02-16 23:48:40"
+            "time": "2017-02-17 00:34:13"
         },
         {
             "name": "wellcommerce/search",
