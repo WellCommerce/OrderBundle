@@ -17,15 +17,12 @@ use WellCommerce\Component\Form\Elements\FormInterface;
 use WellCommerce\Component\Form\FormBuilderInterface;
 
 /**
- * Class SearchBoxConfigurator
+ * Class ProductSearchBoxConfigurator
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-final class SearchBoxConfigurator extends AbstractLayoutBoxConfigurator
+final class ProductSearchBoxConfigurator extends AbstractLayoutBoxConfigurator
 {
-    /**
-     * {@inheritdoc}
-     */
     public function addFormFields(FormBuilderInterface $builder, FormInterface $form, $defaults)
     {
         $fieldset = $this->getFieldset($builder, $form);

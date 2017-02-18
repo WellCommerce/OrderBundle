@@ -18,20 +18,20 @@ use WellCommerce\Bundle\CoreBundle\Controller\Box\AbstractBoxController;
 use WellCommerce\Component\DataSet\Conditions\ConditionsCollection;
 
 /**
- * Class SearchBoxController
+ * Class ProductSearchBoxController
  *
  * @author  Adam Piotrowski <adam@wellcommerce.org>
  */
-class SearchBoxController extends AbstractBoxController
+class ProductSearchBoxController extends AbstractBoxController
 {
-    public function indexAction(LayoutBoxSettingsCollection $boxSettings) : Response
+    public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
         $requestHelper = $this->getRequestHelper();
         $limit         = $this->getRequestHelper()->getAttributesBagParam('limit', $boxSettings->getParam('per_page', 12));
-        $dataset       = $this->get('search.dataset.front');
+        $dataset       = $this->get('product_search.dataset.front');
         $conditions    = new ConditionsCollection();
         $conditions    = $this->get('layered_navigation.helper')->addLayeredNavigationConditions($conditions);
-
+        
         $products = $dataset->getResult('array', [
             'limit'      => $limit,
             'page'       => $requestHelper->getAttributesBagParam('page', 1),
@@ -39,7 +39,7 @@ class SearchBoxController extends AbstractBoxController
             'order_dir'  => $requestHelper->getAttributesBagParam('orderDir', 'asc'),
             'conditions' => $conditions,
         ]);
-
+        
         return $this->displayTemplate('index', [
             'dataset' => $products,
         ]);
