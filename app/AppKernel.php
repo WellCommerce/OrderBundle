@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new \EmanueleMinotto\TwigCacheBundle\TwigCacheBundle(),
             new \WellCommerce\Bundle\ApiBundle\WellCommerceApiBundle(),
             new \WellCommerce\Bundle\AppBundle\WellCommerceAppBundle(),
+            new \WellCommerce\Bundle\BreadcrumbBundle\WellCommerceBreadcrumbBundle(),
             new \WellCommerce\Bundle\CoreBundle\WellCommerceCoreBundle(),
             new \WellCommerce\Bundle\DataGridBundle\WellCommerceDataGridBundle(),
             new \WellCommerce\Bundle\DataSetBundle\WellCommerceDataSetBundle(),

@@ -9,9 +9,10 @@
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
-namespace WellCommerce\Bundle\CoreBundle\EventListener;
+namespace WellCommerce\Bundle\BreadcrumbBundle\EventListener;
 
 use Symfony\Component\HttpKernel\KernelEvents;
+use WellCommerce\Bundle\CoreBundle\EventListener\AbstractEventSubscriber;
 use WellCommerce\Component\Breadcrumb\Model\Breadcrumb;
 
 /**

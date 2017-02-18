@@ -9,6 +9,7 @@
 imports:
     - { resource: "app/" }
     - { resource: "@WellCommerceApiBundle/Resources/config/config.yml" }
+    - { resource: "@WellCommerceBreadcrumbBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceCoreBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDataGridBundle/Resources/config/config.yml" }
     - { resource: "@WellCommerceDataSetBundle/Resources/config/config.yml" }
