@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "877518c9fcac83dea624bc6a9372e9c2",
+    "content-hash": "832a9a1903d3b9c7d96e485fa2c2319f",
     "packages": [
         {
             "name": "asm89/twig-cache-extension",
@@ -6162,6 +6162,57 @@
             "time": "2017-02-16 09:09:04"
         },
         {
+            "name": "wellcommerce/breadcrumb-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WellCommerce/BreadcrumbBundle.git",
+                "reference": "14e77f189fbbed3258febe73845cc8dc5ddb3217"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WellCommerce/BreadcrumbBundle/zipball/14e77f189fbbed3258febe73845cc8dc5ddb3217",
+                "reference": "14e77f189fbbed3258febe73845cc8dc5ddb3217",
+                "shasum": ""
+            },
+            "require": {
+                "wellcommerce/breadcrumb": "^0.7@dev",
+                "wellcommerce/collections": "^0.7@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WellCommerce\\Bundle\\BreadcrumbBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Piotrowski",
+                    "email": "adam@wellcommerce.org"
+                },
+                {
+                    "name": "WellCommerce Developers",
+                    "email": "developers@wellcommerce.org"
+                }
+            ],
+            "description": "WellCommerce BreadcrumbBundle",
+            "keywords": [
+                "e-commerce",
+                "open-source",
+                "wellcommerce"
+            ],
+            "time": "2017-02-18 09:39:27"
+        },
+        {
             "name": "wellcommerce/collections",
             "version": "dev-master",
             "source": {
@@ -7775,7 +7826,8 @@
         "wellcommerce/dataset-bundle": 20,
         "wellcommerce/doctrine-bundle": 20,
         "wellcommerce/generator-bundle": 20,
-        "wellcommerce/form-bundle": 20
+        "wellcommerce/form-bundle": 20,
+        "wellcommerce/breadcrumb-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
