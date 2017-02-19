@@ -9,7 +9,7 @@
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
  */
-namespace WellCommerce\Bundle\CoreBundle\Twig\Extension;
+namespace WellCommerce\Bundle\CoreBundle\Twig;
 
 use WellCommerce\Bundle\CoreBundle\Helper\Image\ImageHelperInterface;
 
@@ -47,7 +47,7 @@ final class ImageExtension extends \Twig_Extension
         return 'image';
     }
     
-    public function getImagePath(string $path = null, string $filter) : string
+    public function getImagePath(string $path = null, string $filter): string
     {
         if (null === $path) {
             return '';
