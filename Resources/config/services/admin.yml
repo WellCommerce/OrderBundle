@@ -9,8 +9,6 @@
 services:
     review.layout_box.configurator:
         class: WellCommerce\Bundle\ReviewBundle\Configurator\ReviewBoxConfigurator
+        autowire: true
         tags:
             - { name: layout_box.configurator }
-        arguments: [Review, review.layout_box.controller, '@translator.helper']
-        calls:
-            - [setContainer, ['@service_container']]
