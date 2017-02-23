@@ -48,12 +48,13 @@ class CurrencySubscriber extends AbstractEventSubscriber
     private function getLocaleCurrency(Request $request)
     {
         $currentLocale = $request->getLocale();
-        $locale        = $this->container->get('locale.repository')->findOneBy(['code' => $currentLocale]);
+        $repository    = $this->container->get('locale.repository');
+        $locale        = $repository->findOneBy(['code' => $currentLocale]);
         
         if ($locale instanceof Locale && $locale->getCurrency() instanceof Currency) {
             return $locale->getCurrency()->getCode();
         }
         
-        return null;
+        return $repository->findOneBy([])->getCurrency()->getCode();
     }
 }
