@@ -27,19 +27,27 @@ final class CategoryMenuBoxController extends AbstractBoxController
 {
     public function indexAction(LayoutBoxSettingsCollection $boxSettings): Response
     {
-        /** @var CategoryRepository $repository */
-        $repository = $this->manager->getRepository();
-        $category   = $this->getCategoryStorage()->getCurrentCategory();
-        $paths      = $repository->getCategoryPath($category);
-        $active     = [];
-        
-        /** @var Category $path */
-        foreach ($paths as $path) {
-            $active[] = $path->getId();
+        return $this->displayTemplate('index', [
+            'active' => $this->getActiveCategories(),
+        ]);
+    }
+    
+    private function getActiveCategories(): array
+    {
+        $active = [];
+        if ($this->getCategoryStorage()->hasCurrentCategory()) {
+            /** @var CategoryRepository $repository */
+            $repository = $this->manager->getRepository();
+            $category   = $this->getCategoryStorage()->getCurrentCategory();
+            $paths      = $repository->getCategoryPath($category);
+            $active     = [];
+            
+            /** @var Category $path */
+            foreach ($paths as $path) {
+                $active[] = $path->getId();
+            }
         }
         
-        return $this->displayTemplate('index', [
-            'active' => $active,
-        ]);
+        return $active;
     }
 }
