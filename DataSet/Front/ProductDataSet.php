@@ -41,6 +41,7 @@ class ProductDataSet extends AbstractDataSet
         $configurator->setColumns([
             'id'                 => 'product.id',
             'sku'                => 'product.sku',
+            'barcode'            => 'product.barcode',
             'enabled'            => 'product.enabled',
             'name'               => 'product_translation.name',
             'shortDescription'   => 'product_translation.shortDescription',

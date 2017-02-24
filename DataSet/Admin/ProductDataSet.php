@@ -35,6 +35,7 @@ class ProductDataSet extends AbstractDataSet
             'id'          => 'product.id',
             'name'        => 'product_translation.name',
             'sku'         => 'product.sku',
+            'barcode'     => 'product.barcode',
             'weight'      => 'product.weight',
             'grossAmount' => 'product.sellPrice.grossAmount',
             'stock'       => 'product.stock',

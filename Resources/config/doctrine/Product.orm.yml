@@ -26,6 +26,10 @@ WellCommerce\Bundle\CatalogBundle\Entity\Product:
             type: string
             length: 64
             nullable: false
+        barcode:
+            type: string
+            length: 64
+            nullable: false
         stock:
             type: integer
             nullable: false

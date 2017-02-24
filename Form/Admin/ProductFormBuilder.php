@@ -111,6 +111,11 @@ class ProductFormBuilder extends AbstractFormBuilder
             ],
         ]));
         
+        $mainData->addChild($this->getElement('text_field', [
+            'name'  => 'barcode',
+            'label' => 'product.label.barcode',
+        ]));
+        
         $mainData->addChild($this->getElement('select', [
             'name'        => 'producer',
             'label'       => 'common.label.producer',
@@ -367,7 +372,7 @@ class ProductFormBuilder extends AbstractFormBuilder
         $form->addFilter($this->getFilter('secure'));
     }
     
-    protected function getAttributeGroups() : Collection
+    protected function getAttributeGroups(): Collection
     {
         return $this->get('attribute_group.repository')->getCollection();
     }

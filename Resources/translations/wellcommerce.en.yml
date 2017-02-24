@@ -115,6 +115,7 @@ product:
         slug: Slug
         enabled: Enabled
         sku: SKU
+        barcode: Barcode
         statuses: Product's statuses
         shops: Available in shops
         categories: Categories

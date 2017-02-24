@@ -67,6 +67,12 @@ class ProductDataGrid extends AbstractDataGrid
         ]));
         
         $collection->add(new Column([
+            'id'       => 'barcode',
+            'editable' => true,
+            'caption'  => 'product.label.barcode',
+        ]));
+        
+        $collection->add(new Column([
             'id'      => 'category',
             'caption' => 'common.label.categories',
             'filter'  => new Filter([

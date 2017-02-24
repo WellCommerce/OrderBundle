@@ -115,6 +115,7 @@ product:
         slug: Ścieżka SEO
         enabled: Włączony
         sku: SKU
+        barcode: Kod kreskowy
         statuses: Statusy produktu
         shops: Dostępny w sklepach
         categories: Kategorie

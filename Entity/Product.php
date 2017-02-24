@@ -46,6 +46,7 @@ class Product implements EntityInterface
     use ProductExtraTrait;
     
     protected $sku         = '';
+    protected $barcode     = '';
     protected $stock       = 0;
     protected $trackStock  = true;
     protected $weight      = 0.00;
@@ -146,6 +147,16 @@ class Product implements EntityInterface
     public function getStock(): int
     {
         return $this->stock;
+    }
+    
+    public function getBarcode(): string
+    {
+        return $this->barcode;
+    }
+    
+    public function setBarcode(string $barcode)
+    {
+        $this->barcode = $barcode;
     }
     
     public function setStock(int $stock)
